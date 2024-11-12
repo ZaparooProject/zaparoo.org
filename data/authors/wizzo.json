@@ -1,0 +1,11 @@
+{
+  "name": "wizzo",
+  "image": "img/authors/wizzo.png",
+  "bio": "Project Lead",
+  "social": [
+    { "link": "https://wizzo.dev" },
+    { "github": "https://github.com/wizzomafizzo" },
+    { "bluesky": "https://bsky.app/profile/wizzo.bsky.social" },
+    { "x-twitter": "https://x.com/wizzomafizzo" }
+  ]
+}
