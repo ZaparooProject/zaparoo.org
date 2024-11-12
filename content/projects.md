@@ -38,5 +38,3 @@ Community contributed media files for use with Zaparoo projects.
 ## Zaparoo.org
 
 This website! Zaparoo.org is a static site generated using [Hugo](https://gohugo.io/) and [Blowfish](https://blowfish.page/).
-
-{{< github repo="TapToCommunity/zaparoo.org" >}}
