@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-# baseURL = "https://zaparoo.org/"
+baseURL = "https://zaparoo.org/"
 defaultContentLanguage = "en"
 languageCode = "en"
 
