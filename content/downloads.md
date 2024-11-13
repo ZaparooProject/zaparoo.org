@@ -9,11 +9,11 @@ showWordCount: false
 showPagination: false
 ---
 
-To use Zaparoo you must install the [Zaparoo Core](#zaparoo-core) service on your preferred platform device and use a frontend application like [TapTo Life](#tapto-life) to configure and interact with it.
+To use Zaparoo you must install the [Zaparoo Core](#zaparoo-core) service on your preferred platform device and use a frontend application like [Zaparoo App](#zaparoo-app) to configure and interact with it.
 
-## TapTo Life
+## Zaparoo App
 
-The [TapTo Life](https://tapto.life/) app is the offically supported way to use the Zaparoo Core service and create your collection. All essential features to use Zaparoo are available for free.
+The Zaparoo App is the offically supported way to use the Zaparoo Core service and create your collection. All essential features to use Zaparoo are available for free.
 
 {{< button href="https://apps.apple.com/us/app/tapto-life/id6480331015" target="_self" >}}
 {{< icon "apple" >}} App Store (iOS)
