@@ -1,6 +1,6 @@
 ---
 title: "TapTo is now Zaparoo"
-date: 2024-11-11
+date: 2024-11-13
 authors: ["wizzo"]
 tags: ["announcement"]
 summary: "TapTo will now be called Zaparoo! All directly associated projects will be rebranded to reflect this name change. The name Zaparoo is also in the process of being trademarked and will have very different terms of use compared to TapTo."
