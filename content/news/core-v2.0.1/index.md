@@ -16,6 +16,6 @@ The games database update button and database status display has been removed to
 {{< icon "download" >}} Download v2.0.1
 {{< /button >}}<br>
 
-{{< button href="https://github.com/TapToCommunity/tapto/releases/tag/v2.0.1" target="_self" >}}
+{{< button href="https://github.com/ZaparooProject/tapto/releases/tag/v2.0.1" target="_self" >}}
 {{< icon "github" >}} GitHub
 {{< /button >}}

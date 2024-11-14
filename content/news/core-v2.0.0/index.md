@@ -17,7 +17,7 @@ Version 2.0.0 of TapTo Core has several breaking changes compared to the previou
 {{< icon "download" >}} Download v2.0.0
 {{< /button >}}<br>
 
-{{< button href="https://github.com/TapToCommunity/tapto/releases/tag/v2.0.0" target="_self" >}}
+{{< button href="https://github.com/ZaparooProject/tapto/releases/tag/v2.0.0" target="_self" >}}
 {{< icon "github" >}} GitHub
 {{< /button >}}
 

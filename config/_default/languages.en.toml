@@ -19,7 +19,7 @@ title = "Zaparoo"
   image = "img/zaparoo-bio.png"
   headline = "Universal Loading System"
   links = [
-    { github = "https://github.com/TapToCommunity/" },
+    { github = "https://github.com/ZaparooProject/" },
     { discord = "https://wizzo.dev/discord" },
     { reddit = "https://reddit.com/r/Zaparoo" },
   ]

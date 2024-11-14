@@ -15,7 +15,7 @@ If you need support or have questions about any of the Zaparoo open source proje
 - [Wizzo.dev Discord](https://wizzo.dev/discord)
 - [Zaparoo Subreddit](https://www.reddit.com/r/Zaparoo/)
 
-You can also create an issue in the appropriate [GitHub repository](https://github.com/TapToCommunity/).
+You can also create an issue in the appropriate [GitHub repository](https://github.com/ZaparooProject/).
 
 ## TapTo Life App
 
