@@ -15,25 +15,25 @@ All official open source projects associated with the main Zaparoo project.
 
 The core software service that runs on your platform device and coordinates all hardware and software to make Zaparoo work.
 
-{{< github repo="ZaparooProject/tapto" >}}
+{{< github repo="ZaparooProject/zaparoo-core" >}}
 
 ## Designer
 
 A rich web-based designer for creating card labels using template design contributed by the Zaparoo community.
 
-{{< github repo="ZaparooProject/TapToLabelDesigner" >}}
+{{< github repo="ZaparooProject/zaparoo-designer" >}}
 
 ## Hardware
 
 Community contributed open source hardware for creating your own Zaparoo projects including 3D models and PCB designs.
 
-{{< github repo="ZaparooProject/tapto-hardware" >}}
+{{< github repo="ZaparooProject/zaparoo-hardware" >}}
 
 ## Media
 
 Community contributed media files for use with Zaparoo projects.
 
-{{< github repo="ZaparooProject/tapto-media" >}}
+{{< github repo="ZaparooProject/zaparoo-media" >}}
 
 ## Zaparoo.org
 
