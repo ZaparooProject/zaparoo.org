@@ -4,10 +4,11 @@ showAuthor: false
 showDate: false
 showReadingTime: false
 sharingLinks: false
-showTableOfContents: false
 showWordCount: false
 showPagination: false
 ---
+
+## Open Source Projects
 
 If you need support or have questions about any of the Zaparoo open source projects, please make use of the available community resources first:
 
@@ -17,10 +18,18 @@ If you need support or have questions about any of the Zaparoo open source proje
 
 You can also create an issue in the appropriate [GitHub repository](https://github.com/ZaparooProject/).
 
-## TapTo Life App
+## Zaparoo App
 
-Check the community resources or send an email to: [support@zaparoo.com](mailto:support@zaparoo.com)
+Check the community resources or email: support@zaparoo.com
 
-## Commercial Use and Media Inquiries
+## Commercial and Trademark Use
 
-Please use the [contact page](https://zaparoo.com/contact) of the [Zaparoo.com](https://zaparoo.com) website for commercial use not covered by the existing [licenses](https://tapto.wiki/Licenses), media inquiries, and other business-related matters.
+Commercial use of Zaparoo projects is allowed under the existing licenses, as long as the conditions of trademark usage are met. Refer to the [Terms of Use](/terms) for more information. If unsure, email: support@zaparoo.com
+
+Some sub-projects may NOT allow commercial use. In this case, contact the original author for permission.
+
+If you'd like to use Zaparoo trademarks, email: trademark@zaparoo.com
+
+## Media Inquiries
+
+For media inquiries such as requests for review items, email: media@zaparoo.com

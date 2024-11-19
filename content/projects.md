@@ -19,7 +19,7 @@ The core software service that runs on your platform device and coordinates all 
 
 ## Designer
 
-A rich web-based designer for creating card labels using template design contributed by the Zaparoo community.
+A rich web-based designer for creating card labels using template designs contributed by the Zaparoo community.
 
 {{< github repo="ZaparooProject/zaparoo-designer" >}}
 
