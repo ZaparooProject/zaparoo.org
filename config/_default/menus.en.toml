@@ -19,7 +19,7 @@
 
 [[main]]
   name = "Wiki"
-  url = "https://tapto.wiki"
+  url = "https://wiki.zaparoo.org"
   weight = 30
 
 [[main]]
@@ -35,7 +35,7 @@
 [[subnavigation]]
  name = "Contributors"
  pre = "heart"
- url = "https://tapto.wiki/Contributors"
+ url = "https://wiki.zaparoo.org/Contributors"
  weight = 5
 
 [[subnavigation]]

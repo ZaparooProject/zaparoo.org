@@ -12,7 +12,7 @@ showPagination: false
 
 If you need support or have questions about any of the Zaparoo open source projects, please make use of the available community resources first:
 
-- [TapTo Wiki](https://tapto.wiki)
+- [Zaparoo Wiki](https://wiki.zaparoo.org/)
 - [Wizzo.dev Discord](https://wizzo.dev/discord)
 - [Zaparoo Subreddit](https://www.reddit.com/r/Zaparoo/)
 
