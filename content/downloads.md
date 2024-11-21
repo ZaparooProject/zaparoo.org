@@ -25,10 +25,10 @@ The Zaparoo App is the offically supported way to use the Zaparoo Core service a
 
 ## Zaparoo Core
 
-The [Zaparoo Core](https://github.com/ZaparooProject/tapto) service runs in the background on your platform device and coordinates all hardware and software to make Zaparoo work.
+The [Zaparoo Core](https://github.com/ZaparooProject/zaparoo-core) service runs in the background on your platform device and coordinates all hardware and software to make Zaparoo work.
 
-| Platform                                            | Download                                                                                                                                                                                  |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [MiSTer FPGA](https://wiki.zaparoo.org/MiSTer_FPGA) | {{< button href="https://github.com/ZaparooProject/tapto/releases/download/v2.0.1/tapto-mister_arm-2.0.1.zip" target="_self" >}}{{< icon "download" >}} v2.0.1 (ARM32){{< /button >}}     |
-| [MiSTeX](https://wiki.zaparoo.org/MiSTeX)           | {{< button href="https://github.com/ZaparooProject/tapto/releases/download/v2.0.1/tapto-mistex_arm64-2.0.0.zip" target="_self" >}}{{< icon "download" >}} v2.0.0 (ARM64){{< /button >}}   |
-| [Windows](https://wiki.zaparoo.org/Windows)         | {{< button href="https://github.com/ZaparooProject/tapto/releases/download/v2.0.1/tapto-windows_amd64-2.0.0.zip" target="_self" >}}{{< icon "download" >}} v2.0.0 (x86-64){{< /button >}} |
+| Platform                                            | Download                                                                                                                                                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [MiSTer FPGA](https://wiki.zaparoo.org/MiSTer_FPGA) | {{< button href="https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.0.1/tapto-mister_arm-2.0.1.zip" target="_self" >}}{{< icon "download" >}} v2.0.1 (ARM32){{< /button >}}     |
+| [MiSTeX](https://wiki.zaparoo.org/MiSTeX)           | {{< button href="https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.0.1/tapto-mistex_arm64-2.0.0.zip" target="_self" >}}{{< icon "download" >}} v2.0.0 (ARM64){{< /button >}}   |
+| [Windows](https://wiki.zaparoo.org/Windows)         | {{< button href="https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.0.1/tapto-windows_amd64-2.0.0.zip" target="_self" >}}{{< icon "download" >}} v2.0.0 (x86-64){{< /button >}} |
