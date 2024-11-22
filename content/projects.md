@@ -28,6 +28,12 @@ A rich web-based designer for creating card labels using template designs contri
 Community contributed open source hardware for creating your own Zaparoo projects including 3D models and PCB designs.
 
 {{< github repo="ZaparooProject/zaparoo-hardware" >}}
+<br>
+{{< github repo="ZaparooProject/zaparoo-esp32" >}}
+<br>
+{{< github repo="ZaparooProject/zaparoo-floppy" >}}
+<br>
+{{< github repo="ZaparooProject/zaparoo-esp32-launch-api" >}}
 
 ## Media
 
