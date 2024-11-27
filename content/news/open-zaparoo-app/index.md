@@ -1,0 +1,26 @@
+---
+title: "Zaparoo app is now open source"
+date: 2024-11-27
+tags: ["app", "software"]
+summary: "The Zaparoo app is now open source! A new repository has been published and contributions are welcome."
+showSummary: true
+authors: ["wizzo"]
+showAuthor: false
+---
+
+![Zaparoo app working with MiSTer](cover.jpg)
+
+Now that the app has been positioned as the primary supported way of using the [Zaparoo Core](/projects/#core) service, I think it's only fair others get to have a go at contributing to it or using it as a base for their own work. This is part of my ongoing commitment to Zaparoo as an open standard.
+
+The app was originally created by myself and [Tim Wilsie](https://timwilsie.art/). We've been stoked to see so many people enjoying the app and we hope this move will help it grow even further.
+
+The paid feature in the app will remain, as it's been a key part of supporting the project as a whole, but I've now drawn a clear line in the sand of where the paid parts start and end. Essentially, they will be restricted to features that make your mobile device act as a reader (as it works already) and some future optional cosmetic features. These features are only locked in the official distributions of the app as well, so it's more like a convenience donation.
+
+This won't change much about how the app works for now from an end user perspective. But there are a couple of cool things that it enables in the near future:
+
+- A standalone Android APK can now be generated from the repo, which will be useful for people who don't want to use the Google Play Store.
+- A slimmed down web version of the app could now be distributed with the Core service itself, which would be useful for people who don't have a mobile device or don't want to use the app.
+
+See the new repository here:
+
+{{< github repo="ZaparooProject/zaparoo-app" >}}

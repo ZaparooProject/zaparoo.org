@@ -11,6 +11,12 @@ showPagination: false
 
 All official open source projects associated with the main Zaparoo project.
 
+## App
+
+The official Zaparoo app for Android and iOS.
+
+{{< github repo="ZaparooProject/zaparoo-app" >}}
+
 ## Core
 
 The core software service that runs on your platform device and coordinates all hardware and software to make Zaparoo work.
