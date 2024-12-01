@@ -50,6 +50,12 @@
  url = "https://wizzo.dev/discord"
  weight = 20
 
+ [[subnavigation]]
+ name = "Lemmy"
+ pre = "lemmy"
+ url = "https://lemmy.world/c/zaparoo"
+ weight = 25
+
 [[subnavigation]]
  name = "Reddit"
  pre = "reddit"
