@@ -19,7 +19,7 @@ The Designer was accessible on a few different URLs before, but this is now the 
 Updated templates are still in progress. Just to be clear again, as per the [Terms of Use](/terms/) and the [original announcement](/news/tapto-to-zaparoo/) of the name change, all templates going forward won't have any Zaparoo logos or branding on them. The initial new ones will simply have the TapTo logo removed or replaced with one of the generic marks in the [Zaparoo Media](https://github.com/ZaparooProject/zaparoo-media) repository.
 
 {{< button href="https://design.zaparoo.org" target="_blank" >}}
-{{< icon "external-link" >}} Go to the Designer
+{{< icon "link" >}} Go to the Designer
 {{< /button >}}
 
 {{< github repo="ZaparooProject/zaparoo-designer" >}}
