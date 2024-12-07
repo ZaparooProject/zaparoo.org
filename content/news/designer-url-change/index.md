@@ -2,7 +2,7 @@
 title: "Zaparoo Designer URL has changed"
 date: 2024-12-07
 tags: ["software", "announcement"]
-summary: "The Zaparoo Designer's URL has changed to a new location. Please update your bookmark!"
+summary: "The Zaparoo Designer's URL has changed to a new location. Please update your bookmarks!"
 showSummary: true
 authors: ["wizzo"]
 showAuthor: false
@@ -10,7 +10,7 @@ showAuthor: false
 
 ![Zaparoo Designer](cover.png)
 
-The Zaparoo Designer's URL has changed to a new location. Please update your bookmark to the new location:
+The Zaparoo Designer's URL has changed to a new location. Please update your bookmarks to the new location:
 
 `https://design.zaparoo.org`
 
@@ -20,6 +20,6 @@ Updated templates are still in progress. Just to be clear again, as per the [Ter
 
 {{< button href="https://design.zaparoo.org" target="_blank" >}}
 {{< icon "link" >}} Go to the Designer
-{{< /button >}}
+{{< /button >}}<br>
 
 {{< github repo="ZaparooProject/zaparoo-designer" >}}
