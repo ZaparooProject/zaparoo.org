@@ -6,6 +6,10 @@ summary: "Happy new year! Major updates to Zaparoo Core and the App are now live
 showSummary: true
 ---
 
+{{< alert >}}
+**Hotfix Core v2.1.1:** A hotfix has been released to fix some issues on MiSTer with the migration process. You should get the fixed version through update_all automatically!
+{{< /alert >}}
+
 Happy new year! Zaparoo Core v2.1.0 and Zaparoo App v.1.4.1 are now live. This release finalizes the transition from TapTo to Zaparoo and includes many new features and bug fixes.
 
 A big thank you to these contributors this release:
