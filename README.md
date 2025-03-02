@@ -1,15 +1,41 @@
-# Zaparoo.org
+# Website
 
-The [Zaparoo.org](https://zaparoo.org/) website. Main hub for all things open source Zaparoo!
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-The `main` branch is automatically deployed to [Zaparoo.org](https://zaparoo.org/), hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
+### Installation
 
-It is a static site built with [Hugo](https://gohugo.io/) and [Blowfish](https://blowfish.page/).
+```
+$ yarn
+```
 
-## Licenses
+### Local Development
 
-All site content and configuration in this repository is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/), copyright its respective authors.
+```
+$ yarn start
+```
 
-The site's code, built with [Blowfish](https://github.com/nunocoracao/blowfish), is licensed under the [MIT License](https://opensource.org/licenses/MIT). Copyright (c) 2022 Nuno Coração (https://nunocoracao.com).
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-The Zaparoo name and logos are trademarks of Wizzo Pty Ltd. Used with permission.
+### Build
+
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+Using SSH:
+
+```
+$ USE_SSH=true yarn deploy
+```
+
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
