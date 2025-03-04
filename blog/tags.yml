@@ -1,19 +1,24 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+core:
+  label: Core
+  permalink: /core
+  description: Zaparoo Core updates
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+software:
+  label: Software
+  permalink: /software
+  description: Zaparoo-related software
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+hardware:
+  label: Hardware
+  permalink: /hardware
+  description: Zaparoo-related hardware
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+community:
+  label: Community
+  permalink: /community
+  description: Community management updates
+
+showcase:
+  label: Showcase
+  permalink: /showcase
+  description: Projects made by the community

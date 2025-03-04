@@ -68,21 +68,24 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "My Site",
+      title: "Zaparoo",
       logo: {
-        alt: "My Site Logo",
+        alt: "Zaparoo Logo",
         src: "img/logo.svg",
       },
       items: [
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Tutorial",
-        },
         { to: "/blog", label: "Blog", position: "left" },
+        { to: "/projects", label: "Projects", position: "left" },
+        { to: "/downloads", label: "Downloads", position: "left" },
+        { to: "/docs", label: "Docs", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://zaparoo.com",
+          label: "Zaparoo.com",
+          position: "left",
+          target: "_blank",
+        },
+        {
+          href: "https://github.com/ZaparooProject",
           label: "GitHub",
           position: "right",
         },
@@ -104,12 +107,12 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "Discord",
+              href: "https://zaparoo.org/discord",
             },
             {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              label: "Reddit",
+              href: "https://reddit.com/r/Zaparoo",
             },
             {
               label: "X",
@@ -131,7 +134,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Contributors to the Zaparoo project. The Zaparoo name and logos are trademarks of Wizzo Pty Ltd.`,
     },
     prism: {
       theme: prismThemes.github,
