@@ -124,12 +124,20 @@ const config: Config = {
           title: "More",
           items: [
             {
-              label: "Blog",
-              to: "/blog",
+              label: "Support",
+              to: "/contact",
             },
             {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              label: "Contact",
+              to: "/contact",
+            },
+            {
+              label: "Privacy",
+              to: "/privacy",
+            },
+            {
+              label: "Terms",
+              to: "/terms",
             },
           ],
         },
