@@ -71,7 +71,7 @@ const config: Config = {
       title: "Zaparoo",
       logo: {
         alt: "Zaparoo Logo",
-        src: "img/logo.svg",
+        src: "img/logo.png",
       },
       items: [
         { to: "/blog", label: "Blog", position: "left" },
