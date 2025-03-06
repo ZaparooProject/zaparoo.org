@@ -16,9 +16,4 @@ hardware:
 community:
   label: Community
   permalink: /community
-  description: Community management updates
-
-showcase:
-  label: Showcase
-  permalink: /showcase
-  description: Projects made by the community
+  description: Community project updates
