@@ -56,6 +56,8 @@ const config: Config = {
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
+          blogSidebarTitle: "All posts",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -74,10 +76,15 @@ const config: Config = {
         src: "img/logo.png",
       },
       items: [
-        { to: "/blog", label: "Blog", position: "left" },
         { to: "/projects", label: "Projects", position: "left" },
         { to: "/downloads", label: "Downloads", position: "left" },
-        { to: "/docs", label: "Docs", position: "left" },
+        { to: "/blog", label: "Blog", position: "left" },
+        { href: "https://wiki.zaparoo.org/", label: "Wiki", position: "left" },
+        {
+          href: "https://design.zaparoo.org/",
+          label: "Designer",
+          position: "left",
+        },
         {
           href: "https://zaparoo.com",
           label: "Zaparoo.com",
@@ -95,17 +102,42 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Docs",
+          title: "Projects",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "All Projects",
+              to: "/projects",
+            },
+            {
+              label: "Designer",
+              href: "https://design.zaparoo.org/",
+            },
+          ],
+        },
+        {
+          title: "Help",
+          items: [
+            {
+              label: "Support",
+              to: "/contact",
+            },
+            {
+              label: "Wiki",
+              href: "https://wiki.zaparoo.org/",
+            },
+            {
+              label: "Getting Started",
+              href: "https://wiki.zaparoo.org/Getting_started",
             },
           ],
         },
         {
           title: "Community",
           items: [
+            {
+              label: "Contributors",
+              href: "https://zaparoo.org/discord",
+            },
             {
               label: "Discord",
               href: "https://zaparoo.org/discord",
@@ -115,8 +147,12 @@ const config: Config = {
               href: "https://reddit.com/r/Zaparoo",
             },
             {
-              label: "X",
-              href: "https://x.com/docusaurus",
+              label: "Lemmy",
+              href: "https://lemmy.world/c/zaparoo",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com/ZaparooProject/",
             },
           ],
         },
@@ -124,12 +160,8 @@ const config: Config = {
           title: "More",
           items: [
             {
-              label: "Support",
-              to: "/contact",
-            },
-            {
-              label: "Contact",
-              to: "/contact",
+              label: "Blog",
+              to: "/blog",
             },
             {
               label: "Privacy",
@@ -138,6 +170,14 @@ const config: Config = {
             {
               label: "Terms",
               to: "/terms",
+            },
+            {
+              label: "Contact",
+              to: "/contact",
+            },
+            {
+              label: "Zaparoo.com",
+              href: "https://zaparoo.com",
             },
           ],
         },

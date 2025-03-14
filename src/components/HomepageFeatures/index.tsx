@@ -11,32 +11,34 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Easy to Use",
-    Svg: null,
+    title: "Make Media Real",
+    Svg: require("@site/static/img/hand-metal.svg").default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Add back a tactile feel to your digital media! Use physical objects to
+        launch media with affordable hardware like NFC tags and QR codes.
       </>
     ),
   },
   {
-    title: "Focus on What Matters",
-    Svg: null,
+    title: "Make Media Accessible",
+    Svg: require("@site/static/img/heart.svg").default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Make it easy for family & friends to play their favorite games, stop
+        struggling with choice paralysis, set the perfect rotation for
+        tournaments.
       </>
     ),
   },
   {
-    title: "Powered by React",
-    Svg: null, // require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: "Make Media Do Stuff",
+    Svg: require("@site/static/img/waypoints.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        A platform for integrating with your media. Trigger custom actions,
+        subscribe to events or create your own applications using Zaparoo as a
+        backend.
       </>
     ),
   },
@@ -45,7 +47,9 @@ const FeatureList: FeatureItem[] = [
 function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
-      <div className="text--center"></div>
+      <div className="text--center">
+        <Svg className={styles.featureSvg} role="img" />
+      </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
