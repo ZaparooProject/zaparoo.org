@@ -14,6 +14,7 @@ const config: Config = {
 
   organizationName: "ZaparooProject",
   projectName: "zaparoo.org",
+  trailingSlash: false,
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
