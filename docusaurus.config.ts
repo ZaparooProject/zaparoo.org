@@ -10,7 +10,7 @@ const config: Config = {
   favicon: "img/favicon.ico",
 
   url: "https://zaparoo.org",
-  baseUrl: "/",
+  baseUrl: "/zaparoo.org/", //"/",
 
   organizationName: "ZaparooProject",
   projectName: "zaparoo.org",
