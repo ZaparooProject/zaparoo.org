@@ -35,6 +35,8 @@ function HomepageHeader() {
               icon={["fas", "download"]}
             />{" "}
             Download Zaparoo
+            <br />
+            <small>v2.1.1 (2025-01-08)</small>
           </Link>
         </div>
         <div className={styles.buttons} style={{ marginTop: "15px" }}>
