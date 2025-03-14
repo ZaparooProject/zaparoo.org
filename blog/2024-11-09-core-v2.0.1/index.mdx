@@ -1,0 +1,28 @@
+---
+slug: core-v2.0.1
+title: "TapTo Core v2.0.1 released"
+tags: [software, core]
+authors: wizzo
+---
+
+This is a minor release that only affects the MiSTer platform.
+
+{/* truncate */}
+
+The MiSTer GUI (when running tapto from the Scripts menu) has a new Export Log button which allows uploading the active TapTo log file from `/tmp/tapto` to termbin.com (exactly how the old TapTUI script did) or copying it to the root of the SD card so it can be transferred to a computer.
+
+The games database update button and database status display has been removed to prepare for some further backend updates. Please use the TapTo Life app to update it or trigger it via an API call: `tapto.sh -api media.index`
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download v2.0.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/tapto/releases/tag/v2.0.1"
+  variant="primary"
+/>

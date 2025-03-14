@@ -1,0 +1,19 @@
+core:
+  label: Core
+  permalink: /core
+  description: Zaparoo Core updates
+
+software:
+  label: Software
+  permalink: /software
+  description: Zaparoo-related software
+
+hardware:
+  label: Hardware
+  permalink: /hardware
+  description: Zaparoo-related hardware
+
+community:
+  label: Community
+  permalink: /community
+  description: Community project updates

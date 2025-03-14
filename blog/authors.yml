@@ -1,0 +1,9 @@
+wizzo:
+  name: wizzo
+  title: Lead Developer
+  url: https://wizzo.dev
+  image_url: https://github.com/wizzomafizzo.png
+  page: true
+  socials:
+    bluesky: wizzo.dev
+    github: wizzomafizzo

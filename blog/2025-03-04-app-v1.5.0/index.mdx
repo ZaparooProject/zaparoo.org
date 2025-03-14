@@ -1,0 +1,34 @@
+---
+slug: app-v1.5.0
+title: "Zaparoo App v1.5.0 released"
+tags: [software]
+authors: wizzo
+---
+
+The Zaparoo App v1.5.0 update is now available in the App Store and Play Store. This release adds a couple new features, initial support for Zaparoo Online and includes many background updates for dependencies.
+
+{/* truncate */}
+
+## New Features
+
+- Quick changing connected devices from the Settings page. After successfully connecting to a device, it will be added to the device history list, and then is available to easily swap between with a button press.
+- New NFC utilities page in the Create section. This page lets you read raw information from an NFC tag, erase a tag or make it read-only.
+
+## Known Issues
+
+- On iOS devices, attempting to write to a blank NFC tag may result in an error. If you try it again once or twice it should work, then it will as expected. This is being investigated. Androids and tags which already contain data are not affected.
+- Some UI components may not display correctly. The app is being migrated to a new UI framework which resulted in some edge case component issues. They'll be resolved in later updates.
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download App v1.5.0"
+  link="https://zaparoo.org/downloads#zaparoo-app"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app/"
+  variant="primary"
+/>
