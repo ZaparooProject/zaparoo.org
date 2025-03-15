@@ -8,6 +8,7 @@ import Heading from "@theme/Heading";
 
 import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload, faBook } from "@fortawesome/free-solid-svg-icons";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -16,24 +17,21 @@ function HomepageHeader() {
       <div className="container">
         <Heading as="h1" className="hero__title">
           <img
-            src="/img/logo_lockup_white.png"
+            src="./img/logo_lockup_white.png"
             alt="Zaparoo Logo"
             style={{ height: "200px" }}
           />
         </Heading>
         <p className="hero__subtitle">
           <img
-            src="/img/universal_loading_system_white.png"
+            src="./img/universal_loading_system_white.png"
             alt="Universal Loading System"
             style={{ height: "40px" }}
           />
         </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/downloads">
-            <FontAwesomeIcon
-              style={{ marginRight: "5px" }}
-              icon={["fas", "download"]}
-            />{" "}
+            <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faDownload} />{" "}
             Download Zaparoo
             <br />
             <small>v2.1.1 (2025-01-08)</small>
@@ -44,10 +42,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="https://wiki.zaparoo.org/Getting_started"
           >
-            <FontAwesomeIcon
-              style={{ marginRight: "5px" }}
-              icon={["fas", "book"]}
-            />{" "}
+            <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBook} />{" "}
             Getting Started
           </Link>
         </div>

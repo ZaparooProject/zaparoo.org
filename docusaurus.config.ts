@@ -54,6 +54,18 @@ const config: Config = {
         theme: {
           customCss: "./src/css/custom.css",
         },
+        sitemap: {
+          lastmod: "date",
+          changefreq: "weekly",
+          priority: 0.5,
+          ignorePatterns: ["/tags/**"],
+          filename: "sitemap.xml",
+          createSitemapItems: async (params) => {
+            const { defaultCreateSitemapItems, ...rest } = params;
+            const items = await defaultCreateSitemapItems(rest);
+            return items.filter((item) => !item.url.includes("/page/"));
+          },
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -180,6 +192,41 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    () => ({
+      name: "umami-tracking",
+      injectHtmlTags() {
+        return {
+          headTags: [
+            {
+              tagName: "script",
+              attributes: {
+                href: "https://cloud.umami.is/script.js",
+                defer: true,
+                "data-website-id": "43f9c3f2-720d-4c28-b4bc-b44808c9a7d1",
+              },
+            },
+          ],
+        };
+      },
+    }),
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            to: "https://discord.gg/jNdWq52rBP",
+            from: "/discord",
+          },
+          {
+            to: "https://www.reddit.com/r/Zaparoo/",
+            from: "/reddit",
+          },
+        ],
+      },
+    ],
+  ],
 };
 
 export default config;
