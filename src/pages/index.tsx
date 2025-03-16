@@ -33,13 +33,16 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/downloads">
-            <FontAwesomeIcon
-              style={{ marginRight: "5px" }}
-              icon={faDownload}
-              size="1x"
-            />{" "}
-            Download Zaparoo
-            <br />
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src="./img/download-solid.svg"
+                alt="Download icon"
+                height="16px"
+                width="16px"
+                style={{ marginRight: "8px" }}
+              />
+              Download Zaparoo
+            </div>
             <small>v2.1.1 (2025-01-08)</small>
           </Link>
         </div>
@@ -47,13 +50,16 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="https://wiki.zaparoo.org/Getting_started"
+            style={{ display: "flex", alignItems: "center" }}
           >
-            <FontAwesomeIcon
+            <img
+              src="./img/bolt-lightning-solid.svg"
+              alt="Lightning icon"
+              height="16px"
+              width="16px"
               style={{ marginRight: "5px" }}
-              icon={faBook}
-              size="1x"
             />{" "}
-            Getting Started
+            Get Started
           </Link>
         </div>
       </div>
