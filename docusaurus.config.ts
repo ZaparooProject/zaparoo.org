@@ -217,6 +217,67 @@ const config: Config = {
             to: "https://www.reddit.com/r/Zaparoo/",
             from: "/reddit",
           },
+          // old site news redirects
+          {
+            to: "/blog",
+            from: "/news",
+          },
+          {
+            to: "/blog/core-v2.0.0",
+            from: "/news/core-v2.0.0",
+          },
+          {
+            to: "/blog/core-v2.0.1",
+            from: "/news/core-v2.0.1",
+          },
+          {
+            to: "/blog/tapto-to-zaparoo",
+            from: "/news/tapto-to-zaparoo",
+          },
+          {
+            to: "/blog/zap-pad-case",
+            from: "/news/zap-pad-case",
+          },
+          {
+            to: "/blog/v1605-repos",
+            from: "/news/v1605-repos",
+          },
+          {
+            to: "/blog/open-zaparoo-app",
+            from: "/news/open-zaparoo-app",
+          },
+          {
+            to: "/blog/designer-url-change",
+            from: "/news/designer-url-change",
+          },
+          {
+            to: "/blog/steamos-beta-release",
+            from: "/news/steamos-beta-release",
+          },
+          {
+            to: "/blog/pcns-choice",
+            from: "/news/pcns-choice",
+          },
+          {
+            to: "/blog/core-and-app-updates",
+            from: "/news/core-and-app-updates",
+          },
+          {
+            to: "/blog/code-of-conduct",
+            from: "/news/code-of-conduct",
+          },
+          {
+            to: "/blog/new-designer-templates",
+            from: "/news/new-designer-templates",
+          },
+          {
+            to: "/blog/new-esp32-ui-overhaul",
+            from: "/news/new-esp32-ui-overhaul",
+          },
+          {
+            to: "/blog/app-v1.5.0",
+            from: "/news/app-v1.5.0",
+          },
         ],
       },
     ],
