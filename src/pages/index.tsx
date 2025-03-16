@@ -17,21 +17,27 @@ function HomepageHeader() {
       <div className="container">
         <Heading as="h1" className="hero__title">
           <img
-            src="./img/logo_lockup_white.png"
+            src="./img/logo_lockup_white_sm.webp"
             alt="Zaparoo Logo"
-            style={{ height: "200px" }}
+            height="200px"
+            width="286px"
           />
         </Heading>
         <p className="hero__subtitle">
           <img
-            src="./img/universal_loading_system_white.png"
+            src="./img/universal_loading_system_white_sm.webp"
             alt="Universal Loading System"
-            style={{ height: "40px" }}
+            height="40px"
+            width="252px"
           />
         </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/downloads">
-            <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faDownload} />{" "}
+            <FontAwesomeIcon
+              style={{ marginRight: "5px" }}
+              icon={faDownload}
+              size="1x"
+            />{" "}
             Download Zaparoo
             <br />
             <small>v2.1.1 (2025-01-08)</small>
@@ -42,7 +48,11 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="https://wiki.zaparoo.org/Getting_started"
           >
-            <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBook} />{" "}
+            <FontAwesomeIcon
+              style={{ marginRight: "5px" }}
+              icon={faBook}
+              size="1x"
+            />{" "}
             Getting Started
           </Link>
         </div>
