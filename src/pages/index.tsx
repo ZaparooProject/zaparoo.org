@@ -43,7 +43,7 @@ function HomepageHeader() {
               />
               Download Zaparoo
             </div>
-            <small>v2.1.1 (2025-01-08)</small>
+            <small>v2.2.0 (2025-03-31)</small>
           </Link>
         </div>
         <div className={styles.buttons} style={{ marginTop: "15px" }}>

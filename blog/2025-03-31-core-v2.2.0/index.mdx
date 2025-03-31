@@ -1,0 +1,241 @@
+---
+slug: core-v2.2.0
+title: "Zaparoo Core v2.2.0 released"
+tags: [software, core]
+authors: [wizzo, BossRighteous]
+---
+
+Zaparoo Core v2.2.0 is now available! This release includes many features like
+new MiSTer core support, new UI and added capabilities for
+[ZapScript](https://wiki.zaparoo.org/ZapScript). Enjoy!
+
+{/* truncate */}
+
+My favourite part of this release is all the people that have contributed to it.
+Thank you to:
+
+- [Asturur](https://github.com/asturur)
+- [BossRighteous](https://github.com/BossRighteous)
+- [davasi](https://bsky.app/profile/davasi.bsky.social)
+- [mrchrisster](https://github.com/mrchrisster/MiSTer_SAM)
+
+And a special thanks to [gdamore](https://github.com/gdamore) of the Go [tcell
+library](https://github.com/gdamore/tcell), who implemented an option just for
+us to support the new TUI.
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.2.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+<br /> <br />
+
+As usual, Core will also be automatically updated on MiSTer via Update All.
+
+## New MiSTer Core Support
+
+- [Agg23's Game and Watch](https://github.com/agg23/fpga-gameandwatch) core is
+  now automatically detected and supported.
+- NeoGeo CD now works correctly thanks to
+  [mrchrisster](https://github.com/mrchrisster/MiSTer_SAM).
+- Amiga CD32 is now supported thanks to
+  [mrchrisster](https://github.com/mrchrisster/MiSTer_SAM).
+- Support for GroovyMiSTer .gmc files added. See below.
+- CD-i core is now supported.
+- Jaguar core is now supported.
+- MSX1 core is now supported.
+
+### GroovyMiSTer GMC Proxy
+
+The GroovyMiSTer core already supports GMC files as a means to launch PC games
+from the MiSTer core. [BossRighteous](https://github.com/BossRighteous) has
+provided optional Zaparoo utilities to the enable GMC scanning and launching of
+these defined PC-emulator titles over the network along with the GroovyMiSTer
+core. This enables Zaparoo-MiSTer NFC and API loading of Groovy enabled
+emulators including MAME, RetroArch, Mednafen, and Dolphin.
+
+## Text User Interface
+
+A new text-based interface has been created and included in Core, thanks to work
+by [Asturur](https://github.com/asturur) and
+[davasi](https://bsky.app/profile/davasi.bsky.social). This UI is similar to the
+old TapTUI script, but is now built into the Core application itself and
+cross-platform. While the App and Web UI will remain the primary interfaces for
+Zaparoo, the TUI will be kept up-to-date with most essential/basic features.
+
+People have requested a way to manage Zaparoo using a controller and there are
+some cases where a TUI is more accessible than a phone or web interface, so we
+want to start accomodating that. It will also mean it's possible to get started
+with Zaparoo again using nothing but a MiSTer, controller and NFC reader which
+is cool!
+
+The TUI is available by running the `zaparoo` entry in the MiSTer Scripts menu
+and selecting the `Config` button on the status screen. This UI isn't as fully
+featured as the original TapTUI script, but over time it will be improved to
+reach the same level. [Feedback is welcome!](https://zaparoo.org/discord)
+
+## Zaparoo Online
+
+I have been working on a new service called Zaparoo Online. I'm not ready to
+announce it properly yet, but it requires some new features added to Core which
+will be available right now. All features I'm adding for Online will be
+optional, and in most cases possible to self-host, so calm ya farm ok.
+
+The new features are still in development and undocumented, but you're welcome
+to try them out or ask me about them. Please keep in mind the API is not final.
+
+### Remote ZapScript
+
+ZapScript can now be loaded on-the-fly from a remote URL. Write a single URL to
+a token which serves a special JSON payload, Core will fetch and execute it.
+There is no special allowlisting or anything for this feature, it just relies on
+the URL serving a valid payload _and_ using the MIME type
+`application/vnd.zaparoo.script`. There are some limitations set on this right
+now, specifically the `input.keyboard` and `input.gamepad` commands are disabled
+when running remote ZapScript. This is to prevent malicious scripts from
+interacting with the system in unexpected ways. They may be re-enabled in a safe
+way later but for now fully blocked!
+
+The "special JSON payload" brings us to...
+
+### ZapScript as JSON
+
+Over time Core will support an alternate format of the existing ZapScript
+format, which would allow ZapScript to be defined as a JSON object. For most
+people this means nothing, but it will make it much easier for applications to
+generate and parse ZapScript, for ZapScript to be validated and for complex
+arguments to be defined.
+
+The JSON format is not final yet but initial setup is included inside this
+release for a migration path. The new format will map 1:1 with the existing
+format, so people can choose to use either format. They are interchangeable.
+
+The remote ZapScript feature requires payloads to be in this format, for
+example:
+
+```json
+{
+  "zapscript": 1,
+  "cmds": [
+    {
+      "cmd": "launch",
+      "args": {
+        "path": "/path/to/some/game.bin"
+      }
+    }
+  ]
+}
+```
+
+### UI Widgets
+
+In order to give feedback and choices to users, Core will now start supporting
+various UI widgets that can be triggered via ZapScript. Currently they're only
+available on MiSTer, but the plan is to make them work the same/similar on all
+platforms.
+
+UI widgets are supposed to be non-intrusive. They will always be dismissable and
+later simply disabled if desired.
+
+#### Notice
+
+A simple text box displayed on screen with a message. Can be dismissed by the
+user or closed programmatically.
+
+#### Loader
+
+Same as a notice, but includes an animated spinner to show something is
+happening.
+
+#### Picker
+
+Displays a list of items on screen which can be selected by the user. Once an
+item is selected, it's forwarded to the Core API to be run. Each item has
+associated ZapScript.
+
+This one is actually awesome! It adds a lot of capabilities to Zaparoo. It can
+be used to select from a list of games or any other command supported by
+ZapScript.
+
+### Remote Media Install & Launch
+
+Another **really** cool addition, Core can now install media from a remote
+source. This feature is still very much in beta and MiSTer-only, but I'll be
+fleshing this out for other platforms too.
+
+For example, serve a JSON payload with the MIME type
+`application/vnd.zaparoo.media` like this:
+
+```json
+{
+  "zapscript": 1,
+  "cmds": [
+    {
+      "cmd": "launch",
+      "args": {
+        "name": "Some Game",
+        "system": "Genesis",
+        "url": "https://example.com/path/to/media.bin"
+      }
+    }
+  ]
+}
+```
+
+Let's say this is hosted on `https://example.com/media.json` and you've written
+that to an NFC tag. Once you scan, Core will automatically download the media
+from the URL and launch it locally. Once it's installed, Core will use the local
+version only. This feels wicked in person!
+
+## Windows Improvements
+
+### System Tray
+
+I've made some small UI improvements to the Windows version of Core. Now when
+the app is launched, it will no longer show a command line window and instead
+just live in the system tray. The system tray menu also has direct links to
+things like the built-in web UI, config folder, etc.
+
+A small change but it's made the thing feel a lot more polished and native
+already. It also means you can set Core to run on startup in the background.
+
+### LaunchBox Config
+
+The LaunchBox launcher can now have a custom install directory set via the
+config file. This was a long-standing issue since LaunchBox doesn't have a
+default location. You can set it by adding this to your `config.toml` file:
+
+```toml
+[[launchers.default]]
+launcher = 'LaunchBox'
+install_dir = 'C:\\Users\\wizzo\\CustomLBDir'
+```
+
+This change has also generally allowed configuration of launchers, so more
+options may be added in the future for various cores and emulators.
+
+## Other Changes
+
+- Core will now notify [Super Attract
+  Mode](https://github.com/mrchrisster/MiSTer_SAM) if it launches a game, so
+  they won't conflict with each other.
+- Arcade games will now send a "started" notificiation over the API on launch.
+- New API method `run.script` added to support ZapScript JSON migration. It may
+  not be permanent.
+- New `evaluate` command added to ZapScript to support JSON migration. It may
+  not be permanent.
+
+## Known Issues
+
+- Sometimes the script version of the UI widgets will not display and show an
+  error about a file not being found. Please let me know if you see this too!
