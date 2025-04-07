@@ -1,0 +1,63 @@
+---
+slug: app-v1.6.0
+title: "Zaparoo App v1.6.0 released"
+tags: [software]
+authors: wizzo
+---
+
+The Zaparoo App v1.6.0 update is now available in the [App
+Store](https://apps.apple.com/us/app/zaparoo/id6480331015) and [Play
+Store](https://play.google.com/store/apps/details?id=dev.wizzo.tapto). This
+release adds new deep link support and fixes some styling issues with
+the previous release.
+
+{/* truncate */}
+
+## Deep Links
+
+The Zaparoo App now supports deep links, allowing you to use standard links to the
+domain `zaparoo.app` and send actions to the app directly. There are currently
+two supported actions:
+
+- `https://zaparoo.app/run?v=<zapscript>` which will forward the user to the
+  Zaparoo App (if it's installed) and run the specified ZapScript on the currently
+  connected device.
+- `https://zaparoo.app/write?v=<zapscript>` which will open the Zaparoo App and
+  immediately start an NFC write operation, asking the user to tap an NFC tag.
+
+If a user doesn't have the app installed, they'll just browse to a static web page
+explaining where they can download the app from the App Store or Play Store.
+
+Here are some example links:
+
+- [Exit to menu](https://zaparoo.app/run?v=**launch.system:menu)
+- [Launch random Genesis game](https://zaparoo.app/run?v=**launch.random:Genesis)
+- [Write an insert coin card](https://zaparoo.app/write?v=**input.coinp1:1)
+
+I really like this feature because it's so easy for anyone to integrate their
+own ideas into Zaparoo. Let the app worry about the details of how to run a script
+and what device to run it on. You could make your own simple static website of
+commands without any complicated setup or server-side dependencies.
+
+## Other Changes
+
+- Launching Zap Links from Zaparoo Online will not require an app purchase.
+- Fixed various style and padding issues introduced in the last release.
+- Added a "copy to clipboard" button to some elements in the app.
+- Updated the Patron list.
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download App v1.6.0"
+  link="https://zaparoo.org/downloads#zaparoo-app"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app/"
+  variant="primary"
+/>
