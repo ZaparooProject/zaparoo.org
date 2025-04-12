@@ -13,7 +13,10 @@ import { faDownload, faBook } from "@fortawesome/free-solid-svg-icons";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <header className={clsx("hero hero--primary", styles.heroBanner)} style={{
+      backgroundImage: "url('./img/circuit-board.svg')",
+      backgroundRepeat: "repeat",
+    }}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           <img
@@ -33,7 +36,7 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/downloads">
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
               <img
                 src="./img/download-solid.svg"
                 alt="Download icon"
@@ -41,7 +44,7 @@ function HomepageHeader() {
                 width="16px"
                 style={{ marginRight: "8px" }}
               />
-              Download Zaparoo
+              Download
             </div>
             <small>v2.2.0 (2025-03-31)</small>
           </Link>
@@ -50,16 +53,16 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="https://wiki.zaparoo.org/Getting_started"
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
           >
             <img
-              src="./img/bolt-lightning-solid.svg"
-              alt="Lightning icon"
+              src="./img/book.svg"
+              alt="Book icon"
               height="16px"
               width="16px"
               style={{ marginRight: "5px" }}
             />{" "}
-            Get Started
+            Getting Started
           </Link>
         </div>
       </div>
