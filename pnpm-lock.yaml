@@ -47,6 +47,12 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      react-photo-album:
+        specifier: ^3.1.0
+        version: 3.1.0(@types/react@19.0.10)(react@19.0.0)
+      yet-another-react-lightbox:
+        specifier: ^3.22.0
+        version: 3.22.0(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: 3.7.0
@@ -4183,6 +4189,16 @@ packages:
       react-loadable: '*'
       webpack: '>=4.41.1 || 5.x'
 
+  react-photo-album@3.1.0:
+    resolution: {integrity: sha512-9PiWzwvckfefJRHY5E6kcNKoWNjyyFKhQ6Pl5nS1Z29QeP9h8zDOAoVQKWcv/AhZjRoduw1dybu9RNMj0+uPzQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@types/react': ^18 || ^19
+      react: ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   react-router-config@5.1.1:
     resolution: {integrity: sha512-DuanZjaD8mQp1ppHjgnnUnyOlqYXZVjnov/JzFhjLEwd3Z4dYjMSnqrEzzGThH47vpCOqPPwJM2FtthLeJ8Pbg==}
     peerDependencies:
@@ -4974,6 +4990,20 @@ packages:
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  yet-another-react-lightbox@3.22.0:
+    resolution: {integrity: sha512-yaXmzUraH/Ftsp7eG/E2leQgXhtrG8c1t+jImlSjC2XtZ7XkvjIV2vP/1kl5kxmsBHjck/98W/9Xxempry+2QQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@types/react': ^16 || ^17 || ^18 || ^19
+      '@types/react-dom': ^16 || ^17 || ^18 || ^19
+      react: ^16.8.0 || ^17 || ^18 || ^19
+      react-dom: ^16.8.0 || ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -10488,6 +10518,12 @@ snapshots:
       react-loadable: '@docusaurus/react-loadable@6.0.0(react@19.0.0)'
       webpack: 5.98.0
 
+  react-photo-album@3.1.0(@types/react@19.0.10)(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+    optionalDependencies:
+      '@types/react': 19.0.10
+
   react-router-config@5.1.1(react-router@5.3.4(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.26.9
@@ -11449,6 +11485,13 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml@1.10.2: {}
+
+  yet-another-react-lightbox@3.22.0(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    optionalDependencies:
+      '@types/react': 19.0.10
 
   yocto-queue@0.1.0: {}
 

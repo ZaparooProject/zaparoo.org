@@ -9,6 +9,7 @@ import Heading from "@theme/Heading";
 import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faBook } from "@fortawesome/free-solid-svg-icons";
+import Showcase from "@site/src/components/Showcase";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -80,6 +81,7 @@ export default function Home(): ReactNode {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <Showcase limit={20} />
       </main>
     </Layout>
   );

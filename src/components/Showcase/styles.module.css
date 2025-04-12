@@ -1,0 +1,9 @@
+.react-photo-album--image {
+    border-radius: 5px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
