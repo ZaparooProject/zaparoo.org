@@ -62,15 +62,15 @@ We try to make this as easy as possible but every platform is a little different
 
 ### Zaparoo App
 
-1. Install the [Zaparoo App](/downloads/#zaparoo-app) on your phone.
-2. Connect it to your device running Core.
-3. Run `Update media database` on the Settings page.
+1. Install the [Zaparoo App](/downloads/#zaparoo-app) on your phone. _Essential features to use Zaparoo are free._
+2. Connect it to your device running Zaparoo Core.
+3. Run **Update media database** on the Settings page.
 
-You're done! Start making your Zaparoo cards.
+You're done! Start creating your Zaparoo cards.
 
 :::tip
 
-Phone doesn't have NFC? Don't stress. Core ships with other ways to write to NFC cards, the App is just
+Phone doesn't have NFC? Don't stress. Zaparoo Core ships with other ways to write to NFC cards, the App is just
 the most user-friendly way to do things.
 
 :::
@@ -80,8 +80,8 @@ the most user-friendly way to do things.
 1. Generate labels using the [Zaparoo Designer](https://design.zaparoo.org/).
 2. Print, cut and stick them to your cards.
 
-Check out the [Labels](https://wiki.zaparoo.org/Labels) docs for advice on tools and design.
+Check out the [Labels](https://wiki.zaparoo.org/Labels) docs for advice on tools and design templates.
 
 ## Wrapping Up
 
-Make sure to join us on [Discord](https://zaparoo.org/discord) and show off your work.
+Make sure to join us on [Discord](https://zaparoo.org/discord) and show off your work!
