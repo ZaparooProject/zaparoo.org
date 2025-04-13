@@ -2,37 +2,251 @@
 title: "Downloads"
 ---
 
-To use Zaparoo you must install the [Zaparoo Core](#zaparoo-core) service on your preferred platform device and use a frontend application like [Zaparoo App](#zaparoo-app) to configure and interact with it.
+Zaparoo requires [Zaparoo Core](#zaparoo-core) installed on your target device,
+plus a frontend app such as [Zaparoo App](#zaparoo-app) to manage it and create
+tokens like NFC tags. See the [Getting Started](https://wiki.zaparoo.org/Getting_started)
+guide for more detailed steps on getting up and running.
 
 ## Zaparoo App
 
-The Zaparoo App is the offically supported way to use the Zaparoo Core service and create your collection. All essential features to use Zaparoo are available for free.
+[Zaparoo App](https://github.com/ZaparooProject/zaparoo-app) is the primary
+supported frontend for Zaparoo. Manage the Zaparoo Core service, take advantage
+of your phone's NFC features to easily create NFC tags and use your phone as an
+NFC reader or QR code scanner. All essential app features are available for free.
 
-<Button
-  icon={<FAIcon icon="fa-brands fa-apple" />}
-  label="App Store (iOS)"
-  link="https://apps.apple.com/us/app/zaparoo/id6480331015"
-  variant="primary"
-/>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    paddingBottom: "1rem",
+  }}
+>
+  <a
+    href="https://apps.apple.com/us/app/tapto-life/id6480331015?itsct=apps_box_badge&amp;itscg=30200"
+    style={{
+      display: "inline-block",
+      overflow: "hidden",
+      width: "150px",
+    }}
+  >
+    <img
+      src="/img/ios-install.svg"
+      alt="Download on the App Store"
+      style={{ width: "150px" }}
+    />
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=dev.wizzo.tapto&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+    <img
+      alt="Get it on Google Play"
+      style={{ width: "180px" }}
+      src="/img/android-install.png"
+    />
+  </a>
+</div>
 
-<Button
-  icon={<FAIcon icon="fa-brands fa-google" />}
-  label="Play Store (Android)"
-  link="https://play.google.com/store/apps/details?id=dev.wizzo.tapto"
-  variant="primary"
-/>
-
-<br /> <br />
+If you don't want to or can't use your phone, other frontends are available like
+the built-in web UI, terminal UI, CLI and API interfaces. Zaparoo is an open
+platform that encourages useful and unique ways to access media.
 
 ## Zaparoo Core
 
-The [Zaparoo Core](https://github.com/ZaparooProject/zaparoo-core) service runs in the background on your platform device and coordinates all hardware and software to make Zaparoo work.
+The [Zaparoo Core](https://github.com/ZaparooProject/zaparoo-core) application
+runs in the background on your device and coordinates all hardware and software
+to make Zaparoo work. The service is built for minimal resource usage, so it
+won't interfere with your media playing.
 
-| Platform                                            | Status | Download                                                                                                                                                                                                                                             |
-| --------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [MiSTer FPGA](https://wiki.zaparoo.org/MiSTer_FPGA) | Stable | [v2.2.0 (ARM32)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-mister_arm-2.2.0.zip)                                                                                                                               |
-| [MiSTeX](https://wiki.zaparoo.org/MiSTeX)           | Stable | [v2.2.0 (ARM64)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-mistex_arm64-2.2.0.zip)                                                                                                                             |
-| [SteamOS](https://wiki.zaparoo.org/SteamOS)         | Beta   | [v2.2.0 (x86-64)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-steamos_amd64-2.2.0.zip)                                                                                                                           |
-| [Windows](https://wiki.zaparoo.org/Windows)         | Beta   | [v2.2.0 (x86-64)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-windows_amd64-2.2.0.zip) [v2.2.0 (ARM64)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-windows_arm64-2.2.0.zip) |
-| MacOS        | Beta   | [v2.2.0 (x86-64)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-mac_amd64-2.2.0.zip) [v2.2.0 (ARM64)](https://github.com/ZaparooProject/zaparoo-core/releases/download/v2.2.0/zaparoo-mac_arm64-2.2.0.zip) |
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "start",
+    paddingBottom: "1rem",
+  }}
+>
+  <DownloadCard
+    name="MiSTer FPGA"
+    platform="mister"
+    architectures={["arm"]}
+    icon={
+      <img
+        src="/img/logos/mister.svg"
+        alt="MiSTer FPGA logo"
+        style={{ width: "75px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://misterfpga.org/"
+    nativeInstall={{
+      label: "Via Update All",
+      link: "https://wiki.zaparoo.org/MiSTer_FPGA",
+    }}
+  />
+  <DownloadCard
+    name="MiSTeX"
+    platform="mistex"
+    architectures={["arm64"]}
+    icon={
+      <img
+        src="/img/logos/mistex.jpeg"
+        alt="MiSTeX logo"
+        style={{ width: "75px", height: "75px", borderRadius: "10%" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://github.com/MiSTeX-devel"
+  />
+  <DownloadCard
+    name="Windows"
+    platform="windows"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/windows.svg"
+        alt="Windows logo"
+        style={{ width: "75px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/Windows"
+    platformLink="https://www.microsoft.com/en-us/windows"
+    status="beta"
+  />
+  <DownloadCard
+    name="Linux"
+    platform="linux"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/linux.webp"
+        alt="Linux logo"
+        style={{ width: "63.28px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://www.linux.org/"
+    status="beta"
+  />
+  <DownloadCard
+    name="macOS"
+    platform="mac"
+    architectures={["arm64", "amd64"]}
+    icon={
+      <img
+        src="/img/logos/mac.svg"
+        alt="macOS logo"
+        style={{
+          width: "75px",
+          height: "75px",
+          borderRadius: "100%",
+          backgroundColor: "white",
+          border: "1px solid white",
+        }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://www.apple.com/macos/"
+    status="beta"
+  />
+  <DownloadCard
+    name="SteamOS"
+    platform="steamos"
+    architectures={["amd64"]}
+    icon={
+      <img
+        src="/img/logos/steamos.svg"
+        alt="SteamOS logo"
+        style={{
+          width: "125px",
+          height: "33.33px",
+          backgroundColor: "white",
+          borderRadius: "5px",
+        }}
+      />
+    }
+    platformLink="https://store.steampowered.com/steamos/"
+    docLink="https://wiki.zaparoo.org/SteamOS"
+    status="beta"
+  />
+  <DownloadCard
+    name="Batocera"
+    platform="batocera"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/batocera.png"
+        alt="Batocera logo"
+        style={{ width: "75px", height: "73.83px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://batocera.org/"
+    status="beta"
+  />
+  <DownloadCard
+    name="Recalbox"
+    platform="recalbox"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/recalbox.svg"
+        alt="Recalbox logo"
+        style={{ width: "62.29px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://recalbox.com/"
+    status="beta"
+  />
+  <DownloadCard
+    name="Bazzite"
+    platform="bazzite"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/bazzite.svg"
+        alt="Bazzite logo"
+        style={{ width: "75px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://bazzite.gg/"
+    status="beta"
+  />
+  <DownloadCard
+    name="ChimeraOS"
+    platform="chimeraos"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/chimeraos.webp"
+        alt="ChimeraOS logo"
+        style={{ width: "67.09px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://www.chimeraos.org/"
+    status="beta"
+  />
+  <DownloadCard
+    name="LibreELEC"
+    platform="libreelec"
+    architectures={["amd64", "arm64"]}
+    icon={
+      <img
+        src="/img/logos/libreelec.png"
+        alt="LibreELEC logo"
+        style={{ width: "75px", height: "75px", borderRadius: "10%" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://libreelec.tv/"
+    status="beta"
+  />
+</div>
 
+_Trademarks shown on this page are property of their respective owners. The
+Zaparoo project uses logos on this page in good faith and/or within published
+usage guidelines, to show compatibility with the respective operating system
+they represent. The Zaparoo project is not affiliated with nor receives
+endorsement from any of the projects or companies shown above._

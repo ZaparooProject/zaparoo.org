@@ -34,6 +34,7 @@ type Button = {
   // The label prop is a string that determines the text of the button.
   label: string;
   icon: ReactNode | null;
+  fullWidth?: boolean;
 };
 
 // Button component that accepts the specified props.
@@ -48,6 +49,7 @@ export default function Button({
   link,
   label,
   icon = null,
+  fullWidth = false,
 }: Button) {
   // Map the size prop values to corresponding CSS classes.
   const sizeMap = {
@@ -66,7 +68,7 @@ export default function Button({
   // If the button is disabled, set the destination to null.
   const destination = disabled ? null : link;
   return (
-    <Link to={destination}>
+    <Link to={destination} style={fullWidth ? { width: "100%" } : {}}>
       <button
         className={clsx(
           "button",
@@ -77,7 +79,7 @@ export default function Button({
           disabledClass,
           className
         )}
-        style={style}
+        style={fullWidth ? { width: "100%", ...style } : style}
         role="button"
         aria-disabled={disabled}
       >
