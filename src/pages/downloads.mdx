@@ -149,6 +149,36 @@ won't interfere with your media playing.
     status="beta"
   />
   <DownloadCard
+    name="Batocera"
+    platform="batocera"
+    architectures={["amd64", "arm64", "arm"]}
+    icon={
+      <img
+        src="/img/logos/batocera.png"
+        alt="Batocera logo"
+        style={{ width: "75px", height: "73.83px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://batocera.org/"
+    status="beta"
+  />
+  <DownloadCard
+    name="Recalbox"
+    platform="recalbox"
+    architectures={["amd64", "arm64", "arm"]}
+    icon={
+      <img
+        src="/img/logos/recalbox.svg"
+        alt="Recalbox logo"
+        style={{ width: "62.29px", height: "75px" }}
+      />
+    }
+    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    platformLink="https://recalbox.com/"
+    status="beta"
+  />
+  <DownloadCard
     name="SteamOS"
     platform="steamos"
     architectures={["amd64"]}
@@ -169,39 +199,9 @@ won't interfere with your media playing.
     status="beta"
   />
   <DownloadCard
-    name="Batocera"
-    platform="batocera"
-    architectures={["amd64", "arm64"]}
-    icon={
-      <img
-        src="/img/logos/batocera.png"
-        alt="Batocera logo"
-        style={{ width: "75px", height: "73.83px" }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://batocera.org/"
-    status="beta"
-  />
-  <DownloadCard
-    name="Recalbox"
-    platform="recalbox"
-    architectures={["amd64", "arm64"]}
-    icon={
-      <img
-        src="/img/logos/recalbox.svg"
-        alt="Recalbox logo"
-        style={{ width: "62.29px", height: "75px" }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://recalbox.com/"
-    status="beta"
-  />
-  <DownloadCard
     name="Bazzite"
     platform="bazzite"
-    architectures={["amd64", "arm64"]}
+    architectures={["amd64"]}
     icon={
       <img
         src="/img/logos/bazzite.svg"
@@ -216,7 +216,7 @@ won't interfere with your media playing.
   <DownloadCard
     name="ChimeraOS"
     platform="chimeraos"
-    architectures={["amd64", "arm64"]}
+    architectures={["amd64"]}
     icon={
       <img
         src="/img/logos/chimeraos.webp"
@@ -231,7 +231,7 @@ won't interfere with your media playing.
   <DownloadCard
     name="LibreELEC"
     platform="libreelec"
-    architectures={["amd64", "arm64"]}
+    architectures={["amd64", "arm64", "arm"]}
     icon={
       <img
         src="/img/logos/libreelec.png"
