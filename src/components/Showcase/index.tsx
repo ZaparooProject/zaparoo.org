@@ -172,7 +172,7 @@ export default function Showcase(props: {
             <div className={styles.buttons}>
                 <Link
                     className="button button--secondary button--lg"
-                    to="/discord"
+                    to="https://zaparoo.org/discord"
                     style={{display: "flex", alignItems: "center", justifyContent: "center"}}
                 >
                     <img
