@@ -1,0 +1,130 @@
+# MiSTer FPGA
+
+MiSTer is fully supported by Zaparoo as a platform, and originally started as a project on MiSTer. Zaparoo has several
+MiSTer-exclusive commands because of this.
+
+| Item               | Path                             |
+|--------------------|----------------------------------|
+| Data directory     | `/media/fat/zaparoo`             |
+| Mappings directory | `/media/fat/zaparoo/mappings`    |
+| Config file        | `/media/fat/zaparoo/config.toml` |
+| Log file           | `/tmp/zaparoo/core.log`          |
+
+<small>*The `/media/fat` directory is the top level of the SD card.*</small><br />
+<small>*The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off.*</small>
+
+## Installation
+
+Zaparoo Core is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) by enabling the
+`MiSTer Extensions` repository in the `Tools & Scripts` menu.
+
+If you only want Zaparoo Core or don't have Update All, add the following text to the `downloader.ini` file on your
+MiSTer's SD card:
+
+```ini
+[mrext/tapto]
+db_url = https://github.com/ZaparooProject/zaparoo-core/raw/main/scripts/mister/repo/tapto.json
+```
+
+This is supported by the `update` script which ships with the official MiSTer image.
+
+### Manual Install
+
+Download Zaparoo Core for MiSTer from the [Downloads page](/downloads) and copy the `zaparoo.sh` file to the `Scripts`
+folder on your MiSTer's SD card.
+
+:::warning
+
+Using FileZilla to transfer the file? Make sure *binary transfer mode* is enabled by
+following [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/).
+FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, resulting in confusing errors.
+
+:::
+
+## Setup
+
+Once installed, run `zaparoo` from the MiSTer `Scripts` menu, a prompt will offer to enable Zaparoo as a startup
+service, then the service will be started in the background.
+
+After the initial setup is complete, a status display will be shown. It's OK to exit this screen, the service will
+continue to run in the background.
+
+From this point, Zaparoo is now set up! You should be able to connect a reader and set up cards using the Zaparoo App.
+
+## Launchers
+
+Many launchers are supported on MiSTer which link to official cores. See
+the [full list of supported cores](https://github.com/wizzomafizzo/mrext/blob/main/docs/systems.md). The ID on the
+linked page can be used as the launcher ID in Zaparoo if required. Launchers will be automatically detected and used as
+long as you stick to the official games folders and core menu structure set by Downloader.
+
+### Alternate Launchers
+
+Some alternate or unofficial versions of cores are supported and can be used by explicitly setting a launcher in the
+ZapScript on a token. Like the official cores, Zaparoo assumes they're installed in either the default location from
+Update All or in the appropriate menu folder unless otherwise noted.
+
+To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example:
+`N64/some/game.n64?launcher=80MHzNintendo64`
+
+#### LLAPI
+
+Bliss-Box LLAPI cores. Alternate Arcade cores can be referenced directly with their .mra files.
+
+Launcher IDs: `LLAPIAtari2600`, `LLAPIAtari7800`, `LLAPIGameboy`, `LLAPIGBA`, `LLAPIMegaDrive`, `LLAPISMS`,
+`LLAPIMegaCD`, `LLAPINeoGeo`, `LLAPINES`, `LLAPINintendo64`, `LLAPI80MHzNintendo64`, `LLAPIPSX`, `LLAPIS32X`,
+`LLAPISuperGameboy`, `LLAPISaturn`, `LLAPISNES`, `LLAPITurboGrafx16`
+
+#### PWM
+
+24-bit video PWM cores.
+
+Launcher IDs: `PWMNintendo64`, `PWM80MHzNintendo64`, `PWMPSX`, `PWM2XPSX`, `PWMSaturn`
+
+#### Overclock
+
+Robert Piep's experimental overclock cores.
+
+Launcher IDs: `80MHzNintendo64`, `2XPSX`
+
+#### Sinden Lightgun
+
+Sinden Lightgun cores.
+
+:::info
+
+The Sinden cores must be installed in a custom `_Sinden` folder at the top of the SD card, or else Zaparoo won't see
+them and they will conflict with official cores.
+
+:::
+
+Launcher IDs: `SindenGenesis`, `SindenMegaDrive`, `SindenSMS`, `SindenMegaCD`, `SindenNES`, `SindenPSX`, `SindenSNES`
+
+## Main Forks
+
+Some MiSTer Main forks are available with Zaparoo integration or features that work well with Zaparoo.
+
+### spark2k06
+
+An alternative version of MiSTer Main is available by [spark2k06](https://aitorgomez.net/), which adds many great
+Zaparoo related features to MiSTer like:
+
+- Show status of connected reader as icon in top bar.
+- Zaparoo standby screen.
+- Box art on game load.
+- Many additional MGL features.
+
+Please check [spark2k06's repository](https://github.com/spark2k06/Main_MiSTer) for more details.
+
+### Insert-Coin
+
+An alternative version of MiSTer Main is also available by [funkycochise](https://github.com/funkycochise) as part of
+the [Insert-Coin project](https://github.com/funkycochise/Insert-Coin). This version includes a feature to hide the
+loading screen before cores start games, which
+works great with Zaparoo!
+
+## Known Issues
+
+- Zaparoo can have conflicts with other devices that use serial USB connections such as the tty2oled project and
+  anything else using an Arduino board. The current workaround is to disable auto_detect in the config.toml file and
+  manually set the reader path.
