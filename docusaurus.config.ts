@@ -14,7 +14,7 @@ const config: Config = {
 
     organizationName: "ZaparooProject",
     projectName: "zaparoo.org",
-    trailingSlash: false,
+    trailingSlash: true,
 
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
@@ -73,9 +73,9 @@ const config: Config = {
                 src: "img/logo_sm.webp",
             },
             items: [
-                {to: "/downloads", label: "Downloads", position: "left"},
-                {to: "/projects", label: "Projects", position: "left"},
-                {to: "/blog", label: "Blog", position: "left"},
+                {to: "/downloads/", label: "Downloads", position: "left"},
+                {to: "/projects/", label: "Projects", position: "left"},
+                {to: "/blog/", label: "Blog", position: "left"},
                 {
                     href: "https://design.zaparoo.org/",
                     label: "Designer",
@@ -97,7 +97,7 @@ const config: Config = {
                     items: [
                         {
                             label: "All Projects",
-                            to: "/projects",
+                            to: "/projects/",
                         },
                         {
                             label: "Designer",
@@ -110,7 +110,7 @@ const config: Config = {
                     items: [
                         {
                             label: "Support",
-                            to: "/contact",
+                            to: "/contact/",
                         },
                         {
                             label: "Wiki",
@@ -152,19 +152,19 @@ const config: Config = {
                     items: [
                         {
                             label: "Blog",
-                            to: "/blog",
+                            to: "/blog/",
                         },
                         {
                             label: "Privacy",
-                            to: "/privacy",
+                            to: "/privacy/",
                         },
                         {
                             label: "Terms",
-                            to: "/terms",
+                            to: "/terms/",
                         },
                         {
                             label: "Contact",
-                            to: "/contact",
+                            to: "/contact/",
                         },
                         {
                             label: "Zaparoo.com",
@@ -213,63 +213,63 @@ const config: Config = {
                     },
                     // old site news redirects
                     {
-                        to: "/blog",
+                        to: "/blog/",
                         from: "/news",
                     },
                     {
-                        to: "/blog/core-v2.0.0",
+                        to: "/blog/core-v2.0.0/",
                         from: "/news/core-v2.0.0",
                     },
                     {
-                        to: "/blog/core-v2.0.1",
+                        to: "/blog/core-v2.0.1/",
                         from: "/news/core-v2.0.1",
                     },
                     {
-                        to: "/blog/tapto-to-zaparoo",
+                        to: "/blog/tapto-to-zaparoo/",
                         from: "/news/tapto-to-zaparoo",
                     },
                     {
-                        to: "/blog/zap-pad-case",
+                        to: "/blog/zap-pad-case/",
                         from: "/news/zap-pad-case",
                     },
                     {
-                        to: "/blog/v1605-repos",
+                        to: "/blog/v1605-repos/",
                         from: "/news/v1605-repos",
                     },
                     {
-                        to: "/blog/open-zaparoo-app",
+                        to: "/blog/open-zaparoo-app/",
                         from: "/news/open-zaparoo-app",
                     },
                     {
-                        to: "/blog/designer-url-change",
+                        to: "/blog/designer-url-change/",
                         from: "/news/designer-url-change",
                     },
                     {
-                        to: "/blog/steamos-beta-release",
+                        to: "/blog/steamos-beta-release/",
                         from: "/news/steamos-beta-release",
                     },
                     {
-                        to: "/blog/pcns-choice",
+                        to: "/blog/pcns-choice/",
                         from: "/news/pcns-choice",
                     },
                     {
-                        to: "/blog/core-and-app-updates",
+                        to: "/blog/core-and-app-updates/",
                         from: "/news/core-and-app-updates",
                     },
                     {
-                        to: "/blog/code-of-conduct",
+                        to: "/blog/code-of-conduct/",
                         from: "/news/code-of-conduct",
                     },
                     {
-                        to: "/blog/new-designer-templates",
+                        to: "/blog/new-designer-templates/",
                         from: "/news/new-designer-templates",
                     },
                     {
-                        to: "/blog/new-esp32-ui-overhaul",
+                        to: "/blog/new-esp32-ui-overhaul/",
                         from: "/news/new-esp32-ui-overhaul",
                     },
                     {
-                        to: "/blog/app-v1.5.0",
+                        to: "/blog/app-v1.5.0/",
                         from: "/news/app-v1.5.0",
                     },
                 ],

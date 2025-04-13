@@ -132,7 +132,19 @@ export default function Showcase(props: {
         backgroundRepeat: "repeat",
     }}>
         <div className="text--center padding-horiz--md">
-            <Heading as="h2">Community Showcase</Heading>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 512 512"
+                 fill="currentColor"
+                 style={{
+                     marginBottom: "0.5rem",
+                     color: "var(--ifm-color-primary)",
+                     width: "50px",
+                     height: "50px"
+                 }}>
+                <path
+                    d="M149.1 64.8L138.7 96 64 96C28.7 96 0 124.7 0 160L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64l-74.7 0L362.9 64.8C356.4 45.2 338.1 32 317.4 32L194.6 32c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+            </svg>
+            <Heading as="h2">Community Photos</Heading>
             <p>Check out some of the awesome Zaparoo stuff our community is making!</p>
         </div>
         <MasonryPhotoAlbum photos={photos} onClick={({index}) => setIndex(index)}/>
@@ -160,11 +172,11 @@ export default function Showcase(props: {
             <div className={styles.buttons}>
                 <Link
                     className="button button--secondary button--lg"
-                    to="https://zaparoo.org/discord"
+                    to="/discord"
                     style={{display: "flex", alignItems: "center", justifyContent: "center"}}
                 >
                     <img
-                        src="./img/discord-logo.svg"
+                        src="/img/discord-logo.svg"
                         alt="Discord logo"
                         height="16px"
                         width="16px"
