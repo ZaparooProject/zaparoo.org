@@ -15,7 +15,7 @@ the [Zaparoo Wiki](https://wiki.zaparoo.org/) as well.
 :::tip
 
 New to Zaparoo? Make sure to read the [Getting Started](/docs/getting-started/) guide, which explains everything
-necessary to get up and running quickly. Getting started is easy, getting it perfect for *you* is fun!
+necessary to get up and running quickly. Getting started is easy, getting it perfect for _you_ is fun!
 
 :::
 
@@ -23,3 +23,27 @@ Zaparoo is an open system for launching media using physical objects. It allows 
 favorite game by tapping an NFC card or watch a movie by scanning a QR code. This is achieved primarily using the
 Zaparoo Core software, but Zaparoo is also an ecosystem of software and hardware which all works together to make an
 awesome tactile experience with your media!
+
+## Todo
+
+Contributors
+Core API
+Core API/Methods
+Core API/Notifications
+Custom cases
+DIY Reader
+Label templates
+Logo
+Main Page
+Mappings
+Reader drivers
+Super TapTo Boy
+Support
+TapTo
+Token
+Token Commands
+Upgrade stickers
+User launchers
+Vendors
+Windows (platform)/EmulationStation
+Zaparoo Designer

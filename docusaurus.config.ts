@@ -157,6 +157,10 @@ const config: Config = {
               to: "/blog/",
             },
             {
+              label: "Conduct",
+              to: "/conduct/",
+            },
+            {
               label: "Privacy",
               to: "/privacy/",
             },
