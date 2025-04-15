@@ -4,16 +4,16 @@ MiSTer is fully supported by Zaparoo as a platform, and originally started as a 
 MiSTer-exclusive commands because of this.
 
 | Item               | Path                             |
-|--------------------|----------------------------------|
+| ------------------ | -------------------------------- |
 | Data directory     | `/media/fat/zaparoo`             |
 | Mappings directory | `/media/fat/zaparoo/mappings`    |
 | Config file        | `/media/fat/zaparoo/config.toml` |
 | Log file           | `/tmp/zaparoo/core.log`          |
 
-<small>*The `/media/fat` directory is the top level of the SD card.*</small><br />
-<small>*The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off.*</small>
+<small>_The `/media/fat` directory is the top level of the SD card._</small><br />
+<small>_The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off._</small>
 
-## Installation
+## Install
 
 Zaparoo Core is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) by enabling the
 `MiSTer Extensions` repository in the `Tools & Scripts` menu.
@@ -26,22 +26,7 @@ MiSTer's SD card:
 db_url = https://github.com/ZaparooProject/zaparoo-core/raw/main/scripts/mister/repo/tapto.json
 ```
 
-This is supported by the `update` script which ships with the official MiSTer image.
-
-### Manual Install
-
-Download Zaparoo Core for MiSTer from the [Downloads page](/downloads) and copy the `zaparoo.sh` file to the `Scripts`
-folder on your MiSTer's SD card.
-
-:::warning
-
-Using FileZilla to transfer the file? Make sure *binary transfer mode* is enabled by
-following [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/).
-FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, resulting in confusing errors.
-
-:::
-
-## Setup
+This is supported by the `downloader` script which ships with the official MiSTer image.
 
 Once installed, run `zaparoo` from the MiSTer `Scripts` menu, a prompt will offer to enable Zaparoo as a startup
 service, then the service will be started in the background.
@@ -50,6 +35,19 @@ After the initial setup is complete, a status display will be shown. It's OK to 
 continue to run in the background.
 
 From this point, Zaparoo is now set up! You should be able to connect a reader and set up cards using the Zaparoo App.
+
+### Manual Install
+
+Download Zaparoo Core for MiSTer from the [Downloads page](/downloads) and copy the `zaparoo.sh` file to the `Scripts`
+folder on your MiSTer's SD card.
+
+:::warning
+
+Using FileZilla to transfer the file? Make sure _binary transfer mode_ is enabled by
+following [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/).
+FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, resulting in confusing errors.
+
+:::
 
 ## Launchers
 

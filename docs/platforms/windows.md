@@ -15,11 +15,9 @@ Windows support is still in beta. It has minimal support for some launchers, but
 
 <small>_You can access these paths by pasting them in the Explorer address bar or in a Win+R dialog._</small>
 
-## Installation
+## Install
 
 Download Zaparoo Core for Windows from the [Downloads page](/downloads/) and copy the `Zaparoo.exe` file anywhere you want.
-
-## Setup
 
 Run `Zaparoo.exe` and it will open minimized in the system tray. You can make Zaparoo run on startup by making a shortcut to the .exe in the standard Windows startup folder.
 
