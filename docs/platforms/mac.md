@@ -1,0 +1,69 @@
+# macOS
+
+:::warning
+
+macOS support is still in beta. The Zaparoo App and most hardware is supported, but launching media is done via shell scripts until proper launcher support is added.
+
+:::
+
+| Item               | Path                                             |
+| ------------------ | ------------------------------------------------ |
+| Data directory     | `~/Library/Application Support/zaparoo`          |
+| Mappings directory | `~/Library/Application Support/zaparoo/mappings` |
+| Config file        | `~/Library/Preferences/zaparoo/config.toml`      |
+| Log file           | `~/Library/Logs/zaparoo/core.log`                |
+
+<small>_Where `~` is the home directory of the current user._</small>
+
+## Install
+
+Download Zaparoo Core for macOS from the [Downloads page](/downloads/), unzip it and copy
+the `zaparoo` file to `/usr/local/bin`. This guide assumes you copied it to this location.
+
+:::tip
+
+If you don't have `/usr/local/bin` in your PATH, you can also install it to `~/bin` or any other directory in your PATH.
+
+:::
+
+Open Terminal and go to the directory where you copied the `zaparoo` file:
+
+```bash
+cd /usr/local/bin
+```
+
+Run the install command in Zaparoo:
+
+```bash
+./zaparoo -install
+```
+
+:::info
+
+This command does the following:
+
+- Creates a udev rule allowing users to read NFC reader serial devices.
+- Creates a modprobe blacklist entry to fix a bug stopping ACR122U readers from working.
+- Creates a launchd service to run Zaparoo in the background.
+
+:::
+
+Start the Zaparoo service by either using the launchd service:
+
+```bash
+launchctl load ~/Library/LaunchAgents/org.zaparoo.core.plist
+```
+
+Or just by adding the `zaparoo` file to your startup applications.
+
+From this point, Zaparoo should be running and the App should connect to your device. You can now connect a reader and set up cards using the Zaparoo App.
+
+If you want to undo the changes performed by the install command, you can run the uninstall command:
+
+```bash
+./zaparoo -uninstall
+```
+
+## Launchers
+
+Currently, you must use shell scripts to launch media on macOS. See the [Linux page](/platforms/linux/#launchers) for more information on how to set up launchers this way.

@@ -1,0 +1,7 @@
+{
+  "label": "NFC Readers",
+  "link": {
+    "type": "generated-index",
+    "description": "Types of NFC readers supported by Zaparoo."
+  }
+}

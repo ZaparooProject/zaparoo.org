@@ -1,0 +1,8 @@
+{
+  "label": "Readers",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Types of readers supported by Zaparoo."
+  }
+}
