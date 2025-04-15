@@ -1,8 +1,4 @@
 {
   "label": "Tokens",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Types of tokens supported by Zaparoo."
-  }
+  "position": 5
 }

@@ -8,6 +8,14 @@ Tags come in many form factors and standards. The form factor is entirely your p
 If in doubt, "NTAG215 NFC cards" are a solid option with the best software, hardware and community label compatibility.
 :::
 
+## Writing to NFC Tags
+
+The easiest way to write Zaparoo commands to NFC tags is using the [Zaparoo App](https://wizzo.dev/tapto-life), available for both iOS and Android.
+
+:::tip
+The Zaparoo App's tag writing functionality is available for free. You can start using it right away!
+:::
+
 ## Where To Buy
 
 NFC tags are readily available on Amazon, eBay and AliExpress by searching for the standard, form factor and storage size if applicable (e.g. NTAG215 NFC card, NTAG213 NFC sticker). You'll also find them on many local "NFC" and "ID" related stores. At this stage no difference in quality has been noted between suppliers. AliExpress is a **great** place to get NFC tokens in bulk.
