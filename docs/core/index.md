@@ -1,4 +1,4 @@
-# Core
+# Zaparoo Core
 
 Zaparoo Core is a software service which runs in the background of supported platform devices. This service manages and coordinates all aspects of making Zaparoo work as a system, including:
 

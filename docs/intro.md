@@ -5,13 +5,6 @@ slug: /
 
 # Introduction
 
-:::warning
-
-We're currently migrating wiki content to the main website. If you can't find something here, make sure to check out
-the [Zaparoo Wiki](https://wiki.zaparoo.org/) as well.
-
-:::
-
 :::tip
 
 New to Zaparoo? Make sure to read the [Getting Started](/docs/getting-started/) guide, which explains everything
@@ -26,24 +19,7 @@ awesome tactile experience with your media!
 
 ## Todo
 
-Contributors
-Core API
-Core API/Methods
-Core API/Notifications
-Custom cases
-DIY Reader
-Label templates
-Logo
-Main Page
-Mappings
-Reader drivers
 Super TapTo Boy
 Support
-TapTo
-Token
-Token Commands
-Upgrade stickers
-User launchers
 Vendors
 Windows (platform)/EmulationStation
-Zaparoo Designer

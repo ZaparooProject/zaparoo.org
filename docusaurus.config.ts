@@ -75,14 +75,14 @@ const config: Config = {
       items: [
         { to: "/docs/", label: "Docs", position: "left" },
         { to: "/downloads/", label: "Downloads", position: "left" },
-        { to: "/projects/", label: "Projects", position: "left" },
-        { to: "/blog/", label: "Blog", position: "left" },
         {
           href: "https://design.zaparoo.org/",
           label: "Designer",
           position: "left",
         },
-        { href: "https://wiki.zaparoo.org/", label: "Wiki", position: "left" },
+        { to: "/projects/", label: "Projects", position: "left" },
+        { to: "/blog/", label: "Blog", position: "left" },
+        { to: "/support/", label: "Support", position: "left" },
         {
           type: "html",
           position: "right",

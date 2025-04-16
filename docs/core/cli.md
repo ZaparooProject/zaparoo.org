@@ -1,4 +1,4 @@
-# CLI
+# CLI Arguments
 
 All [Zaparoo Core](/docs/core) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](/docs/api). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
 

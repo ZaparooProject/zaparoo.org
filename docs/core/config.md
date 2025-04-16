@@ -1,4 +1,4 @@
-# Config
+# Config File
 
 The config file is the main configuration file of the [Zaparoo Core](/docs/core) software service.
 

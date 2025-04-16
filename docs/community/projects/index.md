@@ -14,6 +14,7 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
   - [Tandy Remix](https://www.printables.com/model/804654-tandy-remix-of-tapto-nfc-1541) - 1541 case with added Tandy logo to look like DOS-era floppy drive.
   - [TapTo 1541 Sled](https://www.printables.com/model/970069-tapto-1541-sled) - Internal sled to mount TapTo USB-C Style Shell inside 1541 case.
 - [TapTo USB-C Style Shell](https://www.printables.com/model/970108-tapto-usb-c-style-shell) - A custom case for the TapTo DIY Reader, adjusted for the USB-C adapter variant.
+- [Mister FPGA Wedge Case with TapTo for Keychron K8](https://www.printables.com/model/964115-mister-fpga-wedge-case-with-tapto-for-keychron-k8) - A wedge case for the Mister FPGA with Zaparoo for the Keychron K8 keyboard.
 
 ## Tokens
 
