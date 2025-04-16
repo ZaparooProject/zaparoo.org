@@ -30,10 +30,9 @@ You'll just need:
 Which you can get at:
 
 - The official [Zaparoo Shop](https://shop.zaparoo.com/), which supports the project directly.
-- One of our [community vendors](https://wiki.zaparoo.org/Vendors), who are great for custom reader cases.
+- One of our [community vendors](/docs/community/vendors), who are great for custom reader cases.
 - Or finally, if you're on a tighter budget or building a custom project, see our generic hardware recommendations in
-  the [NFC
-  readers](https://wiki.zaparoo.org/NFC_readers) and [NFC tags](https://wiki.zaparoo.org/NFC_tags) docs.
+  the [NFC readers](/docs/readers) and [NFC tags](/docs/tags) docs.
 
 :::warning
 
@@ -80,7 +79,7 @@ the most user-friendly way to do things.
 1. Generate labels using the [Zaparoo Designer](https://design.zaparoo.org/).
 2. Print, cut and stick them to your cards.
 
-Check out the [Labels](https://wiki.zaparoo.org/Labels) docs for advice on tools and design templates.
+Check out the [Labels](/docs/labels) docs for advice on tools and design templates.
 
 ## Wrapping Up
 

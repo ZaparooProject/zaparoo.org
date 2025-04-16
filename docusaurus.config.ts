@@ -111,16 +111,16 @@ const config: Config = {
           title: "Help",
           items: [
             {
+              label: "Docs",
+              href: "/docs/",
+            },
+            {
               label: "Support",
               to: "/contact/",
             },
             {
-              label: "Wiki",
-              href: "https://wiki.zaparoo.org/",
-            },
-            {
               label: "Getting Started",
-              href: "https://wiki.zaparoo.org/Getting_started",
+              href: "/docs/getting-started",
             },
           ],
         },
@@ -129,7 +129,7 @@ const config: Config = {
           items: [
             {
               label: "Contributors",
-              href: "https://wiki.zaparoo.org/Contributors",
+              href: "/docs/community/contributors",
             },
             {
               label: "Discord",

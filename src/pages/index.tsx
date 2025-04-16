@@ -63,7 +63,7 @@ function HomepageHeader() {
         <div className={styles.buttons} style={{ marginTop: "15px" }}>
           <Link
             className="button button--secondary button--lg"
-            to="https://wiki.zaparoo.org/Getting_started"
+            to="/docs/getting-started"
             style={{
               display: "flex",
               alignItems: "center",
