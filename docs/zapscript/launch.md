@@ -4,7 +4,7 @@ These commands are used to launch games, systems, and other media.
 
 ## Generic Launch (launch)
 
-This command works exactly the same as the basic [game launch](/docs/zapscript/launching-games) behavior. It's just a more explicit way of doing it.
+This command works exactly the same as the basic game launch behavior. It's just a more explicit way of doing it.
 
 For example:
 
@@ -14,7 +14,7 @@ For example:
 
 ## Launch a System (launch.system)
 
-This command will launch a system, based on MiSTer Extensions own internal list of [system IDs](/docs/systems). This can be useful for "meta systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
+This command will launch a system, based on MiSTer Extensions own internal list of [system IDs](../core/systems.md). This can be useful for "meta systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
 
 For example:
 
@@ -133,7 +133,7 @@ Genesis/@Genesis - 2022-05-18.zip/1 US - Q-Z/Some Game (USA, Europe).md
 
 This is similar to a relative path, but the first "folder" will be treated as a reference to a system instead of a folder. Like this: `<System ID>/<Game Path>`.
 
-Check the [Systems](/docs/systems) documentation for a list of supported system IDs.
+Check the [Systems](../core/systems.md) documentation for a list of supported system IDs.
 
 For example:
 
@@ -143,7 +143,7 @@ N64/1 US - A-M/Another Game (USA).z64
 
 While this looks like a relative path, it will work on any device with the same system folder structure, even if the Nintendo 64 folder does not have the same name. Zaparoo will look up the system ID and find the game file based on that.
 
-System ID aliases (listed in the [Systems](/docs/systems) page as well) can also be used here.
+System ID aliases (listed in the [Systems](../core/systems.md) page as well) can also be used here.
 
 For example, this will work:
 

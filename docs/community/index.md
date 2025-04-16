@@ -25,4 +25,4 @@ For those who prefer federated services, we also have a presence on [Lemmy](http
 
 ## Code of Conduct
 
-Please note that our [Code of Conduct](/docs/conduct) applies to all community platforms. We strive to maintain a welcoming and respectful environment across all our communication channels.
+Please note that our [Code of Conduct](/conduct/) applies to all community platforms. We strive to maintain a welcoming and respectful environment across all our communication channels.

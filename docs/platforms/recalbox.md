@@ -65,4 +65,4 @@ If you want to undo the changes performed by the install command, you can run th
 
 ## Launchers
 
-Currently, you must use shell scripts to launch media on Linux. See the [Linux page](/platforms/linux/#launchers) for more information on how to set up launchers this way.
+Currently, you must use shell scripts to launch media on Linux. See the [Linux page](./linux.md#launchers) for more information on how to set up launchers this way.

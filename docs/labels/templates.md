@@ -24,7 +24,7 @@ Due to the variances when importing SVG files into your design software, confirm
 
 ## Artwork Margins
 
-Margins are measured from the edge of label. Note: margins were rounded to nearest whole pixel for the [Zaparoo Designer](../../tools/designer.md) software, and then converted to inches / millimeters.
+Margins are measured from the edge of label. Note: margins were rounded to nearest whole pixel for the [Zaparoo Designer](../designer/index.md) software, and then converted to inches / millimeters.
 
 **Zaparoo Horizontal margins:**
 

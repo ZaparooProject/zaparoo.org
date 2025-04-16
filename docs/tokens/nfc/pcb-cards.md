@@ -1,6 +1,6 @@
 # PCB Cards
 
-Want to have some cool little PCB cards for your favorite games? All you need to do is order some of these, print some labels and stick on an NFC sticker. Please note that the small Switch cards will need smaller rectangle type NFC tags but the medium and large sized cards can take either. PCB cards project for Zaparoo was created by [TheTrain](https://twitter.com/thetrain24).
+Want to have some cool little PCB cards for your favorite games? All you need to do is order some of these, print some labels and stick on an NFC sticker. Please note that the small Switch cards will need smaller rectangle type NFC tags but the medium and large sized cards can take either. PCB cards project for Zaparoo was created by TheTrain.
 
 <img src="/img/docs/tokens/PCB_cards_with_NFC_card.jpg" alt="PCB cards with NFC card" width="300" />
 
@@ -91,7 +91,7 @@ Gerber files to be uploaded to PCB manufacturer:
 
 ## Labels
 
-Please check the [Labels](../labels.md) page for advice on label printing.
+Please check the [Labels](../../labels/index.md) page for advice on label printing.
 
 Card dimensions:
 

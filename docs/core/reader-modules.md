@@ -1,6 +1,6 @@
 # Reader Modules
 
-Reader modules are ways for [Zaparoo Core](.) to communicate with different types of reader hardware. This mostly includes [NFC Readers](../readers/nfc/index.md), but can be other types of hardware or virtual devices.
+Reader modules are ways for Zaparoo Core to communicate with different types of reader hardware. This mostly includes [NFC Readers](../readers/nfc/index.md), but can be other types of hardware or virtual devices.
 
 ## libnfc
 
@@ -12,7 +12,7 @@ Supports the ACR122U USB NFC reader. This module does not take a file path as an
 
 ### pn532_uart
 
-Supports PN532 modules that are connected via USB through a USB serial chip and with the DIP switches set to UART. This is the module used for all the currently available [Zaparoo USB-C Readers](../readers/nfc/pn532-type-c.md) and [Zaparoo DIY Readers](../readers/nfc/diy-reader.md). The device path is something like `/dev/ttyUSB0` on Linux. This module supports auto-detection.
+Supports PN532 modules that are connected via USB through a USB serial chip and with the DIP switches set to UART. This is the module used for all the currently available [Zaparoo USB-C Readers](../readers/nfc/pn532.md) and [Zaparoo DIY Readers](../community/projects/diy-reader.md). The device path is something like `/dev/ttyUSB0` on Linux. This module supports auto-detection.
 
 ### pn532_i2c
 

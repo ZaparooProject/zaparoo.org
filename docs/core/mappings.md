@@ -1,6 +1,6 @@
 # Mappings
 
-**Mappings** are a feature of [Zaparoo Core](.) to assign custom [ZapScript](../zapscript/index.md) to a [token](../tokens/index.md) based on some criteria to detect when that token has been scanned. This is useful for making tokens work with Zaparoo that don't have any rewritable storage, such as [barcodes](../tokens/index.md) and [NFC toys](../tokens/index.md) like [Amiibos](../tokens/index.md).
+**Mappings** are a feature of Zaparoo Core to assign custom [ZapScript](../zapscript/index.md) to a token based on some criteria to detect when that token has been scanned. This is useful for making tokens work with Zaparoo that don't have any rewritable storage, such as barcodes and NFC toys like Amiibos.
 
 There are two main methods of managing mappings in an instance of Core. Other applications may use these methods to add management GUIs or automate creation of mappings.
 
@@ -21,7 +21,7 @@ match_pattern = '044ed8daed7281'
 zapscript = '**launch.random:snes'
 ```
 
-This mapping would trigger on a token with the ID "044ed8daed7281" (in this case an [NFC tag](../tokens/nfc-tags.md) UID) to be scanned and then run the ZapScript `**launch.random:snes` instead of whatever value may have been written to the token originally.
+This mapping would trigger on a token with the ID "044ed8daed7281" (in this case an [NFC tag](../tokens/nfc/index.md) UID) to be scanned and then run the ZapScript `**launch.random:snes` instead of whatever value may have been written to the token originally.
 
 The name of the file doesn't matter except that it must end with the `.toml` file extension. Files in the mappings folder are read in alphanumeric order and stored this way in memory, so it's optional but may be useful to name them with this in mind. A single file may contain any number of entries as long as each mapping has its own `[[mappings.entry]]` header.
 

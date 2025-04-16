@@ -2,7 +2,7 @@
 
 The config file is the main configuration file of the [Zaparoo Core](/docs/core) software service.
 
-Its location depends on the [platform](/docs/platforms) where the service is running. On [MiSTer](/docs/platforms/mister), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
+Its location depends on the [platform](/docs/platforms/index.md) where the service is running. On [MiSTer](/docs/platforms/mister.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
 
 The file is always called `config.toml` on every platform.
 
@@ -139,7 +139,7 @@ path = '/tmp/some_file'
 | ------ | ------ | ------- |
 | driver | string |         |
 
-`driver` specifies which reader driver should be used to attempt connection to the reader device. See [reader drivers](/docs/readers) for a list of possible options.
+`driver` specifies which reader driver should be used to attempt connection to the reader device. See [reader drivers](/docs/readers/index.md) for a list of possible options.
 
 ##### path
 
@@ -147,7 +147,7 @@ path = '/tmp/some_file'
 | ---- | ------ | ------- |
 | path | string |         |
 
-`path` is an argument for the specified reader driver for how the device should be found. See [reader drivers](/docs/readers) for what this argument should look like for the driver.
+`path` is an argument for the specified reader driver for how the device should be found. See [reader drivers](/docs/readers/index.md) for what this argument should look like for the driver.
 
 ### Systems
 
@@ -170,7 +170,7 @@ before_exit = '**input.keyboard:{f12}||**delay:2000'
 | ------ | ------ | ------- |
 | system | string |         |
 
-ID of the [system](/docs/systems) this default override entry applies to.
+ID of the [system](./systems.md) this default override entry applies to.
 
 ##### launcher
 
@@ -178,7 +178,7 @@ ID of the [system](/docs/systems) this default override entry applies to.
 | -------- | ------ | ------- |
 | launcher | string |         |
 
-ID of the [launcher](/docs/launchers) that should be used by default when media in this system is launched.
+ID of the [launcher](./launchers.md) that should be used by default when media in this system is launched.
 
 ##### before_exit
 
@@ -186,7 +186,7 @@ ID of the [launcher](/docs/launchers) that should be used by default when media 
 | ----------- | ------ | ------- |
 | before_exit | string |         |
 
-A snippet of [ZapScript](/docs/zapscript) to be run before media exits if [hold mode](#mode) is enabled. Blocks before moving onto exit so commands like [delay](/docs/zapscript/commands#delay) can be used.
+A snippet of [ZapScript](../zapscript/index.md) to be run before media exits if [hold mode](#mode) is enabled. Blocks before moving onto exit so commands like [delay](../zapscript/utilities.md#delay) can be used.
 
 ### Launchers
 
@@ -218,7 +218,7 @@ For example, if `index_root` was set to `[ '/media/fat/other_place' ]`, a databa
 
 `allow_file` allows certain files to be launched if their assigned launcher requires it.
 
-This is used on platforms like [Windows](/docs/platforms/windows) to allow executable files to be launched with tokens, where this ability is useful but would be a security issue if allowed globally.
+This is used on platforms like [Windows](../platforms/windows/index.md) to allow executable files to be launched with tokens, where this ability is useful but would be a security issue if allowed globally.
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
@@ -242,7 +242,7 @@ allow_execute = [
 | ------------- | -------- | ------- |
 | allow_execute | string[] | []      |
 
-`allow_execute` allows specific executables and arguments to be run using the `**execute` [ZapScript](/docs/zapscript) command. By default, the command does not allow anything to be run.
+`allow_execute` allows specific executables and arguments to be run using the `**execute` [ZapScript](../zapscript/index.md) command. By default, the command does not allow anything to be run.
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
@@ -266,7 +266,7 @@ allow_run = [
 | -------- | ------- | ------- |
 | api_port | integer | 7497    |
 
-`api_port` specifies which port the [API](/docs/api) of Core should be accessible from.
+`api_port` specifies which port the [API](./api/index.md) of Core should be accessible from.
 
 **Don't change this unless you know what you're doing. It will currently break external tools that rely on it being the default value.**
 
@@ -286,7 +286,7 @@ It's currently reserved for future use when devices can communicate with each ot
 | --------- | -------- | ------- |
 | allow_run | string[] | []      |
 
-`allow_run` explicitly allows [ZapScript](/docs/zapscript) to be run using the [run endpoint](/docs/api#run) of the [Core API](/docs/api). By default, nothing is allowed.
+`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md#run) of the [Core API](./api/index.md). By default, nothing is allowed.
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 

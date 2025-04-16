@@ -14,7 +14,7 @@ A log file is critical to resolving bugs in Zaparoo. As soon as you encounter a 
 The Zaparoo log file on MiSTer is deleted every time the MiSTer is turned off. Make sure to follow these steps after a bug happens and before the MiSTer is turned off.
 :::
 
-1.  Open the `zaparoo` script from the [MiSTer](../platforms/mister.md) Scripts menu.
+1.  Open the `zaparoo` script from the MiSTer Scripts menu.
 2.  Press left and select the `Export Log` button.
 3.  Then either:
     - **Upload to termbin.com**: This option uploads a copy of the log file to the website [termbin.com](https://termbin.com) and then displays a short URL where the uploaded file can be viewed. Copy this URL to show other people the log. _Please note the project has no affiliation or control over this site, if you lose the URL it can't be retrieved by us._

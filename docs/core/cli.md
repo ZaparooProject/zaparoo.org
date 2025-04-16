@@ -1,6 +1,6 @@
 # CLI Arguments
 
-All [Zaparoo Core](/docs/core) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](/docs/api). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
+All [Zaparoo Core](/docs/core) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](/docs/core/api). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
 
 The name of the Zaparoo core binary may differ slightly between platforms. The examples on this page will target [MiSTer](/docs/platforms/mister) which ships with a binary named `zaparoo.sh`, whereas Windows ships with a binary named `Zaparoo.exe`. Functionally they're the same, just replace the filename in the examples.
 
@@ -28,7 +28,7 @@ Outputs this Zaparoo binary's build version (not the currently started API servi
 **Argument:** string  
 **Example:** `./tapzaparooto.sh -api 'launch:{"text":"**launch.system:menu"}'`
 
-Sends a single request to the [Zaparoo API](/docs/api), waits for a response and then outputs the result body of that response.
+Sends a single request to the [Zaparoo API](../core/api/index.md), waits for a response and then outputs the result body of that response.
 
 ## Launch
 
@@ -44,4 +44,4 @@ Sends the string argument to the API as a launch command, as if a token with tha
 **Argument:** string  
 **Example:** `./zaparoo.sh -write "SNES/MyGame.sfc"`
 
-If a [reader](/docs/readers) is physically connected to the device and has the capability to write to a token, try to write the given string to that token. Reports an error if the token couldn't be written and times out after 30 seconds.
+If a [reader](../readers/index.md) is physically connected to the device and has the capability to write to a token, try to write the given string to that token. Reports an error if the token couldn't be written and times out after 30 seconds.

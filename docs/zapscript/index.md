@@ -11,4 +11,4 @@ ZapScript commands are organized into several categories:
 - [Input](/docs/zapscript/input) - Commands for simulating keyboard and gamepad input
 - [MiSTer](/docs/zapscript/mister) - Commands specific to the MiSTer platform
 - [Playlist](/docs/zapscript/playlist) - Commands for managing playlists of games
-- [Utility](/docs/zapscript/utility) - Various utility commands
+- [Utility](/docs/zapscript/utilities) - Various utility commands

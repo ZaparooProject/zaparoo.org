@@ -12,10 +12,10 @@ Labels can be created in bulk using the [Zaparoo Designer](https://zaparoo-desig
 
 ### Zaparoo Template Files
 
-You can also download the template files directly to use in your own design software. The official Zaparoo templates are free to use and modify to meet your needs. You must follow the [Zaparoo logo usage guidelines](/docs/licenses) if you choose to include it.
+You can also download the template files directly to use in your own design software. The official Zaparoo templates are free to use and modify to meet your needs. You must follow the [Zaparoo logo usage guidelines](/terms).
 
-- [Zaparoo official template collection](/docs/labels/templates) - by Tim Wilsie. Includes files for horizontal, vertical, and NFC Engine layouts.
-- [Zaparoo Upgrade labels](/docs/labels/upgrade) - designed to be applied on the [Zaparoo Trading Cards](https://www.etsy.com/listing/1761446844/tapto-trading-cards) and the Zaparoo Universal Labels.
+- [Zaparoo official template collection](./templates.md) - by Tim Wilsie. Includes files for horizontal, vertical, and NFC Engine layouts.
+- [Zaparoo Upgrade labels](./upgrade-stickers.md) - designed to be applied on the
 
 ### Community Label Packs
 
@@ -52,7 +52,7 @@ There are quite a few options for cutting labels. The most accessible is a trust
 
 Another option is a hobby knife and a straight edge to create clean cuts. [Craft paper cutters](https://www.amazon.com/Fiskars-152490-1004-SureCut-Deluxe-Trimmer/dp/B0038F1A0S) and [guillotine trimmers](https://www.amazon.com/Swingline-Trimmer-Guillotine-Capacity-ClassicCut/dp/B016LDV41S) are also good options to create quick and consistent straight cuts.
 
-To **really** give your labels a finished feel, you can use a [corner rounder](https://www.amazon.com/%EF%BC%8CEnvelope-Puncher%EF%BC%8C-Laminate-Projects-Scrapbooking/dp/B08VHGLBPT) to quickly cut perfectly round corners on your prints to more closely match your NFC cards. Standard NFC cards have a corner radius of 3mm (R3), but the label templates from the [Zaparoo Designer](/docs/labels/designer) are also compatible (and look good!) with 4mm (R4) cuts which is what most common corner rounders are.
+To **really** give your labels a finished feel, you can use a [corner rounder](https://www.amazon.com/%EF%BC%8CEnvelope-Puncher%EF%BC%8C-Laminate-Projects-Scrapbooking/dp/B08VHGLBPT) to quickly cut perfectly round corners on your prints to more closely match your NFC cards. Standard NFC cards have a corner radius of 3mm (R3), but the label templates from the [Zaparoo Designer](../designer/index.md) are also compatible (and look good!) with 4mm (R4) cuts which is what most common corner rounders are.
 
 #### Cutting labels using a plotter device
 

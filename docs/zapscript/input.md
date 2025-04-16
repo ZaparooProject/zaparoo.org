@@ -26,21 +26,21 @@ Press a button or multiple buttons in sequence on a virtual gamepad attached to 
 
 This works the same as the `input.keyboard` command but with the following name mappings:
 
-- ^, {up}: Dpad up
-- V, {down}: Dpad down
-- \<, {left}: Dpad left
-- \>, {right}: Dpad right
-- A, a: East button
-- B, b: South button
-- X, x: North button
-- Y, y: West button
-- {start}: Start
-- {select}: Select
-- {menu}: Menu (Xbox/PlayStation/etc. button)
-- L, l, {l1}: Left bumper
-- R, r, {r1}: Right bumper
-- {l2}: Left trigger
-- {r2}: Right trigger
+- `^`, `{up}`: Dpad up
+- `V`, `{down}`: Dpad down
+- `<`, `{left}`: Dpad left
+- `>`, `{right}`: Dpad right
+- `A`, `a`: East button
+- `B`, `b`: South button
+- `X`, `x`: North button
+- `Y`, `y`: West button
+- `{start}`: Start
+- `{select}`: Select
+- `{menu}`: Menu (Xbox/PlayStation/etc. button)
+- `L`, `l`, `{l1}`: Left bumper
+- `R`, `r`, `{r1}`: Right bumper
+- `{l2}`: Left trigger
+- `{r2}`: Right trigger
 
 For example:
 
