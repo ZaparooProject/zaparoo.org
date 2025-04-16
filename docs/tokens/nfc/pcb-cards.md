@@ -2,6 +2,8 @@
 
 Want to have some cool little PCB cards for your favorite games? All you need to do is order some of these, print some labels and stick on an NFC sticker. Please note that the small Switch cards will need smaller rectangle type NFC tags but the medium and large sized cards can take either. PCB cards project for Zaparoo was created by [TheTrain](https://twitter.com/thetrain24).
 
+<img src="/img/docs/tokens/PCB_cards_with_NFC_card.jpg" alt="PCB cards with NFC card" width="300" />
+
 ## Ordering
 
 ### Which PCB Type To Order?
@@ -16,6 +18,8 @@ Gerber files to be uploaded to PCB manufacturer:
 
 - [Switch card PCB v3.3](https://github.com/wizzomafizzo/tapto/tree/main/assets/pcbcards/Switch%20Cart%20PCB) - **6-layer PCB**
 - [Medium card PCB v3.0](https://github.com/wizzomafizzo/tapto/tree/main/assets/pcbcards/mediumcard) - **6-layer PCB**
+
+<img src="/img/docs/tokens/Full_size_PCB_cards.jpg" alt="Full size PCB cards" width="200" /> <img src="/img/docs/tokens/Medium_size_PCB_cards.jpg" alt="Medium size PCB cards" width="200" /> <img src="/img/docs/tokens/Switch_size_PCB_cards.jpg" alt="Switch size PCB cards" width="200" />
 
 ### 2-Layer PCBs from JLC PCB
 

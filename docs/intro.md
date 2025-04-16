@@ -19,12 +19,6 @@ awesome tactile experience with your media!
 
 ## TODO
 
-Cassette tape cases
 DIY Reader
-Getting started
-Label templates
-Labels
 PCB cards
-QR codes
 Super TapTo Boy
-Zaparoo Designer

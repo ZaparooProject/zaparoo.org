@@ -1,6 +1,8 @@
 # Labels
 
-Having your favorite artwork on your NFC token is the perfect finishing touch to your Zaparoo collection. The Zaparoo team has tried to streamline and document this process to accommodate every skill level.
+<img src="/img/docs/labels/Labels_header.jpg" alt="Getting messy with labels" width="100%" />
+
+Having your favorite artwork on your NFC card is the perfect finishing touch to your Zaparoo collection. The Zaparoo team has tried to streamline and document this process to accommodate every skill level.
 
 ## Generating Labels
 
