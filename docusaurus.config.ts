@@ -185,6 +185,14 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    algolia: {
+      appId: "77TW8QV8RJ",
+      apiKey: "1a1a6d112273bca53b36497779516e42",
+      indexName: "zaparoo",
+      contextualSearch: true,
+      searchPagePath: "search",
+      insights: false,
+    },
   } satisfies Preset.ThemeConfig,
 
   plugins: [

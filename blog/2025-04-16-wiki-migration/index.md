@@ -13,4 +13,4 @@ Most things will be exactly like before, but I have taken the opportunity to cle
 
 There shouldn't be any breaking changes, but if you notice anything missing or broken, please let me know!
 
-During the week, I'll be shutting down the wiki.zaparoo.org server and settings up redirects so that the old URLs will continue to work as they did before.
+During the week, I'll be shutting down the wiki.zaparoo.org server and setting up redirects so that the old URLs will continue to work as they did before.
