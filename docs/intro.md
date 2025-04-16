@@ -20,5 +20,4 @@ awesome tactile experience with your media!
 ## TODO
 
 DIY Reader
-PCB cards
 Super TapTo Boy
