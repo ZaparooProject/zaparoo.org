@@ -34,4 +34,4 @@ Using FileZilla to transfer the file? Make sure _binary transfer mode_ is enable
 
 ## Launchers
 
-All launchers supported by MiSTer are also supported by MiSTeX. See the [MiSTer launchers section](mister.md#launchers) for more information.
+All launchers supported by MiSTer are also supported by MiSTeX (as far as MiSTeX itself supports them). See the [MiSTer launchers section](mister.md#launchers) for more information.

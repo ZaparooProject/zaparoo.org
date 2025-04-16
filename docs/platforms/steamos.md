@@ -2,7 +2,7 @@
 
 :::warning
 
-SteamOS support is still in beta. Steam launching works, but EmuDeck support is still in progress and Zaparoo must be installed manually.
+SteamOS support is still in beta. Steam launching works, but EmuDeck support is still in progress and Zaparoo must be installed manually. We are looking for help with Decky Loader support, so if you're interested in contributing, please [get in touch](https://zaparoo.org/discord)!
 
 :::
 
