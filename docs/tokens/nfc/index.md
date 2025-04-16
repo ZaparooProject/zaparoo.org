@@ -24,5 +24,3 @@ NFC tags are readily available on Amazon, eBay and AliExpress by searching for t
 
 - [NTAG](./ntag.md) - Best compatibility with Zaparoo
 - [MIFARE Classic](./mifare.md) - Partial support
-- [Amiibo](./amiibo.md) - Read-only support
-- [Lego Dimensions](./lego-dimensions.md) - Read-only support

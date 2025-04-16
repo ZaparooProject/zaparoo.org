@@ -91,7 +91,7 @@ Gerber files to be uploaded to PCB manufacturer:
 
 ## Labels
 
-Please check the [Labels](../../labels/index.md) page for advice on label printing.
+Please check the [Labels](../labels/index.md) page for advice on label printing.
 
 Card dimensions:
 
