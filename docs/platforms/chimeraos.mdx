@@ -1,8 +1,12 @@
-# Bazzite
+---
+sidebar_class_name: hidden
+---
+
+# ChimeraOS
 
 :::warning
 
-Bazzite support is still in beta. The Zaparoo App and most hardware is supported, but launching media is done via shell scripts until proper launcher support is added.
+ChimeraOS support is still in beta. The Zaparoo App and most hardware is supported, but launching media is done via shell scripts until proper launcher support is added.
 
 :::
 
@@ -17,12 +21,12 @@ Bazzite support is still in beta. The Zaparoo App and most hardware is supported
 
 ## Install
 
-Download Zaparoo Core for Bazzite from the [Downloads page](/downloads/), unzip it and copy
+Download Zaparoo Core for Linux from the [Downloads page](/downloads/), unzip it and copy
 the `zaparoo` file somewhere like the home directory or `/usr/local/bin`. This guide assumes you copied it to the home directory, replace paths in the examples if that's not the case.
 
 :::tip
 
-Bazzite is based on Fedora Silverblue/Kinoite, so you'll need to use `rpm-ostree` to install any additional dependencies. Most required dependencies should already be included in the base image.
+ChimeraOS is a console-focused Linux distribution, so you'll need to use the terminal for installation. You can access the terminal by pressing `Ctrl+Alt+F2` and logging in with the default credentials (username: `gamer`, password: `gamer`).
 
 :::
 
@@ -55,7 +59,7 @@ systemctl --user enable zaparoo.service
 systemctl --user start zaparoo.service
 ```
 
-Or just by adding the `zaparoo` file to your startup applications, depending on your desktop environment.
+Or just by adding the `zaparoo` file to your startup applications.
 
 From this point, Zaparoo should be running and the App should connect to your device. You can now connect a reader and set up cards using the Zaparoo App.
 
@@ -67,4 +71,4 @@ If you want to undo the changes performed by the install command, you can run th
 
 ## Launchers
 
-Currently, you must use shell scripts to launch media on Linux. See the [Linux page](./linux.md#launchers) for more information on how to set up launchers this way.
+Currently, you must use shell scripts to launch media on Linux. See the [Linux page](./linux#launchers) for more information on how to set up launchers this way.
