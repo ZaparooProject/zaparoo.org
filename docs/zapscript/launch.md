@@ -24,7 +24,7 @@ Zaparoo uses the following rules, in order, to find the game file. Keep these ru
 If you're not sure what to do, it's recommended to use the System Lookup method for the best portability between devices.
 :::
 
-## Absolute Path
+#### Absolute Path
 
 Any path starting with a `/` will be treated as an absolute path.
 
@@ -36,7 +36,7 @@ For example, to launch a game, write something like this to the token:
 
 This is the least portable method, as it will only work on the device with the exact same file path.
 
-## Relative Path
+#### Relative Path
 
 It's also possible to use a file path relative to the games folder. This will search for the file in all standard MiSTer game folder paths including CIFS and USB.
 
@@ -64,7 +64,7 @@ _@Favorites/My Favorite Game.mgl
 Genesis/@Genesis - 2022-05-18.zip/1 US - Q-Z/Some Game (USA, Europe).md
 ```
 
-## System Lookup
+#### System Lookup
 
 This is similar to a relative path, but the first "folder" will be treated as a reference to a system instead of a folder. Like this: `<System ID>/<Game Path>`.
 
@@ -102,7 +102,7 @@ PCEngine/Another Game (USA).pce
 While this method is basically the same as a relative path right now, as Zaparoo develops, we will be adding more features to this System Lookup method so it's not necessary to use explicit paths. It will also be important going forward as more devices are supported with different file structures.
 :::
 
-## Game Title
+#### Game Title
 
 Games can be looked up by system and title by using the format `<system>/<title>` similar to the above, but without a file extension or any subfolders. The game's title will be looked up in the database and launched if there's a match. The is currently the most portable method to make tokens work between devices and platforms.
 
