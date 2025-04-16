@@ -7,7 +7,7 @@ These commands are used to make HTTP requests to external services.
 Perform an HTTP GET request to the specified URL. For example:
 
 ```
-**launch.random:snes,nes
+**http.get:https://example.com
 ```
 
 This is useful for triggering webhooks or other web services.
