@@ -186,7 +186,7 @@ ID of the [launcher](./launchers.md) that should be used by default when media i
 | ----------- | ------ | ------- |
 | before_exit | string |         |
 
-A snippet of [ZapScript](../zapscript/index.md) to be run before media exits if [hold mode](#mode) is enabled. Blocks before moving onto exit so commands like [delay](../zapscript/utilities.md#delay) can be used.
+A snippet of [ZapScript](../zapscript/index.md) to be run before media exits if [hold mode](#mode) is enabled. Blocks before moving onto exit so commands like [delay](../zapscript/utilities.md) can be used.
 
 ### Launchers
 
@@ -286,7 +286,7 @@ It's currently reserved for future use when devices can communicate with each ot
 | --------- | -------- | ------- |
 | allow_run | string[] | []      |
 
-`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md#run) of the [Core API](./api/index.md). By default, nothing is allowed.
+`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md) of the [Core API](./api/index.md). By default, nothing is allowed.
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 

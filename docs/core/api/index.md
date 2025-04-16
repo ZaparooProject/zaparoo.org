@@ -169,30 +169,30 @@ Requests from the local device are allowed without restriction. Remote requests 
 
 Methods are used to execute actions and request data back from the API. See the [API Methods](./methods) page for detailed definitions and examples of each method.
 
-| ID                                           | Description                                                                           |
-| :------------------------------------------- | :------------------------------------------------------------------------------------ |
-| run                                          | Run supplied ZapScript.                                                               |
-| [stop](./methods#stop)                       | Kill any active launcher, if possible.                                                |
-| tokens                                       | List active tokens.                                                                   |
-| tokens.scan                                  | Emulate a token scan.                                                                 |
-| tokens.history                               | Return a list of the latest token launches.                                           |
-| media                                        | Return status and statistics about media database.                                    |
-| media.active                                 | Return the currently active (now playing) media.                                      |
-| [media.search](./methods#media.search)       | Query the media database and return all matching indexed media.                       |
-| [media.index](./methods#media.index)         | Start a new media database index.                                                     |
-| [systems](./methods#systems)                 | List all currently indexed systems.                                                   |
-| [settings](./methods#settings-2)             | List current configuration settings.                                                  |
-| [settings.update](./methods#settings.update) | Update one or more settings in-memory and save changes to disk.                       |
-| [mappings](./methods#mappings-2)             | List all mappings.                                                                    |
-| [mappings.new](./methods#mappings.new)       | Create a new mapping.                                                                 |
-| [mappings.update](./methods#mappings.update) | Change an existing mapping.                                                           |
-| [mappings.delete](./methods#mappings.delete) | Delete an existing mapping.                                                           |
-| [readers](./methods#readers-2)               | List all currently connected readers.                                                 |
-| [readers.write](./methods#readers.write)     | Attempt to write given text to the first available write-capable reader, if possible. |
-| [clients](./methods#clients-2)               | List all clients (including disconnected) and associated data.                        |
-| [clients.new](./methods#clients.new)         | Create a new client with a newly generated ID and secret.                             |
-| [clients.delete](./methods#clients.delete)   | Delete an existing client.                                                            |
-| [version](./methods#version)                 | Return server's current version and platform.                                         |
+| ID              | Description                                                                           |
+| :-------------- | :------------------------------------------------------------------------------------ |
+| run             | Run supplied ZapScript.                                                               |
+| stop            | Kill any active launcher, if possible.                                                |
+| tokens          | List active tokens.                                                                   |
+| tokens.scan     | Emulate a token scan.                                                                 |
+| tokens.history  | Return a list of the latest token launches.                                           |
+| media           | Return status and statistics about media database.                                    |
+| media.active    | Return the currently active (now playing) media.                                      |
+| media.search    | Query the media database and return all matching indexed media.                       |
+| media.index     | Start a new media database index.                                                     |
+| systems         | List all currently indexed systems.                                                   |
+| settings        | List current configuration settings.                                                  |
+| settings.update | Update one or more settings in-memory and save changes to disk.                       |
+| mappings        | List all mappings.                                                                    |
+| mappings.new    | Create a new mapping.                                                                 |
+| mappings.update | Change an existing mapping.                                                           |
+| mappings.delete | Delete an existing mapping.                                                           |
+| readers         | List all currently connected readers.                                                 |
+| readers.write   | Attempt to write given text to the first available write-capable reader, if possible. |
+| clients         | List all clients (including disconnected) and associated data.                        |
+| clients.new     | Create a new client with a newly generated ID and secret.                             |
+| clients.delete  | Delete an existing client.                                                            |
+| version         | Return server's current version and platform.                                         |
 
 ## Notifications
 

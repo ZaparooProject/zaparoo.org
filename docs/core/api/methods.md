@@ -234,7 +234,7 @@ An object:
 
 Create a new media database index.
 
-During an index, the server will emit [media.indexing](../notifications#media-indexing) notifications showing progress of the index.
+During an index, the server will emit [media.indexing](./notifications.md) notifications showing progress of the index.
 
 #### Parameters
 
@@ -346,7 +346,7 @@ None.
 | insertModeBlocklist | string[]                          | Yes      |                                                                                         |
 | insertModeExitDelay | number                            | Yes      |                                                                                         |
 | consoleLogging      | boolean                           | Yes      |                                                                                         |
-| debug               | boolean                           | Yes      | See [debug](../config.md#debug-logging-debug).                                          |
+| debug               | boolean                           | Yes      | See [debug](../config.md).                                                              |
 | systems             | [Systems config](#systems-config) | Yes      | The systems section of the config file.                                                 |
 
 ###### Systems config
@@ -408,7 +408,7 @@ An object:
 | insertModeBlocklist | string[]                          | Yes      |                                                                                         |
 | insertModeExitDelay | number                            | Yes      |                                                                                         |
 | consoleLogging      | boolean                           | Yes      |                                                                                         |
-| debug               | boolean                           | Yes      | See [debug](../../core/config.md#debug-logging-debug).                                  |
+| debug               | boolean                           | Yes      | See [debug](../../core/config.md).                                                      |
 | systems             | [Systems config](#systems-config) | Yes      | The systems section of the config file.                                                 |
 
 ###### Systems config
