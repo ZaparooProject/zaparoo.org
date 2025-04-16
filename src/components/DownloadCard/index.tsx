@@ -134,7 +134,7 @@ export default function DownloadCard({
         <Button
           outline
           label="Platform Guide"
-          variant="ghost"
+          variant="secondary"
           link={docLink}
           icon={<FontAwesomeIcon icon={["fas", "book"]} />}
           fullWidth
