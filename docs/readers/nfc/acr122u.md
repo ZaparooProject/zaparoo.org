@@ -5,7 +5,7 @@ slug: acr122u
 
 # ACR122U
 
-![An ACR122U NFC reader](/img/readers/ACR122U-NFC-reader.jpg)
+<img src="/img/docs/readers/ACR122U-NFC-reader.jpg" alt="An ACR122U NFC reader" width="300" />
 
 The ACR122U (also called just ACR122) is the most commonly available consumer grade USB NFC reader. Internally it uses a PN532 NFC chip, but this chip is not exposed directly to the host device so it cannot be used with other PN532 drivers. Its main method of communication is via a PCSC service, where it's usually plug and play. Its internal PCB is quite large with a fragile cable connection, which can make it difficult to incorporate in custom projects.
 
@@ -33,7 +33,7 @@ The ACR122U should also be plug and play on the latest version of Windows. The r
 
 If your reader isn't being detected properly, try checking the below steps are done:
 
-![Windows Services Manager example](/img/readers/Windows-smart-card-services.png)
+<img src="/img/docs/readers/Windows-smart-card-services.png" alt="Windows Services Manager example" width="400" />
 
 - Enable the Smart Card Plug and Play service via regedit:
 
@@ -48,7 +48,7 @@ If your reader isn't being detected properly, try checking the below steps are d
 
 - Install the [official ACS ACR122U driver](https://www.acs.com.hk/en/driver/3/acr122u-usb-nfc-reader/). You can confirm it's working if "ACR122 Smart Card Reader" is shown in the "Smart card readers" section of the [Device Manager](https://www.lifewire.com/device-manager-2625860).
 
-![Windows Device Manager example](/img/readers/ACR122U-device-manager-example.png)
+<img src="/img/docs/readers/ACR122U-device-manager-example.png" alt="Windows Device Manager example" width="300" />
 
 - Make sure the "Smart Card" and "Smart Card Device Enumeration" services are both running with the startup type set to "Automatic" and "Automatic (Trigger Start)" respectively in the [Services Manager](https://www.thewindowsclub.com/open-windows-services).
 

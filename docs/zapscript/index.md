@@ -1,12 +1,6 @@
 # ZapScript
 
-:::tip
-New to Zaparoo? Make sure to read the [Getting Started](/docs/getting-started/) guide first!
-:::
-
 Tokens are set up to work with Zaparoo by writing a small piece of text to them, telling Zaparoo what it should do when it's read. The most common action is to launch a game, but it can perform other actions like launching a random game or even making an HTTP request.
-
-This text can be as simple as a path to a game file, or perform multiple custom commands in a row.
 
 ## Command Types
 
