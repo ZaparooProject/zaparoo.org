@@ -12,7 +12,7 @@ Supports the ACR122U USB NFC reader. This module does not take a file path as an
 
 ### pn532_uart
 
-Supports PN532 modules that are connected via USB through a USB serial chip and with the DIP switches set to UART. This is the module used for all the currently available [Zaparoo USB-C Readers](../readers/nfc/pn532.md) and [Zaparoo DIY Readers](../community/projects/diy-reader.md). The device path is something like `/dev/ttyUSB0` on Linux. This module supports auto-detection.
+Supports PN532 modules that are connected via USB through a USB serial chip and with the DIP switches set to UART. This is the module used for all the currently available [PN532 USB-C Readers](../readers/nfc/pn532-usb.md). The device path is something like `/dev/ttyUSB0` on Linux. This module supports auto-detection.
 
 ### pn532_i2c
 
