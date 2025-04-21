@@ -100,4 +100,4 @@ Zaparoo also supports launching custom shell scripts. See the [Linux page](./lin
 ## Known Issues
 
 - Some launchers and systems are still missing supported and will be added in the future. These are mostly esoteric systems.
-- The picker menu feature is not currently supported on this platform.
+- The picker menu and remote install features are not currently supported on this platform.

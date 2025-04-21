@@ -57,7 +57,7 @@ function HomepageHeader() {
               />
               Download
             </div>
-            <small>v2.2.0 (2025-03-31)</small>
+            <small>v2.3.0 (2025-04-22)</small>
           </Link>
         </div>
         <div className={styles.buttons} style={{ marginTop: "15px" }}>

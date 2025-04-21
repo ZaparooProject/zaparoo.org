@@ -47,8 +47,8 @@ NFC reader or QR code scanner. All essential app features are available for free
 </div>
 
 If you don't want to or can't use your phone, other frontends are available like
-the built-in web UI, terminal UI, CLI and API interfaces. Zaparoo is an open
-platform that encourages useful and unique ways to access media.
+the built-in [web UI](/docs/core/web-ui.md), terminal UI, [CLI](/docs/core/cli.md) and [API](/docs/core/api/index.md) interfaces. Zaparoo is an open
+platform that encourages useful and unique ways to access media!
 
 ## Zaparoo Core
 
@@ -82,6 +82,20 @@ won't interfere with your media playing.
       label: "Update All",
       link: "/docs/platforms/mister#install",
     }}
+  />
+  <DownloadCard
+    name="Batocera"
+    platform="batocera"
+    architectures={["amd64", "arm64", "arm"]}
+    icon={
+      <img
+        src="/img/logos/batocera.png"
+        alt="Batocera logo"
+        style={{ width: "75px", height: "73.83px" }}
+      />
+    }
+    docLink="/docs/platforms/batocera"
+    platformLink="https://batocera.org/"
   />
   <DownloadCard
     name="MiSTeX"
@@ -146,21 +160,6 @@ won't interfere with your media playing.
     }
     docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
     platformLink="https://www.apple.com/macos/"
-    status="beta"
-  />
-  <DownloadCard
-    name="Batocera"
-    platform="batocera"
-    architectures={["amd64", "arm64", "arm"]}
-    icon={
-      <img
-        src="/img/logos/batocera.png"
-        alt="Batocera logo"
-        style={{ width: "75px", height: "73.83px" }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://batocera.org/"
     status="beta"
   />
   <DownloadCard
