@@ -1,4 +1,4 @@
-# Drivers
+# Reader Drivers
 
 Reader drivers are ways for Zaparoo Core to communicate with different types of reader hardware. This mostly includes [NFC Readers](../readers/nfc/index.md), but can be other types of hardware or virtual devices.
 
@@ -17,6 +17,30 @@ Supports PN532 modules that are connected via USB through a USB serial chip and 
 ### pn532_i2c
 
 Supports PN532 modules connected directly like, for example, a GPIO with the DIP switches set to I2C. The device path is something like `/dev/i2c-0`. This driver does not currently support auto-detection.
+
+## Optical Drive
+
+Linux-based platforms only. Use CDs, DVDs, etc. as tokens and an optical drive as the reader. Zaparoo currently doesn't read any value off the disc itself, but it does pull either the UUID or label from the disc's metadata, which can be assigned to do something via a [mapping file](mappings.md#mapping-files). _A blank disc won't work, the disc must have data (anything) burned to it before it gets assigned a UUID and label._
+
+Example configuration:
+
+```toml
+[[readers.connect]]
+driver = 'optical_drive'
+path = '/dev/sr0'
+id_source = 'merged'
+```
+
+This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](./api/tokens.md), which is used to match against [mappings](./mappings.md). `merged` is the default value of nothing is set, and will combine the UUID and label into one value separated by a colon (`:`).
+
+Example mapping file which would launch Crash Bandicoot 3 using the actual PS1 disc:
+
+```toml
+[[mappings.entry]]
+token_key = 'id'
+match_pattern = '*:SCES-01420*'
+zapscript = 'PSX/*Crash Bandicoot*Warped*'
+```
 
 ## Simple Serial
 
@@ -43,11 +67,3 @@ If the payload only contains one argument without any name, the entire argument 
 A virtual reader driver which allows treating a file on disk as an input source of tokens. Handles driver ID `file` and takes an absolute path to a file on disk. If this file doesn't exist on first startup, Zaparoo will create an empty file.
 
 The contents of the file is used as the token text. No other token metadata can be set with this reader driver. When a file is first written to the token will be "inserted", when the contents of the file is cleared it will be "removed".
-
-## Optical Drive
-
-Use an optical drive as a reader. This reader driver allows optical media (CDs, DVDs, etc.) to act as tokens for Zaparoo. Currently MiSTer-only and only using the UUID written to a CD. Plug an external USB CD drive into your MiSTer and add the following reader line:
-
-`reader=optical_drive:/dev/sr0`
-
-**A CD must have data written to it (any data) for it to have a UUID assigned.** Check in the Zaparoo App scan screen or the Zaparoo log file to see what UUID is detected from a CD. This value can be added as a mapping with a [mapping file](mappings.md#mapping-files) or through the [API](api/index.md), just like an NFC tag.

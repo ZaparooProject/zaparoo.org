@@ -1,4 +1,4 @@
-# CLI Arguments
+# Command Line
 
 All [Zaparoo Core](/docs/core) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](/docs/core/api). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
 
@@ -26,7 +26,7 @@ Outputs this Zaparoo binary's build version (not the currently started API servi
 
 **Flag:** `-api`  
 **Argument:** string  
-**Example:** `./tapzaparooto.sh -api 'launch:{"text":"**launch.system:menu"}'`
+**Example:** `./zaparoo.sh -api 'launch:{"text":"**launch.system:menu"}'`
 
 Sends a single request to the [Zaparoo API](../core/api/index.md), waits for a response and then outputs the result body of that response.
 
