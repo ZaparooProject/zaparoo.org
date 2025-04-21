@@ -35,6 +35,7 @@ type Button = {
   label: string;
   icon: ReactNode | null;
   fullWidth?: boolean;
+  dataUmamiEvent?: string;
 };
 
 // Button component that accepts the specified props.
@@ -50,6 +51,7 @@ export default function Button({
   label,
   icon = null,
   fullWidth = false,
+  dataUmamiEvent = null,
 }: Button) {
   // Map the size prop values to corresponding CSS classes.
   const sizeMap = {
@@ -68,7 +70,11 @@ export default function Button({
   // If the button is disabled, set the destination to null.
   const destination = disabled ? null : link;
   return (
-    <Link to={destination} style={fullWidth ? { width: "100%" } : {}}>
+    <Link
+      to={destination}
+      style={fullWidth ? { width: "100%" } : {}}
+      data-umami-event={disabled ? null : dataUmamiEvent}
+    >
       <button
         className={clsx(
           "button",

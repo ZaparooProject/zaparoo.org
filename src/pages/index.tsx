@@ -40,6 +40,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/downloads/"
+            data-umami-event="hero-download"
           >
             <div
               style={{
@@ -69,6 +70,7 @@ function HomepageHeader() {
               alignItems: "center",
               justifyContent: "center",
             }}
+            data-umami-event="hero-getting-started"
           >
             <img
               src="/img/book.svg"

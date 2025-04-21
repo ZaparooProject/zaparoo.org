@@ -147,6 +147,7 @@ export default function DownloadCard({
           link={nativeInstall.link}
           icon={<FontAwesomeIcon icon={["fas", "download"]} />}
           fullWidth
+          dataUmamiEvent={`core-${platform}-native-install`}
         />
       )}
       {architectures.map((arch) => (
@@ -157,6 +158,7 @@ export default function DownloadCard({
           link={downloadUrl(platform, arch, version ? version : defaultVersion)}
           icon={<FontAwesomeIcon icon={["fas", "download"]} />}
           fullWidth
+          dataUmamiEvent={`core-${platform}-${arch}-download`}
         />
       ))}
     </div>
