@@ -217,6 +217,10 @@ const config: Config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
+          {
+            to: "/docs/core/drivers/",
+            from: "/docs/core/reader-modules/",
+          },
           // old site news redirects
           {
             to: "/blog/",

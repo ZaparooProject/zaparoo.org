@@ -337,17 +337,17 @@ None.
 
 #### Result
 
-| Key                 | Type                              | Required | Description                                                                             |
-| :------------------ | :-------------------------------- | :------- | :-------------------------------------------------------------------------------------- |
-| reader              | string[]                          | Yes      | A list of manually configured [reader module](../reader-modules.md) connection strings. |
-| audioFeedback       | boolean                           | Yes      |                                                                                         |
-| detectReaders       | boolean                           | Yes      |                                                                                         |
-| insertMode          | boolean                           | Yes      |                                                                                         |
-| insertModeBlocklist | string[]                          | Yes      |                                                                                         |
-| insertModeExitDelay | number                            | Yes      |                                                                                         |
-| consoleLogging      | boolean                           | Yes      |                                                                                         |
-| debug               | boolean                           | Yes      | See [debug](../config.md).                                                              |
-| systems             | [Systems config](#systems-config) | Yes      | The systems section of the config file.                                                 |
+| Key                 | Type                              | Required | Description                                                                      |
+| :------------------ | :-------------------------------- | :------- | :------------------------------------------------------------------------------- |
+| reader              | string[]                          | Yes      | A list of manually configured [reader driver](../drivers.md) connection strings. |
+| audioFeedback       | boolean                           | Yes      |                                                                                  |
+| detectReaders       | boolean                           | Yes      |                                                                                  |
+| insertMode          | boolean                           | Yes      |                                                                                  |
+| insertModeBlocklist | string[]                          | Yes      |                                                                                  |
+| insertModeExitDelay | number                            | Yes      |                                                                                  |
+| consoleLogging      | boolean                           | Yes      |                                                                                  |
+| debug               | boolean                           | Yes      | See [debug](../config.md).                                                       |
+| systems             | [Systems config](#systems-config) | Yes      | The systems section of the config file.                                          |
 
 ###### Systems config
 
@@ -399,17 +399,17 @@ This method will only write values which are supplied. Existing values will not 
 
 An object:
 
-| Key                 | Type                              | Required | Description                                                                             |
-| :------------------ | :-------------------------------- | :------- | :-------------------------------------------------------------------------------------- |
-| reader              | string[]                          | Yes      | A list of manually configured [reader module](../reader-modules.md) connection strings. |
-| audioFeedback       | boolean                           | Yes      |                                                                                         |
-| detectReaders       | boolean                           | Yes      |                                                                                         |
-| insertMode          | boolean                           | Yes      |                                                                                         |
-| insertModeBlocklist | string[]                          | Yes      |                                                                                         |
-| insertModeExitDelay | number                            | Yes      |                                                                                         |
-| consoleLogging      | boolean                           | Yes      |                                                                                         |
-| debug               | boolean                           | Yes      | See [debug](../../core/config.md).                                                      |
-| systems             | [Systems config](#systems-config) | Yes      | The systems section of the config file.                                                 |
+| Key                 | Type                              | Required | Description                                                                      |
+| :------------------ | :-------------------------------- | :------- | :------------------------------------------------------------------------------- |
+| reader              | string[]                          | Yes      | A list of manually configured [reader driver](../drivers.md) connection strings. |
+| audioFeedback       | boolean                           | Yes      |                                                                                  |
+| detectReaders       | boolean                           | Yes      |                                                                                  |
+| insertMode          | boolean                           | Yes      |                                                                                  |
+| insertModeBlocklist | string[]                          | Yes      |                                                                                  |
+| insertModeExitDelay | number                            | Yes      |                                                                                  |
+| consoleLogging      | boolean                           | Yes      |                                                                                  |
+| debug               | boolean                           | Yes      | See [debug](../../core/config.md).                                               |
+| systems             | [Systems config](#systems-config) | Yes      | The systems section of the config file.                                          |
 
 ###### Systems config
 
