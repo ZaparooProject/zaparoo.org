@@ -66,16 +66,22 @@ cd /userdata/system
 ./zaparoo -install
 ```
 
+In case you get a `-bash: ./zaparoo: Permission denied` message, give the zaparoo execute permissions, and then try again step 3.
+
+```bash
+chmod +x ./zaparoo
+```
+
 4. Enable the Zaparoo service:
 
 ```bash
-batocera-service enable zaparoo_service
+batocera-services enable zaparoo_service
 ```
 
 5. Start the Zaparoo service:
 
 ```bash
-batocera-service start zaparoo_service
+batocera-services start zaparoo_service
 ```
 
 ### Finishing Up
