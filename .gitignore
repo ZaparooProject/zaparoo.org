@@ -22,3 +22,6 @@ yarn-error.log*
 .idea
 .vscode
 .cursor
+
+docs/core/dev/*
+!docs/core/dev/_category_.json

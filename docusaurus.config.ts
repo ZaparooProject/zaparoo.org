@@ -214,6 +214,16 @@ const config: Config = {
       },
     }),
     [
+      "docusaurus-plugin-remote-content",
+      {
+        name: "core-developer-docs",
+        sourceBaseUrl:
+          "https://raw.githubusercontent.com/ZaparooProject/zaparoo-core/refs/heads/main/docs/",
+        outDir: "docs/core/dev",
+        documents: ["index.md", "scan-behavior.md"],
+      },
+    ],
+    [
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
