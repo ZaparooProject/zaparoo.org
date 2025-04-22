@@ -30,6 +30,7 @@ NFC reader or QR code scanner. All essential app features are available for free
       overflow: "hidden",
       width: "150px",
     }}
+    data-umami-event="app-download-ios"
   >
     <img
       src="/img/ios-install.svg"
@@ -37,7 +38,10 @@ NFC reader or QR code scanner. All essential app features are available for free
       style={{ width: "150px" }}
     />
   </a>
-  <a href="https://play.google.com/store/apps/details?id=dev.wizzo.tapto&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+  <a
+    href="https://play.google.com/store/apps/details?id=dev.wizzo.tapto&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+    data-umami-event="app-download-android"
+  >
     <img
       alt="Get it on Google Play"
       style={{ width: "180px" }}
@@ -47,8 +51,8 @@ NFC reader or QR code scanner. All essential app features are available for free
 </div>
 
 If you don't want to or can't use your phone, other frontends are available like
-the built-in web UI, terminal UI, CLI and API interfaces. Zaparoo is an open
-platform that encourages useful and unique ways to access media.
+the built-in [web UI](/docs/core/web-ui), terminal UI, [CLI](/docs/core/cli) and [API](/docs/core/api/) interfaces. Zaparoo is an open
+platform that encourages useful and unique ways to access media!
 
 ## Zaparoo Core
 
@@ -83,6 +87,20 @@ won't interfere with your media playing.
       link: "/docs/platforms/mister#install",
     }}
   />
+  {/* <DownloadCard
+    name="Batocera"
+    platform="batocera"
+    architectures={["amd64", "arm64", "arm"]}
+    icon={
+      <img
+        src="/img/logos/batocera.png"
+        alt="Batocera logo"
+        style={{ width: "75px", height: "73.83px" }}
+      />
+    }
+    docLink="/docs/platforms/batocera"
+    platformLink="https://batocera.org/"
+  /> */}
   <DownloadCard
     name="MiSTeX"
     platform="mistex"
@@ -146,21 +164,6 @@ won't interfere with your media playing.
     }
     docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
     platformLink="https://www.apple.com/macos/"
-    status="beta"
-  />
-  <DownloadCard
-    name="Batocera"
-    platform="batocera"
-    architectures={["amd64", "arm64", "arm"]}
-    icon={
-      <img
-        src="/img/logos/batocera.png"
-        alt="Batocera logo"
-        style={{ width: "75px", height: "73.83px" }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://batocera.org/"
     status="beta"
   />
   <DownloadCard
