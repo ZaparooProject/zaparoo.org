@@ -1,8 +1,6 @@
----
-sidebar_class_name: hidden
----
-
 # Batocera
+
+[Batocera](https://batocera.org/) is a software emulation distribution based around EmulationStation, with support for a huge number of systems and devices.
 
 | Location | Path                                                                                                           |
 | -------- | -------------------------------------------------------------------------------------------------------------- |
@@ -70,7 +68,7 @@ cd /userdata/system
 ./zaparoo -install
 ```
 
-In case you get a `-bash: ./zaparoo: Permission denied` message, give the zaparoo execute permissions, and then try again step 3.
+If you get a `-bash: ./zaparoo: Permission denied` message, fix the permissions as shown below and try step 3 again.
 
 ```bash
 chmod +x ./zaparoo

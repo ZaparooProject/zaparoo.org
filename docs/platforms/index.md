@@ -11,9 +11,9 @@ Zaparoo is available on multiple platforms.
 - [MiSTer](mister)
 - [MiSTeX](mistex)
 
-<!-- ## Retro Gaming
+## Retro Gaming
 
-- [Batocera](batocera) -->
+- [Batocera](batocera)
 
 ## Retro Hardware
 
