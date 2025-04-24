@@ -8,9 +8,7 @@ If there is a conflict between these two methods, the **mappings database will t
 
 ## Mapping files
 
-In a subfolder called `mappings` in the data folder of Core, it's possible to add any number of [TOML](https://toml.io/en/) files (like the [config file](config.md)) which will define new mappings to be enabled on service start. Check the page for your [platform](../platforms/index.md) to see where this folder will be.
-
-If you're planning to add _a lot_ of mappings, it's better to use the mappings database instead, because it will have better performance and use less memory.
+In a subfolder called `mappings` in the data folder of Core, it's possible to add any number of [TOML](https://toml.io/en/) files (like the [config file](config.md)) which will define new mappings to be enabled on service start. Check the page for your [platform](../platforms/index.md) to see where this folder will be. You can organise your mappings in any number of subfolders.
 
 An example of a mapping config file called `1-test.toml` in the `mappings` folder:
 

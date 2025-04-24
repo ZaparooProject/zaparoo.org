@@ -1,6 +1,6 @@
 # ZapScript
 
-ZapScript is a small scripting language written to the storage of Zaparoo tokens. It is used to tell Zaparoo what to do when it's scanned. Through regular use you won't need to write any yourself, but you can use it to customize launching or add scripted actions.
+ZapScript is a small scripting language written to the storage of Zaparoo tokens. It is used to tell Zaparoo what to do when the token is scanned. Through regular use you won't need to write much yourself, but you can use it to customize launching or add scripted actions.
 
 ## Commands
 
@@ -18,10 +18,10 @@ ZapScript commands are organized into several categories:
 The syntax of ZapScript is very simple. Its purpose is to fit as much information as possible into the small storage available on tokens, but also remain human-readable.
 
 - A script is made up of one or more sequential commands
-- A command is made up of a case-insensitive command name, followed by one or more arguments
-- Commands always start with a `**`, except for the [launch](/docs/zapscript/launch) command where it's optional
+- A command is made up of a case-insensitive command name, followed by zero or more arguments
+- Commands always start with a `**`, except for the [launch](/docs/zapscript/launch) command, which will be used if no command is specified
 - Command arguments are separated by a `,`
-- The command name and arguments are separated by a `:`
+- A command name and arguments are separated by a `:`
 - Multiple commands are separated by a `||`
 - Commands are blocking, meaning the script will wait for the command to finish before executing the next one
 

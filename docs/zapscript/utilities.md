@@ -2,10 +2,18 @@
 
 These commands provide various utility functions.
 
-## Execute System Command (execute)
+## stop
+
+```
+**stop
+```
+
+Stop/exit the current media.
+
+## execute
 
 :::warning
-Using this command required explicitly enabling the arguments in the allow_execute option of the config file.
+Using this command requires explicitly enabling the arguments in the [allow_execute](/docs/core/config#allow_execute) option of the config file. It will also be blocked if a command comes from a remote source.
 :::
 
 This command will run a system command directly. For example:
@@ -16,7 +24,7 @@ This command will run a system command directly. For example:
 
 Arguments are supported.
 
-## Delay Command Execution (delay)
+## delay
 
 This command will delay the execution of the next command by the specified number of milliseconds. For example:
 

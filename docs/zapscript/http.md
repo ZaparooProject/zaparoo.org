@@ -2,7 +2,7 @@
 
 These commands are used to make HTTP requests to external services.
 
-## Make an HTTP GET Request to a URL (http.get)
+## http.get
 
 Perform an HTTP GET request to the specified URL. For example:
 
@@ -24,7 +24,7 @@ If your URL contains any of the following characters, you must URL encode them b
 - `||` with `%7C%7C`
 - `**` with `%2A%2A`
 
-## Make an HTTP POST Request to a URL (http.post)
+## http.post
 
 Perform an HTTP POST request to the specified URL. For example:
 
