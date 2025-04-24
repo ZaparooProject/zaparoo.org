@@ -8,7 +8,9 @@ The file is always called `config.toml` on every platform.
 
 The config file is written in [TOML](https://toml.io/en/). Be aware that although comments are supported in TOML, _they will be lost if Core makes updates to this file_ (e.g. when adjusting settings using the Zaparoo App) and should be avoided for important information.
 
-Any changes made to the config file while the Core service is running require the service to be restarted before changes will take effect.
+Any changes made to the config file while the Core service is running require the service to be restarted before changes will take effect, or the `-reload` [CLI command](./cli.md) to be run.
+
+Optionally, Zaparoo Core can but run in portable mode, where the config and all other data are stored in a single folder alongside the executable. To enable this, create an empty folder called `user` in the same folder as the Core executable, then start Core normally.
 
 ## Options
 

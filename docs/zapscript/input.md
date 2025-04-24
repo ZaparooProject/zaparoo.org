@@ -2,7 +2,11 @@
 
 These commands are used to simulate input devices like keyboards and gamepads.
 
-## Press a Keyboard Key (input.keyboard)
+## input.keyboard
+
+:::warning
+If a command comes from a remote source, this command will be blocked.
+:::
 
 Press a key or multiple keys on a virtual keyboard attached to the host. One key:
 
@@ -20,7 +24,11 @@ Special keys can be entered by with a key name surrounded by curly braces (`{}`)
 
 Possible special key names are: esc, backspace, tab, enter, lctrl, lshift, backslash, rshift, lalt, space, caps, num, scroll, f1-f12, home, up pgup, left, right, end, down, pgdn, ins, del, volup, voldn.
 
-## Press a Gamepad Button (input.gamepad)
+## input.gamepad
+
+:::warning
+If a command comes from a remote source, this command will be blocked.
+:::
 
 Press a button or multiple buttons in sequence on a virtual gamepad attached to the host.
 
@@ -50,7 +58,7 @@ For example:
 
 Be aware that this gamepad likely needs to be mapped manually first to work, and that it will show to the game as an additional controller not imitate an existing connected controller.
 
-## Insert a Coin/Credit (input.coinp1/input.coinp2)
+## input.coinp1/input.coinp2
 
 Insert a coin/credit for player 1 or 2. For example (to insert 1 coin for player 1):
 
