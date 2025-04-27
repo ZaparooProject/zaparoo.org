@@ -19,21 +19,15 @@ function LatestNews() {
   return (
     <section className="container">
       <div className="padding-horiz--md">
-        <Heading as="h2">Latest News</Heading>
+        <Heading as="h2">What's New</Heading>
       </div>
-      <div className="row">
+      <div className="row padding-horiz--md">
         {recentPosts.items.slice(0, 3).map((item, index) => (
           <div key={index} className="col col--4 margin-bottom--lg">
-            <div className="card">
-              <div className="card__body">
-                <h3>
-                  <Link to={item.permalink}>{item.title}</Link>
-                </h3>
-              </div>
-              <div className="card__footer">
-                <small>{new Date(item.date).toLocaleDateString()}</small>
-              </div>
-            </div>
+            <Link to={item.permalink}>
+              <h3 style={{ marginBottom: "0" }}>{item.title}</h3>
+            </Link>
+            <small>{new Date(item.date).toLocaleDateString()}</small>
           </div>
         ))}
       </div>
@@ -140,7 +134,7 @@ export default function Home(): ReactNode {
             paddingBottom: "2rem",
             paddingTop: "2rem",
             backgroundColor: "var(--ifm-color-emphasis-100)",
-            backgroundImage: "url('./img/circuit-board.svg')",
+            backgroundImage: "url('./img/circuit-board-dark.svg')",
             backgroundRepeat: "repeat",
             marginTop: "2rem",
           }}
@@ -182,25 +176,43 @@ export default function Home(): ReactNode {
               <div style={{ textAlign: "center", fontWeight: "bolder" }}>
                 Looking for more?
               </div>
-              <div className={styles.buttons}>
-                <Link
-                  className="button button--secondary button--lg"
-                  to="https://zaparoo.org/discord"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src="/img/discord-logo.svg"
-                    alt="Discord logo"
-                    height="16px"
-                    width="16px"
-                    style={{ marginRight: "5px" }}
-                  />{" "}
-                  Join the Discord
-                </Link>
+              <div
+                className="row"
+                style={{ gap: "0.5rem", justifyContent: "center" }}
+              >
+                <div className={styles.buttons}>
+                  <Link
+                    className="button button--primary button--md"
+                    to="/showcase"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Full Showcase
+                  </Link>
+                </div>
+                <div className={styles.buttons}>
+                  <Link
+                    className="button button--secondary button--md"
+                    to="https://zaparoo.org/discord"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src="/img/discord-logo.svg"
+                      alt="Discord logo"
+                      height="16px"
+                      width="16px"
+                      style={{ marginRight: "5px" }}
+                    />{" "}
+                    Join the Discord
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

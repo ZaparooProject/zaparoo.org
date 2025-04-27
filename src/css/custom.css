@@ -29,6 +29,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+.footer__link-item:hover {
+  color: var(--ifm-color-primary-lightest);
+}
+
 .react-photo-album--image {
   border-radius: 5px;
 }
