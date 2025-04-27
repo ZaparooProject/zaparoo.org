@@ -12,7 +12,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "tag-release": "TIMESTAMP=$(date '+%Y%m%d%H%M') && pnpm build && git tag \"v$TIMESTAMP\" && git push origin \"v$TIMESTAMP\""
   },
   "dependencies": {
     "@docusaurus/core": "3.7.0",
