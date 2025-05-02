@@ -1,0 +1,43 @@
+---
+slug: core-v2.3.1
+title: "Zaparoo Core v2.3.1 released"
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.3.1 is now available! This is a minor release which includes bug fixes and some smaller features.
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.3.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## New Features
+
+- New script created for Batocera which lets you assign a gamepad or keyboard combo to writing the current highlighted game to a NFC card. Files to set this it up are included in the download. Thank you to [asturur](https://github.com/asturur)!
+- Added support for Batocera systems: Amiga 500, Amiga 1200, Atomiswave, DAPHNE, Model 3, NAOMI, NAOMI 2, PCFX, ScummVM, SNES MSU-1 and Windows (Ports).
+- Added support for Atari 2600 .bin files to be detected on MiSTer.
+- Added support for detecting .mgl files in the ao486 and X68k folders (0mhz and Neon).
+- Added a new HTTP POST interface for the Core API.
+
+## Bug Fixes
+
+- Fixed issues on Batocera with scanning files for launchers assigned to the same system.
+- Fixed issue with SNES searching on Batocera.
+- Fixed issue with mapping file ID comparisons.
+- Made game paths in App use system lookup format for writing.
+- Fixed ao486 image launching on MiSTer.
+- Fixes put in to improve reliability of UI widgets on MiSTer.
