@@ -39,13 +39,28 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header
-      className={clsx("hero hero--primary", styles.heroBanner)}
+      className={clsx(styles.heroBanner)}
       style={{
-        backgroundImage: "url('./img/circuit-board.svg')",
-        backgroundRepeat: "repeat",
+        position: 'relative',
+        overflow: 'hidden',
+        color: 'white'
       }}
     >
-      <div className="container">
+        <div
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundImage: "url('./img/circuit-board.svg')",
+                backgroundRepeat: "repeat",
+                opacity: 0.6,
+                zIndex: 10,
+            }}
+        />
+      <div className="zaparoo-animated-bg" />
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <Heading as="h1" className="hero__title">
           <img
             src="./img/logo_lockup_white_sm.webp"
