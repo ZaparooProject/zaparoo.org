@@ -55,8 +55,8 @@ function HomepageHeader() {
                 height: '100%',
                 backgroundImage: "url('./img/circuit-board.svg')",
                 backgroundRepeat: "repeat",
-                opacity: 0.6,
-                zIndex: 10,
+                opacity: 0.5,
+                zIndex: 1,
             }}
         />
       <div className="zaparoo-animated-bg" />
@@ -188,24 +188,17 @@ export default function Home(): ReactNode {
                 gap: "0.5rem",
               }}
             >
-              <div style={{ textAlign: "center", fontWeight: "bolder" }}>
-                Looking for more?
-              </div>
-              <div
-                className="row"
-                style={{ gap: "0.5rem", justifyContent: "center" }}
-              >
                 <div className={styles.buttons}>
                   <Link
                     className="button button--primary button--md"
-                    to="/showcase"
+                    to="/showcase/"
                     style={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    Full Showcase
+                    See More
                   </Link>
                 </div>
                 <div className={styles.buttons}>
@@ -228,7 +221,6 @@ export default function Home(): ReactNode {
                     Join the Discord
                   </Link>
                 </div>
-              </div>
             </div>
           </div>
         </div>
