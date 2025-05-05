@@ -55,7 +55,8 @@ function HomepageHeader() {
                 height: '100%',
                 backgroundImage: "url('./img/circuit-board.svg')",
                 backgroundRepeat: "repeat",
-                opacity: 0.5,
+                opacity: 0.6,
+                filter: 'brightness(1.5) contrast(1.2)',
                 zIndex: 1,
             }}
         />
@@ -63,7 +64,7 @@ function HomepageHeader() {
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <Heading as="h1" className="hero__title">
           <img
-            src="./img/logo_lockup_white_sm.webp"
+            src="/img/logo_lockup_white_sm.webp"
             alt="Zaparoo Logo"
             height="200px"
             width="286px"
