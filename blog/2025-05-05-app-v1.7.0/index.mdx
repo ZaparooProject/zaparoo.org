@@ -1,0 +1,88 @@
+---
+slug: app-v1.7.0
+title: "Zaparoo App v1.7.0 released, new mappings editor"
+tags: [software]
+authors: [wizzo]
+---
+
+The Zaparoo App v1.7.0 update is now available in the [App
+Store](https://apps.apple.com/us/app/zaparoo/id6480331015) and [Play
+Store](https://play.google.com/store/apps/details?id=dev.wizzo.tapto). This
+release adds new mappings support, ZapScript editor, and some bug fixes.
+
+{/* truncate */}
+
+## Add Mappings
+
+A new page on the Create tab has been added, which lets you (finally!) add mappings without needing to bust open a text editor. I've kept it pretty simple, scan something to get its ID, write some ZapScript using the editor, then save. This is not a full-fledged "mappings manager" but it does let you edit and clear existing mappings by scanning the same object in again.
+
+<Gallery photos={[
+    {
+        src: '/img/blog/app-v1.7.0/add_mapping.jpeg',
+        alt: 'Add Mapping page',
+        height: 1200,
+        width: 613
+    }
+]} />
+
+## ZapScript Editor
+
+The "Custom Text" page has been renamed to "Custom ZapScript" and it now features a new rich ZapScript editor widget. This is a textbox with a set of controls that make it easier to create ZapScript yourself. ZapScript is an important part of Zaparoo which tells it what to do when something is scanned. I really want people to give it a try, but I understand it can be a bit daunting for some people too. Hopefully, this editor helps to bridge that gap. It will be in use on every page that lets you view and change ZapScript.
+
+We have a set of buttons across the top to make inputting text easy, test on-device and clear the input. Plus these buttons:
+- "Media" lets you search media and insert the path, similar to the Search page.
+- "System" looks up systems live on-device and makes it easier to add them as arguments.
+- "Command" is a list of all the ZapScript commands which can auto-insert.
+- "Help" opens a web browser to the ZapScript docs for easy reference.
+
+<Gallery photos={[
+    {
+        src: '/img/blog/app-v1.7.0/editor.jpeg',
+        alt: 'New ZapScript editor',
+        height: 1200,
+        width: 613
+    },
+    {
+        src: '/img/blog/app-v1.7.0/editor_media.jpeg',
+        alt: 'Search for media in the editor',
+        height: 1200,
+        width: 613
+    },
+    {
+        src: '/img/blog/app-v1.7.0/editor_systems.jpeg',
+        alt: 'Picking a system in the editor',
+        height: 1200,
+        width: 613
+    },
+    {
+        src: '/img/blog/app-v1.7.0/editor_commands.jpeg',
+        alt: 'Browsing ZapScript commands in the editor',
+        height: 1200,
+        width: 613
+    }
+]} />
+
+## Other Changes
+
+- Running ZapScript via deep links (zaparoo.app) now marks it as "unsafe," which disables commands like `input.keyboard`, `input.gamepad` and `execute`. These may be enabled again later using an allow list.
+- WebSocket connection uses a new library which is hopefully much more robust for connection loss.
+- The state of widgets on a screen load should now update immediately instead of being delayed a load.
+- Slide modals can now be closed by tapping outside the modal.
+- Buttons give feedback when they're pressed.
+- Copy button added to media search results modal and no link wraps over a line.
+
+## Download
+
+<Button
+    icon={<FAIcon icon="download"/>}
+    label="Download App v1.7.0"
+    link="https://zaparoo.org/downloads#zaparoo-app"
+    variant="primary"
+/>
+
+<Button
+    icon={<FAIcon icon="fa-brands fa-github"/>}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-app/"
+    variant="primary"
+/>

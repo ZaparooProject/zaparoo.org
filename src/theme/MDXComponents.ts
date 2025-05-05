@@ -10,6 +10,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons"; // Import all brands i
 import { fas } from "@fortawesome/free-solid-svg-icons"; // Import all solid icons.
 import DownloadCard from "../components/DownloadCard";
 import Showcase from "../components/Showcase";
+import Gallery from "@site/src/components/Gallery";
 library.add(fab, fas); // Add all icons to the library so you can use them without importing them individually.
 
 export default {
@@ -19,4 +20,5 @@ export default {
   FAIcon: FontAwesomeIcon,
   DownloadCard,
   Showcase,
+  Gallery,
 };

@@ -1,9 +1,6 @@
 import { MasonryPhotoAlbum } from "react-photo-album";
 import type { Photo } from "react-photo-album";
 import "react-photo-album/masonry.css";
-import styles from "./styles.module.css";
-import Heading from "@theme/Heading";
-import Link from "@docusaurus/Link";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
