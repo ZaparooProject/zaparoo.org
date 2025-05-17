@@ -6,7 +6,7 @@ There are two main methods of managing mappings in an instance of Core. Other ap
 
 If there is a conflict between these two methods, the **mappings database will take precedence**, as it's checked first when a scan happens.
 
-## Mapping files
+## Mapping Files
 
 In a subfolder called `mappings` in the data folder of Core, it's possible to add any number of [TOML](https://toml.io/en/) files (like the [config file](config.md)) which will define new mappings to be enabled on service start. Check the page for your [platform](../platforms/index.md) to see where this folder will be. You can organise your mappings in any number of subfolders.
 
