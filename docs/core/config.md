@@ -86,6 +86,7 @@ It may be required to disable this option if auto-detection is causing problems 
 mode = 'hold'
 exit_delay = 3.0
 ignore_system = [ 'PC', 'MSX' ]
+on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
 ```
 
@@ -119,6 +120,14 @@ This feature can be useful if you want to, using a single reader, scan other tok
 | ignore_system | string[] | []      |
 
 `ignore_system` is a list of systems which will not exit playing media on token removal. It's only active in `hold` mode.
+
+##### on_scan
+
+| Key           | Type     | Default |
+| ------------- | -------- | ------- |
+| on_scan       | string   |         |
+
+`on_scan` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is scanned but before ZapScript on the token itself (or a mapping) is run. It is always active if enabled.
 
 ##### on_remove
 
