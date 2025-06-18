@@ -16,7 +16,7 @@ For example:
 
 Will be forwarded to this command automatically.
 
-The advanced argument `launcher` can be use to explicitly specify the launcher to use, overriding the default one and any auto-detection.
+The advanced argument `launcher` can be used to explicitly set the launcher to use, overriding the default one and any auto-detection.
 
 ```
 Genesis/1 US - Q-Z/Some Game (USA, Europe).md?launcher=LLAPIMegaDrive
