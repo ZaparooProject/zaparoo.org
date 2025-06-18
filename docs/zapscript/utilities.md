@@ -10,6 +10,14 @@ These commands provide various utility functions.
 
 Stop/exit the current media.
 
+## echo
+
+```
+**echo:this is a test message
+```
+
+`echo` will output the full argument string directly to the Core log file as an "info" level entry.
+
 ## execute
 
 :::warning
