@@ -9,10 +9,58 @@ import { Captions } from "yet-another-react-lightbox/plugins";
 
 const allPhotos: Photo[] = [
   {
+    src: "/img/showcase/bten_floppy.jpg",
+    width: 1167,
+    height: 768,
+    alt: "MiSTer with floppy NFC setup. Credit: bten @ Discord",
+  },
+  {
+    src: "/img/showcase/Anime0t4ku_movie_cards.jpg",
+    width: 1110,
+    height: 839,
+    alt: "NFC movie cards. Credit: Anime0t4ku @ Discord",
+  },
+  {
+    src: "/img/showcase/LoVeMaKeRz_mini_neogeo.jpg",
+    width: 1200,
+    height: 901,
+    alt: "3D printed mini NeoGeo console and carts. Credit: LoVeMaKeRz @ Discord",
+  },
+  {
+    src: "/img/showcase/BFOOT_mini_nes_2.jpg",
+    width: 1200,
+    height: 675,
+    alt: "3D printed mini NES close up. Credit: BFOOT @ Discord",
+  },
+  {
+    src: "/img/showcase/AngelHalo_mister.jpg",
+    width: 541,
+    height: 1200,
+    alt: "MiSTer setup with reader. Credit: AngelHalo @ Discord",
+  },
+  {
+    src: "/img/showcase/BFOOT_mini_nes_1.jpg",
+    width: 900,
+    height: 1200,
+    alt: "3D printed mini NES booth. Credit: BFOOT @ Discord",
+  },
+  {
+    src: "/img/showcase/BigBlue709_switch_case.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Switch cases for storing NFC cards. Credit: BigBlue709 @ Discord",
+  },
+  {
+    src: "/img/showcase/PIXEL_Memories_nfc_stick.jpg",
+    width: 1200,
+    height: 1120,
+    alt: "Arcade stick with built-in NFC reader. Credit: PIXEL Memories @ Discord",
+  },
+  {
     src: "/img/showcase/lovemakerz_mini_snes.jpeg",
     width: 1200,
     height: 900,
-    alt: "3D printedmini SNES carts. Credit: LoVeMaKeRz @ Discord",
+    alt: "3D printed mini SNES carts. Credit: LoVeMaKeRz @ Discord",
   },
   {
     src: "/img/showcase/discord1.jpg",
@@ -111,7 +159,7 @@ const allPhotos: Photo[] = [
     alt: "Switch case NFC card collection. Credit: BigBlue709 @ Discord",
   },
   {
-    src: "/img/showcase/discord17.png",
+    src: "/img/showcase/discord17.jpg",
     width: 903,
     height: 1200,
     alt: "Cassette case with 3D printed NFC card storage. Credit: Phoenix @ Discord",
