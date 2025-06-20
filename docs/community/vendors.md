@@ -1,32 +1,7 @@
 # Vendors
 
-Vendors that sell hardware which is compatible with Zaparoo, listed in alphabetical order. Please check the [NFC Readers](../readers/nfc/index.md) and [NFC Tags](../tokens/nfc/index.md) pages if you're looking for places to buy generic NFC readers and tags.
+Although we encourage people to sell Zaparoo compatible hardware and make the project more accessible, vendors come and go, so we're not able to maintain an accurate list of everyone who sells stuff. Please [join the Discord server](https://zaparoo.org/discord) to see if there's someone local to you selling custom readers and labels or offering services to make them on demand.
 
-## Card Labels
+If you're looking for official Zaparoo cards and readers make sure to check out the [Zaparoo Shop](https://shop.zaparoo.com/), which also helps support development of the project!
 
-| Vendor                                                             | Location    | Ships  |
-| :----------------------------------------------------------------- | :---------- | :----- |
-| **[Tim Wilsie](https://timwilsie.art/product-category/stickers/)** | USA         | USA    |
-| **[Anime0t4ku](https://buymeacoffee.com/anime0t4ku)**              | Netherlands | Europe |
-
-## Complete Readers
-
-| Vendor                                                                                             | Location | Ships           |
-| :------------------------------------------------------------------------------------------------- | :------- | :-------------- |
-| **[BedroomNinja](https://ko-fi.com/ninja3dp)**                                                     | UK       | UK, Europe, USA |
-| **[CrankyPizza](https://www.etsy.com/shop/CrankyPizza)**                                           | USA      | Worldwide       |
-| **[GOG UK](https://ko-fi.com/goguk)**                                                              | UK       | Worldwide       |
-| [**wolfsoft.de**](https://www.wolfsoft.de/shop/advanced_search_result.php?keywords=mister&x=0&y=0) | Germany  | Worldwide       |
-
-## Reader Cases
-
-| Vendor                                                   | Location | Ships           |
-| :------------------------------------------------------- | :------- | :-------------- |
-| **[BedroomNinja](https://ko-fi.com/ninja3dp)**           | UK       | UK, Europe, USA |
-| **[CrankyPizza](https://www.etsy.com/shop/CrankyPizza)** | USA      | Worldwide       |
-
-### Case Labels
-
-| Vendor                                                                                                                                    | Location    | Ships     |
-| :---------------------------------------------------------------------------------------------------------------------------------------- | :---------- | :-------- |
-| [**BadgeMan**](https://retro8bitshop.com/retrostore/badgeman/?product_name=tapto&search_store_products=Search&product_orderby=popularity) | Netherlands | Worldwide |
+If you just need some generic NFC cards or reader modules, we have some recommended suppliers listed on the [NFC Readers](../readers/nfc/index.md) and [NFC Tags](../tokens/nfc/index.md) pages.

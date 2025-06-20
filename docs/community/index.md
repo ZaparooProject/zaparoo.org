@@ -10,7 +10,7 @@ The Zaparoo community is active across several platforms, each serving different
 - Chat with other community members
 - Share your projects and get feedback
 - Participate in community events
-- Stay up-to-date with the latest developments
+- Stay up to date with the latest developments
 
 ## Reddit
 
