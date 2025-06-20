@@ -93,11 +93,11 @@ From this point, the service should be running and you can follow all other guid
 ## Readers
 
 | Reader                                          | Status |
-| ----------------------------------------------- | ------ |
-| [PN532 USB](/docs/readers/nfc/pn532-usb.md)     | ✅     |
-| [PN532 I2C](/docs/readers/nfc/pn532-module.md)  | ✅     |
-| [ACR122U](/docs/readers/nfc/acr122u.md)         | ✅     |
-| [Optical drive](/docs/readers/optical-drive.md) | ✅     |
+|-------------------------------------------------|--------|
+| [PN532 USB](/docs/readers/nfc/pn532-usb.md)     | ✅      |
+| [PN532 I2C](/docs/readers/nfc/pn532-module.md)  | ✅      |
+| [ACR122U](/docs/readers/nfc/acr122u.md)         | ✅      |
+| [Optical drive](/docs/readers/optical-drive.md) | ✅      |
 
 ## Launchers
 

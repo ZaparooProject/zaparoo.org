@@ -162,6 +162,7 @@ export default function DownloadCard({
           dataUmamiEvent={`core-${platform}-${arch}-download`}
         />
       ))}
+
     </div>
   );
 }

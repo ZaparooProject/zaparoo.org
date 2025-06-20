@@ -95,11 +95,11 @@ There's functionally no difference between these quotes; it's just your preferen
 
 If you need to use a quote character at the start of an argument, you can escape it.
 
-Quotes do not support escaping characters inside the quoted text. It is a straight shot through until the nex matching quote character.
+Quotes do not support escaping characters inside the quoted text. It is a straight shot through until the next matching quote character.
 
 ## When Condition
 
-All commands support an advanced argument called `when` which allows for basic conditional control of running a command. See the Expressions section for how to use this.
+All commands support an advanced argument called `when` which allows for basic conditional control of running a command. See the [Expressions](#expressions) section for how to use this.
 
 If the `when` advanced argument of a command resolves to either `true` or `yes` at runtime, the command will be run as usual. If not, the command will be silently skipped and Core will move to the next command in sequence.
 
@@ -154,7 +154,7 @@ Expressions have access to a set of environment variables:
   - `path`: path to the media file. This can be used to launch the media.
   - `name`: name of the media.
 
-Objects can be access with a `.` for example `device.os` or `last_scanned.id`. Empty values will return an empty string, so if a token was never scanned, `last_scanned.value` would return an empty string.
+Objects can be accessed with a `.`, for example `device.os` or `last_scanned.id`. Empty values will return an empty string, so if a token was never scanned, `last_scanned.value` would return an empty string.
 
 The expression environment is resolved and set once before the running of each command. That means if you have multiple expressions set throughout a single command's arguments, they will all reference the same static environment values. Once Core moves to the next command, the values will be recalculated.
 
