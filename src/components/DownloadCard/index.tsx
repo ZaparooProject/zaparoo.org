@@ -153,7 +153,7 @@ export default function DownloadCard({
       )}
       {architectures.map((arch) => (
         <Button
-          outline={nativeInstall ? true : false}
+          outline={!!nativeInstall}
           label={"Download " + displayArch(arch)}
           variant={nativeInstall ? "secondary" : "primary"}
           link={downloadUrl(platform, arch, version ? version : defaultVersion)}
@@ -162,7 +162,9 @@ export default function DownloadCard({
           dataUmamiEvent={`core-${platform}-${arch}-download`}
         />
       ))}
-
+      {architectures.length > 1 && (
+        <small><a href="#arch-help"><FontAwesomeIcon icon={["fas", "question-circle"]} /> Which one should I get?</a></small>
+      )}
     </div>
   );
 }
