@@ -24,6 +24,8 @@ Special keys can be entered by with a key name surrounded by curly braces (`{}`)
 
 Possible special key names are: esc, backspace, tab, enter, lctrl, lshift, backslash, rshift, lalt, space, caps, num, scroll, f1-f12, home, up pgup, left, right, end, down, pgdn, ins, del, volup, voldn.
 
+On MiSTer only (temporarily), key combos/chording are also available by adding multiple keys separated by `+` in between `{...}`. Ex. `**input.keyboard:{shift+esc}`
+
 ## input.gamepad
 
 :::warning

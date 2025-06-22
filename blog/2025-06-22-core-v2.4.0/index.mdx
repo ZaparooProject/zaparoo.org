@@ -1,0 +1,99 @@
+---
+slug: core-v2.4.0
+title: "Zaparoo Core v2.4.0 released"
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.4.0 is now available! Lots of new features here plus support for a new platform. A special thank you to [BossRighteous](https://github.com/BossRighteous) and [Anime0t4ku](https://github.com/Anime0t4ku) for the contributions to this release!
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.4.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Database Updates
+
+:::warning
+After updating to this release, you will need to manually run the "Update media DB" task either via the Zaparoo App in Settings or from the TUI.
+:::
+
+The most significant change to Core this release, and unfortunately least visible, is an incredible amount of work completed by BossRighteous to convert the old internal Core databases to SQLite.
+
+We've been very conservative with this migration, so the best case scenario is that you don't notice anything at all. But going forward it gives us a lot of tools for new things like:
+
+- Scraping and storing metadata for games such as cover art, genres, publishers, etc.
+- Allowing this metadata to be queried from card scans (scan to play a random 2-player game).
+- Offering this metadata over the API for other apps to use like launchers and the Zaparoo Designer.
+- A much more stable base to add new features which require local storage.
+
+This is a very high-level overview of what could be possible, but I hope to have some real stuff to show everyone soon!
+
+## LibreELEC Platform
+
+Thanks to work from Anime0t4ku (and some suggestion from Phoenix!), we now have basic support for [LibreELEC](https://libreelec.tv/) and [CoreELEC](https://coreelec.org/). For the first time Zaparoo has some real support for playing movies and TV shows. Still in beta but very functional.
+
+This is *actually* support for [Kodi](https://kodi.tv/), and I plan to port this support over to the Batocera platform, which also ships with Kodi, once it's more stable. It will probably also work on any other OS that is mainly Linux + Kodi.
+
+## Terminal UI (TUI)
+
+The TUI has had a major overhaul which fixes many bugs and achieves two things:
+
+- This UI is now confirmed working on a CRT on MiSTer.
+- The Zaparoo App is now no longer essential to making cards.
+
+This means if you got, for example, a MiSTer with a built-in NFC reader and some cards, you could get everything up and running without needing a separate device and access to the phone or web app. This UI is also available on every platform (except Windows for some annoying technical reasons).
+
+This also marks a big step in almost fully replacing the old TapTUI script which used to ship on MiSTer. This script was very popular (and for some more accessible), and it's taken a very long time for us to reach feature parity. This new release covers all major essential features with only some higher-complexity ones like Amiiboo database support and a command builder.
+
+## ZapScript Updates
+
+I have also taken this time to implement a real ZapScript parser and formalize the [syntax](../docs/zapscript/syntax). You should *hopefully* not notice any changes from this with your existing Zaparoo cards. What this does is let us start adding real new features to ZapScript as a language. A few new things are available this release:
+
+- New escaping and quoting support for arguments to commands.
+- Better automatic escaping of special characters in regular file paths.
+- Full support for inline expressions in arguments.
+- Support for conditionally running commands with expressions.
+
+Please make sure to check out the new expression support! It is *super* cool. You can now have cards that perform dynamic actions when scanned, based on your own custom criteria.
+
+## Windows Improvements
+
+There's been a lot of work smoothing out the edges on the Windows platform:
+
+- New official installer/setup instead of needing to copy the .exe from a zip file (though that's still available).
+- Updated icons and metadata on .exe, so they look more part of the OS.
+- Some minor updates to the layout of the systray menu.
+
+## Custom Launchers
+
+To also help improve platforms like Windows, I've introduced a new feature called Custom Launchers. These are special little .toml files (similar to the config.toml) which tell Core how it should handle a custom path to a file, so you can write your own launchers.
+
+This effectively replaces the use of .bat files for launching on Windows, so you don't need to do things like create a new batch file for every single game. It will be much closer to the experience with natively supported launchers.
+
+## Other Features
+
+- Web UI had been updated to 1.7.0.
+- Added a new "on_scan" hook to run custom ZapScript every token scan.
+- Added a new "on_remove" hook to run custom ZapScript on token removal with hold mode active.
+- Added support for new Sinden Light Gun core locations on MiSTer.
+- Added "arcade" folder support on Batocera.
+- Added initial support for key chording/combos on MiSTer (ex. `**input.keyboard:{shift+esc}`).
+
+## Bug Fixes
+
+- Add back the full system name to API search results.
+- Allow linking to specific pages in Web UI (which would 404 before).
