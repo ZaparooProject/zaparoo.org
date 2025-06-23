@@ -22,9 +22,9 @@ Multiple keys in sequence:
 
 Special keys can be entered by with a key name surrounded by curly braces (`{}`) as shown above. If you want to enter an literal curly brace, type a backslash before it like `\{` and `\}`. Backslashes can also be escaped (`\\`).
 
-Possible special key names are: esc, backspace, tab, enter, lctrl, lshift, backslash, rshift, lalt, space, caps, num, scroll, f1-f12, home, up pgup, left, right, end, down, pgdn, ins, del, volup, voldn.
+Possible special key names are: esc, backspace, tab, enter, lctrl, lshift, backslash, rshift, lalt, space, caps, num, scroll, f1-f12, home, up, pgup, left, right, end, down, pgdn, ins, del, volup, voldn.
 
-On MiSTer only (temporarily), key combos/chording are also available by adding multiple keys separated by `+` in between `{...}`. Ex. `**input.keyboard:{shift+esc}`
+On MiSTer, key combos/chording are also available by adding multiple keys separated by `+` in between `{...}`. This feature is planned to be ported to other platforms as standard. Example: `**input.keyboard:{shift+esc}`
 
 ## input.gamepad
 

@@ -26,7 +26,7 @@ file_exts = [".gb"]
 execute = "osascript -e 'tell application \"OpenEmu\" to open POSIX file \"[[media_path]]\"'"
 ```
 
-The first like `[[launchers.custom]]` tells Core this is a custom launcher definition. It's required to make sure to include the double square brackets.
+The first line, `[[launchers.custom]]`, tells Core this is a custom launcher definition. It's required. Make sure to include the double square brackets.
 
 The `id` line defines the internal ID of the launcher. Generally this won't matter, but you can reference it with the `?launcher=<launcher id>` advanced argument in [ZapScript](../zapscript/index.md). It's also possible to override an existing official launcher.
 
