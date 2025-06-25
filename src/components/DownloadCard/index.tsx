@@ -5,10 +5,10 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-export const defaultVersion = "2.3.1";
-export const defaultReleaseDate = "2025-05-02";
+export const defaultVersion = "2.4.0";
+export const defaultReleaseDate = "2025-06-25";
 
-type Arch = "amd64" | "arm64" | "arm";
+type Arch = "amd64" | "arm64" | "arm" | "386";
 
 const displayArch = (arch: Arch) => {
   switch (arch) {
@@ -18,12 +18,17 @@ const displayArch = (arch: Arch) => {
       return "ARM64";
     case "arm":
       return "ARM32";
+    case "386":
+      return "x86";
     default:
       return arch;
   }
 };
 
 const downloadUrl = (platform: string, arch: Arch, version: string) => {
+  if (platform === "windows") {
+    return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${arch}-${version}-setup.exe`;
+  }
   return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${platform}_${arch}-${version}.zip`;
 };
 
