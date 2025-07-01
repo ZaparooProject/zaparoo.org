@@ -111,9 +111,7 @@ There's functionally no difference between these quotes; it's just your preferen
 
 If you need to use a quote character at the start of an argument, you can escape it.
 
-Escape sequences are supported in quoted arguments as well, so you can use `^n`, `^t` and `^r` inside a quoted argument or escape the quote itself.
-
-Expressions are not supported inside quoted arguments and will be ignored, so you cannot use `[[` or `]]` inside a quoted argument. If you need to use an expression, you must use the unquoted syntax.
+Escape sequences are supported in quoted arguments as well, so you can use `^n`, `^t` and `^r` inside a quoted argument or escape the quote itself. Expressions are also supported in quoted arguments.
 
 ## When Condition
 
