@@ -1,4 +1,4 @@
-# ZapScript Syntax
+# Syntax
 
 A ZapScript script is a simple flat list of commands which are run in sequence:
 
@@ -8,16 +8,16 @@ This example showcases most of the supported ZapScript syntax and would:
 
 - Resolve the path `Genesis/Some Game.md` and launch it with the `AltMegaDrive` launcher.
 - Sleep for half a second, pausing the entire rest of the script until complete.
-- Echo the text `Hello, world!` to the Zaparoo Core log file.
+- Echo the text `Hello, World!` to the Zaparoo Core log file.
 
-Executing each step one after the other. If a command results in an error, Core will stop processing the rest of the script.
+If a command results in an error, Core will stop processing the rest of the script.
 
 ## Basics
 
-- Commands are separated by: `||` 
+- Commands are separated by: `||`
 - Command names start with: `**`
 - Command arguments start with `:` immediately after the name. Optional for some commands.
-- Multiple command arguments are separate by: `,`
+- Multiple command arguments are separated by: `,`
 
 Whitespace outside of arguments is ignored, though it's rare to add any to a script.
 
@@ -27,9 +27,9 @@ Because launching media is such an essential part of ZapScript, the `launch` com
 
 For example, the script `Genesis/Some Game.md` would be parsed internally as: `**launch:"Genesis/Some Game.md"`
 
-The `,` character does not need to be escaped in Auto Launch mode, since only one argument is assumed.
+The `,` character does not need to be escaped in Auto Launch mode, since the path is automatically quoted.
 
-Advanced arguments are allowed in Auto Launch mode, so the `?` character should be escaped or quoted. Advanced argument parsing has strict syntax and will fall back on treating the string as an argument, so most unescaped `?` characters should pass through ok as values.
+Advanced arguments are allowed in Auto Launch mode, so the `?` character should be escaped or quoted. Advanced argument parsing has a stricter syntax and will fall back on treating the string as an argument, so most unescaped `?` characters should pass through as part of the argument.
 
 ## Commands
 
@@ -47,19 +47,25 @@ No arguments:
 
 `**stop`
 
-Commands can have positional arguments, which start with a `:` and are separated by `,`.
+All argument values are automatically trimmed, so any whitespace before or after the value will be removed before being run. An argument should be quoted if this behavior isn't wanted.
 
-Commands can also have advanced arguments which start with a `?` and are then defined using a key value pair similar to a URL, using `=` to delimit key with their values and `&` to separate multiple advanced arguments.
+### Positional Arguments
+
+Commands may have one or more positional arguments, which are separated by a `,` character. Positional arguments begin with a `:` character immediately after the command name.
+
+Arguments containing `,` or `?` must be escaped or quoted so they are not treated as new arguments.
+
+### Advanced Arguments
+
+Commands can also have advanced arguments which start with a `?` and are then defined using a key value pair similar to a URL, using `=` to separate a key with its value, and `&` to separate multiple advanced arguments.
 
 Multiple advanced arguments:
 
 `**example:arg1?adv_arg1=foo&adv_arg2=bar`
 
-It's important to note that if an argument (positional or advanced) contains a `,` or `?` it must be escaped or quoted so it isn't treated as a new argument.
+If and argument contains a `&` character, it must be escaped or quoted so it is not treated as a new advanced argument.
 
-All argument values are automatically trimmed, so any whitespace before or after the value will be removed before being run. An argument should be quoted if this behavior isn't wanted.
-
-## Escaping and Quoting
+## Escaping Characters
 
 All arguments support escaping individual characters using the `^` character.
 
@@ -81,7 +87,17 @@ All characters are accepted as escapable even if they don't do anything as part 
 
 Would resolve as `1000` for the argument.
 
-Arguments can also be quoted if and only if the first character in an argument is either a `"` or a `'` character.
+Some special characters may be inserted using escape sequences:
+
+- `^n` for a newline character.
+- `^t` for a tab character.
+- `^r` for a carriage return character.
+
+Keep in mind if these will still be trimmed at runtime if they're at the start or end of an argument, so you may need to quote them if you want to preserve them.
+
+## Quoting Arguments
+
+Arguments can also be quoted if (and only if) the first character in an argument is either a `"` or a `'` character.
 
 Using quotes instead of escaping:
 
@@ -95,7 +111,9 @@ There's functionally no difference between these quotes; it's just your preferen
 
 If you need to use a quote character at the start of an argument, you can escape it.
 
-Quotes do not support escaping characters inside the quoted text. It is a straight shot through until the next matching quote character.
+Escape sequences are supported in quoted arguments as well, so you can use `^n`, `^t` and `^r` inside a quoted argument or escape the quote itself.
+
+Expressions are not supported inside quoted arguments and will be ignored, so you cannot use `[[` or `]]` inside a quoted argument. If you need to use an expression, you must use the unquoted syntax.
 
 ## When Condition
 
@@ -126,6 +144,8 @@ Running a game only on Linux:
 `DOS/game.iso?when=[[device.os == "linux"]]`
 
 An expression can be placed anywhere in an argument or as the entire argument. Multiple expressions can also be put in a single argument.
+
+Expressions are ignored in quoted arguements and expression start/end markers may be escaped.
 
 The return value of an expression may only be a simple type and will be converted to a string. Returning things like lists and objects is not supported and will cause an error.
 
