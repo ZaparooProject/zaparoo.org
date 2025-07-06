@@ -1,0 +1,54 @@
+---
+slug: core-v2.5.0
+title: "Zaparoo Core v2.5.0 released, NAS support"
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.5.0 is now available! This release adds some cool new features to ZapScript and fixes some bugs introduced in the last update.
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.5.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## NAS Support (SMB)
+
+Core now has limited support for downloading and installing media from a remote URL! This means if you're running a NAS on your network (like [RetroNAS](https://github.com/retronas/retronas)) you can now reference files directly on a card and Core will automatically download, install and launch the game.
+
+For example, write this to an NFC card:
+
+```
+smb://10.0.0.123/Games/path/to/file.bin?system=Genesis
+```
+
+Scan it, and the first scan Core will automatically download the file for you and launch it. Once the file is cached on disk, any later scans will prefer to launch the downloaded file instead.
+
+Read the [remote install](/docs/zapscript/launch#remote-install) section of the docs for a full rundown of this feature. It also supports authentication, HTTP links and a configurable install location.
+
+## Other Changes
+
+- Fixed an issue where Arcade games on MiSTer were not being correctly detected as running, which would break their support for hold mode.
+- Updated the download location of the MiSTer arcade database and improved the method for checking if an update is required.
+- Fixed a bug where square brackets in a filename were being incorrectly detected as ZapScript expressions.
+- [LibreELEC platform](/docs/platforms/libreelec/) supports more local video extensions. Thank you [Anime0t4ku](https://github.com/Anime0t4ku)!
+- Quoted arguments in ZapScript now support escaping.
+- Whitespace can be entered via [escape sequences](/docs/zapscript/syntax/) in ZapScript.
+- Picker and notice widgets on MiSTer look a bit nicer and work better with CRTs.
+- Playlist loading ZapScript now supports [inline playlist definitions](/docs/zapscript/playlists/).
+- Improved [zap link](/docs/zapscript/zaplinks/) support with better support detection, cached zaps and simpler payloads.
+- Improved recursive symlink detection using media DB updates.
+- Fixed many keyboard focus issues in the TUI.
