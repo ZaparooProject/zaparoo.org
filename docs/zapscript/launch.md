@@ -6,7 +6,7 @@ These commands are used to launch games, systems, and other media.
 
 Attempts to launch the given media path.
 
-If Zaparoo encounters a command with no `**<command>:` prefix, it will assume it's a launch command.
+If Zaparoo encounters a command with no `**<command>:` prefix, it will assume it's an [Auto Launch](#auto-launch) command.
 
 For example:
 
@@ -22,15 +22,15 @@ The advanced argument `launcher` can be used to explicitly set the launcher to u
 Genesis/1 US - Q-Z/Some Game (USA, Europe).md?launcher=LLAPIMegaDrive
 ```
 
-This can be useful to use alternate launchers for specific games or to launch a game that's not in a standard folder.
+This can be useful to use alternate launchers for specific games or to launch a game not in a standard folder.
 
-### Launch Argument Format
+### Auto Launch
 
 Since launching media is the most common action, this command has a lot more special syntax for different ways to look up media on the device.
 
-For the most basic usage, a file path can be written to a token and Zaparoo will attempt to find the file on the device and launch it.
+For the most basic usage, a file path can be written to a token, and Zaparoo will attempt to find the file on the device and launch it.
 
-Zaparoo uses the following rules, in order, to find the game file. Keep these rules in mind if you want a token to work well between different devices.
+Zaparoo uses the following rules to find the game file. Keep these rules in mind if you want a token to work well between different devices.
 
 :::tip
 If you're not sure what to do, it's recommended to use the [System Lookup](./launch.md#system-lookup) method for the best portability between devices.
@@ -126,9 +126,31 @@ N64/Some Game (USA)
 
 Currently most game titles are taken from the filename and will include things like region tags. Some fuzzy matching may be implemented in the future to strip these out as a fallback.
 
+### Remote Install
+
+Remote media can be downloaded and installed via SMB (CIFS) and HTTP/S URLs by entering the full URL to a file and filling the `system` advanced argument with a valid system ID. This feature can be used for services like a [RetroNAS](https://github.com/retronas/retronas) running on your local network, or any compatible NAS server.
+
+Example with SMB:
+
+```
+smb://10.0.0.123/Games/path/to/file.bin?system=Genesis
+```
+
+Or HTTP:
+
+```
+http://10.0.0.123/path/to/file.bin?system=Genesis
+```
+
+If the URL itself contains a `?` character, the URL must be escaped or quoted so it doesn't conflict with advanced argument parsing.
+
+When first run, the media file will be downloaded locally to the `media` directory in Zaparoo Core's data directory or a [configured location](../core/config.md#media_dir). On later scans the locally cached file will be used to launch immediately instead.
+
+If the server requires authentication, you can define the credentials using the [auth.toml](../core/config.md#auth-file) file.
+
 ## launch.system
 
-This command will launch a system, based on MiSTer Extensions own internal list of [system IDs](../core/systems.md). This can be useful for "meta systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
+This command will launch a system, based on MiSTer Extensions' own internal list of [system IDs](../core/systems.md). This can be useful for "meta-systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
 
 For example:
 

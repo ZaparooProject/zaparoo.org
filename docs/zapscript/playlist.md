@@ -49,6 +49,39 @@ Title1=A different name
 File2=Another Game (USA, Europe).md?launcher=LLAPIMegaDrive
 ```
 
+### Inline Playlists
+
+A playlist definition can be embedded directly in a ZapScript command by writing a JSON object in the following format in the first argument:
+
+```json
+{
+  "id": "12341234",
+  "name": "My Playlist",
+  "items": [
+    {
+      "name": "Game 1",
+      "zapscript": "path/to/file.bin"
+    },
+    {
+      "name": "Game 2",
+      "zapscript": "path/to/another/file.bin"
+    }
+  ]
+}
+```
+
+- `id` is an internal ID (no special format but make it unique) used to check if the same playlist is being reloaded.
+- `name` is an optional argument that will display in places like a picker menu.
+- `items` is the list of items in the playlist:
+  - `name` is similar to the top level name, this is an optional display name. Core will attempt to generate an appropriate name if it's missing.
+  - `zapscript` is the actual ZapScript script which will be run when the item is played. 
+
+A full command might look like this:
+
+```
+**playlist.open:{"id":"12341234","name":"My Playlist","items":[{"name":"Game 1","zapscript":"path/to/file.bin"},{"name":"Game 2","zapscript":"path/to/another/file.bin"}]}
+```
+
 ## playlist.load
 
 ```

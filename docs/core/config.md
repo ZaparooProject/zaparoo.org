@@ -248,6 +248,14 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 - On Windows, file path separators must be escaped: `C:\\Test\\Thing.exe`
 - An entry can be made case-insensitive by putting `(?i)` at the beginning.
 
+#### media_dir
+
+| Key       | Type   | Default            |
+|-----------|--------|--------------------|
+| media_dir | string | \<data dir\>/media |
+
+`media_dir` overrides the default location on disk where remote media downloads will be stored. By default, it will use the `media` directory in the Core data folder.
+
 ### ZapScript
 
 ```toml
@@ -314,6 +322,20 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 
 - An entry is considered a **partial match** unless it's surrounded by a `^` and `$`.
 - Characters `*`, `|` and `.` common in both ZapScript and Regular Expressions must be escaped like in the example file below.
+
+## Auth File
+
+A separate TOML file called `auth.toml`, alongside the config file, can be created which defines credentials used when Core connects to remote endpoints:
+
+```toml
+[creds."smb://10.0.0.123/Games"]
+username = 'myaccount'
+password = 'Password123'
+```
+
+When a remote endpoint matches against the prefix URL after `creds.`, the credential set will be attached to the request. This can be used to authenticate with a NAS.
+
+Multiple credentials may be defined for the same server but on different paths.
 
 ## Example File
 
