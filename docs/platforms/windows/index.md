@@ -10,6 +10,7 @@ Windows support is still in beta. It has minimal support for some launchers, but
 | ------------------ | ------------------------------------ |
 | Data directory     | `%localappdata%/zaparoo`             |
 | Mappings directory | `%localappdata%/zaparoo/mappings`    |
+| Launcher directory | `%localappdata%/zaparoo/launchers`   |
 | Config file        | `%localappdata%/zaparoo/config.toml` |
 | Log file           | `%temp%/zaparoo/core.log`            |
 
@@ -25,7 +26,7 @@ From this point, Zaparoo is now set up! You should be able to connect a reader a
 
 ## Launchers
 
-There is support for a handful of launchers on Windows.
+There is support for a handful of launchers on Windows. You can also add your own launchers (as of Zaparoo core 2.4.0)
 
 ### Steam
 
@@ -61,6 +62,119 @@ install_dir = 'C:\\Users\\wizzo\\CustomLBDir'
 
 Replace the `install_dir` value with your own path to LaunchBox.
 
+### Custom Launchers
+
+Custom launchers allow you to start roms with a specified emulator and scan and write them with the Zaparoo app.
+Custom launchers are toml files with launching criteria such as: System, Rom path, Emulator path and a powershell handeling to launch this.
+Just copy the toml files to the launcher directory stated above.
+
+Example for PCSX2: 
+
+```toml
+[[launchers.custom]]
+id = "PCSX2PS2"
+system = "PS2"
+media_dirs = ["D:\\Emulation\\Roms\\PS2"]
+file_exts = [".iso", ".bin", ".img", ".nrg", ".mdf", ".chd"]
+execute = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath 'D:\\Emulation\\Emulators\\PCSX2-Nightly\\pcsx2-qt.exe' -ArgumentList '\"[[media_path]]\"'"
+```
+#### Custom launcher creator
+You can also use this powershell script to automatically create a launcher using a command gui:
+```powershell
+Write-Host "=== Zaparoo Launcher TOML Generator ==="
+
+$system = Read-Host "Enter system name (e.g., CPS2, PS1, NES)"
+$rompath = Read-Host "Enter full path to ROM folder"
+$emupath = Read-Host "Enter full path to emulator executable"
+
+$coreMap = @{
+    "PS1"     = "mednafen_psx_hw_libretro.dll"
+    "PS2"     = ""
+    "NES"     = "mesen_libretro.dll"
+    "SNES"    = "snes9x_libretro.dll"
+    "N64"     = "mupen64plus_next_libretro.dll"
+    "GBA"     = "mgba_libretro.dll"
+    "CPS1"    = "fbalpha2012_cps1_libretro.dll"
+    "CPS2"    = "fbalpha2012_cps2_libretro.dll"
+    "CPS3"    = "fbalpha2012_cps3_libretro.dll"
+    "NeoGeo"  = "fbalpha2012_neogeo_libretro.dll"
+    "Arcade"  = "fbneo_libretro.dll"
+    "Genesis" = "genesis_plus_gx_libretro.dll"
+    "TG16"    = "mednafen_pce_fast_libretro.dll"
+    "GB"      = "gambatte_libretro.dll"
+    "GBC"     = "gambatte_libretro.dll"
+    "DS"      = "melonds_libretro.dll"
+    "PSP"     = "ppsspp_libretro.dll"
+    "Saturn"  = "mednafen_saturn_libretro.dll"
+    "Dreamcast" = "flycast_libretro.dll"
+    "3DO"     = "opera_libretro.dll"
+    "MSX"     = "bluemsx_libretro.dll"
+    "DOS"     = "dosbox_pure_libretro.dll"
+    "ScummVM" = "scummvm_libretro.dll"
+    "Amiga"   = "puae_libretro.dll"
+}
+
+$extMap = @{
+    "PS1"     = '".cue", ".bin", ".iso", ".chd"'
+    "NES"     = '".nes"'
+    "SNES"    = '".sfc", ".smc"'
+    "N64"     = '".z64", ".n64", ".v64"'
+    "GBA"     = '".gba"'
+    "CPS1"    = '".zip"'
+    "CPS2"    = '".zip"'
+    "CPS3"    = '".zip"'
+    "NeoGeo"  = '".zip"'
+    "Arcade"  = '".zip"'
+    "Genesis" = '".md", ".bin"'
+    "TG16"    = '".pce"'
+    "GB"      = '".gb"'
+    "GBC"     = '".gbc"'
+    "DS"      = '".nds"'
+    "PSP"     = '".iso", ".cso"'
+    "Saturn"  = '".cue", ".bin"'
+    "Dreamcast" = '".cdi", ".gdi"'
+    "3DO"     = '".iso"'
+    "MSX"     = '".rom", ".dsk"'
+    "DOS"     = '".zip"'
+    "ScummVM" = '".svm"'
+    "Amiga"   = '".adf"'
+}
+
+$corepath = $null
+if ($coreMap.ContainsKey($system)) {
+    $core = $coreMap[$system]
+    if ($core -ne "") {
+        $corepath = Join-Path (Split-Path $emupath) "cores\$core"
+    }
+}
+
+# Only double slashes (\\) for TOML
+$rompath = $rompath -replace '\\', '\\'
+$emupath = $emupath -replace '\\', '\\'
+if ($corepath) { $corepath = $corepath -replace '\\', '\\' }
+
+if ($corepath) {
+    $exec = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath '$emupath' -ArgumentList '-L', '$corepath', '[[media_path]]'"
+} else {
+    $exec = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath '$emupath' -ArgumentList '[[media_path]]'"
+}
+
+$exts = if ($extMap.ContainsKey($system)) { $extMap[$system] } else { '".zip"' }
+
+$outfile = "${system}_zaparoo_launcher.toml"
+@"
+[[launchers.custom]]
+id = "$system"
+system = "$system"
+media_dirs = ["$rompath"]
+file_exts = [$exts]
+execute = "$exec"
+"@ | Set-Content -Encoding UTF8 $outfile
+
+Write-Host "`nTOML launcher created: $outfile"
+Read-Host -Prompt "`nPress Enter to exit"
+```
+
 ### Flashpoint
 
 If it's installed, Zaparoo supports launching [Flashpoint](https://flashpointarchive.org/) games, although it won't include them in the media database and display in the App. You can manually create a Flashpoint card by writing `flashpoint://<game_id>` to a card, where `<game_id>` is the ID of the game you want to launch, or you can copy the URL straight from the Flashpoint launcher.
@@ -88,7 +202,7 @@ allow_file = [
 
 Make sure to restart Zaparoo after you add this to the config file. If there's already a `[launchers]` section, just add the `allow_file` line to it. You can also use wildcards in the path, but be careful with them as they can match a lot of files. For example, `C:\\some\\.*.exe` will match all `.exe` files in the `C:\some\` directory.
 
-## Creating Batch Files
+## Creating Batch Files (outdated method but still usable)
 
 While the Windows platform is still in development, batch files can be used as a stand in for missing launcher support. Here are some examples of creating batch files for some common launchers.
 
