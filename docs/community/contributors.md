@@ -15,7 +15,7 @@ Zaparoo has been a community effort from day one. Everyone's contributions are a
 - **Sensorium** — C64 support — [GitHub](https://www.github.com/SensoriumEmbedded) | [TeensyROM](https://github.com/SensoriumEmbedded/TeensyROM) | [Store](https://www.tindie.com/products/travissmith/teensyrom-cartridge-for-c64128/) | [Twitter](https://twitter.com/SensoriumEmb)
 - **TheTrain** — PCB designer — [GP2040-CE GitHub](https://github.com/OpenStickCommunity/GP2040-CE) | [Twitter](https://twitter.com/thetrain24)
 - **theypsilon** — developer — [GitHub](https://www.github.com/theypsilon) | [Patreon](https://www.patreon.com/theypsilon) | [Twitter](https://twitter.com/josembarroso)
-- **Tim Wilsie** — UX, branding, original templates — [GitHub](https://github.com/timwilsie) | [Twitter](https://twitter.com/timwilsie)
+- **Tim Wilsie** — UX, UI, branding, product design, original templates — [GitHub](https://github.com/timwilsie) | [Bluesky](https://bsky.app/profile/timwilsie.bsky.social)
 - **wizzo** — developer — [GitHub](https://github.com/wizzomafizzo) | [Patreon](https://patreon.com/wizzo) | [Store](https://ko-fi.com/wizzo) | [Web](https://wizzo.dev/) | [Twitter](https://twitter.com/wizzomafizzo)
 - **Ziggurat** — developer — [Github](https://github.com/sigboe) | [Paypal](https://paypal.me/sigboe156)
 
