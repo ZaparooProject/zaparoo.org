@@ -23,6 +23,7 @@ yarn-error.log*
 .vscode
 .cursor
 .claude
+CLAUDE.md
 
 docs/core/dev/*
 !docs/core/dev/_category_.json
