@@ -31,7 +31,7 @@ path = '/dev/sr0'
 id_source = 'merged'
 ```
 
-This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](./api/tokens.md), which is used to match against [mappings](./mappings.md). `merged` is the default value of nothing is set, and will combine the UUID and label into one value separated by a colon (`:`).
+This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](./tokens.md), which is used to match against [mappings](./mappings.md). `merged` is the default value of nothing is set, and will combine the UUID and label into one value separated by a colon (`:`).
 
 Example mapping file which would launch Crash Bandicoot 3 using the actual PS1 disc:
 

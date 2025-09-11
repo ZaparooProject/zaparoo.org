@@ -265,6 +265,16 @@ const config: Config = {
       },
     ],
     [
+      "docusaurus-plugin-remote-content",
+      {
+        name: "core-api-docs",
+        sourceBaseUrl:
+          "https://raw.githubusercontent.com/ZaparooProject/zaparoo-core/refs/heads/main/docs/api/",
+        outDir: "docs/core/api",
+        documents: ["index.md", "methods.md", "notifications.md"],
+      },
+    ],
+    [
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
@@ -332,6 +342,10 @@ const config: Config = {
           {
             to: "/blog/app-v1.5.0/",
             from: "/news/app-v1.5.0",
+          },
+          {
+            to: "/docs/core/tokens/",
+            from: "/docs/core/api/tokens",
           },
         ],
       },
