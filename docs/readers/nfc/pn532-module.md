@@ -11,7 +11,7 @@ The PN532 module is not a ready-to-use reader, it's a bare PCB module intended f
 - Very cheap price, starting at around $3 USD.
 - Small footprint and is great for custom projects.
 - High quality modules have excellent short and long range reading (up to 5cm without interference).
-- Plug and play when paired with a USB to serial adapter (UART).
+- Plug and play when paired with a USB to serial adapter (UART). Common adapters include CP2102, CH340G, or FT232RL modules.
 - Has no case and will not function at all without additional components.
 - Build quality can be very variable depending on vendor, resulting in non-functioning modules or poor read range.
 - Requires soldering equipment (but is a great beginner project).

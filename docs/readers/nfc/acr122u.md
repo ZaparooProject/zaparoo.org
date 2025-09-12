@@ -7,7 +7,7 @@ slug: acr122u
 
 <img src="/img/docs/readers/ACR122U-NFC-reader.jpg" alt="An ACR122U NFC reader" width="300" />
 
-The ACR122U (also called just ACR122) is the most commonly available consumer grade USB NFC reader. Internally it uses a PN532 NFC chip, but this chip is not exposed directly to the host device so it cannot be used with other PN532 drivers. Its main method of communication is via a PCSC service, where it's usually plug and play. Its internal PCB is quite large with a fragile cable connection, which can make it difficult to incorporate in custom projects.
+The ACR122U (also called just ACR122) is the most commonly available consumer grade USB NFC reader. Internally it uses a PN532 NFC chip, but this chip is not exposed directly to the host device so it requires different drivers than other PN532-based readers. Its main method of communication is via a PCSC service, where it's usually plug and play. Its internal PCB is quite large with a fragile cable connection, which can make it difficult to incorporate in custom projects.
 
 This reader is easily available on marketplace sites like Amazon, AliExpress, eBay and even from local smart card/security stores in your own country. It has a built in USB cable, an injection moulded case, internal speaker and external status LED (though compatibility of these varies between devices and platforms). It's fully compatible with ntag.md and MIFARE Classic tags.
 
