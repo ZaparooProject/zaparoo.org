@@ -6,7 +6,11 @@ Its location depends on the [platform](/docs/platforms/index.md) where the servi
 
 The file is always called `config.toml` on every platform.
 
-The config file is written in [TOML](https://toml.io/en/). Be aware that although comments are supported in TOML, _they will be lost if Core makes updates to this file_ (e.g. when adjusting settings using the Zaparoo App) and should be avoided for important information.
+The config file is written in [TOML](https://toml.io/en/).
+
+:::warning
+Although comments are supported in TOML, _they will be lost if Core makes updates to this file_ (e.g. when adjusting settings using the Zaparoo App) and should be avoided for important information.
+:::
 
 Any changes made to the config file while the Core service is running require the service to be restarted before changes will take effect, or the `-reload` [CLI command](./cli.md) to be run.
 
@@ -16,9 +20,9 @@ Optionally, Zaparoo Core can but run in portable mode, where the config and all 
 
 Options in the config file are grouped by sections which start with a header. For example, the [audio](#audio) section begins with `[audio]` and continues until the next header is encountered.
 
-### Root
+### Global Settings
 
-The root section does not start with a section header and is the only section that behaves this way. It's reserved for certain options that affect all parts of Core or the config file itself.
+The global settings section does not start with a section header and is the only section that behaves this way. It's reserved for certain options that affect all parts of Core or the config file itself.
 
 ```toml
 config_schema = 1
@@ -94,18 +98,18 @@ on_remove = '**echo:card was removed'
 
 | Key  | Type   | Default |
 | ---- | ------ | ------- |
-| mode | string | tap     |
+| mode | string ("tap" \| "hold") | tap     |
 
 `mode` defines the behavior of scans. It has two options:
 
 - `tap` is the default mode and means when a token is used with a reader it can be removed again without affecting the playing media. If a token is tapped, removed and then tapped again it will relaunch the already playing media.
-- `hold` mode makes it so a token must be held to the reader for as long as any launched media will play. That is, after a token is removed from the reader, it will exit the media. This makes a token act more like real physical media. **Core does not currently make any attempt to save before exiting media.**
+- `hold` mode makes it so a token must be held to the reader for as long as any launched media will play. That is, after a token is removed from the reader, it will exit the media. This makes a token act more like real physical media. **Core does not currently make any attempt to save before exiting media.** See [`exit_delay`](#exit_delay), [`ignore_system`](#ignore_system), and [`on_remove`](#on_remove) for related options.
 
 ##### exit_delay
 
 | Key        | Type  | Default |
 | ---------- | ----- | ------- |
-| exit_delay | float | 0.0     |
+| exit_delay | float (≥0.0) | 0.0     |
 
 `exit_delay` adds a delay, in seconds, before media is exited after a token is removed from a reader. It's only active if `hold` [mode](#mode) is also active.
 
@@ -119,7 +123,7 @@ This feature can be useful if you want to, using a single reader, scan other tok
 | ------------- | -------- | ------- |
 | ignore_system | string[] | []      |
 
-`ignore_system` is a list of systems which will not exit playing media on token removal. It's only active in `hold` mode.
+`ignore_system` is a list of systems which will not exit playing media on token removal. It's only active in `hold` [`mode`](#mode).
 
 ##### on_scan
 
@@ -135,9 +139,9 @@ This feature can be useful if you want to, using a single reader, scan other tok
 | ------------- | -------- | ------- |
 | on_remove     | string   |         |
 
-`on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` mode.
+`on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#mode).
 
-Note that this will *always* run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the `exit_delay` setting and runs before any media exit logic happens.
+Note that this will *always* run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the [`exit_delay`](#exit_delay) setting and runs before any media exit logic happens.
 
 #### readers.connect
 
@@ -216,7 +220,7 @@ enabled = false
 
 #### systems.default
 
-`systems.default` overrides the default behavior of the specified system. It's a sub-section that can be defined multiple times, and must have this header: `[[systems.default]]`
+`systems.default` overrides the default behavior of the specified system. It's a sub-section that can be defined multiple times, and must have this header: `[[systems.default]]`. See also [`launchers.default`](#launchersdefault) for launcher-specific settings.
 
 Pay attention to the double pairs of square brackets. Each defined `systems.default` section must have its own header.
 
@@ -278,7 +282,7 @@ For example, if `index_root` was set to `[ '/media/fat/other_place' ]`, a databa
 
 | Key        | Type     | Default |
 | ---------- | -------- | ------- |
-| allow_file | string[] | []      |
+| allow_file | string[] (regex patterns) | []      |
 
 `allow_file` allows certain files to be launched if their assigned launcher requires it.
 
@@ -304,11 +308,11 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 | --------------- | ------ | ------- |
 | on_media_start  | string |         |
 
-`on_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after media starts launching, regardless of the scan mode.
+`on_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after media starts launching, regardless of the scan mode. See also [`on_scan`](#on_scan) and [`on_remove`](#on_remove) for related scan events.
 
 #### launchers.default
 
-`launchers.default` overrides default settings for specific launchers. It's a sub-section that can be defined multiple times, and must have this header: `[[launchers.default]]`
+`launchers.default` overrides default settings for specific launchers. It's a sub-section that can be defined multiple times, and must have this header: `[[launchers.default]]`. See also [`systems.default`](#systemsdefault) for system-specific settings.
 
 Pay attention to the double pairs of square brackets. Each defined `launchers.default` section must have its own header.
 
@@ -356,7 +360,7 @@ allow_execute = [
 
 | Key           | Type     | Default |
 | ------------- | -------- | ------- |
-| allow_execute | string[] | []      |
+| allow_execute | string[] (regex patterns) | []      |
 
 `allow_execute` allows specific executables and arguments to be run using the `**execute` [ZapScript](../zapscript/index.md) command. By default, the command does not allow anything to be run.
 
@@ -383,7 +387,7 @@ allow_run = [
 
 | Key      | Type    | Default |
 | -------- | ------- | ------- |
-| api_port | integer | 7497    |
+| api_port | integer (1-65535) | 7497    |
 
 `api_port` specifies which port the [API](./api/index.md) of Core should be accessible from.
 
@@ -411,7 +415,7 @@ It's currently reserved for future use when devices can communicate with each ot
 
 | Key       | Type     | Default |
 | --------- | -------- | ------- |
-| allow_run | string[] | []      |
+| allow_run | string[] (regex patterns) | []      |
 
 `allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md) of the [Core API](./api/index.md). By default, nothing is allowed.
 
@@ -441,7 +445,7 @@ gmc_proxy_beacon_interval = '2s'
 
 | Key            | Type    | Default |
 | -------------- | ------- | ------- |
-| gmc_proxy_port | integer | 32106   |
+| gmc_proxy_port | integer (1-65535) | 32106   |
 
 `gmc_proxy_port` specifies which port the GMC proxy service should listen on.
 
