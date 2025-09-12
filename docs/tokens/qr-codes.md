@@ -1,6 +1,14 @@
 # QR Codes
 
-QR codes can be used as tokens for Zaparoo, just like an NFC tag. There are a couple of ways to do it, but essentially it's done by embedding ZapScript in a QR code which will be parsed and launched by Zaparoo when scanned. Any standard [QR code generator](https://httpbin.dmuth.org/qrcode/) can be used, just paste some ZapScript into the text field of the generator. **Make sure link tracking is disabled in the generator if it supports that.**
+QR codes can be used as tokens for Zaparoo, just like an NFC tag. There are a couple of ways to do it, but essentially it's done by embedding ZapScript in a QR code which will be parsed and launched by Zaparoo when scanned. 
+
+## QR Code Generator
+
+Use the generator below to create QR codes with your ZapScript:
+
+<QRCodeGenerator />
+
+You can also use any standard [QR code generator](https://httpbin.dmuth.org/qrcode/), just paste some ZapScript into the text field of the generator. **Make sure link tracking is disabled in the generator if it supports that.**
 
 ## Zaparoo App
 
