@@ -1,6 +1,6 @@
 # ZapESP32
 
-ZapESP32 is an ESP32-based NFC reader with haptic and audio feedback designed for the Zaparoo project. It enables launching games via the [Zaparoo Core](/core/) service on MiSTer and Steam over WiFi, with additional audio and rumble features. The device also supports launching games via [Simple Serial](/core/drivers.md) connection.
+ZapESP32 is an ESP32-based NFC reader with haptic and audio feedback designed for the Zaparoo project. It enables launching games via the [Zaparoo Core](/docs/core/) service on MiSTer and Steam over WiFi, with additional audio and rumble features. The device also supports launching games via [Simple Serial](/docs/core/drivers) connection.
 
 ## Core Features
 

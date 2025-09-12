@@ -2,60 +2,87 @@
 
 <img src="/img/docs/labels/Labels_header.jpg" alt="Getting messy with labels" width="100%" />
 
-Having your favorite artwork on your NFC card is the perfect finishing touch to your Zaparoo collection. The Zaparoo team has tried to streamline and document this process to accommodate every skill level.
+Having your favorite artwork on your NFC card is the perfect finishing touch to your Zaparoo collection. The Zaparoo team has streamlined and documented this process to accommodate every skill level, from quick digital creation to professional commercial printing.
 
-## Generating Labels
+:::danger[Important Legal Restrictions]
+**Copyright & Logo Usage:**
+- **You are solely responsible for ensuring you have legal rights to any artwork you print** (game art, movie posters, album covers, etc.)
+- **The Zaparoo logo must not be used on printed labels** per [Terms of Use](/terms) - this helps keep the project out of legal trouble
+- **The Zaparoo project cannot offer pre-printed labels due to intellectual property concerns**
 
-### Zaparoo Designer
+See the [Zaparoo Media](/projects/) project for marks that are free to use for displaying token compatibility.
+:::
 
-Labels can be created in bulk using the [Zaparoo Designer](https://zaparoo-designer.netlify.app/) web app by [Andrea Bogazzi](https://github.com/asturur). This app allows you to easily add images, which will be automatically applied to templates and made available to exported for printing. The app is pre-filled with the official set of templates by [Tim Wilsie](https://twitter.com/timwilsie), [Ariel Aces](https://twitter.com/arielaces) and [Andrea Bogazzi](https://github.com/asturur)
+## Quick Start
 
-### Zaparoo Template Files
+The fastest way to create labels is using the [Zaparoo Designer](https://design.zaparoo.org/) web app:
 
-You can also download the template files directly to use in your own design software. The official Zaparoo templates are free to use and modify to meet your needs. You must follow the [Zaparoo logo usage guidelines](/terms).
+1. Navigate to [design.zaparoo.org](https://design.zaparoo.org/)
+2. Upload images or search IGDB for game artwork
+3. Choose from available templates
+4. Customize and export for printing
 
-- [Zaparoo official template collection](./templates.md) - by Tim Wilsie. Includes files for horizontal, vertical, and NFC Engine layouts.
-- [Zaparoo Upgrade labels](./upgrade-stickers.md) - designed to be applied on the
+## Label Creation Methods
 
-### Community Label Packs
+### Digital Tools
 
-- [Arcade & Computer core artwork](https://mega.nz/folder/vH5WGSJI#UANuzi-5uG9XBqddPeApmw) - collated and edited by NML32
+**[Zaparoo Designer](https://design.zaparoo.org/)** - Web-based label creation tool
 
-## Pre-Printed Zaparoo Labels
+- No installation required, works in your browser
+- Pre-filled with official templates and community contributions
+- Supports local images and IGDB artwork search
+- Export to PDF or PNG for printing
 
-A request that we've heard often is where people can order pre-printed labels. Unfortunately the Zaparoo project is **not** able to offer this due to concerns over the IP rights regarding artwork.
+**Custom Design Software** - Use your preferred graphics program
 
-## Creating Your Own Labels
+- Download templates from [Zaparoo Designer](https://design.zaparoo.org/) for your preferred graphics software
+- Follow [Zaparoo logo usage guidelines](/terms) for branding
+- Full creative control over design elements
 
-> **Note:** All links to products are provided as examples, and are not direct endorsements or affiliate links.
+### Printing Options
 
-### Printers
+**[Printing Guide](./printing-guide.md)** - Complete guide for both home and commercial printing
 
-An inkjet or color laser printer from a reputable brand such as Epson, HP, Canon, Brother, etc is recommended for creating quality prints. As a general rule: high-end printer = higher fidelity printing.
-Standard home printers with CMYK cartridges or eco-tanks are the best middle ground of cost/quality. Especially as most people already have access to one.
+- Home printing with standard printers and materials
+- Commercial printing for professional results
+- Material comparisons and recommendations
+- File preparation and technical requirements
 
-Photo printers that utilize additional inks beyond CMYK offer even higher quality output in color and overall fidelity. Especially when paired with premium printable materials.
+## Template Specifications
 
-### Paper Types
+### Standard Dimensions
 
-The type of paper you print on can have as much impact on the quality of the labels as printer choice.
+- **Credit Card Size:** 3.375" × 2.125" (85.725mm × 53.975mm)
+- **Zaparoo Label Size:** 3.313" × 2.063" (84.15mm × 52.4mm)
+- **Print Resolution:** 993.9px × 618.9px at 300 DPI
 
-Standard printer paper will work perfectly, or try a premium or photo stock for additional fidelity. You can then affix them to the cards using tape, glue, or spray adhesive.
+### Design Guidelines
 
-For a **truly** professional look, consider [printable sticker paper](https://www.amazon.com/HTVRONT-Printable-Vinyl-Sticker-Paper/dp/B09YCFRT37). You can find this at most craft stores and online retailers in both matte and glossy finishes.
+**Label Positioning:** Zaparoo labels include a 1/32" (0.79mm) margin from the card edge for:
+- Application error tolerance
+- Improved durability (prevents edge peeling)
+- Professional appearance that matches NFC card proportions
 
-### Cutting Labels
+**Artwork Margins** (from label edge):
+- **Horizontal Layout:** 3.1mm margin on top/right/bottom, 26.2mm margin on left
+- **Vertical Layout:** 3.1mm margin on top/right/left, 12.2mm margin on bottom
 
-> **Warning:** Please be careful and always follow safety practices when working with sharp objects!
+**Quality Standards:**
+- Use 300+ DPI resolution for crisp printing
+- CMYK color mode for commercial printing
+- Appropriate color profiles for your printing method
 
-There are quite a few options for cutting labels. The most accessible is a trusty pair of scissors and some patience.
+### Upgrade Stickers
 
-Another option is a hobby knife and a straight edge to create clean cuts. [Craft paper cutters](https://www.amazon.com/Fiskars-152490-1004-SureCut-Deluxe-Trimmer/dp/B0038F1A0S) and [guillotine trimmers](https://www.amazon.com/Swingline-Trimmer-Guillotine-Capacity-ClassicCut/dp/B016LDV41S) are also good options to create quick and consistent straight cuts.
+Upgrade stickers are smaller labels designed to fit on existing printed cards for easy customization. They let larger designs be printed in bulk while still allowing customization later. They're easier to apply than full size labels and designed to look good without a corner rounder tool.
 
-To **really** give your labels a finished feel, you can use a [corner rounder](https://www.amazon.com/%EF%BC%8CEnvelope-Puncher%EF%BC%8C-Laminate-Projects-Scrapbooking/dp/B08VHGLBPT) to quickly cut perfectly round corners on your prints to more closely match your NFC cards. Standard NFC cards have a corner radius of 3mm (R3), but the label templates from the [Zaparoo Designer](../designer/index.md) are also compatible (and look good!) with 4mm (R4) cuts which is what most common corner rounders are.
+All upgrade stickers are 36.75mm (1.45in) high with variable width:
 
-#### Cutting labels using a plotter device
+**Common Sizes:**
+- **Zap Trading Cards:** 63×36.75mm (single area) or 63×75mm (double area with 1.5mm gap between areas)
+- **Standard Labels:** 47.4×36.75mm (single area)
+- **Frame Style:** Leave 1mm border for background frame effect
 
-Cricut, Silhouette, or similar devices give you even more options for printing and cutting labels. Most of these devices have a function called **"Print and Cut"** that allows you to print label sheets that the plotter can then cut out. Combining a plotter with a home printer allows you to take advantage of faster and accurate cutting on a wide variety of materials.
-
-Instructions and full depth of possibilities with this method are outside the scope of this document, but many Zaparoo users have utilized these devices to make some incredibly creative labels.
+:::info[Community Resources]
+The Zaparoo community actively contributes templates, artwork collections, and printing resources through various community platforms and forums.
+:::

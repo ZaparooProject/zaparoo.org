@@ -1,6 +1,6 @@
 # Zaparoo App
 
-The Zaparoo App is a React-based mobile application built with Capacitor that serves as the primary user interface for the [Zaparoo Core](/core/) service. It allows you to manage your Zaparoo setup, scan and create tokens, and control media playback directly from your phone. The app is available on iOS, Android, and as a web application.
+The Zaparoo App is a React-based mobile application built with Capacitor that serves as the primary user interface for the [Zaparoo Core](/docs/core/) service. It allows you to manage your Zaparoo setup, scan and create tokens, and control media playback directly from your phone. The app is available on iOS, Android, and as a web application.
 
 The app is **fully open source** under the GPLv3 license, including its Pro features. You can view the source code, contribute, or build your own version on [GitHub](https://github.com/ZaparooProject/zaparoo-app).
 

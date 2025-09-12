@@ -347,6 +347,15 @@ const config: Config = {
             to: "/docs/core/tokens/",
             from: "/docs/core/api/tokens",
           },
+          // Labels documentation redirects
+          {
+            to: "/docs/labels/#template-specifications",
+            from: "/docs/labels/templates",
+          },
+          {
+            to: "/docs/labels/#upgrade-stickers",
+            from: "/docs/labels/upgrade-stickers",
+          },
         ],
       },
     ],
