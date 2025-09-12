@@ -92,22 +92,22 @@ From this point, the service should be running and you can follow all other guid
 
 ## Supported Readers
 
-| Reader                                          | Status |
-|-------------------------------------------------|--------|
-| [PN532](/docs/core/drivers#pn532)               | ✅      |
-| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
-| [File Reader](/docs/core/drivers#file)          | ✅      |
-| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
-| [Optical Drive](/docs/core/drivers#optical-drive) | ✅      |
-| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
+| Reader                                            | Status |
+| ------------------------------------------------- | ------ |
+| [PN532](/docs/core/drivers#pn532)                 | ✅     |
+| [ACR122U](/docs/core/drivers#acr122u-usb)         | ✅     |
+| [File Reader](/docs/core/drivers#file)            | ✅     |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅     |
+| [Optical Drive](/docs/core/drivers#optical-drive) | ✅     |
+| [TTY2OLED](/docs/core/drivers#tty2oled)           | ✅     |
 
 ## Supported Launchers
 
-| Launcher | Systems/Extensions | Notes |
-|----------|-------------------|-------|
-| Kodi | Movies, TV Shows, Music, Collections | Only works in Kodi mode with API enabled |
-| EmulationStation | 100+ retro systems | Via Batocera's built-in emulators |
-| Custom Scripts | `.sh` files | Shell script execution |
+| Launcher         | Systems/Extensions                   | Notes                                    |
+| ---------------- | ------------------------------------ | ---------------------------------------- |
+| Kodi             | Movies, TV Shows, Music, Collections | Only works in Kodi mode with API enabled |
+| EmulationStation | 150+ retro systems                   | Via Batocera's built-in emulators        |
+| Custom Scripts   | `.sh` files                          | Shell script execution                   |
 
 :::info Kodi Integration
 Kodi integration only works when Batocera is in Kodi mode. Launches will only work with Kodi open and active, and scanning Kodi media only works while Kodi is running. You'll also need to enable the Kodi API - see the [LibreELEC Kodi setup instructions](/docs/platforms/libreelec#kodi-setup) for details on configuring the API settings.
@@ -115,18 +115,78 @@ Kodi integration only works when Batocera is in Kodi mode. Launches will only wo
 
 ### EmulationStation Systems
 
-Batocera supports a wide range of systems through EmulationStation. Popular systems include:
-- Nintendo: NES, SNES, N64, GameCube, Wii, Game Boy series
-- Sega: Genesis, Saturn, Dreamcast, Game Gear
-- Sony: PlayStation 1-3, PSP
-- Arcade: MAME, FinalBurn Neo
-- And many more classic systems
+Batocera supports over 150 systems through EmulationStation. The complete list includes:
+
+| System               | Batocera Name       | Extensions                              |
+| -------------------- | ------------------- | --------------------------------------- |
+| **Nintendo Systems** |
+| NES                  | nes                 | `.nes`, `.unf`, `.unif`                 |
+| Famicom Disk System  | fds                 | `.fds`, `.qd`                           |
+| SNES                 | snes                | `.sfc`, `.smc`, `.swc`, `.fig`, `.bs`   |
+| Nintendo 64          | n64                 | `.z64`, `.n64`, `.v64`, `.rom`          |
+| GameCube             | gamecube            | `.iso`, `.gcm`, `.gcz`, `.cso`, `.wbfs` |
+| Wii                  | wii                 | `.iso`, `.wbfs`, `.cso`, `.gcz`         |
+| Game Boy             | gb                  | `.gb`, `.gbc`, `.sgb`                   |
+| Game Boy Color       | gbc                 | `.gb`, `.gbc`, `.sgb`                   |
+| Game Boy Advance     | gba                 | `.gba`, `.agb`, `.bin`                  |
+| Nintendo DS          | nds                 | `.nds`                                  |
+| Nintendo 3DS         | n3ds                | `.3ds`, `.cia`                          |
+| Virtual Boy          | virtualboy          | `.vb`, `.vboy`                          |
+| **Sega Systems**     |
+| Master System        | mastersystem        | `.sms`, `.sg`                           |
+| Game Gear            | gamegear            | `.gg`                                   |
+| Genesis/Mega Drive   | megadrive           | `.md`, `.gen`, `.smd`, `.bin`           |
+| Sega CD              | segacd              | `.cue`, `.iso`, `.chd`                  |
+| Sega 32X             | sega32x             | `.32x`, `.smd`, `.bin`, `.md`           |
+| Saturn               | saturn              | `.cue`, `.iso`, `.chd`, `.mds`          |
+| Dreamcast            | dreamcast           | `.cdi`, `.gdi`, `.iso`, `.chd`          |
+| SG-1000              | sg1000              | `.sg`, `.sc`                            |
+| **Sony Systems**     |
+| PlayStation          | psx                 | `.cue`, `.iso`, `.chd`, `.pbp`, `.ecm`  |
+| PlayStation 2        | ps2                 | `.iso`, `.chd`, `.cso`, `.gz`           |
+| PlayStation 3        | ps3                 | `.iso`, `.pkg`                          |
+| PlayStation Portable | psp                 | `.iso`, `.cso`, `.pbp`                  |
+| **Arcade Systems**   |
+| MAME                 | mame                | `.zip`, `.7z`                           |
+| FinalBurn Neo        | fbneo               | `.zip`, `.7z`                           |
+| FinalBurn Alpha      | fba                 | `.zip`, `.7z`                           |
+| Capcom Play System 1 | cps1                | `.zip`, `.7z`                           |
+| Capcom Play System 2 | cps2                | `.zip`, `.7z`                           |
+| Capcom Play System 3 | cps3                | `.zip`, `.7z`                           |
+| Neo Geo              | neogeo              | `.zip`, `.7z`                           |
+| Neo Geo CD           | neogeocd            | `.cue`, `.iso`, `.chd`                  |
+| **Computer Systems** |
+| Amiga                | amiga500, amiga1200 | `.adf`, `.adz`, `.ipf`, `.lha`          |
+| Amstrad CPC          | amstradcpc          | `.dsk`, `.cdt`, `.cpr`, `.tap`          |
+| Apple II             | apple2              | `.dsk`, `.do`, `.po`, `.nib`            |
+| Atari ST             | atarist             | `.st`, `.msa`, `.stx`, `.dim`           |
+| Commodore 64         | c64                 | `.d64`, `.t64`, `.prg`, `.p00`          |
+| DOS                  | dos                 | `.exe`, `.com`, `.bat`                  |
+| MSX                  | msx, msx2           | `.rom`, `.mx1`, `.mx2`, `.cas`          |
+| ScummVM              | scummvm             | Game folders                            |
+| **Atari Systems**    |
+| Atari 2600           | atari2600           | `.a26`, `.bin`, `.rom`                  |
+| Atari 5200           | atari5200           | `.a52`, `.rom`, `.bin`                  |
+| Atari 7800           | atari7800           | `.a78`, `.rom`, `.bin`                  |
+| Atari Lynx           | lynx                | `.lnx`, `.o`                            |
+| Atari Jaguar         | jaguar              | `.j64`, `.jag`, `.rom`                  |
+| **Other Consoles**   |
+| 3DO                  | 3do                 | `.iso`, `.cue`, `.chd`                  |
+| ColecoVision         | colecovision        | `.col`, `.cv`, `.bin`, `.rom`           |
+| Intellivision        | intellivision       | `.int`, `.bin`, `.rom`                  |
+| Neo Geo Pocket       | ngp                 | `.ngp`, `.ngc`                          |
+| PC Engine            | pcengine            | `.pce`, `.sgx`, `.cue`, `.iso`          |
+| PC-FX                | pcfx                | `.cue`, `.iso`, `.chd`                  |
+| Vectrex              | vectrex             | `.vec`, `.gam`, `.bin`                  |
+| WonderSwan           | wonderswan          | `.ws`, `.wsc`                           |
+| **Handheld Systems** |
+| Game & Watch         | gameandwatch        | `.mgw`                                  |
+| Supervision          | supervision         | `.sv`, `.bin`                           |
+| **Modern Systems**   |
+| OpenBOR              | openbor             | Game folders                            |
+| Pico-8               | pico8               | `.p8`, `.png`                           |
+| TIC-80               | tic80               | `.tic`                                  |
 
 Either use the [Zaparoo App](/docs/app/) to search for games and write them to cards, or write the absolute path to the game on the card.
 
 Zaparoo also supports launching custom shell scripts. See the [Linux page](./linux.mdx#launchers) for more information on how to set up launchers this way.
-
-## Known Issues
-
-- Some launchers and systems are still missing supported and will be added in the future. These are mostly esoteric systems.
-- The picker menu and remote install features are not currently supported on this platform.

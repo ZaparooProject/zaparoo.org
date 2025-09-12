@@ -1,11 +1,5 @@
 # Windows
 
-:::warning
-
-Windows support is still in beta. It has minimal support for some launchers, but is still missing a lot of functionality and mostly relies on batch file launching.
-
-:::
-
 | Item               | Path                                 |
 | ------------------ | ------------------------------------ |
 | Data directory     | `%localappdata%/zaparoo`             |
@@ -26,22 +20,22 @@ From this point, Zaparoo is now set up! You should be able to connect a reader a
 
 ## Supported Readers
 
-| Reader                                          | Status |
-|-------------------------------------------------|--------|
-| [PN532](/docs/core/drivers#pn532)               | ✅      |
-| [ACR122U (PCSC)](/docs/core/drivers#acr122u-pcsc) | ✅      |
-| [File Reader](/docs/core/drivers#file)          | ✅      |
-| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
+| Reader                                            | Status |
+| ------------------------------------------------- | ------ |
+| [PN532](/docs/core/drivers#pn532)                 | ✅     |
+| [ACR122U (PCSC)](/docs/core/drivers#acr122u-pcsc) | ✅     |
+| [File Reader](/docs/core/drivers#file)            | ✅     |
+| [TTY2OLED](/docs/core/drivers#tty2oled)           | ✅     |
 
 ## Supported Launchers
 
-| Launcher | Systems/Extensions | Notes |
-|----------|-------------------|-------|
-| Kodi | Movies, TV Shows, Music, Collections | Media library integration with API enabled |
-| Steam | PC games | Automatic detection of Steam library |
-| LaunchBox | Retro games | Requires CLI_Launcher plugin |
-| RetroBat | Retro games | If RetroBat is installed |
-| Custom Scripts | `.bat`, `.ps1` files | Batch/PowerShell script execution |
+| Launcher       | Systems/Extensions                   | Notes                                             |
+| -------------- | ------------------------------------ | ------------------------------------------------- |
+| Kodi           | Movies, TV Shows, Music, Collections | Media library integration with API enabled        |
+| Steam          | PC games                             | Automatic detection of Steam library              |
+| LaunchBox      | Retro games                          | Requires CLI_Launcher plugin                      |
+| RetroBat       | 50+ retro systems                    | Via EmulationStation API when RetroBat is running |
+| Custom Scripts | `.bat`, `.ps1` files                 | Batch/PowerShell script execution                 |
 
 ## Launcher Details
 
@@ -87,7 +81,7 @@ Custom launchers allow you to start roms with a specified emulator and scan and 
 Custom launchers are toml files with launching criteria such as: System, Rom path, Emulator path and a powershell handeling to launch this.
 Just copy the toml files to the launcher directory stated above.
 
-Example for PCSX2: 
+Example for PCSX2:
 
 ```toml
 [[launchers.custom]]
@@ -97,8 +91,11 @@ media_dirs = ["D:\\Emulation\\Roms\\PS2"]
 file_exts = [".iso", ".bin", ".img", ".nrg", ".mdf", ".chd"]
 execute = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath 'D:\\Emulation\\Emulators\\PCSX2-Nightly\\pcsx2-qt.exe' -ArgumentList '\"[[media_path]]\"'"
 ```
+
 #### Custom launcher creator
+
 You can also use this powershell script to automatically create a launcher using a command gui:
+
 ```powershell
 Write-Host "=== Zaparoo Launcher TOML Generator ==="
 
@@ -221,7 +218,7 @@ allow_file = [
 
 Make sure to restart Zaparoo after you add this to the config file. If there's already a `[launchers]` section, just add the `allow_file` line to it. You can also use wildcards in the path, but be careful with them as they can match a lot of files. For example, `C:\\some\\.*.exe` will match all `.exe` files in the `C:\some\` directory.
 
-## Creating Batch Files (outdated method but still usable)
+## Creating Batch Files
 
 While the Windows platform is still in development, batch files can be used as a stand in for missing launcher support. Here are some examples of creating batch files for some common launchers.
 

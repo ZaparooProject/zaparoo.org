@@ -74,16 +74,30 @@ Press `Ctrl-X` and then `Y` to save and exit.
 
 Now when your device starts, Zaparoo Core should also start automatically.
 
-## Readers
+## Supported Readers
 
 | Reader                                          | Status |
 |-------------------------------------------------|--------|
-| [PN532 USB](/docs/readers/nfc/pn532-usb.md)     | ✅      |
-| [PN532 I2C](/docs/readers/nfc/pn532-module.md)  | ✅      |
-| [ACR122U](/docs/readers/nfc/acr122u.md)         | ✅      |
-| [Optical drive](/docs/readers/optical-drive.md) | ✅      |
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
+| [Optical Drive](/docs/core/drivers#optical-drive) | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
 
-## Launchers
+## Supported Launchers
+
+| Launcher | Extensions/Types | Notes |
+|----------|-----------------|-------|
+| Kodi Local | Local video files | Launches local media files through Kodi |
+| Kodi Movie | Movies from Kodi library | Launches movies indexed in Kodi |
+| Kodi TV | TV shows from Kodi library | Launches TV shows indexed in Kodi |
+| Kodi Music | Music from Kodi library | Plays music indexed in Kodi |
+| Kodi Song | Individual songs | Plays specific songs from Kodi |
+| Kodi Album | Music albums | Plays complete albums from Kodi |
+| Kodi Artist | Artist collections | Plays all songs by an artist |
+| Kodi TVShow | TV show series | Launches TV show series from Kodi |
+| Generic | `.sh` | Shell script execution |
 
 If setup was done correctly, Core will automatically pick up and support all movies and TV shows indexed in Kodi. Local files are also supported in the `/storage/videos` and `/storage/tvshows` folders.
 

@@ -32,6 +32,23 @@ Using FileZilla to transfer the file? Make sure _binary transfer mode_ is enable
 
 :::
 
-## Launchers
+## Supported Readers
 
-All launchers supported by MiSTer are also supported by MiSTeX (as far as MiSTeX itself supports them). See the [MiSTer launchers section](mister.md#launchers) for more information.
+| Reader                                          | Status |
+|-------------------------------------------------|--------|
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
+
+## Supported Launchers
+
+All launchers supported by MiSTer are also supported by MiSTeX (as far as MiSTeX itself supports them). This includes:
+
+- **MiSTer Cores**: 100+ arcade, console, and computer systems through official FPGA cores
+- **Custom Scripts**: `.sh` files for shell script execution
+- **MGL Files**: MiSTer Game Loader format for various systems
+- **Alternate Launchers**: LLAPI, PWM, Overclock, and Sinden Lightgun variants
+
+See the [MiSTer launchers section](mister.md#supported-launchers) for detailed information on all supported systems and launcher variants.

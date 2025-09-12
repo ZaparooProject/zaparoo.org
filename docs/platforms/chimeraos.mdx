@@ -73,6 +73,21 @@ If you want to undo the changes performed by the install command, you can run th
 ./zaparoo -uninstall
 ```
 
-## Launchers
+## Supported Readers
 
-Currently, you must use shell scripts to launch media on Linux. See the [Linux page](./linux.mdx#launchers) for more information on how to set up launchers this way.
+| Reader                                          | Status |
+|-------------------------------------------------|--------|
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
+| [Optical Drive](/docs/core/drivers#optical-drive) | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
+
+## Supported Launchers
+
+| Launcher | Extensions | Notes |
+|----------|-----------|-------|
+| Generic  | `.sh`     | Shell script execution |
+
+Currently, ChimeraOS only supports launching shell scripts. You must create shell scripts to launch games, applications, or media. See the [Linux page](./linux.mdx#launchers) for more information on how to set up launchers this way.
