@@ -1,26 +1,61 @@
 # Reader Drivers
 
-Reader drivers are ways for Zaparoo Core to communicate with different types of reader hardware. This mostly includes [NFC Readers](../readers/nfc/index.md), but can be other types of hardware or virtual devices.
+Reader drivers are ways for Zaparoo Core to communicate with different types of reader hardware. This mostly includes [NFC Readers](/docs/readers/nfc/), but can be other types of hardware or virtual devices.
 
-## libnfc
+## PN532
 
-A passthrough to the [libnfc library](https://github.com/nfc-tools/libnfc). It supports many types of wired connections for common NFC readers available. It has autodetection for ACR122U NFC readers and PN532 drivers connected over USB. Handles driver IDs: `acr122_usb`, `pn532_uart` and `pn532_i2c`.
+- **Driver IDs**: `pn532`, `pn532_uart`, `pn532_i2c`, `pn532_spi`
+- **Platforms**: [All platforms](/docs/platforms/)
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
 
-### acr122_usb
+A unified driver for PN532 NFC modules that supports multiple transport protocols (UART, I2C, SPI). This is the modern replacement for the legacy pn532_uart driver and is used for all currently available [PN532 USB-C Readers](/docs/readers/nfc/pn532-usb).
 
-Supports the ACR122U USB NFC reader. This driver does not take a file path as an argument, it takes a device name. This is a little tricky to find at the moment, but auto-detection works well and is generally how you should use it.
+- **UART**: For PN532 modules connected via USB serial (e.g., `/dev/ttyUSB0` on Linux)
+- **I2C**: For direct I2C connections (e.g., `/dev/i2c-0` on Linux)
+- **SPI**: For SPI connections
 
-### pn532_uart
+Auto-detection is enabled by default for UART connections but can be configured for other transport types. See [Reader Configuration](/docs/core/config#readers) for details.
 
-Supports PN532 modules that are connected via USB through a USB serial chip and with the DIP switches set to UART. This is the driver used for all the currently available [PN532 USB-C Readers](../readers/nfc/pn532-usb.md). The device path is something like `/dev/ttyUSB0` on Linux. This driver supports auto-detection.
+## ACR122U (USB)
 
-### pn532_i2c
+- **Driver IDs**: `acr122_usb`
+- **Platforms**: [All platforms](/docs/platforms/) (except [Windows](/docs/platforms/windows/) and macOS)
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
 
-Supports PN532 modules connected directly like, for example, a GPIO with the DIP switches set to I2C. The device path is something like `/dev/i2c-0`. This driver does not currently support auto-detection.
+A passthrough to the [libnfc library](https://github.com/nfc-tools/libnfc) that now primarily supports [ACR122U](/docs/readers/nfc/acr122u) USB NFC readers with autodetection. The PN532 UART and I2C support has been moved to the unified `pn532` driver.
+
+This driver does not take a file path as an argument, it takes a device name. This is a little tricky to find at the moment, but auto-detection works well and is generally how you should use it.
+
+## ACR122U (PCSC)
+
+- **Driver IDs**: `acr122_pcsc`
+- **Platforms**: [Windows](/docs/platforms/windows/)
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
+
+ACR122 NFC reader support via the PC/SC (Personal Computer/Smart Card) protocol. This driver provides ACR122U support on Windows platforms using the PC/SC interface.
+
+## TTY2OLED
+
+- **Driver IDs**: `tty2oled`
+- **Platforms**: [All platforms](/docs/platforms/)
+- **Enabled by default**: No
+- **Auto-detect**: Yes
+
+A display device driver for [TTY2OLED](https://github.com/venice1200/MiSTer_tty2oled) serial display devices. This driver communicates with TTY2OLED hardware to show game information and artwork on external displays. It requires a serial connection to the TTY2OLED device.
+
+**Note**: This driver is disabled by default and must be explicitly enabled in the configuration. See [Reader Configuration](/docs/core/config#readers) for details.
 
 ## Optical Drive
 
-Linux-based platforms only. Use CDs, DVDs, etc. as tokens and an optical drive as the reader. Zaparoo currently doesn't read any value off the disc itself, but it does pull either the UUID or label from the disc's metadata, which can be assigned to do something via a [mapping file](mappings.md#mapping-files). _A blank disc won't work, the disc must have data (anything) burned to it before it gets assigned a UUID and label._
+- **Driver IDs**: `optical_drive`
+- **Platforms**: Linux-based platforms ([Linux](/docs/platforms/linux), [MiSTer](/docs/platforms/mister), [Batocera](/docs/platforms/batocera), [SteamOS](/docs/platforms/steamos), RetroPie, [Recalbox](/docs/platforms/recalbox), [LibreELEC](/docs/platforms/libreelec), [ChimeraOS](/docs/platforms/chimeraos), [Bazzite](/docs/platforms/bazzite))
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
+
+Use CDs, DVDs, etc. as tokens and an [optical drive](/docs/readers/optical-drive) as the reader. Zaparoo currently doesn't read any value off the disc itself, but it does pull either the UUID or label from the disc's metadata, which can be assigned to do something via a [mapping file](/docs/core/mappings#mapping-files). _A blank disc won't work, the disc must have data (anything) burned to it before it gets assigned a UUID and label._
 
 Example configuration:
 
@@ -31,7 +66,7 @@ path = '/dev/sr0'
 id_source = 'merged'
 ```
 
-This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](./tokens.md), which is used to match against [mappings](./mappings.md). `merged` is the default value of nothing is set, and will combine the UUID and label into one value separated by a colon (`:`).
+This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](/docs/core/tokens), which is used to match against [mappings](/docs/core/mappings). `merged` is the default value of nothing is set, and will combine the UUID and label into one value separated by a colon (`:`).
 
 Example mapping file which would launch Crash Bandicoot 3 using the actual PS1 disc:
 
@@ -44,7 +79,12 @@ zapscript = 'PSX/*Crash Bandicoot*Warped*'
 
 ## Simple Serial
 
-A lightweight custom serial protocol that allows a microcontroller to act as a reader using its own hardware and custom logic. The device only needs to offer a read-only serial connection to the attached host. It handles the driver ID `simple_serial` and takes a path to a serial device, it does not currently support autodetection. A baud rate of 115200 is required for the serial connection, though this may be configurable in the future.
+- **Driver IDs**: `simple_serial`
+- **Platforms**: [All platforms](/docs/platforms/)
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
+
+A lightweight custom serial protocol that allows a microcontroller to act as a reader using its own hardware and custom logic. The device only needs to offer a read-only serial connection to the attached host. It takes a path to a serial device and does not currently support autodetection. A baud rate of 115200 is required for the serial connection, though this may be configurable in the future.
 
 The driver accepts one command payload from the connected device:
 
@@ -57,13 +97,18 @@ That is, a string starting with `SCAN`, 3 named arguments separated by a tab (`\
 All 3 arguments are optional. Sending `SCAN` by itself will explicitly set the token as removed in Zaparoo.
 
 - `removable` is a boolean (`yes`/`no`) value that specifies if the reader is itself capable of telling when a token has been "removed" from it. Setting this to `no` will inform Zaparoo not to clear the token as active when it stops receiving the payload, and make sure it works correctly when insert mode is active. This can be useful, for example, with a barcode scanner which would only scan a barcode once and doesn't make sense to "remove" it later. This option defaults to `yes` and can be left out in most cases.
-- `uid` is a string that sets the UID value on the resulting token. This is just an extra piece of metadata that can be attached to a token. It is used for comparing tokens and can be used in a mapping (see [Mappings](mappings.md)). The option defaults to an empty string and is optional.
-- `text` is a string which contains the token commands which will be run (see [ZapScript](../zapscript/index.md)).
+- `uid` is a string that sets the UID value on the resulting token. This is just an extra piece of metadata that can be attached to a token. It is used for comparing tokens and can be used in a mapping (see [Mappings](/docs/core/mappings)). The option defaults to an empty string and is optional.
+- `text` is a string which contains the token commands which will be run (see [ZapScript](/docs/zapscript/)).
 
 If the payload only contains one argument without any name, the entire argument will be used as the token text.
 
 ## File
 
-A virtual reader driver which allows treating a file on disk as an input source of tokens. Handles driver ID `file` and takes an absolute path to a file on disk. If this file doesn't exist on first startup, Zaparoo will create an empty file.
+- **Driver IDs**: `file`
+- **Platforms**: [All platforms](/docs/platforms/)
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
+
+A virtual reader driver which allows treating a file on disk as an input source of tokens. Takes an absolute path to a file on disk. If this file doesn't exist on first startup, Zaparoo will create an empty file.
 
 The contents of the file is used as the token text. No other token metadata can be set with this reader driver. When a file is first written to the token will be "inserted", when the contents of the file is cleared it will be "removed".
