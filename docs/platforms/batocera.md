@@ -90,18 +90,39 @@ batocera-services start zaparoo_service
 
 From this point, the service should be running and you can follow all other guides as normal. The [Zaparoo App](/docs/app/) will connect using the Batocera device's IP address, which you can find in the Batocera main menu under `Network Settings`.
 
-## Readers
+## Supported Readers
 
 | Reader                                          | Status |
 |-------------------------------------------------|--------|
-| [PN532 USB](/docs/readers/nfc/pn532-usb.md)     | ✅      |
-| [PN532 I2C](/docs/readers/nfc/pn532-module.md)  | ✅      |
-| [ACR122U](/docs/readers/nfc/acr122u.md)         | ✅      |
-| [Optical drive](/docs/readers/optical-drive.md) | ✅      |
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
+| [Optical Drive](/docs/core/drivers#optical-drive) | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
 
-## Launchers
+## Supported Launchers
 
-Most systems supported by Batocera are also supported by Zaparoo. Either use the [Zaparoo App](/docs/app/) to search for games and write them to cards, or write the absolute path to the game on the card.
+| Launcher | Systems/Extensions | Notes |
+|----------|-------------------|-------|
+| Kodi | Movies, TV Shows, Music, Collections | Only works in Kodi mode with API enabled |
+| EmulationStation | 100+ retro systems | Via Batocera's built-in emulators |
+| Custom Scripts | `.sh` files | Shell script execution |
+
+:::info Kodi Integration
+Kodi integration only works when Batocera is in Kodi mode. Launches will only work with Kodi open and active, and scanning Kodi media only works while Kodi is running. You'll also need to enable the Kodi API - see the [LibreELEC Kodi setup instructions](/docs/platforms/libreelec#kodi-setup) for details on configuring the API settings.
+:::
+
+### EmulationStation Systems
+
+Batocera supports a wide range of systems through EmulationStation. Popular systems include:
+- Nintendo: NES, SNES, N64, GameCube, Wii, Game Boy series
+- Sega: Genesis, Saturn, Dreamcast, Game Gear
+- Sony: PlayStation 1-3, PSP
+- Arcade: MAME, FinalBurn Neo
+- And many more classic systems
+
+Either use the [Zaparoo App](/docs/app/) to search for games and write them to cards, or write the absolute path to the game on the card.
 
 Zaparoo also supports launching custom shell scripts. See the [Linux page](./linux.mdx#launchers) for more information on how to set up launchers this way.
 

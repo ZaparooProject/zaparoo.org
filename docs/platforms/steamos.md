@@ -60,6 +60,24 @@ If you want to undo the changes performed by the install command, you can run th
 sudo ./zaparoo -uninstall
 ```
 
+## Supported Readers
+
+| Reader                                          | Status |
+|-------------------------------------------------|--------|
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
+| [Optical Drive](/docs/core/drivers#optical-drive) | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
+
+## Supported Launchers
+
+| Launcher | Systems/Extensions | Notes |
+|----------|-------------------|-------|
+| Steam | PC games | Automatic detection of Steam library |
+| Custom Scripts | `.sh` files | Shell script execution |
+
 ## Launchers
 
 Zaparoo supports the Steam launcher. Games installed through Steam will be automatically detected and added to the App. You can also manually add a Steam game by writing `steam://<game_id>` to a card, where `<game_id>` is the Steam ID of the game you want to launch.

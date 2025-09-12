@@ -24,7 +24,26 @@ Run `Zaparoo.exe` and it will open minimized in the system tray. You can make Za
 
 From this point, Zaparoo is now set up! You should be able to connect a reader and set up cards using the Zaparoo App.
 
-## Launchers
+## Supported Readers
+
+| Reader                                          | Status |
+|-------------------------------------------------|--------|
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U (PCSC)](/docs/core/drivers#acr122u-pcsc) | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
+
+## Supported Launchers
+
+| Launcher | Systems/Extensions | Notes |
+|----------|-------------------|-------|
+| Kodi | Movies, TV Shows, Music, Collections | Media library integration with API enabled |
+| Steam | PC games | Automatic detection of Steam library |
+| LaunchBox | Retro games | Requires CLI_Launcher plugin |
+| RetroBat | Retro games | If RetroBat is installed |
+| Custom Scripts | `.bat`, `.ps1` files | Batch/PowerShell script execution |
+
+## Launcher Details
 
 There is support for a handful of launchers on Windows. You can also add your own launchers (as of Zaparoo core 2.4.0)
 

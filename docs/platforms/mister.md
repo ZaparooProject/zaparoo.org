@@ -49,12 +49,35 @@ FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, r
 
 :::
 
-## Launchers
+## Supported Readers
 
-Many launchers are supported on MiSTer which link to official cores. See
-the [full list of supported cores](https://github.com/wizzomafizzo/mrext/blob/main/docs/systems.md).
+| Reader                                          | Status |
+|-------------------------------------------------|--------|
+| [PN532](/docs/core/drivers#pn532)               | ✅      |
+| [ACR122U](/docs/core/drivers#acr122u-usb)       | ✅      |
+| [File Reader](/docs/core/drivers#file)          | ✅      |
+| [Simple Serial](/docs/core/drivers#simple-serial) | ✅      |
+| [TTY2OLED](/docs/core/drivers#tty2oled)         | ✅      |
 
-The ID on the linked page can be used as the launcher ID in Zaparoo if required. Launchers will be automatically detected and used as long as you stick to the official games folders and core menu structure set by Downloader.
+## Supported Launchers
+
+| Launcher | Systems | Notes |
+|----------|---------|-------|
+| MiSTer Cores | 50+ arcade, console, and computer systems | Official FPGA cores |
+| Custom Scripts | `.sh` files | Shell script execution |
+| MGL Files | Various systems | MiSTer Game Loader format |
+
+### Core Systems
+
+Popular systems supported through official MiSTer cores include:
+- **Arcade**: CPS1/2, Neo Geo, Pac-Man, Galaga, and many more
+- **Console**: NES, SNES, Genesis, TurboGrafx-16, Game Boy, GBA
+- **Computer**: Amiga, Atari ST, C64, Apple II, Amstrad CPC, ao486 (PC)
+- **CD Systems**: MegaCD, PC Engine CD, TurboGrafx-CD
+
+## Launcher Details
+
+Many launchers are supported on MiSTer which link to official cores. Launchers will be automatically detected and used as long as you stick to the official games folders and core menu structure set by Downloader.
 
 Below are some launchers with special features that are supported by Zaparoo.
 
