@@ -171,6 +171,47 @@ path = '/tmp/some_file'
 
 `path` is an argument for the specified reader driver for how the device should be found. See [reader drivers](/docs/readers/index.md) for what this argument should look like for the driver.
 
+##### id_source
+
+| Key       | Type   | Default |
+| --------- | ------ | ------- |
+| id_source | string |         |
+
+`id_source` specifies which identifier source to use for token identification. This is only supported by certain reader drivers:
+
+- `optical_drive`: Can use `uuid` (disc UUID) or `label` (disc label)
+
+Other reader drivers ignore this setting.
+
+#### readers.drivers
+
+`readers.drivers` configures driver-specific settings. It's a sub-section that uses driver IDs as keys, and must have this header format: `[readers.drivers.DRIVER_ID]`
+
+```toml
+[readers.drivers.acr122_pcsc]
+enabled = true
+auto_detect = false
+
+[readers.drivers.simple_serial]
+enabled = false
+```
+
+##### enabled
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean | _varies by driver_ |
+
+`enabled` allows you to explicitly enable or disable a specific reader driver. When not specified, the driver uses its default enabled state.
+
+##### auto_detect
+
+| Key         | Type    | Default |
+| ----------- | ------- | ------- |
+| auto_detect | boolean | true    |
+
+`auto_detect` controls whether this specific driver should participate in automatic reader detection, overriding the global `auto_detect` setting for this driver only.
+
 ### Systems
 
 #### systems.default
@@ -220,6 +261,7 @@ index_root = [
 allow_file = [
     '^/media/fat/something.mgl$'
 ]
+on_media_start = '**echo:media started'
 ```
 
 #### index_root
@@ -256,6 +298,50 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 
 `media_dir` overrides the default location on disk where remote media downloads will be stored. By default, it will use the `media` directory in the Core data folder.
 
+#### on_media_start
+
+| Key             | Type   | Default |
+| --------------- | ------ | ------- |
+| on_media_start  | string |         |
+
+`on_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after media starts launching, regardless of the scan mode.
+
+#### launchers.default
+
+`launchers.default` overrides default settings for specific launchers. It's a sub-section that can be defined multiple times, and must have this header: `[[launchers.default]]`
+
+Pay attention to the double pairs of square brackets. Each defined `launchers.default` section must have its own header.
+
+```toml
+[[launchers.default]]
+launcher = 'KodiTV'
+server_url = 'http://localhost:5678'
+```
+
+##### launcher
+
+| Key      | Type   | Default |
+| -------- | ------ | ------- |
+| launcher | string |         |
+
+ID of the [launcher](./launchers.md) this default override entry applies to.
+
+##### install_dir
+
+| Key         | Type   | Default |
+| ----------- | ------ | ------- |
+| install_dir | string |         |
+
+Override the default installation directory for this launcher. Only supported by some launchers and usually refers to the parent directory of the executable which does the launching.
+
+##### server_url
+
+| Key        | Type   | Default |
+| ---------- | ------ | ------- |
+| server_url | string |         |
+
+Override the default server URL for this launcher. Only supported by some launchers and refers to an API base address.
+
 ### ZapScript
 
 ```toml
@@ -285,6 +371,9 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 [service]
 api_port = 7497
 device_id = '4d01c19f-09ba-4871-a58a-82fb49f5b518'
+allowed_origins = [
+    'https://app.zaparoo.org'
+]
 allow_run = [
     '^\*\*launch\.random:.+$'
 ]
@@ -310,6 +399,14 @@ allow_run = [
 
 It's currently reserved for future use when devices can communicate with each other and external services. **It should not be changed once set.**
 
+#### allowed_origins
+
+| Key             | Type     | Default |
+| --------------- | -------- | ------- |
+| allowed_origins | string[] | []      |
+
+`allowed_origins` specifies which origins are allowed to access the Core API via CORS (Cross-Origin Resource Sharing). By default, localhost and the active device IP address are allowed.
+
 #### allow_run
 
 | Key       | Type     | Default |
@@ -322,6 +419,39 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 
 - An entry is considered a **partial match** unless it's surrounded by a `^` and `$`.
 - Characters `*`, `|` and `.` common in both ZapScript and Regular Expressions must be escaped like in the example file below.
+
+### Groovy
+
+```toml
+[groovy]
+gmc_proxy_enabled = true
+gmc_proxy_port = 32106
+gmc_proxy_beacon_interval = '2s'
+```
+
+#### gmc_proxy_enabled
+
+| Key               | Type    | Default |
+| ----------------- | ------- | ------- |
+| gmc_proxy_enabled | boolean | false   |
+
+`gmc_proxy_enabled` enables or disables the GMC proxy service for Groovy MiSTer Control integration.
+
+#### gmc_proxy_port
+
+| Key            | Type    | Default |
+| -------------- | ------- | ------- |
+| gmc_proxy_port | integer | 32106   |
+
+`gmc_proxy_port` specifies which port the GMC proxy service should listen on.
+
+#### gmc_proxy_beacon_interval
+
+| Key                      | Type   | Default |
+| ------------------------ | ------ | ------- |
+| gmc_proxy_beacon_interval | string | 2s      |
+
+`gmc_proxy_beacon_interval` sets the interval for GMC proxy beacon broadcasts.
 
 ## Auth File
 
@@ -355,18 +485,25 @@ auto_detect = true
 mode = 'hold'
 exit_delay = 3.0
 ignore_system = [ 'PC', 'MSX' ]
+on_scan = '**echo:card was scanned'
+on_remove = '**echo:card was removed'
 
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'acr122_pcsc'
 path = '/dev/ttyUSB0'
 
 [[readers.connect]]
-driver = 'file'
-path = '/tmp/some_file'
+driver = 'optical_drive'
+path = '/dev/sr0'
+id_source = 'uuid'
+
+[readers.drivers.simple_serial]
+enabled = false
 
 [[systems.default]]
 system = 'SNES'
 launcher = 'SindenSNES'
+before_exit = '**input.keyboard:{f12}||**delay:2000'
 
 [launchers]
 index_root = [
@@ -375,6 +512,11 @@ index_root = [
 allow_file = [
     '^/media/fat/something.mgl$'
 ]
+on_media_start = '**echo:media started'
+
+[[launchers.default]]
+launcher = 'KodiTV'
+server_url = 'http://localhost:5678'
 
 [zapscript]
 allow_execute = [
@@ -385,7 +527,15 @@ allow_execute = [
 [service]
 api_port = 7497
 device_id = '4d01c19f-09ba-4871-a58a-82fb49f5b518'
+allowed_origins = [
+    'https://app.zaparoo.org'
+]
 allow_run = [
     '^\*\*launch\.random:.+$'
 ]
+
+[groovy]
+gmc_proxy_enabled = true
+gmc_proxy_port = 32106
+gmc_proxy_beacon_interval = '2s'
 ```
