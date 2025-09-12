@@ -10,7 +10,7 @@ If in doubt, "NTAG215 NFC cards" are a solid option with the best software, hard
 
 ## Writing to NFC Tags
 
-The easiest way to write Zaparoo commands to NFC tags is using the [Zaparoo App](https://wizzo.dev/tapto-life), available for both iOS and Android.
+The easiest way to write Zaparoo commands to NFC tags is using the [Zaparoo App](https://zaparoo.app), available for both iOS and Android.
 
 :::tip
 The Zaparoo App's tag writing functionality is available for free. You can start using it right away!
