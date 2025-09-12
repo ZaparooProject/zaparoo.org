@@ -1,17 +1,17 @@
 # Launchers
 
 A launcher is a program that can be used to launch a game or application.
-Each platform has its own set of launchers, which are used to launch the correct program for the given system and file.
+Each [platform](/docs/platforms/) has its own set of launchers, which are used to launch the correct program for the given [system](/docs/core/systems) and file.
 
 ## Custom Launchers
 
-Custom launchers are a type of user-defined launcher that can be created and configured using a TOML file, similar to the [Mapping Files](./mappings.md#mapping-files). For example, if a platform you're using Zaparoo on does not support an emulator you use, you can most likely create a custom launcher for it and integrate it into Zaparoo Core like an officially supported one.
+Custom launchers are a type of user-defined launcher that can be created and configured using a [TOML](https://toml.io/) file, similar to the [Mapping Files](./mappings.md#mapping-files). For example, if a [platform](/docs/platforms/) you're using Zaparoo on does not support an emulator you use, you can most likely create a custom launcher for it and integrate it into [Zaparoo Core](/docs/core/) like an officially supported one.
 
 Custom launchers aren't as configurable or advanced as official launchers, they're designed for simple cases where it's possible to launch media by giving a file path to the media player.
 
 :::note Media Tracking Limitations
 Custom launchers cannot accurately track what media is playing, which means:
-- They won't automatically stop when a token is removed in hold mode
+- They won't automatically stop when a [token](/docs/tokens/) is removed in hold mode
 - The stop command via the API won't work with custom launchers
 - Core can't determine if media launched by a custom launcher is still running
 
@@ -106,4 +106,11 @@ Before adding a command to your launcher config, test it manually in your termin
 - **Launcher precedence**: If multiple launchers match the same files, the first one loaded takes precedence
 - **File not found**: Ensure your `media_dirs` paths are absolute or correctly relative to the platform's root folders
 - **Command not found**: Verify the programs you're calling in `execute` are installed and in your system's PATH
+
+## See Also
+
+- **[Systems](./systems)** - Supported gaming systems and media types that launchers can handle
+- **[Configuration](./config)** - Configure Core settings including launcher behavior
+- **[Platform Guides](/docs/platforms/)** - Platform-specific launcher information and setup
+- **[ZapScript](/docs/zapscript/)** - Scripting language used to trigger launchers from tokens
 

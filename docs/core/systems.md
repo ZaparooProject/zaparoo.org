@@ -1,10 +1,10 @@
 # Systems
 
-A system is a category used by Core to group scanned media together, which is used to help matching with launchers and when writing ZapScript commands.
+A system is a category used by [Core](/docs/core/) to group scanned media together, which is used to help matching with [launchers](./launchers) and when writing [ZapScript](/docs/zapscript/) commands.
 
-Generally, a system will refer to a console or computer system, but can be used for any media type. Each platform has its own set of supported systems, based on the launchers it has available.
+Generally, a system will refer to a console or computer system, but can be used for any media type. Each [platform](/docs/platforms/) has its own set of supported systems, based on the [launchers](./launchers) it has available.
 
-System IDs are case-insensitive and are used in configuration files and ZapScript commands. Below is a complete reference of all available systems organized by category.
+System IDs are case-insensitive and are used in [configuration files](./config) and [ZapScript](/docs/zapscript/) commands. Below is a complete reference of all available systems organized by category.
 
 ## Game Consoles
 

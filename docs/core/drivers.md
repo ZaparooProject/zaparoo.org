@@ -1,6 +1,6 @@
 # Reader Drivers
 
-Reader drivers are ways for Zaparoo Core to communicate with different types of reader hardware. This mostly includes [NFC Readers](/docs/readers/nfc/), but can be other types of hardware or virtual devices.
+Reader drivers are ways for [Zaparoo Core](/docs/core/) to communicate with different types of [reader hardware](/docs/readers/). This mostly includes [NFC Readers](/docs/readers/nfc/), but can be other types of hardware or virtual devices.
 
 ## PN532
 
@@ -55,7 +55,7 @@ A display device driver for [TTY2OLED](https://github.com/venice1200/MiSTer_tty2
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 
-Use CDs, DVDs, etc. as tokens and an [optical drive](/docs/readers/optical-drive) as the reader. Zaparoo currently doesn't read any value off the disc itself, but it does pull either the UUID or label from the disc's metadata, which can be assigned to do something via a [mapping file](/docs/core/mappings#mapping-files). _A blank disc won't work, the disc must have data (anything) burned to it before it gets assigned a UUID and label._
+Use CDs, DVDs, etc. as tokens and an [optical drive](/docs/readers/optical-drive) as the reader. Zaparoo currently doesn't read any value off the disc itself, but it does pull either the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) or label from the disc's metadata, which can be assigned to do something via a [mapping file](/docs/core/mappings#mapping-files). _A blank disc won't work, the disc must have data (anything) burned to it before it gets assigned a UUID and label._
 
 Example configuration:
 
@@ -66,7 +66,7 @@ path = '/dev/sr0'
 id_source = 'merged'
 ```
 
-This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](/docs/core/tokens), which is used to match against [mappings](/docs/core/mappings). `merged` is the default value of nothing is set, and will combine the UUID and label into one value separated by a colon (`:`).
+This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](/docs/core/tokens), which is used to match against [mappings](/docs/core/mappings). `merged` is the default value of nothing is set, and will combine the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) and label into one value separated by a colon (`:`).
 
 Example mapping file which would launch Crash Bandicoot 3 using the actual PS1 disc:
 
@@ -92,13 +92,13 @@ The driver accepts one command payload from the connected device:
 SCAN\tremovable=yes\tuid=123457890\ttext=NeoGeo/mslug\n
 ```
 
-That is, a string starting with `SCAN`, 3 named arguments separated by a tab (`\t`), and ending with a newline (`\n`). The device should send this string constantly, as long as it wants the token to be considered active. If a token hasn't been sent for 1 second, it will be considered removed. The intention is that a device can simply spam this text at Zaparoo if something is being read, and Zaparoo will handle the rest to make it act like a standard reader.
+That is, a string starting with `SCAN`, 3 named arguments separated by a tab (`\t`), and ending with a newline (`\n`). The device should send this string constantly, as long as it wants the token to be considered active. If a token hasn't been sent for 1 second, it will be considered removed. The intention is that a device can simply spam this text at Zaparoo if something is being read, and Zaparoo will handle the rest to make it act like a standard [reader](/docs/readers/).
 
 All 3 arguments are optional. Sending `SCAN` by itself will explicitly set the token as removed in Zaparoo.
 
 - `removable` is a boolean (`yes`/`no`) value that specifies if the reader is itself capable of telling when a token has been "removed" from it. Setting this to `no` will inform Zaparoo not to clear the token as active when it stops receiving the payload, and make sure it works correctly when insert mode is active. This can be useful, for example, with a barcode scanner which would only scan a barcode once and doesn't make sense to "remove" it later. This option defaults to `yes` and can be left out in most cases.
-- `uid` is a string that sets the UID value on the resulting token. This is just an extra piece of metadata that can be attached to a token. It is used for comparing tokens and can be used in a mapping (see [Mappings](/docs/core/mappings)). The option defaults to an empty string and is optional.
-- `text` is a string which contains the token commands which will be run (see [ZapScript](/docs/zapscript/)).
+- `uid` is a string that sets the UID value on the resulting [token](/docs/core/tokens). This is just an extra piece of metadata that can be attached to a token. It is used for comparing tokens and can be used in a mapping (see [Mappings](/docs/core/mappings)). The option defaults to an empty string and is optional.
+- `text` is a string which contains the [token](/docs/tokens/) commands which will be run (see [ZapScript](/docs/zapscript/)).
 
 If the payload only contains one argument without any name, the entire argument will be used as the token text.
 
@@ -109,6 +109,13 @@ If the payload only contains one argument without any name, the entire argument 
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 
-A virtual reader driver which allows treating a file on disk as an input source of tokens. Takes an absolute path to a file on disk. If this file doesn't exist on first startup, Zaparoo will create an empty file.
+A virtual [reader](/docs/readers/) driver which allows treating a file on disk as an input source of [tokens](/docs/tokens/). Takes an absolute path to a file on disk. If this file doesn't exist on first startup, Zaparoo will create an empty file.
 
-The contents of the file is used as the token text. No other token metadata can be set with this reader driver. When a file is first written to the token will be "inserted", when the contents of the file is cleared it will be "removed".
+The contents of the file is used as the [token](/docs/tokens/) text. No other token metadata can be set with this reader driver. When a file is first written to the token will be "inserted", when the contents of the file is cleared it will be "removed".
+
+## See Also
+
+- **[Readers Overview](/docs/readers/)** - Hardware reader information and recommendations
+- **[NFC Readers](/docs/readers/nfc/)** - Specific NFC reader models and setup guides
+- **[Configuration](./config#readers)** - Configure reader settings and auto-detection
+- **[Tokens](/docs/tokens/)** - Physical objects that readers can scan

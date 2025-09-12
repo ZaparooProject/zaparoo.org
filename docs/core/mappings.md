@@ -117,7 +117,7 @@ The `match_pattern` option is the pattern used to match against the contents of 
 
 - By default, the pattern will be treated as an exact match, and must be exactly the same as the given key contents of the token. When matching against a token ID, the contents and pattern are both normalized to remove spaces, colons, and is converted to lowercase. This is to make it easier to match against NFC tag UIDs and barcodes, which do not have a standard display format.
 - If the pattern contains one or more stars (`*`), it will use wildcard matching, treating the asterisks as wildcards that can match any characters. For example, to match part of a UID: `*ed8dae*`
-- If the pattern is surrounded by forward slashes (`/`), it will be treated as a regular expression. For example: `/.*7281$/`
+- If the pattern is surrounded by forward slashes (`/`), it will be treated as a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions). For example: `/.*7281$/`
 
 The `zapscript` option is the actual [ZapScript](../zapscript/index.md) you want to be run when the mapping is matched.
 
