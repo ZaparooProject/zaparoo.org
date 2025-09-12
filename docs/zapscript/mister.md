@@ -50,3 +50,13 @@ The advanced argument `hidden` can be used to launch the script without showing 
 ```
 
 This will launch the script in the background, and won't interrupt the current game.
+
+## mister.mgl
+
+Execute MGL (MiSTer Game Library) content directly. This command takes the MGL file contents as a string and creates a temporary MGL file to launch:
+
+```
+**mister.mgl:<setname>Genesis</setname><rbf>_Console/Genesis</rbf><file delay="1" type="f" index="0" path="../games/Genesis/Sonic.md"/>
+```
+
+This allows you to programmatically create and launch MGL files without needing to store them on disk first.

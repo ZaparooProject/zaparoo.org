@@ -82,6 +82,12 @@ A full command might look like this:
 **playlist.open:{"id":"12341234","name":"My Playlist","items":[{"name":"Game 1","zapscript":"path/to/file.bin"},{"name":"Game 2","zapscript":"path/to/another/file.bin"}]}
 ```
 
+You can also use any ZapScript command in the `zapscript` field:
+
+```
+**playlist.play:{"id":"quick-games","name":"Quick Games","items":[{"name":"Random Genesis","zapscript":"**launch.random:genesis"},{"name":"Sonic","zapscript":"Genesis/Sonic the Hedgehog (USA, Europe).md"},{"name":"Mario","zapscript":"SNES/Super Mario World (USA).sfc"}]}
+```
+
 ## playlist.load
 
 ```

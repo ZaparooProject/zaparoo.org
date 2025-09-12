@@ -148,6 +148,18 @@ When first run, the media file will be downloaded locally to the `media` directo
 
 If the server requires authentication, you can define the credentials using the [auth.toml](../core/config.md#auth-file) file.
 
+The `pre_notice` advanced argument can be used to show a message before launching the game:
+
+```
+http://10.0.0.123/path/to/file.bin?system=Genesis&pre_notice=Loading special game...
+```
+
+The `name` advanced argument can be used to specify a custom display name for the download:
+
+```
+http://10.0.0.123/path/to/file.bin?system=Genesis&name=My Custom Game
+```
+
 ## launch.system
 
 This command will launch a system, based on MiSTer Extensions' own internal list of [system IDs](../core/systems.md). This can be useful for "meta-systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.

@@ -44,3 +44,15 @@ PCEngine/Another Game
 ```
 **http.get:https://api.example.com/hello||**launch.random:Genesis
 ```
+
+### Launch different content based on device platform
+
+```
+Genesis/Game.md?when=[[platform == "mister"]]||PCEngine/Game.pce?when=[[platform != "mister"]]
+```
+
+### Use expressions for dynamic paths
+
+```
+SNES/games-[[platform]]/Super Mario World.sfc
+```

@@ -75,3 +75,17 @@ It also supports inserting multiple coins at once. For example (to insert 3 coin
 ```
 **input.coinp2:3
 ```
+
+## input.key
+
+:::warning
+If a command comes from a remote source, this command will be blocked.
+:::
+
+Press a key using legacy numeric key codes. This is an older command that takes numeric codes instead of key names:
+
+```
+**input.key:88
+```
+
+This command converts legacy numeric key codes to modern key names internally. For new scripts, it's recommended to use `input.keyboard` instead.
