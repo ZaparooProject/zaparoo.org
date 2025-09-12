@@ -109,8 +109,8 @@ Before adding a command to your launcher config, test it manually in your termin
 
 ## See Also
 
-- **[Systems](./systems)** - Supported gaming systems and media types that launchers can handle
-- **[Configuration](./config)** - Configure Core settings including launcher behavior
+- **[Systems](./systems.md)** - Supported gaming systems and media types that launchers can handle
+- **[Configuration](./config.md)** - Configure Core settings including launcher behavior
 - **[Platform Guides](/docs/platforms/)** - Platform-specific launcher information and setup
 - **[ZapScript](/docs/zapscript/)** - Scripting language used to trigger launchers from tokens
 

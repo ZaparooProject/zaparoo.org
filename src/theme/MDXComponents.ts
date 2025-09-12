@@ -11,6 +11,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons"; // Import all solid ico
 import DownloadCard from "../components/DownloadCard";
 import Showcase from "../components/Showcase";
 import Gallery from "@site/src/components/Gallery";
+import QRCodeGenerator from "@site/src/components/QRCodeGenerator";
 library.add(fab, fas); // Add all icons to the library so you can use them without importing them individually.
 
 export default {
@@ -21,4 +22,5 @@ export default {
   DownloadCard,
   Showcase,
   Gallery,
+  QRCodeGenerator,
 };

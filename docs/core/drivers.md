@@ -117,5 +117,5 @@ The contents of the file is used as the [token](/docs/tokens/) text. No other to
 
 - **[Readers Overview](/docs/readers/)** - Hardware reader information and recommendations
 - **[NFC Readers](/docs/readers/nfc/)** - Specific NFC reader models and setup guides
-- **[Configuration](./config#readers)** - Configure reader settings and auto-detection
+- **[Configuration](./config.md#readers)** - Configure reader settings and auto-detection
 - **[Tokens](/docs/tokens/)** - Physical objects that readers can scan

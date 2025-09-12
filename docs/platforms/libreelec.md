@@ -101,4 +101,4 @@ Now when your device starts, Zaparoo Core should also start automatically.
 
 If setup was done correctly, Core will automatically pick up and support all movies and TV shows indexed in Kodi. Local files are also supported in the `/storage/videos` and `/storage/tvshows` folders.
 
-Running shell scripts is also supported. See the [Linux page](./linux.mdx#launchers) for more information on how to use this.
+Running shell scripts is also supported. See the [Linux page](./linux.mdx#supported-launchers) for more information on how to use this.

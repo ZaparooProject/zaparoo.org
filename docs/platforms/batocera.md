@@ -110,7 +110,7 @@ From this point, the service should be running and you can follow all other guid
 | Custom Scripts   | `.sh` files                          | Shell script execution                   |
 
 :::info Kodi Integration
-Kodi integration only works when Batocera is in Kodi mode. Launches will only work with Kodi open and active, and scanning Kodi media only works while Kodi is running. You'll also need to enable the Kodi API - see the [LibreELEC Kodi setup instructions](/docs/platforms/libreelec#kodi-setup) for details on configuring the API settings.
+Kodi integration only works when Batocera is in Kodi mode. Launches will only work with Kodi open and active, and scanning Kodi media only works while Kodi is running. You'll also need to enable the Kodi API - see the [LibreELEC instructions](/docs/platforms/libreelec) for details on configuring the API settings.
 :::
 
 ### EmulationStation Systems
@@ -189,4 +189,4 @@ Batocera supports over 150 systems through EmulationStation. The complete list i
 
 Either use the [Zaparoo App](/docs/app/) to search for games and write them to cards, or write the absolute path to the game on the card.
 
-Zaparoo also supports launching custom shell scripts. See the [Linux page](./linux.mdx#launchers) for more information on how to set up launchers this way.
+Zaparoo also supports launching custom shell scripts. See the [Linux page](./linux.mdx#supported-launchers) for more information on how to set up launchers this way.
