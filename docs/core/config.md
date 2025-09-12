@@ -14,7 +14,9 @@ Although comments are supported in TOML, _they will be lost if Core makes update
 
 Any changes made to the config file while the Core service is running require the service to be restarted before changes will take effect, or the `-reload` [CLI command](./cli.md) to be run.
 
-Optionally, Zaparoo Core can but run in portable mode, where the config and all other data are stored in a single folder alongside the executable. To enable this, create an empty folder called `user` in the same folder as the Core executable, then start Core normally.
+:::tip Portable Mode
+Optionally, Zaparoo Core can run in portable mode, where the config and all other data are stored in a single folder alongside the executable. To enable this, create an empty folder called `user` in the same folder as the Core executable, then start Core normally.
+:::
 
 ## Options
 
@@ -362,7 +364,9 @@ allow_execute = [
 | ------------- | -------- | ------- |
 | allow_execute | string[] (regex patterns) | []      |
 
-`allow_execute` allows specific executables and arguments to be run using the `**execute` [ZapScript](../zapscript/index.md) command. By default, the command does not allow anything to be run.
+:::danger Security Warning
+`allow_execute` allows specific executables and arguments to be run using the `**execute` [ZapScript](../zapscript/index.md) command. By default, the command does not allow anything to be run. Be extremely careful with this setting as it can execute arbitrary commands on your system.
+:::
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
@@ -473,9 +477,12 @@ Multiple credentials may be defined for the same server but on different paths.
 
 ## Example File
 
+<details>
+  <summary>Click to view a complete example config.toml file</summary>
+
 An example `config.toml` file with all fields filled, using the example sections shown above.
 
-```toml
+```toml title="config.toml"
 config_schema = 1
 debug_logging = true
 
@@ -543,3 +550,5 @@ gmc_proxy_enabled = true
 gmc_proxy_port = 32106
 gmc_proxy_beacon_interval = '2s'
 ```
+
+</details>

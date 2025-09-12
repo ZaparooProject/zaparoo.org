@@ -48,7 +48,7 @@ Sends the string argument to the API via the run method, as if a token with that
 - **Argument:** string
 - **Example:** `./zaparoo -launch "**launch.random:arcade"`
 
-:::warning Deprecated
+:::caution Deprecated Feature
 This flag is deprecated and is an alias of `-run`. Use `-run` instead.
 :::
 

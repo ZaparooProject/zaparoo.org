@@ -53,7 +53,7 @@ Zaparoo will find game libraries in other locations and drives, but it will only
 
 ### LaunchBox
 
-:::note
+:::tip Required Plugin
 
 The LaunchBox plugin _CLI_Launcher_ must be installed for launching to work. Download it [from here](https://forums.launchbox-app.com/files/file/4587-cli-launcher-launchbox-command-line-interface-for-launching-games-directly-from-stream-deck/).
 
@@ -67,7 +67,7 @@ To manually add a LaunchBox game, write `launchbox://<game_id>` on a card. Repla
 
 Since LaunchBox doesn't have a standard install location, Zaparoo will do its best to find it, but you can set the location manually by adding the following to your `config.toml` file:
 
-```toml
+```toml title="config.toml"
 [[launchers.default]]
 launcher = 'LaunchBox'
 install_dir = 'C:\\Users\\wizzo\\CustomLBDir'
@@ -83,7 +83,7 @@ Just copy the toml files to the launcher directory stated above.
 
 Example for PCSX2:
 
-```toml
+```toml title="PCSX2PS2_zaparoo_launcher.toml"
 [[launchers.custom]]
 id = "PCSX2PS2"
 system = "PS2"
@@ -94,9 +94,12 @@ execute = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Co
 
 #### Custom launcher creator
 
-You can also use this powershell script to automatically create a launcher using a command gui:
+<details>
+  <summary>Click to view PowerShell script for automatic launcher creation</summary>
 
-```powershell
+You can also use this PowerShell script to automatically create a launcher using a command GUI:
+
+```powershell title="launcher-generator.ps1"
 Write-Host "=== Zaparoo Launcher TOML Generator ==="
 
 $system = Read-Host "Enter system name (e.g., CPS2, PS1, NES)"
@@ -191,15 +194,17 @@ Write-Host "`nTOML launcher created: $outfile"
 Read-Host -Prompt "`nPress Enter to exit"
 ```
 
+</details>
+
 ### Flashpoint
 
 If it's installed, Zaparoo supports launching [Flashpoint](https://flashpointarchive.org/) games, although it won't include them in the media database and display in the App. You can manually create a Flashpoint card by writing `flashpoint://<game_id>` to a card, where `<game_id>` is the ID of the game you want to launch, or you can copy the URL straight from the Flashpoint launcher.
 
 ### Executables
 
-:::danger
+:::danger Security Risk
 
-Be careful with this feature! Executables can do anything, including deleting files and installing malware. Only use this feature if you trust the executable, and are ok with it potentially being run remotely within your local network.
+Be extremely careful with this feature! Executables can do anything, including deleting files and installing malware. Only use this feature if you trust the executable, and are ok with it potentially being run remotely within your local network.
 
 :::
 

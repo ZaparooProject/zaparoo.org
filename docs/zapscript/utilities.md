@@ -20,7 +20,7 @@ Stop/exit the current media.
 
 ## execute
 
-:::warning
+:::caution Security Requirement
 Using this command requires explicitly enabling the arguments in the [allow_execute](/docs/core/config#allow_execute) option of the config file. It will also be blocked if a command comes from a remote source.
 :::
 
@@ -40,7 +40,11 @@ This command will delay the execution of the next command by the specified numbe
 **delay:500
 ```
 
-Will delay the next command by 500ms (half a second). This is a _blocking command_ and will delay the entire token read by the specified time.
+Will delay the next command by 500ms (half a second).
+
+:::info Blocking Command
+This is a _blocking command_ and will delay the entire token read by the specified time.
+:::
 
 It can be combined with other commands using the `||` separator. For example, to launch SNES, wait 10 seconds, then press F12:
 

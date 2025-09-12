@@ -12,9 +12,8 @@
 ### Other Readers
 - **[Optical Drive](/docs/readers/optical-drive)** - Use CDs and DVDs as tokens
 
-:::warning
+:::caution Hardware Selection
 
-Buying generic hardware? Please pay attention to the recommendations in the docs. The hardware can be complicated
-without guidance, and it's easy to buy stuff that won't work or is junk.
+Buying generic hardware? Please pay attention to the recommendations in the docs. The hardware can be complicated without guidance, and it's easy to buy stuff that won't work or is junk.
 
 :::
