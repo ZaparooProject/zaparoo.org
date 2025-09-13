@@ -6,7 +6,7 @@ authors: [wizzo]
 draft: true
 ---
 
-Zaparoo Core v2.6.0 is now available! This release significantly expands Batocera support with over 100 additional systems plus Kodi integration, adds support for TV shows and music to Kodi, new experimental TTY2OLED display support, major NFC performance improvements plus heaps of other features and bug fixes.
+Zaparoo Core v2.6.0 is now available! This release significantly expands [Batocera](/docs/platforms/batocera) support with over 100 additional systems plus [Kodi](/docs/platforms/libreelec) integration, adds support for TV shows and music to Kodi, new experimental [TTY2OLED display](/docs/core/drivers#tty2oled) support, major [NFC performance improvements](/docs/readers/nfc/) plus heaps of other features and bug fixes.
 
 {/* truncate */}
 
@@ -32,21 +32,21 @@ We've significantly expanded [Batocera](/docs/platforms/batocera) system support
 
 ## Kodi Improvements
 
-Kodi is now also supported on [Batocera](/docs/platforms/batocera)! On top of that, we've also added support for playing music through Kodi, and improved support for playing collections so you can now also launch TV shows (instead of just individual episodes) and albums/artists. The Kodi module is also shared now, so these changes also apply to [LibreELEC/CoreELEC](/docs/platforms/libreelec) plus any other platforms we bring Kodi support to. You can also now configure authentication settings for Kodi launchers for those who prefer to keep its API service locked down.
+Kodi is now also supported on Batocera! On top of that, we've also added support for playing music through Kodi, and improved support for playing collections so you can now also launch TV shows (instead of just individual episodes) and albums/artists. The Kodi module is also shared now, so these changes also apply to [LibreELEC/CoreELEC](/docs/platforms/libreelec) plus any other platforms we bring Kodi support to. You can also now configure authentication settings for Kodi launchers for those who prefer to keep its API service locked down.
 
 ## TTY2OLED Display Support
 
-Core now ships with experimental support for the TTY2OLED project. This generally works fine already, but I will need more people to test it out and provide feedback. You need to manually enable auto-detect in the [config](/docs/core/config) to use this feature, but once it's enabled, your TTY2OLED will be automatically detected and start working immediately. One of the cooler parts of this support is it's cross-platform, so you can also use your existing TTY2OLED on new platforms like Windows and Batocera.
+Core now ships with experimental support for the [TTY2OLED project](/docs/core/drivers#tty2oled). This generally works fine already, but I will need more people to test it out and provide feedback. You need to manually enable auto-detect in the [config](/docs/core/config) to use this feature, but once it's enabled, your TTY2OLED will be automatically detected and start working immediately. One of the cooler parts of this support is it's cross-platform, so you can also use your existing TTY2OLED on new platforms like [Windows](/docs/platforms/windows) and [Batocera](/docs/platforms/batocera).
 
 ## Major NFC Performance Improvements
 
 We've switched over to a new NFC driver from libnfc for [PN532 NFC readers](/docs/readers/nfc/pn532-usb). This change should be seamless and automatic, with these improvements:
 
-- MIFARE tags are now 100% supported, read and write, and they no longer need to be formatted beforehand
+- [MIFARE tags](/docs/core/tokens) are now 100% supported, read and write, and they no longer need to be formatted beforehand
 - Windows now uses the same driver and has equal support (reading and writing)
 - Slightly more responsive feel when scanning tags (especially tags with a lot of data)
 - Uses one third of the CPU resources compared to the previous driver
-- Experimental support for FeLiCa tags (I followed the spec but I don't own any of these cards so I don't know if it works!)
+- Experimental support for [FeLiCa tags](/docs/core/tokens) (I followed the spec but I don't own any of these cards so I don't know if it works!)
 
 If you use these [NFC readers](/docs/readers/nfc/), one thing you will notice is it blinks way less. Don't be alarmed, it's still working as expected, it's just a side effect of offloading some work to the device itself.
 
@@ -58,15 +58,15 @@ Thanks to some tweaks in the database indexing process, updating the database is
 
 ### Batocera Package Support
 
-There are now pacman packages built for [Batocera](/docs/platforms/batocera), available in the GitHub releases page if you want to try them out. Hopefully we can get these officially listed in the official Batocera content downloader.
+There are now pacman packages built for Batocera, available in the GitHub releases page if you want to try them out. Hopefully we can get these officially listed in the official Batocera content downloader.
 
 ### RetroBat Support
 
-RetroBat is now supported as a launcher on [Windows](/docs/platforms/windows). Support should be automatic as long as RetroBat is running while you updated the media database.
+RetroBat is now supported as a launcher on [Windows](/docs/platforms/windows#retrobat). Support should be automatic as long as RetroBat is running while you updated the media database.
 
 ### Steam Integration Improvements
 
-Steam (Windows and SteamOS) support has been significantly improved:
+Steam ([Windows](/docs/platforms/windows#steam) and [SteamOS](/docs/platforms/steamos)) support has been significantly improved:
 
 - Steam shortcuts now appear in scan results
 - Automatic Steam path detection via registry
@@ -84,11 +84,11 @@ We've added [MiSTer](/docs/platforms/mister) improvements:
 And a handful of bugs fixed which were reported by the community:
 
 - Fixed [custom launcher](/docs/core/launchers) functionality issues
-- Fixed several [Batocera](/docs/platforms/batocera) platform bugs including system metadata display and path normalization
+- Fixed several Batocera platform bugs including system metadata display and path normalization
 - Fixed launch.random commands with arguments in format "system/\*"
-- Fixed system default overrides to properly respect configuration
-- Fixed TUI improvements including media DB update page freezing
-- Fixed [Batocera](/docs/platforms/batocera) API connection retry logic for better reliability
+- Fixed system default overrides to properly respect [configuration](/docs/core/config)
+- Fixed TUI improvements including [media DB update](/docs/core/web-ui) page freezing
+- Fixed Batocera API connection retry logic for better reliability
 
 ---
 
