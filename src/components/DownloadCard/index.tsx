@@ -5,8 +5,8 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-export const defaultVersion = "2.5.1";
-export const defaultReleaseDate = "2025-07-08";
+export const defaultVersion = "2.6.0";
+export const defaultReleaseDate = "2025-09-13";
 
 type Arch = "amd64" | "arm64" | "arm" | "386";
 
@@ -168,7 +168,12 @@ export default function DownloadCard({
         />
       ))}
       {architectures.length > 1 && (
-        <small><a href="#arch-help"><FontAwesomeIcon icon={["fas", "question-circle"]} /> Which one should I get?</a></small>
+        <small>
+          <a href="#arch-help">
+            <FontAwesomeIcon icon={["fas", "question-circle"]} /> Which one
+            should I get?
+          </a>
+        </small>
       )}
     </div>
   );
