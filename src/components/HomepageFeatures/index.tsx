@@ -11,34 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Make Media Real",
+    title: "Instant Game Launching",
     Svg: require("@site/static/img/hand-metal.svg").default,
     description: (
       <>
-        Add back a tactile feel to your digital media! Use physical objects to
-        launch media with affordable hardware like NFC tags and QR codes.
+        Tap a card, launch a game. No scrolling through menus, no loading screens,
+        no complexity. Just pure gaming magic that works in seconds.
       </>
     ),
   },
   {
-    title: "Make Media Accessible",
+    title: "Zero Hardware Modification",
     Svg: require("@site/static/img/heart.svg").default,
     description: (
       <>
-        Make it easy for family & friends to play their favorite games, stop
-        struggling with choice paralysis, set the perfect rotation for
-        tournaments.
+        Works with your existing devices without any modifications. Start with
+        just your phone and some NFC cards - no soldering, no special hardware required.
       </>
     ),
   },
   {
-    title: "Make Media Do Stuff",
+    title: "Universal Platform Support",
     Svg: require("@site/static/img/waypoints.svg").default,
     description: (
       <>
-        A platform for integrating with your media. Trigger custom actions,
-        subscribe to events or create your own applications using Zaparoo as a
-        backend.
+        One system works everywhere: MiSTer FPGA, Steam Deck, RetroPie, Windows,
+        and more. Set up once, use everywhere with your entire game collection.
       </>
     ),
   },

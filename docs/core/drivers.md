@@ -66,14 +66,14 @@ path = '/dev/sr0'
 id_source = 'merged'
 ```
 
-This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](/docs/core/tokens), which is used to match against [mappings](/docs/core/mappings). `merged` is the default value of nothing is set, and will combine the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) and label into one value separated by a colon (`:`).
+This reader driver has an extra option called `id_source`. It can be set to either: `uuid`, `label`, or `merged`. This option is used to determine what value will be used for the [token ID](/docs/core/tokens), which is used to match against [mappings](/docs/core/mappings). `merged` is the default value if nothing is set, and will combine the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) and label into one value separated by a forward slash (`/`).
 
 Example mapping file which would launch Crash Bandicoot 3 using the actual PS1 disc:
 
 ```toml
 [[mappings.entry]]
 token_key = 'id'
-match_pattern = '*:SCES-01420*'
+match_pattern = '*/SCES-01420*'
 zapscript = 'PSX/*Crash Bandicoot*Warped*'
 ```
 

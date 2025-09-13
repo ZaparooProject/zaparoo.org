@@ -9,8 +9,30 @@ import {
   defaultVersion,
   defaultReleaseDate,
 } from "@site/src/components/DownloadCard";
+import RotatingText from "@site/src/components/RotatingText";
+import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
+import UseCases from "@site/src/components/Homepage/UseCases";
+import {
+  CheckCircle,
+  Wrench,
+  Code2,
+  Gamepad2,
+  Target,
+  Joystick,
+  Monitor,
+  Smartphone,
+  Zap,
+  Download,
+  Clock,
+  Heart,
+  Layers,
+  Rocket,
+  Trophy,
+} from "lucide-react";
 
 import styles from "./index.module.css";
+import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
+import featureStyles from "@site/src/components/HomepageFeatures/styles.module.css";
 import Showcase from "@site/src/components/Showcase";
 
 const recentPosts = require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json");
@@ -41,89 +63,116 @@ function HomepageHeader() {
     <header
       className={clsx(styles.heroBanner)}
       style={{
-        position: 'relative',
-        overflow: 'hidden',
-        color: 'white'
+        position: "relative",
+        overflow: "hidden",
+        color: "white",
       }}
     >
-        <div
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backgroundImage: "url('./img/circuit-board.svg')",
-                backgroundRepeat: "repeat",
-                opacity: 0.6,
-                filter: 'brightness(1.5) contrast(1.2)',
-                zIndex: 1,
-            }}
-        />
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url('./img/circuit-board.svg')",
+          backgroundRepeat: "repeat",
+          opacity: 0.6,
+          filter: "brightness(1.5) contrast(1.2)",
+          zIndex: 1,
+        }}
+      />
       <div className="zaparoo-animated-bg" />
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+      <div
+        className="container"
+        style={{
+          position: "relative",
+          zIndex: 2,
+          paddingTop: "2rem",
+          paddingBottom: "2.5rem",
+        }}
+      >
         <Heading as="h1" className="hero__title">
           <img
             src="/img/logo_lockup_white_sm.webp"
             alt="Zaparoo Logo"
             height="200px"
             width="286px"
+            style={{ transform: "translateX(7px)" }}
           />
         </Heading>
-        <p className="hero__subtitle">
-          <img
-            src="/img/universal_loading_system_white_sm.webp"
-            alt="Universal Loading System"
-            height="40px"
-            width="252px"
+        <p
+          className="hero__subtitle"
+          style={{
+            fontSize: "1.8rem",
+            fontWeight: "600",
+            marginBottom: "2rem",
+            color: "white",
+          }}
+        >
+          Tap a Card,
+          <br className="mobile-break" /> Launch{" "}
+          <RotatingText
+            words={[
+              "a Game",
+              "a Movie",
+              "a TV Show",
+              "Music",
+              "a Podcast",
+              "a Book",
+              "a Comic",
+              "an App",
+            ]}
           />
         </p>
-        <div className={styles.buttons}>
+        <div
+          className={styles.buttons}
+          style={{
+            display: "flex",
+            gap: "1rem",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            marginBottom: "1rem",
+          }}
+        >
           <Link
-            className="button button--secondary button--lg"
-            to="/downloads/"
-            data-umami-event="hero-download"
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                src="/img/download-solid.svg"
-                alt="Download icon"
-                height="16px"
-                width="16px"
-                style={{ marginRight: "8px" }}
-              />
-              Download
-            </div>
-            <small>{`v${defaultVersion} (${defaultReleaseDate})`}</small>
-          </Link>
-        </div>
-        <div className={styles.buttons} style={{ marginTop: "15px" }}>
-          <Link
-            className="button button--secondary button--lg"
+            className="button button--primary button--lg"
             to="/docs/getting-started"
+            data-umami-event="hero-get-started"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
-            data-umami-event="hero-getting-started"
           >
-            <img
-              src="/img/book.svg"
-              alt="Book icon"
-              height="16px"
-              width="16px"
-              style={{ marginRight: "5px" }}
-            />{" "}
-            Getting Started
+            <Zap size={16} style={{ marginRight: "8px" }} />
+            Get Started
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/downloads/"
+            data-umami-event="hero-download"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Download size={16} style={{ marginRight: "8px" }} />
+            Download Now
           </Link>
         </div>
+        <p
+          className="hero__version"
+          style={{
+            color: "rgba(255,255,255,0.8)",
+            fontSize: "0.9rem",
+            margin: "0",
+            textAlign: "center",
+          }}
+        >
+          Latest: v{defaultVersion} ({defaultReleaseDate})
+        </p>
       </div>
     </header>
   );
@@ -137,13 +186,164 @@ export default function Home(): ReactNode {
       description="The open source universal loading system. Launch media and scripted actions using physical objects. Create your collection how YOU want."
     >
       <HomepageHeader />
+      <section
+        style={{
+          padding: "2rem 0",
+          backgroundColor: "var(--ifm-color-emphasis-100)",
+        }}
+      >
+        <div className="container">
+          <Showcase featured={true} />
+        </div>
+      </section>
       <main>
-        <div style={{ marginTop: "2rem" }}>
-          <HomepageFeatures />
-        </div>
-        <div style={{ marginTop: "2rem" }}>
-          <LatestNews />
-        </div>
+        <section
+          className={`${homepageStyles.section} ${homepageStyles.sectionLight}`}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col col--10 col--offset-1 text--center">
+                <h2 className={homepageStyles.sectionTitle}>
+                  What is Zaparoo?
+                </h2>
+                <p
+                  style={{
+                    fontSize: "1.3rem",
+                    lineHeight: "1.6",
+                    marginBottom: "2rem",
+                    color: "var(--ifm-color-emphasis-800)",
+                  }}
+                >
+                  Zaparoo is the{" "}
+                  <strong>open source universal loading system</strong> that
+                  lets you launch games and media instantly using physical
+                  objects. Tap a card, scan a code, or use any compatible
+                  reader: your content launches immediately. No menus, no
+                  searching, just play!
+                </p>
+
+                <div className={homepageStyles.platformBadges}>
+                  <div className={homepageStyles.platformBadge}>
+                    <Rocket size={16} style={{ marginRight: "0.5rem" }} />
+                    Instant Launch
+                  </div>
+                  <div className={homepageStyles.platformBadge}>
+                    <Wrench size={16} style={{ marginRight: "0.5rem" }} />
+                    No Hardware Mods
+                  </div>
+                  <div className={homepageStyles.platformBadge}>
+                    <Heart size={16} style={{ marginRight: "0.5rem" }} />
+                    100% Open Source
+                  </div>
+                </div>
+
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    lineHeight: "1.6",
+                    marginBottom: "1.5rem",
+                    color: "var(--ifm-color-emphasis-700)",
+                  }}
+                >
+                  Transform your digital collection into something you can touch
+                  and share. Perfect for anyone who misses the tactile feel of
+                  physical media, wants easier access to their library, or loves
+                  the satisfaction of a curated collection you can actually
+                  hold.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          className={`${homepageStyles.section} ${homepageStyles.sectionLight}`}
+        >
+          <div className="container">
+            <div className="text--center padding-horiz--md">
+              <h2 className={homepageStyles.sectionTitle}>How It Works</h2>
+              <p className={homepageStyles.sectionSubtitle}>
+                Get started with affordable hardware and devices you already
+                own.
+              </p>
+            </div>
+            <div className="row">
+              <div className="col col--4">
+                <div className="text--center padding-horiz--md">
+                  <div className="text--center">
+                    {(() => {
+                      const DownloadSvg =
+                        require("@site/static/img/download.svg").default;
+                      return (
+                        <DownloadSvg
+                          className={featureStyles.featureSvg}
+                          role="img"
+                          style={{ color: "var(--ifm-color-primary)" }}
+                        />
+                      );
+                    })()}
+                  </div>
+                  <h3>1. Install Zaparoo</h3>
+                  <p>Works with your existing games and emulators.</p>
+                </div>
+              </div>
+              <div className="col col--4">
+                <div className="text--center padding-horiz--md">
+                  <div className="text--center">
+                    {(() => {
+                      const SmartphoneNfcSvg =
+                        require("@site/static/img/smartphone-nfc.svg").default;
+                      return (
+                        <SmartphoneNfcSvg
+                          className={featureStyles.featureSvg}
+                          role="img"
+                          style={{ color: "var(--ifm-color-primary)" }}
+                        />
+                      );
+                    })()}
+                  </div>
+                  <h3>2. Write Your Cards</h3>
+                  <p>Use your phone or an NFC reader to link games to cards.</p>
+                </div>
+              </div>
+              <div className="col col--4">
+                <div className="text--center padding-horiz--md">
+                  <div className="text--center">
+                    {(() => {
+                      const GamepadSvg =
+                        require("@site/static/img/gamepad.svg").default;
+                      return (
+                        <GamepadSvg
+                          className={featureStyles.featureSvg}
+                          role="img"
+                          style={{ color: "var(--ifm-color-primary)" }}
+                        />
+                      );
+                    })()}
+                  </div>
+                  <h3>3. Tap & Play!</h3>
+                  <p>No menus, no choice paralysis, just play your games.</p>
+                </div>
+              </div>
+            </div>
+            <div className={homepageStyles.buttonGroup}>
+              <Link
+                className="button button--primary button--lg"
+                to="/docs/getting-started"
+                data-umami-event="how-it-works-get-started"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Trophy size={16} style={{ marginRight: "8px" }} />
+                Start Your Collection
+              </Link>
+            </div>
+          </div>
+        </section>
+        <PlatformShowcase />
+        <UseCases />
         <div
           style={{
             padding: "1rem",
@@ -189,39 +389,39 @@ export default function Home(): ReactNode {
                 gap: "0.5rem",
               }}
             >
-                <div className={styles.buttons}>
-                  <Link
-                    className="button button--primary button--md"
-                    to="/showcase/"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    See More
-                  </Link>
-                </div>
-                <div className={styles.buttons}>
-                  <Link
-                    className="button button--secondary button--md"
-                    to="https://zaparoo.org/discord"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      src="/img/discord-logo.svg"
-                      alt="Discord logo"
-                      height="16px"
-                      width="16px"
-                      style={{ marginRight: "5px" }}
-                    />{" "}
-                    Join the Discord
-                  </Link>
-                </div>
+              <div className={styles.buttons}>
+                <Link
+                  className="button button--primary button--md"
+                  to="/showcase/"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  See More
+                </Link>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  className="button button--secondary button--md"
+                  to="https://zaparoo.org/discord"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src="/img/discord-logo.svg"
+                    alt="Discord logo"
+                    height="16px"
+                    width="16px"
+                    style={{ marginRight: "5px" }}
+                  />{" "}
+                  Join the Discord
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -123,7 +123,7 @@ const config: Config = {
               href: "https://design.zaparoo.org/",
             },
             {
-              label: "ZapEsp32",
+              label: "ZapESP32",
               href: "https://github.com/ZaparooProject/zaparoo-esp32",
             },
             {

@@ -1,13 +1,18 @@
-import { MasonryPhotoAlbum } from "react-photo-album";
+import { MasonryPhotoAlbum, RowsPhotoAlbum } from "react-photo-album";
 import type { Photo } from "react-photo-album";
 import "react-photo-album/masonry.css";
+import "react-photo-album/rows.css";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import { useState } from "react";
 import { Captions } from "yet-another-react-lightbox/plugins";
 
-const allPhotos: Photo[] = [
+interface FeaturedPhoto extends Photo {
+  featured?: boolean;
+}
+
+const allPhotos: FeaturedPhoto[] = [
   {
     src: "/img/showcase/bten_floppy.jpg",
     width: 1167,
@@ -25,6 +30,7 @@ const allPhotos: Photo[] = [
     width: 1200,
     height: 901,
     alt: "3D printed mini NeoGeo console and carts. Credit: LoVeMaKeRz @ Discord",
+    featured: true,
   },
   {
     src: "/img/showcase/BFOOT_mini_nes_2.jpg",
@@ -43,6 +49,7 @@ const allPhotos: Photo[] = [
     width: 900,
     height: 1200,
     alt: "3D printed mini NES booth. Credit: BFOOT @ Discord",
+    featured: true,
   },
   {
     src: "/img/showcase/BigBlue709_switch_case.jpg",
@@ -55,6 +62,7 @@ const allPhotos: Photo[] = [
     width: 1200,
     height: 1120,
     alt: "Arcade stick with built-in NFC reader. Credit: PIXEL Memories @ Discord",
+    featured: true,
   },
   {
     src: "/img/showcase/lovemakerz_mini_snes.jpeg",
@@ -175,6 +183,7 @@ const allPhotos: Photo[] = [
     width: 1200,
     height: 900,
     alt: "Zaparoo arcade cab setup. Credit: zodduska @ Discord",
+    featured: true,
   },
   {
     src: "/img/showcase/discord20.jpg",
@@ -184,14 +193,33 @@ const allPhotos: Photo[] = [
   },
 ];
 
-export default function Showcase(props: { limit: number }) {
-  const photos = allPhotos.slice(0, props.limit);
+export default function Showcase(props: { limit?: number; featured?: boolean }) {
+  let photos = allPhotos;
+
+  if (props.featured) {
+    photos = allPhotos.filter(photo => photo.featured);
+  }
+
+  if (props.limit) {
+    photos = photos.slice(0, props.limit);
+  }
+
   const [index, setIndex] = useState(-1);
+
+  const PhotoAlbum = props.featured ? RowsPhotoAlbum : MasonryPhotoAlbum;
+  const albumProps = props.featured
+    ? {
+        targetRowHeight: 200,
+        rowConstraints: { singleRowMaxHeight: 300 }
+      }
+    : {};
+
   return (
     <>
-      <MasonryPhotoAlbum
+      <PhotoAlbum
         photos={photos}
         onClick={({ index }) => setIndex(index)}
+        {...albumProps}
       />
       <Lightbox
         slides={photos.map((photo) => ({
