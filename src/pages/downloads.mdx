@@ -4,6 +4,8 @@ title: "Downloads"
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Button from "@site/src/components/Button";
+import { latestReleaseBlogPost } from "@site/src/components/DownloadCard";
 
 :::info New to Zaparoo?
 See the [Getting Started](/docs/getting-started) guide for more detailed steps on getting up and running.
@@ -66,6 +68,15 @@ The [Zaparoo Core](/docs/core) application
 runs in the background on your device and coordinates all hardware and software
 to make Zaparoo work. The service is built for minimal resource usage, so it
 won't interfere with your media playing.
+
+<div style={{ marginBottom: "1rem" }}>
+  <Button
+    outline
+    label="Release Notes"
+    variant="secondary"
+    link={latestReleaseBlogPost}
+  />
+</div>
 
 <div
   style={{

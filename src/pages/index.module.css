@@ -58,6 +58,16 @@
   text-align: center;
 }
 
+.heroVersion a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+}
+
+.heroVersion a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .buttons {
   display: flex;
   gap: var(--button-gap);
@@ -163,6 +173,15 @@
 
 [data-theme='dark'] .heroVersion {
   color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='dark'] .heroVersion a {
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: underline;
+}
+
+[data-theme='dark'] .heroVersion a:hover {
+  color: white;
 }
 
 [data-theme='dark'] .whatIsZaparooText {

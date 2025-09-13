@@ -7,6 +7,7 @@ library.add(fas);
 
 export const defaultVersion = "2.6.0";
 export const defaultReleaseDate = "2025-09-13";
+export const latestReleaseBlogPost = "/blog/core-v2.6.0";
 
 type Arch = "amd64" | "arm64" | "arm" | "386";
 

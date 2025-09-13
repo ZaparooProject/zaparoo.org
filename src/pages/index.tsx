@@ -7,6 +7,7 @@ import Heading from "@theme/Heading";
 import {
   defaultVersion,
   defaultReleaseDate,
+  latestReleaseBlogPost,
 } from "@site/src/components/DownloadCard";
 import RotatingText from "@site/src/components/RotatingText";
 import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
@@ -101,7 +102,9 @@ function HomepageHeader(): ReactNode {
           </Link>
         </div>
         <p className={clsx("hero__version", styles.heroVersion)}>
-          Latest: v{defaultVersion} ({defaultReleaseDate})
+          Latest: <Link to={latestReleaseBlogPost} data-umami-event="hero-version-link">
+            v{defaultVersion} ({defaultReleaseDate})
+          </Link>
         </p>
       </div>
     </header>
