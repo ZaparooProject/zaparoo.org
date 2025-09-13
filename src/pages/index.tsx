@@ -24,6 +24,7 @@ import styles from "./index.module.css";
 import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
 import featureStyles from "@site/src/components/HomepageFeatures/styles.module.css";
 import Showcase from "@site/src/components/Showcase";
+import StructuredData from "@site/src/components/StructuredData";
 
 // Use dynamic import instead of require() for better TypeScript support
 import recentPostsData from "../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json";
@@ -114,6 +115,7 @@ export default function Home(): ReactNode {
       title="Open Source Universal Loading System"
       description="The open source universal loading system. Launch media and scripted actions using physical objects. Create your collection how YOU want."
     >
+      <StructuredData type="homepage" />
       <a href="#main-content" className="skip-to-content">
         Skip to main content
       </a>
@@ -283,6 +285,7 @@ export default function Home(): ReactNode {
                     height="16px"
                     width="16px"
                     className={styles.discordLogo}
+                    loading="lazy"
                   />{" "}
                   Join the Discord
                 </Link>

@@ -63,22 +63,33 @@
 }
 
 .zaparoo-animated-bg {
-  background: linear-gradient(90deg, #040616, #351558, #411506);
-  background-size: 300% 300%;
-  animation: gradient 11s alternate infinite;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   z-index: 0;
+  overflow: hidden;
 }
-@keyframes gradient {
+
+.zaparoo-animated-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(90deg, #040616, #351558, #411506, #040616);
+  animation: gradientSlide 11s alternate infinite;
+  will-change: transform;
+}
+
+@keyframes gradientSlide {
   0% {
-    background-position: 0%;
+    transform: translateX(0);
   }
   100% {
-    background-position: 100%;
+    transform: translateX(33.333%);
   }
 }
 

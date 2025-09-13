@@ -219,6 +219,9 @@ export default function Showcase(props: { limit?: number; featured?: boolean }) 
       <PhotoAlbum
         photos={photos}
         onClick={({ index }) => setIndex(index)}
+        componentsProps={{
+          image: { loading: "lazy" }
+        }}
         {...albumProps}
       />
       <Lightbox

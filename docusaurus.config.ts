@@ -65,7 +65,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/social-card.png",
+    image: "img/social-card.webp",
     navbar: {
       title: "Zaparoo",
       logo: {
