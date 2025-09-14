@@ -132,7 +132,7 @@ export default function DownloadCard({
           justifyContent: "center",
         }}
       >
-        <a href={platformLink} target="_blank" rel="noopener noreferrer">
+        <a href={platformLink} target="_blank" rel="noopener noreferrer" data-umami-event={`download-platform-${platform}`}>
           {icon}
         </a>
       </div>
@@ -145,6 +145,7 @@ export default function DownloadCard({
           link={docLink}
           icon={<FontAwesomeIcon icon={["fas", "book"]} />}
           fullWidth
+          dataUmamiEvent={`download-docs-${platform}`}
         />
       )}
       {nativeInstall && (
