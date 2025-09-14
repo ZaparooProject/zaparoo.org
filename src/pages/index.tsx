@@ -119,9 +119,6 @@ export default function Home(): ReactNode {
       description="The open source universal loading system. Launch media and scripted actions using physical objects. Create your collection how YOU want."
     >
       <StructuredData type="homepage" />
-      <a href="#main-content" className="skip-to-content">
-        Skip to main content
-      </a>
       <HomepageHeader />
       <section className={styles.sectionWrapper}>
         <div className="container">
