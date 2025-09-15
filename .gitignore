@@ -30,3 +30,7 @@ docs/core/dev/*
 
 docs/core/api/*
 !docs/core/api/_category_.json
+
+# PageSpeed Insights results
+pagespeed-*.json
+pagespeed-check.sh

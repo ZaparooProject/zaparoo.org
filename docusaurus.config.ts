@@ -19,6 +19,17 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
 
+  future: {
+    experimental_faster: {
+      swcJsLoader: true, // Use SWC for JS transpilation
+      swcJsMinimizer: true, // Use SWC for JS minification
+      swcHtmlMinimizer: true, // Use SWC for HTML minification
+      lightningCssMinimizer: true, // Use Lightning CSS for CSS minification
+      // rspackBundler: true,      // Disabled due to React 19 compatibility issues
+      mdxCrossCompilerCache: true, // Compile MDX once for both environments
+    },
+  },
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -73,17 +84,42 @@ const config: Config = {
         src: "img/logo_sm.webp",
       },
       items: [
-        { to: "/docs/", label: "Docs", position: "left", "data-umami-event": "navbar-docs" },
-        { to: "/downloads/", label: "Downloads", position: "left", "data-umami-event": "navbar-downloads" },
+        {
+          to: "/docs/",
+          label: "Docs",
+          position: "left",
+          "data-umami-event": "navbar-docs",
+        },
+        {
+          to: "/downloads/",
+          label: "Downloads",
+          position: "left",
+          "data-umami-event": "navbar-downloads",
+        },
         {
           href: "https://design.zaparoo.org/",
           label: "Designer",
           position: "left",
           "data-umami-event": "navbar-designer",
         },
-        { to: "/projects/", label: "Projects", position: "left", "data-umami-event": "navbar-projects" },
-        { to: "/blog/", label: "Blog", position: "left", "data-umami-event": "navbar-blog" },
-        { to: "/support/", label: "Support", position: "left", "data-umami-event": "navbar-support" },
+        {
+          to: "/projects/",
+          label: "Projects",
+          position: "left",
+          "data-umami-event": "navbar-projects",
+        },
+        {
+          to: "/blog/",
+          label: "Blog",
+          position: "left",
+          "data-umami-event": "navbar-blog",
+        },
+        {
+          to: "/support/",
+          label: "Support",
+          position: "left",
+          "data-umami-event": "navbar-support",
+        },
         {
           type: "html",
           position: "right",
@@ -385,6 +421,10 @@ const config: Config = {
         ],
       },
     ],
+    // Custom image optimization plugin
+    ["./plugins/image-optimization", {}],
+    // Performance optimization plugin
+    ["./plugins/performance-optimization", {}],
   ],
 };
 
