@@ -1,0 +1,42 @@
+---
+slug: core-v2.6.2
+title: "Zaparoo Core v2.6.2 released"
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.6.2 is now available! This release fixes several bugs from the v2.6.0 release.
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.6.2"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Bugs
+
+- Fix `allow_file` config option not matching correctly on Windows
+- Fix generic Windows file launcher: `.lnk`, `.a3x` and `.ahk`
+- Fixed an issue where the media DB generation may lock up on startup
+- Fixed a bug where many launchers were starting but immediately being killed
+- Added more Batocera systems that were missed in the first round
+- Fixed an issue where Core may crash when lauching a `playlist.open` command option
+- Split Kodi systems further to make searching easier: `MusicAlbum`, `MusicArtist` and `TVShow`
+- Added support for lauching `.m3u` and `.m3u8` playlists via Kodi
+- Many NFC library updates to improve stability on Windows and reader compatibility
+
+---
+
+Thanks to everyone who reported issues and did testing. The NFC library is especially new but I plan to keep tweaking it until everyone reports it stable.

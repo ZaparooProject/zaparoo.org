@@ -5,9 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-export const defaultVersion = "2.6.0";
-export const defaultReleaseDate = "2025-09-13";
-export const latestReleaseBlogPost = "/blog/core-v2.6.0";
+export const defaultVersion = "2.6.2";
+export const defaultReleaseDate = "2025-09-17";
+export const latestReleaseBlogPost = "/blog/core-v2.6.2";
 
 type Arch = "amd64" | "arm64" | "arm" | "386";
 
@@ -132,7 +132,12 @@ export default function DownloadCard({
           justifyContent: "center",
         }}
       >
-        <a href={platformLink} target="_blank" rel="noopener noreferrer" data-umami-event={`download-platform-${platform}`}>
+        <a
+          href={platformLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-umami-event={`download-platform-${platform}`}
+        >
           {icon}
         </a>
       </div>
