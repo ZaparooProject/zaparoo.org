@@ -1,0 +1,61 @@
+.tokenTableContainer {
+  margin-bottom: 1rem;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.tokenTable {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--ifm-background-surface-color);
+  margin: 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.tokenTable tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.propertyCell {
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+  padding: 0.875rem 1.25rem;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: none;
+}
+
+.valueCell {
+  padding: 0.875rem 1.25rem;
+  color: var(--ifm-color-content);
+  vertical-align: middle;
+  border: none;
+}
+
+.contractAddress {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  color: var(--ifm-code-color);
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .propertyCell,
+  .valueCell {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .propertyCell,
+  .valueCell {
+    padding: 0.625rem 0.75rem;
+  }
+
+  .contractAddress {
+    font-size: 0.85rem;
+  }
+}

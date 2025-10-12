@@ -12,6 +12,7 @@ import DownloadCard from "../components/DownloadCard";
 import Showcase from "../components/Showcase";
 import Gallery from "@site/src/components/Gallery";
 import QRCodeGenerator from "@site/src/components/QRCodeGenerator";
+import TokenTable from "@site/src/components/TokenTable";
 library.add(fab, fas); // Add all icons to the library so you can use them without importing them individually.
 
 export default {
@@ -23,4 +24,5 @@ export default {
   Showcase,
   Gallery,
   QRCodeGenerator,
+  TokenTable,
 };
