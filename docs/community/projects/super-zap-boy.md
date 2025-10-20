@@ -18,7 +18,11 @@ The Zaparoo project introduces a new way for people to fill this gap with physic
 
 ## The build
 
-In this section, I will discuss the building process of the SMES and Super Zap Boy. As a disclaimer, this process requires some soldering skills and involves cutting or removing parts of your existing hardware. I would rank this process as intermediate. If you enjoy tinkering, read on. Otherwise, consider seeking help from others before attempting any irreversible modifications.
+:::warning[Before You Begin]
+
+This process requires some soldering skills and involves cutting or removing parts of your existing hardware. I would rank this process as intermediate. If you enjoy tinkering, read on. Otherwise, consider seeking help from others before attempting any irreversible modifications.
+
+:::
 
 With that out of the way, below is a list of the requirements for this build. Try to acquire as many of these items as possible before you begin. I divided it into two sections, so you can choose what parts to get or omit.
 
@@ -70,19 +74,63 @@ Additionally, you will need some cables and other items. Keep in mind that we ha
 
 1. **Open the Super Game Boy:** Open up the Super Game Boy and remove everything, including the PCB board. Take the back of the shell and cut some of the support bars to make room for the NFC reader. Cut everything in the green area.
 2. **Prepare the Shell:** After you're done, it should look like this. Ensure the cut areas are flat and won't scratch the back of your NFC reader. You can sand these off, but be careful not to overdo it.
-3. **Position the NFC Reader:** Position the NFC reader to the back of the Super Game Boy case as shown. Ensure the NFC reader is positioned so that the USB-C cable can still be plugged into it. I made the mistake of placing the NFC reader too flat in the center, which caused my USB-C cable not to fit anymore. Test the position with the cable and the NFC reader to get it just right before applying the double-sided tape.
+3. **Position the NFC Reader:** Position the NFC reader to the back of the Super Game Boy case as shown. Ensure the NFC reader is positioned so that the USB-C cable can still be plugged into it.
+
+:::tip[Positioning Tip]
+
+Test the position with both the cable and the NFC reader to get it just right before applying the double-sided tape. I made the mistake of placing the NFC reader too flat in the center, which caused my USB-C cable not to fit anymore.
+
+:::
+
 4. **Adhere the NFC Reader:** After finding a good position where both fit, adhere the reader to the back. Note that having the NFC reader on the shell doesn't guarantee it will read the NFC tags in your cartridges because the cartridge slot remains in a fixed position. You can adjust by applying the tags slightly more to the right in your Game Boy cartridges to compensate for any misalignment.
 5. **Align the NFC Tag:** Depending on the position of your NFC reader, you may need to adjust the position of the NFC tag in your Game Boy cartridges to align as much as possible. This will give you the highest chance of a successful scan and game read. It doesn't matter if the NFC reader is off-center, as long as the NFC tag is in a similar position.
 6. **Cut an Opening for the USB Cable:** The final step for the Super Game Boy is to cut a small opening for the USB cable to fit through. I initially tried routing it through the bottom, but that didn't work well as the cartridge slot of the Super Nintendo didn't accommodate it. If you cut at a low position as shown in the picture of step 6, this cut won't be visible once the Super Game Boy is inserted into the case. I deemed this a necessary shell modification for the project.
 7. **Fit the Super Game Boy into the SMES Case:** This is where the USB cable should pass through to get inside the SMES case. It requires some wiggling and fidgeting to get it in, so ensure it fits without forcing it too much.
 
-<img src="/img/docs/community/projects/super-zap-boy/Screenshot_2024-06-29-16-37-46-74_6012fa4d4ddec268fc5c7112cbb265e7.jpg" alt="Step 1" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/DSbrhST9.png" alt="Step 2" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/WhatsApp_Image_2024-07-09_at_11.47.19.jpg" alt="Step 3" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Screenshot_2024-09-09_111623.png" alt="Step 4" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Cartridge_with_nfc.jpg" alt="Step 5" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Rn_im.jpg" alt="Step 6" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Passthrough.jpg" alt="Step 7" width="300"/>
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Screenshot_2024-06-29-16-37-46-74_6012fa4d4ddec268fc5c7112cbb265e7.jpg",
+    width: 900,
+    height: 1200,
+    alt: "Step 1: Opening the Super Game Boy"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/DSbrhST9.png",
+    width: 1200,
+    height: 900,
+    alt: "Step 2: Cutting support bars to make room for NFC reader"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/WhatsApp_Image_2024-07-09_at_11.47.19.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Step 3: Positioning the NFC reader"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Screenshot_2024-09-09_111623.png",
+    width: 1200,
+    height: 900,
+    alt: "Step 4: Test positioning with USB cable"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Cartridge_with_nfc.jpg",
+    width: 900,
+    height: 1200,
+    alt: "Step 5: NFC tag alignment in Game Boy cartridge"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Rn_im.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Step 6: Cutting opening for USB cable"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Passthrough.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Step 7: USB cable passthrough to SMES case"
+  }
+]} />
 
 ## Checkpoint!
 
@@ -153,9 +201,26 @@ Once everything is positioned correctly:
 
 You're almost done! After these steps, your Zap Boy combined with Super MiSTer should be **good to go**. Keep tinkering with the positioning and trimming until everything is in its place and functioning as expected!
 
-<img src="/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_7212091b-5724-4648-b029-1bf5dfc4bc6e.jpg" alt="Trimming process" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Screenshot_2024-09-09_111623.png" alt="Component placement" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Remix-0bcf1e7b-0318-47a1-8419-039ae7173e7f.png" alt="Final assembly" width="300"/>
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_7212091b-5724-4648-b029-1bf5dfc4bc6e.jpg",
+    width: 900,
+    height: 1200,
+    alt: "Trimming excess plastic from inside the SMES case"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Screenshot_2024-09-09_111623.png",
+    width: 1200,
+    height: 900,
+    alt: "Component placement and positioning inside the case"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Remix-0bcf1e7b-0318-47a1-8419-039ae7173e7f.png",
+    width: 1200,
+    height: 900,
+    alt: "Final assembly with components secured"
+  }
+]} />
 
 ## Optional: Power Switch for SMES
 
@@ -197,10 +262,26 @@ The wires will need to go on **pin 12** and **pin 17** on the **GPIO1 header**. 
 
 I recommend using **bare wires** on one end and **female dupont** headers on the other end (see picture below). This way you can easily remove them should you want to in the future.
 
-If you are using the **QMTECH** board, you will need to bridge **pin 10** together with **pin 30**, otherwise it will not work! Just do this with a simple female dupont to female dupont cable and try it out for yourself first to see if it works for you.
+:::note[QMTECH Board Users]
 
-<img src="/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_b2fa95bc-4956-4710-bcb8-35d31e12995d.jpg" alt="Cabling" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_f84f4053-2690-4134-9ac3-9918628f1896.jpg" alt="Reset button mount" width="300"/>
+If you are using the **QMTECH** board, you will need to bridge **pin 10** together with **pin 30**, otherwise the reset button will not work. Just do this with a simple female dupont to female dupont cable.
+
+:::
+
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_b2fa95bc-4956-4710-bcb8-35d31e12995d.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Reset button wiring with dupont cables to GPIO header"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_f84f4053-2690-4134-9ac3-9918628f1896.jpg",
+    width: 900,
+    height: 1200,
+    alt: "3D-printed reset button mount with actuation button"
+  }
+]} />
 
 ## Optional: Customizing the SNES Case Logo
 
@@ -226,26 +307,65 @@ If you'd like, you can **remove the original logo** on the top front of the SNES
 
 Once the logo is removed, you can then apply your custom logo using the **transparent sticker paper** for a sleek, professional look.
 
-<img src="/img/docs/community/projects/super-zap-boy/1200x1035.png" alt="Magic Eraser Sponge" width="300"/>
-
-<img src="/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_f5412cd5-bfce-46e3-bb52-078f679d4f19.jpg" alt="Sanding process" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_ecec7114-d9f7-4350-9d6a-23befd6f4484.jpg" alt="Logo removal" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/546.jpg" alt="Custom logo application" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Finished_logo.png" alt="Finished logo" width="300"/>
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/1200x1035.png",
+    width: 1200,
+    height: 1035,
+    alt: "Magic Eraser sponge for wet sanding"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_f5412cd5-bfce-46e3-bb52-078f679d4f19.jpg",
+    width: 900,
+    height: 1200,
+    alt: "Wet sanding the original logo with circular motion"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_ecec7114-d9f7-4350-9d6a-23befd6f4484.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Original logo gradually fading away"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/546.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Applying custom SMES logo with transparent sticker"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Finished_logo.png",
+    width: 1200,
+    height: 900,
+    alt: "Finished custom SMES logo on case"
+  }
+]} />
 
 ## Optional: 3D-Printed Backplate
-
-<img src="/img/docs/community/projects/super-zap-boy/IMG_5534.webp" alt="Backplate inside the SMES" width="300"/>
 
 You can choose to make your own backplate, or opt to **3D print** one specifically designed for this project.
 
 - **3D Printable File**: You can find the file on our Zaparoo GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes).
 
-### Important Note
+:::note[Backplate Compatibility]
 
 The backplate is designed to fit **specific parts** (as mentioned earlier in the guide). If you choose to use different parts, there's a chance that the backplate may **not fit perfectly**.
 
-<img src="/img/docs/community/projects/super-zap-boy/Backplate.webp" alt="The backplate" width="300"/>
+:::
+
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/IMG_5534.webp",
+    width: 1200,
+    height: 900,
+    alt: "3D-printed backplate installed inside the SMES"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Backplate.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom SMES backplate with ports and openings"
+  }
+]} />
 
 ## Optional: Front Controller Ports & System LED
 
@@ -269,8 +389,6 @@ This guide assumes you want to use **both controller ports** since the same boar
 
 To complete this mod, you'll need to do some soldering. Follow the instructions below carefully.
 
-<img src="/img/docs/community/projects/super-zap-boy/Image0.jpg" alt="Solder points" width="300"/>
-
 Check the diagram of the Arduino board and solder to the following points:
 
 - **LATCH**: 2x
@@ -280,22 +398,39 @@ Check the diagram of the Arduino board and solder to the following points:
 - **DATA1**: 1x (for Controller 1)
 - **DATA2**: 1x (for Controller 2)
 
-### Important: Software Setup
+:::info[Software Setup Required]
 
 The Arduino board requires specific software to work with the original SNES controllers.
 
 1. Go to the following link for the necessary software: [DaemonBite-Retro-Controllers-USB Software](https://github.com/MickGyver/DaemonBite-Retro-Controllers-USB)
 2. Follow the instructions provided on the page.
 
-### CAUTION!
+:::
 
-When soldering the controller ports, **remember that the pins for Controller 2 are inverted**. If you start from the left on Controller 1, start from the **opposite side** on Controller 2, or vice versa.
+:::danger[Controller 2 Pin Orientation]
+
+When soldering the controller ports, **the pins for Controller 2 are inverted**. If you start from the left on Controller 1, start from the **opposite side** on Controller 2, or vice versa.
+
+:::
 
 ### Final Check
 
 If you've soldered everything correctly, your setup should look something like this:
 
-<img src="/img/docs/community/projects/super-zap-boy/Soldered_finished.jpg" alt="Finished look" width="300"/>
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Image0.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Arduino board solder points diagram and wiring guide"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Soldered_finished.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Completed controller port soldering with all connections"
+  }
+]} />
 
 ## Final Result
 
@@ -305,13 +440,37 @@ Now if you don't have it exactly like this, that's completely okay! You can mix 
 
 If somehow this wiki was not clear enough on a certain subject and you have questions still, then hit me up @Phoenix on the Zaparoo discord ([wizzo.dev](https://wizzo.dev/)).
 
-<img src="/img/docs/community/projects/super-zap-boy/End_result.jpg" alt="Inside the final build" width="300"/>
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/End_result.jpg",
+    width: 1200,
+    height: 900,
+    alt: "Inside the completed SMES build with all components installed"
+  }
+]} />
 
 ## Optional: Cassette Cases and other cosmetics
 
-<img src="/img/docs/community/projects/super-zap-boy/Cassette_cases.png" alt="Cassette cases with custom covers (front)" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Cassette_back.png" alt="Cassette cases with custom covers (side & back)" width="300"/>
-<img src="/img/docs/community/projects/super-zap-boy/Super_Mister_Wallpaper_.png" alt="SMES Wallpaper (1920x1080)" width="300"/>
+<Gallery photos={[
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Cassette_cases.png",
+    width: 1200,
+    height: 900,
+    alt: "Cassette cases with custom Super Zap Boy game covers (front)"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Cassette_back.png",
+    width: 1200,
+    height: 900,
+    alt: "Cassette cases with custom covers (side and back view)"
+  },
+  {
+    src: "/img/docs/community/projects/super-zap-boy/Super_Mister_Wallpaper_.png",
+    width: 1920,
+    height: 1080,
+    alt: "Custom SMES wallpaper design for MiSTer (1920x1080)"
+  }
+]} />
 
 Wallpapers for this project can be found on our GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes/Wallpapers). It includes multiple **16:9 1920x1080** versions and one that is compatible with CRT's in **4:3 640x480**. Use the one that you like the best. If you plan on using these, I recommend you turning off the the MiSTer logo in the menu in order to not obstruct the wallpaper. You can do this in the MiSTer.ini file on the root of your SD card. Simply find "logo=1" on line nr. 236 and change the "1" to a "0". This disables the menu logo.
 

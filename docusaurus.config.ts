@@ -17,7 +17,12 @@ const config: Config = {
   trailingSlash: true,
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
+  },
 
   future: {
     experimental_faster: {
