@@ -7,6 +7,8 @@ import {
   Download,
   Tv,
   Code2,
+  Wrench,
+  Hammer,
 } from "lucide-react";
 import Link from "@docusaurus/Link";
 import styles from "./Homepage.module.css";
@@ -49,7 +51,7 @@ export default function UseCases(): ReactNode {
     <section className={`${styles.section} ${styles.sectionGray}`}>
       <div className="container">
         <div className="text--center padding-horiz--md">
-          <h2 className={styles.sectionTitle}>Perfect For Any Setup</h2>
+          <h2 className={styles.sectionTitle}>Your Perfect Setup</h2>
           <p className={styles.sectionSubtitle}>
             Zaparoo is designed to work how you want it to.
           </p>
@@ -75,11 +77,11 @@ export default function UseCases(): ReactNode {
         <div className={styles.buttonGroup}>
           <Link
             className="button button--primary button--lg"
-            to="/downloads/"
-            data-umami-event="use-cases-download"
+            to="/start/"
+            data-umami-event="use-cases-start"
           >
-            <Download size={16} style={{ marginRight: "8px" }} />
-            Download Zaparoo
+            <Hammer size={16} style={{ marginRight: "8px" }} />
+            Start Building
           </Link>
           <Link
             className="button button--secondary button--lg"
@@ -98,7 +100,7 @@ export default function UseCases(): ReactNode {
               width="16px"
               style={{ marginRight: "8px" }}
             />
-            Join Community
+            Share Your Ideas
           </Link>
         </div>
       </div>

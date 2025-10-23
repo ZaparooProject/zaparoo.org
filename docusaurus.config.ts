@@ -90,6 +90,12 @@ const config: Config = {
       },
       items: [
         {
+          to: "/start/",
+          label: "Start",
+          position: "left",
+          "data-umami-event": "navbar-start",
+        },
+        {
           to: "/docs/",
           label: "Docs",
           position: "left",
@@ -106,12 +112,6 @@ const config: Config = {
           label: "Designer",
           position: "left",
           "data-umami-event": "navbar-designer",
-        },
-        {
-          to: "/projects/",
-          label: "Projects",
-          position: "left",
-          "data-umami-event": "navbar-projects",
         },
         {
           to: "/blog/",

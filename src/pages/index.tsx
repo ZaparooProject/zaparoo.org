@@ -12,14 +12,7 @@ import {
 import RotatingText from "@site/src/components/RotatingText";
 import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
 import UseCases from "@site/src/components/Homepage/UseCases";
-import {
-  Zap,
-  Download,
-  Heart,
-  Rocket,
-  Trophy,
-  Wrench,
-} from "lucide-react";
+import { Zap, Download, Heart, Rocket, Trophy, Wrench } from "lucide-react";
 
 import styles from "./index.module.css";
 import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
@@ -35,7 +28,7 @@ function LatestNews(): ReactNode {
   return (
     <section className="container">
       <div className="padding-horiz--md">
-        <Heading as="h2">What's New</Heading>
+        <Heading as="h2">Latest Blog Posts</Heading>
       </div>
       <div className="row padding-horiz--md">
         {recentPosts.items.slice(0, 3).map((item, index) => (
@@ -86,23 +79,27 @@ function HomepageHeader(): ReactNode {
         <div className={styles.buttons}>
           <Link
             className={clsx("button button--primary button--lg", styles.button)}
-            to="/docs/getting-started"
+            to="/start/"
             data-umami-event="hero-get-started"
           >
             <Zap size={16} className={styles.buttonIcon} />
-            Get Started
+            Start Here
           </Link>
           <Link
-            className={clsx("button button--secondary button--lg", styles.button)}
+            className={clsx(
+              "button button--secondary button--lg",
+              styles.button
+            )}
             to="/downloads/"
             data-umami-event="hero-download"
           >
             <Download size={16} className={styles.buttonIcon} />
-            Download Now
+            Downloads
           </Link>
         </div>
         <p className={clsx("hero__version", styles.heroVersion)}>
-          Latest: <Link to={latestReleaseBlogPost} data-umami-event="hero-version-link">
+          Latest:{" "}
+          <Link to={latestReleaseBlogPost} data-umami-event="hero-version-link">
             v{defaultVersion} ({defaultReleaseDate})
           </Link>
         </p>
@@ -126,10 +123,17 @@ export default function Home(): ReactNode {
         </div>
       </section>
       <main id="main-content">
-        <section className={clsx(homepageStyles.section, styles.whatIsZaparooSection)}>
+        <section
+          className={clsx(homepageStyles.section, styles.whatIsZaparooSection)}
+        >
           <div className="container">
             <div className="row">
-              <div className={clsx("col col--10 col--offset-1", styles.whatIsZaparooContent)}>
+              <div
+                className={clsx(
+                  "col col--10 col--offset-1",
+                  styles.whatIsZaparooContent
+                )}
+              >
                 <h2 className={homepageStyles.sectionTitle}>
                   What is Zaparoo?
                 </h2>
@@ -168,13 +172,14 @@ export default function Home(): ReactNode {
             </div>
           </div>
         </section>
-        <section className={clsx(homepageStyles.section, styles.howItWorksSection)}>
+        <section
+          className={clsx(homepageStyles.section, styles.howItWorksSection)}
+        >
           <div className="container">
             <div className="text--center padding-horiz--md">
               <h2 className={homepageStyles.sectionTitle}>How It Works</h2>
               <p className={homepageStyles.sectionSubtitle}>
-                Get started with affordable hardware and devices you already
-                own.
+                Get started with affordable gear you might already own.
               </p>
             </div>
             <div className="row">
@@ -186,7 +191,10 @@ export default function Home(): ReactNode {
                         require("@site/static/img/download.svg").default;
                       return (
                         <DownloadSvg
-                          className={clsx(featureStyles.featureSvg, styles.featureIcon)}
+                          className={clsx(
+                            featureStyles.featureSvg,
+                            styles.featureIcon
+                          )}
                           role="img"
                         />
                       );
@@ -204,7 +212,10 @@ export default function Home(): ReactNode {
                         require("@site/static/img/smartphone-nfc.svg").default;
                       return (
                         <SmartphoneNfcSvg
-                          className={clsx(featureStyles.featureSvg, styles.featureIcon)}
+                          className={clsx(
+                            featureStyles.featureSvg,
+                            styles.featureIcon
+                          )}
                           role="img"
                         />
                       );
@@ -222,7 +233,10 @@ export default function Home(): ReactNode {
                         require("@site/static/img/gamepad.svg").default;
                       return (
                         <GamepadSvg
-                          className={clsx(featureStyles.featureSvg, styles.featureIcon)}
+                          className={clsx(
+                            featureStyles.featureSvg,
+                            styles.featureIcon
+                          )}
                           role="img"
                         />
                       );
@@ -235,8 +249,11 @@ export default function Home(): ReactNode {
             </div>
             <div className={homepageStyles.buttonGroup}>
               <Link
-                className={clsx("button button--primary button--lg", styles.button)}
-                to="/docs/getting-started"
+                className={clsx(
+                  "button button--primary button--lg",
+                  styles.button
+                )}
+                to="/start/"
                 data-umami-event="how-it-works-get-started"
               >
                 <Trophy size={16} className={styles.buttonIcon} />
@@ -247,6 +264,9 @@ export default function Home(): ReactNode {
         </section>
         <PlatformShowcase />
         <UseCases />
+        <section className={clsx(homepageStyles.section)}>
+          <LatestNews />
+        </section>
         <div className={styles.communityShowcaseWrapper}>
           <div className="container">
             <div className="text--center padding-horiz--md">
@@ -268,7 +288,10 @@ export default function Home(): ReactNode {
             <div className={styles.communityShowcaseButtons}>
               <div className={styles.buttons}>
                 <Link
-                  className={clsx("button button--primary button--md", styles.button)}
+                  className={clsx(
+                    "button button--primary button--md",
+                    styles.button
+                  )}
                   to="/showcase/"
                 >
                   See More
@@ -276,7 +299,10 @@ export default function Home(): ReactNode {
               </div>
               <div className={styles.buttons}>
                 <Link
-                  className={clsx("button button--secondary button--md", styles.button)}
+                  className={clsx(
+                    "button button--secondary button--md",
+                    styles.button
+                  )}
                   to="https://zaparoo.org/discord"
                 >
                   <img
@@ -287,7 +313,7 @@ export default function Home(): ReactNode {
                     className={styles.discordLogo}
                     loading="lazy"
                   />{" "}
-                  Join the Discord
+                  Show Yours Off
                 </Link>
               </div>
             </div>

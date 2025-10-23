@@ -26,7 +26,7 @@ export default function PlatformShowcase(): ReactNode {
         <div className="text--center padding-horiz--md">
           <h2 className={styles.sectionTitle}>Supported Hardware</h2>
           <p className={styles.sectionSubtitle}>
-            Zaparoo works with your existing gaming systems and hardware.
+            Our mission is Zaparoo on any platform with any hardware.
           </p>
         </div>
 
