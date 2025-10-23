@@ -240,6 +240,9 @@ export const StartWizard: React.FC = () => {
   const readerSectionRef = React.useRef<HTMLElement>(null);
   const summarySectionRef = React.useRef<HTMLElement>(null);
 
+  // Track if we're restoring from URL hash (initial load)
+  const isRestoringFromHash = React.useRef(false);
+
   // Parse URL fragment on mount
   useEffect(() => {
     const hash = window.location.hash.slice(1);
@@ -255,7 +258,12 @@ export const StartWizard: React.FC = () => {
       // Validate platform
       const validPlatform = platforms.find((p) => p.id === platform);
       if (validPlatform) {
+        isRestoringFromHash.current = true;
         setChoice({ platform, token, reader });
+        // Reset flag after state updates have processed
+        setTimeout(() => {
+          isRestoringFromHash.current = false;
+        }, 150);
       }
     } catch (e) {
       // Invalid hash, ignore
@@ -289,7 +297,7 @@ export const StartWizard: React.FC = () => {
     if (choice.platform && tokenSectionRef.current) {
       setTimeout(() => {
         tokenSectionRef.current?.scrollIntoView({
-          behavior: "smooth",
+          behavior: isRestoringFromHash.current ? "auto" : "smooth",
           block: "start",
         });
       }, 100);
@@ -301,7 +309,7 @@ export const StartWizard: React.FC = () => {
     if (choice.token && readerSectionRef.current) {
       setTimeout(() => {
         readerSectionRef.current?.scrollIntoView({
-          behavior: "smooth",
+          behavior: isRestoringFromHash.current ? "auto" : "smooth",
           block: "start",
         });
       }, 100);
@@ -313,7 +321,7 @@ export const StartWizard: React.FC = () => {
     if (choice.reader && summarySectionRef.current) {
       setTimeout(() => {
         summarySectionRef.current?.scrollIntoView({
-          behavior: "smooth",
+          behavior: isRestoringFromHash.current ? "auto" : "smooth",
           block: "start",
         });
       }, 100);
@@ -363,7 +371,10 @@ export const StartWizard: React.FC = () => {
 
       {/* Step 2: Token */}
       {choice.platform && selectedPlatform && (
-        <section className={styles.step} ref={tokenSectionRef}>
+        <section
+          className={`${styles.step} ${!isRestoringFromHash.current ? styles.animated : ''}`}
+          ref={tokenSectionRef}
+        >
           <h2 className={styles.stepTitle}>Pick a Token</h2>
           <div className={styles.grid}>
             {getValidTokens(selectedPlatform).map((token) => {
@@ -392,7 +403,10 @@ export const StartWizard: React.FC = () => {
 
       {/* Step 3: Reader */}
       {choice.token && selectedToken && (
-        <section className={styles.step} ref={readerSectionRef}>
+        <section
+          className={`${styles.step} ${!isRestoringFromHash.current ? styles.animated : ''}`}
+          ref={readerSectionRef}
+        >
           <h2 className={styles.stepTitle}>Pick a Reader</h2>
           <div className={styles.grid}>
             {getValidReaders(selectedToken).map((reader) => {
@@ -419,7 +433,10 @@ export const StartWizard: React.FC = () => {
 
       {/* Summary */}
       {choice.platform && choice.token && choice.reader && (
-        <section className={styles.step} ref={summarySectionRef}>
+        <section
+          className={`${styles.step} ${!isRestoringFromHash.current ? styles.animated : ''}`}
+          ref={summarySectionRef}
+        >
           <h2 className={styles.stepTitle}>Your Zaparoo Setup</h2>
           <div className={styles.summaryCard}>
             <SummaryContent choice={choice} />
@@ -445,189 +462,226 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
   const needsOpticalDrive = choice.reader === "optical-drive";
 
   return (
-    <div className={styles.summaryGrid}>
-      {/* What You Need */}
-      <div className={styles.summarySection}>
-        <h3>What You Need</h3>
-        <ul>
-          <li>{platformNames[choice.platform!]} device</li>
-
-          {/* Reader hardware */}
-          {needsUSBReader && (
-            <li>USB NFC reader (PN532 or ACR122U, ~$10-20)</li>
-          )}
-          {needsPhone && (
-            <li>
-              Phone with{" "}
-              {choice.reader === "zaparoo-app" ? "NFC or camera" : "camera"}
-            </li>
-          )}
-          {needsOpticalDrive && <li>CD/DVD/Blu-ray drive</li>}
-
-          {/* Token hardware */}
-          {choice.token === "nfc-cards" && (
-            <li>NTAG215 NFC cards or stickers</li>
-          )}
-          {choice.token === "qr-codes" && <li>Printer for QR codes</li>}
-          {choice.token === "amiibo" && (
-            <li>Your Amiibo or Lego Dimensions figures</li>
-          )}
-          {choice.token === "optical" && (
-            <li>Discs with data (blank discs won't work)</li>
-          )}
-
-          {/* App Pro requirement */}
-          {needsAppPro && (
-            <li>
-              <strong>Zaparoo App Pro</strong> (one-time purchase, enables
-              scanning features)
-            </li>
-          )}
-        </ul>
-
-        {/* Platform-specific warnings */}
-        {choice.platform === "mister" && needsUSBReader && (
-          <div className="alert alert--warning" style={{ marginTop: "1rem" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "0.5rem",
-              }}
-            >
-              <AlertTriangle
-                size={18}
-                style={{ marginTop: "0.1rem", flexShrink: 0 }}
-              />
-              <div>
-                <strong>MiSTer Note:</strong> Some ACR122U clones are
-                incompatible. PN532 USB is the safer choice.
-              </div>
-            </div>
-          </div>
-        )}
-        {choice.platform === "windows" && needsUSBReader && (
-          <div className="alert alert--info" style={{ marginTop: "1rem" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "0.5rem",
-              }}
-            >
-              <Info size={18} style={{ marginTop: "0.1rem", flexShrink: 0 }} />
-              <div>
-                <strong>Windows Note:</strong> ACR122U requires Smart Card
-                service enabled.
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Downloads */}
-      <div className={styles.summarySection}>
-        <h3>Download & Install</h3>
-        <Link
-          to={`/docs/platforms/${choice.platform}#install`}
-          className="button button--primary button--block"
-          style={{ marginBottom: "0.5rem" }}
-        >
-          <Download size={16} />
-          Install Zaparoo on {platformNames[choice.platform!]}
-        </Link>
-        {needsPhone && (
-          <Link
-            to="https://zaparoo.app"
-            className="button button--primary button--block"
-          >
-            <Download size={16} />
-            Zaparoo App{needsAppPro ? " (Pro required)" : ""}
-          </Link>
-        )}
-      </div>
-
-      {/* Shop */}
-      {(needsUSBReader || choice.token === "nfc-cards") && (
+    <div className={styles.summaryContainer}>
+      {/* Main two-column layout */}
+      <div className={styles.summaryMainGrid}>
+        {/* Left Column: What You'll Need */}
         <div className={styles.summarySection}>
-          <h3>Get Hardware</h3>
-          <Link
-            to="https://shop.zaparoo.com"
-            className="button button--success button--block"
-            style={{ marginBottom: "0.5rem" }}
+          <h3>What You'll Need</h3>
+          <ul>
+            <li>{platformNames[choice.platform!]} device</li>
+
+            {/* Reader hardware */}
+            {needsUSBReader && (
+              <li>USB NFC reader (PN532 or ACR122U, ~$10-20)</li>
+            )}
+            {needsPhone && (
+              <li>
+                Phone with{" "}
+                {choice.reader === "zaparoo-app" ? "NFC or camera" : "camera"}
+              </li>
+            )}
+            {needsOpticalDrive && <li>CD/DVD/Blu-ray drive</li>}
+
+            {/* Token hardware */}
+            {choice.token === "nfc-cards" && (
+              <li>NTAG215 NFC cards or stickers</li>
+            )}
+            {choice.token === "qr-codes" && <li>Printer for QR codes</li>}
+            {choice.token === "amiibo" && (
+              <li>Your Amiibo or Lego Dimensions figures</li>
+            )}
+            {choice.token === "optical" && (
+              <li>Discs with data (blank discs won't work)</li>
+            )}
+          </ul>
+
+          {/* Downloads */}
+          <h4 style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
+            Software Downloads
+          </h4>
+          <div className={styles.downloadButtons}>
+            <Link
+              to={`/docs/platforms/${choice.platform}#install`}
+              className="button button--primary button--block"
+            >
+              <Download size={16} />
+              Install Zaparoo on {platformNames[choice.platform!]}
+            </Link>
+            {needsPhone && (
+              <Link
+                to="https://zaparoo.app"
+                className="button button--primary button--block"
+              >
+                <Download size={16} />
+                Zaparoo App
+              </Link>
+            )}
+          </div>
+
+          {/* Shop Links */}
+          {(needsUSBReader || choice.token === "nfc-cards") && (
+            <>
+              <h4 style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
+                Get Hardware
+              </h4>
+              <div className={styles.shopLinks}>
+                <Link
+                  to="https://shop.zaparoo.com"
+                  className="button button--success button--block"
+                >
+                  <ShoppingCart size={16} />
+                  Official Zaparoo Shop
+                </Link>
+                <Link
+                  to="/docs/community/vendors"
+                  className={styles.secondaryShopLink}
+                >
+                  or browse community vendors
+                </Link>
+              </div>
+            </>
+          )}
+
+          {/* Platform-specific warnings */}
+          {choice.platform === "mister" && needsUSBReader && (
+            <div
+              className="alert alert--warning"
+              style={{ marginTop: "1rem" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "0.5rem",
+                }}
+              >
+                <AlertTriangle
+                  size={18}
+                  style={{ marginTop: "0.1rem", flexShrink: 0 }}
+                />
+                <div>
+                  <strong>MiSTer Note:</strong> Some ACR122U clones are
+                  incompatible. PN532 USB is the safer choice.
+                </div>
+              </div>
+            </div>
+          )}
+          {choice.platform === "windows" && needsUSBReader && (
+            <div className="alert alert--info" style={{ marginTop: "1rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "0.5rem",
+                }}
+              >
+                <Info
+                  size={18}
+                  style={{ marginTop: "0.1rem", flexShrink: 0 }}
+                />
+                <div>
+                  <strong>Windows Note:</strong> ACR122U requires Smart Card
+                  service enabled.
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Right Column: Getting Started */}
+        <div className={styles.summarySection}>
+          <h3>Getting Started</h3>
+          <ol className={styles.gettingStartedList}>
+            <li className={styles.emphasizedStep}>
+              <strong>Read the {platformNames[choice.platform!]} Guide</strong>
+              <Link
+                to={`/docs/platforms/${choice.platform}`}
+                className="button button--primary button--block"
+                style={{ marginTop: "0.5rem" }}
+              >
+                <Book size={16} />
+                Open Platform Guide
+              </Link>
+            </li>
+
+            <li>Install Zaparoo Core on your {platformNames[choice.platform!]}</li>
+
+            {needsUSBReader && <li>Connect your USB NFC reader</li>}
+            {needsPhone && <li>Install Zaparoo App on your phone</li>}
+            {needsOpticalDrive && <li>Connect your optical drive</li>}
+
+            {choice.token === "nfc-cards" && (
+              <li>
+                Design and order labels at{" "}
+                <a href="https://design.zaparoo.org">design.zaparoo.org</a>
+              </li>
+            )}
+            {choice.token === "qr-codes" && (
+              <li>
+                Learn <a href="/docs/core/zapscript">ZapScript format</a> and
+                generate QR codes
+              </li>
+            )}
+            {choice.token === "amiibo" && (
+              <li>
+                Set up <a href="/docs/core/mappings">UID mapping</a> for your
+                figures
+              </li>
+            )}
+            {choice.token === "optical" && (
+              <li>
+                Prepare your discs (must have data, see{" "}
+                <a href={`/docs/platforms/${choice.platform}`}>platform guide</a>
+                )
+              </li>
+            )}
+
+            <li>Start scanning!</li>
+          </ol>
+        </div>
+      </div>
+
+      {/* App Pro Callout - Full Width */}
+      {needsAppPro && (
+        <div className={`alert alert--info ${styles.appProCallout}`}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "0.5rem",
+            }}
           >
-            <ShoppingCart size={16} />
-            Official Zaparoo Shop
-          </Link>
-          <Link
-            to="/docs/community/vendors"
-            className="button button--success button--outline button--block"
-          >
-            <ShoppingCart size={16} />
-            Community Vendors
-          </Link>
+            <Info size={20} style={{ marginTop: "0.1rem", flexShrink: 0 }} />
+            <div>
+              <strong>About Zaparoo App Pro:</strong> The Pro version is only
+              needed for scanning features (using your phone as a reader). The
+              free version works perfectly for card design, configuration, and
+              setup. Purchasing Pro supports the Zaparoo project!
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Next Steps */}
-      <div className={styles.summarySection}>
-        <h3>Next Steps</h3>
-        <ol>
-          <li>
-            Install Zaparoo Core on your {platformNames[choice.platform!]}
-          </li>
-
-          {needsUSBReader && <li>Connect your USB NFC reader</li>}
-          {needsPhone && <li>Install Zaparoo App on your phone</li>}
-          {needsOpticalDrive && <li>Connect your optical drive</li>}
-
-          {choice.token === "nfc-cards" && (
-            <li>
-              Design and order labels at{" "}
-              <a href="https://design.zaparoo.org">design.zaparoo.org</a>
-            </li>
-          )}
-          {choice.token === "qr-codes" && (
-            <li>
-              Learn <a href="/docs/core/zapscript">ZapScript format</a> and
-              generate QR codes
-            </li>
-          )}
-          {choice.token === "amiibo" && (
-            <li>
-              Set up <a href="/docs/core/mappings">UID mapping</a> for your
-              figures
-            </li>
-          )}
-          {choice.token === "optical" && (
-            <li>
-              Prepare your discs (must have data, see{" "}
-              <a href={`/docs/platforms/${choice.platform}`}>platform guide</a>)
-            </li>
-          )}
-
-          <li>Start scanning!</li>
-        </ol>
-      </div>
-
-      {/* Help */}
-      <div className={styles.summarySection}>
+      {/* Need Help - Full Width Footer */}
+      <div className={styles.summaryFooter}>
         <h3>Need Help?</h3>
-        <Link
-          to={`/docs/platforms/${choice.platform}`}
-          className="button button--secondary button--block"
-          style={{ marginBottom: "0.5rem" }}
-        >
-          <Book size={16} />
-          {platformNames[choice.platform!]} Guide
-        </Link>
-        <Link
-          to="https://zaparoo.org/discord"
-          className="button button--secondary button--outline button--block"
-        >
-          <MessageCircle size={16} />
-          Join Discord
-        </Link>
+        <div className={styles.helpButtons}>
+          <Link
+            to={`/docs/platforms/${choice.platform}`}
+            className="button button--secondary"
+          >
+            <Book size={16} />
+            {platformNames[choice.platform!]} Guide
+          </Link>
+          <Link
+            to="https://zaparoo.org/discord"
+            className="button button--secondary button--outline"
+          >
+            <MessageCircle size={16} />
+            Join Discord
+          </Link>
+        </div>
       </div>
     </div>
   );

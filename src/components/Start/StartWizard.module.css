@@ -6,8 +6,11 @@
 
 .step {
   margin: 4rem 0 2rem;
-  animation: fadeIn 0.3s ease-in;
   scroll-margin-top: 6rem;
+}
+
+.step.animated {
+  animation: fadeIn 0.3s ease-in;
 }
 
 .step:first-of-type {
@@ -101,16 +104,30 @@
   border-radius: 12px;
 }
 
-.summaryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+/* Summary Layout */
+.summaryContainer {
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
+}
+
+.summaryMainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
 }
 
 .summarySection h3 {
   margin: 0 0 1rem 0;
   font-size: 1.25rem;
   color: var(--ifm-color-primary);
+}
+
+.summarySection h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: var(--ifm-font-color-base);
+  font-weight: 600;
 }
 
 .summarySection ul,
@@ -131,6 +148,107 @@
   gap: 0.5rem;
 }
 
+/* Getting Started List */
+.gettingStartedList {
+  counter-reset: step-counter;
+  list-style: none;
+  padding-left: 0;
+}
+
+ol.gettingStartedList {
+  padding-left: 0.5rem;
+}
+
+.gettingStartedList > li {
+  counter-increment: step-counter;
+  position: relative;
+  padding-left: 2.5rem;
+  padding-top: 0.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.gettingStartedList > li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-font-color-base);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Emphasized first step */
+.emphasizedStep {
+  padding-left: 0;
+  padding-top: 0.125rem;
+  margin-bottom: 1.5rem !important;
+}
+
+.emphasizedStep::before {
+  font-weight: 700;
+}
+
+/* Download Buttons */
+.downloadButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Shop Links */
+.shopLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.secondaryShopLink {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.25rem 0;
+  transition: opacity 0.2s;
+}
+
+.secondaryShopLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* App Pro Callout */
+.appProCallout {
+  margin: 0;
+}
+
+/* Footer */
+.summaryFooter {
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+
+.summaryFooter h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  color: var(--ifm-color-primary);
+  text-align: center;
+}
+
+.helpButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 768px) {
   .stepTitle {
     font-size: 1.5rem;
@@ -140,8 +258,24 @@
     padding: 1.5rem 1rem;
   }
 
-  .summaryGrid {
+  /* Mobile: Stack columns vertically */
+  .summaryMainGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+  }
+
+  /* Adjust emphasized step padding on mobile */
+  .emphasizedStep {
+    padding: 0.75rem;
+  }
+
+  /* Help buttons stack better on mobile */
+  .helpButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .helpButtons .button {
+    width: 100%;
   }
 }
