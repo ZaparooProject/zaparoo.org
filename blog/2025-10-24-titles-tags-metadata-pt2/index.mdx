@@ -1,0 +1,191 @@
+---
+slug: titles-tags-metadata-pt2
+title: "Titles, Tags and Metadata - Part 2"
+tags: [core]
+authors: [wizzo]
+---
+
+Part 2! Continuing on from my last article where we discussed the problem of game matching in Zaparoo, and the iterations we went through so far to try solve it.
+
+Before I begin, I want to give a big shout out to:
+
+- The [GameDatabase](https://github.com/PigSaint/GameDataBase) project by [PigSaint](https://github.com/PigSaint) which was a big inspiration for the final tags list used in the tags system I'm discussing today. If you've got a couple dollars to spare I highly recommend supporting his work on [Patreon](https://www.patreon.com/GameDataBase). GameDatabase is a very ambitious project where he's trying to personally curate and categorise as many games as possible from scratch. He's defined a unique tagging system for this which I think will be a lot of fun to use with Zaparoo one day.
+- And [BossRighteous](https://github.com/BossRighteous) again, who had the foresight to actually add a tags system at the very beginning and set me on the right track.
+
+{/* truncate */}
+
+## Quick Recap
+
+I recommend reading [the last article](/blog/titles-tags-metadata-pt1) if you didn't for more context, but what we basically went through was:
+
+1. Zaparoo currently doesn't have a concept of "games" only of individual files, which makes card scanning difficult to sync between devices.
+2. Traditional methods of game matching for launchers are not practical for Zaparoo, which has unique resource constraints and features.
+3. A method was introduced to generate an ID based on filenames, but it wasn't really sufficient on its own.
+4. We iterated on this ID until we came up with an improved method using both the ID and the original natural language game title to supplement it.
+
+Now the plan is: write an ID like `SNES/Super Mario World` to an [NFC card](/docs/tokens/nfc) and post-process it to match back to a game on the target device. Cool!
+
+## Dealing with Conflicts
+
+Something I didn't bring up in the last article but is another serious drawback of our new game matching technique: game titles are not unique!
+
+Not by a long shot, we are basically guaranteed to run into identical titles at some point and that is obviously a big problem when they're the whole basis of our matching method. How do we deal with that?
+
+We can't assign a unique internal number to a game like other launchers do, because there's no way for us to sync it between devices. Instead, we have to add additional filters to the title which have a high chance of cutting results down until the conflict is gone.
+
+The first one is the easiest and most effective: the system the game is on. SNES, NES, PSX, etc. this filter alone cuts out most conflicts and the best part is it's about as natural to remember and type as the title itself. That's why I've already been including it in all the title ID examples so far. It's actually so effective we can stop right here, and for the most part your retro gaming experience will be good. You can launch all the most popular titles without any surprises!
+
+But there are still many title conflicts within systems, so sometimes we need to filter more than that. There are also conflicts within a game itself. What if you had an English and a French version of a game on disk, but you wanted to launch the English version? They have the same title (for our purposes anyway, since we're not dealing with localised titles right now and it's common for them to still have English filenames). This is where the next feature comes in.
+
+## What Are Tags?
+
+Tags are the next critical piece of the puzzle. What am I talking about here exactly?
+
+It's the same idea you've probably run into on some search form of a website. You have your main search query, and then you can add additional filter to your search by tags. Say something like eBay, you can search for an item's name, and then you can toggle on search filters for stuff like a product's colour or material to get more specific results.
+
+Zaparoo tags work the same way. As media is indexed into the database, we have a preset canonical list of tags, and we can choose to link them up to the media as we go. Then, when they're linked in there, we can use them as search filters. This is a super powerful concept and we'll be using it in more places going forward in Zaparoo.
+
+This is already implemented. I'll summarise what we're working with now:
+
+- __Media title__: this effectively acts as the canonical game for game matching.
+- __Media file__: the actual file on disk (or a reference like a Steam ID or something, which is a whole other kettle of fish, but in our design we keep it simple and treat them as files).
+- __Media tag__: which represents an active relationship to a tag (i.e. this thing has this tag).
+
+The relationship goes tag to file to title. A media title can have multiple files associated with it, and a media file can have multiple media tags associated with it.
+
+And now we have:
+
+- A simple way to launch with good success rate: `SNES/Super Mario World`
+- An escape hatch for conflicts: `SNES/Super Mario World (year:1990)`
+- And a way to set preferences: `SNES/Super Mario World (year:1990) (lang:de)`
+
+These should be all the tools we need to solve the conflict problem, continuing with the mantra that the solution just needs to be "good enough" not perfect. This should also look quite familiar to you. I went through a lot of options for how tags should look in an ID and decided it's best to stick to the classics, just put them in parentheses.
+
+There's also a question of when we generate these IDs automatically, when is it appropriate to add a tag to the ID to make sure it's unique enough? i.e. should we always include a year tag in a generated ID to be safe? I'm not sure the answer to this yet but I don't believe it will be a huge problem in practice, and we can wait until a nice solution presents itself later. The important part is giving people tools right now to work around issues encountered through actual use.
+
+### Source of Tags
+
+Another question, where do these tags come from? I'm talking about them like they magically exist. The best source of tags will be from parsing scraped metadata, but we don't have that (yet!).
+
+The main source that I'm using right now is actually the filename itself. Another BossRighteous idea. In retro gaming we're lucky that it's actually quite common for a game's filename to be packed with useful metadata. Curated ROM sets like [No-Intro](https://no-intro.org/) and [TOSEC](https://www.tosec.org/) follow naming conventions that include region, language, version info and more in the filename. I won't say it's the most consistent source, but it's there and it's pretty easy to parse reliably.
+
+Some tags you'll already have available to filter with in next release:
+
+- Language
+- Region
+- Translation
+- Release year (less common, depends on pack)
+- ROM dump quality
+- Game version (prototypes, demos, unlicensed, etc.)
+
+And some other random bits depending on the file source and system. We'll be missing some of the cooler things to filter on like genres and ratings but it's a good start and it's basically free.
+
+## Resolving IDs
+
+This is the second half of the whole equation. It's all well and good we have this perfectly planned piece of text that represents a game, but what's the process of linking that text back to a real game to be launched?
+
+This problem is equally if not more complex than generating the IDs in the first place, but it also ended up being much easier to get this part working. In comparison with generating IDs, resolving them:
+
+- Has a much easier to define problem: filter from a query to a file in the database.
+- Is based on a common problem where many people have already researched and published recommendations (and libraries) for effective ways to search for media.
+- Does not have any of same pressures of defining public standards, so the process can be changed and tweaked with less risk of regressions.
+- Has less performance pressure. Even though we need to resolve an ID "instantly" when a card is scanned, that's actually less pressure than micro-optimising the index process that has to run hundreds of thousands of times.
+
+So I've come up with a multi-step resolution process which I'll just go through at a high level. I don't actually know how well this will work in the wild, but it's been working well for me so far! This is a process where I'm also open to feedback on how we can improve it.
+
+We'll start off with the piece of text on a card: `SNES/Home Alone 2 - Lost in New York (region:eu)`
+
+I don't know why you want to play the PAL version but you do you. Now we can break this up into 3 parts: system (SNES), title (Home Alone 2 - Lost in New York) and tag (Europe region). These will be our search parameters going forward.
+
+Each step in the process gets progressively less precise and more expensive to run, and at every step we will short circuit and skip everything else if we have enough confidence in a match. This way *hopefully* most matches really are instant and for others we can try find *something* to run which doesn't take too long.
+
+### Slug Matches
+
+Pretty straightforward, we convert the input title to a slug, in this case `homealone2lostinnewyork`, and then we do an exact lookup on all the slugs in the SNES section of the database. This is very fast, and we do 2 checks:
+
+1. Exact match of the slug plus all tags that may have been set in the input query.
+2. Exact match of the slug without filtering with any tags.
+
+Most scans will be finished at this point.
+
+### Secondary Titles
+
+This is a very specific check but I thought it would come in pretty useful considering the small amount of work. I'm defining "secondary titles" as subtitles in media titles and the part after a possessive noun in a title. For example:
+
+- "Ocarina of Time" in "The Legend of Zelda: Ocarina of Time"
+- "Snake Eater" in "Metal Gear Solid 3: Snake Eater"
+- "Aladdin" in "Disney's Aladdin"
+
+My thinking for these is although it's a very niche check, it's really going to shine on the hits. It's normal to refer to a lot of games by only their subtitle, and during my testing I personally ran into issues with games named with only a secondary title.
+
+This works both ways as well, you could have `SNES/Disney's Aladdin` written on a card and it will match up to a file called "Aladdin" on disk. It's also an extremely cheap and fast check for us to do because of some optimisations I make for it during indexing.
+
+### Advanced Fuzzy Matching
+
+Here is where I just started having some fun. I don't know a whole lot about algorithms, but I found some that are useful for comparing text and thought, hey, let's try them out! This section happens in four parts.
+
+#### Pre-filter Results
+
+First, we run a pre-filter query on the database which searches for the slug (`homealone2lostinnewyork`) and returns all games in the system which have:
+
+- The same number of characters, plus or minus 3 characters
+- The same number of words, plus or minus 1 word
+
+The reason we do this is because the following fuzzy matching algorithms can't be run against the database directly, we run them in-memory, and it would take a lot longer to pull, for example, 50,000 slugs into memory and run the algorithms on everything (on a MiSTer anyway, it wouldn't be that big a deal on many other platforms). We do lose some accuracy, but I think it's a reasonable compromise.
+
+#### Token Signature
+
+This is one I wasn't sure about but I found a research paper saying it dramatically improved results of searches for media titles. The idea is pretty simple:
+
+1. For every single result and the original title, normalise and tokenise the title. This is exactly the same steps we take to generate a slug, but we stop before the step where the words get joined into one big "word". So `Home Alone 2 - Lost in New York` becomes a list: `["home", "alone", "2", "lost", "in", "new" "york"]`
+2. Then we sort each list alphabetically and join it back: `2_alone_home_in_lost_new_york`
+3. Now we compare all the results with each other and find matches.
+
+The end goal is to find title which have the same words but in a different order. Straightforward, right?
+
+#### Jaro-Winkler
+
+Funny name. The idea is that we take the pre-filter list again and compare the original slug against every result using this [algorithm](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance). It will give each comparison a score based on how similar they are, while strongly preferring similarity at the start of the slug compared to the end.
+
+The idea with this was that if someone gets a game's name wrong, the odds are good they get the start of the name right but not the end. It can also help matching with typos and regional spelling (British/American) with some tweaking.
+
+#### Damerau-Levenshtein
+
+Cool name! This one doesn't take the full list, it takes the results of the last one and plucks out the top 5. Not really using this one seriously yet but I wanted to put it in to see how it performs. This [algorithm](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) works similarly to the last one but doesn't have a preference on the start and is better at comparing text where two letters have been swapped around. We just run it on the 5 results and check the best scored.
+
+### Main Title
+
+This is the opposite to the secondary title strategy. We search for everything in the database starting with `homealone2` and then filters the results based on which titles actually have secondary titles as well. This is definitely getting into the last resort section since I can't imagine a whole lot of good matches for that. But it's pretty safe down here!
+
+### Progressive Trim
+
+Almost there, we go truly last resort and start doing multiple searches in the database where we chop off one word from the end each time. This is actually a pretty expensive search so hopefully we don't get here too much.
+
+### Selecting the Best One
+
+This is the last part of the entire resolution process. If any of the strategies above gets results with some confidence, I mentioned earlier it will short circuit right? This is where it will short circuit to. A set of heuristics which will score, rank and remove titles to try figure out what the best one is from the strategy results:
+
+1. Matching user-supplied tags from the original query
+2. Remove things like demos, bad dumps, prototypes, etc. (unless they were specifically requested)
+3. Rank high languages matching users preference (which can be set in the config)
+4. Do the same for regions
+5. Prefer file extensions that are better quality (based on the [launcher definition](/docs/core/launchers))
+6. Final tie breaker based on "cleanest filename"
+
+At this point, we should have something good!
+
+## Launch!
+
+Woohoo, the game is now playing. That entire process starts and finishes in less than a second, absolute worst case. How about that. Most of the time you'd never guess it was happening, and it feels exactly like the old launch methods.
+
+Another layer we also have is caching results. So every time a title is searched and resolves, we will cache it in the database. That cache is checked before the entire process above and if there's an exact match, it will immediately short circuit there and launch the cached match. That means even for the worst case searches it's only slow the very first tap of the card, then it's also instant.
+
+And that about does it, the whole process from title to launch. I'll be first to admit the resolution procedure might be overengineered, but I wanted to throw everything in to start and cut it down based on real feedback. There's only so much useful testing I can do on my own. Thanks for testing.
+
+## Wrapping Up
+
+I haven't covered the metadata yet, but that's going to be a part 3 for later, because I also haven't finished designing that part. You can expect the features I've described so far though to be in the next release! I'll be making the title IDs the preferred format written from the UIs.
+
+If you want to dive deeper into the technical details of how this system works, check out the [Title Normalization and Matching System documentation](/docs/core/dev/media-titles) which covers the implementation in depth.
+
+I hope this was interesting to someone as well! Thanks to everyone who read the last article and said they enjoyed it. I'd never written an article like these before. Maybe I can do some more (shorter?) ones too.

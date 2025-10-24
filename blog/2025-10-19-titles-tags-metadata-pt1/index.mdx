@@ -13,7 +13,7 @@ This is the feature that took up like 99% of the work this next release. This th
 
 ## Game Identification
 
-So, in the previous versions, you are probably aware when you write a game to an NFC card, it will look something like this: `PSX/Some/Folder/The Game.iso`
+So, in the previous versions, you are probably aware when you write a game to an [NFC card](/docs/tokens/nfc), it will look something like this: `PSX/Some/Folder/The Game.iso`
 
 This is just a literal path to a file, with some smart rules that turn the first "folder" into a check over multiple parent folders to see where the file actually is. This solves the issue of, say, a USB drive changing its mount point (`/media/usb0` vs `/media/usb1`), but it still relies on an exact folder and filename layout within that mount. This was a simple method I added way back in the original releases and it works pretty well, it's carried us this far, but it has no fallback mechanism if the file moves or is just in a different location (obviously very common between devices).
 
@@ -23,7 +23,7 @@ We can add some hacks to this, like `if the file is missing, search in a differe
 
 Traditionally in other launchers, they solve this by hashing the game files and then querying an online service or some large local DB to match the file hash back to a game, also known as "scraping". This works really well, that's why everyone does it, but Zaparoo has some big constraints:
 
-1. Hashing files is REALLY slow on MiSTer. Between its slow CPU and SD card speed, it turns what was a 10 minute index into days of work. It's really crazy. You see people asking why there's no cover art and stuff on MiSTer? This is a really big part of the reason. Scrapers rely on hashing for accurate game identification.
+1. Hashing files is REALLY slow on [MiSTer](/docs/platforms/mister). Between its slow CPU and SD card speed, it turns what was a 10 minute index into days of work. It's really crazy. You see people asking why there's no cover art and stuff on MiSTer? This is a really big part of the reason. Scrapers rely on hashing for accurate game identification.
 2. Assuming we could hash, I don't want to tie Zaparoo to any existing specific scraping service. On other launchers, they're free to hit any scraper and they can store and use the game IDs as they like once a game is identified. For us, the game ID is portable (on a card) and so I'd actually have to lock in an "official scraper" and use their internal game IDs. I'm not comfortable with this.
 3. Less important, but the last thing is internet access. Most people do have internet access, but personally I try to write everything in Zaparoo to not require it. I always try to be mindful of the question "will this work if I had friends and took my MiSTer to their house?".
 
@@ -44,7 +44,7 @@ So, that was implemented, it was released, and then nothing happened. Slugs are 
 
 ### Trying to Solve it Again Again
 
-So that finally brings us to about a month ago. Lately I've been asked by a few third party developers if the Zaparoo API could be used as a back-end for their own launcher UIs. Totally, I always wanted that to happen, but that also relies on game matching working! So I figured OK let's really knuckle down and finally solve this for real.
+So that finally brings us to about a month ago. Lately I've been asked by a few third party developers if the [Zaparoo API](/docs/core/api) could be used as a back-end for their own launcher UIs. Totally, I always wanted that to happen, but that also relies on game matching working! So I figured OK let's really knuckle down and finally solve this for real.
 
 To start, I had to make a lot of optimisations to the database. It was functional as is, but it was really slow when working on a large number of items (like hundreds of thousands) and that was a non-starter considering that tapping a card and launching had to feel instant. I won't get into the database optimisations too much (I think it's kind of boring sorry!) but I can say now that looking up an ID is instant and performing complex searches is fast as hell. I feel like I have milked every last drop out of SQLite. Now I had the confidence to hook up the launch system to do look ups directly on the database!
 
@@ -60,7 +60,7 @@ The existing slug system actually handled this fine, it had some decent handling
 
 Another example, I want to make an Ocarina of Time card, on system A the file is `The Legend of Zelda - Ocarina of Time.z64` which makes the slug `thelegendofzeldaocarinaoftime`. Looking good. I go and tap the card on system B, nuts, some JOKER has called the file `Legend of Zelda, The - Ocarina of Time` and now it's not working. This is the worst.
 
-Game filenames are all over the place, even for curated packs like No-Intro and TOSEC. They have conflicting standards, they have mistakes, and all bets are off when the game is from some random site on its own.
+Game filenames are all over the place, even for curated packs like [No-Intro](https://no-intro.org/) and [TOSEC](https://www.tosec.org/). They have conflicting standards, they have mistakes, and all bets are off when the game is from some random site on its own.
 
 The slugs were supposed to accommodate for this, and they do to an extent, but it turned out that wasn't hitting my "good enough" meter yet. That ended up putting me down a whole other rabbit hole of...
 
@@ -112,7 +112,7 @@ Once we start treating slugs as an internal value just to help with fuzzy matchi
 - The entire slugging and matching process can now be tweaked with far less risk of breaking things. The title on the NFC card never has to change.
 - The title can be used to disambiguate the matches, we lose none of the original context. For example let's say the title on disk is `Monkey Island II` but we scan the third example above, it's trivial now to match from context, whereas before they had totally different slugs.
 - IDs can be written by hand. I mean look at it, you could write any old random game you want from memory and you've got a pretty decent shot at it working perfectly as a valid ID.
-- Following from that, IDs can be generated independently. Some random third party website can using results from a source like IGDB to create a "Zaparoo card ID" with only the most basic understanding of the format, and no need to directly connect to a device.
+- Following from that, IDs can be generated independently. Some random third party website can using results from a source like [IGDB](https://www.igdb.com/) to create a "Zaparoo card ID" with only the most basic understanding of the format, and no need to directly connect to a device.
 
 So there we go, it's such a simple little idea and seems pretty obvious in hindsight (use the game title to match the game by title) but I've been super happy with this approach so far and it's definitely hitting my "good enough" threshold.
 
@@ -127,3 +127,7 @@ This is actually only half of the process, there's still:
 I'll stop here though because this is already so long, and I intend to do a second post going through the rest.
 
 Hope someone out there found this interesting! Thanks for reading.
+
+---
+
+**Update:** [Part 2 is now available!](/blog/titles-tags-metadata-pt2) Read on to learn about the tags system, handling title conflicts, and the complete ID resolution process.
