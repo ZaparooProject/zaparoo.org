@@ -115,6 +115,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
+  min-width: 0;
+}
+
+.summarySection {
+  min-width: 0;
 }
 
 .summarySection h3 {
@@ -204,6 +209,7 @@ ol.gettingStartedList {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 /* Shop Links */
@@ -212,6 +218,7 @@ ol.gettingStartedList {
   flex-direction: column;
   gap: 0.5rem;
   align-items: flex-start;
+  min-width: 0;
 }
 
 .secondaryShopLink {
@@ -266,6 +273,12 @@ ol.gettingStartedList {
   .summaryMainGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  /* Prevent text overflow */
+  .summarySection li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   /* Adjust emphasized step padding on mobile */

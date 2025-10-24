@@ -62,6 +62,7 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
         alignItems: "center",
         justifyContent: "center",
         gap: "0.5rem",
+        ...(block && { width: "100%" }),
       }}
     >
       {icon}

@@ -666,7 +666,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 icon={<Book size={16} />}
                 className={styles.emphasizedStepButton}
               >
-                {platformNames[choice.platform!]} Install Guide
+                Install Guide
               </StyledButton>
             </li>
 
