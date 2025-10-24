@@ -328,7 +328,7 @@ const config: Config = {
         sourceBaseUrl:
           "https://raw.githubusercontent.com/ZaparooProject/zaparoo-core/refs/heads/main/docs/",
         outDir: "docs/core/dev",
-        documents: ["index.md", "scan-behavior.md"],
+        documents: ["index.md", "scan-behavior.md", "media-titles.md"],
       },
     ],
     [
