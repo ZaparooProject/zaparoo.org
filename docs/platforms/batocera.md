@@ -94,12 +94,12 @@ From this point, the service should be running and you can follow all other guid
 
 | Reader                                            | Status |
 | ------------------------------------------------- | ------ |
-| [PN532](/docs/core/drivers#pn532)                 | ✅     |
-| [ACR122U](/docs/core/drivers#acr122u-usb)         | ✅     |
-| [File Reader](/docs/core/drivers#file)            | ✅     |
-| [Simple Serial](/docs/core/drivers#simple-serial) | ✅     |
-| [Optical Drive](/docs/core/drivers#optical-drive) | ✅     |
-| [TTY2OLED](/docs/core/drivers#tty2oled)           | ✅     |
+| [PN532](/docs/readers/nfc/pn532-usb)                 | ✅     |
+| [ACR122U](/docs/readers/nfc/acr122u)         | ✅     |
+| [File Reader](/docs/readers/file)            | ✅     |
+| [Simple Serial](/docs/readers/simple-serial) | ✅     |
+| [Optical Drive](/docs/readers/optical-drive) | ✅     |
+| [TTY2OLED](/docs/readers/tty2oled)           | ✅     |
 
 ## Supported Launchers
 

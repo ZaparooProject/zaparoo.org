@@ -167,7 +167,7 @@ path = '/tmp/some_file'
 | ------ | ------ | ------- |
 | driver | string |         |
 
-`driver` specifies which reader driver should be used to attempt connection to the reader device. See [reader drivers](/docs/readers/index.md) for a list of possible options.
+`driver` specifies which reader driver should be used to attempt connection to the reader device. See [reader drivers](./drivers.md) for a list of available drivers.
 
 ##### path
 
@@ -175,7 +175,7 @@ path = '/tmp/some_file'
 | ---- | ------ | ------- |
 | path | string |         |
 
-`path` is an argument for the specified reader driver for how the device should be found. See [reader drivers](/docs/readers/index.md) for what this argument should look like for the driver.
+`path` is an argument for the specified reader driver for how the device should be found. See the documentation for your specific reader hardware for configuration examples.
 
 ##### id_source
 

@@ -22,10 +22,10 @@ From this point, Zaparoo is now set up! You should be able to connect a reader a
 
 | Reader                                            | Status |
 | ------------------------------------------------- | ------ |
-| [PN532](/docs/core/drivers#pn532)                 | ✅     |
-| [ACR122U (PCSC)](/docs/core/drivers#acr122u-pcsc) | ✅     |
-| [File Reader](/docs/core/drivers#file)            | ✅     |
-| [TTY2OLED](/docs/core/drivers#tty2oled)           | ✅     |
+| [PN532](/docs/readers/nfc/pn532-usb)                 | ✅     |
+| [ACR122U (PCSC)](/docs/readers/nfc/acr122u) | ✅     |
+| [File Reader](/docs/readers/file)            | ✅     |
+| [TTY2OLED](/docs/readers/tty2oled)           | ✅     |
 
 ## Supported Launchers
 

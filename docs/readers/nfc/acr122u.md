@@ -9,7 +9,7 @@ slug: acr122u
 
 The ACR122U (also called just ACR122) is the most commonly available consumer grade USB NFC reader. Internally it uses a PN532 NFC chip, but this chip is not exposed directly to the host device so it requires different drivers than other PN532-based readers. Its main method of communication is via a PCSC service, where it's usually plug and play. Its internal PCB is quite large with a fragile cable connection, which can make it difficult to incorporate in custom projects.
 
-This reader is easily available on marketplace sites like Amazon, AliExpress, eBay and even from local smart card/security stores in your own country. It has a built in USB cable, an injection moulded case, internal speaker and external status LED (though compatibility of these varies between devices and platforms). It's fully compatible with ntag.md and MIFARE Classic tags.
+This reader is easily available on marketplace sites like Amazon, AliExpress, eBay and even from local smart card/security stores in your own country. It has a built in USB cable, an injection moulded case, internal speaker and external status LED (though compatibility of these varies between devices and platforms). It's fully compatible with NTAG and MIFARE Classic tags.
 
 Overall, if you like the look and are willing to accept the risk of receiving an incompatible variant, it's a very solid performing NFC reader for a decent price.
 
@@ -18,6 +18,56 @@ Overall, if you like the look and are willing to accept the risk of receiving an
 The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones are incompatible with [MiSTer](/docs/platforms/mister/) and will likely never be supported, which is why the project no longer recommends them.
 
 :::
+
+## Driver Configuration
+
+The ACR122U uses **different drivers** depending on your platform. Zaparoo Core automatically selects the correct driver for your system.
+
+### ACR122U (USB) - Linux & MiSTer
+
+- **Driver ID**: `acr122_usb`
+- **Platforms**: Linux-based platforms (MiSTer, Batocera, SteamOS, etc.)
+- **Compatibility**: Does **not** work on Windows or macOS
+- **Library**: Uses libnfc
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
+
+This driver provides direct USB communication via the libnfc library, which means:
+
+- ✅ No need for PCSC daemon on Linux/MiSTer
+- ✅ Auto-detection works well
+- ❌ Some clone variants are incompatible
+- ❌ LED and beeper may not work (normal behavior)
+
+### ACR122U (PCSC) - Windows
+
+- **Driver ID**: `acr122_pcsc`
+- **Platforms**: Windows only
+- **Compatibility**: Windows 10 and later
+- **Library**: Uses PC/SC (Personal Computer/Smart Card)
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
+
+This driver uses the Windows PC/SC interface, which means:
+
+- ✅ Better compatibility with clone variants
+- ✅ LED lights up and beeper works
+
+Requires Smart Card services to be enabled.
+
+### Manual Configuration
+
+Auto-detection should work on all platforms, but if auto-detection fails or you need to specify a particular reader, you can manually configure it.
+
+**Windows:**
+
+```toml
+[[readers.connect]]
+driver = 'acr122_pcsc'
+path = 'ACS ACR122 0'  # Use actual reader name from PC/SC
+```
+
+To find the PC/SC reader name on Windows, check Device Manager under "Smart card readers".
 
 ## MiSTer
 
@@ -71,3 +121,10 @@ These are some known working listings submitted by users:
 - [Kogan (Australia)](https://www.kogan.com/au/buy/zoestore-kkmoon-nfc-acr122u-rfid-contactless-smart-reader-writerusb-sdk-c-card-d8a0-h10391/)
 - [Everything ID (Australia)](https://www.everythingid.com.au/rfid-equipment-c-13/acr122u-usb-nfc-rfid-card-reader-writer-mifare-nfc-p-324)
 - [AliExpress (China) - 5YOA Official Store](https://www.aliexpress.us/item/2251832554165448.html)
+
+## See Also
+
+- **[PN532 USB](/docs/readers/nfc/pn532-usb)** - Recommended alternative with better clone compatibility
+- **[NFC Readers Overview](/docs/readers/nfc/)** - All NFC reader options
+- **[Configuration](/docs/core/config#readers)** - Reader configuration reference
+- **[MiSTer Platform](/docs/platforms/mister)** - MiSTer-specific information
