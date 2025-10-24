@@ -7,7 +7,7 @@ slug: /
 
 :::tip
 
-New to Zaparoo? Make sure to read the [Getting Started](/docs/getting-started/) guide, which explains everything
+New to Zaparoo? Make sure to read the [Getting Started](/start/) guide, which explains everything
 necessary to get up and running quickly. Getting started is easy, getting it perfect for _you_ is fun!
 
 :::

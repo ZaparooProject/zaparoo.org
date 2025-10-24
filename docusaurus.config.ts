@@ -196,7 +196,7 @@ const config: Config = {
             },
             {
               label: "Getting Started",
-              href: "/docs/getting-started",
+              href: "/start/",
               "data-umami-event": "footer-nav-getting-started",
             },
             {
@@ -345,6 +345,10 @@ const config: Config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
+          {
+            to: "/start/",
+            from: "/docs/getting-started/",
+          },
           {
             to: "/docs/core/drivers/",
             from: "/docs/core/reader-modules/",
