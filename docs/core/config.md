@@ -98,8 +98,8 @@ on_remove = '**echo:card was removed'
 
 ##### mode
 
-| Key  | Type   | Default |
-| ---- | ------ | ------- |
+| Key  | Type                     | Default |
+| ---- | ------------------------ | ------- |
 | mode | string ("tap" \| "hold") | tap     |
 
 `mode` defines the behavior of scans. It has two options:
@@ -109,8 +109,8 @@ on_remove = '**echo:card was removed'
 
 ##### exit_delay
 
-| Key        | Type  | Default |
-| ---------- | ----- | ------- |
+| Key        | Type         | Default |
+| ---------- | ------------ | ------- |
 | exit_delay | float (≥0.0) | 0.0     |
 
 `exit_delay` adds a delay, in seconds, before media is exited after a token is removed from a reader. It's only active if `hold` [mode](#mode) is also active.
@@ -129,21 +129,21 @@ This feature can be useful if you want to, using a single reader, scan other tok
 
 ##### on_scan
 
-| Key           | Type     | Default |
-| ------------- | -------- | ------- |
-| on_scan       | string   |         |
+| Key     | Type   | Default |
+| ------- | ------ | ------- |
+| on_scan | string |         |
 
 `on_scan` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is scanned but before ZapScript on the token itself (or a mapping) is run. It is always active if enabled.
 
 ##### on_remove
 
-| Key           | Type     | Default |
-| ------------- | -------- | ------- |
-| on_remove     | string   |         |
+| Key       | Type   | Default |
+| --------- | ------ | ------- |
+| on_remove | string |         |
 
 `on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#mode).
 
-Note that this will *always* run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the [`exit_delay`](#exit_delay) setting and runs before any media exit logic happens.
+Note that this will _always_ run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the [`exit_delay`](#exit_delay) setting and runs before any media exit logic happens.
 
 #### readers.connect
 
@@ -204,8 +204,8 @@ enabled = false
 
 ##### enabled
 
-| Key     | Type    | Default |
-| ------- | ------- | ------- |
+| Key     | Type    | Default            |
+| ------- | ------- | ------------------ |
 | enabled | boolean | _varies by driver_ |
 
 `enabled` allows you to explicitly enable or disable a specific reader driver. When not specified, the driver uses its default enabled state.
@@ -282,8 +282,8 @@ For example, if `index_root` was set to `[ '/media/fat/other_place' ]`, a databa
 
 #### allow_file
 
-| Key        | Type     | Default |
-| ---------- | -------- | ------- |
+| Key        | Type                      | Default |
+| ---------- | ------------------------- | ------- |
 | allow_file | string[] (regex patterns) | []      |
 
 `allow_file` allows certain files to be launched if their assigned launcher requires it.
@@ -299,16 +299,16 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 #### media_dir
 
 | Key       | Type   | Default            |
-|-----------|--------|--------------------|
+| --------- | ------ | ------------------ |
 | media_dir | string | \<data dir\>/media |
 
 `media_dir` overrides the default location on disk where remote media downloads will be stored. By default, it will use the `media` directory in the Core data folder.
 
 #### on_media_start
 
-| Key             | Type   | Default |
-| --------------- | ------ | ------- |
-| on_media_start  | string |         |
+| Key            | Type   | Default |
+| -------------- | ------ | ------- |
+| on_media_start | string |         |
 
 `on_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after media starts launching, regardless of the scan mode. See also [`on_scan`](#on_scan) and [`on_remove`](#on_remove) for related scan events.
 
@@ -360,8 +360,8 @@ allow_execute = [
 
 #### allow_execute
 
-| Key           | Type     | Default |
-| ------------- | -------- | ------- |
+| Key           | Type                      | Default |
+| ------------- | ------------------------- | ------- |
 | allow_execute | string[] (regex patterns) | []      |
 
 :::danger Security Warning
@@ -389,11 +389,11 @@ allow_run = [
 
 #### api_port
 
-| Key      | Type    | Default |
-| -------- | ------- | ------- |
+| Key      | Type              | Default |
+| -------- | ----------------- | ------- |
 | api_port | integer (1-65535) | 7497    |
 
-`api_port` specifies which port the [API](./api/index.md) of Core should be accessible from.
+`api_port` specifies which port the [API](/docs/core/api/) of Core should be accessible from.
 
 **Don't change this unless you know what you're doing. It will currently break external tools that rely on it being the default value.**
 
@@ -417,11 +417,11 @@ It's currently reserved for future use when devices can communicate with each ot
 
 #### allow_run
 
-| Key       | Type     | Default |
-| --------- | -------- | ------- |
+| Key       | Type                      | Default |
+| --------- | ------------------------- | ------- |
 | allow_run | string[] (regex patterns) | []      |
 
-`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md) of the [Core API](./api/index.md). By default, nothing is allowed.
+`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](/docs/core/api/methods/) of the [Core API](/docs/core/api/). By default, nothing is allowed.
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
@@ -447,16 +447,16 @@ gmc_proxy_beacon_interval = '2s'
 
 #### gmc_proxy_port
 
-| Key            | Type    | Default |
-| -------------- | ------- | ------- |
+| Key            | Type              | Default |
+| -------------- | ----------------- | ------- |
 | gmc_proxy_port | integer (1-65535) | 32106   |
 
 `gmc_proxy_port` specifies which port the GMC proxy service should listen on.
 
 #### gmc_proxy_beacon_interval
 
-| Key                      | Type   | Default |
-| ------------------------ | ------ | ------- |
+| Key                       | Type   | Default |
+| ------------------------- | ------ | ------- |
 | gmc_proxy_beacon_interval | string | 2s      |
 
 `gmc_proxy_beacon_interval` sets the interval for GMC proxy beacon broadcasts.

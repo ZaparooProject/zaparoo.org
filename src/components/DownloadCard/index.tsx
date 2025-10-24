@@ -46,6 +46,7 @@ type DownloadCard = {
     link: string;
     label: string;
   };
+  id?: string;
 };
 
 const BetaBubble = () => (
@@ -85,9 +86,11 @@ export default function DownloadCard({
   docLink,
   platformLink,
   nativeInstall,
+  id,
 }: DownloadCard) {
   return (
     <div
+      id={id}
       className="download-card"
       style={{
         position: "relative",

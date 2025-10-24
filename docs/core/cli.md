@@ -32,7 +32,7 @@ Outputs this Zaparoo binary's build version (not the currently started API servi
 - **Argument:** string
 - **Example:** `./zaparoo -api 'launch:{"text":"**launch.system:menu"}'`
 
-Sends a single request to the [Zaparoo API](../core/api/index.md), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
+Sends a single request to the [Zaparoo API](/docs/core/api/), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
 
 ### Run
 

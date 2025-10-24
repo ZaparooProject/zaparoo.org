@@ -11,6 +11,7 @@ If there is a conflict between these two methods, the **mappings database will t
 When a token is scanned, Core processes mappings in this specific order:
 
 ### Processing Order
+
 1. **Database mappings** (created via API) are checked first, in order of creation
 2. **File mappings** (from `.toml` files) are checked second, in alphanumeric filename order
 3. **Legacy platform mappings** (MiSTer only - for backwards compatibility with old CSV files)
@@ -18,6 +19,7 @@ When a token is scanned, Core processes mappings in this specific order:
 The first matching mapping found will be applied, and no further mappings are evaluated.
 
 ### Normalization Rules
+
 - **ID/UID normalization**: When matching against token IDs or UIDs, both the pattern and the token ID are normalized by:
   - Converting to lowercase
   - Removing spaces and colons
@@ -34,6 +36,7 @@ In a subfolder called `mappings` in the data folder of Core, it's possible to ad
 Here are various examples of mapping configurations:
 
 **Basic ID matching** (`nfc-mappings.toml`):
+
 ```toml
 # Exact match on NFC tag UID
 [[mappings.entry]]
@@ -43,6 +46,7 @@ zapscript = '**launch.random:snes'
 ```
 
 **Wildcard matching** (`barcode-mappings.toml`):
+
 ```toml
 # Match any barcode starting with "978" (books)
 [[mappings.entry]]
@@ -58,6 +62,7 @@ zapscript = '**launch.random:gbc/*pokemon*'
 ```
 
 **Regular expression matching** (`regex-mappings.toml`):
+
 ```toml
 # Match UIDs ending with specific pattern
 [[mappings.entry]]
@@ -73,6 +78,7 @@ zapscript = '**launch.favorites'
 ```
 
 **Data-based matching** (`amiibo-mappings.toml`):
+
 ```toml
 # Match Amiibo by raw data pattern
 [[mappings.entry]]
@@ -82,6 +88,7 @@ zapscript = '**launch.system:switch/amiibo'
 ```
 
 **Multiple mappings in one file** (`all-mappings.toml`):
+
 ```toml
 # NFC tag for SNES games
 [[mappings.entry]]
@@ -111,7 +118,7 @@ The `token_key` option is the key of a [token object](../tokens/index.md) this m
 - `value`: Match against the stored text/value on the token
 - `data`: Match against the raw token data as a hexadecimal string
 
-This option is optional and will default to `id` if empty. Note that when using the [Core API](api/index.md) for managing mappings programmatically, these values correspond to `uid`, `text`, and `data` respectively.
+This option is optional and will default to `id` if empty. Note that when using the [Core API](/docs/core/api/) for managing mappings programmatically, these values correspond to `uid`, `text`, and `data` respectively.
 
 The `match_pattern` option is the pattern used to match against the contents of the key above. Its behavior is different depending on the format given:
 
@@ -162,4 +169,4 @@ When a token is scanned, Core checks mappings in this order:
 
 If any mapping matches, its ZapScript override is used and no further mappings are evaluated.
 
-See the [Core API Methods](api/methods.md#mappings) documentation for detailed examples and complete parameter specifications.
+See the [Core API Methods](/docs/core/api/methods/#mappings) documentation for detailed examples and complete parameter specifications.

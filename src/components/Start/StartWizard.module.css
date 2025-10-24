@@ -195,6 +195,10 @@ ol.gettingStartedList {
   font-weight: 700;
 }
 
+.emphasizedStepButton {
+  margin-top: 0.5rem;
+}
+
 /* Download Buttons */
 .downloadButtons {
   display: flex;

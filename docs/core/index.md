@@ -7,7 +7,7 @@ Zaparoo Core is a software service which runs in the background of supported pla
 - Interpreting and launching [token commands](../zapscript)
 - Launching, managing and monitoring media and associated [launchers](./launchers)
 - Indexing, storing and querying a database of media available from the device
-- Publishing and managing its own device instance of the [Core API](./api/index.md)
+- Publishing and managing its own device instance of the [Core API](./api/)
 
 The core Zaparoo software is free and open source under the GPLv3 license, hosted and developed on [GitHub](https://github.com/ZaparooProject/zaparoo-core/) including releases.
 
