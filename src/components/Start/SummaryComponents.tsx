@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "@docusaurus/Link";
-import { Info, AlertTriangle } from "lucide-react";
+import { Info, AlertTriangle, Lightbulb } from "lucide-react";
 
 // Social Icons
 export const DiscordIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
@@ -106,7 +106,7 @@ export const Admonition: React.FC<AdmonitionProps> = ({
     },
     tip: {
       icon: (
-        <Info
+        <Lightbulb
           size={20}
           style={{
             marginTop: "0.1rem",
