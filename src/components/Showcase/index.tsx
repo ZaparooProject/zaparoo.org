@@ -14,6 +14,25 @@ interface FeaturedPhoto extends Photo {
 
 const allPhotos: FeaturedPhoto[] = [
   {
+    src: "/img/showcase/brogasaurusrex_custom_mister_build.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom MiSTer build. Credit: brogasaurusrex @ Discord",
+  },
+  {
+    src: "/img/showcase/tycal_custom_tv_cart_build.webp",
+    width: 1112,
+    height: 1200,
+    alt: "Custom TV cart build. Credit: tycal @ Discord",
+    featured: true,
+  },
+  {
+    src: "/img/showcase/xtal_vinyl_sticker_cards.webp",
+    width: 900,
+    height: 1200,
+    alt: "Vinyl sticker cards. Credit: xtal @ Discord",
+  },
+  {
     src: "/img/showcase/tunnotron3000_gekisha_boy.webp",
     width: 900,
     height: 1200,
@@ -37,7 +56,6 @@ const allPhotos: FeaturedPhoto[] = [
     width: 1200,
     height: 906,
     alt: "Stacked NFC card collection. Credit: conehead @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/Zag_steam.webp",

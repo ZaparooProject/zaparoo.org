@@ -220,6 +220,10 @@
 }
 
 /* Dark mode adjustments */
+[data-theme='dark'] .sectionLight {
+  background-color: var(--ifm-background-color);
+}
+
 [data-theme='dark'] .platformCard,
 [data-theme='dark'] .useCaseCard {
   background: var(--ifm-background-color);

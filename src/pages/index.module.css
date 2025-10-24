@@ -5,8 +5,8 @@
 
 /* CSS Custom Properties for consistent spacing */
 :root {
-  --hero-padding-top: 2rem;
-  --hero-padding-bottom: 2.5rem;
+  --hero-padding-top: 1.5rem;
+  --hero-padding-bottom: 2rem;
   --section-padding: 3rem 0;
   --button-gap: 1rem;
   --hero-subtitle-margin: 2rem;
@@ -26,7 +26,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/img/circuit-board.svg');
+  background-image: url("/img/circuit-board.svg");
   background-repeat: repeat;
   opacity: 0.6;
   filter: brightness(1.5) contrast(1.2);
@@ -52,7 +52,7 @@
 }
 
 .heroVersion {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
   margin: 0;
   text-align: center;
@@ -128,7 +128,7 @@
   padding-bottom: 2rem;
   padding-top: 2rem;
   background-color: var(--ifm-color-emphasis-100);
-  background-image: url('/img/circuit-board-dark.svg');
+  background-image: url("/img/circuit-board-dark.svg");
   background-repeat: repeat;
   margin-top: 2rem;
 }
@@ -162,33 +162,33 @@
 }
 
 /* Dark mode adjustments */
-[data-theme='dark'] .whatIsZaparooSection,
-[data-theme='dark'] .howItWorksSection {
+[data-theme="dark"] .whatIsZaparooSection,
+[data-theme="dark"] .howItWorksSection {
   background-color: var(--ifm-background-color);
 }
 
-[data-theme='dark'] .communityShowcaseWrapper {
+[data-theme="dark"] .communityShowcaseWrapper {
   background-color: var(--ifm-color-emphasis-200);
 }
 
-[data-theme='dark'] .heroVersion {
+[data-theme="dark"] .heroVersion {
   color: rgba(255, 255, 255, 0.9);
 }
 
-[data-theme='dark'] .heroVersion a {
+[data-theme="dark"] .heroVersion a {
   color: rgba(255, 255, 255, 0.95);
   text-decoration: underline;
 }
 
-[data-theme='dark'] .heroVersion a:hover {
+[data-theme="dark"] .heroVersion a:hover {
   color: white;
 }
 
-[data-theme='dark'] .whatIsZaparooText {
+[data-theme="dark"] .whatIsZaparooText {
   color: var(--ifm-color-emphasis-900);
 }
 
-[data-theme='dark'] .whatIsZaparooSubtext {
+[data-theme="dark"] .whatIsZaparooSubtext {
   color: var(--ifm-color-emphasis-800);
 }
 
@@ -200,5 +200,181 @@
   .buttons {
     flex-direction: column;
     gap: 0.75rem;
+  }
+}
+
+/* Blog Grid and Card Styles - matching UseCases */
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.blogCard {
+  display: block;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.2s ease;
+}
+
+.blogCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.blogCardDate {
+  font-size: 0.85rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.blogCardTitle {
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blogCardFooter {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+/* Dark mode adjustments for blog cards */
+[data-theme="dark"] .blogCard {
+  background: var(--ifm-background-color);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+/* Responsive design for blog grid */
+@media screen and (max-width: 768px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Social Proof Section - Partners + Stats */
+.socialProofSection {
+  padding: 2.5rem 0;
+  background-color: var(--ifm-color-emphasis-50);
+}
+
+.hardwarePartners {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.partnersHeader {
+  font-size: 1.2rem;
+}
+
+.partnersLogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.partnerLogo {
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.partnerLogo:hover {
+  transform: translateY(-2px);
+}
+
+.partnerLogo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+.partnerLogoInvert {
+  filter: invert(1);
+}
+
+.statsBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  font-weight: 500;
+}
+
+/* Dark mode adjustments for social proof section */
+[data-theme="dark"] .socialProofSection {
+  background-color: var(--ifm-background-color);
+}
+
+[data-theme="dark"] .partnerLogoInvert {
+  filter: invert(0);
+}
+
+/* Video Embed */
+.videoWrapper {
+  max-width: 700px;
+  margin: 3rem auto 2rem;
+}
+
+.videoEmbed {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .socialProofSection {
+    padding: 2rem 0;
+  }
+
+  .hardwarePartners {
+    margin-bottom: 2rem;
+  }
+
+  .statsBar {
+    gap: 2rem;
+  }
+
+  .statNumber {
+    font-size: 1.5rem;
+  }
+
+  .videoWrapper {
+    margin: 2rem auto 1.5rem;
   }
 }

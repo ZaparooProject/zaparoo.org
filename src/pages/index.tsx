@@ -26,21 +26,92 @@ const recentPosts = recentPostsData;
 
 function LatestNews(): ReactNode {
   return (
-    <section className="container">
-      <div className="padding-horiz--md">
-        <Heading as="h2">Latest Blog Posts</Heading>
+    <div className="container">
+      <div className="text--center padding-horiz--md">
+        <h2 className={homepageStyles.sectionTitle}>Latest Blog Posts</h2>
+        <p className={homepageStyles.sectionSubtitle}>
+          Stay up to date with the latest Zaparoo news and releases.
+        </p>
       </div>
-      <div className="row padding-horiz--md">
+      <div className={styles.blogGrid}>
         {recentPosts.items.slice(0, 3).map((item, index) => (
-          <div key={index} className="col col--4 margin-bottom--lg">
-            <Link to={item.permalink}>
-              <h3 style={{ marginBottom: "0" }}>{item.title}</h3>
-            </Link>
-            <small>{new Date(item.date).toLocaleDateString()}</small>
-          </div>
+          <Link
+            key={index}
+            to={item.permalink}
+            className={styles.blogCard}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <div className={styles.blogCardDate}>
+              {new Date(item.date).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </div>
+            <h3 className={styles.blogCardTitle}>{item.title}</h3>
+            <div className={styles.blogCardFooter}>Read more →</div>
+          </Link>
         ))}
       </div>
-    </section>
+      <div className={homepageStyles.buttonGroup}>
+        <Link className="button button--secondary button--lg" to="/blog/">
+          See Latest Updates
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function Stats(): ReactNode {
+  return (
+    <div className={styles.statsBar}>
+      <div className={styles.statItem}>
+        <div className={styles.statNumber}>71,000+</div>
+        <div className={styles.statLabel}>Downloads</div>
+      </div>
+      <div className={styles.statItem}>
+        <div className={styles.statNumber}>1,400+</div>
+        <div className={styles.statLabel}>Discord Members</div>
+      </div>
+      <div className={styles.statItem}>
+        <div className={styles.statNumber}>130+</div>
+        <div className={styles.statLabel}>GitHub Stars</div>
+      </div>
+    </div>
+  );
+}
+
+function HardwarePartners(): ReactNode {
+  return (
+    <div className={styles.hardwarePartners}>
+      <h3 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>Official Hardware Partners</h3>
+      <div className={styles.partnersLogos}>
+        <a
+          href="https://multisystem.uk/products/mister-multisystem-2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.partnerLogo}
+        >
+          <img
+            src="/img/partners/multisystem.png"
+            alt="MiSTer Multisystem²"
+            height="60"
+          />
+        </a>
+        <a
+          href="https://retroremake.co/pages/superstation%E1%B5%92%E2%81%BF%E1%B5%89"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={clsx(styles.partnerLogo, styles.partnerLogoInvert)}
+        >
+          <img
+            src="/img/partners/retroremake.png"
+            alt="Retro Remake SuperStationᵒⁿᵉ"
+            height="60"
+          />
+        </a>
+      </div>
+    </div>
   );
 }
 
@@ -83,7 +154,7 @@ function HomepageHeader(): ReactNode {
             data-umami-event="hero-get-started"
           >
             <Zap size={16} className={styles.buttonIcon} />
-            Start Here
+            Tap & Launch
           </Link>
           <Link
             className={clsx(
@@ -117,11 +188,6 @@ export default function Home(): ReactNode {
     >
       <StructuredData type="homepage" />
       <HomepageHeader />
-      <section className={styles.sectionWrapper}>
-        <div className="container">
-          <Showcase featured={true} />
-        </div>
-      </section>
       <main id="main-content">
         <section
           className={clsx(homepageStyles.section, styles.whatIsZaparooSection)}
@@ -172,6 +238,45 @@ export default function Home(): ReactNode {
             </div>
           </div>
         </section>
+        <section className={styles.socialProofSection}>
+          <div className="container">
+            <HardwarePartners />
+            <Stats />
+          </div>
+        </section>
+        <div className={styles.communityShowcaseWrapper}>
+          <div className="container">
+            <div className="text--center padding-horiz--md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+                fill="currentColor"
+                className={styles.communityShowcaseIcon}
+              >
+                <path d="M0 256L28.5 28c2-16 15.6-28 31.8-28H228.9c15 0 27.1 12.1 27.1 27.1c0 3.2-.6 6.5-1.7 9.5L208 160H347.3c20.2 0 36.7 16.4 36.7 36.7c0 7.4-2.2 14.6-6.4 20.7l-192.2 281c-5.9 8.6-15.6 13.7-25.9 13.7h-2.9c-15.7 0-28.5-12.8-28.5-28.5c0-2.3 .3-4.6 .9-6.9L176 288H32c-17.7 0-32-14.3-32-32z" />
+              </svg>
+              <Heading as="h2">Community Showcase</Heading>
+              <p>
+                Check out some of the awesome Zaparoo stuff our community is
+                making!
+              </p>
+            </div>
+            <Showcase limit={10} />
+            <div className={styles.communityShowcaseButtons}>
+              <div className={styles.buttons}>
+                <Link
+                  className={clsx(
+                    "button button--primary button--md",
+                    styles.button
+                  )}
+                  to="/showcase/"
+                >
+                  See All 40+ Creations
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
         <section
           className={clsx(homepageStyles.section, styles.howItWorksSection)}
         >
@@ -247,6 +352,16 @@ export default function Home(): ReactNode {
                 </div>
               </div>
             </div>
+            <div className={styles.videoWrapper}>
+              <iframe
+                src="https://www.youtube.com/embed/BnnAX9cNUIE"
+                title="Zaparoo Introduction"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className={styles.videoEmbed}
+              ></iframe>
+            </div>
             <div className={homepageStyles.buttonGroup}>
               <Link
                 className={clsx(
@@ -264,7 +379,9 @@ export default function Home(): ReactNode {
         </section>
         <PlatformShowcase />
         <UseCases />
-        <section className={clsx(homepageStyles.section)}>
+        <section
+          className={clsx(homepageStyles.section, homepageStyles.sectionLight)}
+        >
           <LatestNews />
         </section>
         <div className={styles.communityShowcaseWrapper}>
@@ -278,13 +395,10 @@ export default function Home(): ReactNode {
               >
                 <path d="M0 256L28.5 28c2-16 15.6-28 31.8-28H228.9c15 0 27.1 12.1 27.1 27.1c0 3.2-.6 6.5-1.7 9.5L208 160H347.3c20.2 0 36.7 16.4 36.7 36.7c0 7.4-2.2 14.6-6.4 20.7l-192.2 281c-5.9 8.6-15.6 13.7-25.9 13.7h-2.9c-15.7 0-28.5-12.8-28.5-28.5c0-2.3 .3-4.6 .9-6.9L176 288H32c-17.7 0-32-14.3-32-32z" />
               </svg>
-              <Heading as="h2">Community Showcase</Heading>
-              <p>
-                Check out some of the awesome Zaparoo stuff our community is
-                making!
-              </p>
+              <Heading as="h2">Featured Creators</Heading>
+              <p>Amazing creations from our talented community members</p>
             </div>
-            <Showcase limit={15} />
+            <Showcase featured={true} />
             <div className={styles.communityShowcaseButtons}>
               <div className={styles.buttons}>
                 <Link
@@ -294,7 +408,7 @@ export default function Home(): ReactNode {
                   )}
                   to="/showcase/"
                 >
-                  See More
+                  See Full Showcase
                 </Link>
               </div>
               <div className={styles.buttons}>
