@@ -20,7 +20,7 @@ These custom cassette tape covers are designed to store Zaparoo NFC cards, allow
 
 ### Templates and Covers
 
-You can find the covers and templates on [GitHub](https://github.com/Anime0t4ku/ZaparooCassetteCovers/tree/main). The repository includes:
+You can find the covers and templates on [GitHub](https://github.com/Anime0t4ku/Cassette-GameCovers). The repository includes:
 
 - Pre-made covers for various games
 - Templates for creating your own designs
