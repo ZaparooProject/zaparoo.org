@@ -501,6 +501,8 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
   const needsOpticalDrive = choice.reader === "optical-drive";
   const needsZapESP32 = choice.reader === "zapesp32";
 
+  const selectedToken = tokens.find((t) => t.id === choice.token);
+
   return (
     <div className={styles.summaryContainer}>
       {/* Main two-column layout */}
@@ -525,7 +527,11 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             {needsPhone && (
               <li>
                 Phone with{" "}
-                {choice.reader === "zaparoo-app" ? "NFC or camera" : "camera"}
+                {choice.reader === "zaparoo-app"
+                  ? selectedToken?.provides.includes(CAPABILITIES.NFC_TAG)
+                    ? "NFC"
+                    : "camera"
+                  : "camera"}
               </li>
             )}
             {needsOpticalDrive && (
