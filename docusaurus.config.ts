@@ -112,6 +112,7 @@ const config: Config = {
           label: "Designer",
           position: "left",
           "data-umami-event": "navbar-designer",
+          className: "navbar__item--no-icon",
         },
         {
           to: "/blog/",
@@ -124,6 +125,12 @@ const config: Config = {
           label: "Support",
           position: "left",
           "data-umami-event": "navbar-support",
+        },
+        {
+          to: "/sponsor/",
+          label: "Sponsor",
+          position: "left",
+          "data-umami-event": "navbar-sponsor",
         },
         {
           type: "html",
@@ -263,6 +270,11 @@ const config: Config = {
               label: "Blog",
               to: "/blog/",
               "data-umami-event": "footer-nav-blog",
+            },
+            {
+              label: "Sponsor",
+              to: "/sponsor/",
+              "data-umami-event": "footer-nav-sponsor",
             },
             {
               label: "Code of Conduct",

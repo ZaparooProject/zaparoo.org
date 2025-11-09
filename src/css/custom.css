@@ -204,3 +204,12 @@
     min-height: -webkit-fill-available !important;
   }
 }
+
+/* Hide external link icon on specific navbar items */
+.navbar__item--no-icon::after {
+  content: none !important;
+}
+
+.navbar__item--no-icon svg {
+  display: none !important;
+}
