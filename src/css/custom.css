@@ -184,3 +184,23 @@
 [data-theme="dark"] .button:focus-visible {
   outline-color: var(--ifm-color-primary-light);
 }
+
+/* Fix iOS Safari lightbox gap at bottom */
+.yarl__root {
+  height: 100dvh !important;
+  height: 100vh !important;
+}
+
+.yarl__container {
+  height: 100dvh !important;
+  height: 100vh !important;
+}
+
+/* Support for older browsers that don't support dvh */
+@supports not (height: 100dvh) {
+  .yarl__root,
+  .yarl__container {
+    height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+  }
+}
