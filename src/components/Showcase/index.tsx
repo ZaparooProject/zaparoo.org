@@ -14,6 +14,13 @@ interface FeaturedPhoto extends Photo {
 
 const allPhotos: FeaturedPhoto[] = [
   {
+    src: "/img/showcase/SunieFairbreeze_retro_nfc_reader.webp",
+    width: 1200,
+    height: 904,
+    alt: "Retro NFC reader. Credit: SunieFairbreeze @ Discord",
+    featured: true,
+  },
+  {
     src: "/img/showcase/brogasaurusrex_custom_mister_build.webp",
     width: 1200,
     height: 900,
