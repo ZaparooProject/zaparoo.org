@@ -2,7 +2,7 @@
 
 This guide explains how to create a low cost NFC reader using easily available parts, which is guaranteed to be compatible with the Zaparoo project on MiSTer. The total cost of a single reader is approximately $10 USD in a small batch of 5.
 
-<img src="/img/docs/community/projects/diy-reader/DIY_Reader_Complete.jpg" alt="A complete DIY Reader build" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/DIY_Reader_Complete.jpg" alt="A complete DIY Reader build" width="300"/>
 
 ## Supplies
 
@@ -93,13 +93,13 @@ Assembly does not take long, but does require a small amount of soldering.
 
 First, solder the female 4 pin header to the serial PCB, as shown in the image below. Make sure the plastic casing is flush with the PCB.
 
-<img src="/img/docs/community/projects/diy-reader/DIY_Reader_serial_board.jpg" alt="Solder this part on the serial PCB" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/DIY_Reader_serial_board.jpg" alt="Solder this part on the serial PCB" width="300"/>
 
 Next, solder the male 4 pin header to the PN532 module. See the image below, it needs to be soldered into the part with only 4 holes, not the side with 8 holes.
 
 It's important that this one goes on straight too, and it can be a little tricky to get right. You can hold one edge straight with your nail or helping hands, then solder the opposite side. Kapton tape may also help to hold it in place.
 
-<img src="/img/docs/community/projects/diy-reader/Prepared_PN532_module.jpg" alt="Solder these pins" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/Prepared_PN532_module.jpg" alt="Solder these pins" width="300"/>
 
 :::note
 If you touch the male pins at any point, make sure to give them a quick clean with alcohol. This can affect the connection to the module.
@@ -109,19 +109,19 @@ Lastly, check the DIP switches on the PN532 module, next to the connector you ju
 
 Now you can connect the 2 boards together like shown.
 
-<img src="/img/docs/community/projects/diy-reader/Assembled_DIY_Reader_boards.jpg" alt="Assembled and connected boards" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/Assembled_DIY_Reader_boards.jpg" alt="Assembled and connected boards" width="300"/>
 
 ### Case
 
-<img src="/img/docs/community/projects/diy-reader/DIY_Reader_case_pieces.jpg" alt="Both printed case pieces" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/DIY_Reader_case_pieces.jpg" alt="Both printed case pieces" width="300"/>
 
 Drop the assembled boards into the bottom half of the case, aligning the mounting holes with the indentations in the case and the micro USB slot.
 
-<img src="/img/docs/community/projects/diy-reader/DIY_Reader_case_assembly.jpg" alt="Place boards in bottom case piece" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/DIY_Reader_case_assembly.jpg" alt="Place boards in bottom case piece" width="300"/>
 
 Then, place the top piece on top and push it in place into the bottom piece. They will snap shut together. It can take a little bit of force to make them snap together, but it should not be too difficult.
 
-<img src="/img/docs/community/projects/diy-reader/Fully_assembled_DIY_Reader.jpg" alt="Fully assembled DIY Reader" width="300"/>
+<img src="/img/docs/community-projects/diy-reader/Fully_assembled_DIY_Reader.jpg" alt="Fully assembled DIY Reader" width="300"/>
 
 Congratulations, you did it! Welcome to Zaparoo. This reader should be plug and play with Zaparoo on a [MiSTer FPGA](/docs/platforms/mister.md) and [Commodore 64](/docs/platforms/commodore64.md).
 

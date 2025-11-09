@@ -94,4 +94,4 @@ All NFC readers can scan:
 - **[Tokens](/docs/tokens/)** - Physical objects that readers can scan
 - **[Configuration](/docs/core/config#readers)** - Reader configuration reference
 - **[Platforms](/docs/platforms/)** - Platform-specific reader support
-- **[Community Projects](/docs/community/projects/)** - DIY reader builds and cases
+- **[Community Projects](/docs/community-projects/)** - DIY reader builds and cases

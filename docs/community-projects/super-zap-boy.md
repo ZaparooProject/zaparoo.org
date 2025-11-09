@@ -6,11 +6,11 @@ The games' paths are written onto an NFC chip or tag using the Zaparoo app. This
 
 Since the original purpose of the items are being changed in this build (playing GameBoy and SNES games), from here on out I will be referring to the Super Game Boy as the Super Zap Boy and the SNES (Super Nintendo Entertainment System) as the SMES (Super MiSTer Entertainment System).
 
-<img src="/img/docs/community/projects/super-zap-boy/Logo_Printable.png" alt="Super Zap Boy Logo" width="300"/>
+<img src="/img/docs/community-projects/super-zap-boy/Logo_Printable.png" alt="Super Zap Boy Logo" width="300"/>
 
 ## Introduction
 
-<img src="/img/docs/community/projects/super-zap-boy/Sgb_inside.jpg" alt="Inside of a Super Zap Boy" width="300"/>
+<img src="/img/docs/community-projects/super-zap-boy/Sgb_inside.jpg" alt="Inside of a Super Zap Boy" width="300"/>
 
 This project started it's life after contemplating on how best to use physical media together with software or hardware emulation. Since the MiSTer Project and the multitude of Linux-based Emulation operating systems have no physical media for games, a lot of people resort to modding and using their own classic consoles for the most nostalgic looking and feeling experience. Currently software and hardware emulation have come a long way and are in some cases (almost) interchangeable with original hardware accuracy-wise. The absence of physical media keeps people from viewing this route as a 'complete' and authentic experience.
 
@@ -89,43 +89,43 @@ Test the position with both the cable and the NFC reader to get it just right be
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/Screenshot_2024-06-29-16-37-46-74_6012fa4d4ddec268fc5c7112cbb265e7.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Screenshot_2024-06-29-16-37-46-74_6012fa4d4ddec268fc5c7112cbb265e7.jpg",
     width: 900,
     height: 1200,
     alt: "Step 1: Opening the Super Game Boy"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/DSbrhST9.png",
+    src: "/img/docs/community-projects/super-zap-boy/DSbrhST9.png",
     width: 1200,
     height: 900,
     alt: "Step 2: Cutting support bars to make room for NFC reader"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/WhatsApp_Image_2024-07-09_at_11.47.19.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/WhatsApp_Image_2024-07-09_at_11.47.19.jpg",
     width: 1200,
     height: 900,
     alt: "Step 3: Positioning the NFC reader"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Screenshot_2024-09-09_111623.png",
+    src: "/img/docs/community-projects/super-zap-boy/Screenshot_2024-09-09_111623.png",
     width: 1200,
     height: 900,
     alt: "Step 4: Test positioning with USB cable"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Cartridge_with_nfc.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Cartridge_with_nfc.jpg",
     width: 900,
     height: 1200,
     alt: "Step 5: NFC tag alignment in Game Boy cartridge"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Rn_im.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Rn_im.jpg",
     width: 1200,
     height: 900,
     alt: "Step 6: Cutting opening for USB cable"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Passthrough.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Passthrough.jpg",
     width: 1200,
     height: 900,
     alt: "Step 7: USB cable passthrough to SMES case"
@@ -136,7 +136,7 @@ Test the position with both the cable and the NFC reader to get it just right be
 
 At this point, you've reached a **checkpoint**. You can either:
 
-<img src="/img/docs/community/projects/super-zap-boy/SMB3.png" alt="Example custom label" width="300"/>
+<img src="/img/docs/community-projects/super-zap-boy/SMB3.png" alt="Example custom label" width="300"/>
 
 1. Continue with the main build to complete the project.
 2. Use the Super Zap Boy as a standalone reader via USB.
@@ -155,7 +155,7 @@ The sky's the limit when it comes to **customization** and **presentation!**
 
 ## The Main Dish: Readying the Super MiSTer Entertainment System
 
-<img src="/img/docs/community/projects/super-zap-boy/SMES.png" alt="Super MiSTer Entertainment System" width="300"/>
+<img src="/img/docs/community-projects/super-zap-boy/SMES.png" alt="Super MiSTer Entertainment System" width="300"/>
 
 If you've made it this far, **congratulations** on building your own **Super Zap Boy**! Now, let's take it to the next level by integrating it with the **Super MiSTer** and completing the project.
 
@@ -203,19 +203,19 @@ You're almost done! After these steps, your Zap Boy combined with Super MiSTer s
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_7212091b-5724-4648-b029-1bf5dfc4bc6e.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Rn_image_picker_lib_temp_7212091b-5724-4648-b029-1bf5dfc4bc6e.jpg",
     width: 900,
     height: 1200,
     alt: "Trimming excess plastic from inside the SMES case"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Screenshot_2024-09-09_111623.png",
+    src: "/img/docs/community-projects/super-zap-boy/Screenshot_2024-09-09_111623.png",
     width: 1200,
     height: 900,
     alt: "Component placement and positioning inside the case"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Remix-0bcf1e7b-0318-47a1-8419-039ae7173e7f.png",
+    src: "/img/docs/community-projects/super-zap-boy/Remix-0bcf1e7b-0318-47a1-8419-039ae7173e7f.png",
     width: 1200,
     height: 900,
     alt: "Final assembly with components secured"
@@ -270,13 +270,13 @@ If you are using the **QMTECH** board, you will need to bridge **pin 10** togeth
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_b2fa95bc-4956-4710-bcb8-35d31e12995d.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Rn_image_picker_lib_temp_b2fa95bc-4956-4710-bcb8-35d31e12995d.jpg",
     width: 1200,
     height: 900,
     alt: "Reset button wiring with dupont cables to GPIO header"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_f84f4053-2690-4134-9ac3-9918628f1896.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Rn_image_picker_lib_temp_f84f4053-2690-4134-9ac3-9918628f1896.jpg",
     width: 900,
     height: 1200,
     alt: "3D-printed reset button mount with actuation button"
@@ -285,7 +285,7 @@ If you are using the **QMTECH** board, you will need to bridge **pin 10** togeth
 
 ## Optional: Customizing the SNES Case Logo
 
-<img src="/img/docs/community/projects/super-zap-boy/Super_Mister_Entertainment_System_-_White_BG_v2.png" alt="SMES Logo" width="300"/>
+<img src="/img/docs/community-projects/super-zap-boy/Super_Mister_Entertainment_System_-_White_BG_v2.png" alt="SMES Logo" width="300"/>
 
 If you'd like, you can **remove the original logo** on the top front of the SNES case and replace it with a **custom-made logo** for this project.
 
@@ -309,31 +309,31 @@ Once the logo is removed, you can then apply your custom logo using the **transp
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/1200x1035.png",
+    src: "/img/docs/community-projects/super-zap-boy/1200x1035.png",
     width: 1200,
     height: 1035,
     alt: "Magic Eraser sponge for wet sanding"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_f5412cd5-bfce-46e3-bb52-078f679d4f19.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Rn_image_picker_lib_temp_f5412cd5-bfce-46e3-bb52-078f679d4f19.jpg",
     width: 900,
     height: 1200,
     alt: "Wet sanding the original logo with circular motion"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Rn_image_picker_lib_temp_ecec7114-d9f7-4350-9d6a-23befd6f4484.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Rn_image_picker_lib_temp_ecec7114-d9f7-4350-9d6a-23befd6f4484.jpg",
     width: 1200,
     height: 900,
     alt: "Original logo gradually fading away"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/546.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/546.jpg",
     width: 1200,
     height: 900,
     alt: "Applying custom SMES logo with transparent sticker"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Finished_logo.png",
+    src: "/img/docs/community-projects/super-zap-boy/Finished_logo.png",
     width: 1200,
     height: 900,
     alt: "Finished custom SMES logo on case"
@@ -354,13 +354,13 @@ The backplate is designed to fit **specific parts** (as mentioned earlier in the
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/IMG_5534.webp",
+    src: "/img/docs/community-projects/super-zap-boy/IMG_5534.webp",
     width: 1200,
     height: 900,
     alt: "3D-printed backplate installed inside the SMES"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Backplate.webp",
+    src: "/img/docs/community-projects/super-zap-boy/Backplate.webp",
     width: 1200,
     height: 900,
     alt: "Custom SMES backplate with ports and openings"
@@ -419,13 +419,13 @@ If you've soldered everything correctly, your setup should look something like t
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/Image0.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Image0.jpg",
     width: 1200,
     height: 900,
     alt: "Arduino board solder points diagram and wiring guide"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Soldered_finished.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/Soldered_finished.jpg",
     width: 1200,
     height: 900,
     alt: "Completed controller port soldering with all connections"
@@ -442,7 +442,7 @@ If somehow this wiki was not clear enough on a certain subject and you have ques
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/End_result.jpg",
+    src: "/img/docs/community-projects/super-zap-boy/End_result.jpg",
     width: 1200,
     height: 900,
     alt: "Inside the completed SMES build with all components installed"
@@ -453,19 +453,19 @@ If somehow this wiki was not clear enough on a certain subject and you have ques
 
 <Gallery photos={[
   {
-    src: "/img/docs/community/projects/super-zap-boy/Cassette_cases.png",
+    src: "/img/docs/community-projects/super-zap-boy/Cassette_cases.png",
     width: 1200,
     height: 900,
     alt: "Cassette cases with custom Super Zap Boy game covers (front)"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Cassette_back.png",
+    src: "/img/docs/community-projects/super-zap-boy/Cassette_back.png",
     width: 1200,
     height: 900,
     alt: "Cassette cases with custom covers (side and back view)"
   },
   {
-    src: "/img/docs/community/projects/super-zap-boy/Super_Mister_Wallpaper_.png",
+    src: "/img/docs/community-projects/super-zap-boy/Super_Mister_Wallpaper_.png",
     width: 1920,
     height: 1080,
     alt: "Custom SMES wallpaper design for MiSTer (1920x1080)"
@@ -474,7 +474,7 @@ If somehow this wiki was not clear enough on a certain subject and you have ques
 
 Wallpapers for this project can be found on our GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes/Wallpapers). It includes multiple **16:9 1920x1080** versions and one that is compatible with CRT's in **4:3 640x480**. Use the one that you like the best. If you plan on using these, I recommend you turning off the the MiSTer logo in the menu in order to not obstruct the wallpaper. You can do this in the MiSTer.ini file on the root of your SD card. Simply find "logo=1" on line nr. 236 and change the "1" to a "0". This disables the menu logo.
 
-And if you want one of those beautiful cases with the custom cover to go along with your cartridges, you can check out the great work done by Anime0t4ku on his wiki page [here](../../tokens/storage/cassette-cases.md).
+And if you want one of those beautiful cases with the custom cover to go along with your cartridges, you can check out the great work done by Anime0t4ku on his wiki page [here](../tokens/storage/cassette-cases.md).
 
 ## Credits
 

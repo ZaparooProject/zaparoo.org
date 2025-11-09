@@ -150,4 +150,4 @@ Buying from the [Zaparoo Shop](https://zaparoo.com/shop) directly supports the p
 - **[PN532 Module](/docs/readers/nfc/pn532-module)** - Bare module version for DIY projects
 - **[NFC Readers Overview](/docs/readers/nfc/)** - All NFC reader options
 - **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[Community Projects](/docs/community/projects/)** - DIY cases and projects
+- **[Community Projects](/docs/community-projects/)** - DIY cases and projects

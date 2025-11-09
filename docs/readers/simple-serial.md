@@ -268,4 +268,4 @@ Log out and back in for changes to take effect.
 - **[Configuration](/docs/core/config#readers)** - Reader configuration options
 - **[ZapScript](/docs/zapscript/)** - Commands to send in the `text` field
 - **[Mappings](/docs/core/mappings)** - Use UIDs to map tokens to actions
-- **[Community Projects](/docs/community/projects/)** - See DIY reader projects
+- **[Community Projects](/docs/community-projects/)** - See DIY reader projects

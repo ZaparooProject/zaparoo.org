@@ -27,6 +27,7 @@ These docs attempt to cover all aspects of the Zaparoo project, from the softwar
 - **[Zaparoo Core](/docs/core/)** - The core software that powers Zaparoo.
 - **[Zaparoo App](/docs/app/)** - The official mobile frontend app for Zaparoo.
 - **[Zaparoo Designer](/docs/designer/)** - A web app for generating artwork for your cards.
-- **[Community](/docs/community/)** - Information about the Zaparoo community, including vendors and contributors, plus community contributed guides and tutorials.
+- **[Community Projects](/docs/community-projects/)** - Community contributed guides, tutorials, DIY builds, and 3D printable designs.
+- **[Community Hub](/docs/community-hub/)** - Information about the Zaparoo community, including vendors and contributors.
 
 The docs are open for contributions, so if you see something missing or want to add something, please [create a pull request](https://github.com/ZaparooProject/zaparoo.org/pulls).

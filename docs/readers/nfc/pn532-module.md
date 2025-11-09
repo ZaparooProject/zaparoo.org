@@ -225,4 +225,4 @@ For a ready-to-use option, consider the [PN532 USB](/docs/readers/nfc/pn532-usb)
 - **[PN532 USB](/docs/readers/nfc/pn532-usb)** - Ready-to-use USB version (recommended for most users)
 - **[NFC Readers Overview](/docs/readers/nfc/)** - All NFC reader options
 - **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[Community Projects](/docs/community/projects/)** - DIY reader builds and cases
+- **[Community Projects](/docs/community-projects/)** - DIY reader builds and cases

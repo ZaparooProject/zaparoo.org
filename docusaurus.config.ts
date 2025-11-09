@@ -176,7 +176,7 @@ const config: Config = {
             },
             {
               label: "Contributors",
-              href: "/docs/community/contributors",
+              href: "/docs/community-hub/contributors",
               "data-umami-event": "footer-nav-contributors",
             },
             {
@@ -226,7 +226,7 @@ const config: Config = {
           items: [
             {
               label: "Community Projects",
-              href: "/docs/community/projects",
+              href: "/docs/community-projects",
               "data-umami-event": "footer-nav-community-projects",
             },
             {
@@ -426,6 +426,38 @@ const config: Config = {
           {
             to: "/docs/labels/#upgrade-stickers",
             from: "/docs/labels/upgrade-stickers",
+          },
+          {
+            to: "/docs/community-hub/",
+            from: "/docs/community",
+          },
+          {
+            to: "/docs/community-hub/contributors",
+            from: "/docs/community/contributors",
+          },
+          {
+            to: "/docs/community-hub/media",
+            from: "/docs/community/media",
+          },
+          {
+            to: "/docs/community-hub/tapto",
+            from: "/docs/community/tapto",
+          },
+          {
+            to: "/docs/community-hub/vendors",
+            from: "/docs/community/vendors",
+          },
+          {
+            to: "/docs/community-projects/",
+            from: "/docs/community/projects",
+          },
+          {
+            to: "/docs/community-projects/diy-reader",
+            from: "/docs/community/projects/diy-reader",
+          },
+          {
+            to: "/docs/community-projects/super-zap-boy",
+            from: "/docs/community/projects/super-zap-boy",
           },
         ],
       },
