@@ -133,7 +133,7 @@ Some USB cables are **power-only** and don't support data transfer. If your read
 ## Where To Buy
 
 :::tip Official Support
-Buying from the [Zaparoo Shop](https://zaparoo.com/shop) directly supports the project and includes a quality case!
+Buying from the [Zaparoo Shop](https://shop.zaparoo.com/) directly supports the project and includes a quality case!
 :::
 
 **Original Hardware:**
