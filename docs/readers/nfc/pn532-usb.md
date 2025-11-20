@@ -145,9 +145,3 @@ Buying from the [Zaparoo Shop](https://shop.zaparoo.com/) directly supports the 
 - [AliExpress (China) - Allinbest Store](https://www.aliexpress.us/item/1005006326438326.html)
 - [AliExpress (China) - MI YU KOUNG Official Store](https://www.aliexpress.com/item/1005005262748046.html)
 
-## See Also
-
-- **[PN532 Module](/docs/readers/nfc/pn532-module)** - Bare module version for DIY projects
-- **[NFC Readers Overview](/docs/readers/nfc/)** - All NFC reader options
-- **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[Community Projects](/docs/community-projects/)** - DIY cases and projects

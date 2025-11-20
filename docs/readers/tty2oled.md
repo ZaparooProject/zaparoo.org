@@ -95,8 +95,3 @@ dmesg | grep tty
 **Windows:**
 Open Device Manager and look under "Ports (COM & LPT)"
 
-## See Also
-
-- **[TTY2OLED Project](https://github.com/venice1200/MiSTer_tty2oled)** - Official TTY2OLED documentation and hardware info
-- **[Configuration](/docs/core/config#readers)** - Configure reader settings
-- **[Readers Overview](/docs/readers/)** - All supported reader types

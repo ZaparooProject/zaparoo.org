@@ -262,10 +262,3 @@ sudo usermod -a -G dialout $USER
 
 Log out and back in for changes to take effect.
 
-## See Also
-
-- **[RC522 Reader](/docs/readers/nfc/rc522)** - Use RC522 modules with simple serial
-- **[Configuration](/docs/core/config#readers)** - Reader configuration options
-- **[ZapScript](/docs/zapscript/)** - Commands to send in the `text` field
-- **[Mappings](/docs/core/mappings)** - Use UIDs to map tokens to actions
-- **[Community Projects](/docs/community-projects/)** - See DIY reader projects

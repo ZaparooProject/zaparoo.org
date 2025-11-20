@@ -113,9 +113,3 @@ path = '/dev/sr0'
 
 Each reader operates independently and can scan tokens.
 
-## See Also
-
-- **[Readers Overview](/docs/readers/)** - Hardware reader information and recommendations
-- **[Configuration](./config.md#readers)** - Complete reader configuration reference
-- **[Tokens](/docs/tokens/)** - Physical tokens that readers can scan
-- **[Platforms](/docs/platforms/)** - Platform-specific reader support

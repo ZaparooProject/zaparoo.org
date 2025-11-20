@@ -214,9 +214,3 @@ ls -l /dev/sr0
 - **No game data** - You cannot launch games directly from the disc data (yet)
 - **Requires burned discs** - Completely blank discs won't work
 
-## See Also
-
-- **[Mappings](/docs/core/mappings)** - How to map disc IDs to games
-- **[ZapScript](/docs/zapscript/)** - Commands to execute when discs are inserted
-- **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[Readers Overview](/docs/readers/)** - All supported reader types

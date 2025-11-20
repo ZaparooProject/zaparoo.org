@@ -122,9 +122,3 @@ These are some known working listings submitted by users:
 - [Everything ID (Australia)](https://www.everythingid.com.au/rfid-equipment-c-13/acr122u-usb-nfc-rfid-card-reader-writer-mifare-nfc-p-324)
 - [AliExpress (China) - 5YOA Official Store](https://www.aliexpress.us/item/2251832554165448.html)
 
-## See Also
-
-- **[PN532 USB](/docs/readers/nfc/pn532-usb)** - Recommended alternative with better clone compatibility
-- **[NFC Readers Overview](/docs/readers/nfc/)** - All NFC reader options
-- **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[MiSTer Platform](/docs/platforms/mister)** - MiSTer-specific information

@@ -88,10 +88,3 @@ All NFC readers can scan:
 - Yes! Connect as many readers as you want
 - Each reader operates independently
 
-## See Also
-
-- **[Reader Drivers](/docs/core/drivers)** - Software drivers and configuration
-- **[Tokens](/docs/tokens/)** - Physical objects that readers can scan
-- **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[Platforms](/docs/platforms/)** - Platform-specific reader support
-- **[Community Projects](/docs/community-projects/)** - DIY reader builds and cases

@@ -107,10 +107,3 @@ Before adding a command to your launcher config, test it manually in your termin
 - **File not found**: Ensure your `media_dirs` paths are absolute or correctly relative to the platform's root folders
 - **Command not found**: Verify the programs you're calling in `execute` are installed and in your system's PATH
 
-## See Also
-
-- **[Systems](./systems.md)** - Supported gaming systems and media types that launchers can handle
-- **[Configuration](./config.md)** - Configure Core settings including launcher behavior
-- **[Platform Guides](/docs/platforms/)** - Platform-specific launcher information and setup
-- **[ZapScript](/docs/zapscript/)** - Scripting language used to trigger launchers from tokens
-

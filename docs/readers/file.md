@@ -197,9 +197,3 @@ Now any computer that can write to the network share can control Zaparoo.
 - You must **clear the file contents** to remove the token
 - Simply deleting the file won't work (Core will recreate it)
 
-## See Also
-
-- **[Configuration](/docs/core/config#readers)** - Reader configuration options
-- **[ZapScript](/docs/zapscript/)** - Commands to write to the file
-- **[Core API](/docs/core/api/)** - Alternative programmatic control method
-- **[Simple Serial](/docs/readers/simple-serial)** - Another option for custom integrations

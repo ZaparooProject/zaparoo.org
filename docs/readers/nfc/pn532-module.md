@@ -220,9 +220,3 @@ For a ready-to-use option, consider the [PN532 USB](/docs/readers/nfc/pn532-usb)
 - [AliExpress (China) - JIAQISHENG JQS Official Store](https://www.aliexpress.com/item/1005002755983375.html)
 - [AliExpress (China) - TENSTAR ROBOT Store](https://www.aliexpress.com/item/1005005973913526.html)
 
-## See Also
-
-- **[PN532 USB](/docs/readers/nfc/pn532-usb)** - Ready-to-use USB version (recommended for most users)
-- **[NFC Readers Overview](/docs/readers/nfc/)** - All NFC reader options
-- **[Configuration](/docs/core/config#readers)** - Reader configuration reference
-- **[Community Projects](/docs/community-projects/)** - DIY reader builds and cases
