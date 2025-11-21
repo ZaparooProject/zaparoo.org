@@ -90,6 +90,16 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Mounts to bottom of MiSTer stack with M3 screws. For PN532 NFC board.
 
+## Software Tools
+
+- **[ZaparooSkraper](https://github.com/AchillesPDX/ZaparooSkraper)** by *AchillesPDX*
+
+  A custom Mix for Skraper to generate Zaparoo NFC labels. Features controller illustrations from the RetroPie es-theme-carbon project and professionally redrawn console logos from the Console Logos archive.
+
+- **[zaparoo-helpers](https://github.com/thwonp/zaparoo-helpers)** by *Thwonp*
+
+  Bash scripts for composing and printing custom Zaparoo cards. Includes `imagemagick_composer.sh` for batch image composition (combining cover art and marquees with templates) and `print_composer.sh` for arranging cards into print-ready 8.5x11" pages at 300 DPI.
+
 ## Tokens
 
 ### Storage

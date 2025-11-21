@@ -14,6 +14,48 @@ interface FeaturedPhoto extends Photo {
 
 const allPhotos: FeaturedPhoto[] = [
   {
+    src: "/img/showcase/Thwonp_reader_inside_n64_cart.webp",
+    width: 1200,
+    height: 1110,
+    alt: "Custom NFC reader built inside N64 cartridge. Credit: Thwonp @ Discord",
+    featured: false,
+  },
+  {
+    src: "/img/showcase/Thwonp_custom_cards.webp",
+    width: 1080,
+    height: 810,
+    alt: "Custom NFC card designs. Credit: Thwonp @ Discord",
+    featured: false,
+  },
+  {
+    src: "/img/showcase/Stumminator_custom_cards.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom NFC card designs. Credit: Stumminator @ Discord",
+    featured: false,
+  },
+  {
+    src: "/img/showcase/BigBlue709_custom_switch_cases.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom Switch cases for NFC card storage. Credit: BigBlue709 @ Discord",
+    featured: false,
+  },
+  {
+    src: "/img/showcase/BigBlue709_custom_cards.webp",
+    width: 1200,
+    height: 579,
+    alt: "Custom NFC card designs. Credit: BigBlue709 @ Discord",
+    featured: false,
+  },
+  {
+    src: "/img/showcase/ArielAces_card_storage.webp",
+    width: 1200,
+    height: 900,
+    alt: "NFC card storage solution. Credit: ArielAces @ Discord",
+    featured: false,
+  },
+  {
     src: "/img/showcase/SunieFairbreeze_retro_nfc_reader.webp",
     width: 1200,
     height: 904,
