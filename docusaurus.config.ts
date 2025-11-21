@@ -313,9 +313,17 @@ const config: Config = {
       searchPagePath: "search",
       insights: false,
     },
+    zoom: {
+      selector: ".markdown img:not(a img)",
+      background: {
+        light: "rgb(255, 255, 255)",
+        dark: "rgb(50, 50, 50)",
+      },
+    },
   } satisfies Preset.ThemeConfig,
 
   plugins: [
+    "docusaurus-plugin-image-zoom",
     () => ({
       name: "umami-tracking",
       injectHtmlTags() {
