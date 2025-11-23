@@ -274,7 +274,7 @@ Pay attention to the double pairs of square brackets. Each defined `readers.conn
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = '/dev/ttyUSB0'
 
 [[readers.connect]]
@@ -306,7 +306,7 @@ path = '/tmp/some_file'
 
 `id_source` specifies which identifier source to use for token identification. This is only supported by certain reader drivers:
 
-- `optical_drive`: Can use `uuid` (disc UUID) or `label` (disc label)
+- `opticaldrive`: Can use `uuid` (disc UUID) or `label` (disc label)
 
 Other reader drivers ignore this setting.
 
@@ -315,11 +315,11 @@ Other reader drivers ignore this setting.
 `readers.drivers` configures driver-specific settings. It's a sub-section that uses driver IDs as keys, and must have this header format: `[readers.drivers.DRIVER_ID]`
 
 ```toml
-[readers.drivers.acr122_pcsc]
+[readers.drivers.acr122pcsc]
 enabled = true
 auto_detect = false
 
-[readers.drivers.simple_serial]
+[readers.drivers.simpleserial]
 enabled = false
 ```
 
@@ -900,15 +900,15 @@ on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
 
 [[readers.connect]]
-driver = 'acr122_pcsc'
+driver = 'acr122pcsc'
 path = '/dev/ttyUSB0'
 
 [[readers.connect]]
-driver = 'optical_drive'
+driver = 'opticaldrive'
 path = '/dev/sr0'
 id_source = 'uuid'
 
-[readers.drivers.simple_serial]
+[readers.drivers.simpleserial]
 enabled = false
 
 [[systems.default]]
