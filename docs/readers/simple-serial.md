@@ -9,7 +9,7 @@ With this driver, your device only needs to provide a read-only serial connectio
 ### Common Use Cases
 
 - **Custom barcode scanners** - Scan barcodes and send the data to Zaparoo
-- **Unsupported RFID modules** - Use modules like [RC522](/docs/readers/nfc/rc522) with a microcontroller
+- **Unsupported RFID modules** - Use modules like [RC522](./nfc/rc522.md) with a microcontroller
 - **Custom button interfaces** - Create physical button panels that trigger Zaparoo actions
 - **Multi-reader setups** - Combine multiple readers into one serial stream
 - **Experimental hardware** - Prototype new reader types quickly
@@ -18,26 +18,26 @@ With this driver, your device only needs to provide a read-only serial connectio
 
 ### Driver Details
 
-- **Driver ID**: `simple_serial`
-- **Platforms**: [All platforms](/docs/platforms/)
+- **Driver ID**: `simpleserial`
+- **Platforms**: [All platforms](../platforms/index.md)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 - **Baud Rate**: 115200 (fixed, not currently configurable)
 
 ### Configuration Example
 
-Add to your [`config.toml`](/docs/core/config):
+Add to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
-driver = 'simple_serial'
+driver = 'simpleserial'
 path = '/dev/ttyUSB0'  # Linux/MiSTer
 ```
 
 On Windows:
 ```toml
 [[readers.connect]]
-driver = 'simple_serial'
+driver = 'simpleserial'
 path = 'COM3'  # Windows COM port
 ```
 
@@ -87,7 +87,7 @@ All arguments are optional. You can send any combination that makes sense for yo
 
 ### `text` - Token Content
 
-The [ZapScript](/docs/zapscript/) commands to execute:
+The [ZapScript](../zapscript/index.md) commands to execute:
 
 ```
 SCAN\ttext=**launch.random:SNES\n
@@ -105,7 +105,7 @@ An identifier for the physical token (optional metadata):
 SCAN\tuid=04a1b2c3d4e5f6\ttext=Genesis/Sonic\n
 ```
 
-The UID can be used in [mappings](/docs/core/mappings) for token comparison or matching.
+The UID can be used in [mappings](../core/mappings.md) for token comparison or matching.
 
 ### `removable` - Removal Behavior
 
