@@ -1,0 +1,178 @@
+---
+sidebar_class_name: hidden
+---
+
+# Linux
+
+:::danger
+This platform isn't released yet! It's not ready for production use.
+:::
+
+:::warning
+
+Linux support is still in beta. The Zaparoo App and most hardware is supported, but launching media is done via shell scripts until proper launcher support is added.
+
+:::
+
+:::tip
+
+This is the base of most other platforms that Zaparoo supports. If you don't see your platform listed already (and it's Linux-based) there's a good chance you can get Zaparoo running using this version.
+
+:::
+
+| Item               | Path                                 |
+| ------------------ | ------------------------------------ |
+| Data directory     | `~/.local/share/zaparoo`             |
+| Mappings directory | `~/.local/share/zaparoo/mappings`    |
+| Config file        | `~/.config/zaparoo/config.toml`      |
+| Log file           | `/tmp/<session_id>-zaparoo/core.log` |
+
+<small>_Where `~` is the home directory of the current user._</small>
+
+## Install
+
+Download Zaparoo Core for Linux from the [Downloads page](/downloads/), unzip it and copy
+the `zaparoo` file somewhere like the home directory, desktop or a bin directory like `/usr/local/bin`.
+
+We'll assume you copied the `zaparoo` file to your home directory. Replace paths in the examples if that's not the case.
+
+Open terminal and go to the directory where you copied the `zaparoo` file:
+
+```bash
+cd $HOME
+```
+
+Run the install command in Zaparoo:
+
+```bash
+./zaparoo -install
+```
+
+:::info
+
+This command does the following:
+
+- Creates a udev rule allowing users to read NFC reader serial devices.
+- Creates a modprobe blacklist entry to fix a bug stopping ACR122U readers from working.
+- Creates a user systemd service to run Zaparoo in the background.
+
+:::
+
+Start the Zaparoo service by either using the systemd service:
+
+```bash
+systemctl --user enable zaparoo.service
+systemctl --user start zaparoo.service
+```
+
+Or just by adding the `zaparoo` file to your startup applications, depending on your desktop environment.
+
+From this point, Zaparoo should be running and the App should connect to your device. You can now connect a reader and set up cards using the Zaparoo App.
+
+If you want to undo the changes performed by the install command, you can run the uninstall command:
+
+```bash
+./zaparoo -uninstall
+```
+
+## Supported Readers
+
+| Reader                                          | Status |
+|-------------------------------------------------|--------|
+| [PN532](/docs/readers/nfc/pn532-usb)               | ✅      |
+| [ACR122U](/docs/readers/nfc/acr122u)       | ✅      |
+| [File Reader](/docs/readers/file)          | ✅      |
+| [Simple Serial](/docs/readers/simple-serial) | ✅      |
+| [Optical Drive](/docs/readers/optical-drive) | ✅      |
+| [TTY2OLED](/docs/readers/tty2oled)         | ✅      |
+
+## Supported Launchers
+
+| Launcher | Extensions/Types | Notes |
+|----------|-----------------|-------|
+| Kodi Local | Local video files | Launches local media files through Kodi (if installed) |
+| Kodi Movie | Movies from Kodi library | Launches movies indexed in Kodi |
+| Kodi TV | TV shows from Kodi library | Launches TV shows indexed in Kodi |
+| Kodi Music | Music from Kodi library | Plays music indexed in Kodi |
+| Kodi Song | Individual songs | Plays specific songs from Kodi |
+| Kodi Album | Music albums | Plays complete albums from Kodi |
+| Kodi Artist | Artist collections | Plays all songs by an artist |
+| Kodi TVShow | TV show series | Launches TV show series from Kodi |
+| Generic | `.sh` | Shell script execution |
+
+Currently, you must use shell scripts to launch media on Linux. The Kodi launchers are only available if Kodi is installed and configured.
+
+## Example: Creating a Launcher Script for an Emulator
+
+Suppose you want to use Zaparoo to launch a game in an emulator (for example, running a NES game with the `fceux` emulator). Here’s how you can do it:
+
+1. **Create a Shell Script**
+
+Open your text editor and paste the following example, replacing the paths with your emulator and game:
+
+```bash
+#!/bin/bash
+# Example: ~/launch_nes.sh
+
+# Path to your emulator
+EMULATOR="/usr/bin/fceux"
+
+# Path to your game ROM
+GAME="$HOME/games/nes/SuperMarioBros.nes"
+
+# Run the emulator with the game
+"$EMULATOR" "$GAME"
+```
+
+:::tip
+
+If you’re not familiar with editing files in the terminal, you can use a graphical text editor like "Text Editor", "Gedit", or "Kate" to open and edit `~/.config/zaparoo/config.toml`.
+
+:::
+
+Save this as `launch_nes.sh` in your home directory.
+
+2. **Make the Script Executable**
+
+Open a terminal and run:
+
+```bash
+chmod +x ~/launch_nes.sh
+```
+
+3. **Add the Script to the `allow_file` Config Entry**
+
+Open your Zaparoo config file at `~/.config/zaparoo/config.toml` in a text editor. Find or add the `allow_file` entry under the `[launchers]` section. For example:
+
+```toml
+[launchers]
+allow_file = [
+  "^/home/yourusername/launch_nes.sh$"
+]
+```
+
+Replace `/home/yourusername/launch_nes.sh` with the full path to your script.  
+If you want to allow multiple scripts, add them as separate lines:
+
+```toml
+[core]
+allow_file = [
+  "^/home/yourusername/launch_nes.sh$",
+  "^/home/yourusername/launch_snes.sh$",
+  "^/home/yourusername/launch_psx.sh$"
+]
+```
+
+4. **Restart Zaparoo**
+
+To apply the changes, restart the Zaparoo service. In your terminal, run:
+
+```bash
+systemctl --user restart zaparoo.service
+```
+
+5. **Write the Script Path to a Card**
+
+Now, Zaparoo can use your launcher script(s) to run games or other media!
+
+You can write the full path to the new script to a card: `/home/yourusername/launch_nes.sh`.
