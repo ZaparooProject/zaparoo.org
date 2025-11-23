@@ -1,6 +1,6 @@
 # PN532 Module
 
-The PN532 module is a bare PCB NFC reader perfect for DIY projects and custom builds. While it requires more setup than the [USB version](/docs/readers/nfc/pn532-usb), it's extremely affordable and flexible.
+The PN532 module is a bare PCB NFC reader perfect for DIY projects and custom builds. While it requires more setup than the [USB version](./pn532-usb.md), it's extremely affordable and flexible.
 
 <img src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
 
@@ -43,10 +43,10 @@ This is **not a ready-to-use reader** - it's a bare PCB module for custom projec
 
 ### Driver Details
 
-- **Driver IDs**: `pn532`, `pn532_uart`, `pn532_i2c`, `pn532_spi`
+- **Driver IDs**: `pn532`, `pn532uart`, `pn532i2c`, `pn532spi`
 - **Primary Transport**: UART (via USB-to-serial adapter)
 - **Alternative Transports**: I2C, SPI (for advanced projects)
-- **Platforms**: [All platforms](/docs/platforms/)
+- **Platforms**: [All platforms](../../platforms/index.md)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes (for UART)
 
@@ -77,13 +77,13 @@ The PN532 UART is auto-detected by default. Just plug in the USB-to-serial adapt
 
 **Manual Configuration:**
 
-Add to your [`config.toml`](/docs/core/config) if auto-detect doesn't work:
+Add to your [`config.toml`](../../core/config.md) if auto-detect doesn't work:
 
 **Linux/MiSTer:**
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = '/dev/ttyUSB0'
 ```
 
@@ -91,7 +91,7 @@ path = '/dev/ttyUSB0'
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = 'COM3'
 ```
 
@@ -99,7 +99,7 @@ path = 'COM3'
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = '/dev/cu.usbserial-1234'
 ```
 
@@ -109,7 +109,7 @@ For direct I2C connections (e.g., Raspberry Pi GPIO):
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_i2c'
+driver = 'pn532i2c'
 path = '/dev/i2c-1'
 ```
 
@@ -121,7 +121,7 @@ For SPI connections:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_spi'
+driver = 'pn532spi'
 path = '/dev/spidev0.0'
 ```
 
@@ -201,7 +201,7 @@ This is a bare module - you **must solder** wires or headers. Not suitable if yo
 ## Where To Buy
 
 :::tip
-For a ready-to-use option, consider the [PN532 USB](/docs/readers/nfc/pn532-usb) instead!
+For a ready-to-use option, consider the [PN532 USB](./pn532-usb.md) instead!
 :::
 
 **Original Hardware:**

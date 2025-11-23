@@ -36,11 +36,11 @@ Using FileZilla to transfer the file? Make sure _binary transfer mode_ is enable
 
 | Reader                                          | Status |
 |-------------------------------------------------|--------|
-| [PN532](/docs/readers/nfc/pn532-usb)               | ✅      |
-| [ACR122U](/docs/readers/nfc/acr122u)       | ✅      |
-| [File Reader](/docs/readers/file)          | ✅      |
-| [Simple Serial](/docs/readers/simple-serial) | ✅      |
-| [TTY2OLED](/docs/readers/tty2oled)         | ✅      |
+| [PN532](../readers/nfc/pn532-usb.md)               | ✅      |
+| [ACR122U](../readers/nfc/acr122u.md)       | ✅      |
+| [File Reader](../readers/file.md)          | ✅      |
+| [Simple Serial](../readers/simple-serial.md) | ✅      |
+| [TTY2OLED](../readers/tty2oled.md)         | ✅      |
 
 ## Supported Launchers
 

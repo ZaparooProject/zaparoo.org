@@ -4,7 +4,7 @@ TTY2OLED is a serial display device that shows game information and artwork on e
 
 ## Overview
 
-The TTY2OLED driver enables [Zaparoo Core](/docs/core/) to communicate with [TTY2OLED](https://github.com/venice1200/MiSTer_tty2oled) hardware, showing:
+The TTY2OLED driver enables [Zaparoo Core](../core/index.md) to communicate with [TTY2OLED](https://github.com/venice1200/MiSTer_tty2oled) hardware, showing:
 - Game titles and metadata
 - System information
 - Artwork and logos
@@ -21,7 +21,7 @@ The TTY2OLED driver enables [Zaparoo Core](/docs/core/) to communicate with [TTY
 ### Driver Details
 
 - **Driver ID**: `tty2oled`
-- **Platforms**: [All platforms](/docs/platforms/)
+- **Platforms**: [All platforms](../platforms/index.md)
 - **Enabled by default**: No
 - **Auto-detect**: Yes
 
@@ -31,7 +31,7 @@ This driver is **disabled by default** and must be explicitly enabled in your co
 
 ### Enabling the Driver
 
-To enable TTY2OLED support, add the following to your [`config.toml`](/docs/core/config) file:
+To enable TTY2OLED support, add the following to your [`config.toml`](../core/config.md) file:
 
 ```toml
 [readers.drivers.tty2oled]
@@ -59,7 +59,7 @@ path = 'COM3'  # Windows COM port
 
 ### MiSTer
 
-TTY2OLED is commonly used with [MiSTer FPGA](/docs/platforms/mister) systems. The display typically connects via USB and appears as a serial device at `/dev/ttyUSB0` or similar.
+TTY2OLED is commonly used with [MiSTer FPGA](../platforms/mister.md) systems. The display typically connects via USB and appears as a serial device at `/dev/ttyUSB0` or similar.
 
 ### Linux
 

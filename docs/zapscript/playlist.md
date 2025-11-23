@@ -168,4 +168,12 @@ Similar to `playlist.load`, but will also open a picker menu on screen which all
 
 Re-running the command will open the same menu again, allowing you to select a different item to launch, and will show the current place in the playlist.
 
+**Reload current playlist** by running with no arguments:
+
+```
+**playlist.open
+```
+
+This reopens the picker menu for the currently active playlist, letting you select a different item without reloading from disk.
+
 This command supports the `mode` advanced argument.

@@ -1,17 +1,17 @@
 # Launchers
 
 A launcher is a program that can be used to launch a game or application.
-Each [platform](/docs/platforms/) has its own set of launchers, which are used to launch the correct program for the given [system](/docs/core/systems) and file.
+Each [platform](../platforms/index.md) has its own set of launchers, which are used to launch the correct program for the given [system](./systems.md) and file.
 
 ## Custom Launchers
 
-Custom launchers are a type of user-defined launcher that can be created and configured using a [TOML](https://toml.io/) file, similar to the [Mapping Files](./mappings.md#mapping-files). For example, if a [platform](/docs/platforms/) you're using Zaparoo on does not support an emulator you use, you can most likely create a custom launcher for it and integrate it into [Zaparoo Core](/docs/core/) like an officially supported one.
+Custom launchers are a type of user-defined launcher that can be created and configured using a [TOML](https://toml.io/) file, similar to the [Mapping Files](./mappings.md#mapping-files). For example, if a [platform](../platforms/index.md) you're using Zaparoo on does not support an emulator you use, you can most likely create a custom launcher for it and integrate it into [Zaparoo Core](./index.md) like an officially supported one.
 
 Custom launchers aren't as configurable or advanced as official launchers, they're designed for simple cases where it's possible to launch media by giving a file path to the media player.
 
 :::note Media Tracking Limitations
 Custom launchers cannot accurately track what media is playing, which means:
-- They won't automatically stop when a [token](/docs/tokens/) is removed in hold mode
+- They won't automatically stop when a [token](../tokens/index.md) is removed in hold mode
 - The stop command via the API won't work with custom launchers
 - Core can't determine if media launched by a custom launcher is still running
 

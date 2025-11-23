@@ -24,6 +24,14 @@ Genesis/1 US - Q-Z/Some Game (USA, Europe).md?launcher=LLAPIMegaDrive
 
 This can be useful to use alternate launchers for specific games or to launch a game not in a standard folder.
 
+The advanced argument `system` can be used to apply system default launchers to local file paths:
+
+```
+/path/to/game.bin?system=Genesis
+```
+
+This is particularly useful when launching files outside standard system folders or when the file extension alone isn't enough to determine the correct launcher.
+
 ### Auto Launch
 
 Since launching media is the most common action, this command has a lot more special syntax for different ways to look up media on the device.
@@ -33,8 +41,43 @@ For the most basic usage, a file path can be written to a token, and Zaparoo wil
 Zaparoo uses the following rules to find the game file. Keep these rules in mind if you want a token to work well between different devices.
 
 :::tip
-If you're not sure what to do, it's recommended to use the [System Lookup](./launch.md#system-lookup) method for the best portability between devices.
+If you're not sure what to do, it's recommended to use the [Title ID](./launch.md#title-id) method for the best portability between devices.
 :::
+
+#### Title ID
+
+**This is the recommended method for making tokens portable between devices.**
+
+Title IDs identify games by system and name, with optional [tags](../core/tags.md) for filtering. The format is `@<system>/<title>` or `<system>/<title>` (the `@` prefix is recommended but optional).
+
+Basic examples:
+
+```
+@Genesis/Sonic the Hedgehog
+@SNES/Super Mario World
+@N64/Legend of Zelda Ocarina of Time
+```
+
+Title IDs work across all your Zaparoo devices and platforms. Write a card on your MiSTer, scan it on your Windows PC, and it'll launch the same game. Zaparoo automatically matches the title to whatever media you have locally using fuzzy matching and intelligent algorithms.
+
+**With tags** to resolve conflicts or specify preferences:
+
+```
+@SNES/Super Mario World (region:us)
+@SNES/Super Mario World (region:eu) (lang:de)
+@Genesis/Sonic (-unfinished:demo)
+```
+
+See the [Tags documentation](../core/tags.md) for all available tags and how to use them.
+
+**Without the @ prefix** (backward compatibility):
+
+```
+Genesis/Sonic the Hedgehog
+SNES/Super Mario World
+```
+
+This format also works, but the `@` prefix is recommended to avoid potential conflicts with folder-based lookups.
 
 #### System Lookup
 
@@ -110,22 +153,6 @@ _@Favorites/My Favorite Game.mgl
 Genesis/@Genesis - 2022-05-18.zip/1 US - Q-Z/Some Game (USA, Europe).md
 ```
 
-#### Game Title
-
-Games can be looked up by system and title by using the format `<system>/<title>` similar to the above, but without a file extension or any subfolders. The game's title will be looked up in the database and launched if there's a match. The is currently the most portable method to make tokens work between devices and platforms.
-
-Examples:
-
-```
-PCEngine/Another Game
-```
-
-```
-N64/Some Game (USA)
-```
-
-Currently most game titles are taken from the filename and will include things like region tags. Some fuzzy matching may be implemented in the future to strip these out as a fallback.
-
 ### Remote Install
 
 Remote media can be downloaded and installed via SMB (CIFS) and HTTP/S URLs by entering the full URL to a file and filling the `system` advanced argument with a valid system ID. This feature can be used for services like a [RetroNAS](https://github.com/retronas/retronas) running on your local network, or any compatible NAS server.
@@ -159,6 +186,57 @@ The `name` advanced argument can be used to specify a custom display name for th
 ```
 http://10.0.0.123/path/to/file.bin?system=Genesis&name=My Custom Game
 ```
+
+## launch.title
+
+Launches media by [title ID](../core/tags.md). This is the explicit command for title-based launching (the [Auto Launch](#title-id) format uses this internally).
+
+Format: `**launch.title:<system>/<title>`
+
+Basic examples:
+
+```
+**launch.title:Genesis/Sonic the Hedgehog
+**launch.title:SNES/Super Mario World
+**launch.title:N64/Legend of Zelda Ocarina of Time
+```
+
+**With tags** to filter results:
+
+```
+**launch.title:SNES/Super Mario World (region:us)
+**launch.title:Genesis/Sonic (lang:en) (-unfinished:demo)
+**launch.title:N64/Mario 64 (+region:jp) (+lang:ja)
+```
+
+**Using the @ prefix** (optional, works the same):
+
+```
+**launch.title:@Genesis/Sonic the Hedgehog
+```
+
+**Advanced arguments**:
+
+The `launcher` advanced argument can override the default launcher:
+
+```
+**launch.title:Genesis/Sonic?launcher=LLAPIMegaDrive
+```
+
+The `tags` advanced argument provides an alternate way to specify tag filters:
+
+```
+**launch.title:Genesis/Sonic?tags=region:us,lang:en
+```
+
+Title IDs are the recommended format for making tokens portable between devices. The system automatically handles:
+
+- Fuzzy matching for typos and variations
+- Conflict resolution when multiple versions exist
+- Tag-based filtering for precise game selection
+- Preference ranking based on your config settings
+
+See the [Tags documentation](../core/tags.md) and [Title Normalization](../core/dev/media-titles.md) for technical details on how matching works.
 
 ## launch.system
 

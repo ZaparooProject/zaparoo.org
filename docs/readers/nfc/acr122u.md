@@ -15,7 +15,7 @@ Overall, if you like the look and are willing to accept the risk of receiving an
 
 :::info
 
-The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones are incompatible with [MiSTer](/docs/platforms/mister/) and will likely never be supported, which is why the project no longer recommends them.
+The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones are incompatible with [MiSTer](../../platforms/mister.md) and will likely never be supported, which is why the project no longer recommends them.
 
 :::
 
@@ -25,7 +25,7 @@ The ACR122U uses **different drivers** depending on your platform. Zaparoo Core 
 
 ### ACR122U (USB) - Linux & MiSTer
 
-- **Driver ID**: `acr122_usb`
+- **Driver ID**: `libnfcacr122`
 - **Platforms**: Linux-based platforms (MiSTer, Batocera, SteamOS, etc.)
 - **Compatibility**: Does **not** work on Windows or macOS
 - **Library**: Uses libnfc
@@ -39,21 +39,21 @@ This driver provides direct USB communication via the libnfc library, which mean
 - ❌ Some clone variants are incompatible
 - ❌ LED and beeper may not work (normal behavior)
 
-### ACR122U (PCSC) - Windows
+### ACR122U (PCSC) - Windows & macOS
 
-- **Driver ID**: `acr122_pcsc`
-- **Platforms**: Windows only
-- **Compatibility**: Windows 10 and later
+- **Driver ID**: `acr122pcsc`
+- **Platforms**: Windows, macOS
+- **Compatibility**: Windows 10+, macOS 10.12+
 - **Library**: Uses PC/SC (Personal Computer/Smart Card)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 
-This driver uses the Windows PC/SC interface, which means:
+This driver uses the PC/SC interface, which means:
 
 - ✅ Better compatibility with clone variants
 - ✅ LED lights up and beeper works
 
-Requires Smart Card services to be enabled.
+Requires Smart Card services to be enabled (Windows) or already included in macOS.
 
 ### Manual Configuration
 
@@ -63,7 +63,7 @@ Auto-detection should work on all platforms, but if auto-detection fails or you 
 
 ```toml
 [[readers.connect]]
-driver = 'acr122_pcsc'
+driver = 'acr122pcsc'
 path = 'ACS ACR122 0'  # Use actual reader name from PC/SC
 ```
 
@@ -71,7 +71,7 @@ To find the PC/SC reader name on Windows, check Device Manager under "Smart card
 
 ## MiSTer
 
-An ACR122U on [MiSTer](/docs/platforms/mister/) is plug and play unless `auto_detect` is disabled in the Core config file. It's normal for the LED on the reader to **not** light up and for it to make **no** noise when scanning a card. If your reader lights up or makes noise, _it's a sign that it isn't compatible with MiSTer_.
+An ACR122U on [MiSTer](../../platforms/mister.md) is plug and play unless `auto_detect` is disabled in the Core config file. It's normal for the LED on the reader to **not** light up and for it to make **no** noise when scanning a card. If your reader lights up or makes noise, _it's a sign that it isn't compatible with MiSTer_.
 
 Core on MiSTer uses a special libnfc driver to speak with the reader. Using this driver means a PCSC daemon is not required to be running, which is not shipped with a standard MiSTer OS. The downside is this driver can be a bit picky and will fail for some reader variants as mentioned above.
 

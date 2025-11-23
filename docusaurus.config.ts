@@ -47,6 +47,21 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/ZaparooProject/zaparoo.org/tree/main/",
+          lastVersion: "2.6.2",
+          includeCurrentVersion: true,
+          versions: {
+            current: {
+              label: "Next",
+              path: "next",
+              banner: "unreleased",
+              badge: true,
+            },
+            "2.6.2": {
+              label: "v2.6.2",
+              path: "/",
+              banner: "none",
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -131,6 +146,12 @@ const config: Config = {
           label: "Sponsor",
           position: "left",
           "data-umami-event": "navbar-sponsor",
+        },
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownActiveClassDisabled: true,
+          "data-umami-event": "navbar-version-dropdown",
         },
         {
           type: "html",
@@ -455,6 +476,11 @@ const config: Config = {
             to: "/docs/community-hub/contributors",
             from: "/docs/community/contributors",
           },
+          // Barcode reader reorganization (uncomment when v2.7.0 is released)
+          // {
+          //   to: "/docs/readers/barcode/app",
+          //   from: "/docs/readers/barcode-scanner",
+          // },
           {
             to: "/docs/community-hub/media",
             from: "/docs/community/media",

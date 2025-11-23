@@ -1,10 +1,12 @@
 # Command Line
 
-All [Zaparoo Core](/docs/core) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](/docs/core/api). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
+Most [Zaparoo Core](./index.md) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](./api/index.md). This interface is the same on every platform that supports it, and can be safely used as a scripting target.
 
-The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](/docs/platforms/mister) ships with a binary named `zaparoo.sh`, whereas [Windows](/docs/platforms/windows) ships with a binary named `Zaparoo.exe`. Functionally they're the same, just replace the filename in the examples.
+The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](../platforms/mister.md) ships with a binary named `zaparoo.sh`, whereas [Linux](../platforms/linux.md) ships with a binary named `zaparoo`. Functionally they're the same, just replace the filename in the examples.
 
-If a platform's binary displays a GUI when run without arguments, the GUI will not be display when at least one of these flags are enabled.
+:::note Windows
+The [Windows](../platforms/windows/index.md) distribution does not support CLI flags and always runs with a GUI (system tray).
+:::
 
 ## Common Flags
 
@@ -32,7 +34,7 @@ Outputs this Zaparoo binary's build version (not the currently started API servi
 - **Argument:** string
 - **Example:** `./zaparoo -api 'launch:{"text":"**launch.system:menu"}'`
 
-Sends a single request to the [Zaparoo API](/docs/core/api/), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
+Sends a single request to the [Zaparoo API](./api/index.md), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
 
 ### Run
 
@@ -88,7 +90,48 @@ Reloads the [config file](config.md) from disk and re-reads any [mapping files](
 
 These flags are only available on certain platforms:
 
-### Linux, Bazzite, ChimeraOS, SteamOS
+### Linux
+
+#### Install
+
+- **Flag:** `-install`
+- **Argument:** string (component name)
+- **Valid components:** `application`, `desktop`, `service`, `hardware`
+- **Example:** `./zaparoo -install service`
+
+Install a specific Zaparoo component. Components can be installed individually:
+
+- `application` - Core application files
+- `desktop` - Desktop integration (menu entries, icons)
+- `service` - Systemd service configuration
+- `hardware` - Hardware permissions and udev rules
+
+#### Uninstall
+
+- **Flag:** `-uninstall`
+- **Argument:** string (component name)
+- **Valid components:** `application`, `desktop`, `service`, `hardware`
+- **Example:** `./zaparoo -uninstall service`
+
+Uninstall a specific Zaparoo component.
+
+#### Daemon
+
+- **Flag:** `-daemon`
+- **Argument:** none (boolean switch)
+- **Example:** `./zaparoo -daemon`
+
+Run the service in the foreground with no user interface.
+
+#### Start
+
+- **Flag:** `-start`
+- **Argument:** none (boolean switch)
+- **Example:** `./zaparoo -start`
+
+Start the service and open the web UI in the default browser. If the service is not installed, it will be installed automatically.
+
+### SteamOS
 
 #### Install
 
@@ -96,7 +139,7 @@ These flags are only available on certain platforms:
 - **Argument:** none (boolean switch)
 - **Example:** `./zaparoo -install`
 
-Configure the system for Zaparoo (system integration, permissions, etc.).
+Install the Zaparoo service. Must be run as root.
 
 #### Uninstall
 
@@ -104,33 +147,33 @@ Configure the system for Zaparoo (system integration, permissions, etc.).
 - **Argument:** none (boolean switch)
 - **Example:** `./zaparoo -uninstall`
 
-Revert Zaparoo system configuration and remove system integration.
+Uninstall the Zaparoo service. Must be run as root.
 
-#### Daemon
+### Batocera
 
-- **Flag:** `-daemon`
+#### Service
+
+- **Flag:** `-service`
+- **Argument:** string (`start`, `stop`, `restart`, or `status`)
+- **Example:** `./zaparoo -service start`
+
+Manage the Zaparoo service state.
+
+#### Install
+
+- **Flag:** `-install`
 - **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -daemon`
+- **Example:** `./zaparoo -install`
 
-Run the service in the foreground with no user interface.
+Install the Zaparoo service file to `/userdata/system/services/`.
 
-### Mac
+#### Uninstall
 
-#### Daemon
-
-- **Flag:** `-daemon`
+- **Flag:** `-uninstall`
 - **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -daemon`
+- **Example:** `./zaparoo -uninstall`
 
-Run the service in the foreground with no user interface.
-
-#### GUI
-
-- **Flag:** `-gui`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -gui`
-
-Run the service as a daemon with GUI (system tray).
+Remove the Zaparoo service file.
 
 ### MiSTer
 

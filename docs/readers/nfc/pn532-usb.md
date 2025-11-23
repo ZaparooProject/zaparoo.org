@@ -8,7 +8,7 @@ The PN532 is a popular NFC chip used in many readers. This USB version is the re
 
 - **Plug and play** - No drivers or setup required
 - **Great price** - Starting at around $5 USD
-- **Universal compatibility** - Works on all [platforms](/docs/platforms/)
+- **Universal compatibility** - Works on all [platforms](../../platforms/index.md)
 - **USB Type-C** - Modern connector standard
 - **Compact size** - Very small footprint
 - **Full NFC support** - Same functionality as all PN532 readers
@@ -18,9 +18,9 @@ The PN532 is a popular NFC chip used in many readers. This USB version is the re
 
 ### Driver Details
 
-- **Driver IDs**: `pn532`, `pn532_uart`
+- **Driver IDs**: `pn532`, `pn532uart`
 - **Transport**: USB Serial (UART)
-- **Platforms**: [All platforms](/docs/platforms/)
+- **Platforms**: [All platforms](../../platforms/index.md)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 
@@ -30,13 +30,13 @@ These readers are automatically detected on all platforms. You typically don't n
 
 ### Manual Configuration
 
-In rare cases where auto-detection doesn't work, you can manually specify the reader in your [`config.toml`](/docs/core/config):
+In rare cases where auto-detection doesn't work, you can manually specify the reader in your [`config.toml`](../../core/config.md):
 
 **Linux/MiSTer:**
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = '/dev/ttyUSB0'
 ```
 
@@ -44,7 +44,7 @@ path = '/dev/ttyUSB0'
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = 'COM3'
 ```
 
@@ -52,7 +52,7 @@ path = 'COM3'
 
 ```toml
 [[readers.connect]]
-driver = 'pn532_uart'
+driver = 'pn532uart'
 path = '/dev/cu.usbserial-1234'
 ```
 

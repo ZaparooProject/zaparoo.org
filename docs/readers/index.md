@@ -1,6 +1,6 @@
 # Readers
 
-Readers are the physical hardware that scan [tokens](/docs/tokens/) and trigger actions in Zaparoo. Choose from ready-to-use USB readers, DIY modules, optical drives, or even virtual software-based readers.
+Readers are the physical hardware that scan [tokens](../tokens/index.md) and trigger actions in Zaparoo. Choose from ready-to-use USB readers, DIY modules, optical drives, or even virtual software-based readers.
 
 :::caution Hardware Selection
 Buying generic hardware? Pay attention to the recommendations in the docs. The hardware can be complicated without guidance, and it's easy to buy stuff that won't work or is low quality.
@@ -10,77 +10,87 @@ Buying generic hardware? Pay attention to the recommendations in the docs. The h
 
 ### NFC Readers
 
-- **[PN532 USB](/docs/readers/nfc/pn532-usb)** (Recommended)
-- **[PN532 Module](/docs/readers/nfc/pn532-module)**
-- **[ACR122U](/docs/readers/nfc/acr122u)**
-- **[RC522](/docs/readers/nfc/rc522)**
+- **[PN532 USB](./nfc/pn532-usb.md)** (Recommended)
+- **[PN532 Module](./nfc/pn532-module.md)**
+- **[ACR122U](./nfc/acr122u.md)**
+- **[RC522](./nfc/rc522.md)**
 
 ### Optical Readers
 
-- **[Optical Drive](/docs/readers/optical-drive)**
+- **[Optical Drive](./optical-drive.md)**
 
 ### Display Devices
 
-- **[TTY2OLED](/docs/readers/tty2oled)**
+- **[TTY2OLED](./tty2oled.md)**
+
+### Barcode Readers
+
+- **[Barcode Scanners](./barcode/index.md)** - App-based and hardware scanners
 
 ### Custom & Virtual Readers
 
-- **[Simple Serial Protocol](/docs/readers/simple-serial)**
-- **[File Reader](/docs/readers/file)**
+- **[MQTT Reader](./mqtt.md)**
+- **[External Drive Reader](./external-drive.md)**
+- **[Simple Serial Protocol](./simple-serial.md)**
+- **[File Reader](./file.md)**
 
 ## Platform Compatibility
 
 Most readers work on all platforms, but some have limitations:
 
-| Reader Type    | MiSTer | Windows | Linux | macOS |
-| -------------- | ------ | ------- | ----- | ----- |
-| PN532 USB      | ✅     | ✅      | ✅    | ✅    |
-| PN532 Module   | ✅     | ✅      | ✅    | ✅    |
-| ACR122U (USB)  | ✅     | ❌      | ✅    | ❌    |
-| ACR122U (PCSC) | ❌     | ✅      | ❌    | ✅    |
-| Optical Drive  | ✅     | ❌      | ✅    | ❌    |
-| Simple Serial  | ✅     | ✅      | ✅    | ✅    |
-| File Reader    | ✅     | ✅      | ✅    | ✅    |
-| TTY2OLED       | ✅     | ✅      | ✅    | ✅    |
+| Reader Type       | MiSTer | Windows | Linux | macOS |
+| ----------------- | ------ | ------- | ----- | ----- |
+| PN532 USB         | ✅     | ✅      | ✅    | ✅    |
+| PN532 Module      | ✅     | ✅      | ✅    | ✅    |
+| ACR122U (USB)     | ✅     | ❌      | ✅    | ❌    |
+| ACR122U (PCSC)    | ❌     | ✅      | ❌    | ✅    |
+| Optical Drive     | ✅     | ❌      | ✅    | ❌    |
+| Barcode (App)     | ✅     | ✅      | ✅    | ✅    |
+| Barcode (RS232)   | ✅     | ✅      | ✅    | ✅    |
+| MQTT              | ✅     | ✅      | ✅    | ✅    |
+| External Drive    | ✅     | ✅      | ✅    | ✅    |
+| Simple Serial     | ✅     | ✅      | ✅    | ✅    |
+| File Reader       | ✅     | ✅      | ✅    | ✅    |
+| TTY2OLED          | ✅     | ✅      | ✅    | ✅    |
 
 ## NFC Readers
 
 NFC readers are the most popular option, working with NFC tags, cards, and compatible toys.
 
-- **[NFC Overview](/docs/readers/nfc/)** - General information about NFC readers
-- **[PN532 USB](/docs/readers/nfc/pn532-usb)** - Ready-to-use USB NFC readers
-- **[PN532 Module](/docs/readers/nfc/pn532-module)** - Bare NFC modules for DIY projects
-- **[ACR122U](/docs/readers/nfc/acr122u)** - Common commercial NFC reader
-- **[RC522](/docs/readers/nfc/rc522)** - Basic RFID module for microcontrollers
+- **[NFC Overview](./nfc/index.md)** - General information about NFC readers
+- **[PN532 USB](./nfc/pn532-usb.md)** - Ready-to-use USB NFC readers
+- **[PN532 Module](./nfc/pn532-module.md)** - Bare NFC modules for DIY projects
+- **[ACR122U](./nfc/acr122u.md)** - Common commercial NFC reader
+- **[RC522](./nfc/rc522.md)** - Basic RFID module for microcontrollers
 
 ### Supported Tokens
 
 All NFC readers can scan:
 
-- [NFC tags](/docs/tokens/nfc/) (NTAG, MIFARE)
-- [NFC toys](/docs/tokens/nfc-toys/) (Amiibo, Lego Dimensions)
-- [PCB cards](/docs/tokens/pcb-cards)
+- [NFC tags](../tokens/nfc/index.md) (NTAG, MIFARE)
+- [NFC toys](../tokens/nfc-toys/index.md) (Amiibo, Lego Dimensions)
+- [PCB cards](../tokens/pcb-cards.md)
 - Custom NFC-enabled items
 
 ## Getting Started
 
 1. **Choose your reader** - See recommendations above
-2. **Get tokens** - [NFC tags](/docs/tokens/nfc/), [QR codes](/docs/tokens/qr-codes), or [optical discs](/docs/readers/optical-drive)
-3. **Install Zaparoo Core** - [Platform guides](/docs/platforms/)
+2. **Get tokens** - [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [optical discs](./optical-drive.md)
+3. **Install Zaparoo Core** - [Platform guides](../platforms/index.md)
 4. **Configure your reader** - Most work automatically!
-5. **Start scanning** - Write [ZapScript](/docs/zapscript/) to your tokens
+5. **Start scanning** - Write [ZapScript](../zapscript/index.md) to your tokens
 
 ## Troubleshooting
 
 **Reader not detected?**
 
-- Check [Reader Drivers](/docs/core/drivers) for configuration help
-- Enable `debug_logging = true` in your [config.toml](/docs/core/config)
+- Check [Reader Drivers](../core/drivers.md) for configuration help
+- Enable `debug_logging = true` in your [config.toml](../core/config.md)
 - Review hardware-specific troubleshooting in reader docs
 
 **Which reader should I buy?**
 
-- 95% of users should get the [PN532 USB](/docs/readers/nfc/pn532-usb)
+- 95% of users should get the [PN532 USB](./nfc/pn532-usb.md)
 - It's cheap, reliable, and works everywhere
 
 **Can I use multiple readers?**

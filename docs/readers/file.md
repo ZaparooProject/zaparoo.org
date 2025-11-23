@@ -1,6 +1,6 @@
 # File Reader (Virtual)
 
-The File Reader is a virtual reader that treats a file on disk as an input source for [tokens](/docs/tokens/). This enables automation, remote control, testing, and integration with other software without physical hardware.
+The File Reader is a virtual reader that treats a file on disk as an input source for [tokens](../tokens/index.md). This enables automation, remote control, testing, and integration with other software without physical hardware.
 
 ## Overview
 
@@ -12,7 +12,7 @@ Instead of scanning physical tokens, the File Reader monitors a text file. When 
 - **Remote control** - Control Zaparoo over the network via file shares
 
 :::tip Advanced Use Cases
-While the File Reader is great for simple automation, the [Core API](/docs/core/api/) is recommended for more advanced use cases. The API provides programmatic control with full support for token metadata (UID, data fields) and more robust integration options.
+While the File Reader is great for simple automation, the [Core API](../core/api/index.md) is recommended for more advanced use cases. The API provides programmatic control with full support for token metadata (UID, data fields) and more robust integration options.
 :::
 
 ## Driver Configuration
@@ -20,13 +20,13 @@ While the File Reader is great for simple automation, the [Core API](/docs/core/
 ### Driver Details
 
 - **Driver ID**: `file`
-- **Platforms**: [All platforms](/docs/platforms/)
+- **Platforms**: [All platforms](../platforms/index.md)
 - **Enabled by default**: Yes
 - **Auto-detect**: No (requires manual configuration)
 
 ### Configuration
 
-Add to your [`config.toml`](/docs/core/config):
+Add to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
@@ -68,7 +68,7 @@ echo "" > /tmp/zaparoo_input
 
 ### File Contents as Token Text
 
-The entire file content becomes the token's [ZapScript](/docs/zapscript/) text. No other token metadata (like UID or data) can be set through this reader.
+The entire file content becomes the token's [ZapScript](../zapscript/index.md) text. No other token metadata (like UID or data) can be set through this reader.
 
 ## Usage Examples
 

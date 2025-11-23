@@ -51,13 +51,18 @@ FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, r
 
 ## Supported Readers
 
-| Reader                                            | Status |
-| ------------------------------------------------- | ------ |
-| [PN532](/docs/readers/nfc/pn532-usb)                 | ✅     |
-| [ACR122U](/docs/readers/nfc/acr122u)         | ✅     |
-| [File Reader](/docs/readers/file)            | ✅     |
-| [Simple Serial](/docs/readers/simple-serial) | ✅     |
-| [TTY2OLED](/docs/readers/tty2oled)           | ✅     |
+| Reader                                              | Status |
+| --------------------------------------------------- | ------ |
+| [PN532 USB](../readers/nfc/pn532-usb.md)            | ✅     |
+| [PN532 Module](../readers/nfc/pn532-module.md)      | ✅     |
+| [ACR122U (PCSC)](../readers/nfc/acr122u.md)         | ✅     |
+| [File Reader](../readers/file.md)                   | ✅     |
+| [Simple Serial](../readers/simple-serial.md)        | ✅     |
+| [RS232 Barcode](../readers/barcode/rs232.md)        | ✅     |
+| [Optical Drive](../readers/optical-drive.md)        | ✅     |
+| [TTY2OLED](../readers/tty2oled.md)                  | ✅     |
+| [MQTT](../readers/mqtt.md)                          | ✅     |
+| [External Drive](../readers/external-drive.md)      | ✅     |
 
 ## Supported Launchers
 
@@ -161,24 +166,26 @@ FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, r
 | Tatung Einstein | TatungEinstein                | `.dsk`                                                                 |                                               |
 | TI-99/4A        | TI-99_4A                      | `.bin`, `.m99`                                                         | Texas Instruments                             |
 | Tomy Tutor      | TomyTutor                     | `.bin`, `.cas`                                                         |                                               |
-| TRS-80          | TRS-80                        | `.jvi`, `.dsk`, `.cas`                                                 |                                               |
+| TRS-80          | TRS-80                        | `.dsk`, `.jvi`, `.cmd`, `.cas`                                         |                                               |
 | TSConf          | TSConf                        | `.vhf`                                                                 | ZX Spectrum clone                             |
 | UK101           | UK101                         | `.txt`, `.bas`, `.lod`                                                 |                                               |
 | Vector-06C      | VECTOR06                      | `.rom`, `.com`, `.c00`, `.edd`, `.fdd`                                 |                                               |
 | VIC-20          | VIC20                         | `.d64`, `.g64`, `.prg`, `.tap`, `.crt`                                 | Commodore VIC-20                              |
 | X68000          | X68000                        | `.d88`, `.hdf`, `.mgl`                                                 | Sharp X68000                                  |
 | ZX81            | ZX81                          | `.p`, `.0`                                                             |                                               |
-| ZX Spectrum     | Spectrum                      | `.tap`, `.csw`, `.tzx`, `.sna`, `.z80`, `.trd`, `.img`, `.dsk`, `.mgt` |                                               |
-| ZX Next         | ZXNext                        | `.vhd`                                                                 |                                               |
+| ZX Spectrum     | Spectrum                      | `.tap`, `.csw`, `.tzx`, `.sna`, `.z80`, `.trd`, `.img`, `.dsk`, `.mgt`, `.vhd` |                                               |
+| ZX Next         | ZXNext                        | `.vhd`, `.tzx`, `.csw`                                                 |                                               |
 
 ### Arcade & Special Systems
 
-| System        | Folders  | Extensions     | Notes                 |
-| ------------- | -------- | -------------- | --------------------- |
-| Arcade        | \_Arcade | `.mra`         | MAME ROM Archives     |
-| Arduboy       | Arduboy  | `.hex`, `.bin` | Miniature game system |
-| CHIP-8        | Chip8    | `.ch8`         | Virtual machine       |
-| Groovy MiSTer | Groovy   | `.gmc`         | Custom platform       |
+| System        | Folders            | Extensions                          | Notes                               |
+| ------------- | ------------------ | ----------------------------------- | ----------------------------------- |
+| Arcade        | \_Arcade           | `.mra`                              | MAME ROM Archives                   |
+| Arduboy       | Arduboy            | `.hex`, `.bin`                      | Miniature game system               |
+| CHIP-8        | Chip8              | `.ch8`                              | Virtual machine                     |
+| Groovy MiSTer | Groovy             | `.gmc`                              | Custom platform                     |
+| ScummVM       | ScummVM            | N/A                                 | Point-and-click adventure games     |
+| Video         | Video, Movies, TV  | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm` | Video playback via fvp          |
 
 ## Launcher Details
 
@@ -219,6 +226,22 @@ Or a folder:
 ```
 NeoGeo/mslug2
 ```
+
+### ScummVM
+
+ScummVM support uses the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Install the script, add your games to the ScummVM folder, and update the media database. Games are automatically detected from the ScummVM configuration file.
+
+### Video
+
+Video playback uses the fvp player. To set up video playback:
+
+1. Download [fvp-mister_arm-15ea265.zip](/files/fvp-mister_arm-15ea265.zip)
+2. Extract the `fvp` binary to `/media/fat/linux/`
+3. Create a `Video` folder in your games directory (e.g., `/media/fat/games/Video/`)
+4. Add your video files to the Video folder
+5. Update the media database
+
+Supported formats: MP4, MKV, AVI, MOV, WEBM
 
 ### Alternate Launchers
 
