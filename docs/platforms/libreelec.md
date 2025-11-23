@@ -78,12 +78,12 @@ Now when your device starts, Zaparoo Core should also start automatically.
 
 | Reader                                          | Status |
 |-------------------------------------------------|--------|
-| [PN532](/docs/readers/nfc/pn532-usb)               | ✅      |
-| [ACR122U](/docs/readers/nfc/acr122u)       | ✅      |
-| [File Reader](/docs/readers/file)          | ✅      |
-| [Simple Serial](/docs/readers/simple-serial) | ✅      |
-| [Optical Drive](/docs/readers/optical-drive) | ✅      |
-| [TTY2OLED](/docs/readers/tty2oled)         | ✅      |
+| [PN532](../readers/nfc/pn532-usb.md)               | ✅      |
+| [ACR122U](../readers/nfc/acr122u.md)       | ✅      |
+| [File Reader](../readers/file.md)          | ✅      |
+| [Simple Serial](../readers/simple-serial.md) | ✅      |
+| [Optical Drive](../readers/optical-drive.md) | ✅      |
+| [TTY2OLED](../readers/tty2oled.md)         | ✅      |
 
 ## Supported Launchers
 
@@ -101,4 +101,4 @@ Now when your device starts, Zaparoo Core should also start automatically.
 
 If setup was done correctly, Core will automatically pick up and support all movies and TV shows indexed in Kodi. Local files are also supported in the `/storage/videos` and `/storage/tvshows` folders.
 
-Running shell scripts is also supported. See the [Linux page](./linux.mdx#supported-launchers) for more information on how to use this.
+Running shell scripts is also supported. See the [Linux page](./linux.md#supported-launchers) for more information on how to use this.

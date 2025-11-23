@@ -5,10 +5,37 @@
 | Location | Path                                                                                                           |
 | -------- | -------------------------------------------------------------------------------------------------------------- |
 | Config   | `/userdata/system/.config/zaparoo/config.toml` <br/> `\\BATOCERA\SHARE\system\.config\zaparoo\config.toml`     |
-| Log      | `/userdata/system/.local/share/core.log` <br/> `\\BATOCERA\SHARE\system\.local\share\core.log`                 |
+| Log      | `/userdata/system/.local/share/zaparoo/logs/core.log` <br/> `\\BATOCERA\SHARE\system\.local\share\zaparoo\logs\core.log` |
 | Mappings | `/userdata/system/.local/share/zaparoo/mappings` <br/> `\\BATOCERA\SHARE\system\.local\share\zaparoo\mappings` |
 
 ## Install
+
+### Install Script
+
+The easiest way to install Zaparoo on Batocera is using the automated install script. This can be run either via SSH or directly in the Batocera terminal.
+
+:::tip
+Not familiar with SSH? Batocera has an [SSH guide](https://wiki.batocera.org/access_the_batocera_via_ssh) that explains how to connect and use it. The default username is `root` and the password is `linux`.
+:::
+
+Run the following command via SSH or in the Batocera terminal (press F4 to access the terminal):
+
+```bash
+curl -sSL https://zaparoo.org/install.sh | sh
+```
+
+This will automatically:
+- Install Zaparoo via the pacman package manager
+- Set up the service to run on startup
+- Add a Zaparoo entry to the Ports system
+
+After installation, you can access the Zaparoo TUI by launching the Zaparoo entry from the Ports system in EmulationStation.
+
+From this point, the service is running and you can follow all other guides as normal. The [Zaparoo App](../app/index.md) will connect using the Batocera device's IP address, which you can find in the Batocera main menu under `Network Settings`.
+
+### Manual Install
+
+Alternatively, you can manually install Zaparoo by downloading the files and setting them up yourself.
 
 Download Zaparoo Core for Batocera from the [Downloads page](/downloads/) and unzip it. It comes with two important files:
 
@@ -25,7 +52,7 @@ Batocera has a guide available on [copying files](https://wiki.batocera.org/add_
 If you want to put the `zaparoo` file in a different location, you must also update the `zaparoo_service` file to reflect this. The default location is `/userdata/system/zaparoo`.
 :::
 
-### Network Share
+#### Network Share
 
 1. Copy the `zaparoo` file into the `system` directory of your Batocera share. This is usually accessible at `\\BATOCERA\share\system` on Windows.
 2. If it doesn't exist, create a new directory in the `system` directory called `services`.
@@ -36,7 +63,7 @@ If you want to put the `zaparoo` file in a different location, you must also upd
    3. Find `zaparoo_service` in the list and enable it.
 5. Restart Batocera to start the Zaparoo service.
 
-### USB
+#### USB
 
 1. Copy the `zaparoo` and `zaparoo_service` files to a USB drive and plug it into your Batocera device.
 2. Press `F1` to open the file manager and navigate to the USB drive.
@@ -49,11 +76,7 @@ If you want to put the `zaparoo` file in a different location, you must also upd
    3. Find `zaparoo_service` in the list and enable it.
 7. Restart Batocera to start the Zaparoo service.
 
-### SSH
-
-:::tip
-Not familiar with SSH? Batocera also has an [SSH guide](https://wiki.batocera.org/access_the_batocera_via_ssh) that explains how to connect and use it. The default username is `root` and the password is `linux`.
-:::
+#### SSH
 
 1. Copy the `zaparoo` file into `/userdata/system` using a program like `scp` or [WinSCP](https://winscp.net/eng/download.php).
 2. SSH into your device and make sure you're in the `/userdata/system` directory:
@@ -86,20 +109,20 @@ batocera-services enable zaparoo_service
 batocera-services start zaparoo_service
 ```
 
-### Finishing Up
-
-From this point, the service should be running and you can follow all other guides as normal. The [Zaparoo App](/docs/app/) will connect using the Batocera device's IP address, which you can find in the Batocera main menu under `Network Settings`.
-
 ## Supported Readers
 
-| Reader                                            | Status |
-| ------------------------------------------------- | ------ |
-| [PN532](/docs/readers/nfc/pn532-usb)                 | ✅     |
-| [ACR122U](/docs/readers/nfc/acr122u)         | ✅     |
-| [File Reader](/docs/readers/file)            | ✅     |
-| [Simple Serial](/docs/readers/simple-serial) | ✅     |
-| [Optical Drive](/docs/readers/optical-drive) | ✅     |
-| [TTY2OLED](/docs/readers/tty2oled)           | ✅     |
+| Reader                                       | Status |
+| -------------------------------------------- | ------ |
+| [PN532 USB](../readers/nfc/pn532-usb.md)     | ✅     |
+| [PN532 Module](../readers/nfc/pn532-module.md) | ✅   |
+| [ACR122U (PCSC)](../readers/nfc/acr122u.md)  | ✅     |
+| [File Reader](../readers/file.md)            | ✅     |
+| [Simple Serial](../readers/simple-serial.md) | ✅     |
+| [RS232 Barcode](../readers/barcode/rs232.md) | ✅     |
+| [Optical Drive](../readers/optical-drive.md) | ✅     |
+| [TTY2OLED](../readers/tty2oled.md)           | ✅     |
+| [MQTT](../readers/mqtt.md)                   | ✅     |
+| [External Drive](../readers/external-drive.md) | ✅   |
 
 ## Supported Launchers
 
@@ -110,83 +133,79 @@ From this point, the service should be running and you can follow all other guid
 | Custom Scripts   | `.sh` files                          | Shell script execution                   |
 
 :::info Kodi Integration
-Kodi integration only works when Batocera is in Kodi mode. Launches will only work with Kodi open and active, and scanning Kodi media only works while Kodi is running. You'll also need to enable the Kodi API - see the [LibreELEC instructions](/docs/platforms/libreelec) for details on configuring the API settings.
+Kodi integration only works when Batocera is in Kodi mode. Launches will only work with Kodi open and active, and scanning Kodi media only works while Kodi is running. You'll also need to enable the Kodi API - see the [LibreELEC instructions](./libreelec.md) for details on configuring the API settings.
 :::
 
 ### EmulationStation Systems
 
 Batocera supports over 150 systems through EmulationStation. The complete list includes:
 
-| System               | Batocera Name       | Extensions                              |
-| -------------------- | ------------------- | --------------------------------------- |
+| System               | Batocera Name       | Extensions                                                             |
+| -------------------- | ------------------- | ---------------------------------------------------------------------- |
 | **Nintendo Systems** |
-| NES                  | nes                 | `.nes`, `.unf`, `.unif`                 |
-| Famicom Disk System  | fds                 | `.fds`, `.qd`                           |
-| SNES                 | snes                | `.sfc`, `.smc`, `.swc`, `.fig`, `.bs`   |
-| Nintendo 64          | n64                 | `.z64`, `.n64`, `.v64`, `.rom`          |
-| GameCube             | gamecube            | `.iso`, `.gcm`, `.gcz`, `.cso`, `.wbfs` |
-| Wii                  | wii                 | `.iso`, `.wbfs`, `.cso`, `.gcz`         |
-| Game Boy             | gb                  | `.gb`, `.gbc`, `.sgb`                   |
-| Game Boy Color       | gbc                 | `.gb`, `.gbc`, `.sgb`                   |
-| Game Boy Advance     | gba                 | `.gba`, `.agb`, `.bin`                  |
-| Nintendo DS          | nds                 | `.nds`                                  |
-| Nintendo 3DS         | n3ds                | `.3ds`, `.cia`                          |
-| Virtual Boy          | virtualboy          | `.vb`, `.vboy`                          |
+| NES                  | nes                 | `.nes`, `.unif`, `.unf`, `.zip`, `.7z`                                 |
+| Famicom Disk System  | fds                 | `.fds`, `.zip`, `.7z`                                                  |
+| SNES                 | snes                | `.smc`, `.fig`, `.sfc`, `.gd3`, `.gd7`, `.dx2`, `.bsx`, `.swc`, `.zip`, `.7z` |
+| Nintendo 64          | n64                 | `.z64`, `.n64`, `.v64`, `.zip`, `.7z`                                  |
+| GameCube             | gamecube            | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.rvz`, `.elf`, `.dol`, `.m3u` |
+| Wii                  | wii                 | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.wad`, `.rvz`, `.elf`, `.dol`, `.m3u`, `.json` |
+| Game Boy             | gb                  | `.gb`, `.zip`, `.7z`                                                   |
+| Game Boy Color       | gbc                 | `.gbc`, `.zip`, `.7z`                                                  |
+| Game Boy Advance     | gba                 | `.gba`, `.zip`, `.7z`                                                  |
+| Nintendo DS          | nds                 | `.nds`, `.bin`, `.zip`, `.7z`                                          |
+| Nintendo 3DS         | n3ds                | `.3ds`, `.cci`, `.cxi`                                                 |
+| Virtual Boy          | virtualboy          | `.vb`, `.zip`, `.7z`                                                   |
 | **Sega Systems**     |
-| Master System        | mastersystem        | `.sms`, `.sg`                           |
-| Game Gear            | gamegear            | `.gg`                                   |
-| Genesis/Mega Drive   | megadrive           | `.md`, `.gen`, `.smd`, `.bin`           |
-| Sega CD              | segacd              | `.cue`, `.iso`, `.chd`                  |
-| Sega 32X             | sega32x             | `.32x`, `.smd`, `.bin`, `.md`           |
-| Saturn               | saturn              | `.cue`, `.iso`, `.chd`, `.mds`          |
-| Dreamcast            | dreamcast           | `.cdi`, `.gdi`, `.iso`, `.chd`          |
-| SG-1000              | sg1000              | `.sg`, `.sc`                            |
+| Master System        | mastersystem        | `.bin`, `.sms`, `.zip`, `.7z`                                          |
+| Game Gear            | gamegear            | `.bin`, `.gg`, `.zip`, `.7z`                                           |
+| Genesis/Mega Drive   | megadrive           | `.bin`, `.gen`, `.md`, `.sg`, `.smd`, `.zip`, `.7z`                    |
+| Sega CD              | megacd              | `.cue`, `.iso`, `.chd`, `.m3u`                                         |
+| Sega 32X             | sega32x             | `.32x`, `.chd`, `.smd`, `.bin`, `.md`, `.zip`, `.7z`                   |
+| Saturn               | saturn              | `.cue`, `.ccd`, `.m3u`, `.chd`, `.iso`, `.zip`                         |
+| Dreamcast            | dreamcast           | `.cdi`, `.cue`, `.gdi`, `.chd`, `.m3u`                                 |
+| SG-1000              | sg1000              | `.bin`, `.sg`, `.zip`, `.7z`                                           |
 | **Sony Systems**     |
-| PlayStation          | psx                 | `.cue`, `.iso`, `.chd`, `.pbp`, `.ecm`  |
-| PlayStation 2        | ps2                 | `.iso`, `.chd`, `.cso`, `.gz`           |
-| PlayStation 3        | ps3                 | `.iso`, `.pkg`                          |
-| PlayStation Portable | psp                 | `.iso`, `.cso`, `.pbp`                  |
+| PlayStation          | psx                 | `.cue`, `.img`, `.mdf`, `.pbp`, `.toc`, `.cbn`, `.m3u`, `.ccd`, `.chd`, `.iso` |
+| PlayStation 2        | ps2                 | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u` |
+| PlayStation 3        | ps3                 | `.ps3`, `.psn`, `.squashfs`                                            |
+| PlayStation Portable | psp                 | `.iso`, `.cso`, `.pbp`, `.chd`                                         |
 | **Arcade Systems**   |
-| MAME                 | mame                | `.zip`, `.7z`                           |
-| FinalBurn Neo        | fbneo               | `.zip`, `.7z`                           |
-| FinalBurn Alpha      | fba                 | `.zip`, `.7z`                           |
-| Capcom Play System 1 | cps1                | `.zip`, `.7z`                           |
-| Capcom Play System 2 | cps2                | `.zip`, `.7z`                           |
-| Capcom Play System 3 | cps3                | `.zip`, `.7z`                           |
-| Neo Geo              | neogeo              | `.zip`, `.7z`                           |
-| Neo Geo CD           | neogeocd            | `.cue`, `.iso`, `.chd`                  |
+| MAME                 | mame                | `.zip`, `.7z`                                                          |
+| FinalBurn Neo        | fbneo               | `.zip`, `.7z`                                                          |
+| Neo Geo              | neogeo              | `.7z`, `.zip`                                                          |
+| Neo Geo CD           | neogeocd            | `.cue`, `.iso`, `.chd`                                                 |
 | **Computer Systems** |
-| Amiga                | amiga500, amiga1200 | `.adf`, `.adz`, `.ipf`, `.lha`          |
-| Amstrad CPC          | amstradcpc          | `.dsk`, `.cdt`, `.cpr`, `.tap`          |
-| Apple II             | apple2              | `.dsk`, `.do`, `.po`, `.nib`            |
-| Atari ST             | atarist             | `.st`, `.msa`, `.stx`, `.dim`           |
-| Commodore 64         | c64                 | `.d64`, `.t64`, `.prg`, `.p00`          |
-| DOS                  | dos                 | `.exe`, `.com`, `.bat`                  |
-| MSX                  | msx, msx2           | `.rom`, `.mx1`, `.mx2`, `.cas`          |
-| ScummVM              | scummvm             | Game folders                            |
+| Amiga                | amiga500, amiga1200 | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip` |
+| Amstrad CPC          | amstradcpc          | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.m3u`, `.zip`, `.7z`          |
+| Apple II             | apple2              | `.nib`, `.do`, `.po`, `.dsk`, `.mfi`, `.dfi`, `.rti`, `.edd`, `.woz`, `.wav`, `.zip`, `.7z` |
+| Atari ST             | atarist             | `.st`, `.msa`, `.stx`, `.dim`, `.ipf`, `.m3u`, `.zip`, `.7z`           |
+| Commodore 64         | c64                 | `.d64`, `.d81`, `.crt`, `.prg`, `.tap`, `.t64`, `.m3u`, `.zip`, `.7z`  |
+| DOS                  | dos                 | `.pc`, `.dos`, `.zip`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`    |
+| MSX                  | msx1, msx2          | `.dsk`, `.mx1`, `.mx2`, `.rom`, `.zip`, `.7z`, `.cas`, `.m3u`          |
+| ScummVM              | scummvm             | `.scummvm`, `.squashfs`                                                |
 | **Atari Systems**    |
-| Atari 2600           | atari2600           | `.a26`, `.bin`, `.rom`                  |
-| Atari 5200           | atari5200           | `.a52`, `.rom`, `.bin`                  |
-| Atari 7800           | atari7800           | `.a78`, `.rom`, `.bin`                  |
-| Atari Lynx           | lynx                | `.lnx`, `.o`                            |
-| Atari Jaguar         | jaguar              | `.j64`, `.jag`, `.rom`                  |
+| Atari 2600           | atari2600           | `.a26`, `.bin`, `.zip`, `.7z`                                          |
+| Atari 5200           | atari5200           | `.rom`, `.xfd`, `.atr`, `.atx`, `.cdm`, `.cas`, `.car`, `.bin`, `.a52`, `.xex`, `.zip`, `.7z` |
+| Atari 7800           | atari7800           | `.a78`, `.bin`, `.zip`, `.7z`                                          |
+| Atari Lynx           | lynx                | `.lnx`, `.zip`, `.7z`                                                  |
+| Atari Jaguar         | jaguar              | `.cue`, `.j64`, `.jag`, `.cof`, `.abs`, `.cdi`, `.rom`, `.zip`, `.7z`  |
 | **Other Consoles**   |
-| 3DO                  | 3do                 | `.iso`, `.cue`, `.chd`                  |
-| ColecoVision         | colecovision        | `.col`, `.cv`, `.bin`, `.rom`           |
-| Intellivision        | intellivision       | `.int`, `.bin`, `.rom`                  |
-| Neo Geo Pocket       | ngp                 | `.ngp`, `.ngc`                          |
-| PC Engine            | pcengine            | `.pce`, `.sgx`, `.cue`, `.iso`          |
-| PC-FX                | pcfx                | `.cue`, `.iso`, `.chd`                  |
-| Vectrex              | vectrex             | `.vec`, `.gam`, `.bin`                  |
-| WonderSwan           | wonderswan          | `.ws`, `.wsc`                           |
+| 3DO                  | 3do                 | `.iso`, `.chd`, `.cue`                                                 |
+| ColecoVision         | colecovision        | `.bin`, `.col`, `.rom`, `.zip`, `.7z`                                  |
+| Intellivision        | intellivision       | `.int`, `.bin`, `.rom`, `.zip`, `.7z`                                  |
+| Neo Geo Pocket       | ngp                 | `.ngp`, `.zip`, `.7z`                                                  |
+| PC Engine            | pcengine            | `.pce`, `.bin`, `.zip`, `.7z`                                          |
+| PC-FX                | pcfx                | `.cue`, `.ccd`, `.toc`, `.chd`, `.zip`, `.7z`                          |
+| Vectrex              | vectrex             | `.bin`, `.gam`, `.vec`, `.zip`, `.7z`                                  |
+| WonderSwan           | wonderswan, wswanc  | `.ws`, `.wsc`, `.zip`, `.7z`                                           |
 | **Handheld Systems** |
-| Game & Watch         | gameandwatch        | `.mgw`                                  |
-| Supervision          | supervision         | `.sv`, `.bin`                           |
+| Game & Watch         | gameandwatch        | `.mgw`, `.zip`, `.7z`                                                  |
+| Supervision          | supervision         | `.sv`, `.zip`, `.7z`                                                   |
 | **Modern Systems**   |
-| OpenBOR              | openbor             | Game folders                            |
-| Pico-8               | pico8               | `.p8`, `.png`                           |
-| TIC-80               | tic80               | `.tic`                                  |
+| OpenBOR              | openbor             | `.pak`                                                                 |
+| Pico-8               | pico8               | `.p8`, `.png`, `.m3u`                                                  |
+| TIC-80               | tic80               | `.tic`                                                                 |
 
-Either use the [Zaparoo App](/docs/app/) to search for games and write them to cards, or write the absolute path to the game on the card.
+Either use the [Zaparoo App](../app/index.md) to search for games and write them to cards, or write the absolute path to the game on the card.
 
-Zaparoo also supports launching custom shell scripts. See the [Linux page](./linux.mdx#supported-launchers) for more information on how to set up launchers this way.
+Zaparoo also supports launching custom shell scripts. See the [Linux page](./linux.md#supported-launchers) for more information on how to set up launchers this way.

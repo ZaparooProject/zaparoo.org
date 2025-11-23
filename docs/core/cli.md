@@ -2,7 +2,7 @@
 
 Most [Zaparoo Core](./index.md) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](./api/index.md). This interface is the same on every platform that supports it, and can be safely used as a scripting target.
 
-The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](../platforms/mister.md) ships with a binary named `zaparoo.sh`, whereas [Linux](../platforms/linux.mdx) ships with a binary named `zaparoo`. Functionally they're the same, just replace the filename in the examples.
+The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](../platforms/mister.md) ships with a binary named `zaparoo.sh`, whereas [Linux](../platforms/linux.md) ships with a binary named `zaparoo`. Functionally they're the same, just replace the filename in the examples.
 
 :::note Windows
 The [Windows](../platforms/windows/index.md) distribution does not support CLI flags and always runs with a GUI (system tray).
