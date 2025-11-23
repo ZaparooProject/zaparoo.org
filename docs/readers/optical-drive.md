@@ -31,14 +31,14 @@ Just pick up any drive from your local electronics shop along with some blank di
 
 ### Driver Details
 
-- **Driver ID**: `optical_drive`
+- **Driver ID**: `opticaldrive`
 - **Platforms**: Linux-based platforms only
   - [MiSTer](/docs/platforms/mister)
   - [Batocera](/docs/platforms/batocera)
   - [SteamOS](/docs/platforms/steamos)
   - [LibreELEC](/docs/platforms/libreelec)
-- **Enabled by default**: No
-- **Auto-detect**: No
+- **Enabled by default**: Yes
+- **Auto-detect**: Yes
 
 ### Basic Configuration
 
@@ -46,7 +46,7 @@ Add to your [`config.toml`](/docs/core/config):
 
 ```toml
 [[readers.connect]]
-driver = 'optical_drive'
+driver = 'opticaldrive'
 path = '/dev/sr0'
 ```
 
@@ -60,7 +60,7 @@ The optical drive driver has a special `id_source` option that controls what ide
 
 ```toml
 [[readers.connect]]
-driver = 'optical_drive'
+driver = 'opticaldrive'
 path = '/dev/sr0'
 id_source = 'merged'  # 'uuid', 'label', or 'merged'
 ```
@@ -99,7 +99,7 @@ Launch a PS1 game using the actual game disc with wildcard matching:
 
 ```toml
 [[readers.connect]]
-driver = 'optical_drive'
+driver = 'opticaldrive'
 path = '/dev/sr0'
 id_source = 'merged'
 ```
@@ -125,7 +125,7 @@ Create custom game discs with specific labels:
 
 ```toml
 [[readers.connect]]
-driver = 'optical_drive'
+driver = 'opticaldrive'
 path = '/dev/sr0'
 id_source = 'label'
 ```
