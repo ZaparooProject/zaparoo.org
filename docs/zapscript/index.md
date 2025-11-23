@@ -6,12 +6,12 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 
 ZapScript commands are organized into several categories:
 
-- [HTTP](/docs/zapscript/http): Commands for making HTTP requests.
-- [Input](/docs/zapscript/input): Commands for simulating keyboard and gamepad input.
-- [Launch](/docs/zapscript/launch): Commands for launching games, systems, and other media.
-- [MiSTer](/docs/zapscript/mister): Commands specific to the MiSTer platform.
-- [Playlist](/docs/zapscript/playlist): Commands for managing playlists of games.
-- [Utility](/docs/zapscript/utilities): Various utility commands.
+- [HTTP](./http.md): Commands for making HTTP requests.
+- [Input](./input.md): Commands for simulating keyboard and gamepad input.
+- [Launch](./launch.md): Commands for launching games, systems, and other media.
+- [MiSTer](./mister.md): Commands specific to the MiSTer platform.
+- [Playlist](./playlist.md): Commands for managing playlists of games.
+- [Utility](./utilities.md): Various utility commands.
 
 ## Syntax
 

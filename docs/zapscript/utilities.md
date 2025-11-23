@@ -21,7 +21,7 @@ Stop/exit the current media.
 ## execute
 
 :::caution Security Requirement
-Using this command requires explicitly enabling the arguments in the [allow_execute](/docs/core/config#allow_execute) option of the config file. It will also be blocked if a command comes from a remote source.
+Using this command requires explicitly enabling the arguments in the [allow_execute](../core/config.md#allow_execute) option of the config file. It will also be blocked if a command comes from a remote source.
 :::
 
 This command will run a system command directly. For example:
@@ -49,5 +49,5 @@ This is a _blocking command_ and will delay the entire token read by the specifi
 It can be combined with other commands using the `||` separator. For example, to launch SNES, wait 10 seconds, then press F12:
 
 ```
-_Console/SNES||**delay:10000||**input.key:88
+_Console/SNES||**delay:10000||**input.keyboard:{f12}
 ```

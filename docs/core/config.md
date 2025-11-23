@@ -401,6 +401,8 @@ on_media_start = '**echo:media started'
 
 For example, if `index_root` was set to `[ '/media/fat/other_place' ]`, a database update will search all standard locations like normal but then also attempt to search _/media/fat/other_place/SNES_, _/media/fat/other_place/Genesis_, etc. for potential media.
 
+To exclude specific directories from being scanned, create an empty file named `.zaparooignore` in that directory. The directory and all subdirectories will be skipped during media database updates.
+
 #### allow_file
 
 | Key        | Type                      | Default |
