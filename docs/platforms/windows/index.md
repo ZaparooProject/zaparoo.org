@@ -1,45 +1,46 @@
 # Windows
 
-| Item               | Path                                 |
-| ------------------ | ------------------------------------ |
-| Data directory     | `%localappdata%/zaparoo`             |
-| Mappings directory | `%localappdata%/zaparoo/mappings`    |
-| Launcher directory | `%localappdata%/zaparoo/launchers`   |
-| Config file        | `%localappdata%/zaparoo/config.toml` |
-| Log file           | `%temp%/zaparoo/core.log`            |
+| Item               | Path                                      |
+| ------------------ | ----------------------------------------- |
+| Data directory     | `%localappdata%\zaparoo`                  |
+| Mappings directory | `%localappdata%\zaparoo\mappings`         |
+| Launcher directory | `%localappdata%\zaparoo\launchers`        |
+| Config file        | `%localappdata%\zaparoo\config.toml`      |
+| Log file           | `%localappdata%\zaparoo\logs\core.log`    |
 
 <small>_You can access these paths by pasting them in the Explorer address bar or in a Win+R dialog._</small>
 
 ## Install
 
-Download Zaparoo Core for Windows from the [Downloads page](/downloads/) and copy the `Zaparoo.exe` file anywhere you want.
+Download Zaparoo Core for Windows from the [Downloads page](/downloads/).
 
-Run `Zaparoo.exe` and it will open minimized in the system tray. You can make Zaparoo run on startup by making a shortcut to the .exe in the standard Windows startup folder.
+### Installer
 
-From this point, Zaparoo is now set up! You should be able to connect a reader and set up cards using the Zaparoo App.
+Run the setup executable and follow the installation wizard. The installer offers options to run Zaparoo on startup and create a desktop icon.
+
+### Manual Install
+
+Extract `Zaparoo.exe` from the zip file and place it wherever you want. Run `Zaparoo.exe` and it will start in the system tray.
+
+### After Installation
+
+When launched, Zaparoo runs silently in the background with an icon in the system tray. Right-click the system tray icon to access options like opening the web UI, viewing logs, and exiting the application.
 
 ## Supported Readers
 
 | Reader                                            | Status |
 | ------------------------------------------------- | ------ |
-| [PN532](/docs/readers/nfc/pn532-usb)                 | ✅     |
-| [ACR122U (PCSC)](/docs/readers/nfc/acr122u) | ✅     |
-| [File Reader](/docs/readers/file)            | ✅     |
-| [TTY2OLED](/docs/readers/tty2oled)           | ✅     |
+| [PN532 USB](../../readers/nfc/pn532-usb.md)       | ✅     |
+| [PN532 Module](../../readers/nfc/pn532-module.md) | ✅     |
+| [ACR122U (PCSC)](../../readers/nfc/acr122u.md)    | ✅     |
+| [File Reader](../../readers/file.md)              | ✅     |
+| [Simple Serial](../../readers/simple-serial.md)   | ✅     |
+| [RS232 Barcode](../../readers/barcode/rs232.md)   | ✅     |
+| [TTY2OLED](../../readers/tty2oled.md)             | ✅     |
+| [MQTT](../../readers/mqtt.md)                     | ✅     |
+| [External Drive](../../readers/external-drive.md) | ✅     |
 
-## Supported Launchers
-
-| Launcher       | Systems/Extensions                   | Notes                                             |
-| -------------- | ------------------------------------ | ------------------------------------------------- |
-| Kodi           | Movies, TV Shows, Music, Collections | Media library integration with API enabled        |
-| Steam          | PC games                             | Automatic detection of Steam library              |
-| LaunchBox      | Retro games                          | Requires CLI_Launcher plugin                      |
-| RetroBat       | 50+ retro systems                    | Via EmulationStation API when RetroBat is running |
-| Custom Scripts | `.bat`, `.ps1` files                 | Batch/PowerShell script execution                 |
-
-## Launcher Details
-
-There is support for a handful of launchers on Windows. You can also add your own launchers (as of Zaparoo core 2.4.0)
+## Launchers
 
 ### Steam
 
@@ -55,22 +56,29 @@ Zaparoo will find game libraries in other locations and drives, but it will only
 
 :::tip Required Plugin
 
-The LaunchBox plugin _CLI_Launcher_ must be installed for launching to work. Download it [from here](https://forums.launchbox-app.com/files/file/4587-cli-launcher-launchbox-command-line-interface-for-launching-games-directly-from-stream-deck/).
+LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration.zip](/files/Zaparoo%20LaunchBox%20Integration.zip) and follow the installation steps below.
 
 :::
 
-Zaparoo will automatically detect LaunchBox and add all games to the App. Zaparoo supports most game systems included in LaunchBox.
+#### Plugin Installation
 
-To manually add a LaunchBox game, write `launchbox://<game_id>` on a card. Replace `<game_id>` with the game's LaunchBox ID.
+1. Download the [Zaparoo LaunchBox Integration.zip](/files/Zaparoo%20LaunchBox%20Integration.zip) file
+2. Extract the zip file
+3. Copy the `Zaparoo LaunchBox Integration` folder to your LaunchBox `Plugins` directory (usually `<LaunchBox>/Plugins/`)
+4. Restart LaunchBox
 
-#### LauncBox Install Location
+Once installed, Zaparoo will automatically detect LaunchBox and add all games to the App. Zaparoo supports most game systems included in LaunchBox.
 
-Since LaunchBox doesn't have a standard install location, Zaparoo will do its best to find it, but you can set the location manually by adding the following to your `config.toml` file:
+To manually create a LaunchBox game card, write `launchbox://<game_id>` to a card, where `<game_id>` is the LaunchBox game ID.
+
+#### LaunchBox Install Location
+
+Since LaunchBox doesn't have a standard install location, Zaparoo will do its best to find it. If auto-detection fails, you can set the location manually in your `config.toml` file:
 
 ```toml title="config.toml"
 [[launchers.default]]
 launcher = 'LaunchBox'
-install_dir = 'C:\\Users\\wizzo\\CustomLBDir'
+install_dir = 'C:\\Users\\YourUsername\\LaunchBox'
 ```
 
 Replace the `install_dir` value with your own path to LaunchBox.
