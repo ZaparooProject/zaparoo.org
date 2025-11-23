@@ -189,7 +189,7 @@ http://10.0.0.123/path/to/file.bin?system=Genesis&name=My Custom Game
 
 ## launch.title
 
-Launches media by [title ID](../core/tags.md). This is the explicit command for title-based launching (the [Auto Launch](#title-id-recommended) format uses this internally).
+Launches media by [title ID](../core/tags.md). This is the explicit command for title-based launching (the [Auto Launch](#title-id) format uses this internally).
 
 Format: `**launch.title:<system>/<title>`
 
