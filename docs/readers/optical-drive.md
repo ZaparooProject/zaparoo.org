@@ -33,16 +33,16 @@ Just pick up any drive from your local electronics shop along with some blank di
 
 - **Driver ID**: `opticaldrive`
 - **Platforms**: Linux-based platforms only
-  - [MiSTer](/docs/platforms/mister)
-  - [Batocera](/docs/platforms/batocera)
-  - [SteamOS](/docs/platforms/steamos)
-  - [LibreELEC](/docs/platforms/libreelec)
+  - [MiSTer](../platforms/mister.md)
+  - [Batocera](../platforms/batocera.md)
+  - [SteamOS](../platforms/steamos.md)
+  - [LibreELEC](../platforms/libreelec.md)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 
 ### Basic Configuration
 
-Add to your [`config.toml`](/docs/core/config):
+Add to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]

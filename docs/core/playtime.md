@@ -25,14 +25,14 @@ Playtime limit configuration is currently only available in the bundled Web UI. 
 
 ### Manual Configuration
 
-See the [Config File Reference](/docs/core/config#playtime) for detailed configuration options including:
+See the [Config File Reference](./config.md#playtime) for detailed configuration options including:
 
-- [`enabled`](/docs/core/config#enabled-3) - Turn limits on/off
-- [`daily`](/docs/core/config#daily) - Daily time limit
-- [`session`](/docs/core/config#session) - Session time limit
-- [`session_reset`](/docs/core/config#session_reset) - Cooldown period between sessions
-- [`warnings`](/docs/core/config#warnings) - Warning intervals
-- [`retention`](/docs/core/config#retention) - History retention period
+- [`enabled`](./config.md#enabled-1) - Turn limits on/off
+- [`daily`](./config.md#daily) - Daily time limit
+- [`session`](./config.md#session) - Session time limit
+- [`session_reset`](./config.md#session_reset) - Cooldown period between sessions
+- [`warnings`](./config.md#warnings) - Warning intervals
+- [`retention`](./config.md#retention) - History retention period
 
 Example configuration:
 
@@ -180,8 +180,8 @@ Warnings are sent as notifications to the Zaparoo App and played as audio feedba
 
 ### Warnings Not Appearing
 
-1. Check `warnings` array is configured in [config.toml](/docs/core/config#warnings)
-2. Ensure [audio feedback](/docs/core/config#scan_feedback) is enabled
+1. Check `warnings` array is configured in [config.toml](./config.md#warnings)
+2. Ensure [audio feedback](./config.md#scan_feedback) is enabled
 3. Verify the Zaparoo App is connected to receive notifications
 
 ### Time Tracking Inaccurate
@@ -195,4 +195,4 @@ These are known edge cases that may be addressed in future releases.
 
 ### Session Not Resetting
 
-Check your [`session_reset`](/docs/core/config#session_reset) timeout value. If set to `"0"`, sessions never reset automatically.
+Check your [`session_reset`](./config.md#session_reset) timeout value. If set to `"0"`, sessions never reset automatically.

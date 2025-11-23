@@ -476,6 +476,11 @@ const config: Config = {
             to: "/docs/community-hub/contributors",
             from: "/docs/community/contributors",
           },
+          // Barcode reader reorganization (uncomment when v2.7.0 is released)
+          // {
+          //   to: "/docs/readers/barcode/app",
+          //   from: "/docs/readers/barcode-scanner",
+          // },
           {
             to: "/docs/community-hub/media",
             from: "/docs/community/media",

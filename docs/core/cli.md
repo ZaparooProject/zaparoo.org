@@ -1,8 +1,8 @@
 # Command Line
 
-All [Zaparoo Core](/docs/core) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](/docs/core/api). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
+All [Zaparoo Core](./index.md) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](./api/index.md). This interface is the same on every platform that Zaparoo works on, and can be safely used as a scripting target.
 
-The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](/docs/platforms/mister) ships with a binary named `zaparoo.sh`, whereas [Windows](/docs/platforms/windows) ships with a binary named `Zaparoo.exe`. Functionally they're the same, just replace the filename in the examples.
+The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](../platforms/mister.md) ships with a binary named `zaparoo.sh`, whereas [Windows](../platforms/windows/index.md) ships with a binary named `Zaparoo.exe`. Functionally they're the same, just replace the filename in the examples.
 
 If a platform's binary displays a GUI when run without arguments, the GUI will not be display when at least one of these flags are enabled.
 
@@ -32,7 +32,7 @@ Outputs this Zaparoo binary's build version (not the currently started API servi
 - **Argument:** string
 - **Example:** `./zaparoo -api 'launch:{"text":"**launch.system:menu"}'`
 
-Sends a single request to the [Zaparoo API](/docs/core/api/), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
+Sends a single request to the [Zaparoo API](./api/index.md), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
 
 ### Run
 

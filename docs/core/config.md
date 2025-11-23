@@ -1,8 +1,8 @@
 # Config File
 
-The config file is the main configuration file of the [Zaparoo Core](/docs/core) software service.
+The config file is the main configuration file of the [Zaparoo Core](./index.md) software service.
 
-Its location depends on the [platform](/docs/platforms/index.md) where the service is running. On [MiSTer](/docs/platforms/mister.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
+Its location depends on the [platform](../platforms/index.md) where the service is running. On [MiSTer](../platforms/mister.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
 
 The file is always called `config.toml` on every platform.
 
@@ -153,7 +153,7 @@ filename_tags = true
 
 When enabled, Core extracts metadata tags from filenames like `(USA)`, `(En)`, `(Rev 1)` to help with conflict resolution and media matching.
 
-See the [Tags documentation](/docs/core/tags) for detailed information about tag parsing and usage.
+See the [Tags documentation](./tags.md) for detailed information about tag parsing and usage.
 
 #### default_regions
 
@@ -529,7 +529,7 @@ filter = [
 | -------- | ----------------- | ------- |
 | api_port | integer (1-65535) | 7497    |
 
-`api_port` specifies which port the [API](/docs/core/api/) of Core should be accessible from.
+`api_port` specifies which port the [API](./api/index.md) of Core should be accessible from.
 
 **Don't change this unless you know what you're doing. It will currently break external tools that rely on it being the default value.**
 
@@ -612,7 +612,7 @@ It's currently reserved for future use when devices can communicate with each ot
 | --------- | ------------------------- | ------- |
 | allow_run | string[] (regex patterns) | []      |
 
-`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](/docs/core/api/methods/) of the [Core API](/docs/core/api/). By default, nothing is allowed.
+`allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md) of the [Core API](./api/index.md). By default, nothing is allowed.
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
@@ -671,7 +671,7 @@ Supported URL schemes:
 - `mqtt://` - Standard MQTT connection
 - `mqtts://` or `ssl://` - MQTT over TLS/SSL
 
-For TLS connections and authentication, see the MQTT reader's [auth.toml configuration](/docs/readers/mqtt#authentication).
+For TLS connections and authentication, see the MQTT reader's [auth.toml configuration](../readers/mqtt.md#authentication).
 
 ###### topic
 
@@ -704,7 +704,7 @@ filter = [
 ]
 ```
 
-Available event types match the [Core API notification types](/docs/core/api/notifications).
+Available event types match the [Core API notification types](./api/notifications.md).
 
 ### Groovy
 
@@ -755,7 +755,7 @@ warnings = ["10m", "5m", "2m", "1m"]
 
 The `playtime` section configures playtime tracking, limits, and parental controls.
 
-See the [Playtime documentation](/docs/core/playtime) for detailed information and examples.
+See the [Playtime documentation](./playtime.md) for detailed information and examples.
 
 #### retention
 

@@ -1,6 +1,6 @@
 # Reader Drivers
 
-Reader drivers are software components that enable [Zaparoo Core](/docs/core/) to communicate with different types of [reader hardware](/docs/readers/). Each driver implements the specific protocol and communication method required for a particular reader type.
+Reader drivers are software components that enable [Zaparoo Core](./index.md) to communicate with different types of [reader hardware](../readers/index.md). Each driver implements the specific protocol and communication method required for a particular reader type.
 
 ## How Drivers Work
 
@@ -21,10 +21,10 @@ NFC readers are the most common type, supporting NFC tags, cards, and compatible
 
 | Driver ID                  | Hardware           | Platforms      | Documentation                                  |
 | -------------------------- | ------------------ | -------------- | ---------------------------------------------- |
-| `pn532`, `pn532uart`       | PN532 USB modules  | All platforms  | [PN532 USB](/docs/readers/nfc/pn532-usb)       |
-| `pn532i2c`, `pn532spi`     | PN532 bare modules | All platforms  | [PN532 Module](/docs/readers/nfc/pn532-module) |
-| `libnfcacr122`             | ACR122U reader     | Linux, MiSTer  | [ACR122U](/docs/readers/nfc/acr122u)           |
-| `acr122pcsc`               | ACR122U reader     | Windows, macOS | [ACR122U](/docs/readers/nfc/acr122u)           |
+| `pn532`, `pn532uart`       | PN532 USB modules  | All platforms  | [PN532 USB](../readers/nfc/pn532-usb.md)       |
+| `pn532i2c`, `pn532spi`     | PN532 bare modules | All platforms  | [PN532 Module](../readers/nfc/pn532-module.md) |
+| `libnfcacr122`             | ACR122U reader     | Linux, MiSTer  | [ACR122U](../readers/nfc/acr122u.md)           |
+| `acr122pcsc`               | ACR122U reader     | Windows, macOS | [ACR122U](../readers/nfc/acr122u.md)           |
 | `legacypn532uart` (legacy) | PN532 USB (old)    | All platforms  | See [Legacy Drivers](#legacy-nfc-drivers)      |
 | `legacypn532i2c` (legacy)  | PN532 I2C (old)    | All platforms  | See [Legacy Drivers](#legacy-nfc-drivers)      |
 
@@ -36,19 +36,19 @@ Driver IDs with underscores (e.g., `pn532_uart`, `simple_serial`) are still supp
 
 | Driver ID      | Hardware              | Platforms             | Documentation                                |
 | -------------- | --------------------- | --------------------- | -------------------------------------------- |
-| `opticaldrive` | CD/DVD/Blu-ray drives | Linux-based platforms | [Optical Drive](/docs/readers/optical-drive) |
+| `opticaldrive` | CD/DVD/Blu-ray drives | Linux-based platforms | [Optical Drive](../readers/optical-drive.md) |
 
 ### Display Devices
 
 | Driver ID  | Hardware                 | Platforms     | Documentation                      |
 | ---------- | ------------------------ | ------------- | ---------------------------------- |
-| `tty2oled` | TTY2OLED serial displays | All platforms | [TTY2OLED](/docs/readers/tty2oled) |
+| `tty2oled` | TTY2OLED serial displays | All platforms | [TTY2OLED](../readers/tty2oled.md) |
 
 ### Barcode Readers
 
 | Driver ID      | Hardware                  | Platforms     | Documentation                                |
 | -------------- | ------------------------- | ------------- | -------------------------------------------- |
-| `rs232barcode` | RS232 barcode/QR scanners | All platforms | [RS232 Barcode](/docs/readers/rs232-barcode) |
+| `rs232barcode` | RS232 barcode/QR scanners | All platforms | [RS232 Scanner](../readers/barcode/rs232.md) |
 
 :::info App Barcode Scanning
 The Zaparoo App can also scan barcodes and QR codes using your device's camera. Scanned codes are sent to Core via the API and don't require a dedicated reader driver.
@@ -60,10 +60,10 @@ These drivers enable custom hardware integration and automation:
 
 | Driver ID       | Purpose                        | Platforms     | Documentation                                  |
 | --------------- | ------------------------------ | ------------- | ---------------------------------------------- |
-| `mqtt`          | MQTT broker integration        | All platforms | [MQTT Reader](/docs/readers/mqtt)              |
-| `externaldrive` | USB/SD cards as tokens         | All platforms | [External Drive](/docs/readers/external-drive) |
-| `simpleserial`  | Custom microcontroller readers | All platforms | [Simple Serial](/docs/readers/simple-serial)   |
-| `file`          | File-based virtual reader      | All platforms | [File Reader](/docs/readers/file)              |
+| `mqtt`          | MQTT broker integration        | All platforms | [MQTT Reader](../readers/mqtt.md)              |
+| `externaldrive` | USB/SD cards as tokens         | All platforms | [External Drive](../readers/external-drive.md) |
+| `simpleserial`  | Custom microcontroller readers | All platforms | [Simple Serial](../readers/simple-serial.md)   |
+| `file`          | File-based virtual reader      | All platforms | [File Reader](../readers/file.md)              |
 
 ## Configuration
 
@@ -78,7 +78,7 @@ auto_detect = true  # Default setting
 
 ### Manual Reader Configuration
 
-To manually specify a reader, add a `readers.connect` section to your [`config.toml`](/docs/core/config):
+To manually specify a reader, add a `readers.connect` section to your [`config.toml`](./config.md):
 
 ```toml
 [[readers.connect]]

@@ -1,6 +1,6 @@
 # Tags
 
-Tags are metadata labels automatically extracted from media filenames and used to filter, search, and identify games in Zaparoo. They're a core part of the [title ID system](/docs/zapscript/launch#launch-title) and make it possible to handle conflicts and preferences when matching games.
+Tags are metadata labels automatically extracted from media filenames and used to filter, search, and identify games in Zaparoo. They're a core part of the [title ID system](../zapscript/launch.md#launchtitle) and make it possible to handle conflicts and preferences when matching games.
 
 :::info Credit
 The Zaparoo tag system is heavily inspired by the [GameDatabase](https://github.com/PigSaint/GameDataBase) project by [PigSaint](https://github.com/PigSaint). GameDatabase is an ambitious project to personally curate and categorize games with a unique hierarchical tagging system. If you find the Zaparoo tag system useful, consider supporting PigSaint's work on [Patreon](https://www.patreon.com/GameDataBase).
@@ -266,7 +266,7 @@ Note: Without explicit positive tags like these, demos and betas are automatical
 
 ## Advanced: Setting Default Preferences
 
-You can set your preferred languages and regions in the [config file](/docs/core/config) so Zaparoo automatically prioritizes them when resolving titles without explicit tags:
+You can set your preferred languages and regions in the [config file](./config.md) so Zaparoo automatically prioritizes them when resolving titles without explicit tags:
 
 ```toml
 [preferences]
