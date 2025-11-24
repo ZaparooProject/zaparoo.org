@@ -1,6 +1,6 @@
 # Tags
 
-Tags are metadata labels automatically extracted from media filenames and used to filter, search, and identify games in Zaparoo. They're a core part of the [title ID system](/docs/zapscript/launch#launch-title) and make it possible to handle conflicts and preferences when matching games.
+Tags are metadata labels automatically extracted from media filenames and used to filter, search, and identify games in Zaparoo. They're a core part of the title ID system and make it possible to handle conflicts and preferences when matching games.
 
 ## What Are Tags?
 
@@ -25,6 +25,7 @@ Sonic the Hedgehog (USA, Europe) (En,Fr,De) (Rev A).md
 ```
 
 Generates these tags:
+
 - `region:us`
 - `region:eu`
 - `lang:en`
@@ -43,21 +44,25 @@ In the future, tags will also be generated from scraped metadata sources for add
 Tags are used in title IDs to resolve conflicts and specify preferences:
 
 **Basic title ID** (no tags):
+
 ```
 @SNES/Super Mario World
 ```
 
 **With region filter** (launches US version):
+
 ```
 @SNES/Super Mario World (region:us)
 ```
 
 **With multiple tags** (launches German language, European region):
+
 ```
 @SNES/Super Mario World (region:eu) (lang:de)
 ```
 
 **Excluding unwanted versions** (exclude beta versions):
+
 ```
 @SNES/Super Mario World (-unfinished:beta)
 ```
@@ -262,35 +267,35 @@ With these preferences set, searching for `@SNES/Super Mario World` will automat
 
 These tags are extracted during media database updates:
 
-| Tag Type      | Description                                     | Examples                         |
-| ------------- | ----------------------------------------------- | -------------------------------- |
-| `region`      | Release region                                  | `us`, `eu`, `jp`, `world`        |
-| `lang`        | Language                                        | `en`, `fr`, `de`, `ja`           |
-| `year`        | Release year                                    | `1991`, `1996`, `2004`           |
-| `unfinished`  | Development status                              | `alpha`, `beta`, `demo`, `proto` |
-| `dump`        | ROM dump quality                                | `verified`, `good`, `bad`        |
-| `rev`         | Revision number                                 | `a`, `b`, `1`, `2`               |
-| `video`       | Video format                                    | `ntsc`, `pal`, `pal-60`          |
-| `unlicensed`  | Unofficial releases                             | `pirate`, `hack`, `translation`  |
-| `disc`        | Disc number (multi-disc games)                  | `1`, `2`, `3`                    |
-| `disctotal`   | Total discs in set                              | `2`, `3`, `4`                    |
-| `media`       | Media type/side                                 | `disc`, `tape`, `side-a`         |
-| `alt`         | Alternate version                               | `1`, `2`                         |
-| `set`         | Set number                                      | `1`, `2`                         |
-| `edition`     | Edition markers                                 | Detected from "Edition" keywords |
+| Tag Type     | Description                    | Examples                         |
+| ------------ | ------------------------------ | -------------------------------- |
+| `region`     | Release region                 | `us`, `eu`, `jp`, `world`        |
+| `lang`       | Language                       | `en`, `fr`, `de`, `ja`           |
+| `year`       | Release year                   | `1991`, `1996`, `2004`           |
+| `unfinished` | Development status             | `alpha`, `beta`, `demo`, `proto` |
+| `dump`       | ROM dump quality               | `verified`, `good`, `bad`        |
+| `rev`        | Revision number                | `a`, `b`, `1`, `2`               |
+| `video`      | Video format                   | `ntsc`, `pal`, `pal-60`          |
+| `unlicensed` | Unofficial releases            | `pirate`, `hack`, `translation`  |
+| `disc`       | Disc number (multi-disc games) | `1`, `2`, `3`                    |
+| `disctotal`  | Total discs in set             | `2`, `3`, `4`                    |
+| `media`      | Media type/side                | `disc`, `tape`, `side-a`         |
+| `alt`        | Alternate version              | `1`, `2`                         |
+| `set`        | Set number                     | `1`, `2`                         |
+| `edition`    | Edition markers                | Detected from "Edition" keywords |
 
 ### Future: Scraped Metadata Tags
 
 These will be available when metadata scraping is implemented:
 
-| Tag Type     | Description                | Examples                           |
-| ------------ | -------------------------- | ---------------------------------- |
-| `gamegenre`  | Game genre                 | `action`, `rpg`, `racing:driving`  |
-| `players`    | Player count/modes         | `1`, `2`, `4`, `coop`, `vs`        |
-| `input`      | Input devices              | `joystick:4`, `lightgun`, `paddle` |
-| `save`       | Save mechanism             | `backup`, `password`               |
-| `supplement` | DLC/expansions             | `dlc`, `expansion`, `update`       |
-| `based`      | Source material            | `movie`, `manga`, `anime`          |
+| Tag Type     | Description        | Examples                           |
+| ------------ | ------------------ | ---------------------------------- |
+| `gamegenre`  | Game genre         | `action`, `rpg`, `racing:driving`  |
+| `players`    | Player count/modes | `1`, `2`, `4`, `coop`, `vs`        |
+| `input`      | Input devices      | `joystick:4`, `lightgun`, `paddle` |
+| `save`       | Save mechanism     | `backup`, `password`               |
+| `supplement` | DLC/expansions     | `dlc`, `expansion`, `update`       |
+| `based`      | Source material    | `movie`, `manga`, `anime`          |
 
 ## See Also
 

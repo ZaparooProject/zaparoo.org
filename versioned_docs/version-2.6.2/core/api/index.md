@@ -12,8 +12,6 @@ This page documents the protocol used to communicate with the API and how to int
 
 The API uses a standard [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) connection to exchange [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) payloads using the [JSON-RPC 2.0](https://www.jsonrpc.org/specification) protocol.
 
-All remote cleartext WebSocket connections must encrypt every payload using the [secure layer](#secure-layer) detailed below, or else the payload will be rejected. Local unencrypted connections are allowed, depending on the platform and privilege context of the running service.
-
 Communication follows a loose client-server relationship. Clients, by default, are not expected to implement the API beyond what that particular client needs to function.
 
 ### Connection
@@ -236,15 +234,15 @@ Methods are used to execute actions and request data back from the API. The curr
 
 Notifications let a server or client know an event has occurred. See the [API Notifications](./notifications) page for detailed definitions and examples of each notification.
 
-| ID                     | Description                                                                       |
-| :--------------------- | :-------------------------------------------------------------------------------- |
-| running                | New ZapScript has been added to the launch queue.                                 |
-| readers.added          | A new reader was connected to the server.                                         |
-| readers.removed        | A connected reader was disconnected from the server.                              |
-| tokens.added           | A new token detected by a reader.                                                 |
-| tokens.removed         | A token was removed.                                                              |
-| media.started          | New media was started on server.                                                  |
-| media.stopped          | Media has stopped on server.                                                      |
-| media.indexing         | The state of the indexing or optimization process has changed.                    |
-| playtime.limit.reached | A playtime limit (session or daily) has been reached and enforced.                |
+| ID                     | Description                                                                        |
+| :--------------------- | :--------------------------------------------------------------------------------- |
+| running                | New ZapScript has been added to the launch queue.                                  |
+| readers.added          | A new reader was connected to the server.                                          |
+| readers.removed        | A connected reader was disconnected from the server.                               |
+| tokens.added           | A new token detected by a reader.                                                  |
+| tokens.removed         | A token was removed.                                                               |
+| media.started          | New media was started on server.                                                   |
+| media.stopped          | Media has stopped on server.                                                       |
+| media.indexing         | The state of the indexing or optimization process has changed.                     |
+| playtime.limit.reached | A playtime limit (session or daily) has been reached and enforced.                 |
 | playtime.limit.warning | A playtime warning notification sent at configured intervals before limit reached. |
