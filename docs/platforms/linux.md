@@ -6,12 +6,12 @@ Zaparoo Core on Linux provides desktop integration with support for Steam game l
 This is the base of most other Linux platforms that Zaparoo supports. If you don't see your specific Linux gaming distribution listed already, there's a good chance Zaparoo will work using this version.
 :::
 
-| Item               | Path                                        |
-| ------------------ | ------------------------------------------- |
-| Data directory     | `~/.local/share/zaparoo`                    |
-| Mappings directory | `~/.local/share/zaparoo/mappings`           |
-| Config file        | `~/.config/zaparoo/config.toml`             |
-| Log file           | `~/.local/share/zaparoo/logs/core.log`      |
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Log file           | `~/.local/share/zaparoo/logs/core.log` |
 
 <small>_Where `~` is the home directory of the current user._</small>
 
@@ -24,7 +24,7 @@ The easiest way to install Zaparoo on Linux is using the automated install scrip
 Open a terminal and run:
 
 ```bash
-curl -sSL https://zaparoo.org/install.sh | sh
+curl -sSL https://zaparoo.org/install.sh | bash
 ```
 
 This will automatically install all necessary components and set up the service to run on startup.
@@ -56,6 +56,7 @@ Zaparoo supports component-based installation. You can install individual compon
 ```
 
 For a complete installation, run all four install commands. The `hardware` component creates:
+
 - A udev rule allowing users to read NFC reader serial devices
 - A modprobe blacklist entry to fix a bug stopping ACR122U readers from working
 
@@ -79,34 +80,34 @@ To uninstall components, use the same component names:
 
 ## Supported Readers
 
-| Reader                                          | Status |
-|-------------------------------------------------|--------|
-| [PN532 USB](../readers/nfc/pn532-usb.md)        | ✅      |
-| [PN532 Module](../readers/nfc/pn532-module.md)  | ✅      |
-| [ACR122U (PCSC)](../readers/nfc/acr122u.md)     | ✅      |
-| [File Reader](../readers/file.md)               | ✅      |
-| [Simple Serial](../readers/simple-serial.md)    | ✅      |
-| [RS232 Barcode](../readers/barcode/rs232.md)    | ✅      |
-| [Optical Drive](../readers/optical-drive.md)    | ✅      |
-| [TTY2OLED](../readers/tty2oled.md)              | ✅      |
-| [MQTT](../readers/mqtt.md)                      | ✅      |
-| [External Drive](../readers/external-drive.md)  | ✅      |
+| Reader                                         | Status |
+| ---------------------------------------------- | ------ |
+| [PN532 USB](../readers/nfc/pn532-usb.md)       | ✅     |
+| [PN532 Module](../readers/nfc/pn532-module.md) | ✅     |
+| [ACR122U (PCSC)](../readers/nfc/acr122u.md)    | ✅     |
+| [File Reader](../readers/file.md)              | ✅     |
+| [Simple Serial](../readers/simple-serial.md)   | ✅     |
+| [RS232 Barcode](../readers/barcode/rs232.md)   | ✅     |
+| [Optical Drive](../readers/optical-drive.md)   | ✅     |
+| [TTY2OLED](../readers/tty2oled.md)             | ✅     |
+| [MQTT](../readers/mqtt.md)                     | ✅     |
+| [External Drive](../readers/external-drive.md) | ✅     |
 
 ## Supported Launchers
 
-| Launcher     | Type/Extensions              | Notes                                        |
-| ------------ | ---------------------------- | -------------------------------------------- |
-| Steam        | Steam games                  | Launches games from Steam library            |
-| Kodi Local   | Local video files            | Launches local media through Kodi            |
-| Kodi Movie   | Movies from Kodi             | Launches movies indexed in Kodi              |
-| Kodi TV      | TV episodes from Kodi        | Launches TV episodes indexed in Kodi         |
-| Kodi Music   | Music from Kodi              | Plays music indexed in Kodi                  |
-| Kodi Song    | Individual songs             | Plays specific songs from Kodi               |
-| Kodi Album   | Music albums                 | Plays complete albums from Kodi              |
-| Kodi Artist  | Artist collections           | Plays all songs by an artist                 |
-| Kodi TVShow  | TV show series               | Launches TV show series from Kodi            |
-| Web Browser  | URLs (`http://`, `https://`) | Opens URLs in default browser                |
-| Generic      | `.sh`                        | Shell script execution (requires allowlist)  |
+| Launcher    | Type/Extensions              | Notes                                       |
+| ----------- | ---------------------------- | ------------------------------------------- |
+| Steam       | Steam games                  | Launches games from Steam library           |
+| Kodi Local  | Local video files            | Launches local media through Kodi           |
+| Kodi Movie  | Movies from Kodi             | Launches movies indexed in Kodi             |
+| Kodi TV     | TV episodes from Kodi        | Launches TV episodes indexed in Kodi        |
+| Kodi Music  | Music from Kodi              | Plays music indexed in Kodi                 |
+| Kodi Song   | Individual songs             | Plays specific songs from Kodi              |
+| Kodi Album  | Music albums                 | Plays complete albums from Kodi             |
+| Kodi Artist | Artist collections           | Plays all songs by an artist                |
+| Kodi TVShow | TV show series               | Launches TV show series from Kodi           |
+| Web Browser | URLs (`http://`, `https://`) | Opens URLs in default browser               |
+| Generic     | `.sh`                        | Shell script execution (requires allowlist) |
 
 Kodi launchers require Kodi to be installed and configured. All other launchers work out of the box when the respective software is installed.
 

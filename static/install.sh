@@ -96,6 +96,13 @@ detect_linux_distro() {
     # shellcheck source=/dev/null
     . /etc/os-release
 
+    # Check NAME field for distributions that use generic IDs
+    # Batocera uses ID=buildroot, so we need to check NAME
+    if echo "${NAME:-}" | grep -qi "batocera"; then
+        echo "batocera"
+        return
+    fi
+
     # Return the ID (e.g., "ubuntu", "fedora", "steamos", "chimeraos")
     echo "${ID:-generic}"
 }

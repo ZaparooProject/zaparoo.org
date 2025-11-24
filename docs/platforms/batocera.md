@@ -2,11 +2,11 @@
 
 [Batocera](https://batocera.org/) is a software emulation distribution based around EmulationStation, with support for a huge number of systems and devices.
 
-| Location | Path                                                                                                           |
-| -------- | -------------------------------------------------------------------------------------------------------------- |
-| Config   | `/userdata/system/.config/zaparoo/config.toml` <br/> `\\BATOCERA\SHARE\system\.config\zaparoo\config.toml`     |
+| Location | Path                                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Config   | `/userdata/system/.config/zaparoo/config.toml` <br/> `\\BATOCERA\SHARE\system\.config\zaparoo\config.toml`               |
 | Log      | `/userdata/system/.local/share/zaparoo/logs/core.log` <br/> `\\BATOCERA\SHARE\system\.local\share\zaparoo\logs\core.log` |
-| Mappings | `/userdata/system/.local/share/zaparoo/mappings` <br/> `\\BATOCERA\SHARE\system\.local\share\zaparoo\mappings` |
+| Mappings | `/userdata/system/.local/share/zaparoo/mappings` <br/> `\\BATOCERA\SHARE\system\.local\share\zaparoo\mappings`           |
 
 ## Install
 
@@ -21,10 +21,11 @@ Not familiar with SSH? Batocera has an [SSH guide](https://wiki.batocera.org/acc
 Run the following command via SSH or in the Batocera terminal (press F4 to access the terminal):
 
 ```bash
-curl -sSL https://zaparoo.org/install.sh | sh
+curl -sSL https://zaparoo.org/install.sh | bash
 ```
 
 This will automatically:
+
 - Install Zaparoo via the pacman package manager
 - Set up the service to run on startup
 - Add a Zaparoo entry to the Ports system
@@ -111,18 +112,18 @@ batocera-services start zaparoo_service
 
 ## Supported Readers
 
-| Reader                                       | Status |
-| -------------------------------------------- | ------ |
-| [PN532 USB](../readers/nfc/pn532-usb.md)     | ✅     |
-| [PN532 Module](../readers/nfc/pn532-module.md) | ✅   |
-| [ACR122U (PCSC)](../readers/nfc/acr122u.md)  | ✅     |
-| [File Reader](../readers/file.md)            | ✅     |
-| [Simple Serial](../readers/simple-serial.md) | ✅     |
-| [RS232 Barcode](../readers/barcode/rs232.md) | ✅     |
-| [Optical Drive](../readers/optical-drive.md) | ✅     |
-| [TTY2OLED](../readers/tty2oled.md)           | ✅     |
-| [MQTT](../readers/mqtt.md)                   | ✅     |
-| [External Drive](../readers/external-drive.md) | ✅   |
+| Reader                                         | Status |
+| ---------------------------------------------- | ------ |
+| [PN532 USB](../readers/nfc/pn532-usb.md)       | ✅     |
+| [PN532 Module](../readers/nfc/pn532-module.md) | ✅     |
+| [ACR122U (PCSC)](../readers/nfc/acr122u.md)    | ✅     |
+| [File Reader](../readers/file.md)              | ✅     |
+| [Simple Serial](../readers/simple-serial.md)   | ✅     |
+| [RS232 Barcode](../readers/barcode/rs232.md)   | ✅     |
+| [Optical Drive](../readers/optical-drive.md)   | ✅     |
+| [TTY2OLED](../readers/tty2oled.md)             | ✅     |
+| [MQTT](../readers/mqtt.md)                     | ✅     |
+| [External Drive](../readers/external-drive.md) | ✅     |
 
 ## Supported Launchers
 
@@ -140,71 +141,71 @@ Kodi integration only works when Batocera is in Kodi mode. Launches will only wo
 
 Batocera supports over 150 systems through EmulationStation. The complete list includes:
 
-| System               | Batocera Name       | Extensions                                                             |
-| -------------------- | ------------------- | ---------------------------------------------------------------------- |
+| System               | Batocera Name       | Extensions                                                                                    |
+| -------------------- | ------------------- | --------------------------------------------------------------------------------------------- |
 | **Nintendo Systems** |
-| NES                  | nes                 | `.nes`, `.unif`, `.unf`, `.zip`, `.7z`                                 |
-| Famicom Disk System  | fds                 | `.fds`, `.zip`, `.7z`                                                  |
-| SNES                 | snes                | `.smc`, `.fig`, `.sfc`, `.gd3`, `.gd7`, `.dx2`, `.bsx`, `.swc`, `.zip`, `.7z` |
-| Nintendo 64          | n64                 | `.z64`, `.n64`, `.v64`, `.zip`, `.7z`                                  |
-| GameCube             | gamecube            | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.rvz`, `.elf`, `.dol`, `.m3u` |
-| Wii                  | wii                 | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.wad`, `.rvz`, `.elf`, `.dol`, `.m3u`, `.json` |
-| Game Boy             | gb                  | `.gb`, `.zip`, `.7z`                                                   |
-| Game Boy Color       | gbc                 | `.gbc`, `.zip`, `.7z`                                                  |
-| Game Boy Advance     | gba                 | `.gba`, `.zip`, `.7z`                                                  |
-| Nintendo DS          | nds                 | `.nds`, `.bin`, `.zip`, `.7z`                                          |
-| Nintendo 3DS         | n3ds                | `.3ds`, `.cci`, `.cxi`                                                 |
-| Virtual Boy          | virtualboy          | `.vb`, `.zip`, `.7z`                                                   |
+| NES                  | nes                 | `.nes`, `.unif`, `.unf`, `.zip`, `.7z`                                                        |
+| Famicom Disk System  | fds                 | `.fds`, `.zip`, `.7z`                                                                         |
+| SNES                 | snes                | `.smc`, `.fig`, `.sfc`, `.gd3`, `.gd7`, `.dx2`, `.bsx`, `.swc`, `.zip`, `.7z`                 |
+| Nintendo 64          | n64                 | `.z64`, `.n64`, `.v64`, `.zip`, `.7z`                                                         |
+| GameCube             | gamecube            | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.rvz`, `.elf`, `.dol`, `.m3u`                      |
+| Wii                  | wii                 | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.wad`, `.rvz`, `.elf`, `.dol`, `.m3u`, `.json`     |
+| Game Boy             | gb                  | `.gb`, `.zip`, `.7z`                                                                          |
+| Game Boy Color       | gbc                 | `.gbc`, `.zip`, `.7z`                                                                         |
+| Game Boy Advance     | gba                 | `.gba`, `.zip`, `.7z`                                                                         |
+| Nintendo DS          | nds                 | `.nds`, `.bin`, `.zip`, `.7z`                                                                 |
+| Nintendo 3DS         | n3ds                | `.3ds`, `.cci`, `.cxi`                                                                        |
+| Virtual Boy          | virtualboy          | `.vb`, `.zip`, `.7z`                                                                          |
 | **Sega Systems**     |
-| Master System        | mastersystem        | `.bin`, `.sms`, `.zip`, `.7z`                                          |
-| Game Gear            | gamegear            | `.bin`, `.gg`, `.zip`, `.7z`                                           |
-| Genesis/Mega Drive   | megadrive           | `.bin`, `.gen`, `.md`, `.sg`, `.smd`, `.zip`, `.7z`                    |
-| Sega CD              | megacd              | `.cue`, `.iso`, `.chd`, `.m3u`                                         |
-| Sega 32X             | sega32x             | `.32x`, `.chd`, `.smd`, `.bin`, `.md`, `.zip`, `.7z`                   |
-| Saturn               | saturn              | `.cue`, `.ccd`, `.m3u`, `.chd`, `.iso`, `.zip`                         |
-| Dreamcast            | dreamcast           | `.cdi`, `.cue`, `.gdi`, `.chd`, `.m3u`                                 |
-| SG-1000              | sg1000              | `.bin`, `.sg`, `.zip`, `.7z`                                           |
+| Master System        | mastersystem        | `.bin`, `.sms`, `.zip`, `.7z`                                                                 |
+| Game Gear            | gamegear            | `.bin`, `.gg`, `.zip`, `.7z`                                                                  |
+| Genesis/Mega Drive   | megadrive           | `.bin`, `.gen`, `.md`, `.sg`, `.smd`, `.zip`, `.7z`                                           |
+| Sega CD              | megacd              | `.cue`, `.iso`, `.chd`, `.m3u`                                                                |
+| Sega 32X             | sega32x             | `.32x`, `.chd`, `.smd`, `.bin`, `.md`, `.zip`, `.7z`                                          |
+| Saturn               | saturn              | `.cue`, `.ccd`, `.m3u`, `.chd`, `.iso`, `.zip`                                                |
+| Dreamcast            | dreamcast           | `.cdi`, `.cue`, `.gdi`, `.chd`, `.m3u`                                                        |
+| SG-1000              | sg1000              | `.bin`, `.sg`, `.zip`, `.7z`                                                                  |
 | **Sony Systems**     |
-| PlayStation          | psx                 | `.cue`, `.img`, `.mdf`, `.pbp`, `.toc`, `.cbn`, `.m3u`, `.ccd`, `.chd`, `.iso` |
-| PlayStation 2        | ps2                 | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u` |
-| PlayStation 3        | ps3                 | `.ps3`, `.psn`, `.squashfs`                                            |
-| PlayStation Portable | psp                 | `.iso`, `.cso`, `.pbp`, `.chd`                                         |
+| PlayStation          | psx                 | `.cue`, `.img`, `.mdf`, `.pbp`, `.toc`, `.cbn`, `.m3u`, `.ccd`, `.chd`, `.iso`                |
+| PlayStation 2        | ps2                 | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u`                |
+| PlayStation 3        | ps3                 | `.ps3`, `.psn`, `.squashfs`                                                                   |
+| PlayStation Portable | psp                 | `.iso`, `.cso`, `.pbp`, `.chd`                                                                |
 | **Arcade Systems**   |
-| MAME                 | mame                | `.zip`, `.7z`                                                          |
-| FinalBurn Neo        | fbneo               | `.zip`, `.7z`                                                          |
-| Neo Geo              | neogeo              | `.7z`, `.zip`                                                          |
-| Neo Geo CD           | neogeocd            | `.cue`, `.iso`, `.chd`                                                 |
+| MAME                 | mame                | `.zip`, `.7z`                                                                                 |
+| FinalBurn Neo        | fbneo               | `.zip`, `.7z`                                                                                 |
+| Neo Geo              | neogeo              | `.7z`, `.zip`                                                                                 |
+| Neo Geo CD           | neogeocd            | `.cue`, `.iso`, `.chd`                                                                        |
 | **Computer Systems** |
-| Amiga                | amiga500, amiga1200 | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip` |
-| Amstrad CPC          | amstradcpc          | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.m3u`, `.zip`, `.7z`          |
-| Apple II             | apple2              | `.nib`, `.do`, `.po`, `.dsk`, `.mfi`, `.dfi`, `.rti`, `.edd`, `.woz`, `.wav`, `.zip`, `.7z` |
-| Atari ST             | atarist             | `.st`, `.msa`, `.stx`, `.dim`, `.ipf`, `.m3u`, `.zip`, `.7z`           |
-| Commodore 64         | c64                 | `.d64`, `.d81`, `.crt`, `.prg`, `.tap`, `.t64`, `.m3u`, `.zip`, `.7z`  |
-| DOS                  | dos                 | `.pc`, `.dos`, `.zip`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`    |
-| MSX                  | msx1, msx2          | `.dsk`, `.mx1`, `.mx2`, `.rom`, `.zip`, `.7z`, `.cas`, `.m3u`          |
-| ScummVM              | scummvm             | `.scummvm`, `.squashfs`                                                |
+| Amiga                | amiga500, amiga1200 | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip`        |
+| Amstrad CPC          | amstradcpc          | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.m3u`, `.zip`, `.7z`                                 |
+| Apple II             | apple2              | `.nib`, `.do`, `.po`, `.dsk`, `.mfi`, `.dfi`, `.rti`, `.edd`, `.woz`, `.wav`, `.zip`, `.7z`   |
+| Atari ST             | atarist             | `.st`, `.msa`, `.stx`, `.dim`, `.ipf`, `.m3u`, `.zip`, `.7z`                                  |
+| Commodore 64         | c64                 | `.d64`, `.d81`, `.crt`, `.prg`, `.tap`, `.t64`, `.m3u`, `.zip`, `.7z`                         |
+| DOS                  | dos                 | `.pc`, `.dos`, `.zip`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`                           |
+| MSX                  | msx1, msx2          | `.dsk`, `.mx1`, `.mx2`, `.rom`, `.zip`, `.7z`, `.cas`, `.m3u`                                 |
+| ScummVM              | scummvm             | `.scummvm`, `.squashfs`                                                                       |
 | **Atari Systems**    |
-| Atari 2600           | atari2600           | `.a26`, `.bin`, `.zip`, `.7z`                                          |
+| Atari 2600           | atari2600           | `.a26`, `.bin`, `.zip`, `.7z`                                                                 |
 | Atari 5200           | atari5200           | `.rom`, `.xfd`, `.atr`, `.atx`, `.cdm`, `.cas`, `.car`, `.bin`, `.a52`, `.xex`, `.zip`, `.7z` |
-| Atari 7800           | atari7800           | `.a78`, `.bin`, `.zip`, `.7z`                                          |
-| Atari Lynx           | lynx                | `.lnx`, `.zip`, `.7z`                                                  |
-| Atari Jaguar         | jaguar              | `.cue`, `.j64`, `.jag`, `.cof`, `.abs`, `.cdi`, `.rom`, `.zip`, `.7z`  |
+| Atari 7800           | atari7800           | `.a78`, `.bin`, `.zip`, `.7z`                                                                 |
+| Atari Lynx           | lynx                | `.lnx`, `.zip`, `.7z`                                                                         |
+| Atari Jaguar         | jaguar              | `.cue`, `.j64`, `.jag`, `.cof`, `.abs`, `.cdi`, `.rom`, `.zip`, `.7z`                         |
 | **Other Consoles**   |
-| 3DO                  | 3do                 | `.iso`, `.chd`, `.cue`                                                 |
-| ColecoVision         | colecovision        | `.bin`, `.col`, `.rom`, `.zip`, `.7z`                                  |
-| Intellivision        | intellivision       | `.int`, `.bin`, `.rom`, `.zip`, `.7z`                                  |
-| Neo Geo Pocket       | ngp                 | `.ngp`, `.zip`, `.7z`                                                  |
-| PC Engine            | pcengine            | `.pce`, `.bin`, `.zip`, `.7z`                                          |
-| PC-FX                | pcfx                | `.cue`, `.ccd`, `.toc`, `.chd`, `.zip`, `.7z`                          |
-| Vectrex              | vectrex             | `.bin`, `.gam`, `.vec`, `.zip`, `.7z`                                  |
-| WonderSwan           | wonderswan, wswanc  | `.ws`, `.wsc`, `.zip`, `.7z`                                           |
+| 3DO                  | 3do                 | `.iso`, `.chd`, `.cue`                                                                        |
+| ColecoVision         | colecovision        | `.bin`, `.col`, `.rom`, `.zip`, `.7z`                                                         |
+| Intellivision        | intellivision       | `.int`, `.bin`, `.rom`, `.zip`, `.7z`                                                         |
+| Neo Geo Pocket       | ngp                 | `.ngp`, `.zip`, `.7z`                                                                         |
+| PC Engine            | pcengine            | `.pce`, `.bin`, `.zip`, `.7z`                                                                 |
+| PC-FX                | pcfx                | `.cue`, `.ccd`, `.toc`, `.chd`, `.zip`, `.7z`                                                 |
+| Vectrex              | vectrex             | `.bin`, `.gam`, `.vec`, `.zip`, `.7z`                                                         |
+| WonderSwan           | wonderswan, wswanc  | `.ws`, `.wsc`, `.zip`, `.7z`                                                                  |
 | **Handheld Systems** |
-| Game & Watch         | gameandwatch        | `.mgw`, `.zip`, `.7z`                                                  |
-| Supervision          | supervision         | `.sv`, `.zip`, `.7z`                                                   |
+| Game & Watch         | gameandwatch        | `.mgw`, `.zip`, `.7z`                                                                         |
+| Supervision          | supervision         | `.sv`, `.zip`, `.7z`                                                                          |
 | **Modern Systems**   |
-| OpenBOR              | openbor             | `.pak`                                                                 |
-| Pico-8               | pico8               | `.p8`, `.png`, `.m3u`                                                  |
-| TIC-80               | tic80               | `.tic`                                                                 |
+| OpenBOR              | openbor             | `.pak`                                                                                        |
+| Pico-8               | pico8               | `.p8`, `.png`, `.m3u`                                                                         |
+| TIC-80               | tic80               | `.tic`                                                                                        |
 
 Either use the [Zaparoo App](../app/index.md) to search for games and write them to cards, or write the absolute path to the game on the card.
 
