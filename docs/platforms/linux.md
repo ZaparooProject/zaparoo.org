@@ -24,7 +24,7 @@ The easiest way to install Zaparoo on Linux is using the automated install scrip
 Open a terminal and run:
 
 ```bash
-curl -sSL https://zaparoo.org/install.sh | bash
+curl -fsSL https://zaparoo.org/install.sh | bash
 ```
 
 This will automatically install all necessary components and set up the service to run on startup.

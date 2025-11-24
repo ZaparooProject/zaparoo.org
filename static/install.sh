@@ -281,6 +281,20 @@ prompt_yes_no() {
         return
     fi
 
+    # When piped (curl | bash), stdin is the pipe, not the terminal.
+    # Try to read from /dev/tty instead.
+    if [ ! -t 0 ]; then
+        if [ -e /dev/tty ]; then
+            # Redirect this function's stdin from /dev/tty
+            prompt_yes_no "$@" </dev/tty
+            return
+        else
+            # No terminal available, use default
+            echo "${default}"
+            return
+        fi
+    fi
+
     local yn
     if [ "${default}" = "y" ]; then
         printf "%s [Y/n] " "${prompt}"

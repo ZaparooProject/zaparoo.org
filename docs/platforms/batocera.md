@@ -21,7 +21,7 @@ Not familiar with SSH? Batocera has an [SSH guide](https://wiki.batocera.org/acc
 Run the following command via SSH or in the Batocera terminal (press F4 to access the terminal):
 
 ```bash
-curl -sSL https://zaparoo.org/install.sh | bash
+curl -fsSL https://zaparoo.org/install.sh | bash
 ```
 
 This will automatically:
