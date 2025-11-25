@@ -1,0 +1,83 @@
+.navCardGroup {
+  margin-bottom: 2rem;
+}
+
+.groupTitle {
+  font-size: 1.25rem;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.navCardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.navCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.navCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  border-color: var(--ifm-color-primary-light);
+}
+
+.navCardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.navCardIcon {
+  margin-right: 0.75rem;
+  color: var(--ifm-color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.navCardTitle {
+  margin: 0;
+  color: var(--ifm-color-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.navCardDescription {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Dark mode */
+[data-theme="dark"] .navCard {
+  background: var(--ifm-background-color);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme="dark"] .navCard:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .navCardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .navCard {
+    padding: 1.25rem;
+  }
+}
