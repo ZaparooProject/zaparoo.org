@@ -12,6 +12,13 @@ Zaparoo Core v2.7.0 is now available! This is a massive release with some fundam
 
 Before I dive in, huge thanks to [PigSaint](https://github.com/PigSaint) whose [GameDatabase](https://github.com/PigSaint/GameDataBase) project was a big inspiration for the tags system, and [BossRighteous](https://github.com/BossRighteous) who continues to contribute great ideas to the project.
 
+**The highlights:**
+- **Title IDs** are now the default - your tokens work across all your Zaparoo devices
+- **Tags** let you filter by region, language, and more when you have multiple versions
+- **Playtime limits** for parental controls
+- **Linux desktop** is now a first-class platform
+- **Home automation** via MQTT and external drive readers
+
 :::info Upgrading from v2.6.x
 Your existing cards will keep working - no need to rewrite them. After upgrading, you'll need to manually trigger a media database update to get all the new features working.
 :::
@@ -76,44 +83,23 @@ The media database got some serious upgrades:
 - **Blazing fast search**: Searching is now basically instant, even with tons of filters applied
 - **Pagination**: No more hard limit of 250 results. The Web UI now supports infinite scrolling through search results _(published app still capped at 100)_
 
-## [MiSTer Improvements](/docs/platforms/mister/)
+## Platform Updates
 
-MiSTer gets a lot of love this release:
+### [MiSTer](/docs/platforms/mister/)
 
-- **[Video playback overhaul](/docs/platforms/mister/#video)**: We've switched to nextfvp for much better video playback. [Download it here](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip), extract `fvp` to your `linux` folder, create a `Video` folder in games, add your videos, update the DB, and you're done
-- **[ScummVM support](/docs/platforms/mister/#scummvm)**: Full support for ScummVM using the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Install it, add your games, update the DB, done
-- **Neo Geo Pocket/Color support**: Both systems now fully supported
-- **Atari 5200 fixes**: Some missing file extensions have been added
-- **Log viewing**: View and download logs directly from the TUI
+MiSTer gets a lot of love this release. The big ones: **[video playback](/docs/platforms/mister/#video)** has been completely overhauled using nextfvp ([download it here](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip)), and **[ScummVM](/docs/platforms/mister/#scummvm)** is now fully supported via the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Neo Geo Pocket/Color are now working, Atari 5200 got some missing file extensions, and you can view and download logs directly from the TUI.
 
-## [Linux Desktop Platform Support](/docs/platforms/linux/)
+### [Linux Desktop](/docs/platforms/linux/)
 
-Initial [Linux desktop platform](/docs/platforms/linux/) support is here! This includes:
+This is a new first-class platform with proper installer, desktop integration, systemd service support, hardware setup utilities, and Steam launcher integration. It'll serve as the foundation for improving SteamOS and adding ChimeraOS support in future releases.
 
-- Installer with desktop integration
-- systemd service support
-- Hardware setup utilities
-- Steam launcher integration for launching PC games
-- URL launching in web browsers
+### [Windows](/docs/platforms/windows/)
 
-This new platform will serve as a foundation for improving existing platforms like SteamOS and supporting new ones like ChimeraOS in future releases.
+The [LaunchBox integration](/docs/platforms/windows/#launchbox) got a complete rewrite with a new plugin system for more reliable launching and active game tracking. RetroBat now works correctly, and Steam properly detects non-Steam games and shortcuts.
 
-## [Windows](/docs/platforms/windows/) & LaunchBox Improvements
+### [Batocera](/docs/platforms/batocera/)
 
-Windows users get some great updates:
-
-- **[LaunchBox overhaul](/docs/platforms/windows/#launchbox)**: Complete rewrite of LaunchBox integration with a new plugin system for more reliable launching and active game tracking
-- **RetroBat fixes**: Now works correctly with proper API integration
-- **Steam improvements**: Non-Steam games and shortcuts are now detected and launched correctly
-
-## [Batocera Enhancements](/docs/platforms/batocera/)
-
-- **[New pacman package](/docs/platforms/batocera/#install-script)**: Much easier installation with a new pacman package, plus a "Ports" script to open the TUI directly from EmulationStation
-- **Active media detection**: Background tracking to automatically detect which games are currently running
-- **Kodi launching improvements**: Smoother and more reliable launching when using Kodi mode
-- **System compatibility fixes**: Corrected file extensions for 22 systems including ports, game engines (quake, doom), and modern consoles (ps3, psvita, switch, wiiu, xbox360)
-
-We're also working with the Batocera team to get Zaparoo Core officially included in the Content Downloader for even easier installation in the future.
+Installation is now much easier with a [new pacman package](/docs/platforms/batocera/#install-script) and a "Ports" script to open the TUI directly from EmulationStation. There's also background active media detection, improved Kodi launching, and corrected file extensions for 22 systems. We're working with the Batocera team to get Zaparoo officially included in the Content Downloader.
 
 ## [Playtime Limits & Parental Controls](/docs/core/playtime/)
 
@@ -130,36 +116,18 @@ Two really cool new reader types:
 - **[MQTT reader](/docs/readers/mqtt/)**: Connect to an MQTT broker (like Home Assistant) and send ZapScript commands directly to Zaparoo
 - **[External drive reader](/docs/readers/external-drive/)**: Treat USB sticks and SD cards as tokens! Core auto-detects when a drive is mounted and runs the ZapScript in a `zaparoo.txt` file on it
 
-## Other New Features
+## And Also...
 
-### Reader Support
+**Readers:** [RS232 barcode scanners](/docs/readers/barcode/rs232/) are now supported, and if the new NFC driver isn't working for you, there's a [legacy driver option](/docs/core/drivers/#legacy-nfc-drivers) using `legacypn532uart` and `legacypn532i2c`.
 
-- **[RS232 barcode reader support](/docs/readers/barcode/rs232/)**: New driver for RS232-based barcode scanners
-- **[Legacy NFC driver option](/docs/core/drivers/#legacy-nfc-drivers)**: If the new NFC driver isn't working for you, you can now explicitly use the old one with `legacypn532uart` and `legacypn532i2c` driver IDs
+**Cross-platform stuff:** [Keyboard combos](/docs/zapscript/input/#inputkeyboard) now work on all platforms instead of just MiSTer. Neo Geo AES and MVS are now separate platforms. Scan audio feedback works everywhere and reports ZapScript errors. URL launching works on Windows and Linux.
 
-### System Improvements
+**Config & integration:** There's a new notification publisher for pushing API notifications to external services. [API security](/docs/core/config/#api_listen) got `api_listen` for binding to specific interfaces and `allowed_ips` for IP allowlists. You can set [custom audio files](/docs/core/config/#success_sound) for success/fail sounds. And [`.zaparooignore`](/docs/core/config/#media_dirs) files let you exclude directories from media scanning.
 
-- **[Universal keyboard combo support](/docs/zapscript/input/#inputkeyboard)**: Keyboard combos now work on all platforms (MiSTer, MiSTeX, Batocera, Linux, etc.) instead of just MiSTer
-- **Neo Geo split**: Neo Geo AES and MVS are now separate platforms for better organization
-- **Scan audio feedback**: Now works on all platforms and reports ZapScript execution errors
-- **URL launching**: Open URLs in web browsers from ZapScript on Windows and Linux desktop platforms
+**ZapScript:** [`launch.random`](/docs/zapscript/launch/#launchrandom) is way faster now, especially for huge libraries. [`launch.title`](/docs/zapscript/launch/#launchtitle) is the new explicit command for title ID launching. The [`?system=<id>`](/docs/zapscript/launch/#launch) argument works for local file paths. And [`**playlist.open`](/docs/zapscript/playlist/#playlistopen) with no arguments reloads the current playlist.
 
-### Configuration & Integration
-
-- **Notification publisher**: Publish API notifications to external services like MQTT brokers
-- **[API security controls](/docs/core/config/#api_listen)**: Bind the API server to specific network interfaces with [`api_listen`](/docs/core/config/#api_listen), and create IP allowlists with [`allowed_ips`](/docs/core/config/#allowed_ips) (supports individual IPs, CIDR ranges, IPv4/IPv6)
-- **[Custom audio files](/docs/core/config/#success_sound)**: Set custom [`success_sound`](/docs/core/config/#success_sound) and [`fail_sound`](/docs/core/config/#fail_sound) in config (supports WAV, MP3, OGG, FLAC)
-- **[.zaparooignore](/docs/core/config/#media_dirs)**: Place this file in directories to exclude them from media scanning
-
-## ZapScript Improvements
-
-- [`launch.random`](/docs/zapscript/launch/#launchrandom) is significantly faster, especially for systems with tons of games
-- [`launch.title`](/docs/zapscript/launch/#launchtitle) command added to launch by title ID
-- [`launch`](/docs/zapscript/launch/) command now supports title IDs (though the `@` prefix is recommended)
-- [`?system=<id>`](/docs/zapscript/launch/#launch) advanced argument now works for local file paths
-- [`**playlist.open`](/docs/zapscript/playlist/#playlistopen) with no arguments reloads the current playlist
-
-## Bug Fixes
+<details>
+<summary>Bug Fixes</summary>
 
 - Fixed hold mode quitting when a reader disconnects with an error
 - Fixed NFC tags immediately launching after writing (now waits for a real re-scan)
@@ -168,8 +136,12 @@ Two really cool new reader types:
 - Scan history in database now auto-cleans old entries
 - MiSTer service auto-start issues resolved with improved startup reliability
 
+</details>
+
 ---
 
-And that's the release! This is probably the biggest update to Core since 2.0, with some really fundamental changes to how the whole system works. I'm excited to hear what you think.
+This one took a while. The title ID and tags systems required some pretty fundamental rewrites to how the media database works, and getting it all to feel fast on MiSTer hardware was its own challenge. But I think the result is worth it - tokens that just work everywhere has been a goal since the beginning.
+
+Next up: the App update, giving SteamOS some much needed love and a new metadata scraping system!
 
 As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
