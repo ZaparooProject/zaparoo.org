@@ -47,7 +47,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/ZaparooProject/zaparoo.org/tree/main/",
-          lastVersion: "2.6.2",
+          lastVersion: "2.7.0",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -56,9 +56,14 @@ const config: Config = {
               banner: "unreleased",
               badge: true,
             },
+            "2.7.0": {
+              label: "v2.7.0",
+              path: "/",
+              banner: "none",
+            },
             "2.6.2": {
               label: "v2.6.2",
-              path: "/",
+              path: "/2.6.2/",
               banner: "none",
             },
           },
@@ -477,16 +482,16 @@ const config: Config = {
             to: "/docs/community-hub/contributors",
             from: "/docs/community/contributors",
           },
-          // Barcode reader reorganization (uncomment when v2.7.0 is released)
-          // {
-          //   to: "/docs/readers/barcode/app",
-          //   from: "/docs/readers/barcode-scanner",
-          // },
-          // Systems page moved to top-level (uncomment when v2.7.0 is released)
-          // {
-          //   to: "/docs/systems/",
-          //   from: "/docs/core/systems",
-          // },
+          // Barcode reader reorganization
+          {
+            to: "/docs/readers/barcode/app/",
+            from: "/docs/readers/barcode-scanner/",
+          },
+          // Systems page moved to top-level
+          {
+            to: "/docs/systems/",
+            from: "/docs/core/systems/",
+          },
           {
             to: "/docs/community-hub/media",
             from: "/docs/community/media",

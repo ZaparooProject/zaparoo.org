@@ -199,6 +199,6 @@ Honeywell, Zebra, and Datalogic make high-quality industrial scanners with RS232
 
 ## See Also
 
-- [Barcode Scanner (USB HID)](/docs/readers/barcode-scanner) - Alternative USB keyboard-mode scanner
+- [Barcode Scanner (USB HID)](/docs/readers/barcode/) - Alternative USB keyboard-mode scanner
 - [ZapScript Documentation](/docs/zapscript/)
 - [Config File Reference](/docs/core/config)

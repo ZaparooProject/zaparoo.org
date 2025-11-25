@@ -1,0 +1,51 @@
+---
+sidebar_class_name: hidden
+---
+
+# Bazzite
+
+:::danger
+This platform is in beta and not ready for production use.
+:::
+
+Zaparoo Core on Bazzite supports shell script launching. Full launcher support is coming in a future release.
+
+## File Paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `/tmp/<session_id>-zaparoo/core.log`   |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+
+Where `~` is the home directory of the current user.
+
+## Install
+
+Download Zaparoo Core for Bazzite from the [Downloads page](/downloads/), unzip it and copy the `zaparoo` file to your home directory.
+
+```bash
+cd $HOME
+./zaparoo -install
+systemctl --user enable zaparoo.service
+systemctl --user start zaparoo.service
+```
+
+To uninstall:
+
+```bash
+./zaparoo -uninstall
+```
+
+## Readers
+
+All [readers](../readers/index.md) are supported.
+
+## Supported Launchers
+
+| Launcher      | Notes                        |
+| ------------- | ---------------------------- |
+| Shell Scripts | Custom `.sh` file execution  |
+
+Create shell scripts to launch games, applications, or media. Add scripts to the `allow_file` list in config.toml and restart Zaparoo.

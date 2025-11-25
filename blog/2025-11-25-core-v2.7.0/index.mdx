@@ -3,7 +3,6 @@ slug: core-v2.7.0
 title: "Zaparoo Core v2.7.0 released"
 tags: [software, core]
 authors: [wizzo]
-draft: true
 ---
 
 Zaparoo Core v2.7.0 is now available! This is a massive release with some fundamental improvements to how Zaparoo works. Title IDs are now the default way to identify games, making your tokens portable between devices and platforms. We've also added a powerful tags system, completely overhauled the media database for better performance, added playtime limits for parental controls, full Linux desktop support, and a ton of platform-specific improvements across MiSTer, Windows, and Batocera.
@@ -87,7 +86,7 @@ The media database got some serious upgrades:
 
 ### [MiSTer](/docs/platforms/mister/)
 
-MiSTer gets a lot of love this release. The big ones: **[video playback](/docs/platforms/mister/#video)** has been completely overhauled using nextfvp ([download it here](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip)), and **[ScummVM](/docs/platforms/mister/#scummvm)** is now fully supported via the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Neo Geo Pocket/Color are now working, Atari 5200 got some missing file extensions, and you can view and download logs directly from the TUI.
+MiSTer gets a lot of love this release. The big ones: **[video playback](/docs/platforms/mister/launchers/#video-playback)** has been completely overhauled using nextfvp ([download it here](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip)), and **[ScummVM](/docs/platforms/mister/launchers/#scummvm)** is now fully supported via the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Neo Geo Pocket/Color are now working, Atari 5200 got some missing file extensions, and you can view and download logs directly from the TUI.
 
 ### [Linux Desktop](/docs/platforms/linux/)
 
@@ -95,11 +94,11 @@ This is a new first-class platform with proper installer, desktop integration, s
 
 ### [Windows](/docs/platforms/windows/)
 
-The [LaunchBox integration](/docs/platforms/windows/#launchbox) got a complete rewrite with a new plugin system for more reliable launching and active game tracking. RetroBat now works correctly, and Steam properly detects non-Steam games and shortcuts.
+The [LaunchBox integration](/docs/platforms/windows/launchers/#launchbox) got a complete rewrite with a new plugin system for more reliable launching and active game tracking. RetroBat now works correctly, and Steam properly detects non-Steam games and shortcuts.
 
 ### [Batocera](/docs/platforms/batocera/)
 
-Installation is now much easier with a [new pacman package](/docs/platforms/batocera/#install-script) and a "Ports" script to open the TUI directly from EmulationStation. There's also background active media detection, improved Kodi launching, and corrected file extensions for 22 systems. We're working with the Batocera team to get Zaparoo officially included in the Content Downloader.
+Installation is now much easier with a [new pacman package](/docs/platforms/batocera/#install) and a "Ports" script to open the TUI directly from EmulationStation. There's also background active media detection, improved Kodi launching, and corrected file extensions for 22 systems. We're working with the Batocera team to get Zaparoo officially included in the Content Downloader.
 
 ## [Playtime Limits & Parental Controls](/docs/core/playtime/)
 
@@ -122,9 +121,9 @@ Two really cool new reader types:
 
 **Cross-platform stuff:** [Keyboard combos](/docs/zapscript/input/#inputkeyboard) now work on all platforms instead of just MiSTer. Neo Geo AES and MVS are now separate platforms. Scan audio feedback works everywhere and reports ZapScript errors. URL launching works on Windows and Linux.
 
-**Config & integration:** There's a new notification publisher for pushing API notifications to external services. [API security](/docs/core/config/#api_listen) got `api_listen` for binding to specific interfaces and `allowed_ips` for IP allowlists. You can set [custom audio files](/docs/core/config/#success_sound) for success/fail sounds. And [`.zaparooignore`](/docs/core/config/#media_dirs) files let you exclude directories from media scanning.
+**Config & integration:** There's a new notification publisher for pushing API notifications to external services. [API security](/docs/core/config/#api_listen) got `api_listen` for binding to specific interfaces and `allowed_ips` for IP allowlists. You can set [custom audio files](/docs/core/config/#success_sound) for success/fail sounds. And [`.zaparooignore`](/docs/core/config/#index_root) files let you exclude directories from media scanning.
 
-**ZapScript:** [`launch.random`](/docs/zapscript/launch/#launchrandom) is way faster now, especially for huge libraries. [`launch.title`](/docs/zapscript/launch/#launchtitle) is the new explicit command for title ID launching. The [`?system=<id>`](/docs/zapscript/launch/#launch) argument works for local file paths. And [`**playlist.open`](/docs/zapscript/playlist/#playlistopen) with no arguments reloads the current playlist.
+**ZapScript:** [`launch.random`](/docs/zapscript/launch/#launchrandom) is way faster now, especially for huge libraries. [`launch.title`](/docs/zapscript/launch/#launchtitle) is the new explicit command for title ID launching. The [`?system=<id>`](/docs/zapscript/launch/) argument works for local file paths. And [`**playlist.open`](/docs/zapscript/playlist/#playlistopen) with no arguments reloads the current playlist.
 
 <details>
 <summary>Bug Fixes</summary>

@@ -6,6 +6,7 @@ const platforms = [
   { name: "MiSTer FPGA", link: "/docs/platforms/mister" },
   { name: "MiSTeX", link: "/docs/platforms/mistex" },
   { name: "Windows", link: "/docs/platforms/windows/" },
+  { name: "Linux", link: "/docs/platforms/linux" },
   { name: "SteamOS", link: "/docs/platforms/steamos" },
   { name: "Batocera", link: "/docs/platforms/batocera" },
   { name: "LibreELEC", link: "/docs/platforms/libreelec" },
@@ -15,8 +16,10 @@ const platforms = [
 const hardware = [
   { name: "NFC Readers", link: "/docs/readers/nfc/" },
   { name: "Phone NFC (via App)", link: "/docs/app/" },
-  { name: "Barcode/QR Scanners", link: "/docs/readers/barcode-scanner" },
-  { name: "Optical Drives (CD/DVD)", link: "/docs/readers/optical-drive" },
+  { name: "Barcode/QR Scanners", link: "/docs/readers/barcode/" },
+  { name: "Optical Drives", link: "/docs/readers/optical-drive" },
+  { name: "External Drives", link: "/docs/readers/external-drive" },
+  { name: "MQTT", link: "/docs/readers/mqtt" },
 ];
 
 export default function PlatformShowcase(): ReactNode {

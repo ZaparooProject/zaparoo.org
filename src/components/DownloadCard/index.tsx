@@ -5,9 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-export const defaultVersion = "2.6.2";
-export const defaultReleaseDate = "2025-09-17";
-export const latestReleaseBlogPost = "/blog/core-v2.6.2";
+export const defaultVersion = "2.7.0";
+export const defaultReleaseDate = "2025-11-25";
+export const latestReleaseBlogPost = "/blog/core-v2.7.0";
 
 type Arch = "amd64" | "arm64" | "arm" | "386";
 
@@ -30,7 +30,10 @@ const downloadUrl = (platform: string, arch: Arch, version: string) => {
   if (platform === "windows") {
     return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${arch}-${version}-setup.exe`;
   }
-  return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${platform}_${arch}-${version}.zip`;
+  // Linux-based platforms (except mister/mistex) use .tar.gz
+  const useTarGz = !["mister", "mistex", "windows"].includes(platform);
+  const ext = useTarGz ? "tar.gz" : "zip";
+  return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${platform}_${arch}-${version}.${ext}`;
 };
 
 type DownloadCard = {
