@@ -151,6 +151,7 @@ const config: Config = {
           type: "docsVersionDropdown",
           position: "right",
           dropdownActiveClassDisabled: true,
+          className: "navbar-version-dropdown",
           "data-umami-event": "navbar-version-dropdown",
         },
         {

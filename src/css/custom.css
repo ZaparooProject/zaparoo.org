@@ -213,3 +213,8 @@
 .navbar__item--no-icon svg {
   display: none !important;
 }
+
+/* Hide version dropdown on non-docs pages */
+html:not(.docs-doc-page) .navbar-version-dropdown {
+  display: none;
+}
