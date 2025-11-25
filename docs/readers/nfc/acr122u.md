@@ -15,7 +15,7 @@ Overall, if you like the look and are willing to accept the risk of receiving an
 
 :::info
 
-The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones are incompatible with [MiSTer](../../platforms/mister.md) and will likely never be supported, which is why the project no longer recommends them.
+The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones are incompatible with [MiSTer](../../platforms/mister/index.md) and will likely never be supported, which is why the project no longer recommends them.
 
 :::
 
@@ -71,7 +71,7 @@ To find the PC/SC reader name on Windows, check Device Manager under "Smart card
 
 ## MiSTer
 
-An ACR122U on [MiSTer](../../platforms/mister.md) is plug and play unless `auto_detect` is disabled in the Core config file. It's normal for the LED on the reader to **not** light up and for it to make **no** noise when scanning a card. If your reader lights up or makes noise, _it's a sign that it isn't compatible with MiSTer_.
+An ACR122U on [MiSTer](../../platforms/mister/index.md) is plug and play unless `auto_detect` is disabled in the Core config file. It's normal for the LED on the reader to **not** light up and for it to make **no** noise when scanning a card. If your reader lights up or makes noise, _it's a sign that it isn't compatible with MiSTer_.
 
 Core on MiSTer uses a special libnfc driver to speak with the reader. Using this driver means a PCSC daemon is not required to be running, which is not shipped with a standard MiSTer OS. The downside is this driver can be a bit picky and will fail for some reader variants as mentioned above.
 

@@ -1,7 +1,7 @@
 # Launchers
 
 A launcher is a program that can be used to launch a game or application.
-Each [platform](../platforms/index.md) has its own set of launchers, which are used to launch the correct program for the given [system](./systems.md) and file.
+Each [platform](../platforms/index.md) has its own set of launchers, which are used to launch the correct program for the given [system](../systems.md) and file.
 
 ## Custom Launchers
 

@@ -2,7 +2,7 @@
 
 The config file is the main configuration file of the [Zaparoo Core](./index.md) software service.
 
-Its location depends on the [platform](../platforms/index.md) where the service is running. On [MiSTer](../platforms/mister.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
+Its location depends on the [platform](../platforms/index.md) where the service is running. On [MiSTer](../platforms/mister/index.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
 
 The file is always called `config.toml` on every platform.
 
@@ -360,7 +360,7 @@ before_exit = '**input.keyboard:{f12}||**delay:2000'
 | ------ | ------ | ------- |
 | system | string |         |
 
-ID of the [system](./systems.md) this default override entry applies to.
+ID of the [system](../systems.md) this default override entry applies to.
 
 ##### launcher
 

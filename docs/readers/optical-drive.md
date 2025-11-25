@@ -33,8 +33,8 @@ Just pick up any drive from your local electronics shop along with some blank di
 
 - **Driver ID**: `opticaldrive`
 - **Platforms**: Linux-based platforms only
-  - [MiSTer](../platforms/mister.md)
-  - [Batocera](../platforms/batocera.md)
+  - [MiSTer](../platforms/mister/index.md)
+  - [Batocera](../platforms/batocera/index.md)
   - [SteamOS](../platforms/steamos.md)
   - [LibreELEC](../platforms/libreelec.md)
 - **Enabled by default**: Yes

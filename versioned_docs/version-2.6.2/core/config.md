@@ -2,7 +2,7 @@
 
 The config file is the main configuration file of the [Zaparoo Core](/docs/core) software service.
 
-Its location depends on the [platform](/docs/platforms/index.md) where the service is running. On [MiSTer](/docs/platforms/mister.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
+Its location depends on the [platform](../platforms/index.md) where the service is running. On [MiSTer](../platforms/mister.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
 
 The file is always called `config.toml` on every platform.
 

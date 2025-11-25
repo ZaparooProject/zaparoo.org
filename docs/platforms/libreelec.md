@@ -1,104 +1,91 @@
 # LibreELEC
 
 :::warning
-
-LibreELEC support is still in beta. Launching and readers are supported, but there's still manual setup to make it work.
-
+LibreELEC support is in beta. Launching and readers are supported, but requires manual setup.
 :::
 
-:::info
+Zaparoo Core on LibreELEC provides Kodi integration for movies, TV shows, and music. Also works on [CoreELEC](https://coreelec.org/) and other Kodi-based systems.
 
-The LibreELEC version of Zaparoo Core also works on [CoreELEC](https://coreelec.org/) without changes and will probably also work on any other Linux OS based around [Kodi](https://kodi.tv/).
-
-:::
+## File Paths
 
 | Item               | Path                                     |
-|--------------------|------------------------------------------|
-| Data directory     | `/storage/.local/share/zaparoo`          |
-| Mappings directory | `/storage/.local/share/zaparoo/mappings` |
+| ------------------ | ---------------------------------------- |
 | Config file        | `/storage/.config/zaparoo/config.toml`   |
+| Data directory     | `/storage/.local/share/zaparoo`          |
 | Log file           | `/tmp/zaparoo/core.log`                  |
+| Mappings directory | `/storage/.local/share/zaparoo/mappings` |
 
-<small>The config file can be accessed through the SMB share in the `Configfile` folder.</small>
+The config file can be accessed through the SMB share in the `Configfiles` folder.
 
 ## Install
 
-Download Zaparoo Core for LibreELEC from the [Downloads page](/downloads/), unzip it and copy
-the `zaparoo` file to `/storage`. This guide assumes you copied it to this location but it can be run from anywhere.
+Download Zaparoo Core for LibreELEC from the [Downloads page](/downloads/), unzip it and copy the `zaparoo` file to `/storage`.
 
-:::tip
-
-LibreELEC is a minimal Linux distribution, so you'll need to use SSH for installation. You can enable SSH in the LibreELEC settings menu under Services > SSH Server. The default credentials are (username: `root`, password: `libreelec`).
-
-:::
-
-SSH into your device and go to the directory where you copied the `zaparoo` file:
+Enable SSH in LibreELEC settings (Services > SSH Server). Default credentials: `root` / `libreelec`.
 
 ```bash
 cd /storage
-```
-
-Start the Zaparoo service:
-
-```bash
 ./zaparoo -service start
 ```
 
-At this point Core will be running and can be accessed via the Zaparoo App, but you'll need to make one more change to give it access to control Kodi.
+### Kodi API Setup
 
-From the main Kodi UI:
+Enable Kodi remote control for Zaparoo to work:
 
-1. Open the `Settings` page.
-2. Open the `Services` page.
-3. At the bottom of the menu, change the view setting to at least `Standard`.
-4. Open the newly revealed `Control` page.
-5. Enable `Allow remote control via HTTP`.
-6. Set a blank password.
-7. Make sure `Allow remote control from applications on this system` is enabled.
-
-Now you should be able to update the media database in Core and launch media.
+1. Open Settings > Services
+2. Change view setting to at least "Standard"
+3. Open the Control page
+4. Enable "Allow remote control via HTTP"
+5. Set a blank password
+6. Enable "Allow remote control from applications on this system"
 
 ### Adding to Startup
 
-To run Core automatically on device startup, you will need to add it to the `autostart.sh` file. See the [LibreELEC wiki](https://wiki.libreelec.tv/configuration/startup-shutdown) for details.
+Add to `/storage/.config/autostart.sh`:
 
-From the SSH shell, open the file for editing:
+```bash
+/storage/zaparoo -service start
+```
 
-`nano /storage/.config/autostart.sh`
+## Readers
 
-Add the following line:
+All [readers](../readers/index.md) are supported.
 
-`/storage/zaparoo -service start`
+## Launchers
 
-Press `Ctrl-X` and then `Y` to save and exit.
+LibreELEC uses Kodi as its primary launcher. All media is played through the Kodi JSON-RPC API.
 
-Now when your device starts, Zaparoo Core should also start automatically.
+### Local Files
 
-## Supported Readers
+These launchers play files directly from disk in `/storage/`:
 
-| Reader                                          | Status |
-|-------------------------------------------------|--------|
-| [PN532](../readers/nfc/pn532-usb.md)               | ✅      |
-| [ACR122U](../readers/nfc/acr122u.md)       | ✅      |
-| [File Reader](../readers/file.md)          | ✅      |
-| [Simple Serial](../readers/simple-serial.md) | ✅      |
-| [Optical Drive](../readers/optical-drive.md) | ✅      |
-| [TTY2OLED](../readers/tty2oled.md)         | ✅      |
+| System ID | Folders | Extensions |
+|-----------|---------|------------|
+| `Video` | `videos`, `tvshows` | `.avi`, `.mp4`, `.mkv`, `.iso`, `.bdmv`, `.ifo`, `.mpeg`, `.mpg`, `.mov`, `.wmv`, `.flv`, `.webm`, `.m4v`, `.3gp`, `.ts`, `.m2ts`, `.mts`, `.m3u`, `.m3u8` |
+| `MusicTrack` | `music` | `.mp3`, `.flac`, `.ogg`, `.m4a`, `.wav`, `.wma`, `.aac`, `.opus` |
 
-## Supported Launchers
+### Library Media
 
-| Launcher | Extensions/Types | Notes |
-|----------|-----------------|-------|
-| Kodi Local | Local video files | Launches local media files through Kodi |
-| Kodi Movie | Movies from Kodi library | Launches movies indexed in Kodi |
-| Kodi TV | TV shows from Kodi library | Launches TV shows indexed in Kodi |
-| Kodi Music | Music from Kodi library | Plays music indexed in Kodi |
-| Kodi Song | Individual songs | Plays specific songs from Kodi |
-| Kodi Album | Music albums | Plays complete albums from Kodi |
-| Kodi Artist | Artist collections | Plays all songs by an artist |
-| Kodi TVShow | TV show series | Launches TV show series from Kodi |
-| Generic | `.sh` | Shell script execution |
+These launchers play media from Kodi's indexed library. They query Kodi's database during media indexing rather than scanning the filesystem.
 
-If setup was done correctly, Core will automatically pick up and support all movies and TV shows indexed in Kodi. Local files are also supported in the `/storage/videos` and `/storage/tvshows` folders.
+| System ID | Description |
+|-----------|-------------|
+| `Movie` | Movies from Kodi library |
+| `TVEpisode` | Individual TV episodes |
+| `TVShow` | Entire TV show (plays next unwatched episode) |
+| `MusicTrack` | Songs from Kodi music library |
+| `MusicAlbum` | Albums from Kodi music library |
+| `MusicArtist` | Artists from Kodi music library (plays all songs) |
 
-Running shell scripts is also supported. See the [Linux page](./linux.md#supported-launchers) for more information on how to use this.
+### Shell Scripts
+
+Custom shell scripts (`.sh` files) can be launched directly. Scripts must be added to the `allow_file` list in `config.toml`.
+
+```toml
+[launchers]
+allow_file = [
+    "^/storage/.*\\.sh$"
+]
+```
+
+Restart Zaparoo after modifying the config for changes to take effect.

@@ -482,6 +482,11 @@ const config: Config = {
           //   to: "/docs/readers/barcode/app",
           //   from: "/docs/readers/barcode-scanner",
           // },
+          // Systems page moved to top-level (uncomment when v2.7.0 is released)
+          // {
+          //   to: "/docs/systems/",
+          //   from: "/docs/core/systems",
+          // },
           {
             to: "/docs/community-hub/media",
             from: "/docs/community/media",

@@ -83,7 +83,7 @@ This format also works, but the `@` prefix is recommended to avoid potential con
 
 This is similar to a relative path, but the first "folder" will be treated as a reference to a system instead of a folder. Like this: `<System ID>/<Game Path>`.
 
-Check the [Systems](../core/systems.md) documentation for a list of supported system IDs.
+Check the [Systems](../systems.md) documentation for a list of supported system IDs.
 
 For example:
 
@@ -240,7 +240,7 @@ See the [Tags documentation](../core/tags.md) and [Title Normalization](../core/
 
 ## launch.system
 
-This command will launch a system, based on MiSTer Extensions' own internal list of [system IDs](../core/systems.md). This can be useful for "meta-systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
+This command will launch a system, based on MiSTer Extensions' own internal list of [system IDs](../systems.md). This can be useful for "meta-systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
 
 For example:
 

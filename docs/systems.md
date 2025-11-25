@@ -1,10 +1,14 @@
+---
+sidebar_position: 6
+---
+
 # Systems
 
-A system is a category used by [Core](./index.md) to group scanned media together, which is used to help matching with [launchers](./launchers.md) and when writing [ZapScript](../zapscript/index.md) commands.
+A system is a category used by [Core](./core/index.md) to group scanned media together, which is used to help matching with [launchers](./core/launchers.md) and when writing [ZapScript](./zapscript/index.md) commands.
 
-Generally, a system will refer to a console or computer system, but can be used for any media type. Each [platform](../platforms/index.md) has its own set of supported systems, based on the [launchers](./launchers.md) it has available.
+Generally, a system will refer to a console or computer system, but can be used for any media type. Each [platform](./platforms/index.md) has its own set of supported systems, based on the launchers it has available.
 
-System IDs are case-insensitive and are used in [configuration files](./config.md) and [ZapScript](../zapscript/index.md) commands. Below is a complete reference of all available systems organized by category.
+System IDs are case-insensitive and are used in [configuration files](./core/config.md) and [ZapScript](./zapscript/index.md) commands. Below is a complete reference of all available systems organized by category.
 
 ## Game Consoles
 
@@ -237,9 +241,9 @@ System IDs are case-insensitive and are used in [configuration files](./config.m
 - **System IDs are case-insensitive** when used in configuration files and ZapScript commands
 - **Aliases**: Many systems have alternative names that can be used interchangeably (e.g., `Genesis` and `MegaDrive`, `GB` for `Gameboy`, `N64` for `Nintendo64`, `Music` for `MusicTrack`, `TV` for `TVEpisode`)
 - **Fallbacks**: Some systems can fall back to compatible systems when launchers aren't available (e.g., Game Boy Color games can fallback to Game Boy, Sega CD can fallback to Genesis)
-- Not all systems are supported on every platform - check the [launchers documentation](launchers.md) for platform-specific support
-- System defaults can be configured in your [configuration file](config.md#systems)
-- Systems are used in [ZapScript](../zapscript/index.md) commands for launching specific system types
+- Not all systems are supported on every platform - check your [platform's documentation](./platforms/index.md) for launcher-specific support
+- System defaults can be configured in your [configuration file](./core/config.md#systems)
+- Systems are used in [ZapScript](./zapscript/index.md) commands for launching specific system types
 
 ### Examples
 

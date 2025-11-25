@@ -5,89 +5,49 @@ sidebar_class_name: hidden
 # ChimeraOS
 
 :::danger
-This platform isn't released yet! It's not ready for production use.
+This platform is in beta and not ready for production use.
 :::
 
-:::warning
+Zaparoo Core on ChimeraOS supports shell script launching. Full launcher support is coming in a future release.
 
-ChimeraOS support is still in beta. The Zaparoo App and most hardware is supported, but launching media is done via shell scripts until proper launcher support is added.
+## File Paths
 
-:::
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `/tmp/<session_id>-zaparoo/core.log`   |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
 
-| Item               | Path                                 |
-| ------------------ | ------------------------------------ |
-| Data directory     | `~/.local/share/zaparoo`             |
-| Mappings directory | `~/.local/share/zaparoo/mappings`    |
-| Config file        | `~/.config/zaparoo/config.toml`      |
-| Log file           | `/tmp/<session_id>-zaparoo/core.log` |
-
-<small>_Where `~` is the home directory of the current user._</small>
+Where `~` is the home directory of the current user.
 
 ## Install
 
-Download Zaparoo Core for Linux from the [Downloads page](/downloads/), unzip it and copy
-the `zaparoo` file somewhere like the home directory or `/usr/local/bin`. This guide assumes you copied it to the home directory, replace paths in the examples if that's not the case.
+Download Zaparoo Core for Linux from the [Downloads page](/downloads/), unzip it and copy the `zaparoo` file to your home directory.
 
-:::tip
-
-ChimeraOS is a console-focused Linux distribution, so you'll need to use the terminal for installation. You can access the terminal by pressing `Ctrl+Alt+F2` and logging in with the default credentials (username: `gamer`, password: `gamer`).
-
-:::
-
-Open terminal and go to the directory where you copied the `zaparoo` file:
+Access the terminal with `Ctrl+Alt+F2` (default credentials: `gamer` / `gamer`).
 
 ```bash
 cd $HOME
-```
-
-Run the install command in Zaparoo:
-
-```bash
 ./zaparoo -install
-```
-
-:::info
-
-This command does the following:
-
-- Creates a udev rule allowing users to read NFC reader serial devices.
-- Creates a modprobe blacklist entry to fix a bug stopping ACR122U readers from working.
-- Creates a user systemd service to run Zaparoo in the background.
-
-:::
-
-Start the Zaparoo service by either using the systemd service:
-
-```bash
 systemctl --user enable zaparoo.service
 systemctl --user start zaparoo.service
 ```
 
-Or just by adding the `zaparoo` file to your startup applications.
-
-From this point, Zaparoo should be running and the App should connect to your device. You can now connect a reader and set up cards using the Zaparoo App.
-
-If you want to undo the changes performed by the install command, you can run the uninstall command:
+To uninstall:
 
 ```bash
 ./zaparoo -uninstall
 ```
 
-## Supported Readers
+## Readers
 
-| Reader                                          | Status |
-|-------------------------------------------------|--------|
-| [PN532](../readers/nfc/pn532-usb.md)               | ✅      |
-| [ACR122U](../readers/nfc/acr122u.md)       | ✅      |
-| [File Reader](../readers/file.md)          | ✅      |
-| [Simple Serial](../readers/simple-serial.md) | ✅      |
-| [Optical Drive](../readers/optical-drive.md) | ✅      |
-| [TTY2OLED](../readers/tty2oled.md)         | ✅      |
+All [readers](../readers/index.md) are supported.
 
 ## Supported Launchers
 
-| Launcher | Extensions | Notes |
-|----------|-----------|-------|
-| Generic  | `.sh`     | Shell script execution |
+| Launcher      | Notes                        |
+| ------------- | ---------------------------- |
+| Shell Scripts | Custom `.sh` file execution  |
 
-Currently, ChimeraOS only supports launching shell scripts. You must create shell scripts to launch games, applications, or media. See the [Linux page](./linux.md#supported-launchers) for more information on how to set up launchers this way.
+Create shell scripts to launch games, applications, or media. Add scripts to the `allow_file` list in config.toml and restart Zaparoo.

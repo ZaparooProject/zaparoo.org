@@ -59,7 +59,7 @@ path = 'COM3'  # Windows COM port
 
 ### MiSTer
 
-TTY2OLED is commonly used with [MiSTer FPGA](../platforms/mister.md) systems. The display typically connects via USB and appears as a serial device at `/dev/ttyUSB0` or similar.
+TTY2OLED is commonly used with [MiSTer FPGA](../platforms/mister/index.md) systems. The display typically connects via USB and appears as a serial device at `/dev/ttyUSB0` or similar.
 
 ### Linux
 

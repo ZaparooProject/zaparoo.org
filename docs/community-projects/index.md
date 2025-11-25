@@ -37,7 +37,7 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
 - **[Super Zap Boy](./super-zap-boy.md)** by *Phoenix*
 
-  A custom [MiSTer FPGA](../platforms/mister.md) case project using an original Super Nintendo, Super GameBoy and reproduction GameBoy cartridges with custom made labels.
+  A custom [MiSTer FPGA](../platforms/mister/index.md) case project using an original Super Nintendo, Super GameBoy and reproduction GameBoy cartridges with custom made labels.
 
 - **[TapTo Card Reader With Spring Loaded Ejection Button](https://www.printables.com/model/999381-tapto-card-reader-with-spring-loaded-ejection-butt)** by *Raspberry1337*
 

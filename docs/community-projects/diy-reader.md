@@ -123,7 +123,7 @@ Then, place the top piece on top and push it in place into the bottom piece. The
 
 <img src="/img/docs/community-projects/diy-reader/Fully_assembled_DIY_Reader.jpg" alt="Fully assembled DIY Reader" width="300"/>
 
-Congratulations, you did it! Welcome to Zaparoo. This reader should be plug and play with Zaparoo on a [MiSTer FPGA](../platforms/mister.md) and [Commodore 64](../platforms/commodore64.md).
+Congratulations, you did it! Welcome to Zaparoo. This reader should be plug and play with Zaparoo on a [MiSTer FPGA](../platforms/mister/index.md) and [Commodore 64](../platforms/commodore64.md).
 
 :::note
 Please note that this reader will not work natively with Windows, Mac or Linux.

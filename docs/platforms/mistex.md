@@ -1,54 +1,40 @@
 # MiSTeX
 
-MiSTeX is fully supported by Zaparoo as a platform, and is identical to [MiSTer](mister.md) in terms of functionality and features. The only difference is in how Zaparoo is installed.
+MiSTeX is fully supported by Zaparoo and is identical to [MiSTer](./mister/index.md) in terms of functionality and features. The only difference is in how Zaparoo is installed.
+
+## File Paths
 
 | Item               | Path                             |
 | ------------------ | -------------------------------- |
-| Data directory     | `/media/fat/zaparoo`             |
-| Mappings directory | `/media/fat/zaparoo/mappings`    |
 | Config file        | `/media/fat/zaparoo/config.toml` |
+| Data directory     | `/media/fat/zaparoo`             |
 | Log file           | `/tmp/zaparoo/core.log`          |
+| Mappings directory | `/media/fat/zaparoo/mappings`    |
 
-<small>_The `/media/fat` directory is the top level of the SD card._</small><br />
-<small>_The `/tmp` directory is not accessible from the SD card and is deleted when MiSTeX is powered off._</small>
+The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is deleted when MiSTeX is powered off.
 
 ## Install
 
-Unlike MiSTer, MiSTeX does not have Update All or download scripts available. You must install Zaparoo manually:
+Download Zaparoo Core for MiSTeX from the [Downloads page](/downloads/) and copy the `zaparoo.sh` file to the `Scripts` folder on your SD card.
 
-1. Download Zaparoo Core for MiSTeX from the [Downloads page](/downloads/)
-2. Copy the `zaparoo.sh` file to the `Scripts` folder on your MiSTeX's SD card
-3. Run `zaparoo` from the MiSTeX `Scripts` menu
-4. A prompt will offer to enable Zaparoo as a startup service
-5. The service will be started in the background
-
-After the initial setup is complete, a status display will be shown. It's OK to exit this screen, the service will continue to run in the background.
-
-From this point, Zaparoo is now set up! You should be able to connect a reader and set up cards using the Zaparoo App.
+Run `zaparoo` from the MiSTeX `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
 
 :::warning
-
-Using FileZilla to transfer the file? Make sure _binary transfer mode_ is enabled by following [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/). FileZilla incorrectly detects `zaparoo.sh` as a text file and will corrupt it, resulting in confusing errors.
-
+Using FileZilla? Enable binary transfer mode per [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/). FileZilla incorrectly detects `zaparoo.sh` as text and will corrupt it.
 :::
 
-## Supported Readers
+## Readers
 
-| Reader                                          | Status |
-|-------------------------------------------------|--------|
-| [PN532](../readers/nfc/pn532-usb.md)               | ✅      |
-| [ACR122U](../readers/nfc/acr122u.md)       | ✅      |
-| [File Reader](../readers/file.md)          | ✅      |
-| [Simple Serial](../readers/simple-serial.md) | ✅      |
-| [TTY2OLED](../readers/tty2oled.md)         | ✅      |
+All [readers](../readers/index.md) are supported. See [MiSTer](./mister/index.md) for platform-specific notes.
 
 ## Supported Launchers
 
-All launchers supported by MiSTer are also supported by MiSTeX (as far as MiSTeX itself supports them). This includes:
+All launchers supported by MiSTer are also supported by MiSTeX (as far as MiSTeX itself supports them):
 
-- **MiSTer Cores**: 100+ arcade, console, and computer systems through official FPGA cores
-- **Custom Scripts**: `.sh` files for shell script execution
-- **MGL Files**: MiSTer Game Loader format for various systems
-- **Alternate Launchers**: LLAPI, PWM, Overclock, and Sinden Lightgun variants
+| Launcher      | Notes                                   |
+| ------------- | --------------------------------------- |
+| FPGA Cores    | 100+ arcade, console, and computer systems |
+| MGL Files     | MiSTer Game Loader format               |
+| Shell Scripts | Custom `.sh` file execution             |
 
-See the [MiSTer launchers section](mister.md#supported-launchers) for detailed information on all supported systems and launcher variants.
+See [MiSTer Launchers](./mister/launchers.md) for the full list of supported systems.
