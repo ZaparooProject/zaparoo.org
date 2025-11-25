@@ -27,6 +27,7 @@ type Platform =
   | "mister"
   | "batocera"
   | "windows"
+  | "linux"
   | "steamos"
   | "libreelec"
   | null;
@@ -114,6 +115,13 @@ const platforms: PlatformConfig[] = [
     name: "Windows",
     icon: "/img/logos/windows.svg",
     iconStyle: { width: "75px", height: "75px" },
+    provides: [CAPABILITIES.USB_PORT, CAPABILITIES.NETWORK],
+  },
+  {
+    id: "linux",
+    name: "Linux",
+    icon: "/img/logos/linux.webp",
+    iconStyle: { width: "63.28px", height: "75px" },
     provides: [CAPABILITIES.USB_PORT, CAPABILITIES.NETWORK],
   },
   {
@@ -491,6 +499,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
     mister: "MiSTer FPGA",
     batocera: "Batocera",
     windows: "Windows",
+    linux: "Linux",
     steamos: "SteamOS",
     libreelec: "LibreELEC",
   };
