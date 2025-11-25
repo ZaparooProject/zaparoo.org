@@ -40,7 +40,7 @@ The Zaparoo App is still being updated to fully support this release. The curren
 
 ## Title IDs - The New Default
 
-The biggest change in this release is how Zaparoo identifies games. Instead of writing file paths to your tokens, the default format is now **title IDs** like `@Genesis/Sonic Spinball` or `@SNES/Super Mario World`.
+The biggest change in this release is how Zaparoo identifies games. Instead of writing file paths to your tokens, the default format is now **[title IDs](/docs/zapscript/launch/#title-id)** like `@Genesis/Sonic Spinball` or `@SNES/Super Mario World`.
 
 ```
 Old way: /media/fat/games/Genesis/Sonic Spinball.bin
@@ -55,9 +55,9 @@ The old path-based format still works, so your existing cards won't break. But g
 Writing title IDs to cards is currently only supported in the bundled Web UI. The published app still writes full file paths.
 :::
 
-## Tags System
+## [Tags System](/docs/core/tags/)
 
-Tags are the other half of the new game matching system. As media is indexed, Zaparoo now extracts and assigns tags from filenames (and eventually scraped metadata). You can use these tags to filter searches and resolve conflicts.
+Tags are the other half of the new game matching system. As media is indexed, Zaparoo now extracts and assigns [tags](/docs/core/tags/) from filenames (and eventually scraped metadata). You can use these tags to filter searches and resolve conflicts.
 
 For example: `@SNES/Super Mario World (region:eu) (lang:de)` will specifically launch the European German version if you have multiple versions of the game. Tags currently include language, region, translation status, release year, ROM quality, and game version info.
 
@@ -69,26 +69,26 @@ Tag filtering in search is currently only available in the bundled Web UI.
 
 The media database got some serious upgrades:
 
-- **System-specific updates**: You can now update just one system instead of your entire library, making updates much faster when you only changed a few games *(Web UI only)*
-- **Cancelable updates**: Stop an in-progress update whenever you want *(Web UI only)*
+- **System-specific updates**: You can now update just one system instead of your entire library, making updates much faster when you only changed a few games _(Web UI only)_
+- **Cancelable updates**: Stop an in-progress update whenever you want _(Web UI only)_
 - **Crash-resistant**: Unplug mid-update? No problem. Core picks up right where it left off next time
 - **Background optimization**: The main update finishes faster, with optimization happening in the background so you can start searching and launching sooner
 - **Blazing fast search**: Searching is now basically instant, even with tons of filters applied
-- **Pagination**: No more hard limit of 250 results. The Web UI now supports infinite scrolling through search results *(published app still capped at 100)*
+- **Pagination**: No more hard limit of 250 results. The Web UI now supports infinite scrolling through search results _(published app still capped at 100)_
 
-## MiSTer Improvements
+## [MiSTer Improvements](/docs/platforms/mister/)
 
 MiSTer gets a lot of love this release:
 
-- **Video playback overhaul**: We've switched to nextfvp for much better video playback. [Download it here](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip), extract `fvp` to your `linux` folder, create a `Video` folder in games, add your videos, update the DB, and you're done
-- **ScummVM support**: Full support for ScummVM using the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Install it, add your games, update the DB, done
+- **[Video playback overhaul](/docs/platforms/mister/#video)**: We've switched to nextfvp for much better video playback. [Download it here](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip), extract `fvp` to your `linux` folder, create a `Video` folder in games, add your videos, update the DB, and you're done
+- **[ScummVM support](/docs/platforms/mister/#scummvm)**: Full support for ScummVM using the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Install it, add your games, update the DB, done
 - **Neo Geo Pocket/Color support**: Both systems now fully supported
 - **Atari 5200 fixes**: Some missing file extensions have been added
 - **Log viewing**: View and download logs directly from the TUI
 
-## Linux Desktop Platform Support
+## [Linux Desktop Platform Support](/docs/platforms/linux/)
 
-Initial Linux desktop platform support is here! This includes:
+Initial [Linux desktop platform](/docs/platforms/linux/) support is here! This includes:
 
 - Installer with desktop integration
 - systemd service support
@@ -98,23 +98,26 @@ Initial Linux desktop platform support is here! This includes:
 
 This new platform will serve as a foundation for improving existing platforms like SteamOS and supporting new ones like ChimeraOS in future releases.
 
-## Windows & LaunchBox Improvements
+## [Windows](/docs/platforms/windows/) & LaunchBox Improvements
 
 Windows users get some great updates:
 
-- **LaunchBox overhaul**: Complete rewrite of LaunchBox integration with a new plugin system for more reliable launching and active game tracking
+- **[LaunchBox overhaul](/docs/platforms/windows/#launchbox)**: Complete rewrite of LaunchBox integration with a new plugin system for more reliable launching and active game tracking
 - **RetroBat fixes**: Now works correctly with proper API integration
 - **Steam improvements**: Non-Steam games and shortcuts are now detected and launched correctly
 
-## Batocera Enhancements
+## [Batocera Enhancements](/docs/platforms/batocera/)
 
+- **[New pacman package](/docs/platforms/batocera/#install-script)**: Much easier installation with a new pacman package, plus a "Ports" script to open the TUI directly from EmulationStation
 - **Active media detection**: Background tracking to automatically detect which games are currently running
 - **Kodi launching improvements**: Smoother and more reliable launching when using Kodi mode
 - **System compatibility fixes**: Corrected file extensions for 22 systems including ports, game engines (quake, doom), and modern consoles (ps3, psvita, switch, wiiu, xbox360)
 
-## Playtime Limits & Parental Controls
+We're also working with the Batocera team to get Zaparoo Core officially included in the Content Downloader for even easier installation in the future.
 
-A new time management system lets you set daily playtime limits, track gaming sessions, and automatically enforce limits with grace period notifications. Perfect for parents who want to manage screen time.
+## [Playtime Limits & Parental Controls](/docs/core/playtime/)
+
+A new [time management system](/docs/core/playtime/) lets you set daily playtime limits, track gaming sessions, and automatically enforce limits with grace period notifications. Perfect for parents who want to manage screen time.
 
 :::note Web UI Only
 Playtime limit configuration is currently only available in the bundled Web UI. You can also manually configure limits in the config file.
@@ -124,37 +127,37 @@ Playtime limit configuration is currently only available in the bundled Web UI. 
 
 Two really cool new reader types:
 
-- **MQTT reader**: Connect to an MQTT broker (like Home Assistant) and send ZapScript commands directly to Zaparoo
-- **External drive reader**: Treat USB sticks and SD cards as tokens! Core auto-detects when a drive is mounted and runs the ZapScript in a `zaparoo.txt` file on it
+- **[MQTT reader](/docs/readers/mqtt/)**: Connect to an MQTT broker (like Home Assistant) and send ZapScript commands directly to Zaparoo
+- **[External drive reader](/docs/readers/external-drive/)**: Treat USB sticks and SD cards as tokens! Core auto-detects when a drive is mounted and runs the ZapScript in a `zaparoo.txt` file on it
 
 ## Other New Features
 
 ### Reader Support
 
-- **RS232 barcode reader support**: New driver for RS232-based barcode scanners
-- **Legacy NFC driver option**: If the new NFC driver isn't working for you, you can now explicitly use the old one with `legacypn532uart` and `legacypn532i2c` driver IDs
+- **[RS232 barcode reader support](/docs/readers/barcode/rs232/)**: New driver for RS232-based barcode scanners
+- **[Legacy NFC driver option](/docs/core/drivers/#legacy-nfc-drivers)**: If the new NFC driver isn't working for you, you can now explicitly use the old one with `legacypn532uart` and `legacypn532i2c` driver IDs
 
 ### System Improvements
 
-- **Universal keyboard combo support**: Keyboard combos now work on all platforms (MiSTer, MiSTeX, Batocera, Linux, etc.) instead of just MiSTer
+- **[Universal keyboard combo support](/docs/zapscript/input/#inputkeyboard)**: Keyboard combos now work on all platforms (MiSTer, MiSTeX, Batocera, Linux, etc.) instead of just MiSTer
 - **Neo Geo split**: Neo Geo AES and MVS are now separate platforms for better organization
 - **Scan audio feedback**: Now works on all platforms and reports ZapScript execution errors
-- **URL launching**: Open URLs in web browsers from ZapScript
+- **URL launching**: Open URLs in web browsers from ZapScript on Windows and Linux desktop platforms
 
 ### Configuration & Integration
 
 - **Notification publisher**: Publish API notifications to external services like MQTT brokers
-- **API security controls**: Bind the API server to specific network interfaces with `api_listen`, and create IP allowlists with `allowed_ips` (supports individual IPs, CIDR ranges, IPv4/IPv6)
-- **Custom audio files**: Set custom `success_sound` and `fail_sound` in config (supports WAV, MP3, OGG, FLAC)
-- **.zaparooignore**: Place this file in directories to exclude them from media scanning
+- **[API security controls](/docs/core/config/#api_listen)**: Bind the API server to specific network interfaces with [`api_listen`](/docs/core/config/#api_listen), and create IP allowlists with [`allowed_ips`](/docs/core/config/#allowed_ips) (supports individual IPs, CIDR ranges, IPv4/IPv6)
+- **[Custom audio files](/docs/core/config/#success_sound)**: Set custom [`success_sound`](/docs/core/config/#success_sound) and [`fail_sound`](/docs/core/config/#fail_sound) in config (supports WAV, MP3, OGG, FLAC)
+- **[.zaparooignore](/docs/core/config/#media_dirs)**: Place this file in directories to exclude them from media scanning
 
 ## ZapScript Improvements
 
-- `launch.random` is significantly faster, especially for systems with tons of games
-- `launch.title` command added to launch by title ID
-- `launch` command now supports title IDs (though the `@` prefix is recommended)
-- `?system=<id>` advanced argument now works for local file paths
-- `**playlist.open` with no arguments reloads the current playlist
+- [`launch.random`](/docs/zapscript/launch/#launchrandom) is significantly faster, especially for systems with tons of games
+- [`launch.title`](/docs/zapscript/launch/#launchtitle) command added to launch by title ID
+- [`launch`](/docs/zapscript/launch/) command now supports title IDs (though the `@` prefix is recommended)
+- [`?system=<id>`](/docs/zapscript/launch/#launch) advanced argument now works for local file paths
+- [`**playlist.open`](/docs/zapscript/playlist/#playlistopen) with no arguments reloads the current playlist
 
 ## Bug Fixes
 
