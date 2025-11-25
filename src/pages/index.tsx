@@ -154,7 +154,7 @@ function HomepageHeader(): ReactNode {
             data-umami-event="hero-get-started"
           >
             <Zap size={16} className={styles.buttonIcon} />
-            Tap & Launch
+            Start Here
           </Link>
           <Link
             className={clsx(

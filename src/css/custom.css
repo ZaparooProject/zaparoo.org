@@ -215,6 +215,6 @@
 }
 
 /* Hide version dropdown on non-docs pages */
-html:not(.docs-doc-page) .navbar-version-dropdown {
+html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
   display: none;
 }
