@@ -15,7 +15,7 @@ Network share paths use `\\BATOCERA\share\system\` prefix instead of `/userdata/
 
 ## Install
 
-The easiest way to install is via SSH or in the Batocera terminal (press F4):
+The easiest way to install is via SSH or in the Batocera terminal (press F1 to open the file manager, then F4 to open a terminal):
 
 ```bash
 curl -fsSL https://zaparoo.org/install.sh | bash
