@@ -340,17 +340,17 @@ const config: Config = {
       searchPagePath: "search",
       insights: false,
     },
-    zoom: {
-      selector: ".markdown img:not(a img)",
-      background: {
-        light: "rgb(255, 255, 255)",
-        dark: "rgb(50, 50, 50)",
-      },
-    },
+    // zoom: {
+    //   selector: ".markdown img:not(a img)",
+    //   background: {
+    //     light: "rgb(255, 255, 255)",
+    //     dark: "rgb(50, 50, 50)",
+    //   },
+    // },
   } satisfies Preset.ThemeConfig,
 
   plugins: [
-    "docusaurus-plugin-image-zoom",
+    // "docusaurus-plugin-image-zoom",
     () => ({
       name: "umami-tracking",
       injectHtmlTags() {
@@ -519,8 +519,8 @@ const config: Config = {
         ],
       },
     ],
-    // Custom image optimization plugin
-    ["./plugins/image-optimization", {}],
+    // Custom image optimization plugin (disabled - breaks MDX image imports)
+    // ["./plugins/image-optimization", {}],
     // Performance optimization plugin
     ["./plugins/performance-optimization", {}],
   ],
