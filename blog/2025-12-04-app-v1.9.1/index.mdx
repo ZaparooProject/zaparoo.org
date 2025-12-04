@@ -1,0 +1,113 @@
+---
+slug: app-v1.9.1
+title: "Zaparoo App v1.9.1 released"
+tags: [software]
+authors: [wizzo]
+---
+
+The Zaparoo App v1.9.1 update is now available in the [App Store](https://apps.apple.com/us/app/zaparoo/id6480331015) and [Play Store](https://play.google.com/store/apps/details?id=dev.wizzo.tapto). This is the companion release for Core v2.7.0, bringing full support for title IDs, tags, infinite scrolling, and a stack of new features like an onboarding tour, playtime limits, a log viewer, and shake-to-launch.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **Full Core v2.7.0 support** - title IDs, tags, and unlimited search results
+- **Onboarding tour** - guided walkthrough for new users
+- **Playtime limits** - configure and monitor parental controls
+- **Log viewer** - view Core logs directly in the app
+- **Shake to launch** - trigger random games or custom ZapScript by shaking your phone
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download App v1.9.1"
+  link="https://zaparoo.org/downloads#zaparoo-app"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app/"
+  variant="primary"
+/>
+
+## Onboarding Tour
+
+New users are now greeted with a quick guided tour that walks through the main features of the app. It covers connecting to a device, updating the media database, and creating cards.
+
+## Search Improvements
+
+Search got a complete overhaul to support the new Core v2.7.0 features:
+
+- **Infinite scroll**: No more result limits. Browse your entire library with smooth virtualized pagination.
+- **Tag filtering**: Filter search results by region, language, year, and other tags extracted from your media.
+- **Recent search history**: Quick access to your last searches, including query, system, and tag filters.
+- **Filename display toggle**: Option to show or hide full filenames in search results in case the cleaned titles aren't working for you.
+
+## Playtime Limits
+
+Full support for the new [playtime limits](/docs/core/playtime/) feature from Core v2.7.0. The app lets you:
+
+- Enable/disable playtime limits
+- Configure daily and session time limits
+- Set session reset timeouts
+- View current session status, duration, and remaining time
+- See daily usage statistics
+
+## Log Viewer
+
+A new log viewer lets you see Core logs directly in the app. Features include:
+
+- Filter by log level (debug, info, warn, error)
+- Search log entries
+- Download logs as a file
+- Copy logs to clipboard
+
+Useful for troubleshooting issues without needing to SSH into your device.
+
+## Shake to Launch
+
+Shake your phone to trigger actions. This is a Pro feature available on native platforms with an accelerometer. Two modes are available:
+
+- **Random mode**: Launch a random game from any system or a specific system of your choice
+- **Custom mode**: Run any ZapScript command you want
+
+The feature includes debouncing to prevent accidental double-triggers and haptic feedback to confirm your shake was detected.
+
+## UX Improvements
+
+- **Haptic feedback**: Tactile feedback throughout the app for button presses, selections, and error notifications.
+- **Skeleton loading states**: Smoother loading experience with placeholder animations instead of blank screens.
+- **Connection status display**: Clearer feedback on device connection state with a dedicated status component.
+- **Safe area handling**: Improved support for devices with notches and dynamic islands using proper inset detection.
+- **Android back button**: Hardware back button now works properly throughout the app.
+- **Scan cancellation**: Cancel an in-progress NFC scan.
+
+## Accessibility
+
+Screen reader support has been significantly improved:
+
+- Better focus management and heading structure
+- Screen reader-friendly tour step indicators with progress announcements
+- Improved modal accessibility with focus trapping
+- More descriptive button labels and state announcements
+- Skip links and proper ARIA attributes throughout
+
+## Bug Fixes & Improvements
+
+- Fixed default language selection not being correct on first launch
+- Improved WebSocket connection reliability with better reconnection handling and visibility/lifecycle event support
+- Better hardware availability checks for camera and accelerometer
+- Tag management UI improvements with new TagBadge and TagList components
+- Updated Dutch and Japanese translations (thank you to Anime0t4ku)
+- Gestures disabled on desktop (web)
+
+---
+
+This update brings the App up to speed with Core v2.7.0. Title IDs and tags are now fully supported, so your tokens work across all your devices. The search experience is much smoother with infinite scrolling and tag filtering. A lot of work has gone into making the app just _feel_ much nicer, with a lot of rough edges polished off.
+
+A minor release of Core is planned soon which will include an updated version of the Web UI with these changes.
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-app/).
