@@ -19,7 +19,7 @@ export default function SponsorCard({
   linkText,
   badge,
   umami,
-}: SponsorCardProps): JSX.Element {
+}: SponsorCardProps) {
   return (
     <div className="col col--6" style={{ marginBottom: '1.5rem' }}>
       <a
