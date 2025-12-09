@@ -1,4 +1,4 @@
-import React, { ReactNode, CSSProperties } from "react";
+import React, { ReactNode, CSSProperties, useState, useEffect } from "react";
 import Button from "../Button";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -42,6 +42,7 @@ type DownloadCard = {
   version?: string;
   status: "stable" | "beta";
   architectures: Arch[];
+  defaultArch?: Arch;
   icon: ReactNode | null;
   docLink?: string;
   platformLink: string;
@@ -78,23 +79,43 @@ const StableBubble = () => (
   />
 );
 
-// Button component that accepts the specified props.
 export default function DownloadCard({
   name,
   platform,
   version = null,
   status = "stable",
   architectures,
+  defaultArch,
   icon,
   docLink,
   platformLink,
   nativeInstall,
   id,
 }: DownloadCard) {
+  const [selectedArch, setSelectedArch] = useState<Arch>(
+    defaultArch && architectures.includes(defaultArch)
+      ? defaultArch
+      : architectures[0]
+  );
+  const [isTargeted, setIsTargeted] = useState(false);
+  const resolvedVersion = version ? version : defaultVersion;
+
+  useEffect(() => {
+    if (!id) return;
+
+    const checkHash = () => {
+      setIsTargeted(window.location.hash === `#${id}`);
+    };
+
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, [id]);
+
   return (
     <div
       id={id}
-      className="download-card"
+      className={`download-card${isTargeted ? " download-card--targeted" : ""}`}
       style={{
         position: "relative",
         display: "flex",
@@ -102,11 +123,10 @@ export default function DownloadCard({
         flexDirection: "column",
         justifyContent: "center",
         margin: "10px",
-        border: "1px solid #ccc",
         borderRadius: "8px",
         padding: "1rem",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        width: "220px",
+        width: "250px",
         gap: "0.5rem",
       }}
     >
@@ -119,7 +139,7 @@ export default function DownloadCard({
           fontWeight: "bold",
         }}
       >
-        {version ? "v" + version : "v" + defaultVersion}
+        {"v" + resolvedVersion}
       </div>
       <div
         style={{
@@ -169,24 +189,59 @@ export default function DownloadCard({
           dataUmamiEvent={`core-${platform}-native-install`}
         />
       )}
-      {architectures.map((arch) => (
+      {architectures.length === 1 ? (
         <Button
           outline={!!nativeInstall}
-          label={"Download " + displayArch(arch)}
+          label={"Download " + displayArch(architectures[0])}
           variant={nativeInstall ? "secondary" : "primary"}
-          link={downloadUrl(platform, arch, version ? version : defaultVersion)}
+          link={downloadUrl(platform, architectures[0], resolvedVersion)}
           icon={<FontAwesomeIcon icon={["fas", "download"]} />}
           fullWidth
-          dataUmamiEvent={`core-${platform}-${arch}-download`}
+          dataUmamiEvent={`core-${platform}-${architectures[0]}-download`}
         />
-      ))}
-      {architectures.length > 1 && (
-        <small>
-          <a href="#arch-help">
-            <FontAwesomeIcon icon={["fas", "question-circle"]} /> Which one
-            should I get?
-          </a>
-        </small>
+      ) : (
+        <>
+          <div style={{ display: "flex", gap: "0.5rem", width: "100%", alignItems: "center" }}>
+            <select
+              value={selectedArch}
+              onChange={(e) => setSelectedArch(e.target.value as Arch)}
+              aria-label="Select architecture"
+              style={{
+                flex: "1",
+                padding: "0.5rem",
+                borderRadius: "4px",
+                border: "1px solid var(--ifm-color-emphasis-300)",
+                backgroundColor: "var(--ifm-background-surface-color)",
+                color: "var(--ifm-font-color-base)",
+                fontSize: "0.9rem",
+                cursor: "pointer",
+              }}
+            >
+              {architectures.map((arch) => (
+                <option key={arch} value={arch}>
+                  {displayArch(arch)}
+                </option>
+              ))}
+            </select>
+            <a
+              href="#arch-help"
+              title="Which architecture should I get?"
+              aria-label="Help choosing architecture"
+              className="arch-help-icon"
+            >
+              <FontAwesomeIcon icon={["fas", "question-circle"]} />
+            </a>
+          </div>
+          <Button
+            outline={!!nativeInstall}
+            label="Download"
+            variant={nativeInstall ? "secondary" : "primary"}
+            link={downloadUrl(platform, selectedArch, resolvedVersion)}
+            icon={<FontAwesomeIcon icon={["fas", "download"]} />}
+            fullWidth
+            dataUmamiEvent={`core-${platform}-${selectedArch}-download`}
+          />
+        </>
       )}
     </div>
   );

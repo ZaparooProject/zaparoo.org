@@ -2,8 +2,6 @@
 title: "Downloads"
 ---
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 import Button from "@site/src/components/Button";
 import { latestReleaseBlogPost } from "@site/src/components/DownloadCard";
 
@@ -125,6 +123,7 @@ won't interfere with your media playing.
     }}
   />
   <DownloadCard
+    id="mistex"
     name="MiSTeX"
     platform="mistex"
     architectures={["arm64"]}
@@ -155,6 +154,7 @@ won't interfere with your media playing.
     status="beta"
   />
   <DownloadCard
+    id="linux"
     name="Linux"
     platform="linux"
     architectures={["amd64", "arm64"]}
@@ -261,6 +261,7 @@ won't interfere with your media playing.
     name="LibreELEC"
     platform="libreelec"
     architectures={["amd64", "arm64", "arm"]}
+    defaultArch="arm64"
     icon={
       <img
         src="/img/logos/libreelec.png"
@@ -274,51 +275,18 @@ won't interfere with your media playing.
   />
 </div>
 
-<div>
-    <h3 id="arch-help">Device Architectures</h3>
+### Device Architectures {#arch-help}
 
-If you're not sure which download to pick, check through here:
+If you're not sure which download to pick:
 
-    <Tabs>
-        <TabItem value="x86-64" label="x86-64" default>
-            <strong>Choose this if you have:</strong>
-            <ul>
-                <li>Steam Deck, ROG Ally, Legion Go</li>
-                <li>Most Windows PCs and laptops</li>
-                <li>Intel Macs</li>
-                <li>Large gaming handhelds</li>
-            </ul>
-        </TabItem>
-        <TabItem value="arm64" label="ARM64">
-            <strong>Choose this if you have:</strong>
-            <ul>
-                <li>Raspberry Pi 4, Zero 2, or newer</li>
-                <li>Most handheld emulators</li>
-                <li>Apple Silicon Macs (M1, M2, M3)</li>
-                <li>Modern ARM-based devices</li>
-            </ul>
-        </TabItem>
-        <TabItem value="arm" label="ARM">
-            <strong>Choose this if you have:</strong>
-            <ul>
-                <li>Raspberry Pi 3, Zero, or older</li>
-                <li>Older emulation handhelds</li>
-                <li>Older ARM-based devices</li>
-            </ul>
-        </TabItem>
-        <TabItem value="x86" label="x86">
-            <strong>Choose this if you have:</strong>
-            <ul>
-                <li>Very old desktop PCs</li>
-                <li>Legacy systems</li>
-            </ul>
-            <p><em>Note: This architecture is rarely needed anymore.</em></p>
-        </TabItem>
-    </Tabs>
+| Architecture | Common Devices |
+|--------------|----------------|
+| **x86-64** | Steam Deck, ROG Ally, Legion Go, most Windows PCs and laptops, Intel Macs |
+| **ARM64** | Raspberry Pi 4/5, Zero 2, handheld emulators, Apple Silicon Macs (M1/M2/M3) |
+| **ARM32** | Raspberry Pi 3, Zero, older handhelds |
+| **x86** | Legacy PCs (rarely needed) |
 
-You won't damage anything by trying to run the wrong one, so don't worry about just trying a download out if you're not sure. If it's wrong, it just won't run.
-
-</div>
+You won't damage anything by trying the wrong one. If it's wrong, it just won't run.
 
 _Trademarks shown on this page are property of their respective owners. The
 Zaparoo project uses logos on this page in good faith and/or within published

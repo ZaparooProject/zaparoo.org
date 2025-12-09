@@ -14,6 +14,12 @@ import {
   PersonStanding,
   ScanBarcode,
   Cpu,
+  Radio,
+  FileText,
+  HardDrive,
+  MemoryStick,
+  Workflow,
+  Braces,
 } from "lucide-react";
 import styles from "./StartWizard.module.css";
 import {
@@ -31,13 +37,26 @@ type Platform =
   | "steamos"
   | "libreelec"
   | null;
-type Token = "nfc-cards" | "qr-codes" | "barcode" | "amiibo" | "optical" | null;
+type Token =
+  | "nfc-cards"
+  | "qr-codes"
+  | "barcode"
+  | "amiibo"
+  | "optical"
+  | "removable-media"
+  | "digital-triggers"
+  | null;
 type Reader =
   | "usb-nfc-reader"
   | "zaparoo-app"
   | "phone-camera"
   | "optical-drive"
   | "zapesp32"
+  | "rs232-scanner"
+  | "external-drive"
+  | "mqtt"
+  | "file-reader"
+  | "api"
   | null;
 
 interface Choice {
@@ -58,6 +77,8 @@ const CAPABILITIES = {
   QR_CODE: "qr_code",
   BARCODE: "barcode",
   PHYSICAL_MEDIA: "physical_media",
+  REMOVABLE_MEDIA: "removable_media",
+  DIGITAL_TRIGGER: "digital_trigger",
 } as const;
 
 type Capability = (typeof CAPABILITIES)[keyof typeof CAPABILITIES];
@@ -122,7 +143,11 @@ const platforms: PlatformConfig[] = [
     name: "Linux",
     icon: "/img/logos/linux.webp",
     iconStyle: { width: "63.28px", height: "75px" },
-    provides: [CAPABILITIES.USB_PORT, CAPABILITIES.NETWORK],
+    provides: [
+      CAPABILITIES.OPTICAL_DRIVE,
+      CAPABILITIES.USB_PORT,
+      CAPABILITIES.NETWORK,
+    ],
   },
   {
     id: "steamos",
@@ -182,7 +207,7 @@ const tokens: TokenConfig[] = [
     id: "amiibo",
     name: "NFC Toys",
     icon: PersonStanding,
-    description: "Reuse your Amiibos",
+    description: "Reuse your figurines",
     requires: [], // Works on all platforms
     provides: [CAPABILITIES.NFC_TAG],
   },
@@ -193,6 +218,22 @@ const tokens: TokenConfig[] = [
     description: "CDs, DVDs or Blu-rays",
     requires: [CAPABILITIES.OPTICAL_DRIVE], // Only platforms with optical drives
     provides: [CAPABILITIES.PHYSICAL_MEDIA],
+  },
+  {
+    id: "removable-media",
+    name: "Removable Media",
+    icon: MemoryStick,
+    description: "USB sticks and SD cards",
+    requires: [], // Works on all platforms
+    provides: [CAPABILITIES.REMOVABLE_MEDIA],
+  },
+  {
+    id: "digital-triggers",
+    name: "Digital Triggers",
+    icon: Workflow,
+    description: "Scripts, automation, and APIs",
+    requires: [CAPABILITIES.NETWORK],
+    provides: [CAPABILITIES.DIGITAL_TRIGGER],
   },
 ];
 
@@ -235,6 +276,41 @@ const readers: ReaderConfig[] = [
     icon: Cpu,
     description: "Custom DIY reader",
     requires: [CAPABILITIES.NFC_TAG],
+  },
+  {
+    id: "rs232-scanner",
+    name: "RS232 Scanner",
+    icon: ScanBarcode,
+    description: "Serial barcode scanner",
+    requires: [CAPABILITIES.BARCODE, CAPABILITIES.QR_CODE],
+  },
+  {
+    id: "external-drive",
+    name: "External Drive",
+    icon: HardDrive,
+    description: "USB or SD card reader",
+    requires: [CAPABILITIES.REMOVABLE_MEDIA],
+  },
+  {
+    id: "mqtt",
+    name: "MQTT",
+    icon: Radio,
+    description: "Home Assistant and IoT",
+    requires: [CAPABILITIES.DIGITAL_TRIGGER],
+  },
+  {
+    id: "file-reader",
+    name: "Files",
+    icon: FileText,
+    description: "Watch a text file",
+    requires: [CAPABILITIES.DIGITAL_TRIGGER],
+  },
+  {
+    id: "api",
+    name: "Zaparoo API",
+    icon: Braces,
+    description: "Use Core API direct",
+    requires: [CAPABILITIES.DIGITAL_TRIGGER],
   },
 ];
 
@@ -509,6 +585,11 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
   const needsUSBReader = choice.reader === "usb-nfc-reader";
   const needsOpticalDrive = choice.reader === "optical-drive";
   const needsZapESP32 = choice.reader === "zapesp32";
+  const needsRS232 = choice.reader === "rs232-scanner";
+  const needsExternalDrive = choice.reader === "external-drive";
+  const needsMQTT = choice.reader === "mqtt";
+  const needsFileReader = choice.reader === "file-reader";
+  const needsAPI = choice.reader === "api";
 
   const selectedToken = tokens.find((t) => t.id === choice.token);
 
@@ -557,6 +638,17 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 </li>
               </>
             )}
+            {needsRS232 && (
+              <li>
+                <a href="/docs/readers/barcode/rs232">RS232 barcode scanner</a>
+              </li>
+            )}
+            {needsMQTT && (
+              <li>
+                <a href="/docs/readers/mqtt">MQTT broker</a> (e.g. Home
+                Assistant)
+              </li>
+            )}
 
             {/* Token hardware */}
             {choice.token === "nfc-cards" && (
@@ -575,6 +667,9 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               </li>
             )}
             {choice.token === "optical" && <li>Discs with data</li>}
+            {choice.token === "removable-media" && (
+              <li>USB sticks or SD cards</li>
+            )}
           </ul>
 
           {/* Downloads */}
@@ -714,6 +809,35 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 <li>Connect your optical drive</li>
               </>
             )}
+            {needsRS232 && (
+              <li>
+                <a href="/docs/readers/barcode/rs232">Configure RS232</a> serial
+                port
+              </li>
+            )}
+            {needsExternalDrive && (
+              <li>
+                <a href="/docs/readers/external-drive">Enable external drive</a>{" "}
+                reader in config
+              </li>
+            )}
+            {needsMQTT && (
+              <li>
+                <a href="/docs/readers/mqtt">Configure MQTT</a> broker
+                connection
+              </li>
+            )}
+            {needsFileReader && (
+              <li>
+                <a href="/docs/readers/file">Configure file reader</a> path
+              </li>
+            )}
+            {needsAPI && (
+              <li>
+                Review <a href="/docs/core/api">API documentation</a> for
+                endpoints
+              </li>
+            )}
 
             {choice.token === "nfc-cards" && (
               <>
@@ -757,6 +881,18 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                   IDs
                 </li>
               </>
+            )}
+            {choice.token === "removable-media" && (
+              <li>
+                Create <code>zaparoo.txt</code> files with{" "}
+                <a href="/docs/zapscript">ZapScript</a> on your drives
+              </li>
+            )}
+            {choice.token === "digital-triggers" && (
+              <li>
+                Create automations that send{" "}
+                <a href="/docs/zapscript">ZapScript</a> commands
+              </li>
             )}
 
             <li>Start zapping!</li>

@@ -218,3 +218,33 @@
 html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
   display: none;
 }
+
+/* Download card styling */
+.download-card {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.download-card:target,
+.download-card--targeted {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-lighter);
+}
+
+[data-theme="dark"] .download-card:target,
+[data-theme="dark"] .download-card--targeted {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-dark);
+}
+
+/* Architecture help icon */
+.arch-help-icon {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1.1rem;
+  transition: color 0.15s;
+}
+
+.arch-help-icon:hover {
+  color: var(--ifm-color-primary);
+}
