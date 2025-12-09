@@ -1,0 +1,55 @@
+---
+slug: core-v2.7.1
+title: "Zaparoo Core v2.7.1 released"
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.7.1 is now available! This is a minor release addressing bugs reported in v2.7.0. Thank you [asturur](https://github.com/asturur) and [philips](https://github.com/philips) who both contributed fixes to this release.
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.7.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Known Issues
+
+- On [Batocera](/docs/platforms/batocera/), there was an issue reported where the virtual gamepad used by [`**input.gamepad`](/docs/zapscript/input/#inputgamepad) was conflicting with some emulators and stopping physical controllers from working. I've decided to disable it completely by default on this platform until we can work out a safer way to have it on. If you still want it, you can re-enable it with the new [config option](#new-features) mentioned below.
+- Also on Batocera, it was reported that the EmulationStation launch API (which we use to launch games) does not trigger the screensaver to stop, which would result in a soft lock on the next game launch. This is a bug in Batocera itself, a patch has been submitted upstream by [asturur](https://github.com/asturur) but won't be available until Batocera 43 at the soonest. As a workaround, you must disable the screensaver in Batocera settings.
+- On [MiSTer](/docs/platforms/mister/), there were a few reports of Core crashing/hanging while updating the media database. I wasn't able to reproduce this myself but some improvements have been made to the update process in this release that may help. If you continue to have issues, please reach out on [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/issues).
+
+## New Features
+
+- **Virtual gamepad config option**: A new [`gamepad_enabled`](/docs/core/config/#gamepad_enabled) config option lets you enable/disable the virtual gamepad device
+- **PN532 improvements**: Tag writing now retries multiple times on failure and verifies written data, along with general stability and error handling improvements
+- **Health check endpoint**: A new `GET /health` endpoint makes it easier to check if the service is running (thanks [asturur](https://github.com/asturur))
+
+## Bug Fixes
+
+- Fixed build issues on Mac ARM64 (thanks [asturur](https://github.com/asturur))
+- Fixed MIME type handling for Web UI assets (thanks [philips](https://github.com/philips))
+- Rate limiting now only applies to the API, not the Web UI static assets
+- Fixed daily usage and remaining time calculations for [playtime limits](/docs/core/playtime/)
+- Added missing N64 `.v64` extension for [MiSTer](/docs/platforms/mister/)
+- Fixed playtime limits not working correctly when re-enabling after being disabled
+- Database operations are now much more conservative with memory usage
+- Fixed API POST transport not working
+- Fixed allowed origin bug for API requests
+- Includes a new Web UI version with asset path fixes
+
+---
+
+Thanks to everyone who reported issues since v2.7.0!
