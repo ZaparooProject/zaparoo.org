@@ -271,7 +271,7 @@ export default function Home(): ReactNode {
                   )}
                   to="/showcase/"
                 >
-                  See All 40+ Creations
+                  See All 58 Creations
                 </Link>
               </div>
             </div>

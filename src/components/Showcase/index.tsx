@@ -14,6 +14,42 @@ interface FeaturedPhoto extends Photo {
 
 const allPhotos: FeaturedPhoto[] = [
   {
+    src: "/img/showcase/Schlarp_game_cards.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom game cards made with Zaparoo Designer. Credit: Schlarp @ Discord",
+  },
+  {
+    src: "/img/showcase/tangocat_cutting_labels.webp",
+    width: 1200,
+    height: 778,
+    alt: "Card labels with corner cutter and scissors. Credit: tangocat @ Discord",
+  },
+  {
+    src: "/img/showcase/BigBlue709_switch_case_ff3.webp",
+    width: 900,
+    height: 1200,
+    alt: "Repurposed Switch case with custom cover insert. Credit: BigBlue709 @ Discord",
+  },
+  {
+    src: "/img/showcase/XanderHunt_cards.webp",
+    width: 900,
+    height: 1200,
+    alt: "Card labels generated with custom Lazarus Pascal tool. Credit: Xander Hunt @ Discord",
+  },
+  {
+    src: "/img/showcase/whtafckremix_cards.webp",
+    width: 900,
+    height: 1200,
+    alt: "Card labels printed on holographic vinyl. Credit: whtafck_remix @ Discord",
+  },
+  {
+    src: "/img/showcase/Anime0t4ku_cards.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom NFC cards. Credit: Anime0t4ku @ Discord",
+  },
+  {
     src: "/img/showcase/Thwonp_reader_inside_n64_cart.webp",
     width: 1200,
     height: 1110,
