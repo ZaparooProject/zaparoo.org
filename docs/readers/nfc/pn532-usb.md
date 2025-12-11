@@ -91,7 +91,7 @@ Windows may require a USB serial driver for some PN532 modules:
 - Drivers are usually installed automatically via Windows Update
 
 :::info CH340 Driver Installation
-Windows normally comes with a driver for this reader by default, but if it's not working, you may want to try reinstalling it. You can download the [CH340 driver (ZIP)](/drivers/Windows-CH340-Driver.zip) or [CH340 driver (EXE)](/drivers/CH341SER.EXE) and see this [SparkFun installation guide](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) if you need help installing it.
+Windows normally comes with a driver for this reader by default, but if it's not working, you may want to try reinstalling it. You can download the [CH340 driver (ZIP)](https://zaparoo.org/drivers/Windows-CH340-Driver.zip) or [CH340 driver (EXE)](https://zaparoo.org/drivers/CH341SER.EXE) and see this [SparkFun installation guide](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) if you need help installing it.
 :::
 
 ### Linux
