@@ -15,7 +15,7 @@ The external drive reader treats USB sticks, SD cards, and external hard drives 
 The external drive reader is **disabled by default** and must be manually enabled. Add this to your `config.toml`:
 
 ```toml
-[[readers.drivers]]
+[[readers.connect]]
 driver = "externaldrive"
 enabled = true
 ```
