@@ -19,12 +19,12 @@ install_dir = "D:\\Steam"  # Optional custom Steam install directory
 ## LaunchBox
 
 :::tip Required Plugin
-LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration.zip](/files/Zaparoo%20LaunchBox%20Integration.zip) and follow the installation steps below.
+LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration.zip) and follow the installation steps below.
 :::
 
 ### Plugin Installation
 
-1. Download the [Zaparoo LaunchBox Integration.zip](/files/Zaparoo%20LaunchBox%20Integration.zip) file
+1. Download the [Zaparoo LaunchBox Integration.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration.zip) file
 2. Extract the zip file
 3. Copy the `Zaparoo LaunchBox Integration` folder to your LaunchBox `Plugins` directory (usually `<LaunchBox>/Plugins/`)
 4. Restart LaunchBox
