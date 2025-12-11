@@ -181,7 +181,7 @@ ScummVM support uses the [bbond007 script](https://github.com/bbond007/MiSTer_Sc
 
 Video playback uses the fvp player. To set up video playback:
 
-1. Download [fvp-mister_arm-15ea265.zip](/files/fvp-mister_arm-15ea265.zip)
+1. Download [fvp-mister_arm-15ea265.zip](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip)
 2. Extract the `fvp` binary to `/media/fat/linux/`
 3. Create a `Video` folder in your games directory (e.g., `/media/fat/games/Video/`)
 4. Add your video files to the Video folder
