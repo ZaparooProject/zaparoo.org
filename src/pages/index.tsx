@@ -273,6 +273,15 @@ export default function Home(): ReactNode {
                 >
                   See All 58 Creations
                 </Link>
+                <Link
+                  className={clsx(
+                    "button button--secondary button--md",
+                    styles.button
+                  )}
+                  to="#featured-creators"
+                >
+                  Featured Creators
+                </Link>
               </div>
             </div>
           </div>
@@ -384,7 +393,7 @@ export default function Home(): ReactNode {
         >
           <LatestNews />
         </section>
-        <div className={styles.communityShowcaseWrapper}>
+        <div id="featured-creators" className={styles.communityShowcaseWrapper}>
           <div className="container">
             <div className="text--center padding-horiz--md">
               <svg
