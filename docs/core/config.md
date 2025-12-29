@@ -51,6 +51,16 @@ debug_logging = true
 
 This option should be enabled when attempting to reproduce issues for reporting.
 
+#### error_reporting
+
+| Key             | Type    | Default |
+| --------------- | ------- | ------- |
+| error_reporting | boolean | false   |
+
+`error_reporting` enables or disables opt-in error reporting. When enabled, anonymous error reports are sent to help improve Zaparoo.
+
+See the [Privacy Policy](/privacy) for details on what data is collected.
+
 ### Audio
 
 ```toml
@@ -221,6 +231,7 @@ Languages are checked in order. Common language codes: `en`, `es`, `fr`, `de`, `
 ```toml
 [readers]
 auto_detect = true
+scan_history = 30
 ```
 
 #### auto_detect
@@ -232,6 +243,21 @@ auto_detect = true
 `auto_detect` enables or disables automatically searching for and probing possible connected readers on the host device.
 
 It may be required to disable this option if auto-detection is causing problems with unrelated connected devices.
+
+#### scan_history
+
+| Key          | Type    | Default |
+| ------------ | ------- | ------- |
+| scan_history | integer | 30      |
+
+`scan_history` specifies how many days of scan history to keep for the recent scans list. Old scan records are automatically cleaned up.
+
+```toml
+[readers]
+scan_history = 30
+```
+
+Set to `0` to keep all scan history forever (disables cleanup).
 
 #### readers.scan
 
@@ -464,6 +490,61 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 
 `on_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after media starts launching, regardless of the scan mode. See also [`on_scan`](#on_scan) and [`on_remove`](#on_remove) for related scan events.
 
+#### before_media_start
+
+| Key                | Type   | Default |
+| ------------------ | ------ | ------- |
+| before_media_start | string |         |
+
+`before_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately before media launches.
+
+```toml
+[launchers]
+before_media_start = "**execute:/path/to/script.sh"
+```
+
+This hook can block the launch by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the media launch is blocked and an error is shown.
+
+Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state:
+
+```json
+{
+  "platform": "mister",
+  "version": "2.8.0",
+  "scan_mode": "tap",
+  "media_playing": false,
+  "device": {
+    "hostname": "mister",
+    "os": "linux",
+    "arch": "arm"
+  },
+  "active_media": {
+    "launcher_id": "",
+    "system_id": "",
+    "system_name": "",
+    "path": "",
+    "name": ""
+  },
+  "last_scanned": {
+    "id": "04:AB:CD:EF:12:34:56",
+    "value": "**launch:Genesis/Sonic.bin",
+    "data": ""
+  },
+  "scanned": {
+    "id": "04:AB:CD:EF:12:34:56",
+    "value": "**launch:Genesis/Sonic.bin",
+    "data": ""
+  },
+  "launching": {
+    "path": "/media/fat/games/Genesis/Sonic.bin",
+    "system_id": "Genesis",
+    "launcher_id": "MiSTer"
+  }
+}
+```
+
+The `launching` object contains information about the media that is about to launch, which is only available in this hook.
+
 #### launchers.default
 
 `launchers.default` overrides default settings for specific launchers. It's a sub-section that can be defined multiple times, and must have this header: `[[launchers.default]]`. See also [`systems.default`](#systemsdefault) for system-specific settings.
@@ -499,6 +580,26 @@ Override the default installation directory for this launcher. Only supported by
 | server_url | string |         |
 
 Override the default server URL for this launcher. Only supported by some launchers and refers to an API base address.
+
+##### action
+
+| Key    | Type   | Default |
+| ------ | ------ | ------- |
+| action | string |         |
+
+Set the default action for this launcher. Currently only supported by the Steam launcher.
+
+```toml
+[[launchers.default]]
+launcher = "Steam"
+action = "details"
+```
+
+Available values for Steam:
+- `run` (default): Launch the game
+- `details`: Open the game's details page in the Steam library
+
+This can be overridden per-token using the `?action=` advanced argument in ZapScript.
 
 ### ZapScript
 
@@ -649,6 +750,34 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 
 - An entry is considered a **partial match** unless it's surrounded by a `^` and `$`.
 - Characters `*`, `|` and `.` common in both ZapScript and Regular Expressions must be escaped like in the example file below.
+
+#### service.discovery
+
+`service.discovery` is a sub-section of `service` that configures mDNS network discovery.
+
+```toml
+[service.discovery]
+enabled = true
+instance_name = "Living Room MiSTer"
+```
+
+When enabled, Zaparoo advertises itself on your local network using mDNS/DNS-SD. Mobile apps and other clients can automatically find and connect to your Zaparoo instance without needing to enter IP addresses manually. Access Zaparoo using friendly `.local` addresses like `http://mister.local:7497`.
+
+##### enabled
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean | true    |
+
+`enabled` enables or disables mDNS network discovery. When enabled, Zaparoo advertises a `_zaparoo._tcp` service with TXT records containing the device ID, version, and platform.
+
+##### instance_name
+
+| Key           | Type   | Default              |
+| ------------- | ------ | -------------------- |
+| instance_name | string | _system hostname_    |
+
+`instance_name` specifies a custom display name for this Zaparoo instance on the network. If not set, defaults to the system hostname.
 
 #### service.publishers
 
@@ -908,6 +1037,7 @@ An example `config.toml` file with all fields filled, using the example sections
 ```toml title="config.toml"
 config_schema = 1
 debug_logging = true
+error_reporting = false
 
 [audio]
 scan_feedback = true
@@ -925,6 +1055,7 @@ default_langs = ["en"]
 
 [readers]
 auto_detect = true
+scan_history = 30
 
 [readers.scan]
 mode = 'hold'
@@ -993,6 +1124,10 @@ allowed_origins = [
 allow_run = [
     '^\*\*launch\.random:.+$'
 ]
+
+[service.discovery]
+enabled = true
+instance_name = "Living Room MiSTer"
 
 [[service.publishers.mqtt]]
 enabled = true

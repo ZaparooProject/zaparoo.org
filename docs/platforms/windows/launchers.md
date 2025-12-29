@@ -170,11 +170,22 @@ Plays media via Kodi's JSON-RPC API. Kodi must be running with remote control en
 | `MusicAlbum` | Albums from Kodi library |
 | `MusicArtist` | Artists from Kodi library (plays all songs) |
 
+### Configuration
+
+Configure the Kodi server URL in `config.toml`:
+
 ```toml title="config.toml"
 [[launchers.default]]
-launcher = "KodiLocal"
-host = "192.168.1.100"  # Kodi IP address
-port = 8080             # Kodi JSON-RPC port
+launcher = "Kodi"
+server_url = "http://192.168.1.100:8080"
+```
+
+If Kodi requires authentication, add credentials to `auth.toml`:
+
+```toml title="auth.toml"
+[creds."http://192.168.1.100:8080"]
+username = "kodi"
+password = "your_password"
 ```
 
 ## Web Browser

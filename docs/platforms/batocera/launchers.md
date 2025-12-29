@@ -199,15 +199,20 @@ These launchers play media from Kodi's indexed library. They don't scan filesyst
 
 ### Configuration
 
-Add Kodi API settings to `config.toml`:
+Configure the Kodi server URL in `config.toml`:
 
 ```toml
-[kodi]
-enabled = true
-host = "localhost"
-port = 8080
-username = ""
-password = ""
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://localhost:8080"
+```
+
+If Kodi requires authentication, add credentials to `auth.toml`:
+
+```toml
+[creds."http://localhost:8080"]
+username = "kodi"
+password = "your_password"
 ```
 
 See [LibreELEC](../libreelec.md) for detailed Kodi API setup instructions.

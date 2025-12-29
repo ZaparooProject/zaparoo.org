@@ -19,8 +19,8 @@ Auto-detected paths:
 To specify a custom Steam installation directory:
 
 ```toml
-[[launchers.defaults]]
-id = "Steam"
+[[launchers.default]]
+launcher = "Steam"
 install_dir = "/path/to/steam"
 ```
 
@@ -52,15 +52,20 @@ These launchers play media from Kodi's indexed library:
 
 ### Configuration
 
-Add Kodi API settings to `config.toml`:
+Configure the Kodi server URL in `config.toml`:
 
 ```toml
-[kodi]
-enabled = true
-host = "localhost"
-port = 8080
-username = ""
-password = ""
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://localhost:8080"
+```
+
+If Kodi requires authentication, add credentials to `auth.toml`:
+
+```toml
+[creds."http://localhost:8080"]
+username = "kodi"
+password = "your_password"
 ```
 
 See [LibreELEC](../libreelec.md) for detailed Kodi API setup instructions.
