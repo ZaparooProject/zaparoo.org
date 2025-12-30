@@ -1018,12 +1018,41 @@ Warnings are sent as notifications to the Zaparoo App and played as audio feedba
 A separate TOML file called `auth.toml`, alongside the config file, can be created which defines credentials used when Core connects to remote endpoints:
 
 ```toml
-[creds."smb://10.0.0.123/Games"]
-username = 'myaccount'
-password = 'Password123'
+["smb://10.0.0.123/Games"]
+username = "myaccount"
+password = "Password123"
 ```
 
-When a remote endpoint matches against the prefix URL after `creds.`, the credential set will be attached to the request. This can be used to authenticate with a NAS.
+### URL Matching
+
+When a remote endpoint matches against the URL key, the credential set will be attached to the request. Matching uses a 3-step fallback:
+
+1. **Exact scheme match** - scheme, host, and path prefix must match exactly
+2. **Canonical scheme match** - equivalent schemes match (e.g., `tcp://` matches `mqtt://`)
+3. **Schemeless match** - entries without a scheme match any connection to that host:port
+
+```toml
+# Matches only mqtt:// connections
+["mqtt://192.168.1.100:1883"]
+username = "mqtt_only"
+password = "pass"
+
+# Matches any connection to this host:port (mqtt, mqtts, tcp, etc.)
+["192.168.1.100:1883"]
+username = "any_scheme"
+password = "pass"
+```
+
+### Scheme Aliases
+
+These scheme aliases are recognized:
+
+| Alias | Canonical |
+|-------|-----------|
+| `tcp://` | `mqtt://` |
+| `ssl://` | `mqtts://` |
+| `ws://` | `http://` |
+| `wss://` | `https://` |
 
 Multiple credentials may be defined for the same server but on different paths.
 

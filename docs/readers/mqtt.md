@@ -53,18 +53,28 @@ path = "ssl://broker.example.com:8883/zaparoo/tokens"
 If your MQTT broker requires authentication, add credentials to your `auth.toml` file:
 
 ```toml
-[auth.creds."broker.example.com:1883"]
+["mqtt://broker.example.com:1883"]
 username = "your_username"
 password = "your_password"
 ```
 
-The credential key should match your broker address without the topic path. If you're using a secure connection with `mqtts://` in your config path, use the same scheme in the credential key:
+The credential key should match your broker address without the topic path. You can also use schemeless entries that match any connection scheme:
 
 ```toml
-[auth.creds."mqtts://broker.example.com:8883"]
+["192.168.1.100:1883"]
 username = "your_username"
 password = "your_password"
 ```
+
+For secure connections, use `mqtts://` or `ssl://`:
+
+```toml
+["mqtts://broker.example.com:8883"]
+username = "your_username"
+password = "your_password"
+```
+
+Scheme aliases are supported: `tcp://` matches `mqtt://` credentials, and `ssl://` matches `mqtts://` credentials.
 
 ## Usage
 
@@ -171,7 +181,7 @@ mqtt reader: subscribed to topic zaparoo/tokens
 If authentication is failing:
 
 1. Verify your credentials in `auth.toml`
-2. Ensure the broker address matches exactly (don't include `mqtt://` scheme in auth.toml)
+2. Ensure the broker address in `auth.toml` matches your reader path (with or without scheme)
 3. Check broker logs for authentication errors
 
 ### Messages Not Executing

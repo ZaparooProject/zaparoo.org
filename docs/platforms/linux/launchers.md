@@ -63,7 +63,7 @@ server_url = "http://localhost:8080"
 If Kodi requires authentication, add credentials to `auth.toml`:
 
 ```toml
-[creds."http://localhost:8080"]
+["http://localhost:8080"]
 username = "kodi"
 password = "your_password"
 ```

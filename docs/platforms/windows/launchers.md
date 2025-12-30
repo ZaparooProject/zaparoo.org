@@ -183,7 +183,7 @@ server_url = "http://192.168.1.100:8080"
 If Kodi requires authentication, add credentials to `auth.toml`:
 
 ```toml title="auth.toml"
-[creds."http://192.168.1.100:8080"]
+["http://192.168.1.100:8080"]
 username = "kodi"
 password = "your_password"
 ```
