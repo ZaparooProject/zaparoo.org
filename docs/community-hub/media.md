@@ -59,6 +59,12 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo Adds Support for USB and SD Cards as Launch Tokens](https://metalgamesolid.com/misc/zaparoo-adds-support-for-usb-and-sd-cards-as-launch-tokens)** - *MetalGameSolid* (October 25, 2025)
   New reader driver announcement
 
+- **[Amstrad CPW & New Arcade Games, NES Mappers & More](https://retrorgb.com/mister-fpga-news-amstrad-cpw-new-arcade-games-nes-mappers-more.html)** - *RetroRGB* (November 3, 2025)
+  MiSTer FPGA news with Zaparoo technical updates
+
+- **[MiSTer NFC Cards Bring Physical Fun to Digital Games](https://theoasisbbs.com/mister-nfc-cards-bring-physical-fun-to-digital-games)** - *The Oasis BBS* (April 8, 2025)
+  Article covering Wolfgang's NFC card creation tutorial
+
 ### Developer Articles & Community
 
 - **[Creating TapTo](https://timwilsie.com/creating-tapto)** - *Tim Wilsie* (March 26, 2024)
@@ -110,6 +116,21 @@ Coverage of the Zaparoo project online.
 - **[MiSTer NFC cards experiment!](https://www.youtube.com/watch?v=jsficcAmyMI)** - *Gentlemen's Pixel Club* (November 20, 2023)
   Early NFC card experiments
 
+- **[My Zaparoo Problem!](https://www.youtube.com/watch?v=axvgDzqV5UU)** - *Pezz82* (March 2025)
+  Personal experience and troubleshooting with Zaparoo
+
+- **[Zaparoo with MiSTercade and SNK Candy 25](https://www.youtube.com/watch?v=01nVvWWgOyg)** - *Oisin McG* (June 2025)
+  Arcade cabinet integration with MiSTercade
+
+- **[MiSTer FPGA and Zaparoo for NFC](https://www.youtube.com/watch?v=hPx3euYoK_Q)** - *Mister JBAM* (November 2025)
+  French language Zaparoo tutorial
+
+- **[Give Your PC Gaming A Physical Feel With NFC Cards And Zaparoo!](https://www.youtube.com/watch?v=oxfJf-r5K60)** - *Archades Games* (November 19, 2025)
+  Tutorial on using Zaparoo with Windows and Steam games
+
+- **[MiSTer Multisystem² & Zaparoo](https://www.youtube.com/watch?v=UnmkAn7KUR4)** - *Pixel Cherry Ninja* (December 2025)
+  Multisystem 2 with Zaparoo integration demo
+
 ### News & Updates
 
 - **[MiSTer, Analogue Pocket, FPGA, Random & Retro Gaming News (ep129)](https://www.youtube.com/watch?v=ZNOjMzGHwHY)** - *Pixel Cherry Ninja* (December 14, 2024)
@@ -120,6 +141,9 @@ Coverage of the Zaparoo project online.
 
 - **[Retro 168 #3 | RGB Pi2, Zaparoo, M64, PS1 MC, MiSTer NES & More](https://www.youtube.com/watch?v=ep5t8ScWLiI)** - *Metal Game Solid* (October 24, 2025)
   Weekly retro gaming news
+
+- **[FPGA & Retro Gaming News Ep176](https://www.youtube.com/watch?v=e2OiJZnFpRY)** - *Metal Game Solid* (December 11, 2025)
+  FPGA news including Zaparoo coverage
 
 ## Official Resources
 

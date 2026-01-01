@@ -6,6 +6,18 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
 ## Custom Cases
 
+- **[Amiga 500 Disk tray replacement for Zaparoo NFC](https://www.thingiverse.com/thing:6861725)** by *indubioproretro*
+
+  Disk tray replacement for Amiga 500 that houses PN532 and PCR532 NFC readers for use with Zaparoo.
+
+- **[Mini NFC Card Reader](https://makerworld.com/en/models/822814-mini-nfc-card-reader)** by *Ninja3DP*
+
+  Compact case for the black USB-C NFC readers available on AliExpress.
+
+- **[Mister FPGA Case with integrated TapTo NFC Card Reader Slot](https://www.printables.com/model/979056-mister-fpga-case-with-integrated-tapto-nfc-card-re)** by *Raspberry1337*
+
+  Compact MiSTer FPGA case with built-in NFC card slot. Features optional tactile blocker for satisfying click when card is inserted.
+
 - **[Mister FPGA Wedge Case with TapTo for Keychron K8](https://www.printables.com/model/964115-mister-fpga-wedge-case-with-tapto-for-keychron-k8)** by *Andrés del Campo Novales*
 
   A wedge case for the Mister FPGA with Zaparoo for the Keychron K8 keyboard.
@@ -13,6 +25,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[MiSTer FPGA Case with TapTo Slot and Drive Tray](https://makerworld.com/en/models/846344-mister-fgpa-case-with-tapto-slot-and-drive-tray)** by *TBone_427120*
 
   MiSTer FPGA case variation with integrated TapTo slot and internal drive tray.
+
+- **[MiSTer PI Console Case with TapTo integration](https://www.printables.com/model/1058136-mister-pi-console-case-with-tapto-integration-for)** by *eljimador*
+
+  Remix with power switch opening matching the original Retro Frog MiSTer Pi design.
 
 - **[NFC 1541 V2](https://makerworld.com/en/models/1670375-nfc-1541-v2)** by *Ninja3DP*
 
@@ -34,6 +50,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[Retro NFC reader for NFC cards and Carts](https://makerworld.com/en/models/1963134-retro-nfc-reader-for-nfc-cards-and-carts)** by *SunieFairbreeze*
 
   All-in-one case for PN532 USB NFC Reader with retro video game-style carts (holds 25mm NFC tags) and cassette case insert. Includes label templates.
+
+- **[Retro Remake NFC Reader case](https://makerworld.com/en/models/1685590)** by *Ninja3DP*
+
+  Sleek minimal case for the MiSTer Pi's NFC Reader PCB.
 
 - **[Super Zap Boy](./super-zap-boy.md)** by *Phoenix*
 
@@ -104,6 +124,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
 ### Storage
 
+- **[NFC card box](https://www.printables.com/model/1272025-nfc-card-box)** by *EtNSiD*
+
+  Simple blocky NFC card box that holds up to 80 standard-sized cards. Includes GIMP template for printing stickers.
+
 - **[NFC Card Case - Full back](https://makerworld.com/en/models/598032)** by *TheTrain*
 
   This is a card case for NFC cards that are 3.375" x 2.125".
@@ -111,6 +135,14 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[NFC Card Case with TapTo Logo](https://www.printables.com/model/1045987-nfc-card-case-with-tapto-logo)** by *BLuR42*
 
   Remix of TheTrain's card case with embossed/colored TapTo logo.
+
+- **[PlayStation games case for NFC Cards](https://makerworld.com/en/models/1546786-playstation-games-case-box-mini-for-nfc-cards)** by *LoVeMaKeRz*
+
+  Sony PlayStation-styled mini case for standard-sized NFC cards with print-in-place hinge.
+
+- **[Sega Saturn mini case for NFC Cards](https://makerworld.com/en/models/1484053-sega-saturn-mini-case-for-nfc-cards)** by *LoVeMaKeRz*
+
+  Sega Saturn-styled mini case designed to hold standard-sized NFC cards (54mm x 85.6mm).
 
 - **[TapTo Card Stand/Holder](https://www.thingiverse.com/thing:6723128)** by *JPRanger18*
 
