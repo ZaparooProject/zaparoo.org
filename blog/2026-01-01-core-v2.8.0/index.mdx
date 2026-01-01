@@ -6,12 +6,13 @@ authors: [wizzo]
 draft: false
 ---
 
-Happy New Year! Zaparoo Core v2.8.0 is now available. This release adds beta support for new platforms, mDNS network discovery, blocking hooks, and improved Steam integration.
+Happy New Year! Zaparoo Core v2.8.0 is now available. This release fixes a critical bug affecting hold mode, adds beta support for new platforms, mDNS network discovery, blocking hooks, and improved Steam integration.
 
 {/* truncate */}
 
 **The highlights:**
 
+- **[Hold mode fix](#bug-fixes)** resolves an issue that was preventing hold mode from working
 - **[Bazzite and ChimeraOS](#new-platform-support)** beta builds now available
 - **[EmuDeck and RetroDECK](#new-platform-support)** launcher support on SteamOS
 - **[Steam game detection](#steam-integration)** tracks games launched outside Zaparoo
@@ -103,6 +104,7 @@ Your script gets access to the current platform, active media, scanned token, an
 
 ## Bug Fixes
 
+- **Fixed hold mode not working** due to tag session management bug
 - Fixed data race in RS232 barcode reader connection status
 - Fixed slice mutation bug in reader auto-detection
 - Reduced log noise from auto-detect heartbeat messages
