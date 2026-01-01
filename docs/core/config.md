@@ -311,6 +311,10 @@ This feature can be useful if you want to, using a single reader, scan other tok
 
 `on_scan` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is scanned but before ZapScript on the token itself (or a mapping) is run. It is always active if enabled.
 
+This hook can block the scan by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the token processing is blocked.
+
+Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state.
+
 ##### on_remove
 
 | Key       | Type   | Default |
@@ -320,6 +324,10 @@ This feature can be useful if you want to, using a single reader, scan other tok
 `on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#mode).
 
 Note that this will _always_ run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the [`exit_delay`](#exit_delay) setting and runs before any media exit logic happens.
+
+This hook can block the remove action by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the remove processing is blocked.
+
+Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state.
 
 #### readers.connect
 

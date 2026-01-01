@@ -66,15 +66,15 @@ function Stats(): ReactNode {
   return (
     <div className={styles.statsBar}>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>71,000+</div>
+        <div className={styles.statNumber}>79,000+</div>
         <div className={styles.statLabel}>Downloads</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>1,400+</div>
+        <div className={styles.statNumber}>1,500+</div>
         <div className={styles.statLabel}>Discord Members</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>130+</div>
+        <div className={styles.statNumber}>140+</div>
         <div className={styles.statLabel}>GitHub Stars</div>
       </div>
     </div>

@@ -35,6 +35,8 @@ type Platform =
   | "windows"
   | "linux"
   | "steamos"
+  | "bazzite"
+  | "chimeraos"
   | "libreelec"
   | null;
 type Token =
@@ -159,6 +161,28 @@ const platforms: PlatformConfig[] = [
       backgroundColor: "white",
       borderRadius: "5px",
     },
+    provides: [
+      CAPABILITIES.OPTICAL_DRIVE,
+      CAPABILITIES.USB_PORT,
+      CAPABILITIES.NETWORK,
+    ],
+  },
+  {
+    id: "bazzite",
+    name: "Bazzite",
+    icon: "/img/logos/bazzite.svg",
+    iconStyle: { width: "75px", height: "75px" },
+    provides: [
+      CAPABILITIES.OPTICAL_DRIVE,
+      CAPABILITIES.USB_PORT,
+      CAPABILITIES.NETWORK,
+    ],
+  },
+  {
+    id: "chimeraos",
+    name: "ChimeraOS",
+    icon: "/img/logos/chimeraos.webp",
+    iconStyle: { width: "67.09px", height: "75px" },
     provides: [
       CAPABILITIES.OPTICAL_DRIVE,
       CAPABILITIES.USB_PORT,
@@ -577,6 +601,8 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
     windows: "Windows",
     linux: "Linux",
     steamos: "SteamOS",
+    bazzite: "Bazzite",
+    chimeraos: "ChimeraOS",
     libreelec: "LibreELEC",
   };
 

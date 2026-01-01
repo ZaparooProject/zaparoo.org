@@ -226,10 +226,11 @@ won't interfere with your media playing.
     docLink="/docs/platforms/steamos"
     status="beta"
   />
-  {/* <DownloadCard
+  <DownloadCard
+    id="bazzite"
     name="Bazzite"
     platform="bazzite"
-    architectures={["amd64"]}
+    architectures={["amd64", "arm64"]}
     icon={
       <img
         src="/img/logos/bazzite.svg"
@@ -237,14 +238,15 @@ won't interfere with your media playing.
         style={{ width: "75px", height: "75px" }}
       />
     }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
+    docLink="/docs/platforms/bazzite"
     platformLink="https://bazzite.gg/"
     status="beta"
   />
   <DownloadCard
+    id="chimeraos"
     name="ChimeraOS"
     platform="chimeraos"
-    architectures={["amd64"]}
+    architectures={["amd64", "arm64"]}
     icon={
       <img
         src="/img/logos/chimeraos.webp"
@@ -252,10 +254,10 @@ won't interfere with your media playing.
         style={{ width: "67.09px", height: "75px" }}
       />
     }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://www.chimeraos.org/"
+    docLink="/docs/platforms/chimeraos"
+    platformLink="https://chimeraos.org/"
     status="beta"
-  /> */}
+  />
   <DownloadCard
     id="libreelec"
     name="LibreELEC"

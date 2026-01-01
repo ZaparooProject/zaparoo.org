@@ -1,0 +1,124 @@
+---
+slug: core-v2.8.0
+title: "Zaparoo Core v2.8.0 released"
+tags: [software, core]
+authors: [wizzo]
+draft: false
+---
+
+Happy New Year! Zaparoo Core v2.8.0 is now available. This release adds beta support for new platforms, mDNS network discovery, blocking hooks, and improved Steam integration.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **[Bazzite and ChimeraOS](#new-platform-support)** beta builds now available
+- **[EmuDeck and RetroDECK](#new-platform-support)** launcher support on SteamOS
+- **[Steam game detection](#steam-integration)** tracks games launched outside Zaparoo
+- **[mDNS discovery](#mdns-network-discovery)** makes it easier for apps to find Zaparoo on your network
+- **[Blocking hooks](#blocking-hooks)** let you gate token processing with custom scripts
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.8.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## New Platform Support
+
+- **[Bazzite](/docs/platforms/bazzite) and [ChimeraOS](/docs/platforms/chimeraos)** beta builds are now available for AMD64 and ARM64. These are gaming-focused Linux distributions for Steam Deck and desktop gaming PCs. Feedback welcome as we work toward stable releases.
+- **[EmuDeck](https://www.emudeck.com/) and [RetroDECK](https://retrodeck.net/)** launcher support on [SteamOS](/docs/platforms/steamos). Gaming Mode support is included but still being tested.
+
+## Steam Integration
+
+- **Automatic game detection** tracks Steam games launched outside of Zaparoo, showing them in ActiveMedia. This is a new feature and we'd appreciate feedback on how it works across different setups.
+- **Game details action** opens Steam's game details page instead of launching. Use `?action=details` in [ZapScript](/docs/zapscript/launch) or set it as the launcher default.
+
+## mDNS Network Discovery
+
+Zaparoo now [advertises itself](/docs/core/config#servicediscovery) on your local network using mDNS. Mobile apps and other clients can automatically find and connect to your Zaparoo instance without needing to enter IP addresses manually. Access Zaparoo using friendly `.local` addresses like `http://mister.local:7497`.
+
+```toml
+[service.discovery]
+enabled = true              # Enabled by default
+instance_name = "MyZaparoo" # Optional custom name
+```
+
+## Blocking Hooks
+
+Three hooks can now block actions by returning an error: [`on_scan`](/docs/core/config#on_scan), [`on_remove`](/docs/core/config#on_remove), and the new [`before_media_start`](/docs/core/config#before_media_start). Scripts executed via `**execute:` now receive a `ZAPAROO_ENVIRONMENT` JSON variable with full system state.
+
+```toml
+[launchers]
+before_media_start = "**execute:/path/to/script.sh"
+```
+
+Your script gets access to the current platform, active media, scanned token, and launching media details. Exit with an error to prevent the action.
+
+## [MiSTer](/docs/platforms/mister) Improvements
+
+- **Flexible core locations** with automatic scanning and caching. Cores can be installed anywhere, not just default directories.
+- **Neo Geo fixes** for files inside zip archives or extracted game folders being incorrectly indexed as separate games.
+- **Alt-core path fixes** for the 80MHz N64 and 2X PSX alternative cores.
+
+## [Zap Link](/docs/zapscript/zaplinks) Improvements
+
+- **Platform detection headers** identify your device's OS, architecture, and platform. Servers can serve different scripts for different devices from the same URL.
+- **Faster first scans** by pre-warming known hosts in the background when Zaparoo starts.
+
+## [Reader](/docs/readers) Improvements
+
+- **Sleep/wake reconnection** for USB readers after your system wakes from sleep. This is new and may need further testing on different systems.
+- **[External drive reader](/docs/readers/external-drive) fixes** for stale mount detection, ensuring safer mount/unmount operations.
+- **Better NFC diagnostics** with visible warnings for NDEF tag reading failures without needing debug mode.
+- **Clone tag compatibility** improved through upgraded PN532 driver with spec-compliant TLV scanning.
+
+## API Improvements
+
+- **Notification inbox** stores persistent notifications that survive restarts. Messages have severity levels and broadcast in real-time via WebSocket. New methods: `inbox`, `inbox.delete`, `inbox.clear`.
+- **Centralized validation** for all API parameters with clear, human-readable error messages.
+- **Root URL redirect** to `/app/` automatically.
+
+## Other Changes
+
+- **System ID aliases** in [config](/docs/core/config) options like `[[systems.default]]` and `ignore_system`. Use `megadrive`, `N64`, or `playstation` instead of exact system IDs.
+- **[Opt-in error reporting](/docs/core/config#error_reporting)** via Sentry. When enabled, anonymous crash reports help identify and fix bugs. Disabled by default.
+- [Zap Link](/docs/zapscript/zaplinks) hosts that don't support the protocol are automatically re-checked after 30 days.
+- Launch guard prevents concurrent media launches from causing conflicts
+- Linux platform code refactored into a shared base, reducing duplication across SteamOS, Bazzite, and ChimeraOS
+- Steam code consolidated into a unified package with platform-specific implementations
+- Type-safe advanced arguments for [ZapScript](/docs/zapscript) with built-in validation
+- Improved process lifecycle tracking prevents zombie processes
+- Better media indexing diagnostics with timing information
+
+## Bug Fixes
+
+- Fixed data race in RS232 barcode reader connection status
+- Fixed slice mutation bug in reader auto-detection
+- Reduced log noise from auto-detect heartbeat messages
+- Fixed romsets.xml parsing for comma-separated name aliases
+- Added fallback filter for Neo Geo scanning when romsets.xml is invalid
+- Reader connection configuration now properly implies driver enabled
+- Reduced Kodi and EmulationStation API logging noise on Batocera
+- Service now stops cleanly on API bind failure
+- Steam shortcuts.vdf parsing now tolerant of missing optional fields
+- Added validation for API port and listen address settings
+- Fixed fallback matching for auth credentials lookup
+- Transient errors no longer permanently disable Zap Link hosts
+- Fixed Batocera pacman package version sanitization
+
+---
+
+Thanks to everyone who tested the beta and reported issues! Keep it coming.
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
