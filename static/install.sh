@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Zaparoo Core Universal Installer
-# Copyright (c) 2025 The Zaparoo Project Contributors.
+# Copyright (c) 2026 The Zaparoo Project Contributors.
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 set -e          # Exit on error
@@ -12,7 +12,7 @@ set -u          # Treat unset variables as errors
 # ============================================================================
 
 GITHUB_REPO="ZaparooProject/zaparoo-core"
-DEFAULT_VERSION="2.7.1"  # Update this with each release
+DEFAULT_VERSION="2.8.0"  # Update this with each release
 VERSION="${ZAPAROO_VERSION:-${DEFAULT_VERSION}}"
 BASE_URL="https://github.com/${GITHUB_REPO}/releases"
 
