@@ -1,6 +1,6 @@
 # Zaparoo Designer
 
-Zaparoo Designer is a web-based application that streamlines the creation of custom labels for your Zaparoo NFC cards. Whether you're creating a single label or designing a complete collection, the Designer makes it easy to create professional-looking labels that perfectly match your setup.
+Zaparoo Designer is a web-based application for creating custom labels for your Zaparoo NFC cards. Whether you're creating a single label or designing a complete collection, the Designer makes it easy to create professional-looking labels that match your setup.
 
 ## Features
 

@@ -8,11 +8,23 @@ Every time the token is scanned, Core will make a request to this URL checking f
 
 The payload itself is just a snippet of plaintext ZapScript to be run, with no special extra formatting. The only condition is that this payload has the MIME-type `application/vnd.zaparoo.zapscript` in the response's `Content-Type` header.
 
-Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result will be cached and any subsequent URLs will be treated as zap links immediately. If the query fails, it will also be cached and that domain will be silently ignored.
+Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result will be cached and any subsequent URLs will be treated as zap links immediately. If the query fails, it will also be cached and that domain will be silently ignored for 30 days before being re-checked.
 
 :::warning
 Currently all ZapScript received via a zap link will be tagged as "unsafe" which will disable the `input.keyboard`, `input.gamepad` and `execute` commands from running. This may be configurable in the future.
 :::
+
+## Platform Detection
+
+ZapLink servers receive headers identifying the device making the request:
+
+| Header               | Description      | Example                                   |
+| -------------------- | ---------------- | ----------------------------------------- |
+| `X-Zaparoo-OS`       | Operating system | `linux`, `windows`, `darwin`              |
+| `X-Zaparoo-Arch`     | CPU architecture | `amd64`, `arm`, `arm64`                   |
+| `X-Zaparoo-Platform` | Zaparoo platform | `mister`, `steamos`, `bazzite`, `windows` |
+
+Servers can use these headers to serve different scripts for different devices from the same URL.
 
 ## Self-Hosting
 

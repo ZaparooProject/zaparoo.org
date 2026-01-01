@@ -4,8 +4,8 @@ NFC tags tell the reader and software what action to take. They **do not** conta
 
 Tags come in many form factors and standards. The form factor is entirely your preference, but the standard may affect compatibility with Zaparoo and your particular reader hardware.
 
-:::info
-If in doubt, "NTAG215 NFC cards" are a solid option with the best software, hardware and community label compatibility.
+:::tip
+"NTAG215 NFC cards" work with all Zaparoo readers, software features, and community label templates.
 :::
 
 ## Writing to NFC Tags
@@ -18,9 +18,9 @@ The Zaparoo App's tag writing functionality is available for free. You can start
 
 ## Where To Buy
 
-NFC tags are readily available on Amazon, eBay and AliExpress by searching for the standard, form factor and storage size if applicable (e.g. NTAG215 NFC card, NTAG213 NFC sticker). You'll also find them on many local "NFC" and "ID" related stores. At this stage no difference in quality has been noted between suppliers. AliExpress is a **great** place to get NFC tokens in bulk.
+NFC tags are readily available on Amazon, eBay and AliExpress by searching for the standard, form factor and storage size if applicable (e.g. NTAG215 NFC card, NTAG213 NFC sticker). You'll also find them on many local "NFC" and "ID" related stores. At this stage no difference in quality has been noted between suppliers. AliExpress offers NFC tokens in bulk at low prices.
 
 ## Supported Tag Types
 
-- [NTAG](./ntag.md) - Best compatibility with Zaparoo
-- [MIFARE Classic](./mifare.md) - Partial support
+- [NTAG](./ntag.md)
+- [MIFARE Classic](./mifare.md) (supported but not recommended)

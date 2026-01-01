@@ -1,14 +1,10 @@
----
-sidebar_class_name: hidden
----
-
 # Bazzite
 
-:::danger
-This platform is in beta and not ready for production use.
+:::warning[Beta]
+Bazzite support is currently in beta. Some features may not work as expected.
 :::
 
-Zaparoo Core on Bazzite supports shell script launching. Full launcher support is coming in a future release.
+Zaparoo Core on [Bazzite](https://bazzite.gg/) supports launching Steam games and shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
 
 ## File Paths
 
@@ -42,10 +38,31 @@ To uninstall:
 
 All [readers](../readers/index.md) are supported.
 
-## Supported Launchers
+## Launchers
 
-| Launcher      | Notes                        |
-| ------------- | ---------------------------- |
-| Shell Scripts | Custom `.sh` file execution  |
+| Launcher      | Systems | Notes                                  |
+| ------------- | ------- | -------------------------------------- |
+| Steam         | PC      | Native and Flatpak Steam installations |
+| Web Browser   | N/A     | Opens URLs in default browser          |
+| Shell Scripts | Any     | Custom `.sh` file execution            |
 
-Create shell scripts to launch games, applications, or media. Add scripts to the `allow_file` list in config.toml and restart Zaparoo.
+### Steam
+
+Launches games from your Steam library. Both native (pre-installed) and Flatpak Steam installations are automatically detected. Games are launched using `xdg-open`, which works in both desktop and gaming modes.
+
+Games are indexed from:
+- `~/.steam/steam/steamapps/`
+- `~/.local/share/Steam/`
+
+To manually launch a Steam game, write `steam://<app_id>` to a token.
+
+### Shell Scripts
+
+Execute arbitrary shell scripts. Requires explicit allow list configuration for security.
+
+```toml title="config.toml"
+[launchers]
+allow_file = [
+    "^/home/.*/scripts/.*\\.sh$"
+]
+```

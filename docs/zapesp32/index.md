@@ -6,10 +6,10 @@ ZapESP32 is an ESP32-based NFC reader with haptic and audio feedback designed fo
 
 ### NFC/RFID Reading
 
-- **PN532 Module Support**: Recommended module with full feature support
+- **PN532 Module Support**: Full feature support including SD card compatibility
 - **RC522 Module Support**: Alternative module (limited SD card compatibility)
 - **Multiple Tag Types**: Works with NFC tags, cards, and read-only devices like Amiibos
-- **Game Launch**: Direct integration with Zaparoo Core for seamless game launching
+- **Game Launch**: Direct integration with Zaparoo Core for game launching
 
 ### Audio System
 
@@ -44,9 +44,13 @@ ZapESP32 is an ESP32-based NFC reader with haptic and audio feedback designed fo
 
 ZapESP32 is built around the ESP32 platform and has been tested with several board variants:
 
-- **ESP32 (Recommended)**: ESP32 Wroom V1 USB-C - Best overall performance
+- **ESP32**: ESP32 Wroom V1 USB-C
 - **ESP32-S3**: ESP32-S3 Wroom N16R8 - Enhanced performance with more memory
-- **ESP32-S2 Mini**: Works but not recommended due to poor WiFi performance
+- **ESP32-S2 Mini**: Works but has poor WiFi performance
+
+:::tip
+The ESP32 Wroom V1 USB-C offers the most stable performance for most builds.
+:::
 
 Each ESP32 variant uses different default GPIO pins. Using non-standard pins requires code modifications.
 
@@ -54,10 +58,12 @@ Each ESP32 variant uses different default GPIO pins. Using non-standard pins req
 
 Two RFID reader modules are supported:
 
-- **PN532 (Recommended)**: Supports all features including SD card module compatibility
+- **PN532**: Supports all features including SD card module compatibility
 - **RC522**: Basic functionality, but prevents SD card module usage due to SPI conflicts
 
-The PN532 is strongly recommended as it enables SD card storage for extensive audio libraries.
+:::tip
+The PN532 enables SD card storage for extensive audio libraries. The RC522 has SPI conflicts that prevent SD card usage.
+:::
 
 ### Required Components
 

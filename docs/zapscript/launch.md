@@ -32,6 +32,19 @@ The advanced argument `system` can be used to apply system default launchers to 
 
 This is particularly useful when launching files outside standard system folders or when the file extension alone isn't enough to determine the correct launcher.
 
+The advanced argument `action` can be used with Steam games to change the launch behavior:
+
+```
+steam://1145360?action=details
+```
+
+Available values:
+
+- `run` (default): Launch the game
+- `details`: Open the game's details page in the Steam library instead of launching
+
+The default action can also be configured in the [config file](../core/config.md#action).
+
 ### Auto Launch
 
 Since launching media is the most common action, this command has a lot more special syntax for different ways to look up media on the device.

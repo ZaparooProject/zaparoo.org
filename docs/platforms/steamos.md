@@ -1,10 +1,6 @@
 # SteamOS
 
-:::warning
-SteamOS support is in beta. Steam launching works, but EmuDeck support is in progress. Manual installation required.
-:::
-
-Zaparoo Core on SteamOS supports Steam game launching from your Steam Deck library.
+Zaparoo Core on SteamOS supports launching Steam games, EmuDeck, and RetroDECK from your Steam Deck.
 
 ## File Paths
 
@@ -40,23 +36,24 @@ sudo ./zaparoo -uninstall
 
 ## Readers
 
-All [readers](../readers/index.md) are supported. Platform notes:
-
-- Readers may stop working after waking from sleep. Unplug and replug the reader to fix.
+All [readers](../readers/index.md) are supported.
 
 ## Launchers
 
-| Launcher | Systems | Notes |
-|----------|---------|-------|
-| Steam | PC | Games and non-Steam shortcuts |
-| Shell Scripts | Any | Custom `.sh` file execution |
+| Launcher   | Systems | Notes                                 |
+| ---------- | ------- | ------------------------------------- |
+| Steam      | PC      | Games and non-Steam shortcuts         |
+| EmuDeck    | 56+     | RetroArch and standalone emulators    |
+| RetroDECK  | 200+    | Unified emulator frontend             |
+| Shell Scripts | Any  | Custom `.sh` file execution           |
 
 ### Steam
 
 Launches games from your Steam library via the `steam://` URL scheme. Both official Steam games and non-Steam shortcuts added to your library are detected.
 
-Games are indexed from:
+Zaparoo also tracks when you start Steam games externally (from Big Picture or the desktop client), showing the currently running game in ActiveMedia.
 
+Games are indexed from:
 - `~/.steam/steam/steamapps/`
 - `~/.local/share/Steam/`
 
@@ -67,6 +64,36 @@ To manually launch a Steam game, write `steam://<app_id>` to a token. For exampl
 launcher = "Steam"
 install_dir = "/custom/steam/path"  # Optional custom Steam install directory
 ```
+
+### EmuDeck
+
+Zaparoo automatically detects [EmuDeck](https://www.emudeck.com/) installations and creates launchers for each system. Games are launched through Flatpak to individual emulators (RetroArch cores or standalone emulators like Dolphin, PCSX2, etc.).
+
+EmuDeck is detected when `~/Emulation/roms/` exists.
+
+**Default paths:**
+- ROMs: `~/Emulation/roms/`
+- Gamelists: `~/ES-DE/gamelists/`
+
+Supported systems include: NES, SNES, Game Boy, GBA, N64, NDS, GameCube, Wii, Wii U, Switch, 3DS, Genesis, Saturn, Dreamcast, PSX, PS2, PS3, PSP, Neo Geo, Arcade, and many more.
+
+Games are discovered using ES-DE's `gamelist.xml` files for proper display names.
+
+### RetroDECK
+
+Zaparoo automatically detects [RetroDECK](https://retrodeck.net/) and creates launchers for each system. All games are launched through RetroDECK's unified CLI (`flatpak run net.retrodeck.retrodeck <rom_path>`), which handles emulator selection internally.
+
+RetroDECK is detected when the `net.retrodeck.retrodeck` Flatpak is installed.
+
+**Default paths:**
+- ROMs: `~/retrodeck/roms/`
+- Gamelists: `~/retrodeck/ES-DE/gamelists/`
+
+RetroDECK supports any system folder that matches an ES-DE system definition.
+
+### Gaming Mode
+
+Both EmuDeck and RetroDECK work in Steam's Gaming Mode. Zaparoo manages window focus through gamescope to ensure the emulator window is properly displayed when launching games.
 
 ### Shell Scripts
 

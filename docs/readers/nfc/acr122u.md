@@ -11,7 +11,7 @@ The ACR122U (also called just ACR122) is the most commonly available consumer gr
 
 This reader is easily available on marketplace sites like Amazon, AliExpress, eBay and even from local smart card/security stores in your own country. It has a built in USB cable, an injection moulded case, internal speaker and external status LED (though compatibility of these varies between devices and platforms). It's fully compatible with NTAG and MIFARE Classic tags.
 
-Overall, if you like the look and are willing to accept the risk of receiving an incompatible variant, it's a very solid performing NFC reader for a decent price.
+If you like the look and are willing to accept the risk of receiving an incompatible variant, it's a capable NFC reader for a decent price.
 
 :::info
 

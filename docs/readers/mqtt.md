@@ -101,7 +101,7 @@ client.disconnect()
 
 ## Home Assistant Integration
 
-The MQTT reader works seamlessly with Home Assistant automations. This example shows how to launch a random game when a button is pressed:
+The MQTT reader integrates with Home Assistant automations. This example shows how to launch a random game when a button is pressed:
 
 ### Prerequisites
 
