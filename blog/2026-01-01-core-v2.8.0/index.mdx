@@ -92,6 +92,7 @@ Your script gets access to the current platform, active media, scanned token, an
 
 ## Other Changes
 
+- **Windows installers are now signed** which helps avoid SmartScreen warnings. Thanks to [SignPath](https://signpath.io/) for sponsoring the project with free code signing.
 - **System ID aliases** in [config](/docs/core/config) options like `[[systems.default]]` and `ignore_system`. Use `megadrive`, `N64`, or `playstation` instead of exact system IDs.
 - **[Opt-in error reporting](/docs/core/config#error_reporting)** via Sentry. When enabled, anonymous crash reports help identify and fix bugs. Disabled by default.
 - [Zap Link](/docs/zapscript/zaplinks) hosts that don't support the protocol are automatically re-checked after 30 days.
