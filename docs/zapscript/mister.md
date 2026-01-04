@@ -1,62 +1,172 @@
+---
+sidebar_position: 6
+---
+
 # MiSTer
 
-These commands are only available on the MiSTer platform.
+These commands are only available on the MiSTer platform. They will be ignored on other platforms.
 
 ## mister.ini
 
-Loads the specified MiSTer.ini file and relaunches the menu core if open.
-Specify the .ini file with its index in the list shown in the MiSTer menu. Numbers `1` to `4`.
+Loads a MiSTer.ini configuration file.
 
-For example:
+### Syntax
 
+```zapscript
+**mister.ini:<index>
 ```
+
+### Arguments
+
+**`index`** (required)
+The ini file index (`1` to `4`) as shown in the MiSTer menu.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **mister.ini:1
 ```
 
-This switch will not persist after a reboot, same as loading it through the OSD.
+Loads the first ini file.
 
-## Launch a Core RBF File (mister.core)
-
-This command will launch a MiSTer core .rbf file directly. For example:
-
+```zapscript
+**mister.ini:2
 ```
+
+Loads the second ini file.
+
+:::info
+The ini switch does not persist after a reboot, same as loading through the OSD. The menu core will be relaunched if currently open.
+:::
+
+---
+
+## mister.core
+
+Launches a MiSTer core .rbf file directly.
+
+### Syntax
+
+```zapscript
+**mister.core:<path>
+```
+
+### Arguments
+
+**`path`** (required)
+Path to the core, relative to the SD card root. Uses the same format as the `rbf` tag in MGL files - the filename ending can be omitted for version-agnostic launching.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **mister.core:_Console/SNES
 ```
 
-Or:
+Launches the SNES core (any version).
 
-```
+```zapscript
 **mister.core:_Console/PSX_20220518
 ```
 
-It uses the exact same format as the `rbf` tag in a .mgl file, where the ending of a filename can be omitted. The path is relative to the SD card.
+Launches a specific PSX core version.
+
+```zapscript
+**mister.core:_Computer/ao486
+```
+
+Launches the ao486 core.
+
+---
 
 ## mister.script
 
-It's possible to launch a MiSTer script which already exists on the MiSTer:
+Launches a MiSTer script from the Scripts folder.
 
+### Syntax
+
+```zapscript
+**mister.script:<script>
 ```
+
+### Arguments
+
+**`script`** (required)
+The script filename (must exist in `/media/fat/Scripts`). Arguments can be included after the filename.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `hidden` | boolean | `false` | Run the script in the background without displaying on screen |
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **mister.script:update_all.sh
 ```
 
-Zaparoo will **close the currently running game** back to the menu core if necessary, then launch the script on screen as if it were launched from the Scripts menu. The script must exist already in `/media/fat/Scripts` or it won't be run.
+Runs the Update All script on screen.
 
-Arguments to the script are allowed, just type them after the filename as you would on a shell. Arguments are escaped for security.
-
-The advanced argument `hidden` can be used to launch the script without showing it on screen.
-
-```
+```zapscript
 **mister.script:update_all.sh?hidden=yes
 ```
 
-This will launch the script in the background, and won't interrupt the current game.
+Runs the script in the background without interrupting the current game.
+
+```zapscript
+**mister.script:my_script.sh arg1 arg2
+```
+
+Runs a script with arguments.
+
+:::info
+When not using `hidden`, the currently running game will be closed and the script runs on screen as if launched from the Scripts menu.
+:::
+
+---
 
 ## mister.mgl
 
-Execute MGL (MiSTer Game Library) content directly. This command takes the MGL file contents as a string and creates a temporary MGL file to launch:
+Executes MGL (MiSTer Game Library) content directly without a file.
 
+### Syntax
+
+```zapscript
+**mister.mgl:<content>
 ```
+
+### Arguments
+
+**`content`** (required)
+The MGL XML content as a string. A temporary MGL file is created and launched.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **mister.mgl:<setname>Genesis</setname><rbf>_Console/Genesis</rbf><file delay="1" type="f" index="0" path="../games/Genesis/Sonic.md"/>
 ```
 
-This allows you to programmatically create and launch MGL files without needing to store them on disk first.
+Creates and launches an MGL to run Sonic on the Genesis core.
+
+:::info
+This allows programmatically creating MGL content without storing files on disk.
+:::

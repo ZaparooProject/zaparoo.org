@@ -1,324 +1,354 @@
+---
+sidebar_position: 1
+---
+
 # Launch
 
-These commands are used to launch games, systems, and other media.
+These commands launch games, systems, and other media.
 
 ## launch
 
-Attempts to launch the given media path.
+Launches media from a path or identifier.
 
-If Zaparoo encounters a command with no `**<command>:` prefix, it will assume it's an [Auto Launch](#auto-launch) command.
+### Syntax
 
-For example:
-
-```
-/media/fat/games/Genesis/1 US - Q-Z/Some Game (USA, Europe).md
+```zapscript
+**launch:<path>
 ```
 
-Will be forwarded to this command automatically.
+### Arguments
 
-The advanced argument `launcher` can be used to explicitly set the launcher to use, overriding the default one and any auto-detection.
+**`path`** (required)
+The media to launch. Accepts multiple formats - see [Path Formats](#path-formats) below.
 
-```
-Genesis/1 US - Q-Z/Some Game (USA, Europe).md?launcher=LLAPIMegaDrive
-```
+### Advanced Arguments
 
-This can be useful to use alternate launchers for specific games or to launch a game not in a standard folder.
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `launcher` | string | - | Override the default launcher |
+| `system` | string | - | Apply system defaults to a local file path |
+| `action` | string | `run` | `run` to launch, `details` to show info (Steam only) |
+| `name` | string | - | Custom display name for remote downloads |
+| `pre_notice` | string | - | Message to show before downloading |
+| `when` | expression | - | Conditional execution |
 
-The advanced argument `system` can be used to apply system default launchers to local file paths:
+### Examples
 
-```
-/path/to/game.bin?system=Genesis
-```
-
-This is particularly useful when launching files outside standard system folders or when the file extension alone isn't enough to determine the correct launcher.
-
-The advanced argument `action` can be used with Steam games to change the launch behavior:
-
-```
-steam://1145360?action=details
+```zapscript
+Genesis/Sonic the Hedgehog (USA).md
 ```
 
-Available values:
+Launches a game using system lookup (Auto Launch mode - no `**launch:` prefix needed).
 
-- `run` (default): Launch the game
-- `details`: Open the game's details page in the Steam library instead of launching
+```zapscript
+**launch:/media/fat/games/Genesis/Sonic.md
+```
 
-The default action can also be configured in the [config file](../core/config.md#action).
+Launches from an absolute path.
 
-### Auto Launch
+```zapscript
+**launch:Genesis/Sonic.md?launcher=LLAPIMegaDrive
+```
 
-Since launching media is the most common action, this command has a lot more special syntax for different ways to look up media on the device.
+Launches with a specific launcher override.
 
-For the most basic usage, a file path can be written to a token, and Zaparoo will attempt to find the file on the device and launch it.
+```zapscript
+**launch:steam://1145360?action=details
+```
 
-Zaparoo uses the following rules to find the game file. Keep these rules in mind if you want a token to work well between different devices.
+Opens a Steam game's details page instead of launching.
 
-:::tip
-If you're not sure what to do, it's recommended to use the [Title ID](./launch.md#title-id) method for the best portability between devices.
-:::
+### Path Formats
+
+The `launch` command supports several path formats for flexibility:
 
 #### Title ID
 
-**This is the recommended method for making tokens portable between devices.**
+The portable format for tokens that work across devices. Uses `@<system>/<title>` or `<system>/<title>`:
 
-Title IDs identify games by system and name, with optional [tags](../core/tags.md) for filtering. The format is `@<system>/<title>` or `<system>/<title>` (the `@` prefix is recommended but optional).
-
-Basic examples:
-
-```
+```zapscript
 @Genesis/Sonic the Hedgehog
 @SNES/Super Mario World
 @N64/Legend of Zelda Ocarina of Time
 ```
 
-Title IDs work across all your Zaparoo devices and platforms. Write a card on your MiSTer, scan it on your Windows PC, and it'll launch the same game. Zaparoo automatically matches the title to whatever media you have locally using fuzzy matching and intelligent algorithms.
+Title IDs use fuzzy matching to find games regardless of filename differences between devices.
 
-**With tags** to resolve conflicts or specify preferences:
+**With tags** to filter specific versions:
 
-```
+```zapscript
 @SNES/Super Mario World (region:us)
-@SNES/Super Mario World (region:eu) (lang:de)
 @Genesis/Sonic (-unfinished:demo)
 ```
 
-See the [Tags documentation](../core/tags.md) for all available tags and how to use them.
-
-**Without the @ prefix** (backward compatibility):
-
-```
-Genesis/Sonic the Hedgehog
-SNES/Super Mario World
-```
-
-This format also works, but the `@` prefix is recommended to avoid potential conflicts with folder-based lookups.
+See the [Tags documentation](../core/tags.md) for available filters.
 
 #### System Lookup
 
-This is similar to a relative path, but the first "folder" will be treated as a reference to a system instead of a folder. Like this: `<System ID>/<Game Path>`.
+Uses the system ID as a virtual folder:
 
-Check the [Systems](../systems.md) documentation for a list of supported system IDs.
-
-For example:
-
-```
-N64/1 US - A-M/Another Game (USA).z64
+```zapscript
+N64/1 US - A-M/Game.z64
+TurboGrafx16/Game.pce
+PCEngine/Game.pce
 ```
 
-While this looks like a relative path, it will work on any device with the same system folder structure, even if the Nintendo 64 folder does not have the same name. Zaparoo will look up the system ID and find the game file based on that.
-
-System ID aliases can also be used here.
-
-For example, this will work:
-
-```
-TurboGrafx16/Another Game (USA).pce
-```
-
-Or this:
-
-```
-tgfx16/Another Game (USA).pce
-```
-
-Or even this:
-
-```
-PCEngine/Another Game (USA).pce
-```
+Works across devices with different folder structures. System aliases are supported.
 
 #### Absolute Path
 
-Any path starting with a `/` will be treated as an absolute path.
+Direct path starting with `/`:
 
-For example, to launch a game, write something like this to the token:
-
-```
-/media/fat/games/Genesis/1 US - Q-Z/Some Game (USA, Europe).md
+```zapscript
+/media/fat/games/Genesis/Game.md
 ```
 
-This is the least portable method, as it will only work on the device with the exact same file path.
+Only works on the specific device.
 
 #### Relative Path
 
-It's also possible to use a file path relative to the games folder. This will search for the file in all standard MiSTer game folder paths including CIFS and USB.
+Path relative to game folders:
 
-For example:
-
-```
-Genesis/1 US - Q-Z/Some Game (USA, Europe).md
-```
-
-This saves storage space on the token and will work if one device has games stored on a USB drive and another on the SD card. There's no downside to using it compared to an absolute path.
-
-Some other examples:
-
-```
-_Arcade/Some Arcade Game.mra
+```zapscript
+Genesis/1 US - Q-Z/Game.md
+_Arcade/Game.mra
 ```
 
-```
-_@Favorites/My Favorite Game.mgl
-```
-
-.zip files are also supported natively if the platform treats them as folders too. Just treat the .zip file as a folder name:
-
-```
-Genesis/@Genesis - 2022-05-18.zip/1 US - Q-Z/Some Game (USA, Europe).md
-```
+Works across different storage locations (USB, SD card, network).
 
 ### Remote Install
 
-Remote media can be downloaded and installed via SMB (CIFS) and HTTP/S URLs by entering the full URL to a file and filling the `system` advanced argument with a valid system ID. This feature can be used for services like a [RetroNAS](https://github.com/retronas/retronas) running on your local network, or any compatible NAS server.
+Download and install media from SMB or HTTP URLs:
 
-Example with SMB:
-
-```
+```zapscript
 smb://10.0.0.123/Games/path/to/file.bin?system=Genesis
-```
-
-Or HTTP:
-
-```
 http://10.0.0.123/path/to/file.bin?system=Genesis
 ```
 
-If the URL itself contains a `?` character, the URL must be escaped or quoted so it doesn't conflict with advanced argument parsing.
+The `system` argument is required for remote URLs. Files are cached locally after first download. Authentication can be configured in [auth.toml](../core/config.md#auth-file).
 
-When first run, the media file will be downloaded locally to the `media` directory in Zaparoo Core's data directory or a [configured location](../core/config.md#media_dir). On later scans the locally cached file will be used to launch immediately instead.
-
-If the server requires authentication, you can define the credentials using the [auth.toml](../core/config.md#auth-file) file.
-
-The `pre_notice` advanced argument can be used to show a message before launching the game:
-
-```
-http://10.0.0.123/path/to/file.bin?system=Genesis&pre_notice=Loading special game...
-```
-
-The `name` advanced argument can be used to specify a custom display name for the download:
-
-```
-http://10.0.0.123/path/to/file.bin?system=Genesis&name=My Custom Game
-```
+---
 
 ## launch.title
 
-Launches media by [title ID](../core/tags.md). This is the explicit command for title-based launching (the [Auto Launch](#title-id) format uses this internally).
+Launches media by title ID with explicit syntax.
 
-Format: `**launch.title:<system>/<title>`
+### Syntax
 
-Basic examples:
-
-```
-**launch.title:Genesis/Sonic the Hedgehog
-**launch.title:SNES/Super Mario World
-**launch.title:N64/Legend of Zelda Ocarina of Time
+```zapscript
+**launch.title:<system>/<title>
 ```
 
-**With tags** to filter results:
+### Arguments
 
-```
+**`system`** (required)
+The system ID (e.g., `Genesis`, `SNES`, `N64`).
+
+**`title`** (required)
+The game title to search for. Supports fuzzy matching.
+
+**Inline tags** can be added after the title:
+
+```zapscript
 **launch.title:SNES/Super Mario World (region:us)
-**launch.title:Genesis/Sonic (lang:en) (-unfinished:demo)
-**launch.title:N64/Mario 64 (+region:jp) (+lang:ja)
+**launch.title:Genesis/Sonic (-unfinished:demo)
 ```
 
-**Using the @ prefix** (optional, works the same):
+### Advanced Arguments
 
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `launcher` | string | - | Override the default launcher |
+| `tags` | string | - | Tag filters (alternative to inline format) |
+| `action` | string | `run` | `run` to launch, `details` to show info |
+| `when` | expression | - | Conditional execution |
+
+### Examples
+
+```zapscript
+**launch.title:Genesis/Sonic the Hedgehog
 ```
-**launch.title:@Genesis/Sonic the Hedgehog
+
+Launches Sonic using title matching.
+
+```zapscript
+**launch.title:SNES/Super Mario World (region:us)
 ```
 
-**Advanced arguments**:
+Launches the US version of Super Mario World.
 
-The `launcher` advanced argument can override the default launcher:
-
-```
-**launch.title:Genesis/Sonic?launcher=LLAPIMegaDrive
-```
-
-The `tags` advanced argument provides an alternate way to specify tag filters:
-
-```
+```zapscript
 **launch.title:Genesis/Sonic?tags=region:us,lang:en
 ```
 
-Title IDs are the recommended format for making tokens portable between devices. The system automatically handles:
+Uses the `tags` argument instead of inline format.
 
-- Fuzzy matching for typos and variations
-- Conflict resolution when multiple versions exist
-- Tag-based filtering for precise game selection
-- Preference ranking based on your config settings
+```zapscript
+**launch.title:@Genesis/Sonic the Hedgehog
+```
 
-See the [Tags documentation](../core/tags.md) and [Title Normalization](../core/dev/media-titles.md) for technical details on how matching works.
+The `@` prefix is optional and works the same.
+
+---
 
 ## launch.system
 
-This command will launch a system, based on MiSTer Extensions' own internal list of [system IDs](../systems.md). This can be useful for "meta-systems" such as Atari 2600 and WonderSwan Color which don't have their own core .rbf file.
+Launches a system/emulator without loading specific media.
 
-For example:
+### Syntax
 
+```zapscript
+**launch.system:<system>
 ```
+
+### Arguments
+
+**`system`** (required)
+The [system ID](../systems.md) to launch. Use `menu` to return to the main menu.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `launcher` | string | - | Override the default launcher |
+| `action` | string | `run` | `run` to launch, `details` to show info |
+| `when` | expression | - | Conditional execution |
+
+### Examples
+
+```zapscript
 **launch.system:Atari2600
 ```
 
-```
+Launches the Atari 2600 system.
+
+```zapscript
 **launch.system:WonderSwanColor
 ```
 
-It also works for any other system if you prefer this method over the standard core .rbf file one.
+Launches WonderSwan Color (useful for meta-systems without their own core).
+
+```zapscript
+**launch.system:menu
+```
+
+Returns to the main menu.
+
+---
 
 ## launch.random
 
-This command will launch a game at random for the given system or search query. For example:
+Launches a random game from specified systems or search criteria.
 
+### Syntax
+
+```zapscript
+**launch.random:<query>
 ```
+
+### Arguments
+
+**`query`** (required)
+One of the following formats:
+
+| Format | Description |
+|--------|-------------|
+| `<system>` | Random game from one system |
+| `<system1>,<system2>,...` | Random from multiple systems |
+| `all` | Random from any system |
+| `/path/to/folder` | Random file from a folder |
+| `<system>/*pattern*` | Random matching a glob pattern |
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `launcher` | string | - | Override the default launcher |
+| `tags` | string | - | Tag filters to narrow results |
+| `action` | string | `run` | `run` to launch, `details` to show info |
+| `when` | expression | - | Conditional execution |
+
+### Examples
+
+```zapscript
 **launch.random:snes
 ```
 
-This will launch a random SNES game each time you read the token.
+Launches a random SNES game.
 
-System IDs can also be combined with the `,` separator. For example:
-
-```
-**launch.random:snes,nes
+```zapscript
+**launch.random:snes,nes,genesis
 ```
 
-This will launch a random game from either the SNES or NES systems. You can also select all systems with `**launch.random:all`.
+Launches a random game from SNES, NES, or Genesis.
 
-An absolute path to a folder will pick a random file from that folder and attempt to launch it:
-
+```zapscript
+**launch.random:all
 ```
+
+Launches a random game from any system.
+
+```zapscript
 **launch.random:/media/fat/_#Favorites
 ```
 
-This is useful for folder full of .mgl files on MiSTer.
+Launches a random file from a folder (useful for MGL collections).
 
-A random game can also be chosen using the `launch.search` syntax. Instead of picking and launching the first result, Zaparoo will pick a random one:
-
-```
+```zapscript
 **launch.random:Genesis/*sonic*
 ```
 
-The `all` keyword is also supported here.
+Launches a random game with "sonic" in the filename.
 
-```
+```zapscript
 **launch.random:all/*mario*
 ```
 
+Launches a random Mario game from any system.
+
+---
+
 ## launch.search
 
-This command will search for a game with the given query by filename and launch the first result. The syntax of the command is similar to the generic launch command, but with the addition of "globbing" to create a fuzzy search query. For example:
+Searches for a game by filename pattern and launches the first result.
 
+### Syntax
+
+```zapscript
+**launch.search:<system>/<pattern>
 ```
+
+### Arguments
+
+**`system`** (required)
+The system ID to search within.
+
+**`pattern`** (required)
+A glob pattern to match filenames. Use `*` as a wildcard.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `launcher` | string | - | Override the default launcher |
+| `tags` | string | - | Tag filters to narrow results |
+| `action` | string | `run` | `run` to launch, `details` to show info |
+| `when` | expression | - | Conditional execution |
+
+### Examples
+
+```zapscript
 **launch.search:SNES/*mario*
 ```
 
-Will search for all SNES games with the word "mario" in the filename and launch the first result. Narrow it down:
+Finds and launches the first SNES game with "mario" in the filename.
 
-```
+```zapscript
 **launch.search:SNES/super mario*(*usa*
 ```
 
-To launch the US version of Super Mario _something_.
+Finds a more specific match (US version of Super Mario games).
 
+:::info
 Search queries are case insensitive.
+:::

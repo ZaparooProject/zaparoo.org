@@ -18,11 +18,11 @@ Currently all ZapScript received via a zap link will be tagged as "unsafe" which
 
 ZapLink servers receive headers identifying the device making the request:
 
-| Header               | Description      | Example                                   |
-| -------------------- | ---------------- | ----------------------------------------- |
-| `X-Zaparoo-OS`       | Operating system | `linux`, `windows`, `darwin`              |
-| `X-Zaparoo-Arch`     | CPU architecture | `amd64`, `arm`, `arm64`                   |
-| `X-Zaparoo-Platform` | Zaparoo platform | `mister`, `steamos`, `bazzite`, `windows` |
+| Header             | Description      | Example                                   |
+| ------------------ | ---------------- | ----------------------------------------- |
+| `Zaparoo-OS`       | Operating system | `linux`, `windows`, `darwin`              |
+| `Zaparoo-Arch`     | CPU architecture | `amd64`, `arm`, `arm64`                   |
+| `Zaparoo-Platform` | Zaparoo platform | `mister`, `steamos`, `bazzite`, `windows` |
 
 Servers can use these headers to serve different scripts for different devices from the same URL.
 

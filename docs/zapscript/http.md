@@ -1,47 +1,102 @@
+---
+sidebar_position: 3
+---
+
 # HTTP
 
-These commands are used to make HTTP requests to external services.
+These commands make HTTP requests to external services. Both commands run asynchronously in the background with a 30-second timeout, so they won't block script execution.
 
 ## http.get
 
-Perform an HTTP GET request to the specified URL. For example:
+Performs an HTTP GET request to a URL.
 
-```
-**http.get:https://example.com
-```
+### Syntax
 
-This is useful for triggering webhooks or other web services.
-
-It can be combined with other commands using the `||` separator. For example:
-
-```
-**http.get:https://example.com||_Console/SNES
+```zapscript
+**http.get:<url>
 ```
 
-If your URL contains any of the following characters, you must URL encode them by replacing them with the following:
+### Arguments
 
-- `,` with `%2C`
-- `||` with `%7C%7C`
-- `**` with `%2A%2A`
+**`url`** (required)
+The full URL to request. Must include the protocol (`http://` or `https://`).
+
+If your URL contains special characters, you can either:
+- Escape them with `^` (e.g., `^?` for a literal `?`)
+- Quote the entire URL (e.g., `**http.get:"https://example.com/?q=test"`)
+- URL encode them (`%2C` for `,`, `%7C%7C` for `||`, `%2A%2A` for `**`)
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
+**http.get:https://example.com/webhook
+```
+
+Triggers a simple webhook.
+
+```zapscript
+**http.get:https://example.com/api/trigger||_Console/SNES
+```
+
+Triggers a webhook and then launches SNES.
+
+```zapscript
+**http.get:"https://example.com/search?q=test&page=1"
+```
+
+Makes a request with query parameters (quoted to avoid parsing issues).
+
+---
 
 ## http.post
 
-Perform an HTTP POST request to the specified URL. For example:
+Performs an HTTP POST request with a body.
 
-```
-**http.post:https://example.com,application/json,{"key":"value"}
+### Syntax
+
+```zapscript
+**http.post:<url>,<content-type>,<body>
 ```
 
-Or with Remote, to launch the Update All script:
+### Arguments
 
+**`url`** (required)
+The full URL to request. Must include the protocol.
+
+**`content-type`** (required)
+The MIME type of the request body (e.g., `application/json`, `text/plain`).
+
+**`body`** (required)
+The request body content. Can be empty.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
+**http.post:https://example.com/api,application/json,{"event":"scan"}
 ```
+
+Posts JSON data to an API endpoint.
+
+```zapscript
 **http.post:http://localhost:8182/api/scripts/launch/update_all.sh,application/json,
 ```
 
-The command is in the format `URL,Content-Type,Body`.
+Triggers a local API with an empty body.
 
-If your URL contains any of the following characters, you must URL encode them by replacing them with the following:
+```zapscript
+**http.post:https://hooks.example.com/notify,text/plain,Token scanned!
+```
 
-- `,` with `%2C`
-- `||` with `%7C%7C`
-- `**` with `%2A%2A`
+Sends a plain text notification.

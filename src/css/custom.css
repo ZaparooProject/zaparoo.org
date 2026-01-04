@@ -248,3 +248,90 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 .arch-help-icon:hover {
   color: var(--ifm-color-primary);
 }
+
+/* ZapScript syntax highlighting */
+.token.separator {
+  color: #d63384;
+  font-weight: bold;
+}
+
+.token.expression {
+  background-color: rgba(255, 193, 7, 0.15);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.token.expression .token.punctuation {
+  color: #fd7e14;
+  font-weight: bold;
+}
+
+.token.expression .token.variable {
+  color: #0d6efd;
+}
+
+.token.expression .token.property {
+  color: #6f42c1;
+}
+
+.token.advanced-arg {
+  color: #20c997;
+}
+
+.token.special-key {
+  color: #0dcaf0;
+}
+
+.token.escape {
+  color: #ffc107;
+}
+
+.token.system-id {
+  color: #6f42c1;
+}
+
+.token.title-prefix {
+  color: #fd7e14;
+  font-weight: bold;
+}
+
+/* Dark mode adjustments for ZapScript */
+[data-theme="dark"] .token.separator {
+  color: #f783ac;
+}
+
+[data-theme="dark"] .token.expression {
+  background-color: rgba(255, 193, 7, 0.1);
+}
+
+[data-theme="dark"] .token.expression .token.punctuation {
+  color: #ffa94d;
+}
+
+[data-theme="dark"] .token.expression .token.variable {
+  color: #74c0fc;
+}
+
+[data-theme="dark"] .token.expression .token.property {
+  color: #b197fc;
+}
+
+[data-theme="dark"] .token.advanced-arg {
+  color: #63e6be;
+}
+
+[data-theme="dark"] .token.special-key {
+  color: #66d9e8;
+}
+
+[data-theme="dark"] .token.escape {
+  color: #ffe066;
+}
+
+[data-theme="dark"] .token.system-id {
+  color: #b197fc;
+}
+
+[data-theme="dark"] .token.title-prefix {
+  color: #ffa94d;
+}

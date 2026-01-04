@@ -1,91 +1,183 @@
+---
+sidebar_position: 2
+---
+
 # Input
 
-These commands are used to simulate input devices like keyboards and gamepads.
+These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons.
 
 ## input.keyboard
 
-:::warning
-If a command comes from a remote source, this command will be blocked.
-:::
+Simulates keyboard key presses.
 
-Press a key or multiple keys on a virtual keyboard attached to the host. One key:
+### Syntax
 
+```zapscript
+**input.keyboard:<keys>
 ```
+
+### Arguments
+
+**`keys`** (required)
+The keys to press. Regular characters are typed directly, with a 100ms delay between each key. Special keys are entered using curly braces.
+
+**Special keys:** `{esc}`, `{backspace}`, `{tab}`, `{enter}`, `{lctrl}`, `{lshift}`, `{backslash}`, `{rshift}`, `{lalt}`, `{space}`, `{caps}`, `{num}`, `{scroll}`, `{f1}`-`{f12}`, `{home}`, `{up}`, `{pgup}`, `{left}`, `{right}`, `{end}`, `{down}`, `{pgdn}`, `{ins}`, `{del}`, `{volup}`, `{voldn}`
+
+**Escaping:** Use `\{` and `\}` for literal curly braces, `\\` for a literal backslash.
+
+**Key combos (MiSTer only):** Use `+` between keys inside braces, e.g., `{shift+esc}`.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **input.keyboard:@
 ```
 
-Multiple keys in sequence:
+Types the `@` character.
 
-```
+```zapscript
 **input.keyboard:qWeRty{enter}{up}aaa
 ```
 
-Special keys can be entered by with a key name surrounded by curly braces (`{}`) as shown above. If you want to enter an literal curly brace, type a backslash before it like `\{` and `\}`. Backslashes can also be escaped (`\\`).
+Types "qWeRty", presses Enter, presses Up arrow, then types "aaa".
 
-Possible special key names are: esc, backspace, tab, enter, lctrl, lshift, backslash, rshift, lalt, space, caps, num, scroll, f1-f12, home, up, pgup, left, right, end, down, pgdn, ins, del, volup, voldn.
+```zapscript
+**input.keyboard:{shift+esc}
+```
 
-On MiSTer, key combos/chording are also available by adding multiple keys separated by `+` in between `{...}`. This feature is planned to be ported to other platforms as standard. Example: `**input.keyboard:{shift+esc}`
+Presses Shift+Escape together (MiSTer only).
+
+```zapscript
+**input.keyboard:{f12}
+```
+
+Opens the MiSTer OSD menu.
+
+:::warning Remote Blocked
+This command is blocked when the script comes from a remote source.
+:::
+
+---
 
 ## input.gamepad
 
-:::warning
-If a command comes from a remote source, this command will be blocked.
-:::
+Simulates gamepad button presses.
 
-Press a button or multiple buttons in sequence on a virtual gamepad attached to the host.
+### Syntax
 
-This works the same as the `input.keyboard` command but with the following name mappings:
-
-- `^`, `{up}`: Dpad up
-- `V`, `{down}`: Dpad down
-- `<`, `{left}`: Dpad left
-- `>`, `{right}`: Dpad right
-- `A`, `a`: East button
-- `B`, `b`: South button
-- `X`, `x`: North button
-- `Y`, `y`: West button
-- `{start}`: Start
-- `{select}`: Select
-- `{menu}`: Menu (Xbox/PlayStation/etc. button)
-- `L`, `l`, `{l1}`: Left bumper
-- `R`, `r`, `{r1}`: Right bumper
-- `{l2}`: Left trigger
-- `{r2}`: Right trigger
-
-For example:
-
+```zapscript
+**input.gamepad:<buttons>
 ```
+
+### Arguments
+
+**`buttons`** (required)
+The buttons to press in sequence. Supports both single characters and named buttons in curly braces.
+
+**Button mappings:**
+
+| Input | Button |
+|-------|--------|
+| `^`, `{up}` | D-pad up |
+| `V`, `{down}` | D-pad down |
+| `<`, `{left}` | D-pad left |
+| `>`, `{right}` | D-pad right |
+| `A`, `a` | East button |
+| `B`, `b` | South button |
+| `X`, `x` | North button |
+| `Y`, `y` | West button |
+| `L`, `l`, `{l1}` | Left bumper |
+| `R`, `r`, `{r1}` | Right bumper |
+| `{l2}` | Left trigger |
+| `{r2}` | Right trigger |
+| `{start}` | Start |
+| `{select}` | Select |
+| `{menu}` | Menu/Guide button |
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **input.gamepad:^^VV<><>BA{start}{select}
 ```
 
-Be aware that this gamepad likely needs to be mapped manually first to work, and that it will show to the game as an additional controller not imitate an existing connected controller.
+Inputs the classic Konami code.
 
-## input.coinp1/input.coinp2
-
-Insert a coin/credit for player 1 or 2. For example (to insert 1 coin for player 1):
-
+```zapscript
+**input.gamepad:{start}
 ```
+
+Presses the Start button.
+
+```zapscript
+**input.gamepad:AABB
+```
+
+Presses A, A, B, B in sequence.
+
+:::warning Remote Blocked
+This command is blocked when the script comes from a remote source.
+:::
+
+:::info
+The virtual gamepad appears as an additional controller to the system. It may need to be mapped manually in your game or emulator, and won't replace an existing connected controller.
+:::
+
+---
+
+## input.coinp1 / input.coinp2
+
+Inserts coins for player 1 or player 2 in arcade games.
+
+### Syntax
+
+```zapscript
+**input.coinp1:<count>
+**input.coinp2:<count>
+```
+
+### Arguments
+
+**`count`** (optional, default: `1`)
+The number of coins to insert.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
 **input.coinp1:1
 ```
 
-This command presses the `5` and `6` key on the keyboard respectively, which is generally accepted as the coin insert keys in MiSTer arcade cores. If it doesn't work, try manually mapping the coin insert keys in the OSD.
+Inserts 1 coin for player 1.
 
-It also supports inserting multiple coins at once. For example (to insert 3 coins for player 2):
-
-```
+```zapscript
 **input.coinp2:3
 ```
 
-## input.key
+Inserts 3 coins for player 2.
 
-:::warning
-If a command comes from a remote source, this command will be blocked.
+```zapscript
+**input.coinp1:2||**input.coinp2:2
+```
+
+Inserts 2 coins for each player.
+
+:::info
+These commands press the `5` key (player 1) or `6` key (player 2), which are the standard coin insert keys for MiSTer arcade cores. If it doesn't work, try mapping the coin insert keys manually in the OSD.
 :::
-
-Press a key using legacy numeric key codes. This is an older command that takes numeric codes instead of key names:
-
-```
-**input.key:88
-```
-
-This command converts legacy numeric key codes to modern key names internally. For new scripts, it's recommended to use `input.keyboard` instead.
