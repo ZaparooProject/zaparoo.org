@@ -217,6 +217,6 @@ For a ready-to-use option, consider the [PN532 USB](./pn532-usb.md) instead!
 
 **Known Listings:**
 
-- [AliExpress (China) - JIAQISHENG JQS Official Store](https://www.aliexpress.com/item/1005002755983375.html)
-- [AliExpress (China) - TENSTAR ROBOT Store](https://www.aliexpress.com/item/1005005973913526.html)
+- <ProductLink href="https://www.aliexpress.com/item/1005002755983375.html" store="aliexpress">AliExpress (China) - JIAQISHENG JQS Official Store</ProductLink>
+- <ProductLink href="https://www.aliexpress.com/item/1005005973913526.html" store="aliexpress">AliExpress (China) - TENSTAR ROBOT Store</ProductLink>
 

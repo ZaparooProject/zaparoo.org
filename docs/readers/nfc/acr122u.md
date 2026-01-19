@@ -116,9 +116,9 @@ Please be aware there's still a risk of receiving an incompatible variant even f
 
 These are some known working listings submitted by users:
 
-- [Amazon (US) - Yosoo Store](https://www.amazon.com/dp/B00GYPIZG6/)
-- [Amazon (US) - ACS Store](https://www.amazon.com/dp/B07KRKPWYC)
+- <ProductLink href="https://www.amazon.com/dp/B00GYPIZG6/" store="amazon">Amazon (US) - Yosoo Store</ProductLink>
+- <ProductLink href="https://www.amazon.com/dp/B07KRKPWYC" store="amazon">Amazon (US) - ACS Store</ProductLink>
 - [Kogan (Australia)](https://www.kogan.com/au/buy/zoestore-kkmoon-nfc-acr122u-rfid-contactless-smart-reader-writerusb-sdk-c-card-d8a0-h10391/)
 - [Everything ID (Australia)](https://www.everythingid.com.au/rfid-equipment-c-13/acr122u-usb-nfc-rfid-card-reader-writer-mifare-nfc-p-324)
-- [AliExpress (China) - 5YOA Official Store](https://www.aliexpress.us/item/2251832554165448.html)
+- <ProductLink href="https://www.aliexpress.us/item/2251832554165448.html" store="aliexpress">AliExpress (China) - 5YOA Official Store</ProductLink>
 

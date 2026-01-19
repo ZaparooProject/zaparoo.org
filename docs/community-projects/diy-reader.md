@@ -22,8 +22,8 @@ Access to a 3D printer is required for color switching to show the top markings 
 Feel free to shop around for components.
 
 - [PN532 NFC module](https://github.com/ZaparooProject/zaparoo.org/wiki/PN532) - any supplier will do but must be a "PN532" module.
-- [2.54mm right angle female 4-pin header](https://www.aliexpress.com/item/32980998451.html) - attaches to the serial board.
-- [2.54mm right angle male 4-pin header](https://www.aliexpress.com/item/32908642552.html) - LIKELY OPTIONAL - attaches to the PN532 module but most modules come with one.
+- <ProductLink href="https://www.aliexpress.com/item/32980998451.html" store="aliexpress">2.54mm right angle female 4-pin header</ProductLink> - attaches to the serial board.
+- <ProductLink href="https://www.aliexpress.com/item/32908642552.html" store="aliexpress">2.54mm right angle male 4-pin header</ProductLink> - LIKELY OPTIONAL - attaches to the PN532 module but most modules come with one.
 - 3D printing filament - if printing yourself, PLA or PETG is fine. A single case uses approximately 20g of filament.
 
 ## Serial PCB
@@ -133,6 +133,6 @@ Have fun!
 
 ## Contributors
 
-- [RetroCastle](https://www.aliexpress.com/store/912024455) - serial PCB design and testing.
+- <ProductLink href="https://www.aliexpress.com/store/912024455" store="aliexpress">RetroCastle</ProductLink> - serial PCB design and testing.
 - [wizzo](https://www.patreon.com/wizzo) - case design and documentation.
 - [Retro Frog](https://www.printables.com/@RetroFrog) - case design advice.

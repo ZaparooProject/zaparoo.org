@@ -228,8 +228,8 @@ You can repurpose the **original** SNES power switch to power the MiSTer setup u
 
 ### Required Parts (Available on AliExpress):
 
-- [DC Power Pigtail Male Cable](https://www.aliexpress.com/item/1005007404205142.html)
-- [USB Type-C Connector Board](https://www.aliexpress.com/item/1005006846325447.html)
+- <ProductLink href="https://www.aliexpress.com/item/1005007404205142.html" store="aliexpress">DC Power Pigtail Male Cable</ProductLink>
+- <ProductLink href="https://www.aliexpress.com/item/1005006846325447.html" store="aliexpress">USB Type-C Connector Board</ProductLink>
 
 ### Wiring Instructions
 
@@ -252,7 +252,7 @@ For powering the SMES I recommend using a **Raspberry Pi USB-C power supply** to
 
 ## Optional: Reset Button
 
-You can, should you wish, also get the **reset button** working on your SMES. For this you only need some **glue,** a 3D-printed **mount** found on our GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes), some wires and an actuation button (I bought one of [these](https://www.aliexpress.us/item/1005007217364224.html)).
+You can, should you wish, also get the **reset button** working on your SMES. For this you only need some **glue,** a 3D-printed **mount** found on our GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes), some wires and an actuation button (I bought one of <ProductLink href="https://www.aliexpress.us/item/1005007217364224.html" store="aliexpress">these</ProductLink>).
 
 You need an **actuation button** and some wires for soldering. I used small clicky buttons found on AliExpress. The button will need to be attached to the mount and then placed beneath the reset button's mechanism so that when pressed down it activates your button that is on the mount.
 

@@ -137,7 +137,7 @@ Some USB cables are **power-only** and don't support data transfer. If your read
 ## Where To Buy
 
 :::tip Official Support
-Buying from the [Zaparoo Shop](https://shop.zaparoo.com/) directly supports the project and includes a quality case!
+Buying from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> directly supports the project and includes a quality case!
 :::
 
 **Original Hardware:**
@@ -146,6 +146,6 @@ Buying from the [Zaparoo Shop](https://shop.zaparoo.com/) directly supports the 
 
 **Clones (Search for "PN532 Type C" or "PCR532"):**
 
-- [AliExpress (China) - Allinbest Store](https://www.aliexpress.us/item/1005006326438326.html)
-- [AliExpress (China) - MI YU KOUNG Official Store](https://www.aliexpress.com/item/1005005262748046.html)
+- <ProductLink href="https://www.aliexpress.us/item/1005006326438326.html" store="aliexpress">AliExpress (China) - Allinbest Store</ProductLink>
+- <ProductLink href="https://www.aliexpress.com/item/1005005262748046.html" store="aliexpress">AliExpress (China) - MI YU KOUNG Official Store</ProductLink>
 

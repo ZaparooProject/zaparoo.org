@@ -23,7 +23,7 @@ Any inkjet or color laser printer from reputable brands (Epson, HP, Canon, Broth
 | **Sticker Paper** | Medium | Professional | Self-adhesive convenience |
 
 :::tip
-[Printable sticker paper](https://www.amazon.com/HTVRONT-Printable-Vinyl-Sticker-Paper/dp/B09YCFRT37) in matte finish reduces glare and fingerprints while providing professional results.
+<ProductLink href="https://www.amazon.com/HTVRONT-Printable-Vinyl-Sticker-Paper/dp/B09YCFRT37" store="amazon">Printable sticker paper</ProductLink> in matte finish reduces glare and fingerprints while providing professional results.
 :::
 
 ### Cutting Techniques
