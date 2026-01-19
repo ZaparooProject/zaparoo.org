@@ -16,8 +16,8 @@ JLC PCB has the same great offers on 2-layer PCBs without ENIG finish (boards wi
 
 Gerber files to be uploaded to PCB manufacturer:
 
-- [Switch card PCB v3.3](https://github.com/wizzomafizzo/tapto/tree/main/assets/pcbcards/Switch%20Cart%20PCB) - **6-layer PCB**
-- [Medium card PCB v3.0](https://github.com/wizzomafizzo/tapto/tree/main/assets/pcbcards/mediumcard) - **6-layer PCB**
+- [Switch Card PCB](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/pcb-cards/Switch%20Card%20PCB)
+- [Medium Card PCB](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/pcb-cards/Medium%20Card%20PCB)
 
 <img src="/img/docs/tokens/Full_size_PCB_cards.jpg" alt="Full size PCB cards" width="200" /> <img src="/img/docs/tokens/Medium_size_PCB_cards.jpg" alt="Medium size PCB cards" width="200" /> <img src="/img/docs/tokens/Switch_size_PCB_cards.jpg" alt="Switch size PCB cards" width="200" />
 
