@@ -60,26 +60,46 @@ Opens a Steam game's details page instead of launching.
 
 ### Path Formats
 
-The `launch` command supports several path formats for flexibility:
+The `launch` command supports several path formats, tried in this order:
+
+1. **Remote URLs** (http://, https://, smb://) - if `system` argument provided
+2. **Absolute paths** (starting with `/`)
+3. **URI schemes** (steam://, etc.)
+4. **Relative paths** - searched in game folders
+5. **Title ID** - `System/Title` without file extension
+6. **System lookup** - `System/path/to/file.ext`
+7. **Glob patterns** - if path contains `*`
 
 #### Title ID
 
-The portable format for tokens that work across devices. Uses `@<system>/<title>` or `<system>/<title>`:
+The portable format for tokens that work across devices. Paths in `System/Title` format (no file extension) are detected as title lookups and use fuzzy matching:
+
+```zapscript
+Genesis/Sonic the Hedgehog
+SNES/Super Mario World
+N64/Legend of Zelda Ocarina of Time
+```
+
+The `@` prefix can also be used, which explicitly invokes [`launch.title`](#launchtitle):
 
 ```zapscript
 @Genesis/Sonic the Hedgehog
-@SNES/Super Mario World
-@N64/Legend of Zelda Ocarina of Time
 ```
 
-Title IDs use fuzzy matching to find games regardless of filename differences between devices.
+Both forms use fuzzy matching to find games regardless of filename differences between devices.
 
 **With tags** to filter specific versions:
 
 ```zapscript
 @SNES/Super Mario World (region:us)
 @Genesis/Sonic (-unfinished:demo)
+@N64/Zelda (~region:us)(~region:eu)
 ```
+
+Tag operators:
+- `(tag:value)` or `(+tag:value)` - must have this tag (AND)
+- `(-tag:value)` - must not have this tag (NOT)
+- `(~tag:value)` - at least one of these must match (OR)
 
 See the [Tags documentation](../core/tags.md) for available filters.
 
@@ -115,6 +135,38 @@ _Arcade/Game.mra
 ```
 
 Works across different storage locations (USB, SD card, network).
+
+#### Glob Patterns
+
+Paths containing `*` wildcards are automatically handled as search patterns:
+
+```zapscript
+Genesis/*sonic*
+SNES/*mario world*
+```
+
+This delegates to [`launch.search`](#launchsearch) internally, launching the first match.
+
+#### Zip File Paths
+
+On MiSTer, paths can reference files inside zip archives:
+
+```zapscript
+_Arcade/@Arcade - Konami.zip/Pong.mra
+Genesis/@Genesis - 2022-05-18.zip/Sonic.md
+```
+
+The platform launcher handles extracting and launching from the archive.
+
+#### URI Schemes
+
+URIs are passed directly to the platform launcher:
+
+```zapscript
+steam://1145360
+```
+
+Steam URLs launch or show details for the specified app ID. Use `action=details` to open the Steam library page instead of launching.
 
 ### Remote Install
 
@@ -183,11 +235,9 @@ Launches the US version of Super Mario World.
 
 Uses the `tags` argument instead of inline format.
 
-```zapscript
-**launch.title:@Genesis/Sonic the Hedgehog
-```
-
-The `@` prefix is optional and works the same.
+:::tip
+The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis/Sonic`. Both forms are equivalent.
+:::
 
 ---
 
@@ -205,14 +255,6 @@ Launches a system/emulator without loading specific media.
 
 **`system`** (required)
 The [system ID](../systems.md) to launch. Use `menu` to return to the main menu.
-
-### Advanced Arguments
-
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `launcher` | string | - | Override the default launcher |
-| `action` | string | `run` | `run` to launch, `details` to show info |
-| `when` | expression | - | Conditional execution |
 
 ### Examples
 
@@ -315,16 +357,17 @@ Searches for a game by filename pattern and launches the first result.
 ### Syntax
 
 ```zapscript
+**launch.search:<pattern>
 **launch.search:<system>/<pattern>
 ```
 
 ### Arguments
 
-**`system`** (required)
-The system ID to search within.
-
 **`pattern`** (required)
 A glob pattern to match filenames. Use `*` as a wildcard.
+
+**`system`** (optional)
+The system ID to search within. If omitted, searches all systems.
 
 ### Advanced Arguments
 
@@ -336,6 +379,12 @@ A glob pattern to match filenames. Use `*` as a wildcard.
 | `when` | expression | - | Conditional execution |
 
 ### Examples
+
+```zapscript
+**launch.search:*mario*
+```
+
+Finds and launches the first game with "mario" in the filename from any system.
 
 ```zapscript
 **launch.search:SNES/*mario*
