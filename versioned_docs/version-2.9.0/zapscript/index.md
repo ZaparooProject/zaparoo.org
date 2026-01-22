@@ -6,7 +6,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 
 | Command | Description |
 |---------|-------------|
-| [`launch`](./launch.md#launch) | Launch media from a path or identifier |
+| [`launch`](./launch.md) | Launch media from a path or identifier |
 | [`launch.title`](./launch.md#launchtitle) | Launch by title ID with explicit syntax |
 | [`launch.system`](./launch.md#launchsystem) | Launch a system/emulator |
 | [`launch.random`](./launch.md#launchrandom) | Launch a random game |

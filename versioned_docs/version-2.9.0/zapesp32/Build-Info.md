@@ -6,7 +6,7 @@ title: "Build Info"
 ZapEsp is built around the ESP32 SOC platform, which is cheap & commonly available in many iterations and forms. We have tested ZapEsp with the following versions of the SOC:  
 * [ESP32](../ESP32-Default-GPIO-Pins) (Version Tested ESP32 Wroom V1 USB-C)
 * [ESP32-S3](../ESP32%E2%80%90S3-Default-GPIO-Pins) (Version Tested ESP32-S3 Wroom N16R8)
-* [ESP32-S2 Mini](../ESP32%E2%80%90S2-Mini) Mini (Works - But not recommended due to poor wifi performance)
+* [ESP32-S2 Mini](../ESP32%E2%80%90S2-Mini-Default-GPIO-Pins) (Works - But not recommended due to poor wifi performance)
 
 Each ESP version uses different GPIO pins to connect to the other component modules used in the project. We recommend you use the default pins for the SOC type you are using. Using pins other than the default pins for your ESP32 version will require you to alter the base code. Refer to your board manufacturers instructions to establish your ESP32 version's default pins for SPI & I2C. Follow the links above to see example default GPIO pins for the ESP32 devices above.  
   

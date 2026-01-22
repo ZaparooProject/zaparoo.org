@@ -437,6 +437,12 @@ const config: Config = {
             "../$1"
           );
 
+          // Fix broken ESP32-S2-Mini link (missing -Default-GPIO-Pins suffix)
+          modifiedContent = modifiedContent.replace(
+            /\.\.\/ESP32%E2%80%90S2-Mini\)/g,
+            "../ESP32%E2%80%90S2-Mini-Default-GPIO-Pins)"
+          );
+
           // Generate title from filename (replace hyphens with spaces, remove .md)
           const baseName = filename.replace(/\.md$/, "");
           // Replace hyphens (both regular and unicode) with spaces

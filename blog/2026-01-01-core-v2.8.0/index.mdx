@@ -72,7 +72,7 @@ Your script gets access to the current platform, active media, scanned token, an
 - **Neo Geo fixes** for files inside zip archives or extracted game folders being incorrectly indexed as separate games.
 - **Alt-core path fixes** for the 80MHz N64 and 2X PSX alternative cores.
 
-## [Zap Link](/docs/zapscript/zaplinks) Improvements
+## [Zap Link](/docs/zapscript/syntax#zap-links) Improvements
 
 - **Platform detection headers** identify your device's OS, architecture, and platform. Servers can serve different scripts for different devices from the same URL.
 - **Faster first scans** by pre-warming known hosts in the background when Zaparoo starts.
@@ -95,7 +95,7 @@ Your script gets access to the current platform, active media, scanned token, an
 - **Windows installers are now signed** which helps avoid SmartScreen warnings. Thanks to [SignPath](https://signpath.io/) for sponsoring the project with free code signing.
 - **System ID aliases** in [config](/docs/core/config) options like `[[systems.default]]` and `ignore_system`. Use `megadrive`, `N64`, or `playstation` instead of exact system IDs.
 - **[Opt-in error reporting](/docs/core/config#error_reporting)** via Sentry. When enabled, anonymous crash reports help identify and fix bugs. Disabled by default.
-- [Zap Link](/docs/zapscript/zaplinks) hosts that don't support the protocol are automatically re-checked after 30 days.
+- [Zap Link](/docs/zapscript/syntax#zap-links) hosts that don't support the protocol are automatically re-checked after 30 days.
 - Launch guard prevents concurrent media launches from causing conflicts
 - Linux platform code refactored into a shared base, reducing duplication across SteamOS, Bazzite, and ChimeraOS
 - Steam code consolidated into a unified package with platform-specific implementations
