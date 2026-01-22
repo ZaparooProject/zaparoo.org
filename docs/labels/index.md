@@ -2,7 +2,7 @@
 
 <img src="/img/docs/labels/Labels_header.jpg" alt="Getting messy with labels" width="100%" />
 
-Having your favorite artwork on your NFC card is the perfect finishing touch to your Zaparoo collection. The Zaparoo team has streamlined and documented this process to accommodate every skill level, from quick digital creation to professional commercial printing.
+This page covers how to create and print labels for your NFC cards, from home printing to commercial options.
 
 :::danger[Important Legal Restrictions]
 **Copyright & Logo Usage:**
