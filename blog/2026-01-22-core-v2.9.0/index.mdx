@@ -1,0 +1,150 @@
+---
+slug: core-v2.9.0
+title: "Zaparoo Core v2.9.0 released"
+tags: [software, core]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo Core v2.9.0 is now available. This release brings a major TUI overhaul, Kodi integration, LaunchBox improvements, and several reliability fixes.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **[TUI overhaul](#tui-overhaul)** with themes, on-screen keyboard, and improved settings
+- **[Kodi launchers](#kodi-launchers)** on Steam-based platforms
+- **[LaunchBox improvements](#launchbox-improvements)** with platform discovery and merged games support
+- **[Batocera improvements](#batocera-improvements)** with auto ROM path discovery and better game exiting
+- **[PN532 driver update](#pn532-driver-update)** for more reliable scanning and tag writing
+- **[Custom launcher enhancements](#custom-launcher-enhancements)** with new configuration options
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.9.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## TUI Overhaul
+
+The terminal UI has been completely overhauled with a focus on usability and better integration with the API settings system. TUI-specific options are now stored in a separate [tui.toml](/docs/core/config#tui-config-file) file.
+
+- **Settings use API** instead of direct config manipulation, so changes take effect immediately
+- **Theme system** with multiple color schemes
+- **On-screen keyboard** for controller/gamepad input, enabled by default on MiSTer and MiSTeX
+- **Live reader status** displayed on the main menu
+- **CRT mode** for better display on CRT monitors, enabled by default on MiSTer and MiSTeX
+- **Mouse support toggle** in TUI settings
+- **Write format options** for configuring tag writing defaults
+- **Error reporting toggle** in Advanced settings with confirmation dialog
+- **Scroll indicators** and submenu markers for easier navigation
+- **Search media** now shows file paths to help distinguish game revisions
+
+Dialog sizing now respects screen bounds, and focus is properly preserved when navigating.
+
+## Kodi Launchers
+
+Steam-based platforms ([SteamOS](/docs/platforms/steamos), [Bazzite](/docs/platforms/bazzite), [ChimeraOS](/docs/platforms/chimeraos)) now support launching Kodi media content:
+
+- Local video and audio files
+- Library movies and TV episodes/shows
+- Music (songs, albums, artists)
+
+Configure Kodi settings at the group level for all Kodi launchers:
+
+```toml
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://kodi:8080"
+```
+
+## Batocera Improvements
+
+- **Auto-discover ROM paths** from EmulationStation configuration. Custom ROM locations on external drives are now automatically included in media indexing.
+- **Hotkeygen exit** is now the primary method for exiting games and emulators, with ES API as fallback. This provides more reliable game stopping.
+- **Fixed Windows game launcher** file extensions to match Batocera's configuration.
+
+## Launcher Groups
+
+Launchers can now belong to groups, allowing you to configure defaults for multiple launchers at once. For example, all Kodi launchers (KodiVideo, KodiMovie, KodiTVShow, etc.) belong to the "Kodi" group:
+
+```toml title="config.toml"
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://kodi:8080"
+```
+
+This sets `server_url` for all Kodi launchers without needing to configure each one individually. The `launcher` field in [`[launchers.default]`](/docs/core/config#launchersdefault) matches both launcher IDs and group names.
+
+## Custom Launcher Enhancements
+
+[Custom launchers](/docs/core/launchers#custom-launchers) can now use features previously only available to official launchers:
+
+- **`groups`** - Join groups to inherit settings from `[[launchers.default]]`
+- **`schemes`** - Handle URL schemes (e.g., `myplayer://`)
+- **`lifecycle`** - Run in `"blocking"` (default) or `"background"` mode
+- **`restricted`** - Require files to match `allow_file` patterns
+
+New expression variables for the `execute` command: `[[action]]`, `[[install_dir]]`, `[[server_url]]`, `[[system_id]]`, `[[launcher_id]]`. Commands also receive a `ZAPAROO_ENVIRONMENT` JSON environment variable.
+
+## LaunchBox Improvements
+
+This update requires upgrading to the latest [LaunchBox plugin](/docs/platforms/windows/launchers#launchbox).
+
+- **Platform discovery** automatically detects your LaunchBox platforms and maps custom platform names (like "Mame Arcade") to the correct Zaparoo system IDs
+- **Merged games support** indexes Additional Applications such as secondary discs, making multi-disc games scannable
+- **BigBox launching** fixed to use the correct method when BigBox is running
+
+## PN532 Driver Update
+
+The [go-pn532](https://github.com/ZaparooProject/go-pn532) driver has been updated with significant reliability improvements:
+
+- **Hold mode scanning** is now much more reliable with internal retry on RF communication failures
+- **Tag writing** is more reliable with faster Mifare authentication
+- **Empty NDEF handling** no longer causes scan failures
+- **Reconnection** fixed after unplugging and replugging readers
+
+## [ZapScript](/docs/zapscript) Improvements
+
+- **Year tags are now soft preferences** in title resolution. A year mismatch is a minor penalty rather than a strict filter, making title matching more forgiving.
+- **`media.active` includes zapScript** field with the year suffix when available
+- **Mixed tag parsing** fixed for tags like `(JP, Rev B)` which now correctly produce both region and revision tags
+- **Square bracket tags** now allow language and region tags (e.g., `[en]`, `[de]`)
+
+## API Key Authentication
+
+Optional [API key authentication](/docs/core/config#api-keys) is now available to protect remote API access. Localhost connections remain allowed without authentication.
+
+## Stable Reader IDs
+
+Reader IDs are now based on physical USB port location instead of device paths, so they persist across reboots and device name changes.
+
+## Other Changes
+
+- Migrated ZapScript parsing to the standalone [go-zapscript](https://github.com/ZaparooProject/go-zapscript) module
+- Group-based hierarchical configuration for launcher defaults
+- Hold mode reliability improved - reader disconnects no longer incorrectly trigger game exit
+
+## Bug Fixes
+
+- Fixed `?action=details` not working with title format launches
+- Fixed MiSTer alt core RBF paths for cores like 2XPSX
+- Fixed RetroBat falsely reporting "not running" errors
+- Fixed BigBox game launching not working
+- Fixed hold mode exiting games when reader disconnects
+- Fixed mixed tag parsing in filenames like `(JP, Rev B)`
+- Fixed ZapScript execution not being disabled while TUI is open on non-MiSTer platforms
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
