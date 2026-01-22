@@ -1,6 +1,6 @@
 # Community
 
-The Zaparoo community is active across several platforms, each serving different purposes and communication styles. We welcome you to join us on any or all of these platforms!
+The Zaparoo community is active on several platforms.
 
 ## Discord
 
@@ -25,4 +25,4 @@ For those who prefer federated services, we also have a presence on [Lemmy](http
 
 ## Code of Conduct
 
-Please note that our [Code of Conduct](/conduct/) applies to all community platforms. We strive to maintain a welcoming and respectful environment across all our communication channels.
+Our [Code of Conduct](/conduct/) applies to all community platforms.

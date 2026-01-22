@@ -25,11 +25,11 @@ Zaparoo Designer is a web-based application for creating custom labels for your 
 
 ## Template System
 
-The Designer uses an extensive SVG-based template system that allows for:
+The Designer uses an SVG-based template system:
 
 - **Community Contributions**: Templates are contributed by the community with Creative Commons licensing
 - **Flexible Layouts**: Both horizontal and vertical orientations for different card types
-- **Image Placeholders**: Smart image positioning with fit strategies for optimal artwork display
+- **Image Placeholders**: Configurable image positioning and fit options
 - **Multiple Media Types**: Support for standard NFC cards, mini cards, and custom dimensions
 
 ## Contributing Templates

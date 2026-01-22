@@ -1,6 +1,6 @@
 # Printing Guide
 
-Creating high-quality Zaparoo labels requires the right combination of design, materials, and printing technique. This guide covers both home printing and commercial printing options.
+This guide covers home printing and commercial printing options.
 
 :::danger[Copyright Notice]
 **You are solely responsible for ensuring you have the legal right to print any artwork.** This includes video game artwork, movie posters, music album covers, and any copyrighted images. The Zaparoo project cannot offer pre-printed labels due to intellectual property concerns.
@@ -12,18 +12,18 @@ Creating high-quality Zaparoo labels requires the right combination of design, m
 
 Any inkjet or color laser printer from reputable brands (Epson, HP, Canon, Brother) will work well. Higher-end printers produce better quality results, but standard home printers with CMYK cartridges or eco-tanks offer good cost-to-quality balance.
 
-**Photo printers** with additional inks beyond CMYK provide superior color reproduction and fidelity, especially when paired with premium materials.
+**Photo printers** with additional inks beyond CMYK produce more accurate colors, especially when paired with photo paper.
 
 ### Materials Comparison
 
 | Material Type | Cost | Appearance | Best For |
 |---------------|------|------------|----------|
 | **Standard Paper** | Low | Basic | Testing designs, budget builds |
-| **Photo Paper** | Medium | Vibrant colors | High-quality appearance |
-| **Sticker Paper** | Medium | Professional | Self-adhesive convenience |
+| **Photo Paper** | Medium | Good colors | Better appearance |
+| **Sticker Paper** | Medium | Clean | Self-adhesive convenience |
 
 :::tip
-<ProductLink href="https://www.amazon.com/HTVRONT-Printable-Vinyl-Sticker-Paper/dp/B09YCFRT37" store="amazon">Printable sticker paper</ProductLink> in matte finish reduces glare and fingerprints while providing professional results.
+<ProductLink href="https://www.amazon.com/HTVRONT-Printable-Vinyl-Sticker-Paper/dp/B09YCFRT37" store="amazon">Printable sticker paper</ProductLink> in matte finish reduces glare and fingerprints.
 :::
 
 ### Cutting Techniques
@@ -32,7 +32,7 @@ Any inkjet or color laser printer from reputable brands (Epson, HP, Canon, Broth
 - **Scissors:** Most accessible, good for small batches
 - **Craft knife & ruler:** Precise cuts, requires cutting mat and safety precautions
 - **Paper trimmer:** Fast, consistent straight cuts with built-in measurements
-- **Corner rounder:** Creates professional rounded corners (3mm ideal, 4mm acceptable)
+- **Corner rounder:** Rounds corners to match NFC cards (3mm ideal, 4mm acceptable)
 
 **Advanced Options:**
 - **Plotter devices** (Cricut, Silhouette): "Print and Cut" function allows precise automatic cutting of complex shapes and batch processing
@@ -53,7 +53,7 @@ Any inkjet or color laser printer from reputable brands (Epson, HP, Canon, Broth
 
 ## Commercial Printing
 
-Professional printing becomes cost-effective for orders of 50+ labels and offers superior materials and finishes.
+Professional printing becomes cost-effective for orders of 50+ labels and offers more material options.
 
 ### File Requirements
 
@@ -92,7 +92,7 @@ Before ordering, confirm:
 ## Material Options
 
 :::tip
-Photo paper or vinyl stickers with matte finish give a polished look. Self-adhesive sticker paper offers convenience.
+Photo paper or vinyl stickers with matte finish look good. Self-adhesive sticker paper is convenient.
 :::
 
 - **Higher quality:** Photo paper or vinyl stickers with matte finish
@@ -109,8 +109,7 @@ Photo paper or vinyl stickers with matte finish give a polished look. Self-adhes
 
 Labels include a 1/32" (0.79mm) margin from card edge for:
 - Application error tolerance
-- Improved durability (prevents edge peeling)
-- Professional appearance
+- Durability (prevents edge peeling)
 
 ### Artwork Margins
 

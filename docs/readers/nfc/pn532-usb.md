@@ -1,6 +1,6 @@
 # PN532 USB
 
-The PN532 is a popular NFC chip used in many readers. This USB version is affordable, plug-and-play, and works on all platforms.
+The PN532 is a common NFC chip used in many readers. This USB version is cheap, works out of the box, and runs on all platforms.
 
 :::tip
 This reader is a good starting point for new Zaparoo users due to its low cost and universal compatibility.
@@ -12,8 +12,8 @@ This reader is a good starting point for new Zaparoo users due to its low cost a
 
 - **Plug and play** - No drivers or setup required
 - **Affordable** - Starting at around $5 USD
-- **Universal compatibility** - Works on all [platforms](../../platforms/index.md)
-- **USB Type-C** - Modern connector standard
+- **Cross-platform** - Works on all [platforms](../../platforms/index.md)
+- **USB Type-C** - Common on newer modules
 - **Compact size** - Very small footprint
 - **Full NFC support** - Same functionality as all PN532 readers
 - **Community cases** - Fits in available 3D-printed cases
