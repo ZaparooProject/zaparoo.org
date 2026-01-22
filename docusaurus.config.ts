@@ -399,6 +399,65 @@ const config: Config = {
       },
     ],
     [
+      "docusaurus-plugin-remote-content",
+      {
+        name: "zapesp32-wiki",
+        sourceBaseUrl:
+          "https://raw.githubusercontent.com/wiki/ZaparooProject/zaparoo-esp32/",
+        outDir: "docs/zapesp32",
+        documents: [
+          "Home.md",
+          "Arduino-Studio-Setup.md",
+          "Build-Info.md",
+          "Connecting-to-Zaparoo.md",
+          "Creating-RFID-Cards-Tags-&-Mappings.md",
+          "ESP32-Default-GPIO-Pins.md",
+          "ESP32‐S2-Mini-Default-GPIO-Pins.md",
+          "ESP32‐S3-Default-GPIO-Pins.md",
+          "File-Manager.md",
+          "Flashing-the-ESP32.md",
+          "Tips-On-Audio-Files.md",
+          "UID-Audio-Control.md",
+          "Web-Development-Setup.md",
+          "WiFi-Setup.md",
+          "ZapEsp32-Configuration.md",
+          "ZapEsp32-Defaults.md",
+        ],
+        modifyContent(filename, content) {
+          // Fix image URLs: convert github.com blob URLs to raw.githubusercontent.com
+          let modifiedContent = content.replace(
+            /https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\//g,
+            "https://raw.githubusercontent.com/$1/$2/$3/"
+          );
+
+          // Convert internal wiki links to relative links
+          // Use ../ because trailingSlash: true means pages are /Page-Name/
+          modifiedContent = modifiedContent.replace(
+            /https:\/\/github\.com\/ZaparooProject\/zaparoo-esp32\/wiki\/([^\s)]+)/g,
+            "../$1"
+          );
+
+          // Generate title from filename (replace hyphens with spaces, remove .md)
+          const baseName = filename.replace(/\.md$/, "");
+          // Replace hyphens (both regular and unicode) with spaces
+          // Special case: Home.md becomes ZapESP32
+          const title =
+            baseName === "Home"
+              ? "ZapESP32"
+              : baseName.replace(/[-‐]/g, " ");
+
+          // Add frontmatter with title
+          const frontmatter = `---\ntitle: "${title}"\n---\n\n`;
+          modifiedContent = frontmatter + modifiedContent;
+
+          if (filename === "Home.md") {
+            return { filename: "index.md", content: modifiedContent };
+          }
+          return { content: modifiedContent };
+        },
+      },
+    ],
+    [
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
