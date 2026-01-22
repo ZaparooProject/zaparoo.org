@@ -18,6 +18,10 @@ The Zaparoo App's tag writing functionality is available for free. You can start
 
 ## Where To Buy
 
+:::tip Official Support
+Looking for pre-printed NFC cards? Get them from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> which directly supports the project!
+:::
+
 NFC tags are readily available on Amazon, eBay and AliExpress by searching for the standard, form factor and storage size if applicable (e.g. NTAG215 NFC card, NTAG213 NFC sticker). You'll also find them on many local "NFC" and "ID" related stores. At this stage no difference in quality has been noted between suppliers. AliExpress offers NFC tokens in bulk at low prices.
 
 ## Supported Tag Types
