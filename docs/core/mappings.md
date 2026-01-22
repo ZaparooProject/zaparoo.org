@@ -1,6 +1,6 @@
 # Mappings
 
-**Mappings** are a feature of Zaparoo Core to assign custom [ZapScript](../zapscript/index.md) to a token based on some criteria to detect when that token has been scanned. This is useful for making tokens work with Zaparoo that don't have any rewritable storage, such as barcodes and NFC toys like Amiibos.
+**Mappings** are a feature of Zaparoo Core to assign custom [ZapScript](../zapscript/index.md) to a token based on some criteria to detect when that token has been scanned. This is useful for making tokens work with Zaparoo that don't have any rewritable storage, such as [barcodes](../tokens/qr-codes.md) and NFC toys like [Amiibos](../tokens/nfc-toys/amiibo.md).
 
 There are two main methods of managing mappings in an instance of Core. Other applications may use these methods to add management GUIs or automate creation of mappings.
 
