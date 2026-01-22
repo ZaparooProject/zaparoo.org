@@ -10,6 +10,8 @@ These commands launch games, systems, and other media.
 
 Launches media from a path or identifier.
 
+The `launch` command is implied when no command prefix is used (Auto Launch mode). For example, simply writing `Genesis/Sonic the Hedgehog.md` will launch that game.
+
 ### Syntax
 
 ```zapscript
@@ -23,14 +25,14 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `launcher` | string | - | Override the default launcher |
-| `system` | string | - | Apply system defaults to a local file path |
-| `action` | string | `run` | `run` to launch, `details` to show info (Steam only) |
-| `name` | string | - | Custom display name for remote downloads |
-| `pre_notice` | string | - | Message to show before downloading |
-| `when` | expression | - | Conditional execution |
+| Argument     | Type       | Default | Description                                          |
+| ------------ | ---------- | ------- | ---------------------------------------------------- |
+| `launcher`   | string     | -       | Override the default launcher                        |
+| `system`     | string     | -       | Apply system defaults to a local file path           |
+| `action`     | string     | `run`   | `run` to launch, `details` to show info (Steam only) |
+| `name`       | string     | -       | Custom display name for remote downloads             |
+| `pre_notice` | string     | -       | Message to show before launching                     |
+| `when`       | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -97,6 +99,7 @@ Both forms use fuzzy matching to find games regardless of filename differences b
 ```
 
 Tag operators:
+
 - `(tag:value)` or `(+tag:value)` - must have this tag (AND)
 - `(-tag:value)` - must not have this tag (NOT)
 - `(~tag:value)` - at least one of these must match (OR)
@@ -113,7 +116,7 @@ TurboGrafx16/Game.pce
 PCEngine/Game.pce
 ```
 
-Works across devices with different folder structures. System aliases are supported.
+Works across different devices with the same internal folder structure. System aliases are supported.
 
 #### Absolute Path
 
@@ -122,8 +125,6 @@ Direct path starting with `/`:
 ```zapscript
 /media/fat/games/Genesis/Game.md
 ```
-
-Only works on the specific device.
 
 #### Relative Path
 
@@ -134,7 +135,7 @@ Genesis/1 US - Q-Z/Game.md
 _Arcade/Game.mra
 ```
 
-Works across different storage locations (USB, SD card, network).
+Similar to system lookup but uses the exact system games folder name.
 
 #### Glob Patterns
 
@@ -156,17 +157,13 @@ _Arcade/@Arcade - Konami.zip/Pong.mra
 Genesis/@Genesis - 2022-05-18.zip/Sonic.md
 ```
 
-The platform launcher handles extracting and launching from the archive.
-
 #### URI Schemes
 
-URIs are passed directly to the platform launcher:
+URIs are passed directly to the appropriate platform launcher:
 
 ```zapscript
 steam://1145360
 ```
-
-Steam URLs launch or show details for the specified app ID. Use `action=details` to open the Steam library page instead of launching.
 
 ### Remote Install
 
@@ -183,7 +180,7 @@ The `system` argument is required for remote URLs. Files are cached locally afte
 
 ## launch.title
 
-Launches media by title ID with explicit syntax.
+Launches media by title ID.
 
 ### Syntax
 
@@ -208,12 +205,12 @@ The game title to search for. Supports fuzzy matching.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `launcher` | string | - | Override the default launcher |
-| `tags` | string | - | Tag filters (alternative to inline format) |
-| `action` | string | `run` | `run` to launch, `details` to show info |
-| `when` | expression | - | Conditional execution |
+| Argument   | Type       | Default | Description                                |
+| ---------- | ---------- | ------- | ------------------------------------------ |
+| `launcher` | string     | -       | Override the default launcher              |
+| `tags`     | string     | -       | Tag filters (alternative to inline format) |
+| `action`   | string     | `run`   | `run` to launch, `details` to show info    |
+| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -256,6 +253,12 @@ Launches a system/emulator without loading specific media.
 **`system`** (required)
 The [system ID](../systems.md) to launch. Use `menu` to return to the main menu.
 
+### Advanced Arguments
+
+| Argument | Type       | Default | Description           |
+| -------- | ---------- | ------- | --------------------- |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
 ### Examples
 
 ```zapscript
@@ -293,22 +296,22 @@ Launches a random game from specified systems or search criteria.
 **`query`** (required)
 One of the following formats:
 
-| Format | Description |
-|--------|-------------|
-| `<system>` | Random game from one system |
-| `<system1>,<system2>,...` | Random from multiple systems |
-| `all` | Random from any system |
-| `/path/to/folder` | Random file from a folder |
-| `<system>/*pattern*` | Random matching a glob pattern |
+| Format                    | Description                    |
+| ------------------------- | ------------------------------ |
+| `<system>`                | Random game from one system    |
+| `<system1>,<system2>,...` | Random from multiple systems   |
+| `all`                     | Random from any system         |
+| `/path/to/folder`         | Random file from a folder      |
+| `<system>/*pattern*`      | Random matching a glob pattern |
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `launcher` | string | - | Override the default launcher |
-| `tags` | string | - | Tag filters to narrow results |
-| `action` | string | `run` | `run` to launch, `details` to show info |
-| `when` | expression | - | Conditional execution |
+| Argument   | Type       | Default | Description                             |
+| ---------- | ---------- | ------- | --------------------------------------- |
+| `launcher` | string     | -       | Override the default launcher           |
+| `tags`     | string     | -       | Tag filters to narrow results           |
+| `action`   | string     | `run`   | `run` to launch, `details` to show info |
+| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -371,12 +374,12 @@ The system ID to search within. If omitted, searches all systems.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `launcher` | string | - | Override the default launcher |
-| `tags` | string | - | Tag filters to narrow results |
-| `action` | string | `run` | `run` to launch, `details` to show info |
-| `when` | expression | - | Conditional execution |
+| Argument   | Type       | Default | Description                             |
+| ---------- | ---------- | ------- | --------------------------------------- |
+| `launcher` | string     | -       | Override the default launcher           |
+| `tags`     | string     | -       | Tag filters to narrow results           |
+| `action`   | string     | `run`   | `run` to launch, `details` to show info |
+| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

@@ -85,7 +85,7 @@ Multiple advanced arguments:
 **example:arg1?adv_arg1=foo&adv_arg2=bar
 ```
 
-If and argument contains a `&` character, it must be escaped or quoted so it is not treated as a new advanced argument.
+If an argument contains a `&` character, it must be escaped or quoted so it is not treated as a new advanced argument.
 
 ## Escaping Characters
 
@@ -121,7 +121,7 @@ Some special characters may be inserted using escape sequences:
 - `^t` for a tab character.
 - `^r` for a carriage return character.
 
-Keep in mind if these will still be trimmed at runtime if they're at the start or end of an argument, so you may need to quote them if you want to preserve them.
+Keep in mind these will still be trimmed at runtime if they're at the start or end of an argument, so you must quote them if you want to preserve them.
 
 ## Quoting Arguments
 
@@ -252,7 +252,7 @@ Currently all ZapScript received via a zap link will be tagged as "unsafe" which
 
 ### Platform Detection
 
-ZapLink servers receive headers identifying the device making the request:
+Zap Link servers receive headers identifying the device making the request:
 
 | Header             | Description      | Example                                   |
 | ------------------ | ---------------- | ----------------------------------------- |
@@ -264,9 +264,7 @@ Servers can use these headers to serve different scripts for different devices f
 
 ### Self-Hosting
 
-It's easy to host your own "zap link server" as long as it follows the conventions above.
-
-#### Python
+It's easy to host your own Zap Link server as long as it follows the conventions above.
 
 Here's an example in Python which would serve a directory of text files as zap links:
 
@@ -296,44 +294,19 @@ if __name__ == "__main__":
     app.run()
 ```
 
-#### NGINX
-
-And another example using an NGINX server:
-
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.com;
-
-    location = /.well-known/zaparoo {
-        alias /var/www/.well-known/zaparoo;
-        add_header Content-Type application/json;
-        try_files $uri =404;
-    }
-
-    location ~ ^/(.*)$ {
-        alias /var/www/zaps/$1.txt;
-        add_header Content-Type application/vnd.zaparoo.zapscript;
-        try_files $uri =404;
-    }
-}
-```
-
-This one also requires the well-known JSON file lives on disk too.
-
 ## Deprecated Commands
 
 These older command names are kept for compatibility. New scripts should use the current names.
 
-| Deprecated | Use Instead |
-|------------|-------------|
-| `key` | [`input.keyboard`](./input.md#inputkeyboard) |
-| `input.key` | [`input.keyboard`](./input.md#inputkeyboard) |
-| `coinp1` | [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2) |
-| `coinp2` | [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2) |
-| `random` | [`launch.random`](./launch.md#launchrandom) |
-| `shell` | [`execute`](./utilities.md#execute) |
-| `command` | [`execute`](./utilities.md#execute) |
-| `system` | [`launch.system`](./launch.md#launchsystem) |
-| `get` | [`http.get`](./http.md#httpget) |
-| `ini` | [`mister.ini`](./mister.md#misterini) |
+| Deprecated  | Use Instead                                           |
+| ----------- | ----------------------------------------------------- |
+| `key`       | [`input.keyboard`](./input.md#inputkeyboard)          |
+| `input.key` | [`input.keyboard`](./input.md#inputkeyboard)          |
+| `coinp1`    | [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2) |
+| `coinp2`    | [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2) |
+| `random`    | [`launch.random`](./launch.md#launchrandom)           |
+| `shell`     | [`execute`](./utilities.md#execute)                   |
+| `command`   | [`execute`](./utilities.md#execute)                   |
+| `system`    | [`launch.system`](./launch.md#launchsystem)           |
+| `get`       | [`http.get`](./http.md#httpget)                       |
+| `ini`       | [`mister.ini`](./mister.md#misterini)                 |

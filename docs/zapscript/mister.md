@@ -23,9 +23,9 @@ The ini file index (`1` to `4`) as shown in the MiSTer menu.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -60,13 +60,13 @@ Launches a MiSTer core .rbf file directly.
 ### Arguments
 
 **`path`** (required)
-Path to the core, relative to the SD card root. Uses the same format as the `rbf` tag in MGL files - the filename ending can be omitted for version-agnostic launching.
+Path to the core, relative to the SD card root. Uses the same format as the `rbf` tag in MGL files - the filename ending can be omitted.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -107,10 +107,10 @@ The script filename (must exist in `/media/fat/Scripts`). Arguments can be inclu
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `hidden` | boolean | `false` | Run the script in the background without displaying on screen |
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `hidden` | boolean    | `false` | Run the script in the background without displaying on screen      |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -155,9 +155,9 @@ The MGL XML content as a string. A temporary MGL file is created and launched.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

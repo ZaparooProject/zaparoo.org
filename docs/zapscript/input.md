@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Input
 
-These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons.
+These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons. These commands currently aren't enabled on desktop platforms like Windows and Linux.
 
 ## input.keyboard
 
@@ -25,13 +25,13 @@ The keys to press. Regular characters are typed directly, with a 100ms delay bet
 
 **Escaping:** Use `\{` and `\}` for literal curly braces, `\\` for a literal backslash.
 
-**Key combos (MiSTer only):** Use `+` between keys inside braces, e.g., `{shift+esc}`.
+**Key combos:** Use `+` between keys inside braces, e.g., `{shift+esc}`.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -51,7 +51,7 @@ Types "qWeRty", presses Enter, presses Up arrow, then types "aaa".
 **input.keyboard:{shift+esc}
 ```
 
-Presses Shift+Escape together (MiSTer only).
+Presses Shift+Escape together.
 
 ```zapscript
 **input.keyboard:{f12}
@@ -69,6 +69,8 @@ This command is blocked when the script comes from a remote source.
 
 Simulates gamepad button presses.
 
+This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game/emulator to work and it can't, for example, pretend to be player 1 if a real controller is already connected as player 1. This command is currently disabled on Batocera due to compatibility issues.
+
 ### Syntax
 
 ```zapscript
@@ -82,29 +84,29 @@ The buttons to press in sequence. Supports both single characters and named butt
 
 **Button mappings:**
 
-| Input | Button |
-|-------|--------|
-| `^`, `{up}` | D-pad up |
-| `V`, `{down}` | D-pad down |
-| `<`, `{left}` | D-pad left |
-| `>`, `{right}` | D-pad right |
-| `A`, `a` | East button |
-| `B`, `b` | South button |
-| `X`, `x` | North button |
-| `Y`, `y` | West button |
-| `L`, `l`, `{l1}` | Left bumper |
-| `R`, `r`, `{r1}` | Right bumper |
-| `{l2}` | Left trigger |
-| `{r2}` | Right trigger |
-| `{start}` | Start |
-| `{select}` | Select |
-| `{menu}` | Menu/Guide button |
+| Input            | Button            |
+| ---------------- | ----------------- |
+| `^`, `{up}`      | D-pad up          |
+| `V`, `{down}`    | D-pad down        |
+| `<`, `{left}`    | D-pad left        |
+| `>`, `{right}`   | D-pad right       |
+| `A`, `a`         | East button       |
+| `B`, `b`         | South button      |
+| `X`, `x`         | North button      |
+| `Y`, `y`         | West button       |
+| `L`, `l`, `{l1}` | Left bumper       |
+| `R`, `r`, `{r1}` | Right bumper      |
+| `{l2}`           | Left trigger      |
+| `{r2}`           | Right trigger     |
+| `{start}`        | Start             |
+| `{select}`       | Select            |
+| `{menu}`         | Menu/Guide button |
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -130,10 +132,6 @@ Presses A, A, B, B in sequence.
 This command is blocked when the script comes from a remote source.
 :::
 
-:::info
-The virtual gamepad appears as an additional controller to the system. It may need to be mapped manually in your game or emulator, and won't replace an existing connected controller.
-:::
-
 ---
 
 ## input.coinp1 / input.coinp2
@@ -154,9 +152,9 @@ The number of coins to insert.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -179,5 +177,5 @@ Inserts 3 coins for player 2.
 Inserts 2 coins for each player.
 
 :::info
-These commands press the `5` key (player 1) or `6` key (player 2), which are the standard coin insert keys for MiSTer arcade cores. If it doesn't work, try mapping the coin insert keys manually in the OSD.
+These commands press the `5` key (player 1) or `6` key (player 2), which are the standard coin insert keys for MiSTer arcade cores and MAME. If it doesn't work, try mapping the coin insert keys manually.
 :::

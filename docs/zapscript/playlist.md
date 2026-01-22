@@ -32,7 +32,7 @@ Title2=Another Game
 
 The `Title` line is optional. Items are sorted by the ID numbers (`File1`, `File2`, etc.), not by order in the file.
 
-File paths can be absolute, system lookup paths, or relative to the playlist file location:
+File paths are ZapScript commands, they can either be literal paths or use any supported command(s).
 
 ```
 [playlist]
@@ -50,6 +50,7 @@ Define a playlist directly in the command using JSON:
 ```
 
 Fields:
+
 - `id` - Unique identifier (used to detect if the same playlist is reloaded)
 - `name` - Display name for the playlist (optional)
 - `items` - Array of playlist items:
@@ -75,10 +76,10 @@ Path to a folder, `.pls` file, or inline JSON playlist. If omitted, resumes the 
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `mode` | string | - | Set to `shuffle` for random order |
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -119,10 +120,10 @@ Path to a folder, `.pls` file, or inline JSON playlist.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `mode` | string | - | Set to `shuffle` for random order |
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -157,10 +158,10 @@ Path to a folder, `.pls` file, or inline JSON playlist. If omitted, reopens the 
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `mode` | string | - | Set to `shuffle` for random order |
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -194,9 +195,9 @@ None.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -224,9 +225,9 @@ None.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -254,9 +255,9 @@ None.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -284,9 +285,9 @@ None.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -315,9 +316,9 @@ The 1-based index of the item to launch.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
