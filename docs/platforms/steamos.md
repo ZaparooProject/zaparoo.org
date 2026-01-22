@@ -15,23 +15,21 @@ Assuming the default `deck` account.
 
 ## Install
 
-In Desktop Mode, download Zaparoo Core for SteamOS from the [Downloads page](/downloads/), unzip and copy the `zaparoo` file to your home directory.
-
-Open Konsole and run:
+In Desktop Mode, open Konsole and run:
 
 ```bash
-cd /home/deck
-sudo ./zaparoo -install
-sudo systemctl enable zaparoo.service
-sudo systemctl start zaparoo.service
+curl -fsSL https://zaparoo.org/install.sh | bash
 ```
 
-If you've never used sudo, first run `passwd` to set an account password.
+This installs all necessary components and sets up the service to run on startup. Since SteamOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
 
 To uninstall:
 
 ```bash
-sudo ./zaparoo -uninstall
+~/.local/bin/zaparoo -uninstall application
+~/.local/bin/zaparoo -uninstall service
+~/.local/bin/zaparoo -uninstall desktop
+sudo ~/.local/bin/zaparoo -uninstall hardware
 ```
 
 ## Readers

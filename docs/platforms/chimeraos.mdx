@@ -19,21 +19,21 @@ Where `~` is the home directory of the `gamer` user.
 
 ## Install
 
-Download Zaparoo Core for ChimeraOS from the [Downloads page](/downloads/), unzip it and copy the `zaparoo` file to your home directory.
-
-Access the terminal with `Ctrl+Alt+F2` (default credentials: `gamer` / `gamer`).
+Access the terminal with `Ctrl+Alt+F2` (default credentials: `gamer` / `gamer`) and run:
 
 ```bash
-cd $HOME
-./zaparoo -install
-systemctl --user enable zaparoo.service
-systemctl --user start zaparoo.service
+curl -fsSL https://zaparoo.org/install.sh | bash
 ```
+
+This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
 
 To uninstall:
 
 ```bash
-./zaparoo -uninstall
+~/.local/bin/zaparoo -uninstall application
+~/.local/bin/zaparoo -uninstall service
+~/.local/bin/zaparoo -uninstall desktop
+sudo ~/.local/bin/zaparoo -uninstall hardware
 ```
 
 ## Readers
