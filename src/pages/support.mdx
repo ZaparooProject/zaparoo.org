@@ -1,0 +1,64 @@
+import { Download, Upload } from 'lucide-react';
+
+# Support
+
+Need help with Zaparoo? Here's how to report issues and get the info we need to help.
+
+## Getting Help
+
+Try searching the docs first. When reporting a bug, please include a [log file](#collecting-logs) to help troubleshoot.
+
+- **[Discord](https://zaparoo.org/discord)** - Quickest way to get help
+- **[Subreddit](https://reddit.com/r/Zaparoo)** - If you prefer Reddit
+- **[GitHub Issues](https://github.com/ZaparooProject/zaparoo-core/issues)** - For bug reports and feature requests
+- **[Documentation](/docs)** - Guides and reference
+  - [Platforms](/docs/platforms) - Installation guides for each platform
+  - [Readers](/docs/readers) - Hardware setup and troubleshooting
+  - [ZapScript](/docs/zapscript) - Commands and syntax for tokens
+  - [Config](/docs/core/config) - All configuration options
+
+## Error Reporting
+
+Zaparoo has built-in error reporting powered by [Sentry](https://sentry.io). Error reports are anonymized and contain no personal information, but this is off by default for privacy. Turning it on helps us find and fix bugs faster.
+
+To enable error reporting:
+1. Open the Zaparoo App or TUI
+2. Go to **Settings > Advanced**
+3. Enable **Error Reporting**
+
+## Collecting Logs
+
+Here's how to get your log file:
+
+### Via Zaparoo App
+
+1. Go to **Settings > Advanced > View logs**
+2. Tap one of:
+   - **Download** (<Download size={16} />) to save the log file
+   - **Upload** (<Upload size={16} />) to send it to *logs.zaparoo.org* and get a shareable link
+
+### Via TUI
+
+1. Go to **Settings > Logs**
+2. Select one of:
+   - **Copy** to save the log file
+   - **Upload** to send it to *logs.zaparoo.org* and get a shareable link
+
+:::warning[MiSTer Only]
+The Zaparoo log file on MiSTer is deleted every time the system is powered off. Make sure to collect logs after encountering an issue and before turning off the MiSTer.
+:::
+
+## Debug Logging
+
+Debug logging captures more detailed information than standard logs. It's disabled by default because it can make logs noisy.
+
+To enable debug logging:
+1. Open the Zaparoo App or TUI
+2. Go to **Settings > Advanced**
+3. Enable **Debug Logging**
+4. Reproduce the issue you're troubleshooting
+5. Collect the logs as described above
+
+:::tip
+All these settings can also be configured directly in the [config file](/docs/core/config).
+:::
