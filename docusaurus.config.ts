@@ -324,6 +324,11 @@ const config: Config = {
               "data-umami-event": "footer-nav-privacy",
             },
             {
+              label: "App Privacy",
+              to: "/app-privacy/",
+              "data-umami-event": "footer-nav-app-privacy",
+            },
+            {
               label: "Terms of Use",
               to: "/terms/",
               "data-umami-event": "footer-nav-terms",
