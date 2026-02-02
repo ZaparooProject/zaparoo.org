@@ -120,6 +120,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Bash scripts for composing and printing custom Zaparoo cards. Includes `imagemagick_composer.sh` for batch image composition (combining cover art and marquees with templates) and `print_composer.sh` for arranging cards into print-ready 8.5x11" pages at 300 DPI.
 
+- **[NFC Card Generator](https://github.com/Anime0t4ku/NFC-Card-Generator)** by *Anime0t4ku*
+
+  Desktop app for generating printable NFC card labels. Pulls cover art from SteamGrid and TMDB, with custom template support.
+
 ## Tokens
 
 ### Storage

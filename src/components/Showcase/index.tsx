@@ -1,18 +1,111 @@
 import { MasonryPhotoAlbum, RowsPhotoAlbum } from "react-photo-album";
-import type { Photo } from "react-photo-album";
+import type { Photo, RenderImageProps } from "react-photo-album";
 import "react-photo-album/masonry.css";
 import "react-photo-album/rows.css";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import { useState } from "react";
-import { Captions } from "yet-another-react-lightbox/plugins";
+import { Captions, Video } from "yet-another-react-lightbox/plugins";
+import styles from "../Gallery/styles.module.css";
 
-interface FeaturedPhoto extends Photo {
+interface ShowcasePhoto {
+  type?: "photo";
+  src: string;
+  width: number;
+  height: number;
+  alt?: string;
   featured?: boolean;
 }
 
-const allPhotos: FeaturedPhoto[] = [
+interface ShowcaseVideo {
+  type: "video";
+  poster: string;
+  src: string;
+  width: number;
+  height: number;
+  alt?: string;
+  featured?: boolean;
+}
+
+type ShowcaseItem = ShowcasePhoto | ShowcaseVideo;
+
+const allMedia: ShowcaseItem[] = [
+  // Community Showcase #3
+  {
+    type: "video",
+    poster: "/img/showcase/hobbett_numpad_launcher_thumb.webp",
+    src: "/img/showcase/hobbett_numpad_launcher.mp4",
+    width: 480,
+    height: 854,
+    alt: "Numpad game launcher. Credit: hobbett @ Discord",
+  },
+  {
+    src: "/img/showcase/Phoenix_super_zap_boy.webp",
+    width: 1200,
+    height: 1200,
+    alt: "Super Zap Boy build. Credit: Phoenix @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/LoVeMaKeRz_mini_collection_thumb.webp",
+    src: "/img/showcase/LoVeMaKeRz_mini_collection.mp4",
+    width: 1280,
+    height: 720,
+    alt: "Mini console reader collection. Credit: LoVeMaKeRz @ Discord",
+  },
+  {
+    src: "/img/showcase/Babixbabix_gb_shell.webp",
+    width: 965,
+    height: 1200,
+    alt: "NFC reader in Gameboy shell. Credit: Babixbabix @ Discord",
+  },
+  {
+    src: "/img/showcase/Anime0t4ku_collection.webp",
+    width: 1200,
+    height: 900,
+    alt: "NFC card collection. Credit: Anime0t4ku @ Discord",
+  },
+  {
+    src: "/img/showcase/tangocat_pistation_screen.webp",
+    width: 900,
+    height: 1200,
+    alt: "RetroFlag PiStation with hidden NFC reader. Credit: tangocat @ Discord",
+  },
+  {
+    src: "/img/showcase/Pullle_shelfmode4.webp",
+    width: 1200,
+    height: 900,
+    alt: "SHELFMODE project with vertical NFC carts. Credit: Pullle @ Discord",
+    featured: true,
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/强哥_mini_arcade_thumb.webp",
+    src: "/img/showcase/强哥_mini_arcade.mp4",
+    width: 960,
+    height: 540,
+    alt: "Mini Zaparoo arcade with coin slot. Credit: 强哥 @ Discord",
+  },
+  {
+    src: "/img/showcase/tycal_tv_build.webp",
+    width: 701,
+    height: 1200,
+    alt: "Retro TV setup running Zaparoo on Kodi. Credit: tycal @ Discord",
+  },
+  {
+    src: "/img/showcase/Zag_sleeve1.webp",
+    width: 546,
+    height: 1200,
+    alt: "Printable NFC card sleeve template. Credit: Zag @ Discord",
+  },
+  {
+    src: "/img/showcase/spellwells_skyrim_box.webp",
+    width: 900,
+    height: 1200,
+    alt: "Skyrim box set with NES cartridge NFC tag. Credit: spellwells @ Discord",
+  },
+  // Community Showcase #2
   {
     src: "/img/showcase/Schlarp_game_cards.webp",
     width: 1200,
@@ -172,7 +265,7 @@ const allPhotos: FeaturedPhoto[] = [
     width: 1200,
     height: 900,
     alt: "3D printed mini PlayStation console and discs. Credit: LoVeMaKeRz @ Discord",
-    featured: true,
+    featured: false,
   },
   {
     src: "/img/showcase/LoVeMaKeRz_paprium.webp",
@@ -378,17 +471,65 @@ export default function Showcase(props: {
   limit?: number;
   featured?: boolean;
 }) {
-  let photos = allPhotos;
+  let media = allMedia;
 
   if (props.featured) {
-    photos = allPhotos.filter((photo) => photo.featured);
+    media = allMedia.filter((item) => item.featured);
   }
 
   if (props.limit) {
-    photos = photos.slice(0, props.limit);
+    media = media.slice(0, props.limit);
   }
 
   const [index, setIndex] = useState(-1);
+
+  // Track which sources are videos (by poster URL)
+  const videoPosterUrls = new Set(
+    media
+      .filter((item): item is ShowcaseVideo => item.type === "video")
+      .map((item) => item.poster)
+  );
+
+  // For the photo album grid, use poster images for videos
+  const photos: Photo[] = media.map((item) => ({
+    src: item.type === "video" ? item.poster : item.src,
+    width: item.width,
+    height: item.height,
+    alt: item.alt,
+  }));
+
+  // For the lightbox, map to correct slide types
+  const slides = media.map((item) => {
+    if (item.type === "video") {
+      return {
+        type: "video" as const,
+        poster: item.poster,
+        width: item.width,
+        height: item.height,
+        sources: [{ src: item.src, type: "video/mp4" }],
+        description: item.alt,
+      };
+    }
+    return {
+      src: item.src,
+      width: item.width,
+      height: item.height,
+      description: item.alt,
+    };
+  });
+
+  const renderImage = ({ alt, src, ...restProps }: RenderImageProps) => {
+    const isVideo = videoPosterUrls.has(src);
+    if (isVideo) {
+      return (
+        <div className={styles.videoContainer}>
+          <img alt={alt} src={src} {...restProps} />
+          <div className={styles.playButton} />
+        </div>
+      );
+    }
+    return <img alt={alt} src={src} {...restProps} />;
+  };
 
   const PhotoAlbum = props.featured ? RowsPhotoAlbum : MasonryPhotoAlbum;
   const albumProps = props.featured
@@ -406,17 +547,16 @@ export default function Showcase(props: {
         componentsProps={{
           image: { loading: "lazy" },
         }}
+        render={{ image: renderImage }}
         {...albumProps}
       />
       <Lightbox
-        slides={photos.map((photo) => ({
-          ...photo,
-          description: photo.alt,
-        }))}
+        slides={slides}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
-        plugins={[Captions]}
+        plugins={[Captions, Video]}
+        video={{ autoPlay: true }}
       />
     </>
   );
