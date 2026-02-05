@@ -1,0 +1,76 @@
+---
+slug: app-v1.10.1
+title: "Zaparoo App v1.10.1 released"
+tags: [software]
+authors: [wizzo]
+---
+
+The Zaparoo App v1.10.1 update is now available in the [App Store](https://apps.apple.com/us/app/zaparoo/id6480331015) and [Play Store](https://play.google.com/store/apps/details?id=dev.wizzo.tapto). The App now has optional accounts via Zaparoo Online, over-the-air updates, various NFC handling fixes, and automatic device discovery on your local network.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **Zaparoo Online** - optional accounts to sync Pro purchases across devices
+- **Over-the-air updates** - now I don't have to wait for app store reviews (yay)
+- **Background NFC on Android** - tap a card outside the app and it launches
+- **Device discovery** - find Zaparoo Core devices on your network automatically
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download App v1.10.1"
+  link="https://zaparoo.org/downloads#zaparoo-app"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app/"
+  variant="primary"
+/>
+
+## Zaparoo Online
+
+The app now supports (totally optional) accounts through [Zaparoo Online](https://online.zaparoo.com). You can sign in with Google, Apple, or email/password. The main reason you'd want to do this is to sync your Pro purchase across all your devices, and I've also added support so my Patrons get Pro access automatically.
+
+Zaparoo Online is a service I have been working on, off and on, which just fills in gaps as appropriate for Zaparoo functionality that's difficult to do local-only.
+
+## Over-the-Air Updates
+
+The app can now receive updates without going through app store review. This means UI fixes, new features, and translations can ship instantly. The updates download in the background and apply the next time you open the app.
+
+This only works for things that don't need new native code or permissions - those still go through the app stores. But for most updates, you'll get them faster now.
+
+Updates are code-signed to make sure they're legitimate, and there's automatic rollback if something goes wrong.
+
+## NFC Improvements
+
+A few nice improvements to NFC handling:
+
+**Background NFC on Android**: The app now registers with Android's NFC system, so if you tap a Zaparoo card while the app is closed, Android will offer to open it. This also addresses an issue where NFC scans while the app was open but not actively in scan mode would open other Android apps accidentally.
+
+**Offline writing fix**: Writing NFC tags without a Core connection was supposed to work already, but a bug was disabling the feature when disconnected. That's now fixed.
+
+**Auto-format on Android**: Writing to unformatted NFC tags would silently fail. The app now automatically formats them first.
+
+## Device Discovery
+
+There's a new "Find Devices" button that scans your local network for Zaparoo Core devices using mDNS. It shows the device name, IP address, platform, and version. Much easier than remembering IP addresses.
+
+The Readers settings page also has a new section showing connected hardware readers with real-time status indicators.
+
+## Settings & UX
+
+- **Error reporting toggle**: New option in Advanced Settings to enable/disable crash reporting. Opt-in only.
+- **Log upload**: Upload logs to logs.zaparoo.org and get a shareable URL. Makes support much easier.
+- **Help text**: New help icons next to settings that explain what each option does.
+- **Show filenames**: Search results now show the filename when multiple games have the same name. There's also a toggle to always show filenames if you prefer that.
+- **Shake sensitivity**: Now requires two shakes within 1.5 seconds instead of a single shake. Light haptic feedback after the first shake lets you know it detected it.
+- **IPv6 support**: Properly handles IPv6 addresses now.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-app/).
