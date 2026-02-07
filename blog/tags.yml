@@ -8,6 +8,11 @@ software:
   permalink: /software
   description: Zaparoo-related software
 
+designer:
+  label: Designer
+  permalink: /designer
+  description: Zaparoo Designer
+
 hardware:
   label: Hardware
   permalink: /hardware
