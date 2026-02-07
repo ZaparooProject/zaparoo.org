@@ -13,3 +13,12 @@ BossRighteous:
   image_url: https://github.com/BossRighteous.png
   socials:
     github: BossRighteous
+asturur:
+  name: asturur
+  title: Lead Developer
+  url: https://fabricjs.com/
+  image_url: https://github.com/asturur.png
+  page: true
+  socials:
+    bluesky: andreabogazzi.bsky.social
+    github: asturur
