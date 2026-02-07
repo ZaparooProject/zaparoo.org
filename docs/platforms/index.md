@@ -5,6 +5,8 @@ Zaparoo is available on multiple platforms.
 ## Base OS
 
 - [Windows](windows/)
+- [Linux](linux)
+- [macOS](mac)
 
 ## FPGA Gaming
 
@@ -18,6 +20,8 @@ Zaparoo is available on multiple platforms.
 ## Steam Deck / Gaming Handhelds
 
 - [SteamOS](steamos)
+- [Bazzite](bazzite)
+- [ChimeraOS](chimeraos)
 
 ## Media Centers
 
