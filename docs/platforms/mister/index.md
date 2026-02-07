@@ -28,6 +28,18 @@ Once installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offe
 
 For manual installation, download from the [Downloads page](/downloads) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
+### Game Tracking
+
+Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../core/playtime.md) to work correctly. It requires the `recents` setting in MiSTer's configuration.
+
+To enable it:
+
+1. Open `MiSTer.ini` on your SD card (located at `/media/fat/MiSTer.ini`)
+2. Look for a `recents=` line. If it exists, change it to `recents=1`. If there's no `recents` line, add `recents=1` to the file.
+3. Save the file and reboot MiSTer
+
+This setting makes MiSTer write recent game data to the SD card each time a game is loaded. MiSTer.ini warns about the extra SD card writes, but it's not a real concern with modern SD cards.
+
 ## Readers
 
 All [readers](../../readers/index.md) are supported. Platform notes:

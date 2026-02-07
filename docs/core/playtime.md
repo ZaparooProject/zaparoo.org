@@ -1,29 +1,17 @@
 # Playtime
 
-Playtime tracking and limits provide parental controls and time management for gaming sessions. Set daily time limits, track gaming sessions, and automatically enforce limits with grace period notifications.
-
-## Features
-
-- **Daily limits**: Cap total playtime per day
-- **Session limits**: Cap playtime per gaming session
-- **Configurable warnings**: Get notified before hitting limits
-- **Session tracking**: Automatic session detection with configurable reset timeout
-- **Runtime control**: Enable/disable limits on the fly
+Zaparoo can track how long games are played and enforce time limits. You can set daily caps, per-session caps, or both, and get warnings before limits are reached.
 
 ## Setup
 
-:::note Web UI Only
-Playtime limit configuration is currently only available in the bundled Web UI. You can also manually configure limits in the config file as shown below.
-:::
-
-### Quick Setup (Web UI)
+### Quick setup (Web UI)
 
 1. Open the Web UI (default: `http://your-device:7497/app/`)
 2. Go to Settings → Playtime Limits
 3. Enable limits and set your desired daily/session times
 4. Save settings
 
-### Manual Configuration
+### Manual configuration
 
 See the [Config File Reference](./config.md#playtime) for detailed configuration options including:
 
@@ -45,19 +33,19 @@ session_reset = "20m"
 warnings = ["10m", "5m", "2m", "1m"]
 ```
 
-## How It Works
+## How it works
 
 ### Sessions
 
-A **session** is a continuous period of gaming. Sessions track cumulative playtime across multiple games and enforce mandatory breaks when limits are reached.
+A session is a continuous period of gaming. Playtime accumulates across multiple games within the same session.
 
-**Session States:**
+A session has three states:
 
-1. **Active**: Game is running, time is being tracked
-2. **Cooldown**: Game stopped, cumulative time preserved for `session_reset` duration
-3. **Reset**: No active session, cumulative time cleared to 0
+1. **Active** - A game is running and time is being tracked.
+2. **Cooldown** - The game was stopped, but cumulative time is preserved for the `session_reset` duration. Starting another game continues the same session.
+3. **Reset** - The cooldown expired and cumulative time is cleared to 0. The next game starts a new session.
 
-**Normal Session Flow** (under limit):
+Here's a typical flow (under limit):
 
 ```
 12:00 - Launch Mario Kart (session starts, Active)
@@ -68,7 +56,7 @@ A **session** is a continuous period of gaming. Sessions track cumulative playti
 13:30 - Launch Zelda (new session starts)
 ```
 
-**When Session Limit is Reached** (e.g., `session = "1h"`):
+And when a session limit is reached (e.g., `session = "1h"`):
 
 ```
 12:00 - Launch game (session starts)
@@ -78,25 +66,21 @@ A **session** is a continuous period of gaming. Sessions track cumulative playti
 13:21 - Launch game → ALLOWED (new session starts)
 ```
 
-The `session_reset` timeout creates an **enforced break period** between sessions. After hitting the session limit, you must wait for the cooldown to expire before starting a new session.
+The `session_reset` value controls the break between sessions. After hitting the limit, you have to wait for the cooldown to expire before starting a new session.
 
-### Daily Limits
+### Daily limits
 
-Daily limits reset at midnight (00:00) in your local timezone. The total time includes all gaming sessions from the current calendar day.
+Daily limits reset at midnight (00:00) in your local timezone. The total includes all sessions from the current calendar day.
 
-### When Limits Are Reached
+### When limits are reached
 
-When a limit is hit:
+When a limit is hit, warnings are sent to the Zaparoo App and played as audio at the configured intervals. Then the game is stopped and new launches are blocked until limits reset.
 
-1. **Warning notifications**: Sent to the Zaparoo App and played as audio at configured intervals before the limit
-2. **Automatic stop**: Game is stopped when the limit is reached
-3. **Launch blocking**: New games cannot be launched until limits reset
+If less than 1 minute remains, the launch is blocked entirely.
 
-If you try to launch a game with less than 1 minute remaining, the launch will be blocked entirely (minimum viable session protection).
+## Example configurations
 
-## Example Configurations
-
-### Basic Parental Control
+### Basic parental control
 
 Limit kids to 1 hour per day:
 
@@ -106,9 +90,9 @@ enabled = true
 daily = "1h"
 ```
 
-### Session-Based Limits
+### Session-based limits
 
-Enforce 45-minute gaming sessions with 30-minute breaks:
+45-minute gaming sessions with 30-minute breaks:
 
 ```toml
 [playtime.limits]
@@ -117,7 +101,7 @@ session = "45m"
 session_reset = "30m"
 ```
 
-### Combined Daily and Session
+### Combined daily and session
 
 2 hours per day, 1 hour max per session, with custom warnings:
 
@@ -129,25 +113,15 @@ session = "1h"
 warnings = ["15m", "10m", "5m", "2m", "1m"]  # Optional: defaults are ["5m", "2m", "1m"]
 ```
 
-## Runtime Control
+## Runtime control
 
-Playtime limits can be enabled or disabled at runtime via the Web UI or API without restarting Core.
+Limits can be toggled on and off through the Web UI or API without restarting Core.
 
-**Disabling limits**:
+Disabling limits resets the current session and clears cooldown timers. Daily usage history is kept. Re-enabling starts a fresh session, but daily usage from history is still enforced.
 
-- Resets the current session completely
-- Clears cooldown timers
-- Daily usage history is preserved
+## Data retention
 
-**Re-enabling limits**:
-
-- Starts a fresh session
-- Daily usage from history is still enforced
-- Previous day's history remains intact
-
-## Data Retention
-
-By default, playtime history is kept for 365 days (1 year). Old records are automatically cleaned up.
+Playtime history is kept for 365 days by default. Old records are cleaned up automatically.
 
 To change retention:
 
@@ -156,43 +130,40 @@ To change retention:
 retention = 90  # Keep 90 days of history
 ```
 
-Set to `0` to disable cleanup (keep all history forever):
+Set to `0` to keep all history forever:
 
 ```toml
 [playtime]
 retention = 0
 ```
 
-## Platform Support
+## Platform support
 
-Playtime limits are supported on all platforms, but accuracy depends on the platform's game tracking support. **MiSTer** and **Batocera** have the most accurate active game detection, while other platforms are being improved.
+Playtime tracking works on all platforms, but accuracy depends on game tracking support. MiSTer and Batocera have the most accurate game detection. Other platforms are being improved.
 
-Warnings are sent as notifications to the Zaparoo App and played as audio feedback on all platforms.
+Warnings are sent to the Zaparoo App and played as audio on all platforms.
 
 ## Troubleshooting
 
-### Limits Not Enforcing
+### Limits not enforcing
 
-1. Verify `enabled = true` is set in config
+1. Check `enabled = true` is set in config
 2. Check that daily/session values are valid duration strings
-3. Restart Core after changing config (or use Web UI which applies changes immediately)
+3. Restart Core after changing config (or use the Web UI, which applies changes immediately)
 4. Enable debug logging to see limit check messages
 
-### Warnings Not Appearing
+### Warnings not appearing
 
 1. Check `warnings` array is configured in [config.toml](./config.md#warnings)
-2. Ensure [audio feedback](./config.md#scan_feedback) is enabled
-3. Verify the Zaparoo App is connected to receive notifications
+2. Make sure [audio feedback](./config.md#scan_feedback) is enabled
+3. Check the Zaparoo App is connected to receive notifications
 
-### Time Tracking Inaccurate
+### Time tracking inaccurate
 
-**Known limitations**:
+1. If your device goes to sleep during gameplay, sleep time may be counted as playtime since tracking is wall-clock based.
+2. Changing the system clock backward can bypass limits.
+3. On MiSTer, game tracking requires `recents=1` in `MiSTer.ini`. Without it, games launched from the MiSTer menu are not detected. See [MiSTer Game Tracking](../platforms/mister/index.md#game-tracking) for setup instructions.
 
-1. **System sleep/hibernate**: If your device goes to sleep during gameplay, sleep time may be counted as playtime (wall-clock based)
-2. **Manual clock changes**: Changing the system clock backward can bypass limits
-
-These are known edge cases that may be addressed in future releases.
-
-### Session Not Resetting
+### Session not resetting
 
 Check your [`session_reset`](./config.md#session_reset) timeout value. If set to `"0"`, sessions never reset automatically.
