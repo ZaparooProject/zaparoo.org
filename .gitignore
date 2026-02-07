@@ -25,6 +25,8 @@ yarn-error.log*
 .claude
 CLAUDE.md
 
+docs/plans/
+
 docs/core/dev/*
 !docs/core/dev/_category_.json
 
