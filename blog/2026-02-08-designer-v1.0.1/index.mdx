@@ -1,0 +1,38 @@
+---
+slug: designer-v1.0.1
+title: "Zaparoo Designer v1.0.1 published"
+tags: [designer, software]
+authors: [asturur]
+---
+import Gallery from "@site/src/components/Gallery";
+
+The Zaparoo Designer v1.0.1 is now published at the usual [place](https://designer.zaparoo.org).
+
+While we are working on a major restyle of the user interface, this is a bugfix release.
+Some user reported that the cards printed in pdf raster were misplaced and cuts, and that vector mode was sometimes not returning any pdf.
+On top of that some features have been added...
+{/* truncate */}
+
+The label misplacing was a recent bug and has been fixed.
+The incompatible file in vector mode was a long standing issue, we didn't think it was common to get back WEBP from the search apis, but eventually it was happening and it has been reported.
+The necessary code for image detection and conversion has been added and now both GIF and WEBP are supported.
+With the PDF vector fixed, we moved vector as the default option for printing.
+Old settings are saved in your browser memory, so if you previously selected raster, that will continue to be your selected option.
+
+Recently we started to add more resources to the app in order to customize your cards.
+Logos, console images, extra search results and text support.
+Those feature aren't easily discoverable right now but are powerful and for this reason we are reworking the UI in order to make them more accessible.
+Today you can find those using the edit button under each card:
+
+<Gallery captions={false} media={[ { src: "/img/blog/designer-v1.0.1/card1.webp", width: 540, height: 540, alt: "Edit button" },{ src: "/img/blog/designer-v1.0.1/card2.webp", width: 2158, height: 1186, alt: "Resource button" }, { src: "/img/blog/designer-v1.0.1/card3.webp", width: 1942, height: 1204, alt: "Resources" } ]} />
+
+**The highlights:**
+
+- fix: Correct zoom level for card in raster mode
+- fix: Support for GIF/WEBP in pdf vector mode
+- Moved default pdf option to vector
+
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-app/).
