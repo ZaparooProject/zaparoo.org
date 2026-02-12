@@ -1,0 +1,60 @@
+---
+slug: core-v2.9.1
+title: "Zaparoo Core v2.9.1 released"
+tags: [software, core]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo Core v2.9.1 is now available! This is a patch release focused on reliability improvements and bug fixes. Thank you to [Anime0t4ku](https://github.com/Anime0t4ku) who contributed to this release.
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.9.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Improvements
+
+- **Log uploads** now use Zaparoo's own service (logs.zaparoo.org) instead of termbin. It's a simple [rustypaste](https://github.com/orhun/rustypaste) instance for anyone curious
+- **Media scanner lazy loading** for faster resume on large libraries
+- **MQTT publisher** now retries connection in the background instead of blocking startup
+- **Offline arcade game lookups** on MiSTer first boot via an embedded ArcadeDB fallback
+- **Playlist commands** are no longer incorrectly treated as media launches, and now trigger a fail sound when something goes wrong
+- **Structured GitHub issue forms** for bug reports, feature requests, and questions (thanks [Anime0t4ku](https://github.com/Anime0t4ku))
+
+## Bug Fixes
+
+- Fixed MiSTer deadlock when displaying overlays while media was active, and added MGL reset tag support for cores like Jaguar
+- Fixed reader disconnects causing duplicate token scans
+- Fixed re-indexing a single system wiping tag associations
+- Fixed some settings and launcher config changes not taking effect until restart
+- Fixed `scan_feedback=false` being ignored
+- Custom sounds are now correctly detected from the assets folder
+- Fixed non-Steam games not detected due to inconsistent VDF key casing
+- Fixed Batocera scanning without a game running opening manufacturer menu
+- Fixed PN532 readers stuck in failed reconnection after disconnect
+- Fixed libnfc connection string corruption breaking PN532 I2C/UART readers
+- Fixed NTP clock sync falsely triggering reader reconnection on MiSTer boot
+- Fixed concurrent reader close operations crashing the service
+- Fixed exit delay timers losing sub-second precision
+- Fixed reinserting card during hold-mode countdown not cancelling exit
+- Fixed timer goroutine leaks when scans were interrupted
+- Fixed platform scanners (RetroBat, Kodi) accidentally wiping other launchers' indexed files
+- Fixed generic launchers intercepting launches meant for more specific launchers
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).

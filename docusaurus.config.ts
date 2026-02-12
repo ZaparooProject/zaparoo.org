@@ -47,7 +47,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/ZaparooProject/zaparoo.org/tree/main/",
-          lastVersion: "2.9.0",
+          lastVersion: "2.9.1",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -56,9 +56,14 @@ const config: Config = {
               banner: "unreleased",
               badge: true,
             },
+            "2.9.1": {
+              label: "v2.9.1",
+              path: "/",
+              banner: "none",
+            },
             "2.9.0": {
               label: "v2.9.0",
-              path: "/",
+              path: "/2.9.0/",
               banner: "none",
             },
             "2.8.0": {

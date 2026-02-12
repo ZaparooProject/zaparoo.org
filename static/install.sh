@@ -12,7 +12,7 @@ set -u          # Treat unset variables as errors
 # ============================================================================
 
 GITHUB_REPO="ZaparooProject/zaparoo-core"
-DEFAULT_VERSION="2.9.0"  # Update this with each release
+DEFAULT_VERSION="2.9.1"  # Update this with each release
 VERSION="${ZAPAROO_VERSION:-${DEFAULT_VERSION}}"
 BASE_URL="https://github.com/${GITHUB_REPO}/releases"
 
