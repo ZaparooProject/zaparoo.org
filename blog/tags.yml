@@ -22,3 +22,8 @@ community:
   label: Community
   permalink: /community
   description: Community project updates
+
+online:
+  label: Online
+  permalink: /online
+  description: Zaparoo Online updates
