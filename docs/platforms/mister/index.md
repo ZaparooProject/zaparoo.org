@@ -28,6 +28,10 @@ Once installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offe
 
 For manual installation, download from the [Downloads page](/downloads) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
+:::info Upgrading from TapTo?
+If you previously had TapTo installed, make sure the old `tapto.sh` is removed from your Scripts folder and that `linux/user-startup.sh` no longer references it. Having both services running simultaneously can cause double-launches and detection conflicts. Zaparoo is a direct replacement. Your existing NFC cards will continue to work.
+:::
+
 ### Game Tracking
 
 Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../core/playtime.md) to work correctly. It requires the `recents` setting in MiSTer's configuration.

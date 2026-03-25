@@ -4,8 +4,8 @@ NFC tags tell the reader and software what action to take. They **do not** conta
 
 Tags come in many form factors and standards. The form factor is entirely your preference, but the standard may affect compatibility with Zaparoo and your particular reader hardware.
 
-:::tip
-"NTAG215 NFC cards" work with all Zaparoo readers, software features, and community label templates.
+:::tip Recommended: NTAG215 NFC cards
+NTAG215 gives you 504 bytes of storage, which is enough for most use cases. NTAG213 (144 bytes) can be too small for longer file paths or multiple ZapScript commands. If you're using Title IDs, NTAG213 will work fine.
 :::
 
 ## Writing to NFC Tags

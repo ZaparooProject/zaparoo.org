@@ -13,9 +13,13 @@ This reader is easily available on marketplace sites like Amazon, AliExpress, eB
 
 If you like the look and are willing to accept the risk of receiving an incompatible variant, it's a capable NFC reader for a decent price.
 
+:::warning Before you buy
+If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer choice. It's cheaper, more reliable across platforms, and doesn't have the clone compatibility issues described below.
+:::
+
 :::info
 
-The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones are incompatible with [MiSTer](../../platforms/mister/index.md) and will likely never be supported, which is why the project no longer recommends them.
+The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones only work via the PCSC service, which means they work fine on Windows and desktop Linux but are incompatible with platforms like [MiSTer](../../platforms/mister/index.md) and [Batocera](../../platforms/batocera/index.md) where PCSC is not available. This is why the project no longer recommends them.
 
 :::
 

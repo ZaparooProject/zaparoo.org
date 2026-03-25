@@ -10,7 +10,7 @@ There are multiple NTAG types that have been confirmed working with Zaparoo. The
 | NTAG215  | 504 bytes |
 | NTAG216  | 888 bytes |
 
-The NTAG215 is a generous amount of storage for Zaparoo and you shouldn't have any trouble with it. The main consideration is just needing to fit the full path of a game file on the tag.
+**NTAG215 is recommended** for most users. NTAG213 (144 bytes) can be too small if you're writing long file paths or putting multiple [ZapScript](../../zapscript/index.md) commands on a single card. That said, the [Title ID format](../../zapscript/launch.md) was designed to be short enough to fit on an NTAG213, so if you're using Title IDs you'll be fine with either. [Mappings](../../core/mappings.md) are another way to keep the data on each tag small.
 
 ## Where to Buy
 

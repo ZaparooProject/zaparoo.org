@@ -116,23 +116,19 @@ The PN532 USB reader works out of the box on macOS. No additional drivers needed
 
 ### Reader Not Detected
 
-1. **Check USB connection** - Try a different USB port or cable
-2. **Verify auto-detect is enabled** - Check `auto_detect = true` in config.toml
-3. **Check for device** - Verify the device appears in system (see "Finding the Serial Port" above)
-4. **Permissions** - On Linux, ensure dialout group membership
-5. **Enable debug logging** - Set `debug_logging = true` in config.toml to see detection attempts
-6. **Windows Driver** - Try (re)installing the [CH340 driver](#windows) and rebooting.
+1. **Check your cable** - Some USB cables are power-only and don't support data transfer. If your reader isn't detected, try a different cable that you know works for data.
+2. **Check USB connection** - Try a different USB port or cable.
+3. **MiSTer: Don't use the SNAC/USER port** - The SNAC/USER port on a MiSTer looks like a USB 3.0 port but is a custom port that won't work with NFC readers. Use one of the regular USB ports instead.
+4. **Verify auto-detect is enabled** - Check `auto_detect = true` in config.toml.
+5. **Check for device** - Verify the device appears in system (see "Finding the Serial Port" above).
+6. **Permissions** - On Linux, ensure dialout group membership.
+7. **Windows Driver** - If the reader doesn't appear as a COM port in Device Manager, try (re)installing the [CH340 driver](#windows) and rebooting.
+8. **Enable debug logging** - Set `debug_logging = true` in config.toml to see detection attempts.
 
 ### Slow or Inconsistent Scanning
 
-- **Check power** - Some USB hubs don't provide enough power
-- **Reduce interference** - Keep away from metal surfaces and other electronics
-
-### USB Cable Issues
-
-:::warning
-Some USB cables are **power-only** and don't support data transfer. If your reader isn't detected, try a different cable.
-:::
+- **Check power** - Some USB hubs don't provide enough power.
+- **Reduce interference** - Keep away from metal surfaces and other electronics.
 
 ## Where To Buy
 
