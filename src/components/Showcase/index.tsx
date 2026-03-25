@@ -31,6 +31,90 @@ interface ShowcaseVideo {
 type ShowcaseItem = ShowcasePhoto | ShowcaseVideo;
 
 const allMedia: ShowcaseItem[] = [
+  // Community Showcase #4
+  {
+    type: "video",
+    poster: "/img/showcase/Anime0t4ku_nfc_reader_demo_thumb.webp",
+    src: "/img/showcase/Anime0t4ku_nfc_reader_demo.mp4",
+    width: 860,
+    height: 480,
+    alt: "Custom NFC reader. Credit: Anime0t4ku @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/Suiren_nfc_system_demo2_thumb.webp",
+    src: "/img/showcase/Suiren_nfc_system_demo2.mp4",
+    width: 854,
+    height: 480,
+    alt: "NFC reader with floppy disk and card slots. Credit: Suiren @ Discord",
+  },
+  {
+    src: "/img/showcase/Roger_card_template1.webp",
+    width: 900,
+    height: 1200,
+    alt: "NFC card template. Credit: Roger @ Discord",
+  },
+  {
+    src: "/img/showcase/SBB_wooden_case_detail4.webp",
+    width: 1200,
+    height: 900,
+    alt: "Handmade wooden NFC reader case. Credit: SBB @ Discord",
+    featured: true,
+  },
+  {
+    src: "/img/showcase/SBB_wooden_case_alt4.webp",
+    width: 1200,
+    height: 900,
+    alt: "Handmade wooden NFC reader case alternative design. Credit: SBB @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/hobbett_dialer_demo_thumb.webp",
+    src: "/img/showcase/hobbett_dialer_demo.mp4",
+    width: 480,
+    height: 854,
+    alt: "Numpad dialer with phone book. Credit: hobbett @ Discord",
+    featured: true,
+  },
+  {
+    src: "/img/showcase/BigBlue709_nes_snes_cards1.webp",
+    width: 1200,
+    height: 900,
+    alt: "NES and SNES NFC card designs. Credit: BigBlue709 @ Discord",
+  },
+  {
+    src: "/img/showcase/BigBlue709_box_art_cards.webp",
+    width: 1200,
+    height: 900,
+    alt: "Switch case with custom NFC cards. Credit: BigBlue709 @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/LoVeMaKeRz_bandai_ps_demo_thumb.webp",
+    src: "/img/showcase/LoVeMaKeRz_bandai_ps_demo.mp4",
+    width: 1280,
+    height: 720,
+    alt: "3D printed mini PlayStation with NFC reader. Credit: LoVeMaKeRz @ Discord",
+  },
+  {
+    src: "/img/showcase/LoVeMaKeRz_ps2_slim_micro1.webp",
+    width: 1200,
+    height: 900,
+    alt: "3D printed mini PS2 Slim with NFC reader. Credit: LoVeMaKeRz @ Discord",
+  },
+  {
+    src: "/img/showcase/LoVeMaKeRz_megacd_boxes1.webp",
+    width: 1200,
+    height: 900,
+    alt: "3D printed mini MegaCD II with custom boxes. Credit: LoVeMaKeRz @ Discord",
+    featured: true,
+  },
+  {
+    src: "/img/showcase/LinaBlue_printed_cards.webp",
+    width: 1200,
+    height: 675,
+    alt: "NFC cards printed with badge printer. Credit: Lina Blue @ Discord",
+  },
   // Community Showcase #3
   {
     type: "video",
@@ -202,7 +286,6 @@ const allMedia: ShowcaseItem[] = [
     width: 1112,
     height: 1200,
     alt: "Custom TV cart build. Credit: tycal @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/xtal_vinyl_sticker_cards.webp",
@@ -221,7 +304,6 @@ const allMedia: ShowcaseItem[] = [
     width: 900,
     height: 1200,
     alt: "Bubsy NFC card. Credit: tunnotron3000 @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/flexbone_arcade.webp",
@@ -258,7 +340,6 @@ const allMedia: ShowcaseItem[] = [
     width: 675,
     height: 1200,
     alt: "Custom 3D printed NFC reader. Credit: MSouza3D @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/LoVeMaKeRz_psx_mini.webp",
@@ -466,6 +547,8 @@ const allMedia: ShowcaseItem[] = [
     alt: "Arcade setup with custom NFC reader stand. Credit: Macs @ Discord",
   },
 ];
+
+export const showcaseCount = allMedia.length;
 
 export default function Showcase(props: {
   limit?: number;

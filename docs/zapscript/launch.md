@@ -351,6 +351,10 @@ Launches a random game with "sonic" in the filename.
 
 Launches a random Mario game from any system.
 
+:::info System Weighting
+When multiple systems are specified, a system is picked at random first (with equal weight per system), then a random game is selected from that system. This prevents systems with larger libraries from dominating random picks.
+:::
+
 ---
 
 ## launch.search

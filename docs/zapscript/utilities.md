@@ -81,7 +81,7 @@ Logs the current platform using an expression.
 
 ## execute
 
-Runs a shell command on the host system.
+Runs a command on the host system.
 
 ### Syntax
 
@@ -92,7 +92,7 @@ Runs a shell command on the host system.
 ### Arguments
 
 **`command`** (required)
-The shell command to run, including any arguments. The command has a 2-second timeout.
+The command to run, including any arguments. Arguments are split respecting double and single quoted strings. The command is executed directly without a shell interpreter, so shell features like pipes, redirection or command substitution are not supported. The command has a 2-second timeout.
 
 ### Advanced Arguments
 

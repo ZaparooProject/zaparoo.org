@@ -45,7 +45,7 @@ The `media_dirs` line specifies a list of directories where Core should search f
 
 The `file_exts` line is a list of file extensions which will match to this launcher. Extensions are automatically normalized - you can write `".gb"` or `"gb"` and both will work (a `.` prefix is added if missing and extensions are converted to lowercase).
 
-The `execute` line is the command which will be run when a token is scanned which matches to this launcher. This value will be run as is through the console or shell on the platform, with expression variables replaced by their values.
+The `execute` line is the command which will be run when a token is scanned which matches to this launcher. Expression variables are replaced by their values, then the resulting string is split into a program and arguments (respecting double and single quoted strings) and executed directly without a shell interpreter. If you need shell features like pipes or redirection, create a wrapper script and reference it here instead.
 
 #### Available Expression Variables
 
@@ -117,6 +117,29 @@ id = "BackgroundPlayer"
 lifecycle = "background"
 # ...
 ```
+
+#### controls
+
+Define control actions that can be triggered on active media via the [`media.control`](./api/methods.md#mediacontrol) API method. Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime — media-launching and playlist commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay` and `echo` are allowed.
+
+The `execute` command in control scripts bypasses the [`allow_execute`](./config.md#allow_execute) allowlist, since control actions are defined by the device owner in configuration files.
+
+```toml
+[[launchers.custom]]
+id = "RetroArchSNES"
+system = "SNES"
+execute = "retroarch -L snes \"[[media_path]]\""
+media_dirs = ["/games/snes"]
+file_exts = [".sfc", ".smc"]
+
+[launchers.custom.controls]
+save_state = "**input.keyboard:{f2}"
+load_state = "**input.keyboard:{f4}"
+toggle_menu = "**input.keyboard:{f1}"
+toggle_pause = "**input.keyboard:{p}"
+```
+
+Available control actions are reported in the `launcherControls` field of the active media object. Scripts are validated when the launcher loads — entries with invalid ZapScript syntax are skipped with a warning in the logs.
 
 #### restricted
 

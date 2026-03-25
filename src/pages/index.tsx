@@ -17,7 +17,7 @@ import { Zap, Download, Heart, Rocket, Trophy, Wrench } from "lucide-react";
 import styles from "./index.module.css";
 import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
 import featureStyles from "@site/src/components/HomepageFeatures/styles.module.css";
-import Showcase from "@site/src/components/Showcase";
+import Showcase, { showcaseCount } from "@site/src/components/Showcase";
 import StructuredData from "@site/src/components/StructuredData";
 
 // Use dynamic import instead of require() for better TypeScript support
@@ -271,7 +271,7 @@ export default function Home(): ReactNode {
                   )}
                   to="/showcase/"
                 >
-                  See All 58 Creations
+                  See All {showcaseCount} Creations
                 </Link>
                 <Link
                   className={clsx(
