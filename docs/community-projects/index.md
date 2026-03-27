@@ -10,6 +10,14 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Disk tray replacement for Amiga 500 that houses PN532 and PCR532 NFC readers for use with Zaparoo.
 
+- **[Floppy Disk NFC Reader Case](https://makerworld.com/de/models/2384860-floppy-disk-nfc-reader-case-for-zaparoo)** by *amiibolover99*
+
+  Uses a slim USB floppy drive as the base with an added card slot. Modular design lets you adjust card reader dimensions.
+
+- **[KMDT MiSTer NFC Case + HuCards](https://makerworld.com/models/1570997)** by *Kumodot*
+
+  Case for the RetroRemake MiSTer Pi batch 3 NFC reader with dual slot for HuCards and mini NFC PCB cards.
+
 - **[Mini NFC Card Reader](https://makerworld.com/en/models/822814-mini-nfc-card-reader)** by *Ninja3DP*
 
   Compact case for the black USB-C NFC readers available on AliExpress.
@@ -54,6 +62,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[Retro Remake NFC Reader case](https://makerworld.com/en/models/1685590)** by *Ninja3DP*
 
   Sleek minimal case for the MiSTer Pi's NFC Reader PCB.
+
+- **[SHELFMODE: Physical Game Library](https://makerworld.com/en/collections/18600603-shelfmode-physical-game-library)** by *PullleMit3L*
+
+  Custom NFC dock for the ACR122U reader and cassette-sized cartridges for PC games. Each cartridge has an embedded NTAG215 chip that launches a game via Zaparoo. Includes printable rack for shelf display.
 
 - **[Super Zap Boy](./super-zap-boy.md)** by *Phoenix*
 
@@ -124,6 +136,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Desktop app for generating printable NFC card labels. Pulls cover art from SteamGrid and TMDB, with custom template support.
 
+- **[NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator)** by *Anime0t4ku*
+
+  Desktop app for creating print-ready cassette wrap covers with live preview, customizable colours, SteamGridDB/TMDB artwork integration, and PDF export for batch printing.
+
 ## Tokens
 
 ### Storage
@@ -161,6 +177,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[54mm Floppy Disks](https://www.printables.com/model/805885-54mm-floppy-disk-for-tapto-nfc-1541)** by *iZero*
 
   3D printed floppy disks for use with the TapTo NFC 1541 case.
+
+- **[SNES Game Cart Tap-to-Play Mini NFC Keychains](https://makerworld.com/en/models/2387775-snes-game-cart-tap-to-play-mini-nfc-retro-keychain)** by *kertgartner*
+
+  Mini SNES cartridge keychains with embedded NFC. Works with Zaparoo and Delta (iOS). Includes video tutorial.
 
 - **[Zaparoo(TapTo) Retro Game Cartridges/Carts NFC](https://makerworld.com/en/models/1417529-zaparoo-tapto-retro-game-cartridges-carts-nfc)** by *psybertech*
 

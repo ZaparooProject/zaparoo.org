@@ -21,7 +21,7 @@ Access to a 3D printer is required for color switching to show the top markings 
 
 Feel free to shop around for components.
 
-- [PN532 NFC module](https://github.com/ZaparooProject/zaparoo.org/wiki/PN532) - any supplier will do but must be a "PN532" module.
+- [PN532 NFC module](../readers/nfc/pn532-module.md) - any supplier will do but must be a "PN532" module.
 - <ProductLink href="https://www.aliexpress.com/item/32980998451.html" store="aliexpress">2.54mm right angle female 4-pin header</ProductLink> - attaches to the serial board.
 - <ProductLink href="https://www.aliexpress.com/item/32908642552.html" store="aliexpress">2.54mm right angle male 4-pin header</ProductLink> - LIKELY OPTIONAL - attaches to the PN532 module but most modules come with one.
 - 3D printing filament - if printing yourself, PLA or PETG is fine. A single case uses approximately 20g of filament.
@@ -33,7 +33,7 @@ This section will explain how to order the PCB from [JLCPCB](https://jlcpcb.com/
 
 ### Upload gerber file
 
-From the [JLCPCB](https://jlcpcb.com/) home page, click the "Add gerber file" button and upload the [Gerber.zip file](https://github.com/ZaparooProject/tapto-hardware/tree/main/diy-reader/pcb) from this repo. You'll be forwarded to the order page.
+From the [JLCPCB](https://jlcpcb.com/) home page, click the "Add gerber file" button and upload the [Gerber.zip file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) from this repo. You'll be forwarded to the order page.
 
 ### Beginning order
 
@@ -45,7 +45,7 @@ Just click "NEXT" on this page.
 
 ### Upload BOM and CPL files
 
-Upload the [BOM-JLCPCB.xlsx file](https://github.com/ZaparooProject/tapto-hardware/tree/main/diy-reader/pcb) in the left file picker (BOM) and the [PickPlace-JLCPCB.xlsx file](https://github.com/ZaparooProject/tapto-hardware/tree/main/diy-reader/pcb) in the right file picker (CPL). Then click the "Process BOM & CPL" button.
+Upload the [BOM-JLCPCB.xlsx file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) in the left file picker (BOM) and the [PickPlace-JLCPCB.xlsx file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) in the right file picker (CPL). Then click the "Process BOM & CPL" button.
 
 :::info
 You may receive an error about the "J2 designator" as seen below. Ignore this and press "Continue". This is referring to the female header pins which you will solder yourself later.
@@ -74,7 +74,7 @@ And that's it. When your boards arrive you're ready for assembly.
 The case is 3D printed in two parts, the top and bottom. Each part snaps together, no other assembly or parts are required.
 Download STL files:
 
-- [Micro-USB version](https://github.com/ZaparooProject/tapto-hardware/tree/main/diy-reader/case)
+- [Micro-USB version](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/case)
 - [USB-C version](https://www.printables.com/model/970108-tapto-usb-c-style-shell)
 
 Print each part with a 0.2mm layer height. PLA and PETG have both tested working fine. It requires approximately 20g of filament.

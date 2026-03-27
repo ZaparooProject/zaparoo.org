@@ -252,7 +252,7 @@ For powering the SMES I recommend using a **Raspberry Pi USB-C power supply** to
 
 ## Optional: Reset Button
 
-You can, should you wish, also get the **reset button** working on your SMES. For this you only need some **glue,** a 3D-printed **mount** found on our GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes), some wires and an actuation button (I bought one of <ProductLink href="https://www.aliexpress.us/item/1005007217364224.html" store="aliexpress">these</ProductLink>).
+You can, should you wish, also get the **reset button** working on your SMES. For this you only need some **glue,** a 3D-printed **mount** found on our GitHub [here](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/smes), some wires and an actuation button (I bought one of <ProductLink href="https://www.aliexpress.us/item/1005007217364224.html" store="aliexpress">these</ProductLink>).
 
 You need an **actuation button** and some wires for soldering. I used small clicky buttons found on AliExpress. The button will need to be attached to the mount and then placed beneath the reset button's mechanism so that when pressed down it activates your button that is on the mount.
 
@@ -344,7 +344,7 @@ Once the logo is removed, you can then apply your custom logo using the **transp
 
 You can choose to make your own backplate, or opt to **3D print** one specifically designed for this project.
 
-- **3D Printable File**: You can find the file on our Zaparoo GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes).
+- **3D Printable File**: You can find the file on our Zaparoo GitHub [here](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/smes).
 
 :::note[Backplate Compatibility]
 
@@ -472,7 +472,7 @@ If somehow this wiki was not clear enough on a certain subject and you have ques
   }
 ]} />
 
-Wallpapers for this project can be found on our GitHub [here](https://github.com/ZaparooProject/tapto-hardware/tree/main/smes/Wallpapers). It includes multiple **16:9 1920x1080** versions and one that is compatible with CRT's in **4:3 640x480**. Use the one that you like the best. If you plan on using these, I recommend you turning off the the MiSTer logo in the menu in order to not obstruct the wallpaper. You can do this in the MiSTer.ini file on the root of your SD card. Simply find "logo=1" on line nr. 236 and change the "1" to a "0". This disables the menu logo.
+Wallpapers for this project can be found on our GitHub [here](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/smes/Wallpapers). It includes multiple **16:9 1920x1080** versions and one that is compatible with CRT's in **4:3 640x480**. Use the one that you like the best. If you plan on using these, I recommend you turning off the the MiSTer logo in the menu in order to not obstruct the wallpaper. You can do this in the MiSTer.ini file on the root of your SD card. Simply find "logo=1" on line nr. 236 and change the "1" to a "0". This disables the menu logo.
 
 And if you want one of those beautiful cases with the custom cover to go along with your cartridges, you can check out the great work done by Anime0t4ku on his wiki page [here](../tokens/storage/cassette-cases.md).
 

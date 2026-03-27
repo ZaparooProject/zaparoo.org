@@ -8,9 +8,8 @@ Use your phone's camera to scan barcodes and QR codes with the [Zaparoo App](../
 
 - No additional hardware required
 - Works with any barcode or QR code
-- Requires app launcher feature (one-time purchase)
 
-See [App-Based Scanner](./app.md) for details.
+See the [barcodes token page](../../tokens/barcodes.md) for supported formats and how to set up mappings.
 
 ## Hardware Scanners
 

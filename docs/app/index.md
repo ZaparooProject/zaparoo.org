@@ -34,8 +34,6 @@ The app is **fully open source** under the GPLv3 license, including its Pro feat
 The app includes Pro features that help support development of the Zaparoo project:
 
 - **Launcher Access**: Enables the app to act as a reader and trigger launch commands
-- **Custom App Icons**: Personalize your app appearance
-- **Themes**: Additional visual customization options
 
 Pro features require a one-time purchase and are available through in-app purchases.
 
@@ -60,6 +58,6 @@ The Zaparoo App is available on multiple platforms:
 
 - **iOS**: Available on the App Store
 - **Android**: Available on Google Play Store  
-- **Web**: Access through your browser
+- **Web**: Available as an embedded [Web UI](../core/web-ui.md) in Zaparoo Core
 
 See the [Downloads](/downloads/) page for download links and the latest version information.

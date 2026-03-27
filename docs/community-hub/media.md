@@ -59,6 +59,9 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo Adds Support for USB and SD Cards as Launch Tokens](https://metalgamesolid.com/misc/zaparoo-adds-support-for-usb-and-sd-cards-as-launch-tokens)** - *MetalGameSolid* (October 25, 2025)
   New reader driver announcement
 
+- **[RFIDisk: When Floppy Drives Go Contactless](https://hackaday.com/2025/10/16/rfidisk-when-floppy-drives-go-contactless/)** - *Hackaday* (October 16, 2025)
+  NFC floppy drive builds, featuring Zaparoo community projects
+
 - **[Amstrad CPW & New Arcade Games, NES Mappers & More](https://retrorgb.com/mister-fpga-news-amstrad-cpw-new-arcade-games-nes-mappers-more.html)** - *RetroRGB* (November 3, 2025)
   MiSTer FPGA news with Zaparoo technical updates
 
@@ -68,7 +71,7 @@ Coverage of the Zaparoo project online.
 ### Developer Articles & Community
 
 - **[Creating TapTo](https://timwilsie.com/creating-tapto)** - *Tim Wilsie* (March 26, 2024)
-  Behind-the-scenes on creating TapTo by the developer
+  Behind-the-scenes on creating TapTo by a developer
 
 - **[Putting TapTo in your pocket](https://timwilsie.com/portfolio/putting-tapto-in-your-pocket)** - *Tim Wilsie*
   Development story of the mobile app
@@ -130,6 +133,12 @@ Coverage of the Zaparoo project online.
 
 - **[MiSTer Multisystem² & Zaparoo](https://www.youtube.com/watch?v=UnmkAn7KUR4)** - *Pixel Cherry Ninja* (December 2025)
   Multisystem 2 with Zaparoo integration demo
+
+- **[The MiSTer Multisystem 2 plus Zaparoo is a retro gamers dream](https://www.youtube.com/watch?v=D7M2uFchdSg)** - *Scott Hanselman* (January 2, 2026)
+  Enthusiastic walkthrough of Multisystem 2 and Zaparoo setup
+
+- **[Zaparoo徹底解説 - Super Station One](https://www.youtube.com/watch?v=36mkcwrvqxQ)** - *ゆっくりレトロ図書館* (February 28, 2026)
+  Japanese language Zaparoo tutorial for Super Station One and MiSTer
 
 ### News & Updates
 

@@ -568,10 +568,15 @@ const config: Config = {
             from: "/docs/community/contributors",
           },
           // Barcode reader reorganization
-          {
-            to: "/docs/readers/barcode/app/",
-            from: "/docs/readers/barcode-scanner/",
-          },
+          // TODO: uncomment for next release when barcodes page is in versioned docs
+          // {
+          //   to: "/docs/tokens/barcodes/",
+          //   from: "/docs/readers/barcode-scanner/",
+          // },
+          // {
+          //   to: "/docs/tokens/barcodes/",
+          //   from: "/docs/readers/barcode/app/",
+          // },
           // Systems page moved to top-level
           {
             to: "/docs/systems/",
