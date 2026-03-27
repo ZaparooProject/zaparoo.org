@@ -20,11 +20,12 @@ These custom cassette tape covers are designed to store Zaparoo NFC cards, allow
 
 ### Templates and Covers
 
-You can find the covers and templates on [GitHub](https://github.com/Anime0t4ku/Cassette-GameCovers). The repository includes:
+You can create your own covers using the [NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator), a desktop app by Anime0t4ku. It generates print-ready cassette wrap covers with:
 
-- Pre-made covers for various games
-- Templates for creating your own designs
-- Regular updates with new designs
+- Live full-wrap preview (back, spine, front)
+- SteamGridDB and TMDB artwork integration
+- Customizable colors, logos, and layouts
+- Reusable templates
 
 ### Printing Instructions
 

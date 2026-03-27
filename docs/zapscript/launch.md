@@ -242,6 +242,10 @@ The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis
 
 Launches a system/emulator without loading specific media.
 
+:::note Platform Support
+Supported on [MiSTer](../platforms/mister/index.md) and [MiSTex](../platforms/mistex.md) only. The `menu` argument is also supported on [Batocera](../platforms/batocera/index.md).
+:::
+
 ### Syntax
 
 ```zapscript

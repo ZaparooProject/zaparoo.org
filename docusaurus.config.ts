@@ -346,7 +346,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Contributors to the Zaparoo project. The Zaparoo name and logos are trademarks of Wizzo Pty Ltd.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Contributors to the Zaparoo project. The Zaparoo name and logos are trademarks of <a href="https://wizzo.au/">Wizzo Pty Ltd</a>. Branding by <a href="https://timwilsie.com/">Tim Wilsie</a>.`,
     },
     prism: {
       theme: prismThemes.github,

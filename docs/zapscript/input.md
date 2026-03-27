@@ -4,11 +4,15 @@ sidebar_position: 2
 
 # Input
 
-These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons. These commands currently aren't enabled on desktop platforms like Windows and Linux.
+These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons.
 
 ## input.keyboard
 
 Simulates keyboard key presses.
+
+:::note Platform Support
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
+:::
 
 ### Syntax
 
@@ -69,7 +73,11 @@ This command is blocked when the script comes from a remote source.
 
 Simulates gamepad button presses.
 
-This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game/emulator to work and it can't, for example, pretend to be player 1 if a real controller is already connected as player 1. This command is currently disabled on Batocera due to compatibility issues.
+:::note Platform Support
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md). The gamepad device is disabled by default on Batocera and can be re-enabled in the [config file](../core/config.md#gamepad_enabled).
+:::
+
+This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game/emulator to work and it can't, for example, pretend to be player 1 if a real controller is already connected as player 1.
 
 ### Syntax
 
@@ -137,6 +145,10 @@ This command is blocked when the script comes from a remote source.
 ## input.coinp1 / input.coinp2
 
 Inserts coins for player 1 or player 2 in arcade games.
+
+:::note Platform Support
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
+:::
 
 ### Syntax
 

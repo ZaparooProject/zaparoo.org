@@ -33,6 +33,14 @@
   color: var(--ifm-color-primary-lightest);
 }
 
+.footer--dark .footer__copyright a {
+  color: var(--ifm-color-secondary);
+}
+
+.footer--dark .footer__copyright a:hover {
+  color: var(--ifm-color-primary-lightest);
+}
+
 .react-photo-album--image {
   border-radius: 5px;
 }
