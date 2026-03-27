@@ -273,15 +273,15 @@ export default function Home(): ReactNode {
                 >
                   See All {showcaseCount} Creations
                 </Link>
-                <Link
+                <a
                   className={clsx(
                     "button button--secondary button--md",
                     styles.button
                   )}
-                  to="#featured-creators"
+                  href="#featured-creators"
                 >
                   Featured Creators
-                </Link>
+                </a>
               </div>
             </div>
           </div>

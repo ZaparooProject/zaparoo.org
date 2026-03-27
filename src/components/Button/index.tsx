@@ -35,7 +35,7 @@ type Button = {
   label: string;
   icon: ReactNode | null;
   fullWidth?: boolean;
-  dataUmamiEvent?: string;
+  dataUmamiEvent?: string | null;
 };
 
 // Button component that accepts the specified props.
@@ -68,7 +68,7 @@ export default function Button({
   const blockClass = block ? "button--block" : "";
   const disabledClass = disabled ? "disabled" : "";
   // If the button is disabled, set the destination to null.
-  const destination = disabled ? null : link;
+  const destination = disabled ? undefined : link;
   return (
     <Link
       to={destination}

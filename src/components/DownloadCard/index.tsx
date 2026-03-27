@@ -39,7 +39,7 @@ const downloadUrl = (platform: string, arch: Arch, version: string) => {
 type DownloadCard = {
   name: string;
   platform: string;
-  version?: string;
+  version?: string | null;
   status: "stable" | "beta";
   architectures: Arch[];
   defaultArch?: Arch;

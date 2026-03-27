@@ -433,7 +433,7 @@ const config: Config = {
           "ZapEsp32-Configuration.md",
           "ZapEsp32-Defaults.md",
         ],
-        modifyContent(filename, content) {
+        modifyContent(filename: string, content: string) {
           // Fix image URLs: convert github.com blob URLs to raw.githubusercontent.com
           let modifiedContent = content.replace(
             /https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\//g,
