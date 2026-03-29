@@ -1,0 +1,97 @@
+# ChimeraOS
+
+:::warning[Beta]
+ChimeraOS support is currently in beta. Some features may not work as expected.
+:::
+
+Zaparoo Core on [ChimeraOS](https://chimeraos.org/) supports launching Steam games, GOG games via the Chimera web app, and shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
+
+## File Paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `/tmp/<session_id>-zaparoo/core.log`   |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+
+Where `~` is the home directory of the `gamer` user.
+
+## Install
+
+Access the terminal with `Ctrl+Alt+F2` (default credentials: `gamer` / `gamer`) and run:
+
+```bash
+curl -fsSL https://zaparoo.org/install.sh | bash
+```
+
+This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
+
+To uninstall:
+
+```bash
+~/.local/bin/zaparoo -uninstall application
+~/.local/bin/zaparoo -uninstall service
+~/.local/bin/zaparoo -uninstall desktop
+sudo ~/.local/bin/zaparoo -uninstall hardware
+```
+
+## Readers
+
+All [readers](../readers/index.md) are supported.
+
+## Launchers
+
+| Launcher      | Systems | Notes                               |
+| ------------- | ------- | ----------------------------------- |
+| Steam         | PC      | Games and non-Steam shortcuts       |
+| ChimeraGOG    | PC      | GOG games from Chimera web app      |
+| Kodi          | Media   | Videos, movies, TV shows, music     |
+| Shell Scripts | Any     | Custom `.sh` file execution         |
+
+### Steam
+
+Launches games from your Steam library. Both official Steam games and non-Steam shortcuts added to your library are detected.
+
+Games are indexed from:
+- `~/.steam/steam/steamapps/`
+- `~/.local/share/Steam/`
+
+To manually launch a Steam game, write `steam://<app_id>` to a token.
+
+### ChimeraGOG
+
+Zaparoo automatically indexes GOG games installed through the Chimera web app.
+
+Games are indexed from:
+- `~/.local/share/chimera/content/gog/`
+
+Games are launched using the `gog://` scheme.
+
+### Kodi
+
+Launch media content from a [Kodi](https://kodi.tv/) instance running on your network.
+
+Supported content:
+- Video and audio files
+- Movies and TV episodes
+- Music (songs, albums, artists)
+
+```toml title="config.toml"
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://kodi:8080"
+```
+
+Replace `kodi:8080` with your Kodi instance's address and web interface port.
+
+### Shell Scripts
+
+Execute arbitrary shell scripts. Requires explicit allow list configuration for security.
+
+```toml title="config.toml"
+[launchers]
+allow_file = [
+    "^/home/gamer/scripts/.*\\.sh$"
+]
+```

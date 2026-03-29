@@ -1,0 +1,120 @@
+---
+sidebar_position: 1
+slug: /
+---
+
+import { NavCardGroup } from "@site/src/components/DocsNavGrid";
+import {
+  Monitor,
+  ScanLine,
+  CreditCard,
+  Cpu,
+  Smartphone,
+  Code2,
+  Wand2,
+  Palette,
+  Hammer,
+  Users,
+} from "lucide-react";
+
+# Introduction
+
+:::tip
+
+New to Zaparoo? Make sure to read the [Getting Started](/start/) guide, which explains everything
+necessary to get up and running quickly. Getting started is easy, getting it perfect for _you_ is fun!
+
+:::
+
+Zaparoo is an open system for launching media using physical objects. It allows you to do things like launch your
+favorite game by tapping an [NFC card](./tokens/nfc/index.md) or watch a movie by scanning a [QR code](./tokens/qr-codes.md). This is achieved primarily using the
+[Zaparoo Core](./core/index.md) software, but Zaparoo is also an ecosystem of software, hardware and artwork which all works together to make an
+awesome tactile experience with your media!
+
+These docs cover all aspects of the Zaparoo project. Pick a section that interests you and dive in.
+
+<NavCardGroup
+  title="Hardware"
+  cards={[
+    {
+      icon: Monitor,
+      title: "Platforms",
+      description: "Supported platforms like MiSTer, Windows, SteamOS, and more.",
+      link: "./platforms/",
+    },
+    {
+      icon: ScanLine,
+      title: "Readers",
+      description: "NFC readers, barcode scanners, and other hardware.",
+      link: "./readers/",
+    },
+    {
+      icon: CreditCard,
+      title: "Tokens",
+      description: "NFC cards, QR codes, and other scannable objects.",
+      link: "./tokens/",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Software"
+  cards={[
+    {
+      icon: Cpu,
+      title: "Zaparoo Core",
+      description: "The background service that powers Zaparoo.",
+      link: "./core/",
+    },
+    {
+      icon: Smartphone,
+      title: "Zaparoo App",
+      description: "Official mobile app for iOS and Android.",
+      link: "./app/",
+    },
+    {
+      icon: Code2,
+      title: "ZapScript",
+      description: "The scripting language written to tokens.",
+      link: "./zapscript/",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Design"
+  cards={[
+    {
+      icon: Wand2,
+      title: "Zaparoo Designer",
+      description: "Web app for generating custom labels.",
+      link: "./designer/",
+    },
+    {
+      icon: Palette,
+      title: "Labels",
+      description: "Tools and templates for creating card artwork.",
+      link: "./labels/",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Community"
+  cards={[
+    {
+      icon: Hammer,
+      title: "Community Projects",
+      description: "DIY builds, 3D prints, and community tools.",
+      link: "./community-projects/",
+    },
+    {
+      icon: Users,
+      title: "Community Hub",
+      description: "Discord, Reddit, and community resources.",
+      link: "./community-hub/",
+    },
+  ]}
+/>
+
+The docs are open for contributions, so if you see something missing or want to add something, please [create a pull request](https://github.com/ZaparooProject/zaparoo.org/pulls).

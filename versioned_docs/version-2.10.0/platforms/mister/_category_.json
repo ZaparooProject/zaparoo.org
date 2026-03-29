@@ -1,0 +1,7 @@
+{
+  "label": "MiSTer FPGA",
+  "link": {
+    "type": "doc",
+    "id": "platforms/mister/index"
+  }
+}
