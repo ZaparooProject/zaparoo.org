@@ -1,0 +1,107 @@
+---
+slug: core-v2.10.0
+title: "Zaparoo Core v2.10.0 released"
+tags: [software, core]
+authors: [wizzo]
+draft: true
+---
+
+Zaparoo Core v2.10.0 is now available. Playback controls for Kodi, significantly faster indexing and search, new ZapScript commands, and plenty of fixes.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **[Playback controls](#playback-controls)** for Kodi and RetroArch
+- **[Performance improvements](#performance-improvements)** — faster indexing and search
+- **[New ZapScript commands](#new-zapscript-commands)**: screenshot and MiSTer wallpaper
+
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.10.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Playback Controls
+
+New control system that lets you send actions like pause, save state, and fast forward to whatever's currently running. Launcher support will expand over time.
+
+Kodi is the first launcher with native controls: `toggle_pause`, `stop`, `fast_forward`, `rewind`, `next`, and `previous`. RetroArch on EmuDeck (SteamOS) also has initial support via keyboard hotkeys.
+
+Use the `**control` [ZapScript command](/docs/zapscript/utilities#control) or the `media.control` [API method](/docs/core/api/methods#mediacontrol):
+
+```
+**control:toggle_pause
+```
+
+Custom launchers can define their own controls too, mapping actions to ZapScript commands:
+
+```toml
+[[launchers.custom]]
+id = "MyEmulator"
+system = "SNES"
+execute = "myemu \"[[media_path]]\""
+
+[launchers.custom.controls]
+save_state = "**input.keyboard:{f5}"
+toggle_pause = "**input.keyboard:p"
+```
+
+## Performance Improvements
+
+- **Media indexing is ~25% faster** thanks to database write optimizations and smarter slug processing
+- **Search and title lookups use a new in-memory cache** that makes them basically instant in most cases, even on large libraries
+
+## New ZapScript Commands
+
+**`**screenshot`** — Capture the current display and save it to disk. Currently supported on MiSTer, with support for other platforms planned.
+
+**`**mister.wallpaper`** — Set or unset the MiSTer main menu wallpaper from a tag scan. Point it at an image in `/media/fat/wallpapers/` and the menu refreshes immediately. Without an argument, it unsets the current wallpaper and picks randomly.
+
+```
+**mister.wallpaper:cool.png
+```
+
+## Other Changes
+
+- **New MiSTer cores** — 3DO (`.iso`, `.cue`) and Jaguar CD (`.cdi`)
+- **[Ignore on connect](/docs/core/config#ignore_on_connect)** — new config option to suppress the first token read from each newly-connected reader. Stops accidental launches from cards left sitting on readers
+- **Self-update infrastructure** — built-in update checking and one-click apply with graceful restart. This will be activated in a future app update.
+- **New API methods** — `media.browse` (directory-style library navigation), `media.history` and `media.history.top` (play history and most-played), `media.lookup` (title resolution), `input.keyboard` and `input.gamepad` (remote input), `screenshot`, `update.check`/`update.apply`, and `settings.auth.claim` (secure credential flow for app authentication). See the [API docs](/docs/core/api/methods) for details.
+- **Tag disambiguation** — ZapScript title commands now only include tags (year, players) when they're needed to distinguish between game variants
+- **Relative paths** in `media.search` and `media.lookup` API responses use `systemId/path` format instead of absolute filesystem paths
+- **`media.stopped` notification** now includes full metadata (system, media name, path, launcher, elapsed time)
+- **`media.active` response** includes `launcherControls` field listing available control actions
+- **PN532 serial port caching** — failed ports are remembered and skipped until the device changes, reducing log noise and detection delay
+- **Media type fallbacks** — searching for Movie also finds Video content, MusicTrack finds Audio, etc.
+- **Batocera custom launcher enrichment** — custom launchers inherit extensions and launch commands from EmulationStation overlay configs automatically
+- **Batocera 3DS extensions** — added `.squashfs` and `.zcci` support
+- **First-run error reporting prompt** in the TUI for opt-in Sentry reporting
+
+## Bug Fixes
+
+- Fixed media scanner hanging indefinitely on stale NFS/SMB network mounts
+- Fixed long NDEF records (>255 bytes) being rejected during tag parsing
+- Fixed Windows path separators not being converted for launcher executables
+- Fixed double-slash path prefix in `launch.random` with absolute paths
+- Fixed audio playback crashes on MiSTer from concurrent ALSA device access
+- Fixed tag matching penalizing results with missing tag types
+- Fixed `launch.random` failing for paths not yet in the media database (now falls back to filesystem)
+- Fixed MiSTer CURRENTPATH/FULLPATH not being written for arcade `.mra` launches (fixes marquee/bezel tools)
+- Fixed gamepad `v` key incorrectly mapped to DpadUp instead of DpadDown
+- Removed backslash escaping from shell splitting — Windows paths no longer need double backslashes. Use quoting instead: `"C:\Program Files\app.exe"`
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).

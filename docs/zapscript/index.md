@@ -29,10 +29,13 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`echo`](./utilities.md#echo) | Log a message |
 | [`execute`](./utilities.md#execute) | Run a shell command |
 | [`delay`](./utilities.md#delay) | Pause script execution |
+| [`control`](./utilities.md#control) | Send a control action to the active media's launcher |
+| [`screenshot`](./utilities.md#screenshot) | Capture the current platform display |
 | [`mister.ini`](./mister.md#misterini) | Load MiSTer ini file |
 | [`mister.core`](./mister.md#mistercore) | Launch MiSTer core |
 | [`mister.script`](./mister.md#misterscript) | Run MiSTer script |
 | [`mister.mgl`](./mister.md#mistermgl) | Execute MGL content |
+| [`mister.wallpaper`](./mister.md#misterwallpaper) | Set or unset MiSTer menu wallpaper |
 
 ## Command Categories
 
@@ -40,7 +43,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 - [Input](./input.md): Commands for simulating keyboard and gamepad input
 - [HTTP](./http.md): Commands for making HTTP requests
 - [Playlist](./playlist.md): Commands for managing playlists
-- [Utilities](./utilities.md): Utility commands (stop, delay, echo, execute)
+- [Utilities](./utilities.md): Utility commands (stop, delay, echo, execute, control, screenshot)
 - [MiSTer](./mister.md): Commands specific to the MiSTer platform
 
 ## Syntax

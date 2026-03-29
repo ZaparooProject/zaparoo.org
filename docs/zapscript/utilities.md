@@ -164,3 +164,87 @@ Launches SNES, waits 10 seconds, then presses F12.
 :::info Blocking Command
 This is a blocking command. The entire script pauses until the delay completes.
 :::
+
+---
+
+## control
+
+Dispatches a control action to the active media's launcher. This allows you to send commands to whatever is currently playing, such as pausing, saving state, or skipping tracks.
+
+### Syntax
+
+```zapscript
+**control:<action>
+```
+
+### Arguments
+
+**`action`** (required)
+The control action to dispatch. Available actions depend on the launcher handling the currently active media.
+
+Common actions include:
+- `toggle_pause` - Pause or unpause
+- `save_state` - Save the current state
+- `stop` - Stop the active media
+- `fast_forward` - Fast forward
+- `rewind` - Rewind
+- `next` - Skip to next
+- `previous` - Go to previous
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
+**control:toggle_pause
+```
+
+Pauses or unpauses the currently playing media.
+
+```zapscript
+**control:save_state
+```
+
+Saves the current state (e.g., a save state in an emulator).
+
+:::info
+Media must be actively playing for this command to work. If no media is active, the command will return an error. The available actions depend on the launcher — not all launchers support all actions.
+:::
+
+---
+
+## screenshot
+
+Captures the current platform display and saves the screenshot to disk.
+
+### Syntax
+
+```zapscript
+**screenshot
+```
+
+### Arguments
+
+None.
+
+### Advanced Arguments
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
+**screenshot
+```
+
+Captures a screenshot of the current display.
+
+:::info Platform Support
+Currently supported on MiSTer only.
+:::

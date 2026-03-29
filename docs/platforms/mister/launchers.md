@@ -8,6 +8,7 @@ MiSTer FPGA uses a built-in launcher that automatically detects games from your 
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
+| `3DO` | 3DO | `.iso`, `.cue` |
 | `AdventureVision` | AVision | `.bin` |
 | `Arcadia` | Arcadia | `.bin` |
 | `AmigaCD32` | AmigaCD32 | `.cue`, `.chd`, `.iso` |
@@ -33,6 +34,7 @@ MiSTer FPGA uses a built-in launcher that automatically detects games from your 
 | `Genesis` | MegaDrive, Genesis | `.gen`, `.bin`, `.md` |
 | `Intellivision` | Intellivision | `.int`, `.bin` |
 | `Jaguar` | Jaguar | `.jag`, `.j64`, `.rom`, `.bin` |
+| `JaguarCD` | Jaguar | `.cdi` |
 | `MasterSystem` | SMS | `.sms` |
 | `MegaCD` | MegaCD | `.cue`, `.chd` |
 | `MegaDuck` | GAMEBOY, MegaDuck | `.bin` |

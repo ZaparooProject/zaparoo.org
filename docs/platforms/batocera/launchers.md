@@ -11,7 +11,7 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
 | `3DO` | `3do` | `.iso`, `.chd`, `.cue` |
-| `3DS` | `3ds` | `.3ds`, `.cci`, `.cxi` |
+| `3DS` | `3ds` | `.3ds`, `.cci`, `.cxi`, `.squashfs`, `.zcci` |
 | `Amiga` | `amigacdtv` | `.bin`, `.cue`, `.iso`, `.chd`, `.m3u` |
 | `Amiga500` | `amiga500` | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip` |
 | `Amiga1200` | `amiga1200` | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip` |

@@ -29,6 +29,7 @@ The global settings section does not start with a section header and is the only
 ```toml
 config_schema = 1
 debug_logging = true
+auto_update = false
 ```
 
 #### config_schema
@@ -60,6 +61,25 @@ This option should be enabled when attempting to reproduce issues for reporting.
 `error_reporting` enables or disables opt-in error reporting. When enabled, anonymous error reports are sent to help improve Zaparoo.
 
 See the [Privacy Policy](/privacy) for details on what data is collected.
+
+#### auto_update
+
+| Key         | Type    | Default              |
+| ----------- | ------- | -------------------- |
+| auto_update | boolean | _varies by platform_ |
+
+`auto_update` controls whether Zaparoo checks for and notifies about available updates.
+
+```toml
+auto_update = false
+```
+
+Platform defaults:
+- **Most platforms**: Enabled by default
+- **MiSTer (Downloader)**: Disabled by default (updates managed by MiSTer Downloader)
+- **Batocera (pacman)**: Disabled by default (updates managed by Batocera's package manager)
+
+When disabled, Zaparoo will not check for new versions or display update notifications.
 
 ### Audio
 
@@ -270,6 +290,7 @@ exit_delay = 3.0
 ignore_system = [ 'PC', 'MSX' ]
 on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
+ignore_on_connect = true
 ```
 
 ##### mode
@@ -328,6 +349,21 @@ Note that this will _always_ run in `hold` mode when a token is removed from the
 This hook can block the remove action by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the remove processing is blocked.
 
 Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state.
+
+##### ignore_on_connect
+
+| Key                | Type    | Default |
+| ------------------ | ------- | ------- |
+| ignore_on_connect  | boolean | false   |
+
+`ignore_on_connect` suppresses the first token scan from each newly-connected reader, preventing accidental launches from cards left on readers at startup.
+
+```toml
+[readers.scan]
+ignore_on_connect = true
+```
+
+When enabled, if a token is already present on a reader when it connects (e.g., a card left on the reader when Zaparoo starts), that initial scan will be silently ignored. Subsequent scans from the same reader will work normally.
 
 #### readers.connect
 
@@ -1135,6 +1171,7 @@ An example `config.toml` file with all fields filled, using the example sections
 config_schema = 1
 debug_logging = true
 error_reporting = false
+auto_update = false
 
 [audio]
 scan_feedback = true
@@ -1160,6 +1197,7 @@ exit_delay = 3.0
 ignore_system = [ 'PC', 'MSX' ]
 on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
+ignore_on_connect = true
 
 [[readers.connect]]
 driver = 'acr122pcsc'

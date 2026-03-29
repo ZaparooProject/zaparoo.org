@@ -170,3 +170,48 @@ Creates and launches an MGL to run Sonic on the Genesis core.
 :::info
 This allows programmatically creating MGL content without storing files on disk.
 :::
+
+---
+
+## mister.wallpaper
+
+Sets or unsets the MiSTer main menu wallpaper. When setting a wallpaper, the image is loaded from `/media/fat/wallpapers/`. If the MiSTer is currently on the main menu, the wallpaper is refreshed immediately.
+
+### Syntax
+
+```zapscript
+**mister.wallpaper:<filename>
+```
+
+```zapscript
+**mister.wallpaper
+```
+
+### Arguments
+
+**`filename`** (optional)
+The wallpaper image filename (e.g., `background.png`). Supports `.png` and `.jpg` files. The file must exist in `/media/fat/wallpapers/`. If omitted, the current wallpaper is unset.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
+**mister.wallpaper:retro_bg.png
+```
+
+Sets the menu wallpaper to `retro_bg.png`.
+
+```zapscript
+**mister.wallpaper
+```
+
+Removes the current wallpaper and reverts to random selection.
+
+:::info
+This command also works on MiSTeX.
+:::
