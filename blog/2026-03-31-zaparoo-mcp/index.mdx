@@ -1,0 +1,77 @@
+---
+slug: zaparoo-mcp
+title: "Zaparoo MCP server available"
+tags: [software]
+authors: [wizzo]
+---
+
+Hey! I've just published a new official [Zaparoo MCP server](https://github.com/ZaparooProject/zaparoo-mcp) that can be used with AI assistants. I'll be going over a few examples of how it's been useful for me in development, and maybe someone else will find it fun to mess around with too.
+
+{/* truncate */}
+
+## AI alert
+
+So straight out, I'm not tone deaf to the public perception of AI. If you really hate AI stuff (and that's a fine opinion to have) please read no further, there will be nothing of interest to you here. Rest assured though, that this is simply a wrapper *around* Zaparoo and there will never be any changes or requirements in Zaparoo itself for AI slop or whatever. If you're a regular user of AI tools already or just curious, this could be a bit of fun for you though, so please read on!
+
+I don't want to spend too much time on the topic but I will say I'm *mostly OK* with AI at this point, when it's providing real value, which it often does now in software development. I'm still not OK with things like image and video generation, or the insane energy usage. I am hopeful for a future where this technology is viable to run locally because it can do some really cool stuff.
+
+## What is an MCP server
+
+Basically, an MCP server is a program that knows how to talk directly to an AI and give it stuff to run. It can present a list of tools for the model to use. If the AI decides to use them, the MCP server will execute that request to use a tool and return the result back to the AI.
+
+The Zaparoo MCP server is a wrapper around the existing [Zaparoo Core API](/docs/core/api/methods) which lets the AI interact with Zaparoo Core. I've exposed the entire API from the MCP server, but it's not a one-to-one conversion, I have taken the time to abstract API endpoints where appropriate and also combine many methods into more general tools to save on context usage (the total amount of memory you have in a session). I've also included things like a reference for the AI on how [ZapScript](/docs/zapscript/) works and is composed, plus a set of handy example prompts. It's a whole package to make the AI an expert at using everything Zaparoo.
+
+## Usage in development
+
+So this is actually pretty straightforward. As I'm doing development on Zaparoo with my own Claude Code setup, I'll have the MCP loaded with it. The two most common things for me:
+
+1. Asking the AI to check the logs of a remote device (generally I'll be deploying to and test on a MiSTer or Pi)
+2. Asking the AI to try and break a feature
+
+Having something to check the log file for me is super invaluable because Zaparoo's log files are *very noisy*. The MCP server keeps track of the current state of the log so the AI doesn't get confused about past events. Now I can just deploy stuff, test it and monitor the result automatically. So much faster than before.
+
+Number two kind of involves every other tool. While some things have to be tested in person (the project is about physical objects after all), many things can be tested via the AI and by emulating inputs. Once I've got something working, I can basically just say to the AI "test how this feature works" or "try break this feature" and it does a pretty great job of doing so and finding bugs. This is especially good for finding edge cases, because as a lazy human I will generally be in the habit of testing using the same inputs over and over.
+
+### Benefits from development
+
+Interestingly, there were some benefits from developing the MCP server to Zaparoo Core itself. When I work on the Core API, I'm generally always focused on how it's consumed by the Zaparoo App, and that will guide a lot of design choices. Adding an AI client into the mix actually revealed some pretty severe performance issues around the media searching and lookups.
+
+As a human using the App you will search and see a loading indicator and it's fine, I'll just wait for the search to complete. If the results weren't right, I change the search and try again. The AI does not think this way, it goes "I want to find a game and I have a search tool available, I should run 10 searches at once". Not good! I had literally never considered this would happen, and it would basically crash the service. That pushed me to do a major refactor of the searching in the latest Core release, and now searching for games is practically instant and highly resilient to concurrent searches. I'm very happy it got flagged and it's resulted in a generally much better experience using the App and other clients too.
+
+## Usage for fun
+
+Now this is where it gets interesting and really uncharted territory for me. What can you do with the Core API if you have access to a magic device that can use all the endpoints at once however it feels like? That's possible now.
+
+Here is a short list of what an AI can now do to your device running Zaparoo Core:
+
+- Search for, start and stop games
+- Compose custom ZapScript commands
+- Send keyboard and gamepad inputs
+- Check your play history and see what's currently playing
+- Trigger writing NFC cards on a physical reader
+- View and update any of the settings you can currently change in the App
+- Monitor and react to notifications like games starting, cards being scanned, etc.
+
+And a whole bunch of other stuff. For an exhaustive list, check out the [Core API docs](/docs/core/api/methods). It has access to everything.
+
+The hook here is, you can now talk to Zaparoo using natural language, and that access can be composed with any other tools your AI has access to. I think that's pretty cool.
+
+The most obvious example is "I want to play Bubsy" and yes that will work exactly as you expect. What about some cooler stuff though?
+
+- **"Find me a game I haven't played in a while"**: as of a few versions ago, Core tracks your recently played games for up to a year by default. This will really work, it will really know to check your played history and find a game you've been neglecting.
+- **"Write me a tag for Sonic 2"**: here we are composing actions. The MCP gives access to both searching games and writing tags, it can queue that up for you instantly.
+- **"Write all of the Sonic games to tags one after another"**: this also works! It can do batch jobs.
+- **"I want to play something but I've only got 20 minutes"**: now we can get more into game discovery.
+- **"Play a random SNES game and then play another random one every 20 minutes"**: it can do long running tasks too.
+
+I hope this gets my point across, you do need to think outside the box a bit here. It's very natural to look at this simply as a voice-activated way to play Mario, and it is that, but it's also capable of a lot more.
+
+### A note on permissions
+
+Yes, it has access to everything, so it's up to you to have the appropriate permissions set for the AI. This is generally available to manage in whatever client you use, and I've tried to split tools up logically so that safe read-only commands can be allowed without letting through tools that make changes to the device or could be dangerous (like don't give it carte blanche to enter keypresses, duh).
+
+## How to install
+
+Are you convinced to try? You can now! The Zaparoo MCP server is [available on GitHub](https://github.com/ZaparooProject/zaparoo-mcp). If you check the README there I've listed all the most common clients (Claude, Codex, OpenClaw, etc.) and how to set it up. It's just one command, like most MCP servers. One feature I am *very* proud of myself for coming up with, the MCP server will scan your local network for active Zaparoo devices and connect to them automatically. It supports multiple devices connected at once and it will keep track of reboots or whatever.
+
+And that's it. Hopefully a few people out there give this thing a go, I think it can have some really awesome results once it starts clicking for you. If you come up with any cool ideas please join the [Discord](https://zaparoo.org/discord) and let me know!
