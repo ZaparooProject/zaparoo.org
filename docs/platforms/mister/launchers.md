@@ -181,7 +181,7 @@ ScummVM support uses the [bbond007 script](https://github.com/bbond007/MiSTer_Sc
 
 ### Video Playback
 
-Video playback uses the fvp player. To set up video playback:
+Video playback uses [nextfvp](https://github.com/kyx0r/nextfvp), a framebuffer video player. To set up video playback:
 
 1. Download [fvp-mister_arm-15ea265.zip](https://zaparoo.org/files/fvp-mister_arm-15ea265.zip)
 2. Extract the `fvp` binary to `/media/fat/linux/`
