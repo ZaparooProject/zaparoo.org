@@ -637,9 +637,9 @@ This is used on platforms like [Windows](../platforms/windows/index.md) to allow
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
-- An entry is considered a **partial match** unless it's surrounded by a `^` and `$`.
+- Patterns are automatically anchored and must match the full file path. Use `.*pattern.*` for substring matching.
 - On Windows, file path separators must be escaped: `C:\\Test\\Thing.exe`
-- An entry can be made case-insensitive by putting `(?i)` at the beginning.
+- On Windows, patterns are automatically made case-insensitive. On other platforms, add `(?i)` at the beginning of a pattern for case-insensitive matching.
 
 #### media_dir
 
@@ -773,9 +773,19 @@ This can be overridden per-token using the `?action=` advanced argument in ZapSc
 ```toml
 [zapscript]
 allow_execute = [
-    '^touch /tmp/tap_time$',
-    '^/media/fat/linux/mplayer .+'
+    'touch /tmp/tap_time',
+    '/media/fat/linux/mplayer .+'
 ]
+allow_http = [
+    'https://example\.com/.*'
+]
+block_commands = [
+    'execute'
+]
+
+[zapscript.input]
+mode = 'combos'
+block = ['{alt+f4}']
 ```
 
 #### allow_execute
@@ -790,8 +800,100 @@ allow_execute = [
 
 Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
-- An entry is considered a **partial match** unless it's surrounded by a `^` and `$`.
+- Patterns are automatically anchored and must match the full command string. `echo` matches only `echo`, not `echo && rm -rf /`. Use `echo.*` or `.*pattern.*` for broader matching.
 - On Windows, file path separators must be escaped: `C:\\Test\\Thing.exe`
+
+#### allow_http
+
+| Key        | Type                      | Default |
+| ---------- | ------------------------- | ------- |
+| allow_http | string[] (regex patterns) | []      |
+
+`allow_http` restricts which URLs the [`**http.get`](../zapscript/http.md#httpget) and [`**http.post`](../zapscript/http.md#httppost) ZapScript commands can access. When empty (the default), all URLs are allowed. When configured, only matching URLs are permitted.
+
+Each entry is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Patterns are automatically anchored to match the full URL.
+
+```toml
+[zapscript]
+allow_http = [
+    'https://example\.com/.*',
+    'http://localhost:8080/.*'
+]
+```
+
+#### block_commands
+
+| Key            | Type     | Default |
+| -------------- | -------- | ------- |
+| block_commands | string[] | []      |
+
+`block_commands` disables specific ZapScript commands by name. Any listed command will always fail, regardless of any other allowlists.
+
+```toml
+[zapscript]
+block_commands = [
+    'execute',
+    'http.post'
+]
+```
+
+Command names match the ZapScript command identifier (e.g., `execute`, `http.get`, `http.post`, `input.keyboard`).
+
+#### zapscript.input
+
+`zapscript.input` is a sub-section of `zapscript` that controls which keys the [`**input.keyboard`](../zapscript/input.md#inputkeyboard) and [`**input.gamepad`](../zapscript/input.md#inputgamepad) commands can send.
+
+```toml
+[zapscript.input]
+mode = 'combos'
+allow = ['{f1}', '{f2}', '{enter}', '{esc}']
+block = ['{alt+f4}']
+```
+
+##### mode {#zapscript-input-mode}
+
+| Key  | Type                                | Default              |
+| ---- | ----------------------------------- | -------------------- |
+| mode | string (`"combos"`, `"unrestricted"`) | _varies by platform_ |
+
+Controls how input keys are filtered when no `allow` list is configured.
+
+- `combos` — only key combos and named special keys (e.g., `{f1}`, `{ctrl+q}`) are allowed. Single characters (e.g., `a`, `5`) are blocked. This is the default on desktop platforms.
+- `unrestricted` — all keys are allowed (subject to the `block` list). This is the default on embedded platforms like MiSTer.
+
+Platform defaults:
+- **Desktop** (Linux, Windows, macOS, SteamOS, ChimeraOS, Bazzite): `combos`
+- **Embedded** (MiSTer, MiSTex, Batocera, Recalbox, LibreELEC, RetroPie): `unrestricted`
+
+##### allow {#zapscript-input-allow}
+
+| Key   | Type     | Default |
+| ----- | -------- | ------- |
+| allow | string[] | []      |
+
+When set, only the listed keys are permitted. All others are blocked regardless of `mode` or `block`. Matching is case-insensitive.
+
+```toml
+[zapscript.input]
+allow = ['{f1}', '{f2}', '{enter}', '{esc}']
+```
+
+##### block {#zapscript-input-block}
+
+| Key   | Type     | Default                      |
+| ----- | -------- | ---------------------------- |
+| block | string[] | _platform default (desktop)_ |
+
+A list of keys to always block. On desktop platforms, a built-in block list applies by default; setting `block` to any value, even an empty list, replaces it entirely.
+
+The default desktop block list covers TTY switching (`{ctrl+alt+f1}`–`{ctrl+alt+f7}`), `{ctrl+alt+t}`, `{ctrl+alt+delete}`, `{super}`, `{meta}`, `{alt+f4}`, and `{cmd+space}`.
+
+```toml
+[zapscript.input]
+block = ['{alt+f4}', '{ctrl+alt+t}']  # custom block list, replaces defaults
+```
+
+The `block` list is ignored when `allow` is configured.
 
 ### Service
 
@@ -808,7 +910,7 @@ allowed_origins = [
     'https://app.zaparoo.org'
 ]
 allow_run = [
-    '^\*\*launch\.random:.+$'
+    '\*\*launch\.random:.+'
 ]
 
 [[service.publishers.mqtt]]
@@ -913,10 +1015,12 @@ It's currently reserved for future use when devices can communicate with each ot
 
 `allow_run` explicitly allows [ZapScript](../zapscript/index.md) to be run using the [run endpoint](./api/methods.md) of the [Core API](./api/index.md). By default, nothing is allowed.
 
-Each entry in this option is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
+Each entry is a [Regular Expression](https://github.com/google/re2/wiki/Syntax). Notes on usage here:
 
-- An entry is considered a **partial match** unless it's surrounded by a `^` and `$`.
-- Characters `*`, `|` and `.` common in both ZapScript and Regular Expressions must be escaped like in the example file below.
+- Patterns are automatically anchored and must match the full command string. Characters `*` and `.` common in ZapScript must be escaped (e.g., `\*\*launch\.random:.*`).
+- The input is parsed as ZapScript and each command is checked individually. All commands in a chained script must match, so a pattern like `\*\*launch\.random:.*` covers both `**launch.random:SNES` alone and `**launch.random:SNES||**launch.random:NES`.
+- Plain file paths are normalized to a launch command before checking.
+- When `allow_run` is configured, remote IPs can access run endpoints regardless of `allowed_ips`. The allow list itself is the restriction.
 
 #### service.discovery
 
@@ -1455,9 +1559,17 @@ server_url = 'http://localhost:5678'
 
 [zapscript]
 allow_execute = [
-    '^touch /tmp/tap_time$',
-    '^/media/fat/linux/mplayer .+'
+    'touch /tmp/tap_time',
+    '/media/fat/linux/mplayer .+'
 ]
+allow_http = [
+    'https://example\.com/.*'
+]
+block_commands = []
+
+[zapscript.input]
+mode = 'combos'
+block = []
 
 [playtime]
 retention = 365
@@ -1481,7 +1593,7 @@ allowed_origins = [
     'https://app.zaparoo.org'
 ]
 allow_run = [
-    '^\*\*launch\.random:.+$'
+    '\*\*launch\.random:.+'
 ]
 
 [service.discovery]

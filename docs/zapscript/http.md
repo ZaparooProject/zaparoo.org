@@ -6,6 +6,8 @@ sidebar_position: 3
 
 These commands make HTTP requests to external services. Both commands run asynchronously in the background with a 30-second timeout, so they won't block script execution.
 
+By default, all URLs are accessible. Use [`allow_http`](../core/config.md#allow_http) in the config file to restrict which URLs these commands can reach.
+
 ## http.get
 
 Performs an HTTP GET request to a URL.

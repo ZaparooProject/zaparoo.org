@@ -6,6 +6,8 @@ sidebar_position: 2
 
 These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons.
 
+The platform sets a default input mode, which you can configure with [`[zapscript.input]`](../core/config.md#zapscriptinput). On desktop platforms, single-character keys are blocked by default; only key combos and special keys like `{f1}` work. Embedded platforms like MiSTer allow all keys.
+
 ## input.keyboard
 
 Simulates keyboard key presses.
