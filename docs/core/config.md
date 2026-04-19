@@ -13,7 +13,7 @@ The file is always called `config.toml` on every platform.
 The config file is written in [TOML](https://toml.io/en/).
 
 :::warning
-Although comments are supported in TOML, _they will be lost if Core makes updates to this file_ (e.g. when adjusting settings using the Zaparoo App) and should be avoided for important information.
+Although comments are supported in TOML, _they will be lost if Core updates this file_ (e.g. when adjusting settings via the Zaparoo App). Manual edits to values are preserved on save.
 :::
 
 Any changes made to the config file while the Core service is running require the service to be restarted before changes will take effect, or the `-reload` [CLI command](./cli.md) to be run.
@@ -90,6 +90,7 @@ When disabled, Zaparoo will not check for new versions or display update notific
 ```toml
 [audio]
 scan_feedback = true
+volume = 100
 success_sound = "custom_success.wav"
 fail_sound = "custom_fail.wav"
 limit_sound = "custom_limit.wav"
@@ -104,6 +105,19 @@ ready_sound = "custom_ready.ogg"
 | scan_feedback | boolean | true    |
 
 `scan_feedback` enables or disables playing a sound from the host device when a scan is successful or results in an error.
+
+#### volume
+
+| Key    | Type              | Default |
+| ------ | ----------------- | ------- |
+| volume | integer (0–200)   | 100     |
+
+`volume` sets the playback volume for audio feedback sounds. At the default `100`, sounds play at their original recorded level. Lower values quiet them down; higher values amplify, up to double at `200`.
+
+```toml
+[audio]
+volume = 150  # 50% louder than the original sound
+```
 
 #### success_sound
 
@@ -1496,6 +1510,7 @@ auto_update = false
 
 [audio]
 scan_feedback = true
+volume = 100
 success_sound = "custom_success.wav"
 fail_sound = "custom_fail.wav"
 limit_sound = "custom_limit.wav"
