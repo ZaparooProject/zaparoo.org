@@ -16,6 +16,7 @@ Zaparoo is available on multiple platforms.
 ## Retro Gaming
 
 - [Batocera](batocera)
+- [ReplayOS](replayos)
 
 ## Steam Deck / Gaming Handhelds
 

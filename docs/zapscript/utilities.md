@@ -246,5 +246,5 @@ None.
 Captures a screenshot of the current display.
 
 :::info Platform Support
-Currently supported on MiSTer only.
+Currently supported on MiSTer and ReplayOS.
 :::
