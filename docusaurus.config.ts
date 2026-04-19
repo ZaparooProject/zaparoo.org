@@ -123,10 +123,10 @@ const config: Config = {
   themeConfig: {
     image: "img/social-card.webp",
     navbar: {
-      title: "Zaparoo",
       logo: {
-        alt: "Zaparoo Logo",
-        src: "img/logo_sm.webp",
+        alt: "Zaparoo",
+        src: "img/logo_lockup_horizontal.webp",
+        srcDark: "img/logo_lockup_horizontal_dark.webp",
       },
       items: [
         {
