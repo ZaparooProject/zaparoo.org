@@ -1,3 +1,7 @@
+---
+toc_max_heading_level: 4
+---
+
 # Config File
 
 The config file is the main configuration file of the [Zaparoo Core](./index.md) software service.
@@ -165,7 +169,7 @@ Configuration works the same as [`success_sound`](#success_sound):
 | ------------- | ------ | ------------------ |
 | pending_sound | string | (embedded default) |
 
-`pending_sound` specifies a custom audio file to play when a token is staged by [launch guard](../../features/launch-guard.md). Supports WAV, MP3, OGG, and FLAC formats.
+`pending_sound` specifies a custom audio file to play when a token is staged by [launch guard](../features/launch-guard.md). Supports WAV, MP3, OGG, and FLAC formats.
 
 ```toml
 [audio]
@@ -296,7 +300,7 @@ auto_detect = true
 scan_history = 30
 ```
 
-#### auto_detect
+#### auto_detect {#readers-auto-detect}
 
 | Key         | Type    | Default |
 | ----------- | ------- | ------- |
@@ -335,7 +339,7 @@ on_remove = '**echo:card was removed'
 ignore_on_connect = true
 ```
 
-##### mode
+##### mode {#scan-mode}
 
 | Key  | Type                     | Default |
 | ---- | ------------------------ | ------- |
@@ -352,7 +356,7 @@ ignore_on_connect = true
 | ---------- | ------------ | ------- |
 | exit_delay | float (≥0.0) | 0.0     |
 
-`exit_delay` adds a delay, in seconds, before media is exited after a token is removed from a reader. It's only active if `hold` [mode](#mode) is also active.
+`exit_delay` adds a delay, in seconds, before media is exited after a token is removed from a reader. It's only active if `hold` [mode](#scan-mode) is also active.
 
 For example, if `exit_delay` was set to `2.3`, it would mean when a token is removed from a reader, instead of immediately exiting the media, a timer is started for 2.3 seconds first. If the same token is placed back on the reader before the timer is complete, the timer will be cleared and the media won't exit.
 
@@ -364,7 +368,7 @@ This feature can be useful if you want to, using a single reader, scan other tok
 | ------------- | -------- | ------- |
 | ignore_system | string[] | []      |
 
-`ignore_system` is a list of systems which will not exit playing media on token removal. It's only active in `hold` [`mode`](#mode).
+`ignore_system` is a list of systems which will not exit playing media on token removal. It's only active in `hold` [`mode`](#scan-mode).
 
 ##### on_scan
 
@@ -384,7 +388,7 @@ Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment va
 | --------- | ------ | ------- |
 | on_remove | string |         |
 
-`on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#mode).
+`on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#scan-mode).
 
 Note that this will _always_ run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the [`exit_delay`](#exit_delay) setting and runs before any media exit logic happens.
 
@@ -541,7 +545,7 @@ auto_detect = false
 enabled = false
 ```
 
-##### enabled
+##### enabled {#readers-drivers-enabled}
 
 | Key     | Type    | Default            |
 | ------- | ------- | ------------------ |
@@ -549,7 +553,7 @@ enabled = false
 
 `enabled` allows you to explicitly enable or disable a specific reader driver. When not specified, the driver uses its default enabled state.
 
-##### auto_detect
+##### auto_detect {#readers-drivers-auto-detect}
 
 | Key         | Type    | Default |
 | ----------- | ------- | ------- |
@@ -580,7 +584,7 @@ before_exit = '**input.keyboard:{f12}||**delay:2000'
 
 ID of the [system](../features/systems.md) this default override entry applies to.
 
-##### launcher
+##### launcher {#systems-default-launcher}
 
 | Key      | Type   | Default |
 | -------- | ------ | ------- |
@@ -594,7 +598,7 @@ ID of the [launcher](../features/launchers.md) that should be used by default wh
 | ----------- | ------ | ------- |
 | before_exit | string |         |
 
-A snippet of [ZapScript](../zapscript/index.md) to be run before media exits if [hold mode](#mode) is enabled. Blocks before moving onto exit so commands like [delay](../zapscript/utilities.md) can be used.
+A snippet of [ZapScript](../zapscript/index.md) to be run before media exits if [hold mode](#scan-mode) is enabled. Blocks before moving onto exit so commands like [delay](../zapscript/utilities.md) can be used.
 
 ### Launchers
 
@@ -720,7 +724,7 @@ launcher = 'KodiTV'
 server_url = 'http://localhost:5678'
 ```
 
-##### launcher
+##### launcher {#launchers-default-launcher}
 
 | Key      | Type   | Default |
 | -------- | ------ | ------- |
@@ -926,7 +930,7 @@ instance_name = "Living Room MiSTer"
 
 When enabled, Zaparoo advertises itself on your local network using mDNS/DNS-SD. Mobile apps and other clients can automatically find and connect to your Zaparoo instance without needing to enter IP addresses manually. Access Zaparoo using friendly `.local` addresses like `http://mister.local:7497`.
 
-##### enabled
+##### enabled {#service-discovery-enabled}
 
 | Key     | Type    | Default |
 | ------- | ------- | ------- |
@@ -948,7 +952,7 @@ When enabled, Zaparoo advertises itself on your local network using mDNS/DNS-SD.
 
 ##### service.publishers.mqtt
 
-`service.publishers.mqtt` configures MQTT publishers for broadcasting Core events. It's a sub-section that can be defined multiple times, and must have this header: `[[service.publishers.mqtt]]`
+`service.publishers.mqtt` configures MQTT publishers for broadcasting Core events. See the [Publishers](../features/publishers.md#mqtt) feature page for an overview. It's a sub-section that can be defined multiple times, and must have this header: `[[service.publishers.mqtt]]`
 
 Pay attention to the double pairs of square brackets. Each defined MQTT publisher section must have its own header.
 
@@ -964,7 +968,7 @@ filter = [
 ]
 ```
 
-###### enabled
+###### enabled {#mqtt-publisher-enabled}
 
 | Key     | Type    | Default |
 | ------- | ------- | ------- |
@@ -977,7 +981,7 @@ filter = [
 enabled = false
 ```
 
-###### broker
+###### broker {#mqtt-publisher-broker}
 
 | Key    | Type   | Default |
 | ------ | ------ | ------- |
@@ -996,7 +1000,7 @@ Supported URL schemes:
 
 For TLS connections and authentication, see the MQTT reader's [auth.toml configuration](../readers/mqtt.md#authentication).
 
-###### topic
+###### topic {#mqtt-publisher-topic}
 
 | Key   | Type   | Default |
 | ----- | ------ | ------- |
@@ -1009,7 +1013,7 @@ For TLS connections and authentication, see the MQTT reader's [auth.toml configu
 topic = "home/zaparoo/events"
 ```
 
-###### filter
+###### filter {#mqtt-publisher-filter}
 
 | Key    | Type     | Default                  |
 | ------ | -------- | ------------------------ |
@@ -1024,6 +1028,100 @@ filter = [
     "media.stopped",
     "tokens.added",
     "readers.added"
+]
+```
+
+Available event types match the [Core API notification types](./api/notifications.md).
+
+##### service.publishers.pixelcade
+
+`service.publishers.pixelcade` configures [PixelCade](https://pixelcade.org) publishers that display game marquee artwork on PixelCade LED displays. See the [Publishers](../features/publishers.md#pixelcade) feature page for an overview. It can be defined multiple times and must use this header: `[[service.publishers.pixelcade]]`
+
+On `media.started`, the publisher sends a GET request to the PixelCade arcade endpoint, mapping the Zaparoo system ID to the matching PixelCade console folder. On `media.stopped`, behaviour is controlled by the `on_stop` option.
+
+```toml
+[[service.publishers.pixelcade]]
+enabled = true
+host = "192.168.1.50"
+port = 8080
+mode = "stream"
+on_stop = "blank"
+filter = [
+    "media.started",
+    "media.stopped"
+]
+```
+
+###### enabled {#pixelcade-publisher-enabled}
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean | true    |
+
+`enabled` turns this PixelCade publisher on or off.
+
+```toml
+[[service.publishers.pixelcade]]
+enabled = false
+```
+
+###### host {#pixelcade-publisher-host}
+
+| Key  | Type   | Default |
+| ---- | ------ | ------- |
+| host | string |         |
+
+`host` is the hostname or IP address of the PixelCade device. This field is required.
+
+```toml
+[[service.publishers.pixelcade]]
+host = "192.168.1.50"
+```
+
+###### port {#pixelcade-publisher-port}
+
+| Key  | Type    | Default |
+| ---- | ------- | ------- |
+| port | integer | 8080    |
+
+`port` is the PixelCade HTTP API port.
+
+###### mode {#pixelcade-publisher-mode}
+
+| Key  | Type   | Default    |
+| ---- | ------ | ---------- |
+| mode | string | `"stream"` |
+
+`mode` controls which PixelCade arcade endpoint is used when displaying marquee art on `media.started`. Accepted values:
+
+- `"stream"` — uses the streaming endpoint (default)
+- `"write"` — uses the write endpoint
+
+###### on_stop {#pixelcade-publisher-on-stop}
+
+| Key     | Type   | Default    |
+| ------- | ------ | ---------- |
+| on_stop | string | `"blank"`  |
+
+`on_stop` controls what happens to the display when `media.stopped` is received. Accepted values:
+
+- `"blank"` — clears the display (default)
+- `"marquee"` — shows the default PixelCade marquee image
+- `"none"` — leaves the last image on the display
+
+###### filter {#pixelcade-publisher-filter}
+
+| Key    | Type     | Default                  |
+| ------ | -------- | ------------------------ |
+| filter | string[] | [] (publish all events) |
+
+`filter` limits which event types trigger requests to PixelCade. When empty, all events are forwarded. Note that only `media.started` and `media.stopped` ever produce requests regardless of this setting; all other notification types are ignored.
+
+```toml
+[[service.publishers.pixelcade]]
+filter = [
+    "media.started",
+    "media.stopped"
 ]
 ```
 
@@ -1099,7 +1197,7 @@ Set to `0` to keep all history forever (disables cleanup).
 
 `playtime.limits` is a sub-section of `playtime` and must be defined with the header: `[playtime.limits]`
 
-##### enabled
+##### enabled {#playtime-limits-enabled}
 
 | Key     | Type    | Default |
 | ------- | ------- | ------- |

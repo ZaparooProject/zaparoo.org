@@ -18,7 +18,7 @@ Zaparoo can track how long games are played and enforce time limits. You can set
 
 See the [Config File Reference](../core/config.md#playtime) for detailed configuration options including:
 
-- [`enabled`](../core/config.md#enabled-1) - Turn limits on/off
+- [`enabled`](../core/config.md#playtime-limits-enabled) - Turn limits on/off
 - [`daily`](../core/config.md#daily) - Daily time limit
 - [`session`](../core/config.md#session) - Session time limit
 - [`session_reset`](../core/config.md#session_reset) - Cooldown period between sessions
