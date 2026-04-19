@@ -412,3 +412,55 @@ Finds a more specific match (US version of Super Mario games).
 :::info
 Search queries are case insensitive.
 :::
+
+---
+
+## launch.last
+
+Launches a recently played game from playtime history.
+
+### Syntax
+
+```zapscript
+**launch.last
+**launch.last:<offset>
+```
+
+### Arguments
+
+**`offset`** (optional)
+Which recent game to launch, where `1` is the most recently played.
+Defaults to `1`. Duplicate plays of the same game are collapsed, so
+`2` is the previous *different* game, `3` the one before that, and so on.
+
+### Advanced Arguments
+
+| Argument   | Type       | Default | Description                                |
+| ---------- | ---------- | ------- | ------------------------------------------ |
+| `launcher` | string     | -       | Override the default launcher              |
+| `action`   | string     | `run`   | `run` to launch, `details` to show info    |
+| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+```zapscript
+**launch.last
+```
+
+Relaunches the most recently played game.
+
+```zapscript
+**launch.last:2
+```
+
+Launches the previously played game (skipping the most recent one).
+
+```zapscript
+**launch.last:3
+```
+
+Cycles back to the third most recently played unique game.
+
+:::info
+Requires [playtime tracking](../features/playtime.md) to have recorded history. If not enough unique games are in history to satisfy the offset, the command logs a warning and does nothing.
+:::
