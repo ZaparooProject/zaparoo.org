@@ -546,13 +546,29 @@ path = '/tmp/some_file'
 
 Other reader drivers ignore this setting.
 
+##### enabled {#readers-connect-enabled}
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean |         |
+
+`enabled` temporarily disables a reader connection without removing it from the config. When not set, the connection is enabled by default.
+
+```toml
+[[readers.connect]]
+driver = 'pn532uart'
+path = '/dev/ttyUSB0'
+enabled = false
+```
+
+This is useful for keeping a connection definition in the config while not actively using it, without having to delete and re-add it later.
+
 #### readers.drivers
 
 `readers.drivers` configures driver-specific settings. It's a sub-section that uses driver IDs as keys, and must have this header format: `[readers.drivers.DRIVER_ID]`
 
 ```toml
 [readers.drivers.acr122pcsc]
-enabled = true
 auto_detect = false
 
 [readers.drivers.simpleserial]
