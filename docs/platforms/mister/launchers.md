@@ -197,6 +197,16 @@ Some alternate or unofficial versions of cores are supported and can be used by 
 
 To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `N64/some/game.n64?launcher=80MHzNintendo64`
 
+To set an alternate core as the default for all tokens of a launcher (instead of per-token), use the [`load_path`](../../core/config.md#launchersdefault) field in `config.toml`:
+
+```toml
+[[launchers.default]]
+launcher = "Nintendo64"
+load_path = "_LLAPI/N64_LLAPI"
+```
+
+`load_path` is an MGL-form RBF path relative to `/media/fat`, without extension. A config reload is sufficient after changing this — no service restart required.
+
 ### LLAPI
 
 Bliss-Box LLAPI cores. Alternate Arcade cores can be referenced directly with their `.mra` files.
@@ -220,6 +230,7 @@ Bliss-Box LLAPI cores. Alternate Arcade cores can be referenced directly with th
 | `LLAPISaturn` | Saturn |
 | `LLAPISNES` | SNES |
 | `LLAPITurboGrafx16` | TurboGrafx-16 |
+| `LLAPISuperGrafx` | SuperGrafx |
 
 ### PWM
 
@@ -241,6 +252,17 @@ Robert Piep's experimental overclock cores.
 |-------------|--------|
 | `80MHzNintendo64` | Nintendo 64 |
 | `2XPSX` | PlayStation |
+
+### DualRAM
+
+Dual-SDRAM cores from [TheJesusFish/Dual-Ram-Console-Cores](https://github.com/TheJesusFish/Dual-Ram-Console-Cores).
+
+| Launcher ID | System |
+|-------------|--------|
+| `DualRAM3DO` | 3DO |
+| `DualRAMJaguar` | Jaguar |
+| `DualRAMPSX` | PlayStation |
+| `DualRAMSaturn` | Saturn |
 
 ### Sinden Lightgun
 

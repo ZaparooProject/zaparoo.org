@@ -798,6 +798,20 @@ Available values for Steam:
 
 This can be overridden per-token using the `?action=` advanced argument in ZapScript.
 
+##### load_path
+
+| Key       | Type   | Default |
+| --------- | ------ | ------- |
+| load_path | string |         |
+
+Override the implementation file the launcher loads. Only supported by some launchers. For MiSTer, this is an MGL-form RBF path relative to `/media/fat`, without extension. This is useful when multiple versions of a core share the same short name and you want to set a specific one as the default.
+
+```toml
+[[launchers.default]]
+launcher = "Nintendo64"
+load_path = "_LLAPI/N64_LLAPI"
+```
+
 ### ZapScript
 
 ```toml
