@@ -365,6 +365,83 @@ ignore_on_connect = true
 
 When enabled, if a token is already present on a reader when it connects (e.g., a card left on the reader when Zaparoo starts), that initial scan will be silently ignored. Subsequent scans from the same reader will work normally.
 
+#### readers.scan.launch_guard {#launch-guard-config}
+
+`readers.scan.launch_guard` is a sub-section of `readers.scan` and must be defined with the header: `[readers.scan.launch_guard]`
+
+```toml
+[readers.scan.launch_guard]
+enabled = true
+timeout = 15
+delay = 0
+require_confirm = false
+```
+
+##### enabled {#launch-guard-enabled}
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean | false   |
+
+`enabled` turns launch guard on or off. When enabled, tokens scanned while media is playing are staged rather than launched immediately. All scans are unaffected when nothing is playing.
+
+```toml
+[readers.scan.launch_guard]
+enabled = true
+```
+
+##### timeout {#launch-guard-timeout}
+
+| Key     | Type          | Default |
+| ------- | ------------- | ------- |
+| timeout | float (≥-1.0) | 15.0    |
+
+`timeout` sets how long, in seconds, a staged token waits for confirmation before being silently dropped.
+
+Setting `timeout` to `0` uses the default of 15 seconds. Setting it to a negative value (e.g., `-1`) disables the timeout entirely — the staged token persists until it's confirmed, replaced by another scan, or cleared when media stops.
+
+```toml
+[readers.scan.launch_guard]
+timeout = 30     # wait up to 30 seconds
+timeout = -1     # wait indefinitely
+```
+
+##### delay {#launch-guard-delay}
+
+| Key   | Type         | Default |
+| ----- | ------------ | ------- |
+| delay | float (≥0.0) | 0.0     |
+
+`delay` sets a mandatory cool-down period, in seconds, before re-tap confirmation is accepted. During this window, re-tapping the same card resets both the delay and the timeout — confirmation is not accepted until the full delay has elapsed.
+
+When the delay expires, a ready sound plays and a `tokens.staged.ready` notification is sent.
+
+`delay` is clamped to half of `timeout` if it would equal or exceed it. It is forced to `0` when `timeout` is negative.
+
+```toml
+[readers.scan.launch_guard]
+timeout = 30
+delay = 5   # block re-tap for the first 5 seconds
+```
+
+Setting `delay` to `0` (the default) disables the cool-down and re-tap confirmation is accepted immediately after staging.
+
+##### require_confirm {#launch-guard-require-confirm}
+
+| Key             | Type    | Default |
+| --------------- | ------- | ------- |
+| require_confirm | boolean | false   |
+
+`require_confirm` disables re-tap confirmation. When set to `true`, re-tapping the staged card does nothing — the only way to launch a staged token is via the `confirm` API method.
+
+```toml
+[readers.scan.launch_guard]
+enabled = true
+require_confirm = true
+```
+
+This is useful when you want an external device (a physical button, a companion app, or an automation script) to be the sole confirmation path.
+
 #### readers.connect
 
 `readers.connect` manually defines a reader which is physically connected to the host device and is not auto-detected. It's a sub-section that can be defined multiple times, and must have this header: `[[readers.connect]]`
@@ -1198,6 +1275,11 @@ ignore_system = [ 'PC', 'MSX' ]
 on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
 ignore_on_connect = true
+
+[readers.scan.launch_guard]
+enabled = true
+timeout = 30
+delay = 5
 
 [[readers.connect]]
 driver = 'acr122pcsc'
