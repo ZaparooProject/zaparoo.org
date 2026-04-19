@@ -6,340 +6,349 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #632aa3;
-  --ifm-color-primary-dark: #592693;
-  --ifm-color-primary-darker: #56258e;
-  --ifm-color-primary-darkest: #532389;
-  --ifm-color-primary-light: #6d2eb3;
-  --ifm-color-primary-lighter: #7230bb;
-  --ifm-color-primary-lightest: #813dcd;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+    --ifm-color-primary: #632aa3;
+    --ifm-color-primary-dark: #592693;
+    --ifm-color-primary-darker: #56258e;
+    --ifm-color-primary-darkest: #532389;
+    --ifm-color-primary-light: #6d2eb3;
+    --ifm-color-primary-lighter: #7230bb;
+    --ifm-color-primary-lightest: #813dcd;
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #f37573;
-  --ifm-color-primary-dark: #f05452;
-  --ifm-color-primary-darker: #ef4b48;
-  --ifm-color-primary-darkest: #ee413e;
-  --ifm-color-primary-light: #f69694;
-  --ifm-color-primary-lighter: #f7a6a4;
-  --ifm-color-primary-lightest: #fbd7d6;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+    --ifm-color-primary: #068fff;
+    --ifm-color-primary-dark: #0088f8;
+    --ifm-color-primary-darker: #0087f5;
+    --ifm-color-primary-darkest: #0083ee;
+    --ifm-color-primary-light: #209bff;
+    --ifm-color-primary-lighter: #2da1ff;
+    --ifm-color-primary-lightest: #54b2ff;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+    --ifm-color-primary-contrast-foreground: #ffffff;
+}
+
+[data-theme="dark"] .button--primary {
+    color: var(--ifm-color-primary-contrast-foreground);
 }
 
 .footer__link-item:hover {
-  color: var(--ifm-color-primary-lightest);
+    color: var(--ifm-color-primary-lightest);
 }
 
 .footer--dark .footer__copyright a {
-  color: var(--ifm-color-secondary);
+    color: var(--ifm-color-secondary);
 }
 
 .footer--dark .footer__copyright a:hover {
-  color: var(--ifm-color-primary-lightest);
+    color: var(--ifm-color-primary-lightest);
 }
 
 .react-photo-album--image {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 
 .markdown img {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 
 .hidden {
-  display: none !important;
+    display: none !important;
 }
 
 .embed-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
 }
 .embed-container iframe,
 .embed-container object,
 .embed-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .zaparoo-animated-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 0;
-  overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
 }
 
 .zaparoo-animated-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 300%;
-  height: 100%;
-  background: linear-gradient(90deg, #040616, #351558, #411506, #040616);
-  animation: gradientSlide 11s alternate infinite;
-  will-change: transform;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(90deg, #040616, #351558, #411506, #040616);
+    animation: gradientSlide 11s alternate infinite;
+    will-change: transform;
 }
 
 @keyframes gradientSlide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(33.333%);
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(33.333%);
+    }
 }
 
 /* Container for rotating text with fixed underline */
 .rotating-word-container {
-  display: inline-block;
-  min-width: 145px;
-  position: relative;
-  text-align: left;
+    display: inline-block;
+    min-width: 145px;
+    position: relative;
+    text-align: left;
 }
 
 /* Fixed underline that stays in place */
 .rotating-word-container::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: currentColor;
-  opacity: 0.3;
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    opacity: 0.3;
 }
 
 /* Rotating text animation */
 .rotating-word {
-  display: inline-block;
-  text-align: left;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-  will-change: opacity, transform; /* Optimize for animations */
-  color: #ffb946;
+    display: inline-block;
+    text-align: left;
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.4s ease-in-out,
+        transform 0.4s ease-in-out;
+    will-change: opacity, transform; /* Optimize for animations */
+    color: #ffb946;
 }
 
 .rotating-word.fade-out {
-  opacity: 0;
-  transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 .rotating-word.fade-in {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Mobile line break for hero subtitle */
 .mobile-break {
-  display: none;
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
-  .mobile-break {
-    display: block;
-  }
+    .mobile-break {
+        display: block;
+    }
 }
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .rotating-word {
-    transition: none;
-    transform: none !important;
-  }
+    .rotating-word {
+        transition: none;
+        transform: none !important;
+    }
 }
 
 /* Enhanced dark mode adjustments for homepage */
 [data-theme="dark"] .whatIsZaparooSection,
 [data-theme="dark"] .howItWorksSection {
-  background-color: var(--ifm-background-color);
+    background-color: var(--ifm-background-color);
 }
 
 [data-theme="dark"] .communityShowcaseWrapper {
-  background-color: var(--ifm-color-emphasis-200);
+    background-color: var(--ifm-color-emphasis-200);
 }
 
 [data-theme="dark"] .heroVersion {
-  color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 [data-theme="dark"] .whatIsZaparooText {
-  color: var(--ifm-color-emphasis-900);
+    color: var(--ifm-color-emphasis-900);
 }
 
 [data-theme="dark"] .whatIsZaparooSubtext {
-  color: var(--ifm-color-emphasis-800);
+    color: var(--ifm-color-emphasis-800);
 }
 
 /* Enhanced focus styles for better accessibility */
 .button:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
-  outline-offset: 2px;
+    outline: 2px solid var(--ifm-color-primary);
+    outline-offset: 2px;
 }
 
 [data-theme="dark"] .button:focus-visible {
-  outline-color: var(--ifm-color-primary-light);
+    outline-color: var(--ifm-color-primary-light);
 }
 
 /* Fix iOS Safari lightbox gap at bottom */
 .yarl__root {
-  height: 100dvh !important;
-  height: 100vh !important;
+    height: 100dvh !important;
+    height: 100vh !important;
 }
 
 .yarl__container {
-  height: 100dvh !important;
-  height: 100vh !important;
+    height: 100dvh !important;
+    height: 100vh !important;
 }
 
 /* Support for older browsers that don't support dvh */
 @supports not (height: 100dvh) {
-  .yarl__root,
-  .yarl__container {
-    height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-  }
+    .yarl__root,
+    .yarl__container {
+        height: 100vh !important;
+        min-height: -webkit-fill-available !important;
+    }
 }
 
 /* Hide external link icon on specific navbar items */
 .navbar__item--no-icon::after {
-  content: none !important;
+    content: none !important;
 }
 
 .navbar__item--no-icon svg {
-  display: none !important;
+    display: none !important;
 }
 
 /* Hide version dropdown on non-docs pages */
 html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
-  display: none;
+    display: none;
 }
 
 /* Download card styling */
 .download-card {
-  border: 1px solid var(--ifm-color-emphasis-300);
-  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
-  transition: border-color 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--ifm-color-emphasis-300);
+    scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
 .download-card:target,
 .download-card--targeted {
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 0 0 3px var(--ifm-color-primary-lighter);
+    border-color: var(--ifm-color-primary);
+    box-shadow: 0 0 0 3px var(--ifm-color-primary-lighter);
 }
 
 [data-theme="dark"] .download-card:target,
 [data-theme="dark"] .download-card--targeted {
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 0 0 3px var(--ifm-color-primary-dark);
+    border-color: var(--ifm-color-primary);
+    box-shadow: 0 0 0 3px var(--ifm-color-primary-dark);
 }
 
 /* Architecture help icon */
 .arch-help-icon {
-  color: var(--ifm-color-emphasis-700);
-  font-size: 1.1rem;
-  transition: color 0.15s;
+    color: var(--ifm-color-emphasis-700);
+    font-size: 1.1rem;
+    transition: color 0.15s;
 }
 
 .arch-help-icon:hover {
-  color: var(--ifm-color-primary);
+    color: var(--ifm-color-primary);
 }
 
 /* ZapScript syntax highlighting */
 .token.separator {
-  color: #d63384;
-  font-weight: bold;
+    color: #d63384;
+    font-weight: bold;
 }
 
 .token.expression {
-  background-color: rgba(255, 193, 7, 0.15);
-  border-radius: 3px;
-  padding: 0 2px;
+    background-color: rgba(255, 193, 7, 0.15);
+    border-radius: 3px;
+    padding: 0 2px;
 }
 
 .token.expression .token.punctuation {
-  color: #fd7e14;
-  font-weight: bold;
+    color: #fd7e14;
+    font-weight: bold;
 }
 
 .token.expression .token.variable {
-  color: #0d6efd;
+    color: #0d6efd;
 }
 
 .token.expression .token.property {
-  color: #6f42c1;
+    color: #6f42c1;
 }
 
 .token.advanced-arg {
-  color: #20c997;
+    color: #20c997;
 }
 
 .token.special-key {
-  color: #0dcaf0;
+    color: #0dcaf0;
 }
 
 .token.escape {
-  color: #ffc107;
+    color: #ffc107;
 }
 
 .token.system-id {
-  color: #6f42c1;
+    color: #6f42c1;
 }
 
 .token.title-prefix {
-  color: #fd7e14;
-  font-weight: bold;
+    color: #fd7e14;
+    font-weight: bold;
 }
 
 /* Dark mode adjustments for ZapScript */
 [data-theme="dark"] .token.separator {
-  color: #f783ac;
+    color: #f783ac;
 }
 
 [data-theme="dark"] .token.expression {
-  background-color: rgba(255, 193, 7, 0.1);
+    background-color: rgba(255, 193, 7, 0.1);
 }
 
 [data-theme="dark"] .token.expression .token.punctuation {
-  color: #ffa94d;
+    color: #ffa94d;
 }
 
 [data-theme="dark"] .token.expression .token.variable {
-  color: #74c0fc;
+    color: #74c0fc;
 }
 
 [data-theme="dark"] .token.expression .token.property {
-  color: #b197fc;
+    color: #b197fc;
 }
 
 [data-theme="dark"] .token.advanced-arg {
-  color: #63e6be;
+    color: #63e6be;
 }
 
 [data-theme="dark"] .token.special-key {
-  color: #66d9e8;
+    color: #66d9e8;
 }
 
 [data-theme="dark"] .token.escape {
-  color: #ffe066;
+    color: #ffe066;
 }
 
 [data-theme="dark"] .token.system-id {
-  color: #b197fc;
+    color: #b197fc;
 }
 
 [data-theme="dark"] .token.title-prefix {
-  color: #ffa94d;
+    color: #ffa94d;
 }

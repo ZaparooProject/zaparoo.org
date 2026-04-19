@@ -232,7 +232,7 @@
 
 [data-theme='dark'] .platformBadge {
   background: var(--ifm-color-primary-darkest);
-  color: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-contrast-foreground);
   border-color: var(--ifm-color-primary-dark);
 }
 
