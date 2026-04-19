@@ -2,7 +2,7 @@
 
 Lego Dimensions character and vehicle tags use [NTAG213](../nfc/ntag.md) NFC chips. Zaparoo can read them, but the data stored on them is encrypted and specific to the Lego Dimensions game, so it can't be used directly.
 
-Instead, you use [mappings](../../core/mappings.md) to assign an action to each tag based on its UID. Every physical Lego Dimensions tag has a unique UID, so each one is mapped individually.
+Instead, you use [mappings](../../features/mappings.md) to assign an action to each tag based on its UID. Every physical Lego Dimensions tag has a unique UID, so each one is mapped individually.
 
 ## Setting up with the Zaparoo App
 
@@ -18,7 +18,7 @@ The mapping syncs to your connected Zaparoo device. Next time that tag is scanne
 
 ## Setting up with mapping files
 
-You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../core/mappings.md) for details on file format and location.
+You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../features/mappings.md) for details on file format and location.
 
 ```toml
 [[mappings.entry]]

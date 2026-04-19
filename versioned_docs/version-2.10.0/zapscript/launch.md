@@ -104,7 +104,7 @@ Tag operators:
 - `(-tag:value)` - must not have this tag (NOT)
 - `(~tag:value)` - at least one of these must match (OR)
 
-See the [Tags documentation](../core/tags.md) for available filters.
+See the [Tags documentation](../features/tags.md) for available filters.
 
 #### System Lookup
 
@@ -255,7 +255,7 @@ Supported on [MiSTer](../platforms/mister/index.md) and [MiSTex](../platforms/mi
 ### Arguments
 
 **`system`** (required)
-The [system ID](../systems.md) to launch. Use `menu` to return to the main menu.
+The [system ID](../features/systems.md) to launch. Use `menu` to return to the main menu.
 
 ### Advanced Arguments
 

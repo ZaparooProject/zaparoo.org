@@ -2,7 +2,7 @@
 
 Nintendo Amiibo figures and cards use [NTAG215](../nfc/ntag.md) NFC chips. Zaparoo can read them, but they can't be written to because Nintendo locks the writable pages during manufacturing.
 
-Since you can't write ZapScript directly to an Amiibo, you use [mappings](../../core/mappings.md) to assign an action to each figure based on its UID. Every physical Amiibo has a unique UID, so each figure is mapped individually.
+Since you can't write ZapScript directly to an Amiibo, you use [mappings](../../features/mappings.md) to assign an action to each figure based on its UID. Every physical Amiibo has a unique UID, so each figure is mapped individually.
 
 ## Setting up with the Zaparoo App
 
@@ -18,7 +18,7 @@ The mapping syncs to your connected Zaparoo device. Next time that Amiibo is sca
 
 ## Setting up with mapping files
 
-You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../core/mappings.md) for details on file format and location.
+You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../features/mappings.md) for details on file format and location.
 
 ```toml
 [[mappings.entry]]

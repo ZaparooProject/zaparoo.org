@@ -975,7 +975,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
         >
           The Zaparoo App provides the best and most convenient experience. If
           you can't or prefer not to use it, Zaparoo Core includes{" "}
-          <a href="/docs/core/web-ui">Web UI</a> and{" "}
+          <a href="/docs/app/web/">Web UI</a> and{" "}
           <a href="/docs/core/cli">TUI</a> alternatives.
         </Admonition>
       )}

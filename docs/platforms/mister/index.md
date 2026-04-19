@@ -34,7 +34,7 @@ If you previously had TapTo installed, make sure the old `tapto.sh` is removed f
 
 ### Game Tracking
 
-Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../core/playtime.md) to work correctly. It requires the `recents` setting in MiSTer's configuration.
+Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../features/playtime.md) to work correctly. It requires the `recents` setting in MiSTer's configuration.
 
 To enable it:
 

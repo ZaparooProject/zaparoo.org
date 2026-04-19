@@ -1,6 +1,6 @@
 # NFC Toys
 
-NFC toys like Amiibo, Skylanders, and Disney Infinity figures can be used with Zaparoo. These toys contain NFC chips with game-specific data that can't be used directly, but their unique ID (UID) can be read and [mapped](../../core/mappings.md) to custom actions.
+NFC toys like Amiibo, Skylanders, and Disney Infinity figures can be used with Zaparoo. These toys contain NFC chips with game-specific data that can't be used directly, but their unique ID (UID) can be read and [mapped](../../features/mappings.md) to custom actions.
 
 ## Supported toys
 

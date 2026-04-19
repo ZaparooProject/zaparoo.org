@@ -84,7 +84,7 @@ Start the text-based user interface (TUI) to handle Zaparoo configuration.
 - **Argument:** none (boolean switch)
 - **Example:** `./zaparoo -reload`
 
-Reloads the [config file](config.md) from disk and re-reads any [mapping files](mappings.md) from disk.
+Reloads the [config file](config.md) from disk and re-reads any [mapping files](../features/mappings.md) from disk.
 
 ## Platform-Specific Flags
 

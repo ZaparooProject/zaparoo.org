@@ -2,7 +2,7 @@
 
 The config file is the main configuration file of the [Zaparoo Core](./index.md) software service.
 
-Its location depends on the [platform](../platforms/index.md) where the service is running. On [MiSTer](../platforms/mister/index.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
+Its location depends on the [platform](../platforms/index.mdx) where the service is running. On [MiSTer](../platforms/mister/index.md), it's located in the `/media/fat/zaparoo` folder (i.e. `zaparoo` folder in the root of the SD card).
 
 The file is always called `config.toml` on every platform.
 
@@ -212,7 +212,7 @@ filename_tags = true
 
 When enabled, Core extracts metadata tags from filenames like `(USA)`, `(En)`, `(Rev 1)` to help with conflict resolution and media matching.
 
-See the [Tags documentation](./tags.md) for detailed information about tag parsing and usage.
+See the [Tags documentation](../features/tags.md) for detailed information about tag parsing and usage.
 
 #### default_regions
 
@@ -387,7 +387,7 @@ path = '/tmp/some_file'
 | ------ | ------ | ------- |
 | driver | string |         |
 
-`driver` specifies which reader driver should be used to attempt connection to the reader device. See [reader drivers](./drivers.md) for a list of available drivers.
+`driver` specifies which reader driver should be used to attempt connection to the reader device. See [reader drivers](../readers/drivers.md) for a list of available drivers.
 
 ##### path
 
@@ -459,7 +459,7 @@ before_exit = '**input.keyboard:{f12}||**delay:2000'
 | ------ | ------ | ------- |
 | system | string |         |
 
-ID of the [system](../systems.md) this default override entry applies to.
+ID of the [system](../features/systems.md) this default override entry applies to.
 
 ##### launcher
 
@@ -467,7 +467,7 @@ ID of the [system](../systems.md) this default override entry applies to.
 | -------- | ------ | ------- |
 | launcher | string |         |
 
-ID of the [launcher](./launchers.md) that should be used by default when media in this system is launched.
+ID of the [launcher](../features/launchers.md) that should be used by default when media in this system is launched.
 
 ##### before_exit
 
@@ -607,7 +607,7 @@ server_url = 'http://localhost:5678'
 | -------- | ------ | ------- |
 | launcher | string |         |
 
-ID of the [launcher](./launchers.md) this default override entry applies to.
+ID of the [launcher](../features/launchers.md) this default override entry applies to.
 
 ##### install_dir
 
@@ -959,7 +959,7 @@ warnings = ["10m", "5m", "2m", "1m"]
 
 The `playtime` section configures playtime tracking, limits, and parental controls.
 
-See the [Playtime documentation](./playtime.md) for detailed information and examples.
+See the [Playtime documentation](../features/playtime.md) for detailed information and examples.
 
 #### retention
 

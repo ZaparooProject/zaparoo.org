@@ -28,8 +28,8 @@ CLAUDE.md
 
 docs/plans/
 
-docs/core/dev/*
-!docs/core/dev/_category_.json
+docs/core/contributing/*
+!docs/core/contributing/_category_.json
 
 docs/core/api/*
 !docs/core/api/_category_.json

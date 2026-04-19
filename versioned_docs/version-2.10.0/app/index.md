@@ -58,6 +58,6 @@ The Zaparoo App is available on multiple platforms:
 
 - **iOS**: Available on the App Store
 - **Android**: Available on Google Play Store  
-- **Web**: Available as an embedded [Web UI](../core/web-ui.md) in Zaparoo Core
+- **Web**: Available as an embedded [Web UI](./web.md) in Zaparoo Core
 
 See the [Downloads](/downloads/) page for download links and the latest version information.

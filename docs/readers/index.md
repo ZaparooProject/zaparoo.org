@@ -76,7 +76,7 @@ All NFC readers can scan:
 
 1. **Choose your reader** - See recommendations above
 2. **Get tokens** - [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [optical discs](./optical-drive.md)
-3. **Install Zaparoo Core** - [Platform guides](../platforms/index.md)
+3. **Install Zaparoo Core** - [Platform guides](../platforms/index.mdx)
 4. **Configure your reader** - Most work automatically!
 5. **Start scanning** - Write [ZapScript](../zapscript/index.md) to your tokens
 
@@ -84,7 +84,7 @@ All NFC readers can scan:
 
 **Reader not detected?**
 
-- Check [Reader Drivers](../core/drivers.md) for configuration help
+- Check [Reader Drivers](./drivers.md) for configuration help
 - Enable `debug_logging = true` in your [config.toml](../core/config.md)
 - Review hardware-specific troubleshooting in reader docs
 

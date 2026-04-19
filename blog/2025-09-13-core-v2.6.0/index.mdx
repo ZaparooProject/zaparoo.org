@@ -27,7 +27,7 @@ Zaparoo Core v2.6.0 is now available! This release significantly expands [Batoce
 
 ## Expanded Batocera Support
 
-We've significantly expanded [Batocera](/docs/platforms/batocera) system support in this release, adding over 100 launchers which should just about match Batocera's own count. This change also added 17 new [system definitions](/docs/systems) that work with [custom launchers](/docs/core/launchers) including Atari ST, CPS1-3, Coleco Adam, Commander X16, FM7, FM Towns, GP32, PC88/98, Pico-8 and TIC-80. Special thanks to [Anime0t4ku](https://github.com/Anime0t4ku) for compiling all the information required to add these!
+We've significantly expanded [Batocera](/docs/platforms/batocera) system support in this release, adding over 100 launchers which should just about match Batocera's own count. This change also added 17 new [system definitions](/docs/features/systems/) that work with [custom launchers](/docs/features/launchers/) including Atari ST, CPS1-3, Coleco Adam, Commander X16, FM7, FM Towns, GP32, PC88/98, Pico-8 and TIC-80. Special thanks to [Anime0t4ku](https://github.com/Anime0t4ku) for compiling all the information required to add these!
 
 ## Kodi Improvements
 
@@ -41,11 +41,11 @@ Core now ships with experimental support for the [TTY2OLED project](/docs/reader
 
 We've switched over to a new NFC driver from libnfc for [PN532 NFC readers](/docs/readers/nfc/pn532-usb). This change should be seamless and automatic, with these improvements:
 
-- [MIFARE tags](/docs/core/tokens) are now 100% supported, read and write, and they no longer need to be formatted beforehand
+- [MIFARE tags](/docs/tokens/nfc/) are now 100% supported, read and write, and they no longer need to be formatted beforehand
 - Windows now uses the same driver and has equal support (reading and writing)
 - Slightly more responsive feel when scanning tags (especially tags with a lot of data)
 - Uses one third of the CPU resources compared to the previous driver
-- Experimental support for [FeLiCa tags](/docs/core/tokens) (I followed the spec but I don't own any of these cards so I don't know if it works!)
+- Experimental support for [FeLiCa tags](/docs/tokens/nfc/) (I followed the spec but I don't own any of these cards so I don't know if it works!)
 
 If you use these [NFC readers](/docs/readers/nfc/), one thing you will notice is it blinks way less. Don't be alarmed, it's still working as expected, it's just a side effect of offloading some work to the device itself.
 
@@ -82,11 +82,11 @@ We've added [MiSTer](/docs/platforms/mister) improvements:
 
 And a handful of bugs fixed which were reported by the community:
 
-- Fixed [custom launcher](/docs/core/launchers) functionality issues
+- Fixed [custom launcher](/docs/features/launchers/) functionality issues
 - Fixed several Batocera platform bugs including system metadata display and path normalization
 - Fixed launch.random commands with arguments in format "system/\*"
 - Fixed system default overrides to properly respect [configuration](/docs/core/config)
-- Fixed TUI improvements including [media DB update](/docs/core/web-ui) page freezing
+- Fixed TUI improvements including [media DB update](/docs/app/web/) page freezing
 - Fixed Batocera API connection retry logic for better reliability
 
 ---

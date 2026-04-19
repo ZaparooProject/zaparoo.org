@@ -84,7 +84,7 @@ All NFC readers can scan:
 
 **Reader not detected?**
 
-- Check [Reader Drivers](../core/drivers.md) for configuration help
+- Check [Reader Drivers](./drivers.md) for configuration help
 - Enable `debug_logging = true` in your [config.toml](../core/config.md)
 - Review hardware-specific troubleshooting in reader docs
 

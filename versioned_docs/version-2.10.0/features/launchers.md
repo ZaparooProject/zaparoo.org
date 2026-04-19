@@ -1,11 +1,14 @@
-# Launchers
+---
+sidebar_position: 1
+title: Custom launchers
+---
 
 A launcher is a program that can be used to launch a game or application.
-Each [platform](../platforms/index.md) has its own set of launchers, which are used to launch the correct program for the given [system](../systems.md) and file.
+Each [platform](../platforms/index.md) has its own set of launchers, which are used to launch the correct program for the given [system](./systems.md) and file.
 
 ## Custom Launchers
 
-Custom launchers are a type of user-defined launcher that can be created and configured using a [TOML](https://toml.io/) file, similar to the [Mapping Files](./mappings.md#mapping-files). For example, if a [platform](../platforms/index.md) you're using Zaparoo on does not support an emulator you use, you can most likely create a custom launcher for it and integrate it into [Zaparoo Core](./index.md) like an officially supported one.
+Custom launchers are a type of user-defined launcher that can be created and configured using a [TOML](https://toml.io/) file, similar to the [Mapping Files](./mappings.md#mapping-files). For example, if a [platform](../platforms/index.md) you're using Zaparoo on does not support an emulator you use, you can most likely create a custom launcher for it and integrate it into [Zaparoo Core](../core/index.md) like an officially supported one.
 
 Custom launchers aren't as configurable or advanced as official launchers, they're designed for simple cases where it's possible to launch media by giving a file path to the media player.
 
@@ -59,9 +62,9 @@ You can use the following variables in your execute command:
 | `[[device.hostname]]` | Device hostname |
 | `[[device.os]]` | Operating system ("linux", "windows", "darwin") |
 | `[[device.arch]]` | System architecture ("amd64", "arm64", etc.) |
-| `[[action]]` | Launch action from [launcher defaults](./config.md#launchersdefault) or ZapScript advanced args |
-| `[[install_dir]]` | Install directory from [launcher defaults](./config.md#launchersdefault) |
-| `[[server_url]]` | Server URL from [launcher defaults](./config.md#launchersdefault) |
+| `[[action]]` | Launch action from [launcher defaults](../core/config.md#launchersdefault) or ZapScript advanced args |
+| `[[install_dir]]` | Install directory from [launcher defaults](../core/config.md#launchersdefault) |
+| `[[server_url]]` | Server URL from [launcher defaults](../core/config.md#launchersdefault) |
 | `[[system_id]]` | System ID the launcher belongs to |
 | `[[launcher_id]]` | The launcher's ID |
 
@@ -120,9 +123,9 @@ lifecycle = "background"
 
 #### controls
 
-Define control actions that can be triggered on active media via the [`media.control`](./api/methods.md#mediacontrol) API method. Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime — media-launching and playlist commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay` and `echo` are allowed.
+Define control actions that can be triggered on active media via the [`media.control`](../core/api/methods.md#mediacontrol) API method. Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime — media-launching and playlist commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay` and `echo` are allowed.
 
-The `execute` command in control scripts bypasses the [`allow_execute`](./config.md#allow_execute) allowlist, since control actions are defined by the device owner in configuration files.
+The `execute` command in control scripts bypasses the [`allow_execute`](../core/config.md#allow_execute) allowlist, since control actions are defined by the device owner in configuration files.
 
 ```toml
 [[launchers.custom]]

@@ -265,7 +265,7 @@ const config: Config = {
             },
             {
               label: "Developer Guide",
-              href: "/docs/core/dev/",
+              href: "/docs/core/contributing/",
               "data-umami-event": "footer-nav-dev-guide",
             },
             {
@@ -399,7 +399,7 @@ const config: Config = {
         name: "core-developer-docs",
         sourceBaseUrl:
           "https://raw.githubusercontent.com/ZaparooProject/zaparoo-core/refs/heads/main/docs/",
-        outDir: "docs/core/dev",
+        outDir: "docs/core/contributing",
         documents: ["index.md", "scan-behavior.md", "media-titles.md"],
       },
     ],
@@ -410,7 +410,7 @@ const config: Config = {
         sourceBaseUrl:
           "https://raw.githubusercontent.com/ZaparooProject/zaparoo-core/refs/heads/main/docs/api/",
         outDir: "docs/core/api",
-        documents: ["index.md", "methods.md", "notifications.md"],
+        documents: ["index.md", "methods.md", "notifications.md", "encryption.md"],
       },
     ],
     [
@@ -487,8 +487,12 @@ const config: Config = {
             from: "/docs/getting-started/",
           },
           {
-            to: "/docs/core/drivers/",
+            to: "/docs/readers/drivers/",
             from: "/docs/core/reader-modules/",
+          },
+          {
+            to: "/docs/readers/drivers/",
+            from: "/docs/core/drivers/",
           },
           // old site news redirects
           {
@@ -552,8 +556,12 @@ const config: Config = {
             from: "/news/app-v1.5.0",
           },
           {
-            to: "/docs/core/tokens/",
+            to: "/docs/tokens/nfc/",
             from: "/docs/core/api/tokens",
+          },
+          {
+            to: "/docs/tokens/nfc/",
+            from: "/docs/core/tokens/",
           },
           // Labels documentation redirects
           {
@@ -582,10 +590,14 @@ const config: Config = {
           //   to: "/docs/tokens/barcodes/",
           //   from: "/docs/readers/barcode/app/",
           // },
-          // Systems page moved to top-level
+          // Systems page moved to features/
           {
-            to: "/docs/systems/",
+            to: "/docs/features/systems/",
             from: "/docs/core/systems/",
+          },
+          {
+            to: "/docs/features/systems/",
+            from: "/docs/systems/",
           },
           {
             to: "/docs/community-hub/media",
@@ -610,6 +622,42 @@ const config: Config = {
           {
             to: "/docs/community-projects/super-zap-boy",
             from: "/docs/community/projects/super-zap-boy",
+          },
+          // IA restructure: features/ section
+          {
+            to: "/docs/features/playtime/",
+            from: "/docs/core/playtime/",
+          },
+          {
+            to: "/docs/features/mappings/",
+            from: "/docs/core/mappings/",
+          },
+          {
+            to: "/docs/features/tags/",
+            from: "/docs/core/tags/",
+          },
+          {
+            to: "/docs/features/launchers/",
+            from: "/docs/core/launchers/",
+          },
+          // IA restructure: drivers moved to readers/
+          // IA restructure: web-ui moved to app/
+          {
+            to: "/docs/app/web/",
+            from: "/docs/core/web-ui/",
+          },
+          // IA restructure: core/dev moved to core/contributing/
+          {
+            to: "/docs/core/contributing/",
+            from: ["/docs/core/dev/", "/docs/contributing/"],
+          },
+          {
+            to: "/docs/core/contributing/scan-behavior/",
+            from: ["/docs/core/dev/scan-behavior/", "/docs/contributing/scan-behavior/"],
+          },
+          {
+            to: "/docs/core/contributing/media-titles/",
+            from: ["/docs/core/dev/media-titles/", "/docs/contributing/media-titles/"],
           },
         ],
       },

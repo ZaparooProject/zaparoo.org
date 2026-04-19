@@ -61,9 +61,9 @@ The old path-based format still works, so your existing cards won't break. But g
 Writing title IDs to cards is currently only supported in the bundled Web UI. The published app still writes full file paths.
 :::
 
-## [Tags System](/docs/core/tags/)
+## [Tags System](/docs/features/tags/)
 
-Tags are the other half of the new game matching system. As media is indexed, Zaparoo now extracts and assigns [tags](/docs/core/tags/) from filenames (and eventually scraped metadata). You can use these tags to filter searches and resolve conflicts.
+Tags are the other half of the new game matching system. As media is indexed, Zaparoo now extracts and assigns [tags](/docs/features/tags/) from filenames (and eventually scraped metadata). You can use these tags to filter searches and resolve conflicts.
 
 For example: `@SNES/Super Mario World (region:eu) (lang:de)` will specifically launch the European German version if you have multiple versions of the game. Tags currently include language, region, translation status, release year, ROM quality, and game version info.
 
@@ -100,9 +100,9 @@ The [LaunchBox integration](/docs/platforms/windows/launchers/#launchbox) got a 
 
 Installation is now much easier with a [new pacman package](/docs/platforms/batocera/#install) and a "Ports" script to open the TUI directly from EmulationStation. There's also background active media detection, improved Kodi launching, and corrected file extensions for 22 systems. We're working with the Batocera team to get Zaparoo officially included in the Content Downloader.
 
-## [Playtime Limits & Parental Controls](/docs/core/playtime/)
+## [Playtime Limits & Parental Controls](/docs/features/playtime/)
 
-A new [time management system](/docs/core/playtime/) lets you set daily playtime limits, track gaming sessions, and automatically enforce limits with grace period notifications. Perfect for parents who want to manage screen time.
+A new [time management system](/docs/features/playtime/) lets you set daily playtime limits, track gaming sessions, and automatically enforce limits with grace period notifications. Perfect for parents who want to manage screen time.
 
 :::note Web UI Only
 Playtime limit configuration is currently only available in the bundled Web UI. You can also manually configure limits in the config file.
@@ -117,7 +117,7 @@ Two really cool new reader types:
 
 ## And Also...
 
-**Readers:** [RS232 barcode scanners](/docs/readers/barcode/rs232/) are now supported, and if the new NFC driver isn't working for you, there's a [legacy driver option](/docs/core/drivers/#legacy-nfc-drivers) using `legacypn532uart` and `legacypn532i2c`.
+**Readers:** [RS232 barcode scanners](/docs/readers/barcode/rs232/) are now supported, and if the new NFC driver isn't working for you, there's a [legacy driver option](/docs/readers/drivers/#legacy-nfc-drivers) using `legacypn532uart` and `legacypn532i2c`.
 
 **Cross-platform stuff:** [Keyboard combos](/docs/zapscript/input/#inputkeyboard) now work on all platforms instead of just MiSTer. Neo Geo AES and MVS are now separate platforms. Scan audio feedback works everywhere and reports ZapScript errors. URL launching works on Windows and Linux.
 

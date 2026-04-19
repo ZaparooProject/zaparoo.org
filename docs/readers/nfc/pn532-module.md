@@ -46,7 +46,7 @@ This is **not a ready-to-use reader** - it's a bare PCB module for custom projec
 - **Driver IDs**: `pn532`, `pn532uart`, `pn532i2c`, `pn532spi`
 - **Primary Transport**: UART (via USB-to-serial adapter)
 - **Alternative Transports**: I2C, SPI (for advanced projects)
-- **Platforms**: [All platforms](../../platforms/index.md)
+- **Platforms**: [All platforms](../../platforms/index.mdx)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes (for UART)
 

@@ -21,7 +21,7 @@ The TTY2OLED driver enables [Zaparoo Core](../core/index.md) to communicate with
 ### Driver Details
 
 - **Driver ID**: `tty2oled`
-- **Platforms**: [All platforms](../platforms/index.md)
+- **Platforms**: [All platforms](../platforms/index.mdx)
 - **Enabled by default**: No
 - **Auto-detect**: Yes
 

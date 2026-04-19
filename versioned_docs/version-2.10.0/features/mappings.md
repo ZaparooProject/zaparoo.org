@@ -29,7 +29,7 @@ The first matching mapping found will be applied, and no further mappings are ev
 
 ## Mapping Files
 
-In a subfolder called `mappings` in the data folder of Core, it's possible to add any number of [TOML](https://toml.io/en/) files (like the [config file](config.md)) which will define new mappings to be enabled on service start. Check the page for your [platform](../platforms/index.md) to see where this folder will be. You can organise your mappings in any number of subfolders.
+In a subfolder called `mappings` in the data folder of Core, it's possible to add any number of [TOML](https://toml.io/en/) files (like the [config file](../core/config.md)) which will define new mappings to be enabled on service start. Check the page for your [platform](../platforms/index.md) to see where this folder will be. You can organise your mappings in any number of subfolders.
 
 ### Examples
 
@@ -118,7 +118,7 @@ The `token_key` option is the key of a [token object](../tokens/index.md) this m
 - `value`: Match against the stored text/value on the token
 - `data`: Match against the raw token data as a hexadecimal string
 
-This option is optional and will default to `id` if empty. Note that when using the [Core API](./api/index.md) for managing mappings programmatically, these values correspond to `uid`, `text`, and `data` respectively.
+This option is optional and will default to `id` if empty. Note that when using the [Core API](../core/api/index.md) for managing mappings programmatically, these values correspond to `uid`, `text`, and `data` respectively.
 
 The `match_pattern` option is the pattern used to match against the contents of the key above. Its behavior is different depending on the format given:
 
@@ -169,4 +169,4 @@ When a token is scanned, Core checks mappings in this order:
 
 If any mapping matches, its ZapScript override is used and no further mappings are evaluated.
 
-See the [Core API Methods](./api/methods.md#mappings) documentation for detailed examples and complete parameter specifications.
+See the [Core API Methods](../core/api/methods.md#mappings) documentation for detailed examples and complete parameter specifications.

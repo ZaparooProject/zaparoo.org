@@ -266,7 +266,7 @@ Note: Without explicit positive tags like these, demos and betas are automatical
 
 ## Advanced: Setting Default Preferences
 
-You can set your preferred languages and regions in the [config file](./config.md) so Zaparoo automatically prioritizes them when resolving titles without explicit tags:
+You can set your preferred languages and regions in the [config file](../core/config.md) so Zaparoo automatically prioritizes them when resolving titles without explicit tags:
 
 ```toml
 [preferences]

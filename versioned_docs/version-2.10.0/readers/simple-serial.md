@@ -105,7 +105,7 @@ An identifier for the physical token (optional metadata):
 SCAN\tuid=04a1b2c3d4e5f6\ttext=Genesis/Sonic\n
 ```
 
-The UID can be used in [mappings](../core/mappings.md) for token comparison or matching.
+The UID can be used in [mappings](../features/mappings.md) for token comparison or matching.
 
 ### `removable` - Removal Behavior
 

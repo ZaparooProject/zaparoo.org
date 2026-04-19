@@ -1,6 +1,10 @@
+---
+sidebar_position: 2
+---
+
 # Web UI
 
-Every copy of Zaparoo Core ships with a pre-built web version of the [Zaparoo App](../app/index.md) which can be accessed locally on your network through any web browser. This embedded web build is automatically included with every Core release and requires no separate installation.
+Every copy of Zaparoo Core ships with a pre-built web version of the [Zaparoo App](./index.md) which can be accessed locally on your network through any web browser. This embedded web build is automatically included with every Core release and requires no separate installation.
 
 The web build provides the same functionality as the full app, but is missing features like direct NFC and camera support since these aren't available in web browsers. When you use the web UI to read and write tags, it will use an NFC reader connected directly to the host device running Zaparoo Core.
 

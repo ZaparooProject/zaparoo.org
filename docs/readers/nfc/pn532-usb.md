@@ -12,7 +12,7 @@ This reader is a good starting point for new Zaparoo users due to its low cost a
 
 - **Plug and play** - No drivers or setup required
 - **Affordable** - Starting at around $5 USD
-- **Cross-platform** - Works on all [platforms](../../platforms/index.md)
+- **Cross-platform** - Works on all [platforms](../../platforms/index.mdx)
 - **USB Type-C** - Common on newer modules
 - **Compact size** - Very small footprint
 - **Full NFC support** - Same functionality as all PN532 readers
@@ -24,7 +24,7 @@ This reader is a good starting point for new Zaparoo users due to its low cost a
 
 - **Driver IDs**: `pn532`, `pn532uart`
 - **Transport**: USB Serial (UART)
-- **Platforms**: [All platforms](../../platforms/index.md)
+- **Platforms**: [All platforms](../../platforms/index.mdx)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 

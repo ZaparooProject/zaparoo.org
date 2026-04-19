@@ -2,7 +2,7 @@
 
 Skylanders figures use [MIFARE Classic 1K](../nfc/mifare.md) NFC chips. Zaparoo can read them, but the data stored on them is encrypted and specific to the Skylanders game, so it can't be used directly.
 
-Instead, you use [mappings](../../core/mappings.md) to assign an action to each figure based on its UID. Every physical Skylanders figure has a unique UID, so each one is mapped individually.
+Instead, you use [mappings](../../features/mappings.md) to assign an action to each figure based on its UID. Every physical Skylanders figure has a unique UID, so each one is mapped individually.
 
 ## Setting up with the Zaparoo App
 
@@ -18,7 +18,7 @@ The mapping syncs to your connected Zaparoo device. Next time that figure is sca
 
 ## Setting up with mapping files
 
-You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../core/mappings.md) for details on file format and location.
+You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../features/mappings.md) for details on file format and location.
 
 ```toml
 [[mappings.entry]]

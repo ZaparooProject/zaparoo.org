@@ -12,7 +12,7 @@ There are multiple NTAG types that work with Zaparoo. The only difference betwee
 | NTAG215  | 504 bytes |
 | NTAG216  | 888 bytes |
 
-**NTAG215 is recommended** for most users. NTAG213 (144 bytes) can be too small if you're writing long file paths or chaining multiple [ZapScript](../../zapscript/index.md) commands on a single tag. If you do have NTAG213 tags, you can work around the storage limit by using the [Title ID format](../../zapscript/launch.md#launchtitle) (which was designed to fit on NTAG213) or [mappings](../../core/mappings.md) to keep the data on each tag small.
+**NTAG215 is recommended** for most users. NTAG213 (144 bytes) can be too small if you're writing long file paths or chaining multiple [ZapScript](../../zapscript/index.md) commands on a single tag. If you do have NTAG213 tags, you can work around the storage limit by using the [Title ID format](../../zapscript/launch.md#launchtitle) (which was designed to fit on NTAG213) or [mappings](../../features/mappings.md) to keep the data on each tag small.
 
 ## Form factors
 

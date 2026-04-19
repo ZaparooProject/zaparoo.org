@@ -19,7 +19,7 @@ With this driver, your device only needs to provide a read-only serial connectio
 ### Driver Details
 
 - **Driver ID**: `simpleserial`
-- **Platforms**: [All platforms](../platforms/index.md)
+- **Platforms**: [All platforms](../platforms/index.mdx)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 - **Baud Rate**: 115200 (fixed, not currently configurable)
@@ -105,7 +105,7 @@ An identifier for the physical token (optional metadata):
 SCAN\tuid=04a1b2c3d4e5f6\ttext=Genesis/Sonic\n
 ```
 
-The UID can be used in [mappings](../core/mappings.md) for token comparison or matching.
+The UID can be used in [mappings](../features/mappings.md) for token comparison or matching.
 
 ### `removable` - Removal Behavior
 

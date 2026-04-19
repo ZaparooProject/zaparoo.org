@@ -13,14 +13,14 @@ Zaparoo can track how long games are played and enforce time limits. You can set
 
 ### Manual configuration
 
-See the [Config File Reference](./config.md#playtime) for detailed configuration options including:
+See the [Config File Reference](../core/config.md#playtime) for detailed configuration options including:
 
-- [`enabled`](./config.md#enabled-1) - Turn limits on/off
-- [`daily`](./config.md#daily) - Daily time limit
-- [`session`](./config.md#session) - Session time limit
-- [`session_reset`](./config.md#session_reset) - Cooldown period between sessions
-- [`warnings`](./config.md#warnings) - Warning intervals
-- [`retention`](./config.md#retention) - History retention period
+- [`enabled`](../core/config.md#enabled-1) - Turn limits on/off
+- [`daily`](../core/config.md#daily) - Daily time limit
+- [`session`](../core/config.md#session) - Session time limit
+- [`session_reset`](../core/config.md#session_reset) - Cooldown period between sessions
+- [`warnings`](../core/config.md#warnings) - Warning intervals
+- [`retention`](../core/config.md#retention) - History retention period
 
 Example configuration:
 
@@ -154,8 +154,8 @@ Warnings are sent to the Zaparoo App and played as audio on all platforms.
 
 ### Warnings not appearing
 
-1. Check `warnings` array is configured in [config.toml](./config.md#warnings)
-2. Make sure [audio feedback](./config.md#scan_feedback) is enabled
+1. Check `warnings` array is configured in [config.toml](../core/config.md#warnings)
+2. Make sure [audio feedback](../core/config.md#scan_feedback) is enabled
 3. Check the Zaparoo App is connected to receive notifications
 
 ### Time tracking inaccurate
@@ -166,4 +166,4 @@ Warnings are sent to the Zaparoo App and played as audio on all platforms.
 
 ### Session not resetting
 
-Check your [`session_reset`](./config.md#session_reset) timeout value. If set to `"0"`, sessions never reset automatically.
+Check your [`session_reset`](../core/config.md#session_reset) timeout value. If set to `"0"`, sessions never reset automatically.

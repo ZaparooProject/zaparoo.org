@@ -20,7 +20,7 @@ While the File Reader is great for simple automation, the [Core API](../core/api
 ### Driver Details
 
 - **Driver ID**: `file`
-- **Platforms**: [All platforms](../platforms/index.md)
+- **Platforms**: [All platforms](../platforms/index.mdx)
 - **Enabled by default**: Yes
 - **Auto-detect**: No (requires manual configuration)
 

@@ -1,6 +1,6 @@
 # Barcodes
 
-Barcodes found on real products (like the UPC on the back of a game box) can be used as tokens in Zaparoo. Unlike [NFC tags](./nfc/index.md) or [QR codes](./qr-codes.md), barcodes can't contain ZapScript directly, so you use [mappings](../core/mappings.md) to assign an action to each barcode value.
+Barcodes found on real products (like the UPC on the back of a game box) can be used as tokens in Zaparoo. Unlike [NFC tags](./nfc/index.md) or [QR codes](./qr-codes.md), barcodes can't contain ZapScript directly, so you use [mappings](../features/mappings.md) to assign an action to each barcode value.
 
 This means you can scan the barcode on a physical game case and have it launch that game.
 
@@ -36,7 +36,7 @@ The easiest way to map a barcode is through the [Zaparoo App](../app/index.md):
 
 ## Setting up with mapping files
 
-You can also create mappings manually. See the [mappings documentation](../core/mappings.md) for details.
+You can also create mappings manually. See the [mappings documentation](../features/mappings.md) for details.
 
 ```toml
 [[mappings.entry]]
