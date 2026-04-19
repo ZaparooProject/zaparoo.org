@@ -89,6 +89,8 @@ scan_feedback = true
 success_sound = "custom_success.wav"
 fail_sound = "custom_fail.wav"
 limit_sound = "custom_limit.wav"
+pending_sound = "custom_pending.ogg"
+ready_sound = "custom_ready.ogg"
 ```
 
 #### scan_feedback
@@ -154,6 +156,46 @@ Configuration works the same as [`success_sound`](#success_sound):
 
 - **Omit or comment out**: Use embedded default limit sound
 - **Empty string `""`**: Disable limit sound completely
+- **Relative path**: Resolved to `<data_dir>/assets/`
+- **Absolute path**: Used as-is
+
+#### pending_sound
+
+| Key           | Type   | Default            |
+| ------------- | ------ | ------------------ |
+| pending_sound | string | (embedded default) |
+
+`pending_sound` specifies a custom audio file to play when a token is staged by [launch guard](../../features/launch-guard.md). Supports WAV, MP3, OGG, and FLAC formats.
+
+```toml
+[audio]
+pending_sound = "custom_pending.ogg"
+```
+
+Configuration works the same as [`success_sound`](#success_sound):
+
+- **Omit or comment out**: Use embedded default pending sound
+- **Empty string `""`**: Disable pending sound completely
+- **Relative path**: Resolved to `<data_dir>/assets/`
+- **Absolute path**: Used as-is
+
+#### ready_sound
+
+| Key         | Type   | Default            |
+| ----------- | ------ | ------------------ |
+| ready_sound | string | (embedded default) |
+
+`ready_sound` specifies a custom audio file to play when the launch guard delay period expires and a staged token is ready for confirmation. Supports WAV, MP3, OGG, and FLAC formats.
+
+```toml
+[audio]
+ready_sound = "custom_ready.ogg"
+```
+
+Configuration works the same as [`success_sound`](#success_sound):
+
+- **Omit or comment out**: Use embedded default ready sound
+- **Empty string `""`**: Disable ready sound completely
 - **Relative path**: Resolved to `<data_dir>/assets/`
 - **Absolute path**: Used as-is
 
@@ -1255,6 +1297,8 @@ scan_feedback = true
 success_sound = "custom_success.wav"
 fail_sound = "custom_fail.wav"
 limit_sound = "custom_limit.wav"
+pending_sound = "custom_pending.ogg"
+ready_sound = "custom_ready.ogg"
 
 [input]
 gamepad_enabled = true
