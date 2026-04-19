@@ -161,16 +161,16 @@ const config: Config = {
           "data-umami-event": "navbar-blog",
         },
         {
-          to: "/support/",
-          label: "Support",
-          position: "left",
-          "data-umami-event": "navbar-support",
-        },
-        {
           to: "/sponsor/",
           label: "Sponsor",
           position: "left",
           "data-umami-event": "navbar-sponsor",
+        },
+        {
+          to: "/support/",
+          label: "Support",
+          position: "left",
+          "data-umami-event": "navbar-support",
         },
         {
           type: "docsVersionDropdown",
@@ -191,8 +191,13 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Zaparoo.com",
+          title: "Commercial",
           items: [
+            {
+              label: "Zaparoo.com",
+              href: "https://zaparoo.com",
+              "data-umami-event": "footer-zaparoo-com",
+            },
             {
               label: "Zaparoo Shop",
               href: "https://shop.zaparoo.com",
@@ -208,35 +213,10 @@ const config: Config = {
               href: "/contact#commercial-and-trademark-use",
               "data-umami-event": "footer-nav-commercial-use",
             },
-          ],
-        },
-        {
-          title: "Projects",
-          items: [
             {
-              label: "Official Projects",
-              to: "/projects/",
-              "data-umami-event": "footer-nav-projects",
-            },
-            {
-              label: "Designer",
-              href: "https://design.zaparoo.org/",
-              "data-umami-event": "footer-designer",
-            },
-            {
-              label: "ZapESP32",
-              href: "https://github.com/ZaparooProject/zaparoo-esp32",
-              "data-umami-event": "footer-zapesp32",
-            },
-            {
-              label: "Contributors",
-              href: "/docs/community-hub/contributors",
-              "data-umami-event": "footer-nav-contributors",
-            },
-            {
-              label: "GitHub Organization",
-              href: "https://github.com/ZaparooProject/",
-              "data-umami-event": "footer-github-org",
+              label: "Support",
+              href: "https://zaparoo.com/support",
+              "data-umami-event": "footer-zaparoo-com-support",
             },
           ],
         },
@@ -268,10 +248,40 @@ const config: Config = {
               href: "/docs/core/contributing/",
               "data-umami-event": "footer-nav-dev-guide",
             },
+          ],
+        },
+        {
+          title: "Projects",
+          items: [
             {
-              label: "Support",
-              to: "/contact/",
-              "data-umami-event": "footer-nav-support",
+              label: "GitHub Organization",
+              href: "https://github.com/ZaparooProject/",
+              "data-umami-event": "footer-github-org",
+            },
+            {
+              label: "Official Projects",
+              to: "/projects/",
+              "data-umami-event": "footer-nav-projects",
+            },
+            {
+              label: "Community Projects",
+              href: "/docs/community-projects",
+              "data-umami-event": "footer-nav-community-projects",
+            },
+            {
+              label: "Designer",
+              href: "https://design.zaparoo.org/",
+              "data-umami-event": "footer-designer",
+            },
+            {
+              label: "ZapESP32",
+              href: "https://github.com/ZaparooProject/zaparoo-esp32",
+              "data-umami-event": "footer-zapesp32",
+            },
+            {
+              label: "Contributors",
+              href: "/docs/community-hub/contributors",
+              "data-umami-event": "footer-nav-contributors",
             },
           ],
         },
@@ -279,14 +289,9 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Community Projects",
-              href: "/docs/community-projects",
-              "data-umami-event": "footer-nav-community-projects",
-            },
-            {
-              label: "Showcase",
-              href: "/showcase",
-              "data-umami-event": "footer-nav-showcase",
+              label: "Support",
+              to: "/support/",
+              "data-umami-event": "footer-nav-support",
             },
             {
               label: "Discord",
@@ -308,10 +313,15 @@ const config: Config = {
               href: "https://www.youtube.com/@HeyZaparoo",
               "data-umami-event": "footer-youtube",
             },
+            {
+              label: "Showcase",
+              href: "/showcase",
+              "data-umami-event": "footer-nav-showcase",
+            },
           ],
         },
         {
-          title: "More",
+          title: "About",
           items: [
             {
               label: "Blog",
@@ -324,6 +334,11 @@ const config: Config = {
               "data-umami-event": "footer-nav-sponsor",
             },
             {
+              label: "Contact",
+              to: "/contact/",
+              "data-umami-event": "footer-nav-contact",
+            },
+            {
               label: "Code of Conduct",
               to: "/conduct/",
               "data-umami-event": "footer-nav-conduct",
@@ -334,19 +349,9 @@ const config: Config = {
               "data-umami-event": "footer-nav-privacy",
             },
             {
-              label: "App Privacy",
-              to: "/app-privacy/",
-              "data-umami-event": "footer-nav-app-privacy",
-            },
-            {
               label: "Terms of Use",
               to: "/terms/",
               "data-umami-event": "footer-nav-terms",
-            },
-            {
-              label: "Contact",
-              to: "/contact/",
-              "data-umami-event": "footer-nav-contact",
             },
           ],
         },
