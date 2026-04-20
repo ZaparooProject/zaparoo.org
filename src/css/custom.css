@@ -220,6 +220,33 @@
     }
 }
 
+/* Social icon hover state */
+[data-umami-event^="social-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    transition: background-color 0.2s;
+}
+
+[data-umami-event^="social-"]:hover {
+    background-color: var(--ifm-color-emphasis-200);
+}
+
+.navbar__logo,
+.navbar-sidebar__brand .navbar__logo {
+    transform: translateY(-3px);
+    padding-bottom: 3px;
+}
+
+@media (min-width: 997px) {
+    .navbar__logo {
+        transform: translateY(-5px);
+    }
+}
+
 /* Hide external link icon on specific navbar items */
 .navbar__item--no-icon::after {
     content: none !important;
