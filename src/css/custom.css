@@ -244,6 +244,16 @@
 @media (min-width: 997px) {
     .navbar__logo {
         transform: translateY(-5px);
+        padding-bottom: 0px;
+    }
+}
+
+@media screen and (min-width: 997px) and (max-width: 1270px) {
+    .navbar__toggle {
+        display: inherit;
+    }
+    .navbar__item {
+        display: none;
     }
 }
 
