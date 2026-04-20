@@ -8,7 +8,7 @@ import {
   Tv,
   Code2,
   Wrench,
-  Hammer,
+  Zap,
 } from "lucide-react";
 import Link from "@docusaurus/Link";
 import styles from "./Homepage.module.css";
@@ -80,8 +80,8 @@ export default function UseCases(): ReactNode {
             to="/start/"
             data-umami-event="use-cases-start"
           >
-            <Hammer size={16} style={{ marginRight: "8px" }} />
-            Start Building
+            <Zap size={16} style={{ marginRight: "8px" }} />
+            Start Here
           </Link>
           <Link
             className="button button--secondary button--lg"

@@ -44,11 +44,19 @@
   transform: translateX(7px);
 }
 
+.heroDefinition {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
 .heroSubtitle {
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 500;
   margin-bottom: var(--hero-subtitle-margin);
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .heroVersion {
@@ -86,37 +94,22 @@
   margin-right: 8px;
 }
 
-.sectionWrapper {
-  padding: 2rem 0;
-  background-color: var(--ifm-color-emphasis-100);
-}
-
-.whatIsZaparooSection {
-  padding: var(--section-padding);
+.demoLoopSection {
+  padding: 2.5rem 0 2rem;
   background-color: white;
-}
-
-.whatIsZaparooContent {
   text-align: center;
 }
 
-.whatIsZaparooText {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: var(--ifm-color-emphasis-800);
-}
-
-.whatIsZaparooSubtext {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: var(--ifm-color-emphasis-700);
+.demoLoopWrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .howItWorksSection {
   padding: var(--section-padding);
-  background-color: white;
+  background-color: var(--ifm-color-emphasis-100);
+  background-image: url("/img/circuit-board-dark.svg");
+  background-repeat: repeat;
 }
 
 .featureIcon {
@@ -162,13 +155,14 @@
 }
 
 /* Dark mode adjustments */
-[data-theme="dark"] .whatIsZaparooSection,
-[data-theme="dark"] .howItWorksSection {
-  background-color: var(--ifm-background-color);
+[data-theme="dark"] .demoLoopSection {
+  background-color: var(--ifm-color-emphasis-200);
 }
 
+[data-theme="dark"] .howItWorksSection,
 [data-theme="dark"] .communityShowcaseWrapper {
   background-color: var(--ifm-color-emphasis-200);
+  background-image: url("/img/circuit-board-light.svg");
 }
 
 [data-theme="dark"] .heroVersion {
@@ -184,15 +178,15 @@
   color: white;
 }
 
-[data-theme="dark"] .whatIsZaparooText {
-  color: var(--ifm-color-emphasis-900);
-}
-
-[data-theme="dark"] .whatIsZaparooSubtext {
-  color: var(--ifm-color-emphasis-800);
-}
-
 @media screen and (max-width: 768px) {
+  .heroTagline {
+    font-size: 1.6rem;
+  }
+
+  .heroDefinition {
+    font-size: 1rem;
+  }
+
   .heroSubtitle {
     font-size: 1.5rem;
   }
@@ -274,7 +268,7 @@
 
 .hardwarePartners {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .partnersHeader {
@@ -342,19 +336,6 @@
 
 [data-theme="dark"] .partnerLogoInvert {
   filter: invert(0);
-}
-
-/* Video Embed */
-.videoWrapper {
-  max-width: 700px;
-  margin: 3rem auto 2rem;
-}
-
-.videoEmbed {
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 768px) {

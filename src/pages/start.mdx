@@ -4,37 +4,25 @@ description: Tap a card. Launch a game. Build your setup in minutes.
 ---
 
 import { StartWizard } from "@site/src/components/Start/StartWizard";
+import DemoVideo from "@site/src/components/DemoVideo";
 
-<div
-  style={{
-    textAlign: "center",
-    maxWidth: "800px",
-    margin: "1rem auto 1rem",
-  }}
->
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    poster="/videos/zaparoo-demo-poster.jpg"
-    aria-label="Demonstration of Zaparoo in action: tapping an NFC card to instantly launch a game"
-    preload="metadata"
-    style={{
-      width: "100%",
-      maxWidth: "600px",
-      borderRadius: "12px",
-      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
-      marginBottom: "2rem",
-    }}
-  >
-    <source src="/videos/zaparoo-demo.webm" type="video/webm" />
-    <source src="/videos/zaparoo-demo.mp4" type="video/mp4" />
-    Your browser doesn't support HTML5 video. Here's a <a href="/videos/zaparoo-demo.mp4">link to the video</a> instead.
-  </video>
-  <div style={{ fontSize: "1.25rem", color: "var(--ifm-color-emphasis-700)", lineHeight: "1.6" }}>
+<div style={{ textAlign: "center", maxWidth: "800px", margin: "2rem auto 0" }}>
+  <p style={{ fontSize: "1.1rem", color: "var(--ifm-color-emphasis-700)", marginBottom: "1.5rem" }}>
+    Use NFC cards, QR codes, discs, and other physical objects to launch your media.
+  </p>
+</div>
+
+<div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto 2rem" }}>
+  <DemoVideo />
+  <div style={{ fontSize: "1.25rem", color: "var(--ifm-color-emphasis-700)", lineHeight: "1.6", marginTop: "1.5rem" }}>
     New to <strong style={{ color: "var(--ifm-color-primary)" }}>Zaparoo</strong>? No worries! Answer <strong style={{ color: "var(--ifm-color-primary)" }}>3 quick questions</strong> about your setup, we'll build you a <strong style={{ color: "var(--ifm-color-primary)" }}>personalized guide</strong> with the hardware you need and step-by-step instructions to get started.
   </div>
 </div>
 
 <StartWizard />
+
+_Trademarks shown on this page are property of their respective owners. The
+Zaparoo project uses logos on this page in good faith and/or within published
+usage guidelines, to show compatibility with the respective operating system
+they represent. The Zaparoo project is not affiliated with nor receives
+endorsement from any of the projects or companies shown above._

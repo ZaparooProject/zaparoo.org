@@ -592,14 +592,6 @@ export const StartWizard: React.FC = () => {
           <div className={styles.summaryCard}>
             <SummaryContent choice={choice} />
           </div>
-          <p style={{ fontStyle: "italic", marginTop: "1.5rem" }}>
-            Trademarks shown on this page are property of their respective
-            owners. The Zaparoo project uses logos on this page in good faith
-            and/or within published usage guidelines, to show compatibility with
-            the respective operating system they represent. The Zaparoo project
-            is not affiliated with nor receives endorsement from any of the
-            projects or companies shown above.
-          </p>
         </section>
       )}
     </div>

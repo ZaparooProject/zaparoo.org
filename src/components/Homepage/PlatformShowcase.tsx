@@ -14,13 +14,21 @@ const platforms = [
   { name: "Commodore 64", link: "/docs/platforms/commodore64" },
 ];
 
-const hardware = [
-  { name: "NFC Readers", link: "/docs/readers/nfc/" },
-  { name: "Phone NFC (via App)", link: "/docs/app/" },
-  { name: "Barcode/QR Scanners", link: "/docs/readers/barcode/" },
-  { name: "Optical Drives", link: "/docs/readers/optical-drive" },
-  { name: "External Drives", link: "/docs/readers/external-drive" },
-  { name: "MQTT", link: "/docs/readers/mqtt" },
+const tokens = [
+  { name: "NFC Cards", link: "/docs/tokens/nfc/" },
+  { name: "NFC Tags", link: "/docs/tokens/nfc/" },
+  { name: "QR Codes", link: "/docs/tokens/qr-codes" },
+  { name: "Barcodes", link: "/docs/tokens/barcodes" },
+  { name: "CDs", link: "/docs/readers/optical-drive" },
+  { name: "DVDs", link: "/docs/readers/optical-drive" },
+  { name: "Blu-rays", link: "/docs/readers/optical-drive" },
+  { name: "Amiibo", link: "/docs/tokens/nfc-toys/amiibo" },
+  { name: "Skylanders", link: "/docs/tokens/nfc-toys/skylanders" },
+  { name: "Disney Infinity", link: "/docs/tokens/nfc-toys/disney-infinity" },
+  { name: "LEGO Dimensions", link: "/docs/tokens/nfc-toys/lego-dimensions" },
+  { name: "PCB Cards", link: "/docs/tokens/pcb-cards" },
+  { name: "USB Sticks", link: "/docs/readers/external-drive" },
+  { name: "SD Cards", link: "/docs/readers/external-drive" },
 ];
 
 export default function PlatformShowcase(): ReactNode {
@@ -51,9 +59,9 @@ export default function PlatformShowcase(): ReactNode {
         </div>
 
         <div>
-          <h3 className={styles.sectionHeader}>Hardware</h3>
+          <h3 className={styles.sectionHeader}>Tokens</h3>
           <div className={styles.platformBadges}>
-            {hardware.map((item, index) => (
+            {tokens.map((item, index) => (
               <Link
                 key={index}
                 to={item.link}

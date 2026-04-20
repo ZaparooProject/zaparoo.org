@@ -553,11 +553,14 @@ export const showcaseCount = allMedia.length;
 export default function Showcase(props: {
   limit?: number;
   featured?: boolean;
+  excludeFeatured?: boolean;
 }) {
   let media = allMedia;
 
   if (props.featured) {
     media = allMedia.filter((item) => item.featured);
+  } else if (props.excludeFeatured) {
+    media = allMedia.filter((item) => !item.featured);
   }
 
   if (props.limit) {
