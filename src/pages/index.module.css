@@ -223,8 +223,7 @@
 }
 
 .blogCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--ifm-color-primary);
 }
 
 .blogCardDate {
@@ -254,6 +253,10 @@
 [data-theme="dark"] .blogCard {
   background: var(--ifm-background-color);
   border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme="dark"] .blogCard:hover {
+  border-color: var(--ifm-color-primary);
 }
 
 /* Responsive design for blog grid */
@@ -292,9 +295,6 @@
   transition: all 0.2s ease;
 }
 
-.partnerLogo:hover {
-  transform: translateY(-2px);
-}
 
 .partnerLogo img {
   height: 60px;

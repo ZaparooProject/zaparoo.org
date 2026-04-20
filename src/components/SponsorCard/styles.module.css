@@ -14,8 +14,6 @@
 
 .sponsorCard:hover {
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
   text-decoration: none;
   color: inherit;
 }
@@ -27,7 +25,6 @@
 
 [data-theme='dark'] .sponsorCard:hover {
   border-color: var(--ifm-color-primary-light);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .badge {
