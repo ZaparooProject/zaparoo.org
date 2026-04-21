@@ -1,4 +1,5 @@
 import React from "react";
+import { ChevronRight } from "lucide-react";
 import styles from "./styles.module.css";
 
 interface TokenTableProps {
@@ -94,7 +95,7 @@ export default function TokenTable({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View on {explorerName} →
+                View on {explorerName} <ChevronRight size={14} className="inline-icon" />
               </a>
             </td>
           </tr>

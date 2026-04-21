@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+description: "Zaparoo Core features: mappings, playtime limits, custom launchers, launch guard, publishers, game tags, and system configuration."
+keywords: [zaparoo features, zaparoo mappings, playtime limit, zaparoo custom launchers, launch guard]
 ---
 
 # Features

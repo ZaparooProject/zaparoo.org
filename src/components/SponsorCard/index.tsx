@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChevronRight } from 'lucide-react';
 import styles from './styles.module.css';
 
 interface SponsorCardProps {
@@ -34,7 +35,7 @@ export default function SponsorCard({
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
         <div className={styles.link}>
-          {linkText} →
+          {linkText} <ChevronRight size={14} className="inline-icon" style={{ marginBottom: '2px' }} />
         </div>
       </a>
     </div>

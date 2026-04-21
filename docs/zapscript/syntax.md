@@ -1,5 +1,7 @@
 ---
 sidebar_position: 7
+description: "ZapScript syntax reference: the format, structure, and rules for writing ZapScript commands on Zaparoo tokens."
+keywords: [zapscript syntax, zapscript format, zaparoo token syntax, zapscript reference]
 ---
 
 # Syntax

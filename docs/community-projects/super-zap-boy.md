@@ -1,3 +1,8 @@
+---
+description: "Super Zap Boy: a custom SNES-shell MiSTer build with a built-in PN532 NFC reader for launching Game Boy games from physical cartridges."
+keywords: [super zap boy zaparoo, mister nfc build, snes shell mister, zaparoo game boy cartridge]
+---
+
 # Super Zap Boy
 
 Super Zap Boy is a custom case project created by Phoenix that utilizes an SNES shell with an SBC inside, designed to work with a Super Game Boy for reading games. The Super Game Boy contains a PN532 NFC reader connected to an SBC (either a DE-10 Nano or it's clone boards), which is housed inside the SNES shell. These components are connected internally via a wired USB connection.

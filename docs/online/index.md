@@ -1,3 +1,8 @@
+---
+description: "Zaparoo Online: create virtual NFC card decks, sync ZapScript to physical tags, and share collections. Using Online supports Zaparoo open source development."
+keywords: [zaparoo online, virtual nfc cards, zaparoo cloud, online.zaparoo.com, nfc card sync]
+---
+
 # Zaparoo Online
 
 [Zaparoo Online](https://online.zaparoo.com) is a companion web service for managing virtual cards and decks. Create cards with ZapScript on them, organize them into shareable decks, and write them to physical NFC tags using the [Zaparoo App](../app/index.md).

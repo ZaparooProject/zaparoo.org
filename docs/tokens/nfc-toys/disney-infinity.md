@@ -1,3 +1,8 @@
+---
+description: "Use Disney Infinity figures as Zaparoo tokens to launch games: map each figure's unique NFC UID to a custom action."
+keywords: [disney infinity zaparoo, disney infinity nfc, nfc figure launcher zaparoo]
+---
+
 # Disney Infinity
 
 Disney Infinity figures use [MIFARE](../nfc/mifare.md) NFC chips. Zaparoo can read them, but the data stored on them is specific to the Disney Infinity game, so it can't be used directly.

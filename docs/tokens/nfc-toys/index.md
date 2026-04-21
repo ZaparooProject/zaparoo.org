@@ -1,3 +1,8 @@
+---
+description: "Use NFC toys as Zaparoo tokens: Amiibo, Skylanders, Disney Infinity, and LEGO Dimensions figures all work via UID mapping."
+keywords: [zaparoo nfc toys, amiibo zaparoo, skylanders zaparoo, disney infinity zaparoo, nfc figure game launcher]
+---
+
 # NFC Toys
 
 NFC toys like Amiibo, Skylanders, and Disney Infinity figures can be used with Zaparoo. These toys contain NFC chips with game-specific data that can't be used directly, but their unique ID (UID) can be read and [mapped](../../features/mappings.md) to custom actions.

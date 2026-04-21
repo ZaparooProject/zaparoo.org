@@ -1,3 +1,8 @@
+---
+description: "Custom PCB game cards for Zaparoo: order PCB blanks, add NFC stickers, and print labels for a unique physical game collection."
+keywords: [zaparoo pcb cards, custom nfc game cards, pcb nfc zaparoo, diy game cards]
+---
+
 # PCB Cards
 
 Want to have some cool little PCB cards for your favorite games? All you need to do is order some of these, print some labels and stick on an NFC sticker. Please note that the small Switch cards will need smaller rectangle type NFC tags but the medium and large sized cards can take either. PCB cards project for Zaparoo was created by TheTrain.

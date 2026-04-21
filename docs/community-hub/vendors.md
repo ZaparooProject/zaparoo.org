@@ -1,3 +1,8 @@
+---
+description: "Zaparoo-compatible hardware vendors: community sellers for readers, cards, and accessories. Find local vendors or shop at the official Zaparoo Shop."
+keywords: [zaparoo vendors, zaparoo hardware sellers, buy zaparoo reader, zaparoo shop, zaparoo accessories]
+---
+
 # Vendors
 
 Although we encourage people to sell Zaparoo compatible hardware and make the project more accessible, vendors come and go, so we're not able to maintain an accurate list of everyone who sells stuff. Please [join the Discord server](https://zaparoo.org/discord) to see if there's someone local to you selling custom readers and labels or offering services to make them on demand.

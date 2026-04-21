@@ -1,3 +1,8 @@
+---
+description: "Compatible Zaparoo hardware readers: NFC/RFID readers, barcode scanners, QR cameras, optical drives, MQTT, and custom serial devices."
+keywords: [zaparoo readers, nfc reader, rfid reader, barcode scanner, zaparoo hardware]
+---
+
 # Readers
 
 Readers are the physical hardware that scan [tokens](../tokens/index.md) and trigger actions in Zaparoo. Choose from ready-to-use USB readers, DIY modules, optical drives, or even virtual software-based readers.
@@ -5,6 +10,23 @@ Readers are the physical hardware that scan [tokens](../tokens/index.md) and tri
 :::caution Hardware Selection
 Buying generic hardware? Pay attention to the recommendations in the docs. The hardware can be complicated without guidance, and it's easy to buy stuff that won't work or is low quality.
 :::
+
+:::tip
+The [Zaparoo Shop](https://shop.zaparoo.com/) stocks official NFC readers and cards that are tested and ready to use out of the box.
+:::
+
+## Comparison
+
+| Reader | Token Types | Setup | Platforms |
+| ------ | ----------- | ----- | --------- |
+| [PN532 USB](./nfc/pn532-usb.md) | NFC/RFID | Plug and play | All |
+| [PN532 Module](./nfc/pn532-module.md) | NFC/RFID | DIY wiring required | All |
+| [ACR122U](./nfc/acr122u.md) | NFC/RFID | Plug and play | Linux, macOS (USB); Windows, macOS (PCSC) |
+| [RC522](./nfc/rc522.md) | NFC/RFID | DIY wiring required | MiSTer only |
+| [Barcode Scanner](./barcode/index.md) | Barcodes, QR codes | Plug and play | All |
+| [Optical Drive](./optical-drive.md) | CDs, DVDs, Blu-rays | Plug and play | MiSTer, Linux |
+| [MQTT Reader](./mqtt.md) | Virtual/any | Network configuration | All |
+| [File Reader](./file.md) | Text files | No hardware needed | All |
 
 ## Reader Types
 
@@ -97,4 +119,8 @@ All NFC readers can scan:
 
 - Yes! Connect as many readers as you want
 - Each reader operates independently
+
+---
+
+<SponsorCallout variant="sponsor" />
 

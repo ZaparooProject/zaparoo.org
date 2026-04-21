@@ -1,3 +1,8 @@
+---
+description: Use optical discs (CDs, DVDs, and Blu-rays) as Zaparoo tokens to launch games and media by inserting a physical disc.
+keywords: [zaparoo optical drive, cd game launcher, dvd token zaparoo, disc launcher mister]
+---
+
 # Optical Drive
 
 Use CDs, DVDs, and Blu-ray discs as physical tokens with any optical drive! This unique reader type turns your disc collection into a library of launchable media.

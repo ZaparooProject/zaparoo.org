@@ -1,3 +1,8 @@
+---
+description: "Zaparoo Core CLI reference: command-line interface for controlling Zaparoo Core from scripts and terminals on all supported platforms."
+keywords: [zaparoo cli, zaparoo command line, zaparoo core cli, zaparoo scripting cli]
+---
+
 # Command Line
 
 Most [Zaparoo Core](./index.md) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](./api/index.md). This interface is the same on every platform that supports it, and can be safely used as a scripting target.

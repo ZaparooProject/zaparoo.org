@@ -1,3 +1,8 @@
+---
+description: Build a custom Zaparoo reader using any microcontroller or device that sends token values over serial, perfect for DIY projects and unsupported hardware.
+keywords: [zaparoo simple serial, custom reader zaparoo, diy reader serial, microcontroller nfc zaparoo]
+---
+
 # Simple Serial Reader
 
 The Simple Serial driver allows microcontrollers and custom hardware to act as Zaparoo readers using a lightweight serial protocol. This enables you to build custom readers with your own hardware and scanning logic - perfect for DIY projects, barcode scanners, RFID modules that aren't directly supported, or creative reader implementations.

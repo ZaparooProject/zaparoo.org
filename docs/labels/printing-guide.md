@@ -1,3 +1,8 @@
+---
+description: "How to print Zaparoo card labels at home: paper types, printer settings, lamination, cutting, and community tips."
+keywords: [zaparoo print labels, nfc card printing, game card labels print, zaparoo sticker printing]
+---
+
 # Printing Guide
 
 This guide covers materials, tools, and techniques used by the Zaparoo community for printing labels at home.

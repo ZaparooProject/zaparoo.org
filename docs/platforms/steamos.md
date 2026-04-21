@@ -1,3 +1,8 @@
+---
+description: "Install Zaparoo on SteamOS and Steam Deck: launch Steam games, EmuDeck, and RetroDECK by tapping an NFC card on your Steam Deck."
+keywords: [zaparoo steamos, zaparoo steam deck, steam deck nfc, nfc steam deck game launcher, steamos nfc reader]
+---
+
 # SteamOS
 
 Zaparoo Core on SteamOS supports launching Steam games, EmuDeck, and RetroDECK from your Steam Deck.
@@ -21,7 +26,7 @@ In Desktop Mode, open Konsole and run:
 curl -fsSL https://zaparoo.org/install.sh | bash
 ```
 
-This installs all necessary components and sets up the service to run on startup. Since SteamOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
+This installs all necessary components and sets up the service to run on startup. Since SteamOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`). Once running, use the [Zaparoo App](/docs/app/) or the built-in web UI to manage your setup and write tokens.
 
 To uninstall:
 
@@ -129,3 +134,21 @@ allow_file = [
 ## Known Issues
 
 - Updates require stopping the service first: `sudo systemctl stop zaparoo.service`
+
+## FAQ
+
+**What NFC reader should I use with a Steam Deck?**
+
+The [PN532 USB](../readers/nfc/pn532-usb.md) reader is the recommended choice. Plug it into the Steam Deck or a connected USB hub and it will be auto-detected by Zaparoo.
+
+**Can Zaparoo launch non-Steam games on the Steam Deck?**
+
+Zaparoo can launch any game that EmuDeck or RetroDECK has configured. It launches through Steam shortcuts, so anything added to Steam library is launchable.
+
+**Does Zaparoo work in Game Mode?**
+
+Yes. The service runs in the background and launches games from Game Mode. You do not need to switch to Desktop Mode for normal scanning to work.
+
+**Does Zaparoo survive SteamOS updates?**
+
+SteamOS updates can reset the system root, but Zaparoo is installed user-locally and the service should survive updates without needing reinstallation.

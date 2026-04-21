@@ -1,3 +1,8 @@
+---
+description: "Install Zaparoo on ReplayOS: launch games through the ReplayOS libretro frontend with NFC cards and other Zaparoo tokens."
+keywords: [zaparoo replayos, replayos nfc, replayos game launcher zaparoo]
+---
+
 # ReplayOS
 
 Zaparoo Core on [ReplayOS](https://www.replayos.com/) launches games and media through the ReplayOS libretro frontend.
@@ -21,7 +26,7 @@ SSH into your ReplayOS device and run:
 curl -fsSL https://zaparoo.org/install.sh | bash
 ```
 
-This installs and enables the `zaparoo.service` systemd unit to run on startup.
+This installs and enables the `zaparoo.service` systemd unit to run on startup. Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in web UI to manage your setup and write tokens.
 
 To uninstall:
 

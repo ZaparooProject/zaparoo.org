@@ -1,3 +1,8 @@
+---
+description: "Zaparoo reader driver setup: install libnfc, USB HID support, and serial drivers for PN532, ACR122U, RC522, and other hardware."
+keywords: [zaparoo drivers, libnfc, pn532 driver, acr122u driver, nfc reader driver]
+---
+
 # Reader Drivers
 
 Reader drivers are software components that enable [Zaparoo Core](../core/index.md) to communicate with different types of [reader hardware](./index.md). Each driver implements the specific protocol and communication method required for a particular reader type.

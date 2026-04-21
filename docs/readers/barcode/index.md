@@ -1,3 +1,8 @@
+---
+description: "Use barcode scanners with Zaparoo: scan barcodes on game cases or custom labels with a USB HID scanner or your phone camera."
+keywords: [zaparoo barcode, barcode scanner game launcher, usb barcode reader zaparoo]
+---
+
 # Barcode Scanners
 
 Zaparoo supports reading barcodes and QR codes through two methods:

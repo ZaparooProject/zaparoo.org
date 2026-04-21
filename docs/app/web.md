@@ -1,40 +1,38 @@
 ---
 sidebar_position: 2
+description: "Zaparoo web UI: browser-based interface for managing Zaparoo Core from any device on your network without the mobile app."
+keywords: [zaparoo web ui, zaparoo browser interface, zaparoo core web, zaparoo network ui]
 ---
 
 # Web UI
 
-Every copy of Zaparoo Core ships with a pre-built web version of the [Zaparoo App](./index.md) which can be accessed locally on your network through any web browser. This embedded web build is automatically included with every Core release and requires no separate installation.
+Every [Zaparoo Core](../core/index.md) release includes a web version of the [Zaparoo App](./index.md). Open it from any browser on your network. Nothing to install.
 
-The web build provides the same functionality as the full app, but is missing features like direct NFC and camera support since these aren't available in web browsers. When you use the web UI to read and write tags, it will use an NFC reader connected directly to the host device running Zaparoo Core.
+Most features work the same as the full app. The main gaps are things that need native device access: NFC (read, write, and format) and camera barcode scanning. Tag reads and writes go through whatever [NFC reader](../readers/nfc/index.md) is plugged into the Core host.
 
-## Accessing the Web UI
+## Accessing the web UI
 
-### Finding Your IP Address
+### Finding your IP address
 
-To access the web UI, you need to know the IP address of the machine running Zaparoo Core. You can find this in several ways:
+You'll need the IP address of the machine running Zaparoo Core. You can find it in the system tray menu (desktop systems), in the startup logs when Core first runs, or in your system's network settings.
 
-- **System tray menu** (desktop systems): The IP address is displayed in the Zaparoo Core system tray menu
-- **Core startup logs**: The IP address is shown when Zaparoo Core starts
-- **Network settings**: Check your system's network configuration
+### Connecting
 
-### Connecting to the Web UI
+Open a browser and go to `http://<ip>:7497/app/`. The root URL (`http://<ip>:7497/`) also works and redirects there.
 
-Once you have your IP address, access the web UI by opening a web browser and navigating to `http://<ip>:7497/app/`.
+For example, if your IP is `192.168.1.100`, go to `http://192.168.1.100:7497/app/`.
 
-**Important**: The web UI is only accessible at the `/app/` path - it's not available at the root URL.
+The app automatically connects to Core at that address, so you don't need to enter the IP again inside the app.
 
-For example, if your IP address is `192.168.1.100`, go to `http://192.168.1.100:7497/app/`.
+Sign-in on the embedded build is email and password only. Google and Apple sign-in are only available in the native apps.
 
 ## Configuration
 
-### Remote Access
+### Remote access
 
-By default, the web UI is accessible from any device on your local network. For remote access or custom security requirements, you can configure allowed origins in your configuration file:
+By default, the web UI is accessible from any device on your local network. Core automatically allows local IPs, `localhost`, the device hostname, and `*.local` mDNS names. To allow other origins, add them to your [configuration file](../core/config.md):
 
 ```toml
 [service]
 allowed_origins = ["https://example.com", "http://custom-domain.local"]
 ```
-
-The web UI supports both HTTP and HTTPS connections, with CORS automatically configured for local network IP addresses.

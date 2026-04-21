@@ -66,8 +66,6 @@
 }
 
 .link {
-  display: inline-flex;
-  align-items: center;
   font-weight: 600;
   color: var(--ifm-color-primary);
 }

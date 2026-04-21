@@ -1,6 +1,11 @@
+---
+description: ZapScript is the scripting language written to Zaparoo tokens. Tap a card, launch anything. Reference for all commands and syntax.
+keywords: [zapscript, zaparoo scripting language, zapscript commands, nfc scripting, zaparoo token script]
+---
+
 # ZapScript
 
-ZapScript is a small scripting language written to the storage of Zaparoo tokens. It tells Zaparoo what to do when a token is scanned. Through regular use you won't need to write much yourself, but you can use it to customize launching or add scripted actions.
+ZapScript is a small scripting language written to the storage of Zaparoo tokens. It tells Zaparoo what to do when a token is scanned. Through regular use you won't need to write much yourself, but you can use it to customize launching or add scripted actions. The [Zaparoo App](/docs/app/) is the easiest way to write ZapScript to tokens.
 
 ## Quick Reference
 

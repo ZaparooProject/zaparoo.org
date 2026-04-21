@@ -1,4 +1,6 @@
 ---
+description: "Zaparoo tags: metadata labels extracted from media filenames for filtering, searching, and resolving title matches in the game library."
+keywords: [zaparoo tags, game tags zaparoo, title id zaparoo, media filtering zaparoo]
 ---
 
 # Tags

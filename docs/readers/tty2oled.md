@@ -1,3 +1,8 @@
+---
+description: Integrate Zaparoo with TTY2OLED to show game titles and artwork on an external OLED display connected to MiSTer FPGA.
+keywords: [tty2oled zaparoo, mister oled display, zaparoo game display, tty2oled integration]
+---
+
 # TTY2OLED Display
 
 TTY2OLED is a serial display device that shows game information and artwork on external OLED displays. While not a traditional reader that scans tokens, Zaparoo Core treats it as a display "reader" driver that receives game information and displays it visually.

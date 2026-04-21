@@ -1,3 +1,8 @@
+---
+description: "Install Zaparoo on Batocera: launch emulation games from NFC cards, barcodes, and QR codes with step-by-step setup for all Batocera devices."
+keywords: [zaparoo batocera, batocera nfc, batocera nfc game launcher, nfc card batocera, batocera zaparoo install]
+---
+
 # Batocera
 
 [Batocera](https://batocera.org/) is a software emulation distribution based around EmulationStation, with support for a huge number of systems and devices.
@@ -24,7 +29,7 @@ The easiest way to install is directly from Batocera's Content Downloader:
 3. Go to the `SYS` section and find `Zaparoo Core`
 4. Press `A` to install
 
-After installation, launch Zaparoo from the Ports system in EmulationStation to access the TUI.
+After installation, launch Zaparoo from the Ports system in EmulationStation to access the TUI, or use the [Zaparoo App](/docs/app/) on your phone to manage your setup and write tokens.
 
 ### Terminal
 

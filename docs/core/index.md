@@ -1,3 +1,8 @@
+---
+description: "Zaparoo Core: the open source background service that powers the universal loading system on MiSTer, SteamOS, Windows, Batocera, and more."
+keywords: [zaparoo core, zaparoo service, zaparoo background service, zaparoo core download, open source game launcher]
+---
+
 # Zaparoo Core
 
 Zaparoo Core is a software service which runs in the background of supported platform devices. This service manages and coordinates all aspects of making Zaparoo work as a system, including:

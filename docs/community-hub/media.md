@@ -1,3 +1,8 @@
+---
+description: "Press coverage, reviews, and media articles about Zaparoo: a collection of mentions and features from around the web."
+keywords: [zaparoo press, zaparoo coverage, zaparoo reviews, zaparoo media articles]
+---
+
 # Media
 
 Coverage of the Zaparoo project online.
@@ -21,6 +26,15 @@ Coverage of the Zaparoo project online.
 - **[MiSTer FPGA's Next Trick? Launching Games From CD](https://www.timeextension.com/news/2024/10/mister-fpgas-next-trick-launching-games-from-cd)** - *Time Extension* (October 8, 2024)
   Coverage of CD-based game launching with TapTo
 
+- **[Retro Remake unveils $150 FPGA-based PlayStation clone, with built-in NFC reader](https://www.polygon.com/gaming/512589/superstation-one-pre-order-playstation-console/)** - *Polygon* (January 28, 2025)
+  Mainstream tech coverage of the SuperStation ONE with Zaparoo NFC reader built in
+
+- **[SuperStation ONE: $150 FPGA-based PlayStation clone with NFC reader](https://www.cnx-software.com/2025/01/29/superstation-one-150-fpga-based-playstation-clone-with-nfc-reader/)** - *CNX Software* (January 29, 2025)
+  Hardware write-up covering the SuperStation ONE and its Zaparoo NFC reader
+
+- **[SuperStation ONE: PlayStation-inspired FPGA retro console](https://www.electronics-lab.com/superstation-one-playstation-inspired-fpga-retro-console/)** - *electronics-lab.com* (February 24, 2025)
+  Electronics-focused coverage of the SuperStation ONE with Zaparoo integration
+
 ### Retro Gaming News
 
 - **[Using NFC Tags to Run Games on the MiSTer FPGA](https://www.retrorgb.com/using-nfc-tags-to-run-games-on-the-mister-fpga.html)** - *RetroRGB* (September 8, 2023)
@@ -38,8 +52,14 @@ Coverage of the Zaparoo project online.
 - **[PC88, Play Videos on MiSTer, SNES Save States & More](https://www.retrorgb.com/mister-fpga-news-pc88-play-videos-on-mister-snes-save-states-more.html)** - *RetroRGB* (November 26, 2024)
   Coverage of Zaparoo movie launching feature
 
+- **[MiSTer FPGA News – MultiSystem 2, ZX Spectrum Next, Gridiron Fight & More](https://www.retrorgb.com/mister-fpga-news-multisystem-2-zx-spectrum-next-gridiron-fight-more.html)** - *RetroRGB* (December 6, 2024)
+  Coverage of Zaparoo QR codes and the 1001 Games book integration
+
 - **[The DIY MiSTer Handheld](https://www.retrorgb.com/the-diy-mister-handheld.html)** - *RetroRGB* (December 16, 2024)
   Features Zaparoo integration in handheld build
+
+- **[MiSTerFPGA News – Ninja Gaiden, Gradius 2, Atari Jaguar, Sega ST-V & More](https://retrorgb.com/misterfpga-news-ninja-gaiden-gradius-2-atari-jaguar-sega-st-v-more.html)** - *RetroRGB* (January 12, 2025)
+  TapTo-to-Zaparoo transition coverage alongside Zaploader NT news
 
 - **[Zaparoo Online, New Arcade Cores, New Mini-ITX IO Board & More](https://www.retrorgb.com/mister-fpga-news-zaparoo-online-new-arcade-cores-new-mini-itx-io-board-more.html)** - *RetroRGB* (February 17, 2025)
   Coverage of Zaparoo Online features
@@ -47,11 +67,23 @@ Coverage of the Zaparoo project online.
 - **[MiSTer Pi Successor, New Arcade Cores, Downloader & More](https://www.retrorgb.com/mister-fpga-news-mister-pi-successor-new-arcade-cores-downloader-more.html)** - *RetroRGB* (March 20, 2025)
   Zaparoo integration coverage
 
+- **[MiSTer FPGA News – 3DO, Taito F2, New Arcade Cores, Zaparoo & More](https://retrorgb.com/mister-fpga-news-mister-fpga-news-3do-taito-f2-new-arcade-cores-zaparoo-more.html)** - *RetroRGB* (April 13, 2025)
+  Zaparoo Core v2.2.0 release coverage
+
+- **[Multisystem² has landed](https://gamingretro.co.uk/multisystem-has-landed/)** - *Gaming Retro* (May 19, 2025)
+  Hardware review of the Multisystem 2 covering its Zaparoo integration
+
+- **[MiSTer FPGA News – CD-i, Sega ST-V, Sega Saturn & More](https://retrorgb.com/mister-fpga-news-cd-i-sega-st-v-sega-saturn-more.html)** - *RetroRGB* (June 20, 2025)
+  Preview of the Zaparoo TUI and related updates
+
 - **[Atari System 2, Quarter MiSter, Multisystem Cart Support & More](https://www.retrorgb.com/mister-fpga-news-atari-system-2-quarter-mister-multisystem-cart-support-more.html)** - *RetroRGB* (July 21, 2025)
   Zaparoo updates including NAS support
 
 - **[Zaparoo Releases Multisystem2 NFC Cards + Kit](https://metalgamesolid.com/misc/zaparoo-releases-multisystem2-nfc-cards-kit)** - *MetalGameSolid* (August 2, 2025)
   Product release coverage
+
+- **[Zaparoo Update: Seamless Integration with tty2oled – Coming Soon!](https://metalgamesolid.com/misc/zaparoo-update-seamless-integration-with-tty2oled-coming-soon/)** - *MetalGameSolid* (August 21, 2025)
+  Feature announcement covering tty2oled integration
 
 - **[Zaparoo Will Soon Use Smart Game Matching](https://metalgamesolid.com/misc/zaparoo-will-soon-use-smart-game-matching)** - *MetalGameSolid* (October 19, 2025)
   Technical feature announcement
@@ -68,6 +100,15 @@ Coverage of the Zaparoo project online.
 - **[MiSTer NFC Cards Bring Physical Fun to Digital Games](https://theoasisbbs.com/mister-nfc-cards-bring-physical-fun-to-digital-games)** - *The Oasis BBS* (April 8, 2025)
   Article covering Wolfgang's NFC card creation tutorial
 
+- **[Wizzo Teases Zaparoo Graphical Front-End For MiSTerFPGA](https://metalgamesolid.com/fpga/mister-fpga/wizzo-teases-zaparoo-graphical-front-end-for-misterfpga/)** - *MetalGameSolid* (December 2025)
+  Early look at the Zaparoo graphical front-end for MiSTer
+
+- **[MiSTer SuperStation One Review](https://retrorgb.com/mister-superstation-one-review.html)** - *RetroRGB* (March 5, 2026)
+  Hardware review of the SuperStation ONE featuring the built-in NFC reader used by Zaparoo
+
+- **[MiSTer Companion v2.2.0 Released](https://metalgamesolid.com/misc/mister-companion-v2-2-0-released/)** - *MetalGameSolid* (March 8, 2026)
+  Coverage highlighting the built-in Zaparoo install flow in MiSTer Companion v2.2.0
+
 ### Developer Articles & Community
 
 - **[Creating TapTo](https://timwilsie.com/creating-tapto)** - *Tim Wilsie* (March 26, 2024)
@@ -76,12 +117,21 @@ Coverage of the Zaparoo project online.
 - **[Putting TapTo in your pocket](https://timwilsie.com/portfolio/putting-tapto-in-your-pocket)** - *Tim Wilsie*
   Development story of the mobile app
 
+- **[Welcome Zaparoo!](https://timwilsie.com/welcome-zaparoo/)** - *Tim Wilsie* (April 27, 2025)
+  Behind-the-scenes on the TapTo-to-Zaparoo rebrand from the designer
+
+- **[The first Zaparoo equipped consoles arrive!](https://timwilsie.com/the-first-zaparoo-equipped-consoles-arrive/)** - *Tim Wilsie* (May 9, 2025)
+  First look at SuperStation ONE and Multisystem 2 shipping with Zaparoo
+
 - **[Launching retro games with NFC cards for fun and pleasure](https://forums.bit-tech.net/index.php?threads/launching-retro-games-with-nfc-cards-for-fun-and-pleasure.387972/)** - *Bit-Tech Forums* (September 28, 2025)
   User build log and discussion
 
 ## Video Content
 
 ### Tutorials & Demos
+
+- **[MiSTer FPGA - Running Games with a Physical Tap (NFC)](https://www.youtube.com/watch?v=YwQviLwWHYM)** - *RetroRGB* (September 8, 2023)
+  Early video companion to the RetroRGB NFC tutorial article
 
 - **[MiSTer FPGA - Zaparoo Demo and Tutorial](https://www.youtube.com/watch?v=mMfIT-2wXrc)** - *Gentlemen's Pixel Club* (December 14, 2024)
   Comprehensive demo and tutorial of Zaparoo on MiSTer FPGA
@@ -140,6 +190,12 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo徹底解説 - Super Station One](https://www.youtube.com/watch?v=36mkcwrvqxQ)** - *ゆっくりレトロ図書館* (February 28, 2026)
   Japanese language Zaparoo tutorial for Super Station One and MiSTer
 
+- **[Revendo o projeto Zaparoo + Teste dos itens do Unboxing anterior](https://www.youtube.com/watch?v=8zjln0Ffmv8)** - *YouTube* (March 16, 2026)
+  Portuguese language Zaparoo project revisit and hardware unboxing follow-up
+
+- **[Zaparoo agora no Batocera](https://www.youtube.com/watch?v=Pfb8CWQFVhg)** - *YouTube* (March 20, 2026)
+  Portuguese language walkthrough of Zaparoo running on Batocera
+
 ### News & Updates
 
 - **[MiSTer, Analogue Pocket, FPGA, Random & Retro Gaming News (ep129)](https://www.youtube.com/watch?v=ZNOjMzGHwHY)** - *Pixel Cherry Ninja* (December 14, 2024)
@@ -153,6 +209,12 @@ Coverage of the Zaparoo project online.
 
 - **[FPGA & Retro Gaming News Ep176](https://www.youtube.com/watch?v=e2OiJZnFpRY)** - *Metal Game Solid* (December 11, 2025)
   FPGA news including Zaparoo coverage
+
+- **[Retro 168 #5 | Zaparoo, DSPico, iiSU, NES Core, Romhacks](https://www.youtube.com/watch?v=J4ZkqYUv2lg)** - *Metal Game Solid* (December 5, 2025)
+  Weekly news roundup leading with Zaparoo coverage
+
+- **[New Frontend for MiSTer FPGA in the Works... and it Looks Awesome!](https://www.youtube.com/watch?v=5896iuzbrck)** - *Pixel Cherry Ninja* (December 19, 2025)
+  First-look video on the upcoming Zaparoo graphical front-end
 
 ## Official Resources
 

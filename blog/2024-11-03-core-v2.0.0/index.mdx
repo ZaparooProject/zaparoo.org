@@ -1,6 +1,7 @@
 ---
 slug: core-v2.0.0
 title: "TapTo Core v2.0.0 released"
+description: "TapTo Core v2.0.0: major release with breaking changes ahead of the TapTo to Zaparoo rebrand. Upgrade the TapTo Life app before connecting."
 tags: [software, core]
 authors: wizzo
 ---
@@ -58,3 +59,6 @@ Some of these features are still in process of being documented. Please [ask in 
 - The /dev/serial path is no longer used for device detection to avoid conflicts in clone USB chips.
 - API launch text is now normalized to avoid issues with UTF input and similar characters. This may be changed.
 - Launches can now be run concurrently (like if a launch is long running) and individual commands are now blocking. You probably won't notice anything except that a HTTP GET or POST will now block before running the next command.
+
+
+<SponsorCallout variant="combined" />

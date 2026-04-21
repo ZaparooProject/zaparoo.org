@@ -1,3 +1,8 @@
+---
+description: "Install Zaparoo on LibreELEC (beta): manual setup for NFC card media launching on Kodi-based LibreELEC devices."
+keywords: [zaparoo libreelec, libreelec nfc, kodi nfc launcher zaparoo, libreelec game launch]
+---
+
 # LibreELEC
 
 :::warning

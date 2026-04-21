@@ -1,3 +1,8 @@
+---
+description: "Store Zaparoo NFC cards in retro cassette tape cases: a nostalgic way to display and organize your physical game collection."
+keywords: [zaparoo cassette cases, nfc card storage, retro game card case, zaparoo collection]
+---
+
 # Cassette Cases
 
 <img src="/img/docs/tokens/cassette-Front.jpg" alt="The Front Art of the Cassette Tape Cases" width="300" /> <img src="/img/docs/tokens/cassette-Back.jpg" alt="The Back Artwork of the Cassette Tape Cases" width="300" />

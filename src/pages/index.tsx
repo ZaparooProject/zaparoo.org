@@ -12,7 +12,7 @@ import RotatingText from "@site/src/components/RotatingText";
 import DemoVideo from "@site/src/components/DemoVideo";
 import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
 import UseCases from "@site/src/components/Homepage/UseCases";
-import { Zap, Download } from "lucide-react";
+import { Zap, Download, ChevronRight } from "lucide-react";
 
 import styles from "./index.module.css";
 import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
@@ -48,7 +48,7 @@ function LatestNews(): ReactNode {
               })}
             </div>
             <h3 className={styles.blogCardTitle}>{item.title}</h3>
-            <div className={styles.blogCardFooter}>Read more →</div>
+            <div className={styles.blogCardFooter}>Read more <ChevronRight size={14} className="inline-icon" /></div>
           </Link>
         ))}
       </div>
@@ -114,6 +114,90 @@ function HardwarePartners(): ReactNode {
   );
 }
 
+function SupportTile({
+  title,
+  description,
+  href,
+  linkText,
+  external,
+  umamiEvent,
+}: {
+  title: string;
+  description: string;
+  href: string;
+  linkText: string;
+  external?: boolean;
+  umamiEvent: string;
+}): ReactNode {
+  const inner = (
+    <div className={styles.supportTile}>
+      <h3 className={styles.supportTileTitle}>{title}</h3>
+      <p className={styles.supportTileDesc}>{description}</p>
+      <span className={styles.supportTileLink}>{linkText} <ChevronRight size={14} className="inline-icon" /></span>
+    </div>
+  );
+  if (external) {
+    return (
+      <div className="col col--4" style={{ marginBottom: "1.5rem" }}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none", color: "inherit" }}
+          data-umami-event={umamiEvent}
+        >
+          {inner}
+        </a>
+      </div>
+    );
+  }
+  return (
+    <div className="col col--4" style={{ marginBottom: "1.5rem" }}>
+      <Link to={href} style={{ textDecoration: "none", color: "inherit" }} data-umami-event={umamiEvent}>
+        {inner}
+      </Link>
+    </div>
+  );
+}
+
+function SupportStrip(): ReactNode {
+  return (
+    <section className={clsx(homepageStyles.section, homepageStyles.sectionLight)}>
+      <div className="container">
+        <div className="text--center padding-horiz--md" style={{ marginBottom: "2rem" }}>
+          <h2 className={homepageStyles.sectionTitle}>Zaparoo is free and open source</h2>
+          <p className={homepageStyles.sectionSubtitle}>Here's how to help it keep growing.</p>
+        </div>
+        <div className="row">
+          <SupportTile
+            title="Zaparoo App"
+            description="Get the best Zaparoo experience on your phone. Your purchase directly funds continued development."
+            href="https://zaparoo.app"
+            linkText="Get the App"
+            external
+            umamiEvent="homepage-support-app"
+          />
+          <SupportTile
+            title="Zaparoo Shop"
+            description="Official hardware, readers, and accessories. Every purchase goes toward keeping the project running."
+            href="https://shop.zaparoo.com"
+            linkText="Visit the Shop"
+            external
+            umamiEvent="homepage-support-shop"
+          />
+          <SupportTile
+            title="Sponsor"
+            description="Support development directly through Patreon or GitHub Sponsors. See all the ways to help."
+            href="/sponsor/"
+            linkText="Ways to Sponsor"
+            umamiEvent="homepage-support-sponsor"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomepageHeader(): ReactNode {
   return (
     <header className={clsx(styles.heroBanner)}>
@@ -121,9 +205,11 @@ function HomepageHeader(): ReactNode {
       <div className="zaparoo-animated-bg" />
       <div className={clsx("container", styles.heroBannerContent)}>
         <Heading as="h1" className="hero__title">
+          <span className="sr-only">Zaparoo - Open Source Universal Loading System</span>
           <img
             src="/img/logo_lockup_white_sm.webp"
-            alt="Zaparoo Logo"
+            alt=""
+            aria-hidden="true"
             height="200px"
             width="286px"
             className={styles.heroTitle}
@@ -309,6 +395,8 @@ export default function Home(): ReactNode {
         <PlatformShowcase />
 
         <UseCases />
+
+        <SupportStrip />
 
         <div className={styles.communityShowcaseWrapper}>
           <div className="container">

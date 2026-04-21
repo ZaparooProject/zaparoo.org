@@ -1,3 +1,8 @@
+---
+description: "Use Skylanders figures as Zaparoo tokens: tap any Skylanders figure to launch a game or action via UID mapping."
+keywords: [skylanders zaparoo, skylanders nfc token, skylanders game launcher, skylanders uid zaparoo]
+---
+
 # Skylanders
 
 Skylanders figures use [MIFARE Classic 1K](../nfc/mifare.md) NFC chips. Zaparoo can read them, but the data stored on them is encrypted and specific to the Skylanders game, so it can't be used directly.

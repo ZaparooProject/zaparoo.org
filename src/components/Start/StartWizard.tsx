@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SponsorCallout from "@site/src/components/SponsorCallout";
 import {
   CreditCard,
   QrCode,
@@ -971,6 +972,9 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           <a href="/docs/core/cli">TUI</a> alternatives.
         </Admonition>
       )}
+
+      {/* Sponsor callout */}
+      <SponsorCallout variant="sponsor" />
 
       {/* Need Help - Full Width Footer */}
       <div className={styles.summaryFooter}>

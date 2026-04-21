@@ -1,3 +1,8 @@
+---
+description: "Install Zaparoo on MiSTeX: identical to MiSTer in functionality, with a different installation method for the MiSTeX hardware."
+keywords: [zaparoo mistex, mistex nfc, mistex fpga zaparoo, nfc mistex]
+---
+
 # MiSTeX
 
 MiSTeX is fully supported by Zaparoo and is identical to [MiSTer](./mister/index.md) in terms of functionality and features. The only difference is in how Zaparoo is installed.

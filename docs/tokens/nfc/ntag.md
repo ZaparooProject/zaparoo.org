@@ -1,3 +1,8 @@
+---
+description: "NTAG215 and NTAG213 NFC tags for Zaparoo: the recommended token standard for game collections, Amiibo compatibility, and reliable cross-platform reads."
+keywords: [ntag215 zaparoo, ntag213 zaparoo, nfc game cards, amiibo ntag215, best nfc tags zaparoo]
+---
+
 # NTAG
 
 NTAG is the recommended NFC tag standard for Zaparoo. It has full compatibility with all platforms, works with both iPhones and Android phones, and is available in a range of form factors.
@@ -42,3 +47,21 @@ Some NFC toy lines use NTAG chips internally. See [NFC Toys](../nfc-toys/index.m
 
 - [Amiibo](../nfc-toys/amiibo.md) (NTAG215)
 - [Lego Dimensions](../nfc-toys/lego-dimensions.md) (NTAG213)
+
+## FAQ
+
+**Why NTAG215 and not NTAG213?**
+
+NTAG213 has 144 bytes of usable storage, which is often too small for long file paths or multi-command ZapScript. NTAG215 (504 bytes) fits everything comfortably. If you already have NTAG213 tags, use [Title IDs](../../zapscript/launch.md#launchtitle) to keep data small.
+
+**Can I use a phone to write NFC tags?**
+
+Yes. The [Zaparoo App](../../app/index.md) can write NFC tags from any Android or iPhone with NFC. You search for a game, select it, and tap the tag to write it. No reader needed for this step.
+
+**What's the cheapest way to buy NTAG215 tags?**
+
+Search for "NTAG215 NFC card" on AliExpress. Packs of 100 plain white cards can cost under $10 shipped. If you want custom printed cards, the [Zaparoo Shop](https://shop.zaparoo.com/) stocks pre-printed card designs.
+
+---
+
+<SponsorCallout variant="sponsor" />

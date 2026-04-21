@@ -1,3 +1,8 @@
+---
+description: Use Amiibo figures and cards as Zaparoo tokens to launch games. Tap any Amiibo to a reader and map its UID to a game launch.
+keywords: [amiibo zaparoo, amiibo game launcher, amiibo mister fpga, amiibo nfc token, tap amiibo launch game]
+---
+
 # Amiibo
 
 Nintendo Amiibo figures and cards use [NTAG215](../nfc/ntag.md) NFC chips. Zaparoo can read them, but they can't be written to because Nintendo locks the writable pages during manufacturing.

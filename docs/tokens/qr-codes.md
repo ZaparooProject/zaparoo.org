@@ -1,3 +1,8 @@
+---
+description: "Create and use QR codes as Zaparoo tokens: embed ZapScript in a QR code and scan it with the Zaparoo App or a connected camera."
+keywords: [zaparoo qr codes, qr code game launcher, zapscript qr code, zaparoo app qr]
+---
+
 # QR Codes
 
 QR codes can be used as tokens for Zaparoo, just like an NFC tag. There are a couple of ways to do it, but essentially it's done by embedding ZapScript in a QR code which will be parsed and launched by Zaparoo when scanned. 

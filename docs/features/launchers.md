@@ -1,5 +1,7 @@
 ---
 title: Custom Launchers
+description: Create custom launchers in Zaparoo to integrate any emulator or media application not natively supported, using simple TOML configuration files.
+keywords: [zaparoo custom launchers, zaparoo emulator integration, custom launcher toml, zaparoo launcher config]
 ---
 
 A launcher is a program that can be used to launch a game or application.

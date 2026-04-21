@@ -1,3 +1,8 @@
+---
+description: "Manual installation of Zaparoo Core on Batocera: alternative to the automated Content Downloader install method."
+keywords: [zaparoo batocera manual install, batocera zaparoo install, zaparoo batocera setup]
+---
+
 # Manual Install
 
 Alternative installation methods if you prefer not to use the automated install script.

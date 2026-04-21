@@ -1,6 +1,8 @@
 ---
 sidebar_position: 1
 slug: acr122u
+description: Set up the ACR122U NFC reader with Zaparoo on MiSTer, Linux, and Windows using libnfc. Setup guide, troubleshooting, and where to buy.
+keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
 ---
 
 # ACR122U
@@ -14,7 +16,7 @@ This reader is easily available on marketplace sites like Amazon, AliExpress, eB
 If you like the look and are willing to accept the risk of receiving an incompatible variant, it's a capable NFC reader for a decent price.
 
 :::warning Before you buy
-If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer choice. It's cheaper, more reliable across platforms, and doesn't have the clone compatibility issues described below.
+If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer choice. It's cheaper, more reliable across platforms, and doesn't have the clone compatibility issues described below. The [Zaparoo Shop](https://shop.zaparoo.com/) stocks official PN532 readers that support the project.
 :::
 
 :::info
@@ -126,3 +128,7 @@ These are some known working listings submitted by users:
 - [Everything ID (Australia)](https://www.everythingid.com.au/rfid-equipment-c-13/acr122u-usb-nfc-rfid-card-reader-writer-mifare-nfc-p-324)
 - <ProductLink href="https://www.aliexpress.us/item/2251832554165448.html" store="aliexpress">AliExpress (China) - 5YOA Official Store</ProductLink>
 
+
+---
+
+<SponsorCallout variant="sponsor" />

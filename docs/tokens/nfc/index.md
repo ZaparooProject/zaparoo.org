@@ -1,3 +1,8 @@
+---
+description: "NFC tag types for Zaparoo: NTAG215, NTAG213, Mifare Classic, and more. Recommendations for game card collections and what to buy."
+keywords: [zaparoo nfc tags, ntag215 games, nfc cards zaparoo, rfid tags zaparoo]
+---
+
 # NFC Tags
 
 NFC tags tell the reader and software what action to take. They **do not** contain any games, but instead contain a reference to a game or custom command. This is in the form of a small piece of text stored on the tag.

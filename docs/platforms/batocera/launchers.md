@@ -1,3 +1,8 @@
+---
+description: "Zaparoo launcher configuration for Batocera: EmulationStation game detection, supported systems, and folder structure."
+keywords: [zaparoo batocera launchers, batocera emulationstation zaparoo, batocera systems zaparoo]
+---
+
 # Launchers
 
 Batocera uses EmulationStation as its primary launcher. Games are stored in `/userdata/roms/<folder>/` and automatically detected during media indexing.

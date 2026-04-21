@@ -1,3 +1,8 @@
+---
+description: "Zaparoo launcher configuration for Linux: Steam game launching, Kodi media playback, web browser, and shell script support."
+keywords: [zaparoo linux launchers, zaparoo steam linux, zaparoo kodi, linux nfc game launch]
+---
+
 # Launchers
 
 Linux supports multiple game launchers, Kodi media playback, web browser URLs, and shell scripts.

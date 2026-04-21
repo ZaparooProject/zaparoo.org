@@ -1,3 +1,8 @@
+---
+description: "Install and configure Zaparoo on MiSTer FPGA: the platform where Zaparoo started. Includes NFC reader setup, file paths, and MiSTer-specific ZapScript commands."
+keywords: [zaparoo mister fpga, mister nfc, mister fpga nfc reader, zaparoo mister install, nfc mister fpga]
+---
+
 # MiSTer FPGA
 
 MiSTer is fully supported by Zaparoo and is where the project originally started. Zaparoo has several MiSTer-exclusive features because of this, including [MiSTer-specific ZapScript commands](../../zapscript/mister.md).
@@ -78,3 +83,21 @@ An alternative version of MiSTer Main by [funkycochise](https://github.com/funky
 ## Known Issues
 
 - Zaparoo can have conflicts with other devices that use serial USB connections such as the tty2oled project and anything else using an Arduino board. The workaround is to disable auto_detect in the config.toml file and manually set the reader path.
+
+## FAQ
+
+**Which NFC reader should I use with MiSTer?**
+
+The [PN532 USB](../../readers/nfc/pn532-usb.md) reader is the recommended choice. It works out of the box with no configuration required. The [ACR122U](../../readers/nfc/acr122u.md) is also supported on MiSTer but is more prone to clone compatibility issues.
+
+**Do I need the app to use Zaparoo on MiSTer?**
+
+No. Once Zaparoo Core is installed, you can write tokens using the built-in TUI from the Scripts menu or the Web UI. The Zaparoo App makes things easier but is not required.
+
+**Will Zaparoo work with SNAC or through a USB hub?**
+
+Do not plug NFC readers into the SNAC/USER port on MiSTer. It looks like USB but it's not. Use a standard USB port or hub instead. USB hubs are fine!
+
+**Do my existing TapTo NFC cards work after upgrading to Zaparoo?**
+
+Yes. Zaparoo is a direct replacement for TapTo and all existing cards continue to work without being rewritten.

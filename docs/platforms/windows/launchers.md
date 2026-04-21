@@ -1,3 +1,8 @@
+---
+description: "Zaparoo launcher configuration for Windows: Steam, LaunchBox, and custom launcher setup with file path examples."
+keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, windows game launch nfc]
+---
+
 # Launchers
 
 Detailed launcher configuration for Windows.

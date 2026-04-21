@@ -1,4 +1,6 @@
 ---
+description: Map NFC card UIDs, barcodes, or token values to custom ZapScript commands using Zaparoo mapping files. Perfect for Amiibo and read-only tokens.
+keywords: [zaparoo mappings, nfc uid mapping, amiibo mapping, barcode mapping zaparoo, zapscript mapping]
 ---
 
 # Mappings
@@ -23,7 +25,7 @@ The first matching mapping found will be applied, and no further mappings are ev
 
 ### Normalization Rules
 
-- **ID/UID normalization**: When matching against token IDs or UIDs, both the pattern and the token ID are normalized by:
+- **ID/UID normalization**: When matching against token IDs or UIDs (such as the 7-byte UID on [NTAG](../tokens/nfc/ntag.md) cards), both the pattern and the token ID are normalized by:
   - Converting to lowercase
   - Removing spaces and colons
   - Example: `04:4E:D8:DA:ED:72:81` becomes `044ed8daed7281`

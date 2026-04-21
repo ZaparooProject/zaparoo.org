@@ -1,3 +1,8 @@
+---
+description: "Using MIFARE Classic 1K NFC tags with Zaparoo: NDEF formatting, compatibility notes, and ACR122U write limitations."
+keywords: [mifare classic zaparoo, mifare 1k nfc, zaparoo nfc tags, acr122u mifare]
+---
+
 # MIFARE Classic
 
 MIFARE Classic 1K is an older NFC tag standard with 1024 bytes of storage (716 bytes usable). If you buy a cheap NFC reader from AliExpress or Amazon, the bundled tags are almost always MIFARE Classic.

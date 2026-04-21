@@ -1,3 +1,8 @@
+---
+description: "Create custom labels for Zaparoo NFC cards: tools, templates, and guidelines for designing and printing game card artwork."
+keywords: [zaparoo labels, nfc card labels, game card artwork, zaparoo card printing, custom labels zaparoo]
+---
+
 # Labels
 
 <img src="/img/docs/labels/Labels_header.jpg" alt="Getting messy with labels" width="100%" />

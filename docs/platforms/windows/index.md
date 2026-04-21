@@ -1,3 +1,8 @@
+---
+description: "Install Zaparoo on Windows: system tray app with support for Steam, LaunchBox, and custom game launchers. NFC card game launching on PC."
+keywords: [zaparoo windows, nfc game launcher windows, zaparoo pc, zaparoo steam windows, windows nfc reader]
+---
+
 # Windows
 
 Zaparoo Core on Windows runs in the system tray with support for Steam, LaunchBox, and custom launcher configurations.
@@ -21,6 +26,8 @@ Download Zaparoo Core for Windows from the [Downloads page](/downloads/).
 **Installer**: Run the setup executable and follow the wizard. Options include running on startup and creating a desktop icon.
 
 **Manual**: Extract `Zaparoo.exe` from the zip and run it. It starts in the system tray.
+
+Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in web UI to manage your setup and write tokens.
 
 ## System Tray
 

@@ -1,5 +1,7 @@
 ---
 sidebar_position: 6
+description: "ZapScript MiSTer-specific commands: load cores, control the OSD, and trigger MiSTer FPGA platform actions from Zaparoo tokens."
+keywords: [zapscript mister, mister fpga zaparoo, zapscript core load, mister osd zaparoo]
 ---
 
 # MiSTer

@@ -1,3 +1,8 @@
+---
+description: "Zaparoo virtual file reader: write token values to a text file to trigger launches from scripts, automation tools, or other software without physical hardware."
+keywords: [zaparoo file reader, virtual reader zaparoo, automation zaparoo, script token zaparoo]
+---
+
 # File Reader (Virtual)
 
 The File Reader is a virtual reader that treats a file on disk as an input source for [tokens](../tokens/index.md). This enables automation, remote control, testing, and integration with other software without physical hardware.

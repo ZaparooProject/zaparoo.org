@@ -1,3 +1,8 @@
+---
+description: Use MQTT with Zaparoo to trigger game and media launches from Home Assistant, smart home systems, or custom MQTT devices.
+keywords: [zaparoo mqtt, home assistant game launcher, mqtt reader zaparoo, smart home game launch]
+---
+
 # MQTT Reader
 
 The MQTT reader connects to an MQTT broker and executes [ZapScript](../zapscript/index.md) commands received from subscribed topics. This enables integration with home automation systems like [Home Assistant](https://www.home-assistant.io/) and other MQTT-based services.

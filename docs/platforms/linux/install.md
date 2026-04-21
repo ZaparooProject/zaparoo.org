@@ -1,3 +1,8 @@
+---
+description: "Manual installation of Zaparoo Core on Linux: download, install, and configure the service as a systemd unit."
+keywords: [zaparoo linux install, zaparoo manual install, zaparoo systemd, linux nfc setup zaparoo]
+---
+
 # Manual Install
 
 Component-based manual installation for Linux.

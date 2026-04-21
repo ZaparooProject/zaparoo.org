@@ -1,3 +1,8 @@
+---
+description: "Build a DIY Zaparoo NFC reader for around $10: complete guide with parts list, wiring, and firmware for MiSTer FPGA compatibility."
+keywords: [zaparoo diy reader, diy nfc reader mister, zaparoo reader build, cheap nfc reader zaparoo]
+---
+
 # DIY Reader
 
 This guide explains how to create a low cost NFC reader using easily available parts, which is guaranteed to be compatible with the Zaparoo project on MiSTer. The total cost of a single reader is approximately $10 USD in a small batch of 5.

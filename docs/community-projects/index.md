@@ -1,3 +1,8 @@
+---
+description: "Community-built Zaparoo projects: 3D printed cases, custom hardware, DIY readers, software integrations, and creative builds from the community."
+keywords: [zaparoo community projects, zaparoo 3d print, diy zaparoo reader, zaparoo hardware projects]
+---
+
 # Projects
 
 An index of projects created by the Zaparoo community. We love seeing what people create - if you've made something cool with Zaparoo, please share it! You can submit your project by opening a pull request to add it to this list, or by sharing it on our Discord or Reddit communities.
@@ -5,6 +10,10 @@ An index of projects created by the Zaparoo community. We love seeing what peopl
 Projects can be anything from 3D printed cases to custom tokens, software integrations, or creative ways to use Zaparoo. Even if you think it's simple, others may find it useful or inspiring!
 
 ## Custom Cases
+
+- **[3.5" TFT Display NFC Enclosure for MiSTer de-10-nano](https://www.printables.com/model/1125804-35-tft-display-nfc-enclosure-for-mister-de-10-nano)** by *MiSTerConsoles*
+
+  Integrated enclosure for a MiSTer de-10-nano that combines a PN532 NFC reader with a 3.5" TFT display driven by TTY2TFT. The display shows core and game artwork as cards are tapped.
 
 - **[Amiga 500 Disk tray replacement for Zaparoo NFC](https://www.thingiverse.com/thing:6861725)** by *indubioproretro*
 
@@ -50,6 +59,14 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
   - **[TapTo 1541 Sled](https://www.printables.com/model/970069-tapto-1541-sled)** by *BLuR42*
 
     Internal sled to mount TapTo USB-C Style Shell inside 1541 case.
+
+- **[NFC Enclosure for MiSTer de-10-nano](https://www.printables.com/model/1127790-nfc-enclosure-for-mister-de-10-nano)** by *MiSTerConsoles*
+
+  Compact enclosure that mounts a PN532 reader with USB-C adapter PCB directly to a MiSTer de-10-nano.
+
+- **[NFC-DS V1 (ZDS)](https://makerworld.com/en/models/2174091-nfc-ds-v1-zds)** by *Ninja3DP*
+
+  Famicom Disk System-inspired case for PN532 NFC readers. Compatible with ZapPad and the RetroRemake NFC reader.
 
 - **[NFC-Engine V2](https://makerworld.com/en/models/1542524-nfc-engine-v2)** by *Ninja3DP*
 
@@ -139,6 +156,22 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator)** by *Anime0t4ku*
 
   Desktop app for creating print-ready cassette wrap covers with live preview, customizable colours, SteamGridDB/TMDB artwork integration, and PDF export for batch printing.
+
+- **[zaparoo-custom-launcher-builder](https://github.com/Anime0t4ku/zaparoo-custom-launcher-builder)** by *Anime0t4ku*
+
+  Python GUI for generating custom launcher TOML files for Zaparoo Core.
+
+- **[SuperStationOne_CoverArt](https://github.com/Anime0t4ku/SuperStationOne_CoverArt)** by *Anime0t4ku*
+
+  Printable 9mm half-height DVD case cover art designed for holding NFC cards in Super Station One-style cases.
+
+- **[zaparoo-label-automator](https://github.com/byronlcollier/zaparoo-label-automator)** by *byronlcollier*
+
+  Python CLI that automates Zaparoo card label creation using the IGDB API for metadata and artwork.
+
+- **[Main_MiSTer (Zaparoo fork)](https://github.com/spark2k06/Main_MiSTer)** by *spark2k06*
+
+  Fork of the MiSTerFPGA main binary that adds optional Zaparoo-aware features: a standby screen while waiting for a card tap, and per-core loading screens with cover art.
 
 ## Tokens
 

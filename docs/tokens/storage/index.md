@@ -1,3 +1,8 @@
+---
+description: "Storage and display options for your Zaparoo NFC card collection: binders, card sleeves, cases, and trading card accessories."
+keywords: [zaparoo card storage, nfc card collection, zaparoo binder, game card storage]
+---
+
 # Storage
 
 As your collection grows, you'll want a way to organize and display your cards. Here are some popular options from the community.

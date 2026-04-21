@@ -1,3 +1,8 @@
+---
+description: "NFC reader options for Zaparoo: PN532 USB, ACR122U, RC522 module, and ZapESP32. Plug-and-play and DIY options for all skill levels."
+keywords: [zaparoo nfc reader, pn532 usb, acr122u, rc522, nfc reader mister fpga]
+---
+
 # NFC Readers
 
 :::tip

@@ -1,4 +1,6 @@
 ---
+description: "Zaparoo Launch Guard: prevent accidental game switches by requiring a deliberate second scan before switching from active media."
+keywords: [zaparoo launch guard, accidental launch protection, zaparoo hold mode, token scan guard]
 ---
 
 # Launch Guard

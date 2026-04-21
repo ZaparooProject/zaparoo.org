@@ -1,0 +1,123 @@
+# Zaparoo Documentation
+
+> Zaparoo is a free, open-source universal loading system. Tap an NFC card, scan a QR code, or insert a disc to instantly launch games and media on MiSTer FPGA, Steam Deck, Batocera, Windows, and more.
+
+Important notes:
+
+- Zaparoo does not provide ROMs, game files, or any copyrighted media — it is purely a launcher and reader system.
+- Zaparoo Core is the background service (daemon) that runs on the target device. The Zaparoo App is the mobile and desktop companion used to write tokens and manage settings.
+- ZapScript is the scripting language embedded into NFC tags, QR codes, and other tokens to control what Zaparoo does when they are scanned.
+- Zaparoo was previously known as TapTo — historical references to TapTo refer to the same project.
+- The project is community-driven and open-source; the Zaparoo name and shop are operated by Wizzo Pty Ltd.
+
+## Getting Started
+
+- [Getting Started Guide](https://zaparoo.org/start/): Step-by-step setup guide for new users.
+- [Downloads](https://zaparoo.org/downloads/): Download Zaparoo Core, App, and related tools.
+- [Documentation Overview](https://zaparoo.org/docs/): Full documentation index for all Zaparoo components.
+
+## Readers (Hardware)
+
+- [Readers Overview](https://zaparoo.org/docs/readers/): All supported reader types and how to connect them.
+- [NFC Readers](https://zaparoo.org/docs/readers/nfc/): Overview of compatible NFC reader hardware.
+- [PN532 USB Dongle](https://zaparoo.org/docs/readers/nfc/pn532-usb/): Setup guide for the PN532 USB NFC reader dongle.
+- [PN532 Module](https://zaparoo.org/docs/readers/nfc/pn532-module/): Wiring and config for the PN532 breakout board.
+- [ACR122U](https://zaparoo.org/docs/readers/nfc/acr122u/): Setup for the popular ACR122U USB NFC reader.
+- [RC522](https://zaparoo.org/docs/readers/nfc/rc522/): SPI wiring guide for the RC522 NFC module.
+- [Optical Drive](https://zaparoo.org/docs/readers/optical-drive/): Use a disc drive as a Zaparoo token reader.
+- [Barcode Readers](https://zaparoo.org/docs/readers/barcode/): Use USB barcode scanners as token readers.
+- [MQTT Reader](https://zaparoo.org/docs/readers/mqtt/): Receive token scans over MQTT from any device.
+- [External Drive](https://zaparoo.org/docs/readers/external-drive/): Use USB drives or SD cards as token readers.
+- [TTY2OLED](https://zaparoo.org/docs/readers/tty2oled/): Integration with the TTY2OLED MiSTer display addon.
+- [Reader Drivers](https://zaparoo.org/docs/readers/drivers/): How to develop or configure custom reader drivers.
+
+## Tokens
+
+- [Tokens Overview](https://zaparoo.org/docs/tokens/): All supported token types and how they work.
+- [NFC Tags](https://zaparoo.org/docs/tokens/nfc/): Overview of NFC tag compatibility and usage.
+- [NTAG Tags](https://zaparoo.org/docs/tokens/nfc/ntag/): Common NTAG NFC tags supported by Zaparoo.
+- [MIFARE Tags](https://zaparoo.org/docs/tokens/nfc/mifare/): MIFARE Classic NFC tag support and limitations.
+- [NFC Toys](https://zaparoo.org/docs/tokens/nfc-toys/): Use existing NFC toys as Zaparoo tokens.
+- [Amiibo](https://zaparoo.org/docs/tokens/nfc-toys/amiibo/): Launch content using Nintendo Amiibo figures.
+- [Skylanders](https://zaparoo.org/docs/tokens/nfc-toys/skylanders/): Use Skylanders figures as Zaparoo tokens.
+- [Disney Infinity](https://zaparoo.org/docs/tokens/nfc-toys/disney-infinity/): Use Disney Infinity figures as tokens.
+- [LEGO Dimensions](https://zaparoo.org/docs/tokens/nfc-toys/lego-dimensions/): Use LEGO Dimensions figures as tokens.
+- [PCB Cards](https://zaparoo.org/docs/tokens/pcb-cards/): Custom PCB-format NFC cards for Zaparoo.
+- [QR Codes](https://zaparoo.org/docs/tokens/qr-codes/): Generate and scan QR code tokens.
+- [Barcodes](https://zaparoo.org/docs/tokens/barcodes/): Use standard barcodes as Zaparoo tokens.
+- [Token Storage](https://zaparoo.org/docs/tokens/storage/): Cases and storage options for physical tokens.
+- [Labels](https://zaparoo.org/docs/labels/): Design and print custom artwork labels for NFC cards.
+
+## Platforms
+
+- [Platforms Overview](https://zaparoo.org/docs/platforms/): All supported platforms and install instructions.
+- [MiSTer FPGA](https://zaparoo.org/docs/platforms/mister/): Install and configure Zaparoo on MiSTer FPGA.
+- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer.
+- [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
+- [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows.
+- [SteamOS (Steam Deck)](https://zaparoo.org/docs/platforms/steamos/): Install Zaparoo on Steam Deck and SteamOS.
+- [Batocera](https://zaparoo.org/docs/platforms/batocera/): Install and configure Zaparoo on Batocera.
+- [Batocera Install](https://zaparoo.org/docs/platforms/batocera/install/): Step-by-step Batocera installation guide.
+- [Batocera Launchers](https://zaparoo.org/docs/platforms/batocera/launchers/): Launching games and emulators on Batocera.
+- [Bazzite](https://zaparoo.org/docs/platforms/bazzite/): Install Zaparoo on Bazzite Linux.
+- [ChimeraOS](https://zaparoo.org/docs/platforms/chimeraos/): Install Zaparoo on ChimeraOS.
+- [Linux](https://zaparoo.org/docs/platforms/linux/): Install Zaparoo on generic Linux systems.
+- [LibreELEC](https://zaparoo.org/docs/platforms/libreelec/): Install Zaparoo on LibreELEC media systems.
+- [MiSTex](https://zaparoo.org/docs/platforms/mistex/): Install Zaparoo on the MiSTex FPGA board.
+- [ReplayOS](https://zaparoo.org/docs/platforms/replayos/): Install Zaparoo on ReplayOS.
+
+## App
+
+- [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
+- [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
+- [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
+- [Zaparoo Online](https://zaparoo.org/docs/online/): Cloud service for virtual card decks and remote ZapScript sync.
+
+## Core
+
+- [Core Overview](https://zaparoo.org/docs/core/): Zaparoo Core daemon reference and architecture.
+- [Configuration](https://zaparoo.org/docs/core/config/): Full config.toml reference for Zaparoo Core.
+- [CLI Reference](https://zaparoo.org/docs/core/cli/): Command-line interface for interacting with Core.
+- [Contributing / Developer Guide](https://zaparoo.org/docs/core/contributing/): Guide for developers building on or contributing to Core.
+
+## Features
+
+- [Features Overview](https://zaparoo.org/docs/features/): Overview of all Zaparoo Core features.
+- [Launchers](https://zaparoo.org/docs/features/launchers/): How Core resolves and launches games from token scans.
+- [Mappings](https://zaparoo.org/docs/features/mappings/): Map token IDs to specific games or scripts.
+- [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
+- [Playtime](https://zaparoo.org/docs/features/playtime/): Track how long games are played via token scans.
+- [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
+- [Launch Guard](https://zaparoo.org/docs/features/launch-guard/): Prevent accidental game switches with a confirmation step.
+- [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.
+
+## ZapScript
+
+- [ZapScript Overview](https://zaparoo.org/docs/zapscript/): Introduction to ZapScript, the token scripting language.
+- [Syntax](https://zaparoo.org/docs/zapscript/syntax/): ZapScript syntax rules and command format.
+- [Launch Commands](https://zaparoo.org/docs/zapscript/launch/): Commands for launching games and media.
+- [Input Commands](https://zaparoo.org/docs/zapscript/input/): Send keyboard, mouse, and gamepad input via ZapScript.
+- [Utilities](https://zaparoo.org/docs/zapscript/utilities/): Utility commands: delays, variables, conditionals.
+- [Playlists](https://zaparoo.org/docs/zapscript/playlist/): Cycle through a list of actions on repeated scans.
+- [MiSTer Commands](https://zaparoo.org/docs/zapscript/mister/): MiSTer-specific ZapScript commands.
+- [HTTP Requests](https://zaparoo.org/docs/zapscript/http/): Make HTTP requests from ZapScript.
+
+## API
+
+- [Core API Overview](https://zaparoo.org/docs/core/api/): WebSocket-based API for integrating with Zaparoo Core.
+- [API Methods](https://zaparoo.org/docs/core/api/methods/): Full list of available API request methods.
+- [API Notifications](https://zaparoo.org/docs/core/api/notifications/): Real-time event notifications sent by Core.
+
+## Community
+
+- [Community Hub](https://zaparoo.org/docs/community-hub/): Vendor list, media kit, and community resources.
+- [Contributors](https://zaparoo.org/docs/community-hub/contributors/): People who have contributed to the Zaparoo project.
+- [Community Projects](https://zaparoo.org/docs/community-projects/): Third-party projects and integrations built on Zaparoo.
+- [Support](https://zaparoo.org/support/): Get help with Zaparoo via Discord, Reddit, and other channels.
+
+## Optional
+
+- [Blog](https://zaparoo.org/blog/): Release announcements, tutorials, and project updates.
+- [Showcase](https://zaparoo.org/showcase/): Community photos and videos of Zaparoo in use.
+- [Sponsor](https://zaparoo.org/sponsor/): Ways to financially support the Zaparoo project.
+- [Contact](https://zaparoo.org/contact/): Contact information for the Zaparoo project team.

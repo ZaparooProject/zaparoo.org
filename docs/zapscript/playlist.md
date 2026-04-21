@@ -1,5 +1,7 @@
 ---
 sidebar_position: 4
+description: "ZapScript playlist commands: sequence multiple launches or actions in a single Zaparoo token scan."
+keywords: [zapscript playlist, zaparoo playlist, multi-action token zaparoo, sequence zapscript]
 ---
 
 # Playlist

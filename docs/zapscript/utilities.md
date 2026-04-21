@@ -1,5 +1,7 @@
 ---
 sidebar_position: 5
+description: "ZapScript utility commands: stop playback, add delays, display messages, and other helper functions for Zaparoo tokens."
+keywords: [zapscript utilities, zaparoo stop command, zapscript delay, zapscript message, zaparoo helper commands]
 ---
 
 # Utilities

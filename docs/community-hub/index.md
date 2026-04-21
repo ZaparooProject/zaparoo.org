@@ -1,3 +1,8 @@
+---
+description: "Zaparoo community: join Discord, Reddit, and other spaces to share your setup, get help, and connect with other Zaparoo users."
+keywords: [zaparoo community, zaparoo discord, zaparoo reddit, zaparoo help, zaparoo forum]
+---
+
 # Community
 
 The Zaparoo community is active on several platforms.

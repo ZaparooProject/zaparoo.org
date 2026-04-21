@@ -1,3 +1,8 @@
+---
+description: "Zaparoo Designer: free web app for creating custom card label artwork using community-contributed SVG templates. No account or upload required."
+keywords: [zaparoo designer, nfc card labels, game card labels, zaparoo label maker, custom nfc card art]
+---
+
 # Zaparoo Designer
 
 Zaparoo Designer is a web-based application for creating custom labels for your Zaparoo NFC cards. Whether you're creating a single label or designing a complete collection, the Designer makes it easy to create professional-looking labels that match your setup.
@@ -35,3 +40,5 @@ The Designer uses an SVG-based template system:
 ## Contributing Templates
 
 Interested in creating your own templates? Templates use SVG format with special `zaparoo-placeholder` attributes for image positioning. All contributed templates must include appropriate Creative Commons licensing and cannot contain copyrighted material. See the [template creation guide](https://github.com/ZaparooProject/zaparoo-designer/blob/main/TEMPLATES.md) in the repository for detailed instructions.
+
+Once you have your designs ready, see the [Labels printing guide](/docs/labels/printing-guide) for tips on printing and applying your labels to [NFC cards](../tokens/nfc/) and [PCB cards](../tokens/pcb-cards).

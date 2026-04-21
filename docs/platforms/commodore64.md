@@ -1,3 +1,8 @@
+---
+description: "Use Zaparoo tokens with a real Commodore 64 via the TeensyROM cartridge: NFC-powered game loading on original C64 hardware."
+keywords: [zaparoo commodore 64, c64 nfc, teensyrom nfc, commodore 64 nfc game loader]
+---
+
 # Commodore 64
 
 The Commodore 64 is not a directly supported platform for Zaparoo Core, but Zaparoo tokens can be used with a real Commodore 64 via the [TeensyROM project](https://github.com/SensoriumEmbedded/TeensyROM/).

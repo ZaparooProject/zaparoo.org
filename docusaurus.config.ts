@@ -107,21 +107,67 @@ const config: Config = {
         sitemap: {
           lastmod: "date",
           changefreq: "weekly",
-          priority: 0.5,
           ignorePatterns: ["/tags/**"],
           filename: "sitemap.xml",
           createSitemapItems: async (params) => {
             const { defaultCreateSitemapItems, ...rest } = params;
             const items = await defaultCreateSitemapItems(rest);
-            return items.filter((item) => !item.url.includes("/page/"));
+            const base = "https://zaparoo.org";
+            return items
+              .filter((item) => !item.url.includes("/page/"))
+              .map((item) => {
+                const path = item.url.replace(base, "");
+                if (path === "/" || path === "") return { ...item, priority: 1.0 };
+                if (/^\/(start|downloads)\//.test(path)) return { ...item, priority: 0.9 };
+                if (
+                  path === "/docs/" ||
+                  /^\/docs\/(readers|tokens|platforms|features|zapscript|app|core)\/?$/.test(path)
+                ) return { ...item, priority: 0.8 };
+                if (/^\/(privacy|terms|conduct|app-privacy|tokens)\/?$/.test(path))
+                  return { ...item, priority: 0.3 };
+                if (path.startsWith("/blog/")) return { ...item, priority: 0.6 };
+                if (path.startsWith("/docs/")) return { ...item, priority: 0.7 };
+                return { ...item, priority: 0.5 };
+              });
           },
         },
       } satisfies Preset.Options,
     ],
   ],
 
+  headTags: [
+    {
+      tagName: "script",
+      attributes: { type: "application/ld+json" },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Zaparoo Project",
+        url: "https://zaparoo.org",
+        logo: "https://zaparoo.org/img/logo_sm.webp",
+        sameAs: [
+          "https://github.com/ZaparooProject",
+          "https://discord.com/servers/zaparoo-1136235625486487622",
+          "https://reddit.com/r/Zaparoo",
+          "https://www.youtube.com/@HeyZaparoo",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "community support",
+          url: "https://zaparoo.org/discord",
+        },
+      }),
+    },
+  ],
+
   themeConfig: {
     image: "img/social-card.webp",
+    metadata: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@HeyZaparoo" },
+      { property: "og:site_name", content: "Zaparoo" },
+      { name: "theme-color", content: "#632aa3" },
+    ],
     navbar: {
       logo: {
         alt: "Zaparoo",
@@ -168,7 +214,7 @@ const config: Config = {
         },
         {
           to: "/support/",
-          label: "Support",
+          label: "Help",
           position: "left",
           "data-umami-event": "navbar-support",
         },
@@ -194,18 +240,18 @@ const config: Config = {
           title: "Commercial",
           items: [
             {
-              label: "Zaparoo.com",
-              href: "https://zaparoo.com",
-              "data-umami-event": "footer-zaparoo-com",
-            },
-            {
               label: "Zaparoo Shop",
               href: "https://shop.zaparoo.com",
               "data-umami-event": "footer-shop",
             },
             {
-              label: "Zaparoo Online",
+              label: "Zaparoo.com",
               href: "https://zaparoo.com",
+              "data-umami-event": "footer-zaparoo-com",
+            },
+            {
+              label: "Zaparoo Online",
+              href: "https://online.zaparoo.com",
               "data-umami-event": "footer-online",
             },
             {
@@ -289,7 +335,7 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Support",
+              label: "Help",
               to: "/support/",
               "data-umami-event": "footer-nav-support",
             },
@@ -665,6 +711,20 @@ const config: Config = {
             from: ["/docs/core/dev/media-titles/", "/docs/contributing/media-titles/"],
           },
         ],
+      },
+    ],
+    [
+      "docusaurus-plugin-llms",
+      {
+        generateLLMsTxt: false,
+        generateLLMsFullTxt: true,
+        docsDir: "versioned_docs/version-2.10.0",
+        includeBlog: false,
+        excludeImports: true,
+        removeDuplicateHeadings: true,
+        title: "Zaparoo Documentation",
+        description:
+          "Universal loading system — NFC, QR codes, and discs for launching games and media across MiSTer FPGA, Steam Deck, Batocera, Windows, and more.",
       },
     ],
     // Custom image optimization plugin (disabled - breaks MDX image imports)

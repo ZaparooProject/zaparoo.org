@@ -1,8 +1,17 @@
+---
+description: Use a raw PN532 NFC module with Zaparoo over USB UART or I2C. Wiring, pinout, and setup for DIY and microcontroller builds.
+keywords: [pn532 module, pn532 uart, pn532 i2c, diy nfc reader zaparoo, pn532 wiring]
+---
+
 # PN532 Module
 
 The PN532 module is a bare PCB NFC reader perfect for DIY projects and custom builds. While it requires more setup than the [USB version](./pn532-usb.md), it's extremely affordable and flexible.
 
 <img src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
+
+:::tip Prefer plug-and-play?
+The [PN532 USB](./pn532-usb.md) version requires no wiring and works out of the box. It's stocked in the [Zaparoo Shop](https://shop.zaparoo.com/).
+:::
 
 :::danger Clone Quality Warning
 While the PN532 module is excellent on paper, most sold online are low-quality clones. They'll generally still work but often with poor read range. Despite this, they remain the best option for custom microcontroller builds.

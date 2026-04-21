@@ -1,0 +1,65 @@
+.combined {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background-color: var(--ifm-card-background-color);
+  text-align: center;
+}
+
+[data-theme='dark'] .combined {
+  background-color: var(--ifm-background-color);
+  border-color: var(--ifm-color-emphasis-200);
+}
+
+.combinedHeadline {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+[data-theme='dark'] .combinedHeadline {
+  color: var(--ifm-color-emphasis-600);
+}
+
+.combinedButtons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.combinedButton {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.combinedButton:hover {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+[data-theme='dark'] .combinedButton:hover {
+  background-color: var(--ifm-color-primary-light);
+  border-color: var(--ifm-color-primary-light);
+  color: white;
+}
+
+.sponsor {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+  font-style: italic;
+}
+
+[data-theme='dark'] .sponsor {
+  color: var(--ifm-color-emphasis-600);
+}

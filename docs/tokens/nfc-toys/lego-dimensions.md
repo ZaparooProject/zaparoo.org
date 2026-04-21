@@ -1,3 +1,8 @@
+---
+description: "Use LEGO Dimensions figures as Zaparoo tokens: each tag's unique UID can be mapped to launch a game or trigger any ZapScript action."
+keywords: [lego dimensions zaparoo, lego dimensions nfc, nfc toy game launcher zaparoo]
+---
+
 # Lego Dimensions
 
 Lego Dimensions character and vehicle tags use [NTAG213](../nfc/ntag.md) NFC chips. Zaparoo can read them, but the data stored on them is encrypted and specific to the Lego Dimensions game, so it can't be used directly.

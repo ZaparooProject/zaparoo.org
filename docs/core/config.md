@@ -1,5 +1,7 @@
 ---
 toc_max_heading_level: 4
+description: "Complete configuration reference for Zaparoo Core: every setting, option, and value in config.toml explained with examples."
+keywords: [zaparoo config, zaparoo core config, config.toml zaparoo, zaparoo configuration reference]
 ---
 
 # Config File

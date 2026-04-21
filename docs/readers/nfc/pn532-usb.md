@@ -1,9 +1,14 @@
+---
+description: Set up the PN532 USB NFC reader with Zaparoo. The recommended plug-and-play reader starting at $5, compatible with all platforms including MiSTer, SteamOS, and Windows.
+keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga, best nfc reader zaparoo]
+---
+
 # PN532 USB
 
 The PN532 is a common NFC chip used in many readers. This USB version is cheap, works out of the box, and runs on all platforms.
 
 :::tip
-This reader is a good starting point for new Zaparoo users due to its low cost and universal compatibility.
+This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Official hardware purchases support development.
 :::
 
 <img src="/img/docs/readers/PN532-Type-C.jpg" alt="A PN532 USB-C module" width="300" />
@@ -144,4 +149,9 @@ Buying from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zapar
 
 - <ProductLink href="https://www.aliexpress.us/item/1005006326438326.html" store="aliexpress">AliExpress (China) - Allinbest Store</ProductLink>
 - <ProductLink href="https://www.aliexpress.com/item/1005005262748046.html" store="aliexpress">AliExpress (China) - MI YU KOUNG Official Store</ProductLink>
+
+
+---
+
+<SponsorCallout variant="sponsor" />
 

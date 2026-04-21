@@ -1,3 +1,8 @@
+---
+description: "Use product barcodes as Zaparoo tokens: scan the UPC on a physical game case to launch that game using mappings."
+keywords: [zaparoo barcodes, barcode game launcher, upc game launch zaparoo, barcode token]
+---
+
 # Barcodes
 
 Barcodes found on real products (like the UPC on the back of a game box) can be used as tokens in Zaparoo. Unlike [NFC tags](./nfc/index.md) or [QR codes](./qr-codes.md), barcodes can't contain ZapScript directly, so you use [mappings](../features/mappings.md) to assign an action to each barcode value.

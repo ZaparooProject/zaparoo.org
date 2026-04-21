@@ -1,4 +1,6 @@
 ---
+description: "Zaparoo publishers: send real-time token scan and media events to external services like MQTT, webhooks, and custom integrations."
+keywords: [zaparoo publishers, zaparoo events, mqtt events zaparoo, webhook zaparoo, event publisher]
 ---
 
 # Publishers

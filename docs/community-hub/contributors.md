@@ -1,3 +1,8 @@
+---
+description: "People who have contributed to Zaparoo: developers, designers, translators, and community members who help make the project."
+keywords: [zaparoo contributors, zaparoo credits, open source contributors zaparoo]
+---
+
 # Contributors
 
 Zaparoo has been a community effort from day one. Everyone's contributions are appreciated and encouraged!

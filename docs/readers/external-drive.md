@@ -1,3 +1,8 @@
+---
+description: "Use USB sticks, SD cards, and external drives as Zaparoo tokens: automatically launch content when a drive with a zaparoo.txt file is inserted."
+keywords: [zaparoo external drive, usb stick token, sd card launcher zaparoo]
+---
+
 # External Drive Reader
 
 The external drive reader treats USB sticks, SD cards, and external hard drives as tokens. When a drive is mounted, Zaparoo automatically detects it and executes [ZapScript](../zapscript/index.md) from a `zaparoo.txt` file in the root of the drive.

@@ -1,4 +1,6 @@
 ---
+description: "Track and limit game playtime in Zaparoo: set daily caps, per-session limits, and get warnings before time runs out."
+keywords: [zaparoo playtime, game time limit, parental controls zaparoo, playtime tracking]
 ---
 
 # Playtime
