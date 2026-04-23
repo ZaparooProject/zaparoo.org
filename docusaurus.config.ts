@@ -28,7 +28,7 @@ const config: Config = {
   },
 
   future: {
-    experimental_faster: {
+    faster: {
       swcJsLoader: true, // Use SWC for JS transpilation
       swcJsMinimizer: true, // Use SWC for JS minification
       swcHtmlMinimizer: true, // Use SWC for HTML minification

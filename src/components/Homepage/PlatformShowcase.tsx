@@ -9,7 +9,6 @@ const platforms = [
   { name: "Linux", link: "/docs/platforms/linux" },
   { name: "SteamOS", link: "/docs/platforms/steamos" },
   { name: "Batocera", link: "/docs/platforms/batocera" },
-  { name: "ReplayOS", link: "/docs/platforms/replayos" },
   { name: "LibreELEC", link: "/docs/platforms/libreelec" },
   { name: "Commodore 64", link: "/docs/platforms/commodore64" },
 ];

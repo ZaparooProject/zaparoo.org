@@ -24,6 +24,7 @@ yarn-error.log*
 .vscode
 .cursor
 .claude
+.opencode
 CLAUDE.md
 
 docs/plans/

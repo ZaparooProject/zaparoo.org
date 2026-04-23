@@ -33,7 +33,6 @@ import {
 type Platform =
   | "mister"
   | "batocera"
-  | "replayos"
   | "windows"
   | "linux"
   | "steamos"
@@ -129,17 +128,6 @@ const platforms: PlatformConfig[] = [
     name: "Batocera",
     icon: "/img/logos/batocera.png",
     iconStyle: { width: "75px", height: "73.83px" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "replayos",
-    name: "ReplayOS",
-    icon: "/img/logos/replayos.webp",
-    iconStyle: { width: "125px", height: "22.06px" },
     provides: [
       CAPABILITIES.OPTICAL_DRIVE,
       CAPABILITIES.USB_PORT,
@@ -603,7 +591,6 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
   const platformNames = {
     mister: "MiSTer FPGA",
     batocera: "Batocera",
-    replayos: "ReplayOS",
     windows: "Windows",
     linux: "Linux",
     steamos: "SteamOS",
