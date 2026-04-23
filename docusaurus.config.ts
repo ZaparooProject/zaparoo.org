@@ -626,8 +626,7 @@ const config: Config = {
             to: "/docs/labels/#upgrade-stickers",
             from: "/docs/labels/upgrade-stickers",
           },
-          // Hold these IA redirects until the restructured docs version is live on /docs.
-          // Stable currently serves the older permalink layout.
+          // IA restructure redirects
           // Barcode reader reorganization
           // TODO: uncomment for next release when barcodes page is in versioned docs
           // {
@@ -638,83 +637,83 @@ const config: Config = {
           //   to: "/docs/tokens/barcodes/",
           //   from: "/docs/readers/barcode/app/",
           // },
-          // {
-          //   to: "/docs/community-hub/",
-          //   from: "/docs/community",
-          // },
-          // {
-          //   to: "/docs/community-hub/contributors",
-          //   from: "/docs/community/contributors",
-          // },
+          {
+            to: "/docs/community-hub/",
+            from: "/docs/community",
+          },
+          {
+            to: "/docs/community-hub/contributors",
+            from: "/docs/community/contributors",
+          },
           // Systems page moved to features/
-          // {
-          //   to: "/docs/features/systems/",
-          //   from: "/docs/core/systems/",
-          // },
-          // {
-          //   to: "/docs/features/systems/",
-          //   from: "/docs/systems/",
-          // },
-          // {
-          //   to: "/docs/community-hub/media",
-          //   from: "/docs/community/media",
-          // },
-          // {
-          //   to: "/docs/community-hub/tapto",
-          //   from: "/docs/community/tapto",
-          // },
-          // {
-          //   to: "/docs/community-hub/vendors",
-          //   from: "/docs/community/vendors",
-          // },
-          // {
-          //   to: "/docs/community-projects/",
-          //   from: "/docs/community/projects",
-          // },
-          // {
-          //   to: "/docs/community-projects/diy-reader",
-          //   from: "/docs/community/projects/diy-reader",
-          // },
-          // {
-          //   to: "/docs/community-projects/super-zap-boy",
-          //   from: "/docs/community/projects/super-zap-boy",
-          // },
+          {
+            to: "/docs/features/systems/",
+            from: "/docs/core/systems/",
+          },
+          {
+            to: "/docs/features/systems/",
+            from: "/docs/systems/",
+          },
+          {
+            to: "/docs/community-hub/media",
+            from: "/docs/community/media",
+          },
+          {
+            to: "/docs/community-hub/tapto",
+            from: "/docs/community/tapto",
+          },
+          {
+            to: "/docs/community-hub/vendors",
+            from: "/docs/community/vendors",
+          },
+          {
+            to: "/docs/community-projects/",
+            from: "/docs/community/projects",
+          },
+          {
+            to: "/docs/community-projects/diy-reader",
+            from: "/docs/community/projects/diy-reader",
+          },
+          {
+            to: "/docs/community-projects/super-zap-boy",
+            from: "/docs/community/projects/super-zap-boy",
+          },
           // IA restructure: features/ section
-          // {
-          //   to: "/docs/features/playtime/",
-          //   from: "/docs/core/playtime/",
-          // },
-          // {
-          //   to: "/docs/features/mappings/",
-          //   from: "/docs/core/mappings/",
-          // },
-          // {
-          //   to: "/docs/features/tags/",
-          //   from: "/docs/core/tags/",
-          // },
-          // {
-          //   to: "/docs/features/launchers/",
-          //   from: "/docs/core/launchers/",
-          // },
+          {
+            to: "/docs/features/playtime/",
+            from: "/docs/core/playtime/",
+          },
+          {
+            to: "/docs/features/mappings/",
+            from: "/docs/core/mappings/",
+          },
+          {
+            to: "/docs/features/tags/",
+            from: "/docs/core/tags/",
+          },
+          {
+            to: "/docs/features/launchers/",
+            from: "/docs/core/launchers/",
+          },
           // IA restructure: drivers moved to readers/
           // IA restructure: web-ui moved to app/
-          // {
-          //   to: "/docs/app/web/",
-          //   from: "/docs/core/web-ui/",
-          // },
+          {
+            to: "/docs/app/web/",
+            from: "/docs/core/web-ui/",
+          },
           // IA restructure: core/dev moved to core/contributing/
-          // {
-          //   to: "/docs/core/contributing/",
-          //   from: ["/docs/core/dev/", "/docs/contributing/"],
-          // },
-          // {
-          //   to: "/docs/core/contributing/scan-behavior/",
-          //   from: ["/docs/core/dev/scan-behavior/", "/docs/contributing/scan-behavior/"],
-          // },
-          // {
-          //   to: "/docs/core/contributing/media-titles/",
-          //   from: ["/docs/core/dev/media-titles/", "/docs/contributing/media-titles/"],
-          // },
+          {
+            to: "/docs/core/contributing/",
+            from: ["/docs/core/dev/", "/docs/contributing/"],
+          },
+          {
+            to: "/docs/core/contributing/scan-behavior/",
+            from: ["/docs/core/dev/scan-behavior/", "/docs/contributing/scan-behavior/"],
+          },
+          {
+            to: "/docs/core/contributing/media-titles/",
+            from: ["/docs/core/dev/media-titles/", "/docs/contributing/media-titles/"],
+          },
         ],
       },
     ],

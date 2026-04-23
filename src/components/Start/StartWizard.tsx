@@ -879,13 +879,13 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             )}
             {choice.token === "barcode" && (
               <li>
-                Set up <a href="/docs/core/mappings">mappings</a> to barcode
+                Set up <a href="/docs/features/mappings">mappings</a> to barcode
                 values
               </li>
             )}
             {choice.token === "amiibo" && (
               <li>
-                Set up <a href="/docs/core/mappings">UID mappings</a> to the
+                Set up <a href="/docs/features/mappings">UID mappings</a> to the
                 figurines
               </li>
             )}
@@ -896,7 +896,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                   (must have data)
                 </li>
                 <li>
-                  Set up <a href="/docs/core/mappings">mappings</a> to the disc
+                  Set up <a href="/docs/features/mappings">mappings</a> to the disc
                   IDs
                 </li>
               </>
@@ -955,7 +955,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
         >
           The Zaparoo App provides the best and most convenient experience. If
           you can't or prefer not to use it, Zaparoo Core includes{" "}
-          <a href="/docs/core/web-ui/">Web UI</a> and{" "}
+          <a href="/docs/app/web/">Web UI</a> and{" "}
           <a href="/docs/core/cli">TUI</a> alternatives.
         </Admonition>
       )}
