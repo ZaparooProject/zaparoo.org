@@ -68,7 +68,7 @@ Important notes:
 ## App
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
-- [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
+- [Web UI](https://zaparoo.org/docs/core/web-ui/): Browser-based control panel for Zaparoo Core.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Cloud service for virtual card decks and remote ZapScript sync.
 
@@ -77,17 +77,15 @@ Important notes:
 - [Core Overview](https://zaparoo.org/docs/core/): Zaparoo Core daemon reference and architecture.
 - [Configuration](https://zaparoo.org/docs/core/config/): Full config.toml reference for Zaparoo Core.
 - [CLI Reference](https://zaparoo.org/docs/core/cli/): Command-line interface for interacting with Core.
-- [Contributing / Developer Guide](https://zaparoo.org/docs/core/contributing/): Guide for developers building on or contributing to Core.
+- [Contributing / Developer Guide](https://zaparoo.org/docs/core/dev/): Guide for developers building on or contributing to Core.
 
 ## Features
 
-- [Features Overview](https://zaparoo.org/docs/features/): Overview of all Zaparoo Core features.
-- [Launchers](https://zaparoo.org/docs/features/launchers/): How Core resolves and launches games from token scans.
-- [Mappings](https://zaparoo.org/docs/features/mappings/): Map token IDs to specific games or scripts.
-- [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
-- [Playtime](https://zaparoo.org/docs/features/playtime/): Track how long games are played via token scans.
-- [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
-- [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.
+- [Launchers](https://zaparoo.org/docs/core/launchers/): How Core resolves and launches games from token scans.
+- [Mappings](https://zaparoo.org/docs/core/mappings/): Map token IDs to specific games or scripts.
+- [Tags](https://zaparoo.org/docs/core/tags/): Manage and inspect NFC tag content from Core.
+- [Playtime](https://zaparoo.org/docs/core/playtime/): Track how long games are played via token scans.
+- [Systems](https://zaparoo.org/docs/core/systems/): Supported game systems and how Core identifies them.
 
 ## ZapScript
 
@@ -108,9 +106,9 @@ Important notes:
 
 ## Community
 
-- [Community Hub](https://zaparoo.org/docs/community-hub/): Vendor list, media kit, and community resources.
-- [Contributors](https://zaparoo.org/docs/community-hub/contributors/): People who have contributed to the Zaparoo project.
-- [Community Projects](https://zaparoo.org/docs/community-projects/): Third-party projects and integrations built on Zaparoo.
+- [Community Hub](https://zaparoo.org/docs/community/): Vendor list, media kit, and community resources.
+- [Contributors](https://zaparoo.org/docs/community/contributors/): People who have contributed to the Zaparoo project.
+- [Community Projects](https://zaparoo.org/docs/community/projects/): Third-party projects and integrations built on Zaparoo.
 - [Support](https://zaparoo.org/support/): Get help with Zaparoo via Discord, Reddit, and other channels.
 
 ## Optional

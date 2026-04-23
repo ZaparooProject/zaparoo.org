@@ -823,7 +823,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               <>
                 <li>
                   Configure the{" "}
-                  <a href="/docs/core/drivers#optical-drive">reader driver</a>
+                  <a href="/docs/readers/optical-drive">reader driver</a>
                 </li>
                 <li>Connect your optical drive</li>
               </>
@@ -955,7 +955,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
         >
           The Zaparoo App provides the best and most convenient experience. If
           you can't or prefer not to use it, Zaparoo Core includes{" "}
-          <a href="/docs/app/web/">Web UI</a> and{" "}
+          <a href="/docs/core/web-ui/">Web UI</a> and{" "}
           <a href="/docs/core/cli">TUI</a> alternatives.
         </Admonition>
       )}
