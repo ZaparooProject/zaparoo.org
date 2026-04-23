@@ -1,3 +1,7 @@
+---
+description: Design and print labels for Zaparoo cards, including template sizes, artwork margins, and upgrade sticker dimensions.
+---
+
 # Labels
 
 <img src="/img/docs/labels/Labels_header.jpg" alt="Getting messy with labels" width="100%" />

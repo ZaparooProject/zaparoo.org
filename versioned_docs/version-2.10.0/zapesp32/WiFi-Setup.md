@@ -1,5 +1,6 @@
 ---
 title: "WiFi Setup"
+description: Connect to the ZapEsp32 setup access point, open the web UI, enter WiFi credentials, and recover with the fallback AP if needed.
 ---
 
 ZapEsp32 will create an Access Point after the initial flash to enable the setup of your wifi credentials (or if the wifi connection fails).  

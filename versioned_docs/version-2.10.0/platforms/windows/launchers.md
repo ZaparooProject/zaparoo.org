@@ -1,3 +1,7 @@
+---
+description: Launcher support for Windows, including Steam, LaunchBox, and platform-specific configuration details.
+---
+
 # Launchers
 
 Detailed launcher configuration for Windows.

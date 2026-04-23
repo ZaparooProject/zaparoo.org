@@ -1,3 +1,7 @@
+---
+description: Launcher support for Linux, including Steam, Kodi, browser URLs, and shell script integration.
+---
+
 # Launchers
 
 Linux supports multiple game launchers, Kodi media playback, web browser URLs, and shell scripts.

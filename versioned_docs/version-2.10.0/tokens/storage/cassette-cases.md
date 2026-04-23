@@ -1,3 +1,7 @@
+---
+description: Cassette case storage options for Zaparoo cards, including cover templates, print dimensions, and insert links.
+---
+
 # Cassette Cases
 
 <img src="/img/docs/tokens/cassette-Front.jpg" alt="The Front Art of the Cassette Tape Cases" width="300" /> <img src="/img/docs/tokens/cassette-Back.jpg" alt="The Back Artwork of the Cassette Tape Cases" width="300" />

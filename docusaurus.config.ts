@@ -18,10 +18,13 @@ const config: Config = {
 
   onBrokenLinks: "throw",
 
+  themes: ["@docusaurus/theme-mermaid"],
+
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: "throw",
     },
+    mermaid: true,
   },
 
   future: {

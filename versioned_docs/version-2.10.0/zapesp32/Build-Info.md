@@ -1,5 +1,6 @@
 ---
 title: "Build Info"
+description: Hardware notes for ZapEsp32 builds, covering supported ESP32 boards, RFID modules, cases, audio, storage, LEDs, and rumble.
 ---
 
 ## ESP32 SOC
@@ -36,5 +37,4 @@ The PN532 RFID module is preferred as the RC522 module prevents the use of a SDC
 
 ## Vibration/Rumble Motor
 * DC (1.5-5V) Vibrating Motor - Note: You will need to build a driving circuit to control the motor ([example guide](https://www.instructables.com/How-to-drive-a-DC-Motor-with-Transistor-Arduino-Tu/))
-
 

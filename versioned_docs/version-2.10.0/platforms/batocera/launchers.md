@@ -1,3 +1,7 @@
+---
+description: Launcher support for Batocera through EmulationStation, with system folder mappings and supported media formats.
+---
+
 # Launchers
 
 Batocera uses EmulationStation as its primary launcher. Games are stored in `/userdata/roms/<folder>/` and automatically detected during media indexing.

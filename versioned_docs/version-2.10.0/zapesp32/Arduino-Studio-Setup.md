@@ -1,5 +1,6 @@
 ---
 title: "Arduino Studio Setup"
+description: Set up Arduino Studio for ZapEsp32 by installing board support, choosing the right partition scheme, and following the flashing steps.
 ---
 
 1. If you haven't already, download and install Arduino Studio.  

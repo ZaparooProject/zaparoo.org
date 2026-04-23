@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 slug: acr122u
+description: ACR122U reader overview, platform-specific drivers, compatibility notes, and manual configuration examples.
 ---
 
 # ACR122U
@@ -125,4 +126,3 @@ These are some known working listings submitted by users:
 - [Kogan (Australia)](https://www.kogan.com/au/buy/zoestore-kkmoon-nfc-acr122u-rfid-contactless-smart-reader-writerusb-sdk-c-card-d8a0-h10391/)
 - [Everything ID (Australia)](https://www.everythingid.com.au/rfid-equipment-c-13/acr122u-usb-nfc-rfid-card-reader-writer-mifare-nfc-p-324)
 - <ProductLink href="https://www.aliexpress.us/item/2251832554165448.html" store="aliexpress">AliExpress (China) - 5YOA Official Store</ProductLink>
-
