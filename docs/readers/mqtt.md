@@ -16,6 +16,50 @@ The MQTT reader connects to an MQTT broker and executes [ZapScript](../zapscript
 - Integration with Home Assistant automations
 - QoS 1 (at-least-once delivery) for reliable message processing
 
+## Platforms
+
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
+
 ## Setup
 
 The MQTT reader requires manual configuration in your [config file](../core/config.md). Auto-detection is not supported.
@@ -196,17 +240,3 @@ If messages are received but not executing:
 1. Verify the payload is valid ZapScript
 2. Check logs for ZapScript execution errors
 3. Test the same ZapScript with an NFC token to verify it works
-
-## Platform Compatibility
-
-The MQTT reader works on all platforms:
-
-| Platform   | Supported |
-| ---------- | --------- |
-| MiSTer     | ✅        |
-| Windows    | ✅        |
-| Linux      | ✅        |
-| macOS      | ✅        |
-| Batocera   | ✅        |
-| SteamOS    | ✅        |
-| LibreELEC  | ✅        |

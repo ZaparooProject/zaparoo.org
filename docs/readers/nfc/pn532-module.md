@@ -9,6 +9,56 @@ The PN532 module is a bare PCB NFC reader perfect for DIY projects and custom bu
 
 <img src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
 
+## Platforms
+
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../../platforms/libreelec", support: "supported" },
+      ],
+    },
+    {
+      name: "Other Hardware",
+      platforms: [
+        { name: "Commodore 64", href: "../../platforms/commodore64", support: "limited", note: "Via TeensyROM, not Zaparoo Core." },
+      ],
+    },
+  ]}
+/>
+
 :::tip Prefer plug-and-play?
 The [PN532 USB](./pn532-usb.md) version requires no wiring and works out of the box. It's stocked in the [Zaparoo Shop](https://shop.zaparoo.com/).
 :::
@@ -55,9 +105,9 @@ This is **not a ready-to-use reader** - it's a bare PCB module for custom projec
 - **Driver IDs**: `pn532`, `pn532uart`, `pn532i2c`, `pn532spi`
 - **Primary Transport**: UART (via USB-to-serial adapter)
 - **Alternative Transports**: I2C, SPI (for advanced projects)
-- **Platforms**: [All platforms](../../platforms/index.mdx)
+- **Platforms**: Current Zaparoo Core platforms
 - **Enabled by default**: Yes
-- **Auto-detect**: Yes (for UART)
+- **Auto-detect**: Yes (UART and I2C)
 
 ### Hardware Setup
 
@@ -80,9 +130,9 @@ Set the PN532 DIP switches to UART mode. They usually come set this way.
 
 ### Software Configuration
 
-**Auto-detection (Recommended):**
+**Auto-detection:**
 
-The PN532 UART is auto-detected by default. Just plug in the USB-to-serial adapter!
+PN532 modules using UART over a USB-to-serial adapter are auto-detected by default. Direct I2C connections can also auto-detect on current development builds when the operating system exposes the I2C device.
 
 **Manual Configuration:**
 
@@ -123,6 +173,8 @@ path = '/dev/i2c-1'
 ```
 
 Set DIP switches to I2C mode.
+
+Manual I2C configuration is useful if auto-detect does not find the module or you need to specify a particular bus.
 
 ### Advanced: SPI Configuration
 
@@ -228,4 +280,3 @@ For a ready-to-use option, consider the [PN532 USB](./pn532-usb.md) instead!
 
 - <ProductLink href="https://www.aliexpress.com/item/1005002755983375.html" store="aliexpress">AliExpress (China) - JIAQISHENG JQS Official Store</ProductLink>
 - <ProductLink href="https://www.aliexpress.com/item/1005005973913526.html" store="aliexpress">AliExpress (China) - TENSTAR ROBOT Store</ProductLink>
-

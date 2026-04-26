@@ -21,10 +21,11 @@ The [Zaparoo Shop](https://shop.zaparoo.com/) stocks official NFC readers and ca
 | ------ | ----------- | ----- | --------- |
 | [PN532 USB](./nfc/pn532-usb.md) | NFC/RFID | Plug and play | All |
 | [PN532 Module](./nfc/pn532-module.md) | NFC/RFID | DIY wiring required | All |
-| [ACR122U](./nfc/acr122u.md) | NFC/RFID | Plug and play | Linux, macOS (USB); Windows, macOS (PCSC) |
-| [RC522](./nfc/rc522.md) | NFC/RFID | DIY wiring required | MiSTer only |
-| [Barcode Scanner](./barcode/index.md) | Barcodes, QR codes | Plug and play | All |
-| [Optical Drive](./optical-drive.md) | CDs, DVDs, Blu-rays | Plug and play | MiSTer, Linux |
+| [ACR122U](./nfc/acr122u.md) | NFC/RFID | Plug and play, limited on PCSC | Linux-based platforms; Windows scanning only |
+| [RC522](./nfc/rc522.md) | NFC/RFID | Via Simple Serial | All |
+| [App/Camera Scanner](./barcode/index.md) | Barcodes, QR codes | Via Zaparoo App | All |
+| [RS232 Scanner](./barcode/rs232.md) | Barcodes, QR codes | Manual config | All |
+| [Optical Drive](./optical-drive.md) | CDs, DVDs, Blu-rays | Manual config | Linux-based platforms except MiSTeX |
 | [MQTT Reader](./mqtt.md) | Virtual/any | Network configuration | All |
 | [File Reader](./file.md) | Text files | No hardware needed | All |
 
@@ -56,24 +57,9 @@ The [Zaparoo Shop](https://shop.zaparoo.com/) stocks official NFC readers and ca
 - **[Simple Serial Protocol](./simple-serial.md)**
 - **[File Reader](./file.md)**
 
-## Platform Compatibility
+## Platform compatibility
 
-Most readers work on all platforms, but some have limitations:
-
-| Reader Type       | MiSTer | Windows | Linux | macOS |
-| ----------------- | ------ | ------- | ----- | ----- |
-| PN532 USB         | ✅     | ✅      | ✅    | ✅    |
-| PN532 Module      | ✅     | ✅      | ✅    | ✅    |
-| ACR122U (USB)     | ✅     | ❌      | ✅    | ❌    |
-| ACR122U (PCSC)    | ❌     | ✅      | ❌    | ✅    |
-| Optical Drive     | ✅     | ❌      | ✅    | ❌    |
-| Barcode (App)     | ✅     | ✅      | ✅    | ✅    |
-| Barcode (RS232)   | ✅     | ✅      | ✅    | ✅    |
-| MQTT              | ✅     | ✅      | ✅    | ✅    |
-| External Drive    | ✅     | ✅      | ✅    | ✅    |
-| Simple Serial     | ✅     | ✅      | ✅    | ✅    |
-| File Reader       | ✅     | ✅      | ✅    | ✅    |
-| TTY2OLED          | ✅     | ✅      | ✅    | ✅    |
+Each reader page includes a platform support card with current platform notes. Check those cards before buying hardware, especially for [ACR122U](./nfc/acr122u.md), [RC522](./nfc/rc522.md), and [Optical Drive](./optical-drive.md) setups.
 
 ## NFC Readers
 
@@ -123,4 +109,3 @@ All NFC readers can scan:
 ---
 
 <SponsorCallout variant="sponsor" />
-

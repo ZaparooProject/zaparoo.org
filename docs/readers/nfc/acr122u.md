@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 slug: acr122u
-description: Set up the ACR122U NFC reader with Zaparoo on MiSTer, Linux, and Windows using libnfc. Setup guide, troubleshooting, and where to buy.
+description: Set up the ACR122U NFC reader with Zaparoo on Linux-based platforms and Windows. Covers libnfc, PC/SC, troubleshooting, and where to buy.
 keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
 ---
 
@@ -21,15 +21,63 @@ If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer cho
 
 :::info
 
-The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones only work via the PCSC service, which means they work fine on Windows and desktop Linux but are incompatible with platforms like [MiSTer](../../platforms/mister/index.md) and [Batocera](../../platforms/batocera/index.md) where PCSC is not available. This is why the project no longer recommends them.
+The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so what you'll actually be buying is a hardware clone device. It's important to be aware that there can be differences internally between clones, which are impossible to tell without opening it up, and can affect compatibility with Zaparoo platforms. Some clones only work via the PCSC service, which means they can work on Windows but are incompatible with Zaparoo's Linux-based platforms, where Core uses libnfc for this reader. This is why the project no longer recommends them.
 
 :::
+
+## Platforms
+
+:::note Linux-based platforms
+Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. With this driver, the reader LED and beeper do not work, and some clone variants are incompatible.
+:::
+
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../../platforms/windows/", support: "limited", note: "Scanning works through PC/SC. Writing tags through Zaparoo is not supported." },
+        { name: "macOS", href: "../../platforms/mac", support: "unsupported", note: "Not included in the current macOS Core reader set." },
+        { name: "Linux", href: "../../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
 
 ## Driver Configuration
 
 The ACR122U uses **different drivers** depending on your platform. Zaparoo Core automatically selects the correct driver for your system.
 
-### ACR122U (USB) - Linux & MiSTer
+### ACR122U (USB) - Linux-based platforms
 
 - **Driver ID**: `libnfcacr122`
 - **Platforms**: Linux-based platforms (MiSTer, Batocera, SteamOS, etc.)
@@ -40,16 +88,16 @@ The ACR122U uses **different drivers** depending on your platform. Zaparoo Core 
 
 This driver provides direct USB communication via the libnfc library, which means:
 
-- ✅ No need for PCSC daemon on Linux/MiSTer
+- ✅ No need for PCSC daemon on Linux-based platforms
 - ✅ Auto-detection works well
 - ❌ Some clone variants are incompatible
 - ❌ LED and beeper may not work (normal behavior)
 
-### ACR122U (PCSC) - Windows & macOS
+### ACR122U (PCSC) - Windows
 
 - **Driver ID**: `acr122pcsc`
-- **Platforms**: Windows, macOS
-- **Compatibility**: Windows 10+, macOS 10.12+
+- **Platforms**: Windows
+- **Compatibility**: Windows 10+
 - **Library**: Uses PC/SC (Personal Computer/Smart Card)
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
@@ -58,12 +106,13 @@ This driver uses the PC/SC interface, which means:
 
 - ✅ Better compatibility with clone variants
 - ✅ LED lights up and beeper works
+- ❌ Writing tags through Zaparoo is not supported
 
-Requires Smart Card services to be enabled (Windows) or already included in macOS.
+Requires Smart Card services to be enabled in Windows.
 
 ### Manual Configuration
 
-Auto-detection should work on all platforms, but if auto-detection fails or you need to specify a particular reader, you can manually configure it.
+Auto-detection should work on supported platforms, but if auto-detection fails or you need to specify a particular reader, you can manually configure it.
 
 **Windows:**
 
@@ -75,15 +124,17 @@ path = 'ACS ACR122 0'  # Use actual reader name from PC/SC
 
 To find the PC/SC reader name on Windows, check Device Manager under "Smart card readers".
 
-## MiSTer
+## Linux-based platforms
 
-An ACR122U on [MiSTer](../../platforms/mister/index.md) is plug and play unless `auto_detect` is disabled in the Core config file. It's normal for the LED on the reader to **not** light up and for it to make **no** noise when scanning a card. If your reader lights up or makes noise, _it's a sign that it isn't compatible with MiSTer_.
+An ACR122U on Linux-based platforms is plug and play unless `auto_detect` is disabled in the Core config file. It's normal for the LED on the reader to **not** light up and for it to make **no** noise when scanning a card. If your reader lights up or makes noise, _it's a sign that it isn't compatible with the libnfc driver_.
 
-Core on MiSTer uses a special libnfc driver to speak with the reader. Using this driver means a PCSC daemon is not required to be running, which is not shipped with a standard MiSTer OS. The downside is this driver can be a bit picky and will fail for some reader variants as mentioned above.
+Core on Linux-based platforms uses a libnfc driver to speak with the reader. Using this driver means a PCSC daemon is not required. The downside is this driver can be a bit picky and will fail for some reader variants as mentioned above.
 
 ## Windows
 
 The ACR122U should also be plug and play on the latest version of Windows. The reader's LED will light red and flash green when a card is scanned. The reader will also make a short beeping noise on scan.
+
+The Windows PC/SC driver can scan tags, but it cannot write tags through Zaparoo. If you want to write tags from Zaparoo, use a [PN532 USB](./pn532-usb.md) instead.
 
 ### Troubleshooting
 

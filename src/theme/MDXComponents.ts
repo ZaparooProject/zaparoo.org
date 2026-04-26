@@ -15,6 +15,10 @@ import ProductLink from "@site/src/components/ProductLink";
 import QRCodeGenerator from "@site/src/components/QRCodeGenerator";
 import TokenTable from "@site/src/components/TokenTable";
 import SponsorCallout from "@site/src/components/SponsorCallout";
+import {
+  PlatformSupport,
+  ReaderSupport,
+} from "@site/src/components/SupportMatrix";
 library.add(fab, fas); // Add all icons to the library so you can use them without importing them individually.
 
 export default {
@@ -29,4 +33,6 @@ export default {
   QRCodeGenerator,
   TokenTable,
   SponsorCallout,
+  PlatformSupport,
+  ReaderSupport,
 };

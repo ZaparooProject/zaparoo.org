@@ -1,221 +1,157 @@
 ---
-description: Use optical discs (CDs, DVDs, and Blu-rays) as Zaparoo tokens to launch games and media by inserting a physical disc.
-keywords: [zaparoo optical drive, cd game launcher, dvd token zaparoo, disc launcher mister]
+description: "Use a CD, DVD, or Blu-ray disc as a Zaparoo token with a Linux optical drive."
+keywords: [zaparoo optical drive, cd token, dvd token, disc launcher zaparoo]
 ---
 
-# Optical Drive
+# Optical Drive Reader
 
-Use CDs, DVDs, and Blu-ray discs as physical tokens with any optical drive! This unique reader type turns your disc collection into a library of launchable media.
+An optical disc can work as a [Zaparoo token](../tokens/index.md) on Linux-based systems. Connect a CD, DVD, or Blu-ray drive to the device running [Core](../core/index.md), point the reader at the drive device, and Core uses the disc ID reported by Linux.
 
-## Overview
+This reader does not read games or media from the disc. It uses the disc as a physical trigger for a [mapping](../features/mappings.md) or [ZapScript](../zapscript/index.md) command.
 
-Optical drives provide a nostalgic and tactile way to launch games - insert a disc, and Zaparoo reads its metadata to determine what to launch. This is perfect for:
+## Platforms
 
-- **Retro gaming setups** - Physical media for that authentic feel
-- **Large game libraries** - Organize games on labeled discs
-- **PSX/PS2 authenticity** - Use actual game discs with emulators
-- **Custom collections** - Burn blank discs with custom labels
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../platforms/windows/", support: "unsupported", note: "Linux only." },
+        { name: "macOS", href: "../platforms/mac", support: "unsupported", note: "Linux only." },
+        { name: "Linux", href: "../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../platforms/mistex", support: "unsupported", note: "Not included in the current MiSTeX Core reader set." },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
 
-:::info How It Works
-Zaparoo reads the disc's **UUID** (Universally Unique Identifier) and/or **label**, not the actual game data. You can use blank discs burned with any data, original game discs, or music CDs - each will have a unique identifier.
-:::
+## Enable the reader
 
-## Hardware Requirements
+The optical drive reader is available on supported Linux-based platforms, but you usually need to tell Core which drive device to watch. Linux optical drives usually appear as `/dev/sr0`, `/dev/sr1`, and so on.
 
-The support is based on the operating system's optical drive support, so any Linux-compatible drive will work:
-
-- **CD drives** - Basic CD-ROM or CD-RW drives
-- **DVD drives** - DVD-ROM or DVD±RW drives
-- **Blu-ray drives** - BD-ROM or BD-RE drives
-- **USB external drives** - Easiest to add to existing setups
-- **Internal SATA drives** - Work equally well
-
-Just pick up any drive from your local electronics shop along with some blank discs to get started.
-
-## Driver Configuration
-
-### Driver Details
-
-- **Driver ID**: `opticaldrive`
-- **Platforms**: Linux-based platforms only
-  - [MiSTer](../platforms/mister/index.md)
-  - [Batocera](../platforms/batocera/index.md)
-  - [SteamOS](../platforms/steamos.md)
-  - [LibreELEC](../platforms/libreelec.md)
-- **Enabled by default**: Yes
-- **Auto-detect**: Yes
-
-### Basic Configuration
-
-Add to your [`config.toml`](../core/config.md):
-
-```toml
-[[readers.connect]]
-driver = 'opticaldrive'
-path = '/dev/sr0'
-```
-
-:::tip Finding Your Drive
-On Linux, optical drives typically appear as `/dev/sr0`, `/dev/sr1`, etc. Use `lsblk` to list all block devices and find your optical drive.
-:::
-
-### ID Source Options
-
-The optical drive driver has a special `id_source` option that controls what identifier is used for token matching:
+Add a `readers.connect` entry to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
-driver = 'opticaldrive'
-path = '/dev/sr0'
-id_source = 'merged'  # 'uuid', 'label', or 'merged'
+driver = "opticaldrive"
+path = "/dev/sr0"
 ```
 
-#### ID Source Modes
+Restart Core after changing the config. Use `lsblk` or check `/dev/sr*` if you are not sure which path your drive uses.
 
-**`merged` (default)** - Combines UUID and label:
+## Choose the scanned ID
 
-- Token ID format: `<UUID>/<LABEL>`
-- Example: `2023-04-15-16-42-13-00/SONIC_THE_HEDGEHOG`
-- Most flexible for matching
+Core checks the configured drive about once a second. It asks Linux `blkid` for the disc `UUID` and `LABEL`, then scans the result as a `disc` token.
 
-**`uuid`** - Uses only the disc UUID:
-
-- Token ID format: `<UUID>`
-- Example: `2023-04-15-16-42-13-00`
-- Best for blank discs or when labels might change
-
-**`label`** - Uses only the disc label:
-
-- Token ID format: `<LABEL>`
-- Example: `SONIC_THE_HEDGEHOG`
-- Best for discs with consistent labels
-
-:::caution Blank Discs
-A **completely blank disc won't work** - it must have data burned to it before the OS assigns a UUID and label. Even a single small file is enough.
-:::
-
-## Usage Examples
-
-### Example 1: Using Original PSX Discs
-
-Launch a PS1 game using the actual game disc with wildcard matching:
-
-**Configuration:**
+The `id_source` option controls which value is used for matching:
 
 ```toml
 [[readers.connect]]
-driver = 'opticaldrive'
-path = '/dev/sr0'
-id_source = 'merged'
+driver = "opticaldrive"
+path = "/dev/sr0"
+id_source = "merged"
 ```
 
-**Mapping file (`/path/to/mappings.toml`):**
+The available modes are:
 
-```toml
-[[mappings.entry]]
-token_key = 'id'
-match_pattern = '*/SCES-01420*'
-zapscript = 'PSX/*Crash Bandicoot*Warped*'
-```
+- `merged` combines UUID and label as `<UUID>/<LABEL>`. This is the default when both values are available.
+- `uuid` uses only the disc UUID.
+- `label` uses only the disc label.
 
-When you insert the Crash Bandicoot 3 disc (with label `SCES-01420`), it matches and launches the game!
+If only one value is available, Core uses that value. If neither value is available, nothing is scanned. Removing the disc clears the active token.
 
-### Example 2: Custom Burned Discs
+`merged` is usually the safest option for matching a specific disc. `label` can be easier for custom burned discs if you control the label and keep it unique.
 
-Create custom game discs with specific labels:
+## Map a disc to a command
 
-**1. Burn a disc with any data and label it `GENESIS_SONIC`**
+For a custom disc, one practical setup is to use the disc label as the token ID.
 
-**2. Configuration:**
+Configure the reader to use labels:
 
 ```toml
 [[readers.connect]]
-driver = 'opticaldrive'
-path = '/dev/sr0'
-id_source = 'label'
+driver = "opticaldrive"
+path = "/dev/sr0"
+id_source = "label"
 ```
 
-**3. Mapping:**
+Burn a data disc with a label such as `SNES_RANDOM`, then add a mapping:
 
 ```toml
 [[mappings.entry]]
-token_key = 'id'
-match_pattern = 'GENESIS_SONIC'
-zapscript = 'Genesis/Sonic The Hedgehog'
+token_key = "id"
+match_pattern = "SNES_RANDOM"
+zapscript = "**launch.random:SNES"
 ```
 
-### Example 3: Random Game Launcher
+Restart Core after changing mapping files. If you are using an existing disc, check the Core logs to see the exact ID Zaparoo scanned before writing the mapping.
 
-Burn multiple discs, each launching a random game from different systems:
+Core does not write anything to the disc. Completely blank discs usually will not work because Linux has no UUID or label to report.
 
-```toml
-[[mappings.entry]]
-token_key = 'id'
-match_pattern = 'RANDOM_NES'
-zapscript = '**launch.random:NES'
+## Supported drives and platforms
 
-[[mappings.entry]]
-token_key = 'id'
-match_pattern = 'RANDOM_SNES'
-zapscript = '**launch.random:SNES'
+This reader is for Linux-based systems where Core includes the optical drive reader and the operating system exposes the drive as `/dev/sr0`, `/dev/sr1`, or another `/dev/` path.
 
-[[mappings.entry]]
-token_key = 'id'
-match_pattern = 'RANDOM_GENESIS'
-zapscript = '**launch.random:Genesis'
-```
+USB optical drives are the most common option. Internal SATA drives can also work if Linux exposes them the same way. Blu-ray drives can be used when Linux exposes the disc and `blkid` can read its metadata.
 
-## Platform-Specific Notes
-
-### MiSTer
-
-Optical drives work great on MiSTer! Both USB and internal SATA drives are supported.
-
-**Finding the device:**
-
-```bash
-ls -l /dev/sr*
-```
-
-### Batocera
-
-Check `/dev/sr0` or use:
-
-```bash
-lsblk | grep rom
-```
+The reader is available on Linux-based Zaparoo platforms such as [MiSTer](../platforms/mister/index.md), [Batocera](../platforms/batocera/index.md), [SteamOS](../platforms/steamos.md), and [LibreELEC](../platforms/libreelec.md). It is not supported on Windows, macOS, or MiSTeX.
 
 ## Troubleshooting
 
-### Disc Not Detected
+### Drive not detected
 
-1. **Check disc has data** - Blank discs must be burned with at least one file
-2. **Verify drive path** - Use `lsblk` to find the correct `/dev/sr*` device
-3. **Check permissions** - Ensure user is in `cdrom` group
-4. **Try different disc** - Some old/damaged discs may not read properly
-5. **Enable debug logging** - Set `debug_logging = true` in config.toml
-
-### Wrong Game Launches
-
-- **Check your mappings** - Verify `match_pattern` is correct
-- **Test disc ID** - Check Zaparoo logs to see what ID the disc reports
-- **Use `id_source`** - Try different modes (uuid/label/merged)
-
-### Drive Not Recognized
+Check that Linux can see the drive:
 
 ```bash
-# Check if drive is detected by the system
 lsblk
-dmesg | grep -i cdrom
-
-# Check if device exists
-ls -l /dev/sr0
+ls -l /dev/sr*
 ```
 
-## Limitations
+Make sure the configured `path` is absolute and points to a device under `/dev/`, such as `/dev/sr0`. Restart Core after changing the path.
 
-- **Linux only** - Not supported on Windows or macOS
-- **Metadata only** - Zaparoo reads UUID/label, not actual disc contents
-- **No game data** - You cannot launch games directly from the disc data (yet)
-- **Requires burned discs** - Completely blank discs won't work
+If the drive still is not scanned, enable `debug_logging = true` in `config.toml` and check the Core logs.
 
+### Disc ignored
+
+Check whether Linux can read a UUID or label from the disc:
+
+```bash
+blkid -o value -s UUID /dev/sr0
+blkid -o value -s LABEL /dev/sr0
+```
+
+If both commands return nothing or fail, Core has no disc ID to scan. Try a different disc, or burn a data disc with a label if you want a custom token.
+
+### Wrong command launches
+
+Check the Core logs for the actual token ID. Then compare it with your mapping's `match_pattern` and the reader's `id_source` setting.
+
+Restart Core after changing mapping files.

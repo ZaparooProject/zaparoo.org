@@ -1,23 +1,61 @@
 ---
-description: "Use USB sticks, SD cards, and external drives as Zaparoo tokens: automatically launch content when a drive with a zaparoo.txt file is inserted."
+description: "Use a USB stick, SD card, or removable drive as a Zaparoo token by adding a zaparoo.txt file."
 keywords: [zaparoo external drive, usb stick token, sd card launcher zaparoo]
 ---
 
 # External Drive Reader
 
-The external drive reader treats USB sticks, SD cards, and external hard drives as tokens. When a drive is mounted, Zaparoo automatically detects it and executes [ZapScript](../zapscript/index.md) from a `zaparoo.txt` file in the root of the drive.
+A USB stick or SD card can work as a [Zaparoo token](../tokens/index.md). Put a `zaparoo.txt` file on the drive, plug it into the device running [Core](../core/index.md), and Zaparoo scans the file contents.
 
-## Features
+This is useful if you want physical tokens without buying [NFC cards](../tokens/nfc/index.md) or a separate reader.
 
-- Automatic detection of USB sticks, SD cards, and external HDDs
-- Execute ZapScript when a drive is inserted
-- Automatic token removal when drive is ejected
-- Security protections against symlinks and oversized files
-- Cross-platform support (Windows, Linux, macOS)
+## Platforms
 
-## Setup
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
 
-The external drive reader is **disabled by default** and must be manually enabled. Add this to your `config.toml`:
+## Enable the reader
+
+The reader is disabled by default. Add this to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
@@ -25,102 +63,91 @@ driver = "externaldrive"
 enabled = true
 ```
 
-Once enabled, the reader will automatically detect all mounted external drives. No additional configuration is needed.
+Restart Core after changing the config.
 
-## Usage
+A `readers.connect` entry makes this reader active unless you have explicitly disabled the driver elsewhere. You can also enable the driver directly:
 
-### Creating a Zaparoo Drive
-
-1. Format a USB stick or SD card (any filesystem supported by your platform)
-2. Create a file named `zaparoo.txt` in the root directory
-3. Add ZapScript commands to the file
-4. Insert the drive into your device
-
-Example `zaparoo.txt` file:
-
-```
-**launch.random:snes
+```toml
+[readers.drivers.externaldrive]
+enabled = true
 ```
 
-When you insert the drive, Zaparoo will automatically execute the ZapScript.
+## Make a drive token
 
-### Multiple Drives
+1. Format a USB stick or SD card using a filesystem your device can mount.
+2. Create a plain text file named `zaparoo.txt` at the top level of the drive.
+3. Put the [ZapScript](../zapscript/index.md) in the file.
+4. Eject the drive, then insert it into the device running Core.
 
-Zaparoo can handle multiple external drives simultaneously. Each drive is tracked independently:
+Example `zaparoo.txt`:
 
-- Inserting a drive executes its `zaparoo.txt`
-- Removing a drive triggers a token removal event (similar to removing an NFC card)
+```zapscript
+**launch.random:SNES
+```
 
-## Security
+The filename is matched case-insensitively, so `zaparoo.txt`, `ZAPAROO.TXT`, and similar casing work.
 
-The external drive reader includes security protections:
+## What happens when you insert it
 
-- **Symlink rejection**: Symlinks in `zaparoo.txt` are rejected to prevent path traversal attacks
-- **File size limit**: Maximum file size is 1MB to prevent memory exhaustion
-- **Read-only**: Cannot write back to the drive (ZapScript execution only)
+When the drive mounts, Core looks for `zaparoo.txt`. If it finds one, it trims surrounding whitespace and scans the remaining text as an `externaldrive` token. On Linux, Core can also find the file on sibling partitions mounted under `/media` or `/mnt`, which helps with multi-partition USB drives.
 
-## Platform Support
+Removing or ejecting the drive clears the active token, similar to removing an NFC card from a reader.
 
-| Platform   | Supported | Notes                                   |
-| ---------- | --------- | --------------------------------------- |
-| Windows    | ✅        | Uses WMI for drive mount events         |
-| Linux      | ✅        | Uses D-Bus/UDisks2 for event detection  |
-| macOS      | ✅        | Watches `/Volumes` directory for events |
-| MiSTer     | ✅        | Works with Linux mount detection        |
-| Batocera   | ✅        | Works with Linux mount detection        |
-| SteamOS    | ✅        | Works with Linux mount detection        |
+Core ignores the file if:
+
+- It is empty or only contains whitespace
+- It is inside a folder instead of at the top level of the drive
+- It is a folder named `zaparoo.txt` rather than a file
+- It is a symlink
+- It is larger than 1 MiB
+
+The reader does not write anything back to the drive. You create and edit `zaparoo.txt` yourself.
+
+## Detected drives
+
+Core watches for removable drive mount events. It does not scan every mounted disk on the system, and that distinction matters for USB hard drives.
+
+- Windows detects drives reported by Windows as removable, such as many USB sticks and SD card readers.
+- Linux uses UDisks2 when available. Without UDisks2, Core falls back to `/proc/mounts` and only watches removable mounts under `/media` or `/mnt`.
+- MiSTer, Batocera, SteamOS, and similar Linux-based systems depend on the fallback behavior if UDisks2 is not available.
+- macOS detects removable volumes mounted under `/Volumes`.
+
+Some USB hard drives and SSDs are reported by the operating system as fixed or internal disks. Those may not be picked up by this reader.
 
 ## Troubleshooting
 
-### Drive Not Detected
+### Drive not detected
 
-1. Verify the reader is enabled in `config.toml`:
+Check your config first:
 
 ```toml
-[[readers.drivers]]
+[[readers.connect]]
 driver = "externaldrive"
 enabled = true
 ```
 
-2. Enable debug logging to see mount events:
+If you use driver settings, make sure the driver has not been disabled:
 
 ```toml
-debug_logging = true
+[readers.drivers.externaldrive]
+enabled = true
 ```
 
-3. Check that the drive is actually being mounted by your operating system:
-   - **Linux**: `mount | grep /media`
-   - **macOS**: `diskutil list`
-   - **Windows**: Check "This PC" in File Explorer
+Then check the basics:
 
-### File Not Being Read
+1. Restart Core after changing `config.toml`.
+2. Confirm the operating system mounted the drive.
+3. On Linux-based systems, check whether the drive mounted under `/media` or `/mnt`.
+4. Enable `debug_logging = true` in `config.toml` and check the Core logs.
 
-1. Ensure the file is named exactly `zaparoo.txt` (case-sensitive on Linux/macOS)
-2. Ensure it's in the root directory of the drive, not in a subfolder
-3. Check file size is under 1MB
-4. Verify the file is not a symlink
+### File ignored
 
-### ZapScript Not Executing
+Make sure `zaparoo.txt` is a normal text file at the top level of the drive. The name can use any case.
 
-1. Test the same ZapScript with an NFC tag to verify it's valid
-2. Check logs for ZapScript execution errors
-3. Ensure there are no special characters or encoding issues in the file
+The file must not be empty, whitespace-only, a symlink, or larger than 1 MiB.
 
-## Advanced Configuration
+### ZapScript not running
 
-### Disabling Auto-Detection
+Test the same text with another reader or through the app. If it still does not work, the ZapScript probably needs fixing.
 
-The external drive reader auto-detects all mounted drives by default. If you want to manually specify drives, you'll need to disable the reader entirely as per-drive filtering is not currently supported.
-
-### Performance Considerations
-
-- Each mount event includes a 100ms delay to ensure the filesystem is ready
-- File read operations have a 5-second timeout
-- Unmount events are processed immediately
-
-## Limitations
-
-- **Read-only**: Cannot write ZapScript back to the drive
-- **No per-drive filtering**: All detected drives are monitored (cannot exclude specific drives)
-- **Root directory only**: `zaparoo.txt` must be in the root, not in subdirectories
-- **File size limit**: Maximum 1MB for security
+Check the [ZapScript docs](../zapscript/index.md) for syntax.

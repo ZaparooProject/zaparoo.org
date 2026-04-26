@@ -1,269 +1,149 @@
 ---
-description: Build a custom Zaparoo reader using any microcontroller or device that sends token values over serial, perfect for DIY projects and unsupported hardware.
+description: Connect a custom serial reader to Zaparoo Core using the Simple Serial protocol.
 keywords: [zaparoo simple serial, custom reader zaparoo, diy reader serial, microcontroller nfc zaparoo]
 ---
 
 # Simple Serial Reader
 
-The Simple Serial driver allows microcontrollers and custom hardware to act as Zaparoo readers using a lightweight serial protocol. This enables you to build custom readers with your own hardware and scanning logic - perfect for DIY projects, barcode scanners, RFID modules that aren't directly supported, or creative reader implementations.
+Simple Serial lets a microcontroller or other serial device act as a [Zaparoo reader](./index.md). Your device handles the hardware side, then sends token text or IDs to Zaparoo Core over a serial port.
 
-## Overview
+Use this for custom readers, barcode or QR scanners, button panels, or hardware that Core does not support directly, such as an [RC522 RFID module](./nfc/rc522.md) connected through a microcontroller.
 
-With this driver, your device only needs to provide a read-only serial connection. The microcontroller handles all the scanning logic and hardware interaction, then sends simple text commands to Zaparoo Core over serial.
+## Platforms
 
-### Common Use Cases
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
 
-- **Custom barcode scanners** - Scan barcodes and send the data to Zaparoo
-- **Unsupported RFID modules** - Use modules like [RC522](./nfc/rc522.md) with a microcontroller
-- **Custom button interfaces** - Create physical button panels that trigger Zaparoo actions
-- **Multi-reader setups** - Combine multiple readers into one serial stream
-- **Experimental hardware** - Prototype new reader types quickly
+## Configure the reader
 
-## Driver Configuration
-
-### Driver Details
-
-- **Driver ID**: `simpleserial`
-- **Platforms**: [All platforms](../platforms/index.mdx)
-- **Enabled by default**: Yes
-- **Auto-detect**: Yes
-- **Baud Rate**: 115200 (fixed, not currently configurable)
-
-### Configuration Example
-
-Add to your [`config.toml`](../core/config.md):
+Simple Serial uses the `simpleserial` driver. It does not identify a device on its own, so configure the serial port in your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
 driver = 'simpleserial'
-path = '/dev/ttyUSB0'  # Linux/MiSTer
+path = '/dev/ttyUSB0'
 ```
 
-On Windows:
+On Windows, use the COM port shown in Device Manager:
+
 ```toml
 [[readers.connect]]
 driver = 'simpleserial'
-path = 'COM3'  # Windows COM port
+path = 'COM3'
 ```
 
-## Protocol Specification
+The serial connection uses `115200` baud. This is fixed in Core and is not currently configurable.
 
-### Command Format
+## Protocol
 
-The protocol uses a simple text-based format. Your device sends newline-terminated commands:
+Each scan is one newline-terminated line. Use real tab characters between `SCAN` and each argument:
 
-```
-SCAN\t<arg1>=<value1>\t<arg2>=<value2>\t...\n
-```
-
-**Format rules:**
-- Start with `SCAN`
-- Arguments separated by tabs (`\t`)
-- End with newline (`\n`)
-- Arguments are `name=value` pairs
-
-### Token Persistence
-
-Send the `SCAN` command **continuously** while a token should be active:
-- Keep sending the command repeatedly while a token is present
-- If Core doesn't receive a command for **1 second**, the token is considered removed
-- This creates natural "hold to scan" behavior
-
-### Basic Example
-
-Scan a Genesis game and keep it active:
-```
-SCAN\ttext=Genesis/Sonic The Hedgehog\n
-SCAN\ttext=Genesis/Sonic The Hedgehog\n
-SCAN\ttext=Genesis/Sonic The Hedgehog\n
-...
+```text
+SCAN\ttext=<ZapScript or token text>\n
+SCAN\tuid=<token id>\ttext=<ZapScript or token text>\n
 ```
 
-### Removing a Token
+The `text` value is the [ZapScript](../zapscript/index.md) read from the token. It can be a launcher path, a command, or multiple commands separated with `||`.
 
-To explicitly remove a token, send `SCAN` with no arguments:
-```
-SCAN\n
-```
-
-## Command Arguments
-
-All arguments are optional. You can send any combination that makes sense for your reader.
-
-### `text` - Token Content
-
-The [ZapScript](../zapscript/index.md) commands to execute:
-
-```
-SCAN\ttext=**launch.random:SNES\n
+```text
+SCAN\ttext=SNES/Super Mario World\n
+SCAN\ttext=**launch.random:Arcade\n
 ```
 
-```
-SCAN\ttext=NeoGeo/Metal Slug\n
-```
+`uid` is optional metadata for the physical token. Core can use it for features such as [mappings](../features/mappings.md).
 
-### `uid` - Unique Identifier
-
-An identifier for the physical token (optional metadata):
-
-```
-SCAN\tuid=04a1b2c3d4e5f6\ttext=Genesis/Sonic\n
+```text
+SCAN\tuid=04a1b2c3d4e5f6\ttext=Genesis/Sonic The Hedgehog\n
 ```
 
-The UID can be used in [mappings](../features/mappings.md) for token comparison or matching.
+If you only need token text, you can skip the `text=` name. Everything after `SCAN\t` becomes the token text:
 
-### `removable` - Removal Behavior
-
-Controls whether the token auto-removes when commands stop:
-
-- `removable=yes` (default) - Token removed after 1 second of no commands
-- `removable=no` - Token stays active until explicitly removed
-
-**Use `removable=no` for:**
-- Barcode scanners (scan once, no way to "remove" a barcode)
-- Button interfaces (press once, action persists)
-- One-shot triggers
-
-**Example - Barcode Scanner:**
-```
-SCAN\tremovable=no\ttext=PSX/Crash Bandicoot\n
-```
-
-After this single command, the token stays active. It won't be removed even if no more commands are sent.
-
-**Example - NFC Reader (default behavior):**
-```
-SCAN\tremovable=yes\ttext=SNES/Super Mario World\n
-SCAN\tremovable=yes\ttext=SNES/Super Mario World\n
-...
-```
-
-Stop sending commands → token removed after 1 second.
-
-## Simplified Single-Argument Format
-
-If you only need to send token text, you can skip the argument names:
-
-```
+```text
 SCAN\tGenesis/Sonic 2\n
 ```
 
-This is equivalent to:
-```
-SCAN\ttext=Genesis/Sonic 2\n
-```
+Core ignores blank lines, lines that do not start with `SCAN\t`, and `SCAN\t` lines with no arguments.
 
-## Example Implementations
+## Token removal
 
-### Arduino - NFC Reader
+Core treats the current token as removed after about 1 second without another scan line. For a held card, tag, or toy, send the same line repeatedly while it remains present, then stop sending when it is removed.
 
-```cpp
-#include <PN532_HSU.h>
-#include <PN532.h>
-
-PN532_HSU pn532hsu(Serial1);
-PN532 nfc(pn532hsu);
-
-void setup() {
-  Serial.begin(115200);  // Serial to Zaparoo
-  Serial1.begin(115200); // Serial to PN532
-  nfc.begin();
-}
-
-void loop() {
-  uint8_t uid[7];
-  uint8_t uidLength;
-
-  if (nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength)) {
-    // Read NDEF data from tag and format as text
-    String text = readNdefText();
-
-    // Send to Zaparoo continuously while tag is present
-    while (nfc.isPresent()) {
-      Serial.print("SCAN\ttext=");
-      Serial.print(text);
-      Serial.print("\n");
-      delay(100);  // Send ~10 times per second
-    }
-
-    // Tag removed - send explicit removal
-    Serial.print("SCAN\n");
-  }
-
-  delay(100);
-}
+```text
+SCAN\ttext=Genesis/Sonic The Hedgehog\n
+SCAN\ttext=Genesis/Sonic The Hedgehog\n
+SCAN\ttext=Genesis/Sonic The Hedgehog\n
 ```
 
-### Python - Barcode Scanner
+## Advanced options
 
-```python
-import serial
-import time
+Simple Serial also accepts `removable=`:
 
-ser = serial.Serial('/dev/ttyUSB0', 115200)
-
-def scan_barcode():
-    # Read barcode from scanner hardware
-    barcode = read_barcode_from_hardware()
-
-    # Send to Zaparoo (removable=no means it won't auto-clear)
-    command = f"SCAN\tremovable=no\ttext={barcode}\n"
-    ser.write(command.encode())
-
-while True:
-    scan_barcode()
-    time.sleep(0.1)
+```text
+SCAN\tremovable=no\ttext=**launch.random:Arcade\n
 ```
 
-### ESP32 - Button Interface
+`removable=yes` is the default. Most readers should leave it out.
 
-```cpp
-void setup() {
-  Serial.begin(115200);
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-}
+`removable=no` is not a token persistence option. Core still clears the active Simple Serial token after about 1 second without another scan line.
 
-void loop() {
-  if (digitalRead(BUTTON_PIN) == LOW) {
-    // Button pressed - send command once
-    Serial.print("SCAN\tremovable=no\ttext=**launch.random:Arcade\n");
-    delay(500);  // Debounce
-  }
-}
-```
+Use `removable=no` only for one-shot serial devices, such as barcode or QR scanners, when you use [hold mode](../core/config.md#scan-mode) and do not want that scan to start hold-mode media exit handling after the timeout.
+
+## Device behavior
+
+Your device only needs to do a few things:
+
+1. Open the serial port at `115200` baud.
+2. Send `SCAN\ttext=...\n` when a token is detected.
+3. Keep sending the same line while a physical token should remain active.
+4. Stop sending when the token is gone.
+
+Core only sends data from the serial device to Zaparoo. Writing tokens through Simple Serial is not supported.
 
 ## Troubleshooting
 
-### Token Not Detected
+If scans are not detected, check these first:
 
-1. **Check baud rate** - Must be 115200
-2. **Verify newline** - Commands must end with `\n`
-3. **Check tab characters** - Use `\t`, not spaces
-4. **Enable debug logging** - Set `debug_logging = true` in config.toml
-
-### Token Removed Too Quickly
-
-- You need to send commands **continuously** (every ~100-500ms)
-- Token is removed after 1 second of silence
-- For one-shot actions, use `removable=no`
-
-### Serial Port Not Found
-
-**Linux:**
-```bash
-ls /dev/ttyUSB*
-ls /dev/ttyACM*
-```
-
-**Windows:**
-Check Device Manager under "Ports (COM & LPT)"
-
-### Permission Denied (Linux)
-
-Add your user to the dialout group:
-```bash
-sudo usermod -a -G dialout $USER
-```
-
-Log out and back in for changes to take effect.
-
+- The configured `path` matches the serial device, such as `/dev/ttyUSB0`, `/dev/ttyACM0`, or `COM3`.
+- The device is using `115200` baud.
+- Each line starts with `SCAN` followed by a tab, not spaces.
+- Each line ends with `\n`.
+- On Linux, the Core process has permission to open the serial device. Desktop users may need to be in the `dialout` group, then log out and back in.

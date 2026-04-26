@@ -46,7 +46,47 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 
 ## Readers
 
-All [readers](../../readers/index.md) are supported except Optical Drive (Linux only).
+<ReaderSupport
+  groups={[
+    {
+      name: "NFC/RFID",
+      readers: [
+        { name: "PN532 USB", href: "../../readers/nfc/pn532-usb", support: "supported", setup: "Auto-detected" },
+        { name: "PN532 Module", href: "../../readers/nfc/pn532-module", support: "supported", setup: "Depends on wiring", note: "UART and I2C can auto-detect." },
+        { name: "ACR122U", href: "../../readers/nfc/acr122u", support: "limited", setup: "Auto-detected", note: "Can scan tags, but cannot write them through PCSC." },
+        { name: "RC522", href: "../../readers/nfc/rc522", support: "limited", setup: "Via Simple Serial", note: "Requires a microcontroller; not a direct USB reader." },
+      ],
+    },
+    {
+      name: "Barcode and QR",
+      readers: [
+        { name: "App/Camera Scanner", href: "../../app/", support: "supported", setup: "Via Zaparoo App" },
+        { name: "RS232 Scanner", href: "../../readers/barcode/rs232", support: "supported", setup: "Manual config" },
+      ],
+    },
+    {
+      name: "Optical and Media",
+      readers: [
+        { name: "Optical Drive", href: "../../readers/optical-drive", support: "unsupported", note: "Linux only" },
+        { name: "External Drive", href: "../../readers/external-drive", support: "supported", setup: "Manual enable" },
+      ],
+    },
+    {
+      name: "Custom and Virtual",
+      readers: [
+        { name: "MQTT Reader", href: "../../readers/mqtt", support: "supported", setup: "Manual config" },
+        { name: "Simple Serial", href: "../../readers/simple-serial", support: "supported", setup: "Manual config" },
+        { name: "File Reader", href: "../../readers/file", support: "supported", setup: "Manual config" },
+      ],
+    },
+    {
+      name: "Displays and Integrations",
+      readers: [
+        { name: "TTY2OLED", href: "../../readers/tty2oled", support: "supported", setup: "Manual enable" },
+      ],
+    },
+  ]}
+/>
 
 ## Launchers
 

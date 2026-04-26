@@ -410,6 +410,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["powershell", "toml"],
     },
     algolia: {
       appId: "77TW8QV8RJ",

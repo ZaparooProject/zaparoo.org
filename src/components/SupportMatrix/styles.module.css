@@ -1,0 +1,130 @@
+.supportSection {
+  margin: 1.5rem 0;
+}
+
+.familyGrid,
+.readerGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.familyCard,
+.readerGroup {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 0.9rem;
+}
+
+.familyTitle,
+.groupTitle {
+  color: var(--ifm-color-emphasis-800);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+}
+
+.platformList,
+.readerList {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.platformItem,
+.readerItem {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-left-width: 4px;
+  border-radius: 10px;
+  color: inherit;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.65rem 0.7rem;
+  text-decoration: none;
+}
+
+a.platformItem:hover,
+a.platformItem:hover *,
+a.readerItem:hover,
+a.readerItem:hover * {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.supported {
+  border-left-color: #2e8b57;
+  background: color-mix(in srgb, #2e8b57 7%, transparent);
+}
+
+.limited {
+  border-left-color: #b7791f;
+  background: color-mix(in srgb, #b7791f 8%, transparent);
+}
+
+.unsupported {
+  border-left-color: var(--ifm-color-emphasis-500);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.unknown {
+  border-left-color: var(--ifm-color-primary);
+  background: color-mix(in srgb, var(--ifm-color-primary) 7%, transparent);
+}
+
+.itemMain {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  justify-content: space-between;
+}
+
+.itemName {
+  font-weight: 650;
+}
+
+.status {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  color: var(--ifm-color-emphasis-800);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.3rem 0.45rem;
+  white-space: nowrap;
+}
+
+.note,
+.setup {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.readerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+.panelNote {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+}
+
+@media screen and (max-width: 640px) {
+  .familyGrid,
+  .readerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .itemMain {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}

@@ -15,6 +15,50 @@ The TTY2OLED driver enables [Zaparoo Core](../core/index.md) to communicate with
 - Artwork and logos
 - Custom display layouts
 
+## Platforms
+
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
+
 ## Hardware Requirements
 
 - TTY2OLED serial display device (typically an OLED screen connected via USB serial)
@@ -26,7 +70,7 @@ The TTY2OLED driver enables [Zaparoo Core](../core/index.md) to communicate with
 ### Driver Details
 
 - **Driver ID**: `tty2oled`
-- **Platforms**: [All platforms](../platforms/index.mdx)
+- **Platforms**: Current Zaparoo Core platforms
 - **Enabled by default**: No
 - **Auto-detect**: Yes
 
@@ -99,4 +143,3 @@ dmesg | grep tty
 
 **Windows:**
 Open Device Manager and look under "Ports (COM & LPT)"
-

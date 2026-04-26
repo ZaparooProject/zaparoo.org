@@ -1,11 +1,11 @@
 ---
-description: Set up the PN532 USB NFC reader with Zaparoo. The recommended plug-and-play reader starting at $5, compatible with all platforms including MiSTer, SteamOS, and Windows.
+description: Set up the PN532 USB NFC reader with Zaparoo. The recommended plug-and-play reader starting at $5, compatible with current Core platforms including MiSTer, SteamOS, and Windows.
 keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga, best nfc reader zaparoo]
 ---
 
 # PN532 USB
 
-The PN532 is a common NFC chip used in many readers. This USB version is cheap, works out of the box, and runs on all platforms.
+The PN532 is a common NFC chip used in many readers. This USB version is cheap, works out of the box, and runs on current Zaparoo Core platforms.
 
 :::tip
 This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Official hardware purchases support development.
@@ -13,11 +13,61 @@ This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Off
 
 <img src="/img/docs/readers/PN532-Type-C.jpg" alt="A PN532 USB-C module" width="300" />
 
+## Platforms
+
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../../platforms/libreelec", support: "supported" },
+      ],
+    },
+    {
+      name: "Other Hardware",
+      platforms: [
+        { name: "Commodore 64", href: "../../platforms/commodore64", support: "limited", note: "Via TeensyROM, not Zaparoo Core." },
+      ],
+    },
+  ]}
+/>
+
 ## Features
 
 - **Plug and play** - No drivers or setup required
 - **Affordable** - Starting at around $5 USD
-- **Cross-platform** - Works on all [platforms](../../platforms/index.mdx)
+- **Cross-platform** - Works on current Zaparoo Core platforms
 - **USB Type-C** - Common on newer modules
 - **Compact size** - Very small footprint
 - **Full NFC support** - Same functionality as all PN532 readers
@@ -29,12 +79,12 @@ This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Off
 
 - **Driver IDs**: `pn532`, `pn532uart`
 - **Transport**: USB Serial (UART)
-- **Platforms**: [All platforms](../../platforms/index.mdx)
+- **Platforms**: Current Zaparoo Core platforms
 - **Enabled by default**: Yes
 - **Auto-detect**: Yes
 
 :::tip Auto-Detection
-These readers are automatically detected on all platforms. You typically don't need any configuration - just plug it in and it works!
+These readers are automatically detected on current Zaparoo Core platforms. You typically don't need any configuration.
 :::
 
 ### Manual Configuration
@@ -154,4 +204,3 @@ Buying from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zapar
 ---
 
 <SponsorCallout variant="sponsor" />
-

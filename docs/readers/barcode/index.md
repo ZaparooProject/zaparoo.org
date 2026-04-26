@@ -7,6 +7,50 @@ keywords: [zaparoo barcode, barcode scanner game launcher, usb barcode reader za
 
 Zaparoo supports reading barcodes and QR codes through two methods:
 
+## Platforms
+
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
+
 ## App-Based Scanning
 
 Use your phone's camera to scan barcodes and QR codes with the [Zaparoo App](../../app/index.md). This is the easiest option if you already have the app.

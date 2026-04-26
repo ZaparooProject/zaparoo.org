@@ -1,45 +1,69 @@
 ---
-description: "Zaparoo virtual file reader: write token values to a text file to trigger launches from scripts, automation tools, or other software without physical hardware."
+description: Use a text file as a virtual Zaparoo reader for scripts and automation.
 keywords: [zaparoo file reader, virtual reader zaparoo, automation zaparoo, script token zaparoo]
 ---
 
-# File Reader (Virtual)
+# File Reader
 
-The File Reader is a virtual reader that treats a file on disk as an input source for [tokens](../tokens/index.md). This enables automation, remote control, testing, and integration with other software without physical hardware.
+The File Reader treats a text file as a [Zaparoo reader](./index.md). When the file contains text, Core reads that text as a [ZapScript](../zapscript/index.md) token. When the file is empty, the token is removed.
 
-## Overview
+This is useful for scripts, local tools, and automation that need to trigger Zaparoo without physical reader hardware.
 
-Instead of scanning physical tokens, the File Reader monitors a text file. When the file's contents change, Zaparoo treats it as a new token scan. This opens up powerful automation possibilities:
+## Platforms
 
-- **Web interfaces** - Build custom web UIs that write to the file
-- **Scripts and automation** - Control Zaparoo from shell scripts, Python, etc.
-- **Testing** - Test token commands without physical hardware
-- **Remote control** - Control Zaparoo over the network via file shares
+<PlatformSupport
+  groups={[
+    {
+      name: "Base OS",
+      platforms: [
+        { name: "Windows", href: "../platforms/windows/", support: "supported" },
+        { name: "macOS", href: "../platforms/mac", support: "supported" },
+        { name: "Linux", href: "../platforms/linux/", support: "supported" },
+      ],
+    },
+    {
+      name: "FPGA",
+      platforms: [
+        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
+        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
+      ],
+    },
+    {
+      name: "Retro Gaming OS",
+      platforms: [
+        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
+        { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
+        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
+      ],
+    },
+    {
+      name: "Handheld and Gaming Linux",
+      platforms: [
+        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
+        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
+        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
+      ],
+    },
+    {
+      name: "Media Center",
+      platforms: [
+        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
+      ],
+    },
+  ]}
+/>
 
-:::tip Advanced Use Cases
-While the File Reader is great for simple automation, the [Core API](../core/api/index.md) is recommended for more advanced use cases. The API provides programmatic control with full support for token metadata (UID, data fields) and more robust integration options.
-:::
+## Configure the reader
 
-## Driver Configuration
-
-### Driver Details
-
-- **Driver ID**: `file`
-- **Platforms**: [All platforms](../platforms/index.mdx)
-- **Enabled by default**: Yes
-- **Auto-detect**: No (requires manual configuration)
-
-### Configuration
-
-Add to your [`config.toml`](../core/config.md):
+Add a `file` reader to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
 driver = 'file'
-path = '/tmp/zaparoo_input'  # Linux/MiSTer
+path = '/tmp/zaparoo-token.txt'
 ```
 
-On Windows:
+On Windows, use an absolute path to a writable location:
 
 ```toml
 [[readers.connect]]
@@ -47,158 +71,47 @@ driver = 'file'
 path = 'C:/zaparoo/input.txt'
 ```
 
-:::tip Auto-Creation
-If the file doesn't exist when Zaparoo Core starts, it will automatically create an empty file at the specified path.
-:::
+The path must be absolute. The parent directory must already exist, but Core creates the watched file if it is missing when the reader starts.
 
-## How It Works
+## Use the file
 
-### Token Insertion
-
-When you **write content** to the file, a token is "inserted":
+Write token text or ZapScript into the file to scan it:
 
 ```bash
-echo "Genesis/Sonic The Hedgehog" > /tmp/zaparoo_input
+echo "**launch.random:SNES" > /tmp/zaparoo-token.txt
 ```
 
-### Token Removal
-
-When you **clear** the file, the token is "removed":
+Clear the file to remove the active token:
 
 ```bash
-echo "" > /tmp/zaparoo_input
-# or
-> /tmp/zaparoo_input
+echo "" > /tmp/zaparoo-token.txt
 ```
 
-### File Contents as Token Text
-
-The entire file content becomes the token's [ZapScript](../zapscript/index.md) text. No other token metadata (like UID or data) can be set through this reader.
-
-## Usage Examples
-
-### Launch a Random Game
-
-```bash
-# Linux/MiSTer
-echo "**launch.random:SNES" > /tmp/zaparoo_input
-```
+On Windows PowerShell:
 
 ```powershell
-# Windows PowerShell
-Set-Content C:\zaparoo\input.txt "**launch.random:SNES"
+Set-Content -Path C:/zaparoo/input.txt -Value '**launch.random:SNES'
+Clear-Content -Path C:/zaparoo/input.txt
 ```
 
-### Launch a Specific Game
+## Behavior notes
 
-```bash
-echo "PSX/Crash Bandicoot" > /tmp/zaparoo_input
-```
-
-### Stop Media (Clear Token)
-
-```bash
-echo "" > /tmp/zaparoo_input
-```
-
-### Execute ZapScript Commands
-
-```bash
-echo "**http.post:http://example.com/webhook||**delay:1000||**echo:Done!" > /tmp/zaparoo_input
-```
-
-## Integration Examples
-
-### Python Script
-
-```python
-def launch_game(system, game):
-    with open('/tmp/zaparoo_input', 'w') as f:
-        f.write(f"{system}/{game}\n")
-
-def stop_game():
-    with open('/tmp/zaparoo_input', 'w') as f:
-        f.write("")
-
-# Launch a game
-launch_game("SNES", "Super Mario World")
-
-# Later, stop it
-stop_game()
-```
-
-### Bash Script Menu
-
-```bash
-#!/bin/bash
-
-echo "Zaparoo Launcher Menu"
-echo "1. Random NES Game"
-echo "2. Random SNES Game"
-echo "3. Random Genesis Game"
-echo "4. Stop"
-
-read -p "Choice: " choice
-
-case $choice in
-  1) echo "**launch.random:NES" > /tmp/zaparoo_input ;;
-  2) echo "**launch.random:SNES" > /tmp/zaparoo_input ;;
-  3) echo "**launch.random:Genesis" > /tmp/zaparoo_input ;;
-  4) echo "" > /tmp/zaparoo_input ;;
-esac
-```
-
-## Advanced Uses
-
-### Multiple File Readers
-
-You can configure multiple file readers for different purposes:
-
-```toml
-[[readers.connect]]
-driver = 'file'
-path = '/tmp/zaparoo_games'
-
-[[readers.connect]]
-driver = 'file'
-path = '/tmp/zaparoo_commands'
-```
-
-### Network File Sharing
-
-Place the file on a network share to control Zaparoo remotely:
-
-```toml
-[[readers.connect]]
-driver = 'file'
-path = '/mnt/nas/zaparoo/input.txt'
-```
-
-Now any computer that can write to the network share can control Zaparoo.
-
-## Limitations
-
-- **No UID or data fields** - Only token text is supported
-- **No automatic removal** - You must explicitly clear the file
-- **File system dependent** - File change detection relies on the OS
-- **Not suitable for rapid changes** - There may be a small delay in detection
+- Core checks the file about every 100 ms.
+- Surrounding whitespace is trimmed, including trailing newlines.
+- Empty or whitespace-only file contents mean there is no active token.
+- Writing different text scans a new token.
+- Writing the same trimmed text again is ignored as a duplicate.
+- You can control the token text only. UID is not configurable through this reader.
+- Writing physical tokens through the File Reader is not supported.
 
 ## Troubleshooting
 
-### Changes Not Detected
+If changes are not detected, check these first:
 
-1. **Check file path** - Ensure the path in config.toml is correct and absolute
-2. **Restart Core** - Changes to config.toml require a restart
-3. **File permissions** - Ensure Zaparoo Core can read the file
-4. **Check logs** - Enable `debug_logging = true` in config.toml
+- The `path` in `config.toml` is absolute.
+- The parent directory exists.
+- Zaparoo Core can read and write the file.
+- Core was restarted after changing `config.toml`.
+- The file contains non-whitespace text when you expect a scan.
 
-### File Not Created
-
-- Verify the **parent directory exists** and is writable
-- Check Core logs for permission errors
-
-### Token Stays Active
-
-- You must **clear the file contents** to remove the token
-- Simply deleting the file won't work (Core will recreate it)
-
+Clear the file contents to remove the token. Do not delete the watched file while Core is running. If the file was deleted and scans stop, recreate the file and restart Core.
