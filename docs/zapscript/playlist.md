@@ -6,7 +6,7 @@ keywords: [zapscript playlist, zaparoo playlist, multi-action token zaparoo, seq
 
 # Playlist
 
-Zaparoo supports keeping a playlist of media in memory and tracking the current position. You can load playlists from files, folders, or define them inline.
+Zaparoo supports keeping a [playlist](../features/playlists.md) of media in memory and tracking the current position. You can load playlists from files, folders, or define them inline.
 
 ## Playlist Formats
 

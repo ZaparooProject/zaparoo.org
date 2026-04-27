@@ -171,7 +171,7 @@ This is a blocking command. The entire script pauses until the delay completes.
 
 ## control
 
-Dispatches a control action to the active media's launcher. This allows you to send commands to whatever is currently playing, such as pausing, saving state, or skipping tracks.
+Dispatches a [launcher control](../features/launcher-controls.md) action to the active media's launcher. This allows you to send commands to whatever is currently playing, such as pausing, saving state, or skipping tracks.
 
 ### Syntax
 
