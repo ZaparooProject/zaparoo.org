@@ -6,7 +6,7 @@ keywords: [zapscript mister, mister fpga zaparoo, zapscript core load, mister os
 
 # MiSTer
 
-These commands are only available on the MiSTer platform. They will be ignored on other platforms.
+These commands target [MiSTer](../platforms/mister/index.md), with some support on [MiSTeX](../platforms/mistex.md). `mister.ini`, `mister.core`, `mister.mgl`, and `mister.wallpaper` work on both platforms. `mister.script` is MiSTer only. On unsupported platforms, the command returns an error and the rest of the script stops.
 
 ## mister.ini
 
@@ -31,20 +31,20 @@ The ini file index (`1` to `4`) as shown in the MiSTer menu.
 
 ### Examples
 
+Load the first ini file:
+
 ```zapscript
 **mister.ini:1
 ```
 
-Loads the first ini file.
+Load the second ini file:
 
 ```zapscript
 **mister.ini:2
 ```
 
-Loads the second ini file.
-
 :::info
-The ini switch does not persist after a reboot, same as loading through the OSD. The menu core will be relaunched if currently open.
+The ini switch does not persist after a reboot, matching MiSTer's OSD behavior. If the menu core is open, it will be relaunched after the switch.
 :::
 
 ---
@@ -62,7 +62,7 @@ Launches a MiSTer core .rbf file directly.
 ### Arguments
 
 **`path`** (required)
-Path to the core, relative to the SD card root. Uses the same format as the `rbf` tag in MGL files - the filename ending can be omitted.
+Path to the core, relative to the SD card root. Uses the same format as the `rbf` tag in MGL files. The end of the filename, such as a date suffix, can be omitted.
 
 ### Advanced Arguments
 
@@ -72,29 +72,33 @@ Path to the core, relative to the SD card root. Uses the same format as the `rbf
 
 ### Examples
 
+Launch the SNES core:
+
 ```zapscript
 **mister.core:_Console/SNES
 ```
 
-Launches the SNES core (any version).
+Launch a specific PSX core version:
 
 ```zapscript
 **mister.core:_Console/PSX_20220518
 ```
 
-Launches a specific PSX core version.
+Launch the ao486 core:
 
 ```zapscript
 **mister.core:_Computer/ao486
 ```
-
-Launches the ao486 core.
 
 ---
 
 ## mister.script
 
 Launches a MiSTer script from the Scripts folder.
+
+:::note Platform Support
+This command is supported on [MiSTer](../platforms/mister/index.md) only.
+:::
 
 ### Syntax
 
@@ -116,33 +120,33 @@ The script filename (must exist in `/media/fat/Scripts`). Arguments can be inclu
 
 ### Examples
 
+Run the Update All script on screen:
+
 ```zapscript
 **mister.script:update_all.sh
 ```
 
-Runs the Update All script on screen.
+Run the script in the background:
 
 ```zapscript
 **mister.script:update_all.sh?hidden=yes
 ```
 
-Runs the script in the background without interrupting the current game.
+Run a script with arguments:
 
 ```zapscript
 **mister.script:my_script.sh arg1 arg2
 ```
 
-Runs a script with arguments.
-
 :::info
-When not using `hidden`, the currently running game will be closed and the script runs on screen as if launched from the Scripts menu.
+Without `hidden`, the current game closes and the script runs on screen as if launched from the Scripts menu.
 :::
 
 ---
 
 ## mister.mgl
 
-Executes MGL (MiSTer Game Library) content directly without a file.
+Launches MGL (MiSTer Game Library) content from inline XML.
 
 ### Syntax
 
@@ -163,21 +167,21 @@ The MGL XML content as a string. A temporary MGL file is created and launched.
 
 ### Examples
 
+Create and launch an MGL to run Sonic on the Genesis core:
+
 ```zapscript
 **mister.mgl:<setname>Genesis</setname><rbf>_Console/Genesis</rbf><file delay="1" type="f" index="0" path="../games/Genesis/Sonic.md"/>
 ```
 
-Creates and launches an MGL to run Sonic on the Genesis core.
-
 :::info
-This allows programmatically creating MGL content without storing files on disk.
+Use this when you need to build MGL content in ZapScript instead of keeping a separate `.mgl` file on disk.
 :::
 
 ---
 
 ## mister.wallpaper
 
-Sets or unsets the MiSTer main menu wallpaper. When setting a wallpaper, the image is loaded from `/media/fat/wallpapers/`. If the MiSTer is currently on the main menu, the wallpaper is refreshed immediately.
+Sets or unsets the MiSTer main menu wallpaper. When setting a wallpaper, the image is loaded from `/media/fat/wallpapers/`. If MiSTer is on the main menu, the wallpaper is refreshed immediately.
 
 ### Syntax
 
@@ -202,18 +206,14 @@ The wallpaper image filename (e.g., `background.png`). Supports `.png` and `.jpg
 
 ### Examples
 
+Set the menu wallpaper to `retro_bg.png`:
+
 ```zapscript
 **mister.wallpaper:retro_bg.png
 ```
 
-Sets the menu wallpaper to `retro_bg.png`.
+Remove the current wallpaper and revert to random selection:
 
 ```zapscript
 **mister.wallpaper
 ```
-
-Removes the current wallpaper and reverts to random selection.
-
-:::info
-This command also works on MiSTeX.
-:::

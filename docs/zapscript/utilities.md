@@ -6,7 +6,7 @@ keywords: [zapscript utilities, zaparoo stop command, zapscript delay, zapscript
 
 # Utilities
 
-These commands provide various utility functions for controlling script execution and system operations.
+These commands stop media, log messages, run host commands, add delays, send launcher controls, and take screenshots.
 
 ## stop
 
@@ -24,23 +24,23 @@ None.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
+
+Stop whatever is currently playing and return to the menu:
 
 ```zapscript
 **stop
 ```
 
-Stops whatever is currently playing and returns to the menu.
+Only stop if media is currently playing:
 
 ```zapscript
 **stop?when=[[media_playing]]
 ```
-
-Only stops if media is currently playing.
 
 ---
 
@@ -57,27 +57,27 @@ Outputs a message to the Zaparoo Core log file.
 ### Arguments
 
 **`message`** (required)
-The text to output. Logged at "info" level.
+The text to output. Multiple arguments are joined with `, ` and logged at "info" level.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
+
+Log "Token was scanned" to the Core log file:
 
 ```zapscript
 **echo:Token was scanned
 ```
 
-Logs "Token was scanned" to the Core log file.
+Log the current platform using an expression:
 
 ```zapscript
 **echo:Platform is [[platform]]
 ```
-
-Logs the current platform using an expression.
 
 ---
 
@@ -94,27 +94,27 @@ Runs a command on the host system.
 ### Arguments
 
 **`command`** (required)
-The command to run, including any arguments. Arguments are split respecting double and single quoted strings. The command is executed directly without a shell interpreter, so shell features like pipes, redirection or command substitution are not supported. The command has a 2-second timeout.
+The command to run, including any arguments. Arguments are split while respecting double and single quoted strings. The command is executed directly without a shell interpreter, so shell features like pipes, redirection, or command substitution are not supported. The command has a 2-second timeout.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
+
+Reboot the system:
 
 ```zapscript
 **execute:reboot
 ```
 
-Reboots the system.
+Send a desktop notification on Linux systems with `notify-send`:
 
 ```zapscript
 **execute:notify-send "Game started"
 ```
-
-Sends a desktop notification (on Linux systems with notify-send).
 
 :::caution Security Requirement
 This command requires explicitly enabling the arguments in the [`allow_execute`](../core/config.md#allow_execute) config option. Commands from remote sources are always blocked.
@@ -135,33 +135,33 @@ Pauses script execution for a specified duration.
 ### Arguments
 
 **`milliseconds`** (required)
-The number of milliseconds to pause. Must be a positive integer.
+The number of milliseconds to pause. Must be an integer.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
+
+Pause for 500 milliseconds, or half a second:
 
 ```zapscript
 **delay:500
 ```
 
-Pauses for 500 milliseconds (half a second).
+Pause for 10 seconds:
 
 ```zapscript
 **delay:10000
 ```
 
-Pauses for 10 seconds.
+Launch SNES, wait 10 seconds, then press F12:
 
 ```zapscript
 _Console/SNES||**delay:10000||**input.keyboard:{f12}
 ```
-
-Launches SNES, waits 10 seconds, then presses F12.
 
 :::info Blocking Command
 This is a blocking command. The entire script pauses until the delay completes.
@@ -184,9 +184,13 @@ Dispatches a control action to the active media's launcher. This allows you to s
 **`action`** (required)
 The control action to dispatch. Available actions depend on the launcher handling the currently active media.
 
-Common actions include:
+Defined action names include:
 - `toggle_pause` - Pause or unpause
 - `save_state` - Save the current state
+- `load_state` - Load a saved state
+- `save_ram` - Save RAM data
+- `toggle_menu` - Toggle an in-game menu
+- `reset` - Reset the active media
 - `stop` - Stop the active media
 - `fast_forward` - Fast forward
 - `rewind` - Rewind
@@ -195,26 +199,26 @@ Common actions include:
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
+
+Pause or unpause the currently playing media:
 
 ```zapscript
 **control:toggle_pause
 ```
 
-Pauses or unpauses the currently playing media.
+Save the current state, such as a save state in an emulator:
 
 ```zapscript
 **control:save_state
 ```
 
-Saves the current state (e.g., a save state in an emulator).
-
 :::info
-Media must be actively playing for this command to work. If no media is active, the command will return an error. The available actions depend on the launcher — not all launchers support all actions.
+Media must be actively playing for this command to work. If no media is active, the command will return an error. The available actions depend on the launcher, and not all launchers support all actions.
 :::
 
 ---
@@ -222,6 +226,10 @@ Media must be actively playing for this command to work. If no media is active, 
 ## screenshot
 
 Captures the current platform display and saves the screenshot to disk.
+
+:::note Platform Support
+Currently supported on [MiSTer](../platforms/mister/index.md) and [ReplayOS](../platforms/replayos.md).
+:::
 
 ### Syntax
 
@@ -235,18 +243,14 @@ None.
 
 ### Advanced Arguments
 
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
+
+Capture a screenshot of the current display:
 
 ```zapscript
 **screenshot
 ```
-
-Captures a screenshot of the current display.
-
-:::info Platform Support
-Currently supported on MiSTer and ReplayOS.
-:::

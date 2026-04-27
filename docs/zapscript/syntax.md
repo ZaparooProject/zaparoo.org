@@ -242,14 +242,14 @@ Zap Links is a feature that allows querying and running remote ZapScript scripts
 
 For example, the following URL is written to a token: `https://zpr.au/c$abcd1234`
 
-Every time the token is scanned, Core will make a request to this URL checking for a ZapScript payload. If it successfully receives one, it will run that ZapScript instead. Core will not cache this value, so the payload can be dynamic.
+Every time the token is scanned, Core will make a request to this URL checking for a ZapScript payload. If it successfully receives one, it will run that ZapScript instead. Core also stores the last successful payload for offline fallback, but normal online scans fetch the current response so the payload can still be dynamic.
 
 The payload itself is just a snippet of plaintext ZapScript to be run, with no special extra formatting. The only condition is that this payload has the MIME-type `application/vnd.zaparoo.zapscript` in the response's `Content-Type` header.
 
-Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result will be cached and any subsequent URLs will be treated as zap links immediately. If the query fails, it will also be cached and that domain will be silently ignored for 30 days before being re-checked.
+Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result is cached and later URLs on the same domain are treated as Zap Links immediately. If the domain responds but does not support Zap Links, Core caches that result and prunes non-supporting hosts after 30 days so they can be checked again. Temporary network and server errors are not cached.
 
 :::warning
-Currently all ZapScript received via a zap link will be tagged as "unsafe" which will disable the `input.keyboard`, `input.gamepad` and `execute` commands from running. This may be configurable in the future.
+Currently all ZapScript received via a Zap Link will be tagged as "unsafe" which will disable the `input.keyboard`, `input.gamepad` and `execute` commands from running. This may be configurable in the future.
 :::
 
 ### Platform Detection
@@ -268,7 +268,7 @@ Servers can use these headers to serve different scripts for different devices f
 
 It's easy to host your own Zap Link server as long as it follows the conventions above.
 
-Here's an example in Python which would serve a directory of text files as zap links:
+Here's an example in Python which would serve a directory of text files as Zap Links:
 
 ```python
 from flask import Flask, send_file, abort, Response

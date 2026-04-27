@@ -31,36 +31,36 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 | ------------ | ---------- | ------- | ---------------------------------------------------- |
 | `launcher`   | string     | -       | Override the default launcher                        |
 | `system`     | string     | -       | Apply system defaults to a local file path           |
-| `action`     | string     | `run`   | `run` to launch, `details` to show info (Steam only) |
+| `action`     | string     | `run`   | `run` to launch, `details` to show info (launcher support varies) |
 | `name`       | string     | -       | Custom display name for remote downloads             |
 | `pre_notice` | string     | -       | Message to show before launching                     |
 | `when`       | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
+Launch a game using system lookup (Auto Launch mode - no `**launch:` prefix needed):
+
 ```zapscript
 Genesis/Sonic the Hedgehog (USA).md
 ```
 
-Launches a game using system lookup (Auto Launch mode - no `**launch:` prefix needed).
+Launch from an absolute path:
 
 ```zapscript
 **launch:/media/fat/games/Genesis/Sonic.md
 ```
 
-Launches from an absolute path.
+Launch with a specific launcher override:
 
 ```zapscript
 **launch:Genesis/Sonic.md?launcher=LLAPIMegaDrive
 ```
 
-Launches with a specific launcher override.
+Open a Steam game's details page instead of launching:
 
 ```zapscript
 **launch:steam://1145360?action=details
 ```
-
-Opens a Steam game's details page instead of launching.
 
 ### Path Formats
 
@@ -72,7 +72,7 @@ The `launch` command supports several path formats, tried in this order:
 4. **Relative paths** - searched in game folders
 5. **Title ID** - `System/Title` without file extension
 6. **System lookup** - `System/path/to/file.ext`
-7. **Glob patterns** - if path contains `*`
+7. **Search queries** - if path contains `*`
 
 #### Title ID
 
@@ -97,7 +97,7 @@ Both forms use fuzzy matching to find games regardless of filename differences b
 ```zapscript
 @SNES/Super Mario World (region:us)
 @Genesis/Sonic (-unfinished:demo)
-@N64/Zelda (~region:us)(~region:eu)
+@N64/Zelda (~region:us) (~region:eu)
 ```
 
 Tag operators:
@@ -139,16 +139,16 @@ _Arcade/Game.mra
 
 Similar to system lookup but uses the exact system games folder name.
 
-#### Glob Patterns
+#### Search queries
 
-Paths containing `*` wildcards are automatically handled as search patterns:
+Paths containing `*` are automatically handled as media database search queries:
 
 ```zapscript
 Genesis/*sonic*
 SNES/*mario world*
 ```
 
-This delegates to [`launch.search`](#launchsearch) internally, launching the first match.
+This delegates to [`launch.search`](#launchsearch) internally, launching the first indexed match.
 
 #### Zip File Paths
 
@@ -216,23 +216,23 @@ The game title to search for. Supports fuzzy matching.
 
 ### Examples
 
+Launch Sonic using title matching:
+
 ```zapscript
 **launch.title:Genesis/Sonic the Hedgehog
 ```
 
-Launches Sonic using title matching.
+Launch the US version of Super Mario World:
 
 ```zapscript
 **launch.title:SNES/Super Mario World (region:us)
 ```
 
-Launches the US version of Super Mario World.
+Use the `tags` argument instead of inline format:
 
 ```zapscript
 **launch.title:Genesis/Sonic?tags=region:us,lang:en
 ```
-
-Uses the `tags` argument instead of inline format.
 
 :::tip
 The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis/Sonic`. Both forms are equivalent.
@@ -245,7 +245,7 @@ The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis
 Launches a system/emulator without loading specific media.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md) and [MiSTex](../platforms/mistex.md) only. The `menu` argument is also supported on [Batocera](../platforms/batocera/index.md).
+Launching a system by ID is supported on [MiSTer](../platforms/mister/index.md) and [MiSTeX](../platforms/mistex.md). The `menu` argument returns to the platform's menu or frontend where supported, including [Batocera](../platforms/batocera/index.md).
 :::
 
 ### Syntax
@@ -267,23 +267,23 @@ The [system ID](../features/systems.md) to launch. Use `menu` to return to the m
 
 ### Examples
 
+Launch the Atari 2600 system:
+
 ```zapscript
 **launch.system:Atari2600
 ```
 
-Launches the Atari 2600 system.
+Launch WonderSwan Color, useful for meta-systems without their own core:
 
 ```zapscript
 **launch.system:WonderSwanColor
 ```
 
-Launches WonderSwan Color (useful for meta-systems without their own core).
+Return to the main menu:
 
 ```zapscript
 **launch.system:menu
 ```
-
-Returns to the main menu.
 
 ---
 
@@ -308,7 +308,7 @@ One of the following formats:
 | `<system1>,<system2>,...` | Random from multiple systems   |
 | `all`                     | Random from any system         |
 | `/path/to/folder`         | Random file from a folder      |
-| `<system>/*pattern*`      | Random matching a glob pattern |
+| `<system>/*pattern*`      | Random indexed media matching a search query |
 
 ### Advanced Arguments
 
@@ -321,41 +321,41 @@ One of the following formats:
 
 ### Examples
 
+Launch a random SNES game:
+
 ```zapscript
 **launch.random:snes
 ```
 
-Launches a random SNES game.
+Launch a random game from SNES, NES, or Genesis:
 
 ```zapscript
 **launch.random:snes,nes,genesis
 ```
 
-Launches a random game from SNES, NES, or Genesis.
+Launch a random game from any system:
 
 ```zapscript
 **launch.random:all
 ```
 
-Launches a random game from any system.
+Launch a random file from a folder, useful for MGL collections:
 
 ```zapscript
 **launch.random:/media/fat/_#Favorites
 ```
 
-Launches a random file from a folder (useful for MGL collections).
+Launch a random Genesis game matching "sonic" in the media database:
 
 ```zapscript
 **launch.random:Genesis/*sonic*
 ```
 
-Launches a random game with "sonic" in the filename.
+Launch a random Mario game from any system:
 
 ```zapscript
 **launch.random:all/*mario*
 ```
-
-Launches a random Mario game from any system.
 
 :::info System Weighting
 When multiple systems are specified, a system is picked at random first (with equal weight per system), then a random game is selected from that system. This prevents systems with larger libraries from dominating random picks.
@@ -365,19 +365,19 @@ When multiple systems are specified, a system is picked at random first (with eq
 
 ## launch.search
 
-Searches for a game by filename pattern and launches the first result.
+Searches indexed media and launches the first result.
 
 ### Syntax
 
 ```zapscript
-**launch.search:<pattern>
-**launch.search:<system>/<pattern>
+**launch.search:<query>
+**launch.search:<system>/<query>
 ```
 
 ### Arguments
 
-**`pattern`** (required)
-A glob pattern to match filenames. Use `*` as a wildcard.
+**`query`** (required)
+A media database search query. `*` can be used for broad partial matches.
 
 **`system`** (optional)
 The system ID to search within. If omitted, searches all systems.
@@ -393,26 +393,26 @@ The system ID to search within. If omitted, searches all systems.
 
 ### Examples
 
+Find and launch the first indexed game matching "mario" from any system:
+
 ```zapscript
 **launch.search:*mario*
 ```
 
-Finds and launches the first game with "mario" in the filename from any system.
+Find and launch the first indexed SNES game matching "mario":
 
 ```zapscript
 **launch.search:SNES/*mario*
 ```
 
-Finds and launches the first SNES game with "mario" in the filename.
+Find a more specific match, such as a US version of a Super Mario game:
 
 ```zapscript
 **launch.search:SNES/super mario*(*usa*
 ```
 
-Finds a more specific match (US version of Super Mario games).
-
 :::info
-Search queries are case insensitive.
+Search queries are case insensitive and use the indexed media database, not direct filesystem globbing.
 :::
 
 ---
@@ -445,23 +445,23 @@ Defaults to `1`. Duplicate plays of the same game are collapsed, so
 
 ### Examples
 
+Relaunch the most recently played game:
+
 ```zapscript
 **launch.last
 ```
 
-Relaunches the most recently played game.
+Launch the previously played game, skipping the most recent one:
 
 ```zapscript
 **launch.last:2
 ```
 
-Launches the previously played game (skipping the most recent one).
+Cycle back to the third most recently played unique game:
 
 ```zapscript
 **launch.last:3
 ```
-
-Cycles back to the third most recently played unique game.
 
 :::info
 Requires [playtime tracking](../features/playtime.md) to have recorded history. If not enough unique games are in history to satisfy the offset, the command logs a warning and does nothing.

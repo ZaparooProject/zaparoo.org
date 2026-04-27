@@ -85,23 +85,23 @@ Path to a folder, `.pls` file, or inline JSON playlist. If omitted, resumes the 
 
 ### Examples
 
+Load the Favorites folder as a playlist and launch the first item:
+
 ```zapscript
 **playlist.play:/media/fat/_@Favorites
 ```
 
-Loads the Favorites folder as a playlist and launches the first item.
+Load a playlist file in shuffled order:
 
 ```zapscript
 **playlist.play:/media/fat/playlist.pls?mode=shuffle
 ```
 
-Loads a playlist file in shuffled order.
+Resume a paused playlist:
 
 ```zapscript
 **playlist.play
 ```
-
-Resumes a paused playlist.
 
 ---
 
@@ -129,23 +129,27 @@ Path to a folder, `.pls` file, or inline JSON playlist.
 
 ### Examples
 
+Load a playlist file:
+
 ```zapscript
 **playlist.load:/media/fat/playlist.pls
 ```
 
-Loads a playlist file.
+Load a folder in shuffled order:
 
 ```zapscript
 **playlist.load:/media/fat/games/Genesis?mode=shuffle
 ```
-
-Loads a folder in shuffled order.
 
 ---
 
 ## playlist.open
 
 Loads a playlist and opens an interactive picker menu to select an item.
+
+:::note Platform Support
+The interactive picker is currently only supported on [MiSTer](../platforms/mister/index.md).
+:::
 
 ### Syntax
 
@@ -167,17 +171,17 @@ Path to a folder, `.pls` file, or inline JSON playlist. If omitted, reopens the 
 
 ### Examples
 
+Open a picker menu for the playlist:
+
 ```zapscript
 **playlist.open:/media/fat/playlist.pls
 ```
 
-Opens a picker menu for the playlist.
+Reopen the picker for the currently active playlist, showing the current position:
 
 ```zapscript
 **playlist.open
 ```
-
-Reopens the picker for the currently active playlist, showing the current position.
 
 ---
 
@@ -203,11 +207,11 @@ None.
 
 ### Examples
 
+Stop playback and clear the playlist:
+
 ```zapscript
 **playlist.stop
 ```
-
-Stops playback and clears the playlist.
 
 ---
 
@@ -233,11 +237,11 @@ None.
 
 ### Examples
 
+Pause the playlist. Use `playlist.play` without arguments to resume:
+
 ```zapscript
 **playlist.pause
 ```
-
-Pauses the playlist. Use `playlist.play` without arguments to resume.
 
 ---
 
@@ -263,11 +267,11 @@ None.
 
 ### Examples
 
+Advance to the next item:
+
 ```zapscript
 **playlist.next
 ```
-
-Advances to the next item.
 
 ---
 
@@ -293,11 +297,11 @@ None.
 
 ### Examples
 
+Go back to the previous item:
+
 ```zapscript
 **playlist.previous
 ```
-
-Goes back to the previous item.
 
 ---
 
@@ -324,14 +328,14 @@ The 1-based index of the item to launch.
 
 ### Examples
 
+Jump to the first item:
+
 ```zapscript
 **playlist.goto:1
 ```
 
-Jumps to the first item.
+Jump to the fifth item:
 
 ```zapscript
 **playlist.goto:5
 ```
-
-Jumps to the fifth item.

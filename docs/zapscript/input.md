@@ -15,7 +15,7 @@ The platform sets a default input mode, which you can configure with [`[zapscrip
 Simulates keyboard key presses.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
 :::
 
 ### Syntax
@@ -27,7 +27,7 @@ Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/miste
 ### Arguments
 
 **`keys`** (required)
-The keys to press. Regular characters are typed directly, with a 100ms delay between each key. Special keys are entered using curly braces.
+The keys to press. Each parsed key is pressed with a 100ms delay between keys. Special keys are entered using curly braces.
 
 **Special keys:** `{esc}`, `{backspace}`, `{tab}`, `{enter}`, `{lctrl}`, `{lshift}`, `{backslash}`, `{rshift}`, `{lalt}`, `{space}`, `{caps}`, `{num}`, `{scroll}`, `{f1}`-`{f12}`, `{home}`, `{up}`, `{pgup}`, `{left}`, `{right}`, `{end}`, `{down}`, `{pgdn}`, `{ins}`, `{del}`, `{volup}`, `{voldn}`
 
@@ -43,29 +43,29 @@ The keys to press. Regular characters are typed directly, with a 100ms delay bet
 
 ### Examples
 
+Type the `@` character:
+
 ```zapscript
 **input.keyboard:@
 ```
 
-Types the `@` character.
+Type "qWeRty", press Enter, press Up arrow, then type "aaa":
 
 ```zapscript
 **input.keyboard:qWeRty{enter}{up}aaa
 ```
 
-Types "qWeRty", presses Enter, presses Up arrow, then types "aaa".
+Press Shift+Escape together:
 
 ```zapscript
 **input.keyboard:{shift+esc}
 ```
 
-Presses Shift+Escape together.
+Open the MiSTer OSD menu:
 
 ```zapscript
 **input.keyboard:{f12}
 ```
-
-Opens the MiSTer OSD menu.
 
 :::warning Remote Blocked
 This command is blocked when the script comes from a remote source.
@@ -78,10 +78,10 @@ This command is blocked when the script comes from a remote source.
 Simulates gamepad button presses.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md). The gamepad device is disabled by default on Batocera and can be re-enabled in the [config file](../core/config.md#gamepad_enabled).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md). The virtual gamepad can interfere with some emulators on Batocera, so it is disabled by default there. It can be re-enabled in the [config file](../core/config.md#gamepad_enabled).
 :::
 
-This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game/emulator to work and it can't, for example, pretend to be player 1 if a real controller is already connected as player 1.
+This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game or emulator settings, and it can't pretend to be player 1 if a real controller is already connected as player 1.
 
 ### Syntax
 
@@ -92,7 +92,7 @@ This command uses a separate virtual gamepad device, not an existing connected c
 ### Arguments
 
 **`buttons`** (required)
-The buttons to press in sequence. Supports both single characters and named buttons in curly braces.
+The buttons to press in sequence. Supports both single characters and named buttons in curly braces. Each parsed button is pressed with a 100ms delay between buttons.
 
 **Button mappings:**
 
@@ -122,23 +122,23 @@ The buttons to press in sequence. Supports both single characters and named butt
 
 ### Examples
 
+Input the classic Konami code:
+
 ```zapscript
 **input.gamepad:^^VV<><>BA{start}{select}
 ```
 
-Inputs the classic Konami code.
+Press the Start button:
 
 ```zapscript
 **input.gamepad:{start}
 ```
 
-Presses the Start button.
+Press A, A, B, B in sequence:
 
 ```zapscript
 **input.gamepad:AABB
 ```
-
-Presses A, A, B, B in sequence.
 
 :::warning Remote Blocked
 This command is blocked when the script comes from a remote source.
@@ -151,20 +151,22 @@ This command is blocked when the script comes from a remote source.
 Inserts coins for player 1 or player 2 in arcade games.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTex](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
 :::
 
 ### Syntax
 
 ```zapscript
-**input.coinp1:<count>
-**input.coinp2:<count>
+**input.coinp1:<amount>
+**input.coinp2:<amount>
 ```
 
 ### Arguments
 
-**`count`** (optional, default: `1`)
+**`amount`** (optional, default: `1`)
 The number of coins to insert.
+
+Omit the amount to insert one coin.
 
 ### Advanced Arguments
 
@@ -174,23 +176,23 @@ The number of coins to insert.
 
 ### Examples
 
+Insert 1 coin for player 1:
+
 ```zapscript
 **input.coinp1:1
 ```
 
-Inserts 1 coin for player 1.
+Insert 3 coins for player 2:
 
 ```zapscript
 **input.coinp2:3
 ```
 
-Inserts 3 coins for player 2.
+Insert 2 coins for each player:
 
 ```zapscript
 **input.coinp1:2||**input.coinp2:2
 ```
-
-Inserts 2 coins for each player.
 
 :::info
 These commands press the `5` key (player 1) or `6` key (player 2), which are the standard coin insert keys for MiSTer arcade cores and MAME. If it doesn't work, try mapping the coin insert keys manually.

@@ -15,7 +15,8 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`launch.title`](./launch.md#launchtitle) | Launch by title ID with explicit syntax |
 | [`launch.system`](./launch.md#launchsystem) | Launch a system/emulator |
 | [`launch.random`](./launch.md#launchrandom) | Launch a random game |
-| [`launch.search`](./launch.md#launchsearch) | Search and launch by filename pattern |
+| [`launch.search`](./launch.md#launchsearch) | Search indexed media and launch the first result |
+| [`launch.last`](./launch.md#launchlast) | Launch a recently played game |
 | [`input.keyboard`](./input.md#inputkeyboard) | Simulate keyboard input |
 | [`input.gamepad`](./input.md#inputgamepad) | Simulate gamepad input |
 | [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2) | Insert coin for player 1 |
@@ -32,7 +33,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`playlist.goto`](./playlist.md#playlistgoto) | Jump to playlist position |
 | [`stop`](./utilities.md#stop) | Stop current media |
 | [`echo`](./utilities.md#echo) | Log a message |
-| [`execute`](./utilities.md#execute) | Run a shell command |
+| [`execute`](./utilities.md#execute) | Run a host command |
 | [`delay`](./utilities.md#delay) | Pause script execution |
 | [`control`](./utilities.md#control) | Send a control action to the active media's launcher |
 | [`screenshot`](./utilities.md#screenshot) | Capture the current platform display |

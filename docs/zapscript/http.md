@@ -38,23 +38,23 @@ If your URL contains special characters, you can either:
 
 ### Examples
 
+Trigger a simple webhook:
+
 ```zapscript
 **http.get:https://example.com/webhook
 ```
 
-Triggers a simple webhook.
+Trigger a webhook and then launch SNES:
 
 ```zapscript
 **http.get:https://example.com/api/trigger||_Console/SNES
 ```
 
-Triggers a webhook and then launches SNES.
+Make a request with query parameters, quoted to avoid parsing issues:
 
 ```zapscript
 **http.get:"https://example.com/search?q=test&page=1"
 ```
-
-Makes a request with query parameters (quoted to avoid parsing issues).
 
 ---
 
@@ -87,20 +87,20 @@ The request body content. Can be empty.
 
 ### Examples
 
+Post JSON data to an API endpoint:
+
 ```zapscript
 **http.post:https://example.com/api,application/json,{"event":"scan"}
 ```
 
-Posts JSON data to an API endpoint.
+Trigger a local API with an empty body:
 
 ```zapscript
 **http.post:http://localhost:8182/api/scripts/launch/update_all.sh,application/json,
 ```
 
-Triggers a local API with an empty body.
+Send a plain text notification:
 
 ```zapscript
 **http.post:https://hooks.example.com/notify,text/plain,Token scanned!
 ```
-
-Sends a plain text notification.
