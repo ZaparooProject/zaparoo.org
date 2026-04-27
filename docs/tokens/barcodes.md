@@ -5,7 +5,7 @@ keywords: [zaparoo barcodes, barcode game launcher, upc game launch zaparoo, bar
 
 # Barcodes
 
-Barcodes found on real products (like the UPC on the back of a game box) can be used as tokens in Zaparoo. Unlike [NFC tags](./nfc/index.md) or [QR codes](./qr-codes.md), barcodes can't contain ZapScript directly, so you use [mappings](../features/mappings.md) to assign an action to each barcode value.
+Barcodes found on real products, like the UPC on the back of a game box, can be used as tokens in Zaparoo. Product barcodes usually identify an item instead of storing a command, so you use [mappings](../features/mappings.md) to assign [ZapScript](../zapscript/index.md) to each barcode value.
 
 This means you can scan the barcode on a physical game case and have it launch that game.
 
@@ -21,33 +21,33 @@ Zaparoo supports a wide range of barcode formats:
 - Data Matrix
 - PDF-417
 
-## How to scan
+## Scanning options
 
-There are two ways to scan barcodes:
+There are two ways to scan barcodes with Zaparoo:
 
-**Phone camera** using the [Zaparoo App](../app/index.md). Tap the camera button on the scan screen and point it at a barcode. The app uses Google ML Kit for detection and supports all the formats listed above.
+**Phone camera** using the [Zaparoo App](../app/index.md). You can scan a barcode while creating a mapping, or use the Zap screen as a camera reader if the Pro Launch on scan feature is enabled.
 
-**Hardware scanner** using an [RS232 barcode scanner](../readers/barcode/rs232.md) connected via serial port. These are the same scanners used in retail and POS systems. The hardware scanner is format-agnostic and will read whatever barcode types it supports.
+**Hardware scanner** using an [RS-232 barcode scanner](../readers/barcode/rs232.md) connected through a serial port or USB-to-serial adapter. Core receives whatever text the scanner sends, so supported formats depend on the scanner.
 
 ## Setting up with the Zaparoo App
 
-The easiest way to map a barcode is through the [Zaparoo App](../app/index.md):
+The Zaparoo App can scan the barcode and save the mapping for you:
 
-1. Go to **Create > Add a Mapping**
-2. Tap the **Camera** button and point at the barcode
-3. The barcode value auto-populates in the token ID field
-4. Write a ZapScript or use the command palette to pick a game
-5. Tap **Save mapping**
+1. Go to **Create > Add a mapping**.
+2. Tap **Camera** and point at the barcode.
+3. Check that the scanned value appears in **Token ID**.
+4. Enter ZapScript, or use the command palette to pick media.
+5. Tap **Save mapping**.
 
 ## Setting up with mapping files
 
-You can also create mappings manually. See the [mappings documentation](../features/mappings.md) for details.
+You can also create mappings manually. Put a `.toml` file in Zaparoo Core's `mappings` folder and match the barcode as a token ID:
 
 ```toml
 [[mappings.entry]]
-token_key = 'uid'
+token_key = 'id'
 match_pattern = '045496590420'
 zapscript = '**launch.search:Super Smash Bros'
 ```
 
-Replace the barcode value with the one scanned from your game case.
+Replace `045496590420` with the value scanned from your game case. See the [mappings documentation](../features/mappings.md) for file locations, matching rules, and API-managed mappings.

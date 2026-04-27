@@ -1,35 +1,35 @@
 ---
-description: "Use LEGO Dimensions figures as Zaparoo tokens: each tag's unique UID can be mapped to launch a game or trigger any ZapScript action."
+description: "Use LEGO Dimensions tags as Zaparoo tokens by mapping each tag's UID to ZapScript."
 keywords: [lego dimensions zaparoo, lego dimensions nfc, nfc toy game launcher zaparoo]
 ---
 
-# Lego Dimensions
+# LEGO Dimensions
 
-Lego Dimensions character and vehicle tags use [NTAG213](../nfc/ntag.md) NFC chips. Zaparoo can read them, but the data stored on them is encrypted and specific to the Lego Dimensions game, so it can't be used directly.
+LEGO Dimensions character and vehicle tags use [NTAG213](../nfc/ntag.md) NFC chips. Zaparoo can read them, but the data stored on them is encrypted and specific to the LEGO Dimensions game, so it isn't used directly.
 
-Instead, you use [mappings](../../features/mappings.md) to assign an action to each tag based on its UID. Every physical Lego Dimensions tag has a unique UID, so each one is mapped individually.
+Use [mappings](../../features/mappings.md) to assign an action to each tag based on its UID. Every physical LEGO Dimensions tag has its own UID, so each one is mapped individually.
 
 ## Setting up with the Zaparoo App
 
-The easiest way to map a Lego Dimensions tag is through the [Zaparoo App](../../app/index.md):
+You can map a LEGO Dimensions tag through the [Zaparoo App](../../app/index.md):
 
 1. Go to **Create > Add a Mapping**
 2. Tap the **NFC** button and hold the tag to your phone
 3. The UID auto-populates in the token ID field
-4. Write a ZapScript or use the command palette to pick a game
+4. Enter ZapScript or use the command palette to pick a game
 5. Tap **Save mapping**
 
 The mapping syncs to your connected Zaparoo device. Next time that tag is scanned on your reader, it runs the assigned script.
 
 ## Setting up with mapping files
 
-You can also create mappings manually by adding a `.toml` file to your mappings folder. See the [mappings documentation](../../features/mappings.md) for details on file format and location.
+You can also create mappings manually by adding a `.toml` file to Zaparoo Core's `mappings` folder. See the [mappings documentation](../../features/mappings.md) for file locations and matching rules.
 
 ```toml
 [[mappings.entry]]
-token_key = 'uid'
+token_key = 'id'
 match_pattern = '04:b1:2c:d3:e4:5f:70'
-zapscript = '**launch.search:Lego Batman'
+zapscript = '**launch.search:LEGO Batman'
 ```
 
 Replace the UID with the one reported in your Zaparoo logs when scanning the tag.

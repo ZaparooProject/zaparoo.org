@@ -1,35 +1,35 @@
 ---
-description: "NFC tag types for Zaparoo: NTAG215, NTAG213, Mifare Classic, and more. Recommendations for game card collections and what to buy."
+description: "NFC tag types for Zaparoo: NTAG215, NTAG213, MIFARE Classic, and what to buy for game card collections."
 keywords: [zaparoo nfc tags, ntag215 games, nfc cards zaparoo, rfid tags zaparoo]
 ---
 
 # NFC Tags
 
-NFC tags tell the reader and software what action to take. They **do not** contain any games, but instead contain a reference to a game or custom command. This is in the form of a small piece of text stored on the tag.
+NFC tags tell the reader and software what action to take. They **do not** contain games. They store a small piece of [ZapScript](../../zapscript/index.md), such as a game launch command.
 
-Tags come in many form factors and standards. The form factor is entirely your preference, but the standard may affect compatibility with Zaparoo and your particular reader hardware.
+Tags come in many form factors and standards. Cards, stickers, coins, and key fobs all work the same way, but the NFC standard affects compatibility with Zaparoo, phones, and reader hardware.
 
 :::tip Recommended: NTAG215 NFC cards
-NTAG215 gives you 504 bytes of storage, which is enough for most use cases. NTAG213 (144 bytes) can be too small for longer file paths or multiple ZapScript commands. If you're using Title IDs, NTAG213 will work fine.
+NTAG215 has enough room for most Zaparoo tokens. NTAG213 can be too small for longer file paths or multiple ZapScript commands, but it works well when each tag only needs a short value such as a Title ID.
 :::
 
-## Writing to NFC Tags
+## Writing NFC tags
 
-The easiest way to write Zaparoo commands to NFC tags is using the [Zaparoo App](https://zaparoo.app), available for both iOS and Android.
+The [Zaparoo App](../../app/index.md) can write Zaparoo commands to NTAG tags from NFC-capable iPhones and Android phones.
 
 :::tip
-The Zaparoo App's tag writing functionality is available for free. You can start using it right away!
+The Zaparoo App's tag writing feature is free. Pro is only needed when the app acts as a reader using the phone's hardware sensors.
 :::
 
-## Where To Buy
+## Where to buy
 
 :::tip Official Support
 Looking for pre-printed NFC cards? Get them from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> which directly supports the project!
 :::
 
-NFC tags are readily available on Amazon, eBay and AliExpress by searching for the standard, form factor and storage size if applicable (e.g. NTAG215 NFC card, NTAG213 NFC sticker). You'll also find them on many local "NFC" and "ID" related stores. At this stage no difference in quality has been noted between suppliers. AliExpress offers NFC tokens in bulk at low prices.
+NFC tags are available from Amazon, eBay, AliExpress, and specialist NFC suppliers. Search for the standard and form factor, such as `NTAG215 NFC card` or `NTAG213 NFC sticker`. If you're buying new tags for Zaparoo, search for `NTAG215` specifically so you don't accidentally buy [MIFARE Classic](./mifare.md) tags.
 
-## Supported Tag Types
+## Supported tag types
 
-- [NTAG](./ntag.md)
-- [MIFARE Classic](./mifare.md) (supported but not recommended)
+- [NTAG](./ntag.md) is the recommended standard for new Zaparoo NFC tags.
+- [MIFARE Classic](./mifare.md) is supported in some setups, but has more compatibility limits.
