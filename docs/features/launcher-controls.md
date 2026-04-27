@@ -5,7 +5,7 @@ keywords: [zaparoo launcher controls, zapscript control, media.control api, cust
 
 # Launcher Controls
 
-Launcher controls send actions to the launcher handling the currently active media. They are useful for actions like pause, stop, save state, load state, fast forward, rewind, or next and previous track.
+Launcher controls send actions to the launcher handling the currently active media. Use them for actions like pause, stop, save state, load state, fast forward, rewind, or next and previous track.
 
 Control support depends on the active launcher. If no media is active, or the launcher does not support the requested action, the command returns an error.
 
@@ -17,7 +17,7 @@ Launcher controls are still in active development. Only a limited set of built-i
 
 Zaparoo Core asks the active launcher to run a named control action. Official launchers can implement controls directly. [Custom launchers](./launchers.md#controls) can define controls as ZapScript snippets in their launcher configuration.
 
-Defined action names include:
+Built-in action names include:
 
 | Action | Typical use |
 | ------ | ----------- |
@@ -33,7 +33,7 @@ Defined action names include:
 | `next` | Move to the next item |
 | `previous` | Move to the previous item |
 
-Not every launcher supports every action. Use the active media API response to check the available launcher controls for the current media.
+Not every launcher supports every action. Use the [`media`](../core/api/methods.md#media) or [`media.active`](../core/api/methods.md#mediaactive) API response to check the `launcherControls` available for the current media.
 
 ## Current support
 
@@ -69,6 +69,6 @@ Apps and integrations can use the [`media.control`](../core/api/methods.md#media
 
 ## Custom launcher controls
 
-Custom launcher controls are defined in the launcher TOML file. Control scripts run in a restricted runtime: media-launching and playlist commands are blocked, while utility commands such as `input.keyboard`, `execute`, `delay`, and `echo` are allowed.
+Custom launcher controls are defined in the launcher TOML file. Control scripts run in a restricted runtime: media-launching, playlist, and nested `control` commands are blocked, while utility commands such as `input.keyboard`, `execute`, `delay`, and `echo` are allowed. The `execute` command still requires a matching [`allow_execute`](../core/config.md#allow_execute) entry.
 
 See [custom launcher controls](./launchers.md#controls) for configuration details.

@@ -1404,7 +1404,7 @@ Omit or leave empty to disable session limits.
 [playtime.limits]
 session_reset = "20m"  # 20-minute break before new session (default)
 session_reset = "1h"   # 1-hour break before new session
-session_reset = "0"    # Reset immediately (no enforced break)
+session_reset = "0"    # Never reset sessions automatically
 ```
 
 This creates a mandatory cooldown period between sessions when limits are enforced.

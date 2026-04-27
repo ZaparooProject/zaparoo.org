@@ -1,19 +1,19 @@
 ---
-description: "Zaparoo publishers: send real-time token scan and media events to external services like MQTT, webhooks, and custom integrations."
-keywords: [zaparoo publishers, zaparoo events, mqtt events zaparoo, webhook zaparoo, event publisher]
+description: "Configure Zaparoo publishers to send Core events to MQTT brokers and PixelCade LED displays."
+keywords: [zaparoo publishers, zaparoo events, mqtt events zaparoo, pixelcade zaparoo, event publisher]
 ---
 
 # Publishers
 
-Publishers send Zaparoo Core events to external services in real time. When tokens are scanned or media starts and stops, any configured publishers receive a notification. You can filter each one to only forward the event types you care about.
+Publishers send [Zaparoo Core](../core/index.md) notifications to other services in real time. MQTT publishers forward the notification stream as JSON. PixelCade publishers turn media launch notifications into marquee display requests.
 
-Multiple publishers can run at the same time, including multiple of the same type. Each gets the same event stream.
+Multiple publishers can run at the same time, including more than one of the same type. Each one receives the same event stream.
 
 Publishers are configured in `config.toml`. There is no Web UI for this feature.
 
 ## MQTT
 
-The MQTT publisher sends Core events as JSON messages to an MQTT broker. It works well with home automation setups like Home Assistant and Node-RED, or anything else that speaks MQTT.
+The MQTT publisher sends Core notifications as JSON messages to an MQTT broker. Use it with home automation setups like [Home Assistant](https://www.home-assistant.io/) and Node-RED, or any other system that can subscribe to MQTT topics.
 
 Events are published to the configured topic as they fire.
 
@@ -32,7 +32,7 @@ See the [Config File Reference](../core/config.md#servicepublishersmqtt) for all
 
 ## PixelCade
 
-The PixelCade publisher displays game marquee art on a [PixelCade](https://pixelcade.org) LED display. When a game starts, it looks up the console folder for the current system and fetches the matching marquee image. When media stops, you can blank the display, show a default marquee, or leave the last image up.
+The PixelCade publisher displays game marquee art on a [PixelCade](https://pixelcade.org) LED display. When media starts, it maps the Zaparoo system ID to a PixelCade console folder and requests the matching marquee for the launched file.
 
 ```toml
 [[service.publishers.pixelcade]]
@@ -45,12 +45,13 @@ See the [Config File Reference](../core/config.md#servicepublisherspixelcade) fo
 - [`host`](../core/config.md#pixelcade-publisher-host) — hostname or IP address of the PixelCade device (required)
 - [`port`](../core/config.md#pixelcade-publisher-port) — HTTP API port (default: `8080`)
 - [`mode`](../core/config.md#pixelcade-publisher-mode) — `"stream"` or `"write"` endpoint (default: `"stream"`)
-- [`on_stop`](../core/config.md#pixelcade-publisher-on-stop) — what to do when media stops: `"blank"`, `"marquee"`, or `"none"` (default: `"blank"`)
 - [`filter`](../core/config.md#pixelcade-publisher-filter) — limit which event types trigger requests
+
+PixelCade currently only sends requests for `media.started` notifications. Other notification types are ignored even if they pass the filter.
 
 ## Filtering events
 
-Every publisher has a `filter` option that limits which [notification types](../core/api/notifications.md) are forwarded. Leave it empty to receive all events.
+Every publisher has a `filter` option that limits which [notification types](../core/api/notifications.md) it receives. Leave it empty to receive all events.
 
 ```toml
 [[service.publishers.mqtt]]
@@ -62,7 +63,7 @@ filter = [
 ]
 ```
 
-If you only care about media events and not every token scan, filter down to just what you need.
+If you only care about media events and not every token scan, filter down to the event types you need.
 
 ## Multiple publishers
 
@@ -80,5 +81,4 @@ filter = ["media.started", "media.stopped"]
 
 [[service.publishers.pixelcade]]
 host = "192.168.1.50"
-on_stop = "marquee"
 ```

@@ -1,98 +1,112 @@
 ---
-description: Map NFC card UIDs, barcodes, or token values to custom ZapScript commands using Zaparoo mapping files. Perfect for Amiibo and read-only tokens.
+description: Map NFC card UIDs, barcodes, or token text to custom ZapScript commands using Zaparoo mapping files or the Core API.
 keywords: [zaparoo mappings, nfc uid mapping, amiibo mapping, barcode mapping zaparoo, zapscript mapping]
 ---
 
 # Mappings
 
-**Mappings** are a feature of Zaparoo Core to assign custom [ZapScript](../zapscript/index.md) to a token based on some criteria to detect when that token has been scanned. This is useful for making tokens work with Zaparoo that don't have any rewritable storage, such as [barcodes](../tokens/qr-codes.md) and NFC toys like [Amiibos](../tokens/nfc-toys/amiibo.md).
+Mappings let Zaparoo Core run custom [ZapScript](../zapscript/index.md) when a scanned token matches a UID, barcode, stored text, or raw data pattern. They are useful for read-only tokens, including [barcodes](../tokens/qr-codes.md) and NFC toys like [Amiibos](../tokens/nfc-toys/amiibo.md), where you cannot write ZapScript directly to the token.
 
-There are two main methods of managing mappings in an instance of Core. Other applications may use these methods to add management GUIs or automate creation of mappings.
+Core can load mappings from local TOML files or from mappings stored in its database through the API. Database mappings are checked first. If a database mapping matches, Core uses that ZapScript and does not check file mappings or legacy platform mappings.
 
-If there is a conflict between these two methods, the **mappings database will take precedence**, as it's checked first when a scan happens.
+## Mapping files
 
-## Processing Order and Normalization
+Create mapping files in the `mappings` folder inside the Core data folder. Check the page for your [platform](../platforms/index.mdx) to find that folder. You can organize mappings in subfolders, and each mapping file must use the `.toml` extension.
 
-When a token is scanned, Core processes mappings in this specific order:
-
-### Processing Order
-
-1. **Database mappings** (created via API) are checked first, in order of creation
-2. **File mappings** (from `.toml` files) are checked second, in alphanumeric filename order
-3. **Legacy platform mappings** (MiSTer only - for backwards compatibility with old CSV files)
-
-The first matching mapping found will be applied, and no further mappings are evaluated.
-
-### Normalization Rules
-
-- **ID/UID normalization**: When matching against token IDs or UIDs (such as the 7-byte UID on [NTAG](../tokens/nfc/ntag.md) cards), both the pattern and the token ID are normalized by:
-  - Converting to lowercase
-  - Removing spaces and colons
-  - Example: `04:4E:D8:DA:ED:72:81` becomes `044ed8daed7281`
-- **Text and Data matching**: No normalization is applied - patterns must match exactly as stored
-- **Wildcard behavior**: Asterisks (`*`) are treated as wildcards for partial matching, not literal characters
-
-## Mapping Files
-
-In a subfolder called `mappings` in the data folder of Core, it's possible to add any number of [TOML](https://toml.io/en/) files (like the [config file](../core/config.md)) which will define new mappings to be enabled on service start. Check the page for your [platform](../platforms/index.mdx) to see where this folder will be. You can organise your mappings in any number of subfolders.
-
-### Examples
-
-Here are various examples of mapping configurations:
-
-**Basic ID matching** (`nfc-mappings.toml`):
+Each file can contain any number of entries. Every entry starts with `[[mappings.entry]]` and needs at least `match_pattern` and `zapscript`.
 
 ```toml
-# Exact match on NFC tag UID
 [[mappings.entry]]
-token_key = 'id'
 match_pattern = '044ed8daed7281'
 zapscript = '**launch.random:snes'
 ```
 
-**Wildcard matching** (`barcode-mappings.toml`):
+This example matches the NFC tag UID `044ed8daed7281` and runs `**launch.random:snes` instead of any ZapScript stored on the token.
+
+When adding or changing mapping files, restart Core so the changes are loaded. API clients can also call `mappings.reload` when they need to reload file mappings directly.
+
+## Matching fields
+
+Use `token_key` to choose which token field Core should match. If `token_key` is omitted, Core matches against `id`.
+
+| `token_key` | Matches |
+| --- | --- |
+| `id` | The token's identifier, such as an NFC UID or barcode contents. |
+| `value` | The text stored on the token. |
+| `data` | The raw token data as a hexadecimal string. |
+
+For API-managed mappings, the stored type names are also `id`, `value`, and `data`. The API still accepts the older `uid` and `text` names for compatibility, and API responses may return those older names.
+
+## Match patterns
+
+The `match_pattern` value controls how the selected token field is matched.
+
+| Pattern format | Behavior | Example |
+| --- | --- | --- |
+| Plain text | Exact match. For `id` matches, Core normalizes both values by trimming outer whitespace, converting to lowercase, and removing colons. | `044ed8daed7281` |
+| Contains `*` | Partial match. Core removes the `*` characters and checks whether the remaining text appears anywhere in the field. | `978*` matches any ID containing `978`. |
+| Wrapped in `/` | Regular expression. Core removes the surrounding slashes before compiling the expression. | `/^GAME-\d{4}$/` |
+
+For `value` and `data` matches, exact and partial matching use the text exactly as stored. Regex patterns are not normalized.
+
+## Examples
+
+### Match an NFC UID
 
 ```toml
-# Match any barcode starting with "978" (books)
+[[mappings.entry]]
+token_key = 'id'
+match_pattern = '04:4E:D8:DA:ED:72:81'
+zapscript = '**launch.random:snes'
+```
+
+UID matching is normalized, so this also matches `044ed8daed7281`.
+
+### Match a barcode
+
+```toml
 [[mappings.entry]]
 token_key = 'id'
 match_pattern = '978*'
 zapscript = '**launch.search:books'
+```
 
-# Match barcodes containing "pokemon"
+Because `*` creates a partial match, this matches any barcode ID containing `978`.
+
+### Match stored token text
+
+```toml
 [[mappings.entry]]
 token_key = 'value'
 match_pattern = '*pokemon*'
 zapscript = '**launch.random:gbc/*pokemon*'
 ```
 
-**Regular expression matching** (`regex-mappings.toml`):
+### Match with a regular expression
 
 ```toml
-# Match UIDs ending with specific pattern
-[[mappings.entry]]
-token_key = 'id'
-match_pattern = '/.*7281$/'
-zapscript = '**launch.system:nes'
-
-# Match text with specific format
 [[mappings.entry]]
 token_key = 'value'
 match_pattern = '/^GAME-\d{4}$/'
 zapscript = '**launch.favorites'
 ```
 
-**Data-based matching** (`amiibo-mappings.toml`):
+### Match raw token data
 
 ```toml
-# Match Amiibo by raw data pattern
 [[mappings.entry]]
 token_key = 'data'
-match_pattern = '04*0327*'
+match_pattern = '*0327*'
 zapscript = '**launch.system:switch/amiibo'
 ```
 
-**Multiple mappings in one file** (`all-mappings.toml`):
+Raw data is matched as a hexadecimal string.
+
+## Multiple mappings
+
+Core checks database mappings first, then file mappings, then legacy platform mappings such as MiSTer CSV mappings. The first match wins.
+
+Within mapping files, entries are loaded from `.toml` files in the `mappings` folder and its subfolders. File ordering can matter when two mappings could match the same token, so keep more specific mappings before broader ones when they are in the same file.
 
 ```toml
 # NFC tag for SNES games
@@ -113,65 +127,16 @@ match_pattern = 'old-script'
 zapscript = '**launch.system:genesis'
 ```
 
-The first example would trigger on a token with the ID "044ed8daed7281" (an [NFC tag](../tokens/nfc/index.md) UID) and run the ZapScript `**launch.random:snes` instead of whatever value may have been written to the token originally.
+## API-managed mappings
 
-The name of the file doesn't matter except that it must end with the `.toml` file extension. Files in the mappings folder are read in alphanumeric order and stored this way in memory, so it's optional but may be useful to name them with this in mind. A single file may contain any number of entries as long as each mapping has its own `[[mappings.entry]]` header.
+Core also exposes API methods for creating, updating, deleting, listing, and reloading mappings. API-managed mappings are stored in the Core database, can be enabled or disabled without restarting Core, and take precedence over file mappings.
 
-The `token_key` option is the key of a [token object](../tokens/index.md) this mapping will attempt to match against. It accepts 3 possible values:
+| Method | Purpose |
+| --- | --- |
+| `mappings` | List stored mappings. |
+| `mappings.new` | Create a mapping. |
+| `mappings.update` | Update a mapping by ID. |
+| `mappings.delete` | Delete a mapping by ID. |
+| `mappings.reload` | Reload file mappings from disk. |
 
-- `id` (default): Match against the token's unique identifier (UID for NFC tags, barcode content for barcodes, etc.)
-- `value`: Match against the stored text/value on the token
-- `data`: Match against the raw token data as a hexadecimal string
-
-This option is optional and will default to `id` if empty. Note that when using the [Core API](../core/api/index.md) for managing mappings programmatically, these values correspond to `uid`, `text`, and `data` respectively.
-
-The `match_pattern` option is the pattern used to match against the contents of the key above. Its behavior is different depending on the format given:
-
-- By default, the pattern will be treated as an exact match, and must be exactly the same as the given key contents of the token. When matching against a token ID, the contents and pattern are both normalized to remove spaces, colons, and is converted to lowercase. This is to make it easier to match against NFC tag UIDs and barcodes, which do not have a standard display format.
-- If the pattern contains one or more stars (`*`), it will use wildcard matching, treating the asterisks as wildcards that can match any characters. For example, to match part of a UID: `*ed8dae*`
-- If the pattern is surrounded by forward slashes (`/`), it will be treated as a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions). For example: `/.*7281$/`
-
-The `zapscript` option is the actual [ZapScript](../zapscript/index.md) you want to be run when the mapping is matched.
-
-When adding or changing mapping files, the Core service must be restarted before the changes are loaded.
-
-## API-based Mappings Management
-
-In addition to managing mappings through configuration files, Core provides a comprehensive API for creating, updating, and managing mappings programmatically. These API-managed mappings are stored in the Core database and take precedence over file-based mappings.
-
-### Available API Methods
-
-- **`mappings`**: List all stored mappings (both active and inactive)
-- **`mappings.new`**: Create a new mapping with specified parameters
-- **`mappings.update`**: Modify an existing mapping by ID
-- **`mappings.delete`**: Remove a mapping by ID
-- **`mappings.reload`**: Reload file-based mappings from disk
-
-### API Mapping Parameters
-
-When creating or updating mappings via the API, you use these parameters:
-
-- **`label`**: A human-readable display name for the mapping
-- **`enabled`**: Boolean indicating if the mapping is active
-- **`type`**: The token field to match against (`uid`, `text`, or `data`)
-- **`match`**: The matching method (`exact`, `partial`, or `regex`)
-- **`pattern`**: The pattern to match against the token
-- **`override`**: The ZapScript to execute when matched
-
-### Key Differences from File-based Mappings
-
-- API mappings support a `label` field for easier identification
-- API mappings use `uid`/`text`/`data` for the type field (vs `id`/`value`/`data` in files)
-- API mappings can be enabled/disabled without restarting Core
-- API mappings are stored in the database and persist across restarts
-
-### Precedence and Processing Order
-
-When a token is scanned, Core checks mappings in this order:
-
-1. **Database mappings first** (created via API) - checked in order of creation
-2. **File mappings second** (from `.toml` files) - checked in alphanumeric filename order
-
-If any mapping matches, its ZapScript override is used and no further mappings are evaluated.
-
-See the [Core API Methods](../core/api/methods.md#mappings) documentation for detailed examples and complete parameter specifications.
+See the [Core API methods](../core/api/methods.md#mappings) documentation for request parameters and examples.

@@ -1,39 +1,46 @@
 ---
-description: "Zaparoo tags: metadata labels extracted from media filenames for filtering, searching, and resolving title matches in the game library."
-keywords: [zaparoo tags, game tags zaparoo, title id zaparoo, media filtering zaparoo]
+description: "Use Zaparoo tags to choose specific regions, languages, revisions, and other media variants when launching by title ID."
+keywords: [zaparoo tags, title id tags, media tags zaparoo, region tags zaparoo]
 ---
 
 # Tags
 
-Tags are metadata labels automatically extracted from media filenames and used to filter, search, and identify games in Zaparoo. They're a core part of the [title ID system](../zapscript/launch.md#launchtitle) and make it possible to handle conflicts and preferences when matching games.
+Tags are metadata labels that Zaparoo Core extracts from media filenames. They help Core choose between multiple matches for the same title, especially when your library has several regions, languages, revisions, demos, or bad dumps.
 
-:::info Credit
-The Zaparoo tag system is heavily inspired by the [GameDatabase](https://github.com/PigSaint/GameDataBase) project by [PigSaint](https://github.com/PigSaint). GameDatabase is an ambitious project to personally curate and categorize games with a unique hierarchical tagging system. If you find the Zaparoo tag system useful, consider supporting PigSaint's work on [Patreon](https://www.patreon.com/GameDataBase).
-:::
+You will usually see tags when using [title IDs](../zapscript/launch.md#launchtitle). For example, this launches the US version of `Super Mario World` when more than one version is available:
 
-## What Are Tags?
-
-Tags work like search filters on a website. You have your main search query (the game name), and then you can add tags to narrow down results. For example, if you have both European and US versions of a game, you can use a `region:eu` tag to specifically launch the European version.
-
-Tags are organized into **types** (categories) and **values**:
-
-- Tag type: `region` (the category)
-- Tag value: `eu` (the specific region)
-- Full tag: `region:eu`
-
-## Where Tags Come From
-
-### Automatic Extraction
-
-Tags are automatically extracted from filenames during media database updates. Zaparoo recognizes common naming conventions from ROM sets like [No-Intro](https://no-intro.org/) and [TOSEC](https://www.tosec.org/).
-
-For example, this filename:
-
+```zapscript
+@SNES/Super Mario World (region:us)
 ```
+
+## Tag format
+
+Tags use `type:value` format. The type is the category, and the value is the specific label.
+
+| Part | Example |
+| --- | --- |
+| Tag type | `region` |
+| Tag value | `us` |
+| Full tag | `region:us` |
+
+When a tag is part of a title ID, wrap it in parentheses:
+
+```zapscript
+@SNES/Game Title (region:eu) (lang:de)
+```
+
+## Filename tags
+
+During media database updates, Core can parse known filename markers from ROM sets such as [No-Intro](https://no-intro.org/) and [TOSEC](https://www.tosec.org/). This behavior is controlled by [`filename_tags`](../core/config.md#filename_tags), which is enabled by default.
+
+This filename:
+
+```text
 Sonic the Hedgehog (USA, Europe) (En,Fr,De) (Rev A).md
 ```
 
-Generates these tags:
+can produce tags like:
+
 - `region:us`
 - `region:eu`
 - `lang:en`
@@ -41,299 +48,95 @@ Generates these tags:
 - `lang:de`
 - `rev:a`
 
-### Future: Scraped Metadata
+Core also extracts tags from other recognized markers, including years, disc numbers, versions, dumps, prototypes, demos, translations, and re-releases.
 
-In the future, tags will also be generated from scraped metadata sources for additional information like game genres, player counts, and ratings.
+## Using tags in title IDs
 
-## Using Tags
+Use tags when a title ID needs to be more specific than the game name alone.
 
-### In Title IDs
-
-Tags are used in title IDs to resolve conflicts and specify preferences:
-
-**Basic title ID** (no tags):
-```
+```zapscript
 @SNES/Super Mario World
-```
-
-**With region filter** (launches US version):
-```
 @SNES/Super Mario World (region:us)
-```
-
-**With multiple tags** (launches German language, European region):
-```
 @SNES/Super Mario World (region:eu) (lang:de)
-```
-
-**Excluding unwanted versions** (exclude beta versions):
-```
-@SNES/Super Mario World (-unfinished:beta)
-```
-
-**Multiple language options** (English OR French):
-```
+@Genesis/Sonic (+unfinished:demo)
 @SNES/Game Title (~lang:en) (~lang:fr)
 ```
 
-### Tag Operators
+The first example lets Core choose the best match. The others require or exclude specific tagged matches.
 
-Tags support three operators:
+### Operators
 
-- **No operator** or **`+`**: MUST have this tag (AND filter)
-- **`-`**: MUST NOT have this tag (NOT filter)
-- **`~`**: At least ONE of these tags must match (OR filter)
+Tags support three operators in title IDs and `launch.title` tag arguments.
+
+| Syntax | Meaning |
+| --- | --- |
+| `(tag:value)` or `(+tag:value)` | Match must have this tag. |
+| `(-tag:value)` | Match must not have this tag. |
+| `(~tag:value)` | At least one `~` tag must match. |
 
 Examples:
 
-```
-@Genesis/Sonic (+region:us)              # Must be US region
-@Genesis/Sonic (-unfinished:demo)        # Must not be a demo
-@SNES/Game (+lang:en) (-unfinished:beta) # English, not a beta
-@SNES/Game (~lang:en) (~lang:fr)         # English OR French
-```
-
-### In Web UI Search
-
-Tags can be used as search filters in the Web UI media search page. Select tag filters to narrow down results when browsing your media library.
-
-## Common Tag Types
-
-Here are the most useful tag types extracted from filenames:
-
-### Region
-
-Where the game was released:
-
-- `region:us` - United States
-- `region:eu` - Europe
-- `region:jp` - Japan
-- `region:world` - Global release
-- `region:au`, `region:br`, `region:cn`, `region:fr`, `region:de`, `region:it`, `region:kr`, etc.
-
-### Language
-
-Language(s) the game supports:
-
-- `lang:en` - English
-- `lang:fr` - French
-- `lang:de` - German
-- `lang:es` - Spanish
-- `lang:ja` - Japanese
-- `lang:pt`, `lang:it`, `lang:ru`, `lang:zh`, etc.
-
-Multiple languages in a filename like `(En,Fr,De)` generate separate tags for each language.
-
-### Unfinished
-
-Development status and unofficial versions:
-
-- `unfinished:alpha` - Alpha version
-- `unfinished:beta` - Beta version
-- `unfinished:demo` - Demo version
-- `unfinished:proto` - Prototype
-- `unfinished:sample` - Sample version
-
-### Dump Quality
-
-ROM dump quality (from No-Intro/TOSEC naming):
-
-- `dump:verified` - Verified good dump
-- `dump:good` - Good dump
-- `dump:bad` - Bad dump (corrupted)
-- `dump:overdump` - Overdumped ROM
-- `dump:underdump` - Underdumped ROM
-
-### Revision
-
-Game revision or version:
-
-- `rev:a`, `rev:b`, `rev:c` - Alphabetic revisions
-- `rev:1`, `rev:2`, `rev:3` - Numeric revisions
-
-### Video Format
-
-Video standard:
-
-- `video:ntsc` - NTSC (North America, Japan)
-- `video:pal` - PAL (Europe, Australia)
-- `video:pal-60` - PAL at 60Hz
-
-### Year
-
-Release year:
-
-- `year:1991`
-- `year:1996`
-- `year:2004`
-
-### Unlicensed
-
-Unofficial releases:
-
-- `unlicensed:pirate` - Pirated game
-- `unlicensed:bootleg` - Bootleg version
-- `unlicensed:hack` - ROM hack
-- `unlicensed:translation` - Fan translation
-- `unlicensed:trainer` - Game trainer
-
-### Disc/Media
-
-Multi-disc games:
-
-- `disc:1`, `disc:2`, `disc:3` - Disc number
-- `disctotal:2`, `disctotal:3` - Total discs in set
-- `media:side-a`, `media:side-b` - Tape/disc sides
-
-## How Tag Matching Works
-
-When you launch a game using a title ID, Zaparoo uses a multi-step resolution process:
-
-1. **Name matching**: Exact or fuzzy match on the game title
-2. **User tag filters**: If you specified tags, filter to matches with those tags
-3. **Automatic variant exclusion**: Filters out demos, betas, prototypes, alphas, samples, hacks, translations, bootlegs, clones, and bad dumps (unless you explicitly requested one with a positive tag like `+unfinished:demo`)
-4. **Re-release filtering**: Prefers original releases over re-releases and reboxed versions
-5. **Region preferences**: Ranks results based on your configured preferred regions
-6. **Language preferences**: Ranks results based on your configured preferred languages
-7. **File type priority**: Prefers file types based on launcher extension order
-8. **Quality scoring**: Final tie-breaker using filename quality heuristics
-
-This happens in under a second, usually instantly.
-
-## Tag Format
-
-Tags use this format:
-
-```
-type:value
+```zapscript
+@Genesis/Sonic (region:us)
+@Genesis/Sonic (-unfinished:demo)
+@SNES/Game Title (lang:en) (-unfinished:beta)
+@SNES/Game Title (~lang:en) (~lang:fr)
 ```
 
-- All lowercase
-- Spaces become dashes
-- Colons separate type from value
-- Hierarchical values use more colons (e.g., `gamegenre:rpg:action`)
+The `tags` argument uses the same operators without parentheses:
 
-When writing tags in title IDs, wrap them in parentheses:
-
-```
-@SNES/Game Name (tag1:value1) (tag2:value2)
+```zapscript
+**launch.title:Genesis/Sonic?tags=region:us,lang:en
+**launch.title:Genesis/Sonic?tags=region:us,-unfinished:demo
 ```
 
-## Examples
+## Matching behavior
 
-### Choosing a Specific Region
+When you launch by title ID, Core matches the title first, then uses tags to narrow or rank the results.
 
-**Problem**: You have multiple regional versions and want a specific one
+Core also filters out some variants by default, including demos, betas, prototypes, hacks, translations, bootlegs, re-releases, and bad dumps. If you want one of those variants, request it with a positive tag:
 
-```
-Street Fighter II (USA).md
-Street Fighter II (Europe).md
-Street Fighter II (Japan).md
-```
-
-**Solution**: Use region tags to specify which version
-
-```
-@SNES/Street Fighter II (region:us)   # Launch US version
-@SNES/Street Fighter II (region:eu)   # Launch EU version
-@SNES/Street Fighter II (region:jp)   # Launch JP version
+```zapscript
+@Genesis/Sonic (+unfinished:demo)
+@SNES/Game Title (+unfinished:beta)
+@SNES/Game Title (+unlicensed:translation)
 ```
 
-Without tags, the resolution will use your configured region preferences from `config.toml`.
+If several good matches remain, Core applies your configured region and language preferences, then other scoring rules such as launcher file type priority and filename quality.
 
-### Language Preference
+## Default regions and languages
 
-**Problem**: You want a specific language version of a multilingual game
-
-```
-@SNES/Super Mario World (lang:de)     # German version
-@SNES/Game (~lang:en) (~lang:fr)      # English OR French
-```
-
-### Specific Revision
-
-**Problem**: Multiple revisions exist and you want a specific one
-
-```
-@N64/Legend of Zelda Ocarina of Time (rev:a)
-```
-
-### Explicitly Requesting a Demo or Beta
-
-**Problem**: You specifically want to play a demo/beta version
-
-```
-@Genesis/Sonic (+unfinished:demo)     # Launch demo version
-@SNES/Game (+unfinished:beta)         # Launch beta version
-```
-
-Note: Without explicit positive tags like these, demos and betas are automatically excluded. Using `-unfinished:demo` is unnecessary since they're already filtered out by default.
-
-## Advanced: Setting Default Preferences
-
-You can set your preferred languages and regions in the [config file](../core/config.md) so Zaparoo automatically prioritizes them when resolving titles without explicit tags:
+Set default preferences in the [`media`](../core/config.md#media) config section when you want Core to prefer certain regions or languages without writing tags into every title ID.
 
 ```toml
-[preferences]
-languages = ["en", "de"]
-regions = ["us", "eu"]
+[media]
+default_regions = ["us", "eu", "world"]
+default_langs = ["en", "de"]
 ```
 
-With these preferences set, searching for `@SNES/Super Mario World` will automatically prefer English language and US/EU regions if multiple versions exist.
+With those preferences, `@SNES/Super Mario World` will prefer matching US, European, or World releases, and English or German language tags, when those tags are present.
 
-## Complete Tag Type Reference
+## Useful tag types
 
-### Automatically Extracted from Filenames
+These are the tag types most likely to matter when writing title IDs by hand.
 
-These tags are extracted during media database updates:
+| Tag type | Used for | Examples |
+| --- | --- | --- |
+| `region` | Release region | `region:us`, `region:eu`, `region:jp`, `region:world` |
+| `lang` | Language | `lang:en`, `lang:fr`, `lang:de`, `lang:ja` |
+| `rev` | Revision or version | `rev:a`, `rev:b`, `rev:1`, `rev:prg0` |
+| `year` | Release year | `year:1991`, `year:1996`, `year:19xx` |
+| `unfinished` | Pre-release or incomplete builds | `unfinished:alpha`, `unfinished:beta`, `unfinished:demo`, `unfinished:proto` |
+| `dump` | Dump quality or dump status | `dump:verified`, `dump:bad`, `dump:overdump`, `dump:underdump` |
+| `unlicensed` | Unofficial releases and modifications | `unlicensed:bootleg`, `unlicensed:hack`, `unlicensed:translation` |
+| `rerelease` | Digital re-releases and collections | `rerelease:virtualconsole:wii`, `rerelease:mdmini:1` |
+| `reboxed` | Re-releases and packaging variants | `reboxed:playerschoice`, `reboxed:satakore` |
+| `disc` and `disctotal` | Multi-disc sets | `disc:1`, `disc:2`, `disctotal:3` |
+| `media` | Media type or side | `media:disc`, `media:tape`, `media:side-a` |
+| `video` | Video standard | `video:ntsc`, `video:pal`, `video:pal-60` |
 
-| Tag Type       | Description                                     | Examples                            |
-| -------------- | ----------------------------------------------- | ----------------------------------- |
-| `region`       | Release region                                  | `us`, `eu`, `jp`, `world`           |
-| `lang`         | Language                                        | `en`, `fr`, `de`, `ja`              |
-| `year`         | Release year                                    | `1991`, `1996`, `2004`, `19xx`      |
-| `unfinished`   | Development status                              | `alpha`, `beta`, `demo`, `proto`    |
-| `dump`         | ROM dump quality                                | `verified`, `bad`, `cracked`        |
-| `rev`          | Revision number                                 | `a`, `b`, `1`, `2`, `prg0`          |
-| `video`        | Video format                                    | `ntsc`, `pal`, `pal-60`, `vga`      |
-| `unlicensed`   | Unofficial releases                             | `pirate`, `hack`, `translation`     |
-| `disc`         | Disc number (multi-disc games)                  | `1`, `2`, `3`                       |
-| `disctotal`    | Total discs in set                              | `2`, `3`, `4`                       |
-| `media`        | Media type/side                                 | `disc`, `tape`, `side-a`, `cart`    |
-| `alt`          | Alternate version                               | `alt`, `1`, `2`                     |
-| `set`          | Set number                                      | `1`, `2`                            |
-| `edition`      | Edition markers                                 | `version`, `edition`, `remaster`    |
-| `copyright`    | Copyright status (TOSEC)                        | `pd`, `fw`, `sw`                    |
-| `addon`        | External peripherals required/recommended       | `controller:rumble`, `lightgun:zapper` |
-| `embedded`     | Internal cartridge hardware                     | `chip:sa1`, `backup:battery`        |
-| `arcadeboard`  | Arcade system boards                            | `capcom:cps2`, `sega:system16`      |
-| `compatibility`| System compatibility                            | `gameboy:color`, `amiga:a1200`      |
-| `reboxed`      | Re-releases and special editions                | `satakore`, `playerschoice`         |
-| `port`         | Ported from other platforms                     | `arcade`, `commodore:c64`           |
-| `rerelease`    | Digital re-releases and collections             | `virtualconsole:wii`, `mdmini:1`    |
-| `multigame`    | Multi-game compilations                         | `compilation`, `vol:1`, `menu`      |
-| `distribution` | Digital distribution platforms                  | `virtualconsole`, `wiiware`         |
-| `supplement`   | Supplementary content                           | `dlc`, `expansion`, `update`        |
+Core defines many more tag types than this, including hardware add-ons, embedded cartridge chips, compatibility tags, publishers, developers, genres, and player counts. Most users do not need to write those by hand.
 
-### Future: Scraped Metadata Tags
+## Credit
 
-These will be available when metadata scraping is implemented:
-
-| Tag Type        | Description                | Examples                               |
-| --------------- | -------------------------- | -------------------------------------- |
-| `gamegenre`     | Game genre                 | `action`, `rpg`, `racing:driving`      |
-| `players`       | Player count/modes         | `1`, `2`, `4`, `coop`, `vs`            |
-| `input`         | Input devices              | `joystick:4`, `lightgun`, `paddle`     |
-| `save`          | Save mechanism             | `backup`, `password`                   |
-| `based`         | Source material            | `movie`, `manga`, `anime`              |
-| `search`        | Search metadata            | `franchise:castlevania`, `tate:cw`     |
-| `perspective`   | Camera view angle          | `firstperson`, `topdown`, `isometric`  |
-| `art`           | Art style                  | `2d`, `3d`, `pixelart`, `celshaded`    |
-| `accessibility` | Accessibility features     | `visual:colorblindmode`, `audio:subtitles` |
-| `season`        | TV season number           | `1`, `2`                               |
-| `episode`       | TV episode number          | `1`, `2`                               |
-| `track`         | Music track number         | `1`, `2`                               |
-| `issue`         | Comic/magazine issue       | `1`, `2`                               |
-| `volume`        | Comic/book volume          | `1`, `2`                               |
-| `extension`     | File extension             | Dynamic based on system configurations |
-| `mameparent`    | MAME parent ROM relationship| Dynamic ROM names                     |
+Zaparoo's tag taxonomy is inspired by [GameDataBase](https://github.com/PigSaint/GameDataBase), a game metadata project by [PigSaint](https://github.com/PigSaint). GameDataBase uses a deeper hierarchical tag system; Zaparoo uses simpler `type:value` tags for filename parsing and title matching.

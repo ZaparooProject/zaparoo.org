@@ -5,11 +5,11 @@ keywords: [zaparoo systems, zaparoo emulator systems, system identifier zaparoo,
 
 # Systems
 
-A system is a category used by [Core](../core/index.md) to group scanned media together, which is used to help matching with [launchers](./launchers.md) and when writing [ZapScript](../zapscript/index.md) commands.
+A system is a category [Zaparoo Core](../core/index.md) uses to group scanned media. Systems help Core match media to [launchers](./launchers.md), and you can use them in [ZapScript](../zapscript/index.md) commands.
 
-Generally, a system will refer to a console or computer system, but can be used for any media type. Each [platform](../platforms/index.mdx) has its own set of supported systems, based on the launchers it has available.
+Most systems refer to a console, handheld, computer, or arcade platform, but systems can also describe other media types like movies, music, and images. Each [platform](../platforms/index.mdx) supports the systems its launchers can handle.
 
-System IDs are case-insensitive and are used in [configuration files](../core/config.md) and [ZapScript](../zapscript/index.md) commands. Below is a complete reference of all available systems organized by category.
+System IDs are case-insensitive in [configuration files](../core/config.md) and ZapScript commands. This page lists the user-facing system IDs, explicit aliases, and fallback systems built into Core.
 
 ## Game Consoles
 
@@ -226,22 +226,22 @@ System IDs are case-insensitive and are used in [configuration files](../core/co
 | `Image` | Image Files | | |
 | `iOS` | iOS | | |
 | `J2ME` | Java ME | | |
-| `Movie` | Movie Files | | |
-| `MusicAlbum` | Music Albums | | |
-| `MusicArtist` | Music Artists | | |
-| `MusicTrack` | Music Tracks | `Music` | |
+| `Movie` | Movie Files | | `Video` |
+| `MusicAlbum` | Music Albums | | `Audio` |
+| `MusicArtist` | Music Artists | | `Audio` |
+| `MusicTrack` | Music Tracks | `Music` | `Audio` |
 | `Pico8` | PICO-8 | | |
 | `PlugNPlay` | Plug & Play TV Games | | |
 | `TIC80` | TIC-80 | | |
-| `TVEpisode` | TV Episodes | `TV` | |
-| `TVShow` | TV Shows | | |
+| `TVEpisode` | TV Episodes | `TV` | `Video` |
+| `TVShow` | TV Shows | | `Video` |
 | `Video` | Video Files | | |
 
 ## Usage Notes
 
 - **System IDs are case-insensitive** when used in configuration files and ZapScript commands
-- **Aliases**: Many systems have alternative names that can be used interchangeably (e.g., `Genesis` and `MegaDrive`, `GB` for `Gameboy`, `N64` for `Nintendo64`, `Music` for `MusicTrack`, `TV` for `TVEpisode`)
-- **Fallbacks**: Some systems can fall back to compatible systems when launchers aren't available (e.g., Game Boy Color games can fallback to Game Boy, Sega CD can fallback to Genesis)
+- **Aliases** are explicit alternative names that Core treats as the same system, such as `MegaDrive` for `Genesis`, `GB` for `Gameboy`, or `N64` for `Nintendo64`
+- **Fallbacks** let Core try related systems when looking for a launcher. For example, `GameboyColor` can fall back to `Gameboy`, and `MegaCD` can fall back to `Genesis`
 - Not all systems are supported on every platform - check your [platform's documentation](../platforms/index.mdx) for launcher-specific support
 - System defaults can be configured in your [configuration file](../core/config.md#systems)
 - Systems are used in [ZapScript](../zapscript/index.md) commands for launching specific system types

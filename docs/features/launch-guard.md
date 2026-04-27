@@ -1,11 +1,11 @@
 ---
 description: "Zaparoo Launch Guard: prevent accidental game switches by requiring a deliberate second scan before switching from active media."
-keywords: [zaparoo launch guard, accidental launch protection, zaparoo hold mode, token scan guard]
+keywords: [zaparoo launch guard, accidental launch protection, staged token, token scan guard]
 ---
 
 # Launch Guard
 
-Launch guard protects your active game session from accidental token scans. When enabled, tokens scanned while media is playing are *staged* first. A second deliberate action is required before the game switches.
+Launch guard protects your active game session from accidental token scans. When enabled, tokens scanned while media is playing are *staged* first. A second deliberate action is required before Zaparoo switches games.
 
 ## Setup
 
@@ -31,15 +31,15 @@ See the [Config File Reference](../core/config.md#launch-guard-config) for all o
 
 Launch guard only activates when media is currently playing. If nothing is playing, all tokens launch as normal.
 
-Not all tokens are staged, only those whose ZapScript would disrupt the active session. That includes any `launch`, `playlist.*`, or `stop` command. Utility commands like `input.keyboard`, `http.get`, `coin.insert`, and similar pass through immediately without staging. If a token's script can't be parsed, it's staged conservatively.
+Not every token is staged. Launch guard checks the token's [ZapScript](../zapscript/index.md), including any mapped script, and only stages scans that would disrupt the active session. That includes media-launching commands, `playlist.*`, and `stop`. Utility commands like `input.keyboard`, `http.get`, `input.coinp1`, and similar pass through immediately. If the script can't be parsed, it's staged conservatively.
 
 ### The staging flow
 
 When a disrupting token is staged:
 
-1. A pending sound plays and a [`tokens.staged`](../core/api/notifications.md) notification is sent with the token's details.
+1. A pending sound plays and a [`tokens.staged`](../core/api/notifications.md#tokensstaged) notification is sent with the token's details.
 2. A timeout timer starts (default 15 seconds). If no confirmation arrives before it expires, the staged token is silently dropped.
-3. If a `delay` is configured, re-tap confirmation is blocked until the delay expires. Re-tapping the same card during this window resets both timers, so confirmation is not accepted until the full delay passes. When the delay expires, a ready sound plays and a [`tokens.staged.ready`](../core/api/notifications.md) notification is sent.
+3. If a `delay` is configured, re-tap confirmation is blocked until the delay expires. Re-tapping the same card during this window resets both timers, so confirmation is not accepted until the full delay passes. When the delay expires, a ready sound plays and a [`tokens.staged.ready`](../core/api/notifications.md#tokensstagedready) notification is sent.
 
 If a different disrupting token is scanned while one is already staged, it replaces the staged token and the timers restart from scratch.
 
@@ -105,6 +105,6 @@ The staged token waits indefinitely until confirmed, replaced by another scan, o
 
 The [`confirm`](../core/api/methods.md#confirm) method launches the currently staged token and bypasses the delay. It returns an error if nothing is staged.
 
-The [`tokens.staged`](../core/api/notifications.md) and [`tokens.staged.ready`](../core/api/notifications.md) notifications carry the staged token's details (type, UID, text, scan time) and can be used to drive external UI or automation.
+The [`tokens.staged`](../core/api/notifications.md#tokensstaged) and [`tokens.staged.ready`](../core/api/notifications.md#tokensstagedready) notifications carry the staged token's details (type, UID, text, data, scan time) and can be used to drive external UI or automation.
 
-A reference implementation using an LED and momentary switch on Raspberry Pi GPIO is available at [`scripts/examples/launch_guard_gpio.py`](https://github.com/ZaparooProject/zaparoo-core/blob/main/scripts/examples/launch_guard_gpio.py) in the zaparoo-core repo. It connects to Zaparoo over the network, listens for `tokens.staged` events, and calls `confirm` when the button is pressed.
+A reference implementation using an LED and momentary switch on Raspberry Pi GPIO is available at [`scripts/examples/launch_guard_gpio.py`](https://github.com/ZaparooProject/zaparoo-core/blob/main/scripts/examples/launch_guard_gpio.py) in the Zaparoo Core repo. It connects to Zaparoo over the network, listens for `tokens.staged` events, and calls `confirm` when the button is pressed.
