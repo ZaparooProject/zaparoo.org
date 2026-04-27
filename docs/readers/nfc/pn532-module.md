@@ -5,7 +5,7 @@ keywords: [pn532 module, pn532 uart, pn532 i2c, diy nfc reader zaparoo, pn532 wi
 
 # PN532 Module
 
-<img className="readerHeroImage" src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
+<img className="docHeroImage" src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
 
 The PN532 Module is a bare NFC reader board for custom builds. It can scan and write supported [NFC tags](../../tokens/nfc/index.md) through Zaparoo. Use it when you want to mount a reader inside a case, wire it into another device, or connect it directly to a board that exposes UART or I2C.
 

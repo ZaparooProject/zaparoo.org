@@ -7,7 +7,7 @@ keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, 
 
 # ACR122U
 
-<img className="readerHeroImage" src="/img/docs/readers/ACR122U-NFC-reader.jpg" alt="An ACR122U NFC reader" width="300" />
+<img className="docHeroImage" src="/img/docs/readers/ACR122U-NFC-reader.jpg" alt="An ACR122U NFC reader" width="300" />
 
 The ACR122U, also sold as ACR122, is a USB NFC reader in a finished case with a built-in cable, status LED, and beeper. It can scan supported Zaparoo [NFC tags](../../tokens/nfc/index.md) and cards, but it has more compatibility caveats than the [PN532 USB](./pn532-usb.md).
 

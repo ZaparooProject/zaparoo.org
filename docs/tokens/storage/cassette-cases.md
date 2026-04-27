@@ -1,61 +1,75 @@
 ---
-description: "Store Zaparoo NFC cards in retro cassette tape cases: a nostalgic way to display and organize your physical game collection."
+description: "Store Zaparoo NFC cards in cassette tape cases with printable covers and optional 3D printed card inserts."
 keywords: [zaparoo cassette cases, nfc card storage, retro game card case, zaparoo collection]
 ---
 
 # Cassette Cases
 
-<img src="/img/docs/tokens/cassette-Front.jpg" alt="The Front Art of the Cassette Tape Cases" width="300" /> <img src="/img/docs/tokens/cassette-Back.jpg" alt="The Back Artwork of the Cassette Tape Cases" width="300" />
+<Gallery
+  photos={[
+    {
+      src: "/img/docs/tokens/cassette-Front.jpg",
+      width: 1200,
+      height: 421,
+      alt: "Front artwork for a cassette case cover"
+    },
+    {
+      src: "/img/docs/tokens/cassette-Back.jpg",
+      width: 1200,
+      height: 759,
+      alt: "Back artwork for a cassette case cover"
+    },
+    {
+      src: "/img/docs/tokens/cassette-Spine.jpg",
+      width: 1824,
+      height: 1026,
+      alt: "Spine artwork for cassette case covers"
+    }
+  ]}
+/>
 
-Cassette cases provide a nostalgic and practical way to store and display your Zaparoo NFC cards. These cases allow you to maintain a physical collection while keeping your digital games organized and easily accessible.
+Cassette cases are a compact way to store and display [Zaparoo NFC cards](../nfc/index.md). Add printed wrap covers and the cases start to feel like a physical shelf for a digital game library.
 
-## Overview
+## Getting started
 
-<img src="/img/docs/tokens/cassette-Spine.jpg" alt="Spine Artwork of the Cassette Tape Cases" width="300" />
+### Templates and covers
 
-With the shift to digital gaming, physical media collections have become less common. Cassette cases offer a way to maintain a physical presence for your digital collection without requiring extensive storage space.
+You can create covers in [Zaparoo Designer](../../designer/index.md) by choosing the **Cassette tape case** media type and one of the cassette cover templates.
 
-These custom cassette tape covers are designed to store Zaparoo NFC cards, allowing you to:
+Another option is the [NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator), a desktop app by [Anime0t4ku](https://github.com/Anime0t4ku). It exports a single print-ready wrap cover with the back, spine, and front artwork combined.
 
-- Visually identify your games while stored
-- Maintain a physical collection
-- Keep your cards organized and protected
-
-## Getting Started
-
-### Templates and Covers
-
-You can create your own covers using the [NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator), a desktop app by Anime0t4ku. It generates print-ready cassette wrap covers with:
+The standalone generator includes:
 
 - Live full-wrap preview (back, spine, front)
-- SteamGridDB and TMDB artwork integration
-- Customizable colors, logos, and layouts
+- SteamGridDB and TMDB artwork import
+- Custom colors, logos, and layouts
 - Reusable templates
 
-### Printing Instructions
+### Printing instructions
 
-For best results:
+For printing:
 
-- Use Glossy Photo Paper
-- Use software like IrfanView to set up printing dimensions
+- Glossy photo paper works well for cassette covers.
+- Use your printer or image software to print at the exact dimensions below.
 
-#### Print Dimensions
+#### Print dimensions
 
 - Width: 4.11" (10.44 cm)
 - Height: 4" (10.16 cm)
 
-### Card Storage
+### Card storage
 
-For credit card shaped NFC cards, consider using a [3D printable inlay](https://www.printables.com/model/950825-tapto-cassette-case-insert). Available options include:
+For credit card size NFC cards, a [3D printable inlay](https://www.printables.com/model/950825-tapto-cassette-case-insert) can hold the cards inside the cassette case. The linked model includes:
 
 - Single card holder
 - Double card holder
 - Triple card holder
 
-## GameBoy Cartridge Storage
+## Game Boy cartridge storage
 
-<img src="/img/docs/tokens/cassette-gb.png" alt="GameBoy Cartridges" width="300" />
-Cassette cases can also be used to store GameBoy cartridges. To use them for this purpose:
+<img src="/img/docs/tokens/Cassette-gb.png" alt="Game Boy cartridges stored in cassette cases" width="300" />
 
-1. Modify the cases by cutting the pins
-2. Use a [3D printable insert](https://www.printables.com/model/958451-gameboy-cassette-case-insert) for perfect fit
+Cassette cases can also store Game Boy cartridges with a different insert:
+
+1. Remove or trim the internal cassette pins from the case.
+2. Use a [3D printable Game Boy cartridge insert](https://www.printables.com/model/958451-gameboy-cassette-case-insert).

@@ -5,44 +5,65 @@ keywords: [zaparoo pcb cards, custom nfc game cards, pcb nfc zaparoo, diy game c
 
 # PCB Cards
 
-Want to have some cool little PCB cards for your favorite games? All you need to do is order some of these, print some labels and stick on an NFC sticker. Please note that the small Switch cards will need smaller rectangle type NFC tags but the medium and large sized cards can take either. PCB cards project for Zaparoo was created by TheTrain.
+<img className="docHeroImage" src="/img/docs/tokens/PCB_cards_with_NFC_card.jpg" alt="PCB cards with an NFC card" width="300" />
 
-<img src="/img/docs/tokens/PCB_cards_with_NFC_card.jpg" alt="PCB cards with NFC card" width="300" />
+PCB cards are custom circuit-board blanks that you can turn into Zaparoo tokens with an NFC sticker and a printed label. The Switch-sized cards need smaller rectangular NFC stickers. Medium cards have more room and can use a wider range of NFC sticker shapes.
+
+The PCB cards project for Zaparoo was created by [TheTrain](https://github.com/TheTrainGoes).
 
 ## Ordering
 
-### Which PCB Type To Order?
+### Which PCB type to order?
 
-These cards are currently done in either 2-layer PCBs or 6-layer PCBs. This is because JLC PCB has great offers for doing small batch runs of green 6-layer PCBs with ENIG (gold) finish.
+These cards are designed around small PCB runs from JLCPCB. The files in the hardware repo include Switch and Medium card designs.
 
-Due to size limitations on this deal (max 50mm x 50mm) it will only work for the switch and medium sized cards and you are limited to green PCBs. If you want to get another color, or do normal sized cards you will need to get some of the 2-layer PCB files.
+JLCPCB's low-cost options change over time, but the main tradeoff is usually board layer count, finish, color, and maximum board size. Green 6-layer PCBs with ENIG gold finish can be a good fit for small cards when that offer is available. Other colors or larger cards may need 2-layer PCB options instead.
 
-JLC PCB has the same great offers on 2-layer PCBs without ENIG finish (boards will be silver) at a size up to 100mm x 100mm.
+JLCPCB's 2-layer PCB options usually support larger board sizes, but the standard finish is silver instead of gold.
 
-Gerber files to be uploaded to PCB manufacturer:
+Download the Gerber files from the Zaparoo hardware repo and upload them to your PCB manufacturer:
 
 - [Switch Card PCB](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/pcb-cards/Switch%20Card%20PCB)
 - [Medium Card PCB](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/pcb-cards/Medium%20Card%20PCB)
 
-<img src="/img/docs/tokens/Full_size_PCB_cards.jpg" alt="Full size PCB cards" width="200" /> <img src="/img/docs/tokens/Medium_size_PCB_cards.jpg" alt="Medium size PCB cards" width="200" /> <img src="/img/docs/tokens/Switch_size_PCB_cards.jpg" alt="Switch size PCB cards" width="200" />
+<Gallery photos={[
+  {
+    src: "/img/docs/tokens/Full_size_PCB_cards.jpg",
+    width: 1845,
+    height: 1805,
+    alt: "Full-size PCB cards"
+  },
+  {
+    src: "/img/docs/tokens/Medium_size_PCB_cards.jpg",
+    width: 2784,
+    height: 2816,
+    alt: "Medium-size PCB cards"
+  },
+  {
+    src: "/img/docs/tokens/Switch_size_PCB_cards.jpg",
+    width: 2552,
+    height: 2552,
+    alt: "Switch-size PCB cards"
+  }
+]} />
 
-### 2-Layer PCBs from JLC PCB
+### 2-layer PCBs from JLCPCB
 
-1. Go to [JLCPCB.com](https://JLCPCB.com)
-2. Click on `Order Now`
-3. Click on `Add Gerber file` and choose the 2-layer gerber you wish to have fabricated
+1. Go to [JLCPCB.com](https://jlcpcb.com/).
+2. Click **Order Now**.
+3. Click **Add Gerber file** and choose the Gerber zip you want to fabricate.
 4. Choose the following options for the board:
    - Base Material = FR-4
    - Layers = 2 (should auto-populate)
    - Dimensions = (should auto-populate)
-     - 21.5mm \* 31.1mm for the Switch cards
-     - 30.25mm x 50.25mm for the medium sized cards
+      - 21.5mm x 31.1mm for the Switch cards
+      - 30.25mm x 50.25mm for the medium-sized cards
    - PCB Qty = 5
    - Product Type = Industrial/Consumer electronics
    - Different Design = 1
    - Delivery Format = Single PCB
    - PCB Thickness = 1.6mm
-   - PCB Color = Any color you like
+   - PCB Color = any color you like
    - Silkscreen = (defaults to white for all except white boards which is black)
    - Surface Finish = HASL(with lead)
    - Outer Copper Weight = 1oz
@@ -55,20 +76,20 @@ Gerber files to be uploaded to PCB manufacturer:
    - Castellated Holes = No
    - Edge Plating = No
    - No advanced options
-5. Click on `SAVE TO CART`
-6. Go through checkout process, ensure to select Global Standard Direct Line shipping to keep costs low
+5. Click **Save to Cart**.
+6. Go through checkout and choose Global Standard Direct Line shipping if you want to keep costs low.
 
-### 6-Layer PCBs from JLC PCB
+### 6-layer PCBs from JLCPCB
 
-1. Go to [JLCPCB.com](https://JLCPCB.com)
-2. Click on `Order Now`
-3. Click on `Add Gerber file` and choose the 6-layer gerber you wish to have fabricated
+1. Go to [JLCPCB.com](https://jlcpcb.com/).
+2. Click **Order Now**.
+3. Click **Add Gerber file** and choose the Gerber zip you want to fabricate.
 4. Choose the following options for the board:
    - Base Material = FR-4
    - Layers = 6 (should auto-populate)
    - Dimensions = (should auto-populate)
-     - 21.5mm \* 31.1mm for the Switch cards
-     - 30.25mm x 50.25mm for the medium sized cards
+      - 21.5mm x 31.1mm for the Switch cards
+      - 30.25mm x 50.25mm for the medium-sized cards
    - PCB Qty = 5
    - Product Type = Industrial/Consumer electronics
    - Different Design = 1
@@ -91,14 +112,14 @@ Gerber files to be uploaded to PCB manufacturer:
    - Gold Fingers = No
    - Castellated Holes = No
    - Edge Plating = No
-5. Click on `SAVE TO CART`
-6. Go through checkout process, ensure to select Global Standard Direct Line shipping to keep costs low
+5. Click **Save to Cart**.
+6. Go through checkout and choose Global Standard Direct Line shipping if you want to keep costs low.
 
 ## Labels
 
-Please check the [Labels](../labels/index.md) page for advice on label printing.
+See the [Labels](../labels/index.md) page for advice on designing and printing card labels.
 
-Card dimensions:
+Label dimensions:
 
 - Switch: 20mm x 20mm
 - Medium: 28mm x 28mm

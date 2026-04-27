@@ -1,74 +1,76 @@
 ---
-description: "Create and use QR codes as Zaparoo tokens: embed ZapScript in a QR code and scan it with the Zaparoo App or a connected camera."
+description: "Create and use QR codes as Zaparoo tokens: embed ZapScript in a QR code and scan it with the Zaparoo App, a serial scanner, or a phone camera."
 keywords: [zaparoo qr codes, qr code game launcher, zapscript qr code, zaparoo app qr]
 ---
 
 # QR Codes
 
-QR codes can be used as tokens for Zaparoo, just like an NFC tag. There are a couple of ways to do it, but essentially it's done by embedding ZapScript in a QR code which will be parsed and launched by Zaparoo when scanned. 
+QR codes can be used as Zaparoo tokens, just like an [NFC tag](./nfc/index.md). A QR code can store [ZapScript](../zapscript/index.md) directly, and Zaparoo runs that ZapScript when the code is scanned.
 
-## QR Code Generator
+## QR code generator
 
 Use the generator below to create QR codes with your ZapScript:
 
 <QRCodeGenerator />
 
-You can also use any standard [QR code generator](https://httpbin.dmuth.org/qrcode/), just paste some ZapScript into the text field of the generator. **Make sure link tracking is disabled in the generator if it supports that.**
+You can also use a standard [QR code generator](https://httpbin.dmuth.org/qrcode/). Paste the ZapScript into the generator's text field and disable link tracking if the generator offers it.
 
 ## Zaparoo App
 
-The [Zaparoo app](https://zaparoo.app) has native support for scanning and launching QR codes using the Pro version. This is the most reliable way to use QR codes, as it doesn't rely on the host device having a static IP address. The app supports parsing standalone ZapScript in a QR code.
+The [Zaparoo App](../app/index.md) can scan QR codes with your phone's camera. If Pro Launch on scan is enabled, the app sends the scanned ZapScript to Zaparoo Core over WiFi. This avoids hard-coding your Core device's IP address into every QR code.
 
 ### Examples
 
 #### Launch a random Genesis game
 
-```
+```zapscript
 **launch.random:genesis
 ```
 
 #### Exit to the menu
 
-```
+```zapscript
 **launch.system:menu
 ```
 
 #### Launch Metal Slug for Neo Geo
 
-```
+```zapscript
 NeoGeo/mslug.zip
 ```
 
-## Phone Camera
+## Phone camera URL
 
-Your phone's camera can also be used, by adding some extra text before the ZapScript using the Zaparoo API. Do the same as above, but with the following text format:
+You can also make a QR code that opens Zaparoo Core's [launch endpoint](../core/api/index.md#launch-endpoint) directly from a normal phone camera app. Use this format:
 
+```text
+http://<IP ADDRESS>:7497/run/<ZAPSCRIPT>
 ```
-http://<IP ADDRESS>:7497:/l/<ZAPSCRIPT>
-```
 
-Replace `<IP ADDRESS>` with your host device's IP address and `<ZAPSCRIPT>` with whatever ZapScript you want to launch. When your phone scans this QR code, it will automatically browse to that URL which hits the API and runs the ZapScript.
+Replace `<IP ADDRESS>` with your Core device's IP address and `<ZAPSCRIPT>` with the ZapScript you want to run. When your phone opens the URL, Core treats it like a token scan.
 
 :::warning
-If your host device's IP address ever changes, you will need to change all the QR codes too.
+Phone-camera URLs depend on your Core device's IP address. If the IP address changes, you need to update the QR codes.
+
+Remote launch requests also need to be allowed by Core's `allow_launch` config setting. If you do not want to enable remote launch URLs, use the Zaparoo App scanning option instead.
 :::
 
 ### Examples
 
 #### Launch a random Genesis game
 
-```
-http://192.168.0.123:7497:/l/**launch.random:genesis
+```text
+http://192.168.0.123:7497/run/**launch.random:genesis
 ```
 
 #### Exit to the menu
 
-```
-http://192.168.0.123:7497:/l/**launch.system:menu
+```text
+http://192.168.0.123:7497/run/**launch.system:menu
 ```
 
 #### Launch Metal Slug for Neo Geo
 
-```
-http://192.168.0.123:7497:/l/NeoGeo/mslug.zip
+```text
+http://192.168.0.123:7497/run/NeoGeo/mslug.zip
 ```

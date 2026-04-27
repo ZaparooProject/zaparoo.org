@@ -87,22 +87,22 @@
     border-radius: 5px;
 }
 
-.readerHeroImage {
+.docHeroImage {
     float: right;
     margin: 0 0 1rem 1.5rem;
     max-width: 300px;
 }
 
-.readerHeroImage ~ .theme-admonition {
+.docHeroImage ~ .theme-admonition {
     display: flow-root;
 }
 
-.readerHeroImage ~ h2 {
+.docHeroImage ~ h2 {
     clear: both;
 }
 
 @media (max-width: 768px) {
-    .readerHeroImage {
+    .docHeroImage {
         float: none;
         display: block;
         margin: 0 0 1rem;
