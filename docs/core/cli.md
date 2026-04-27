@@ -1,223 +1,182 @@
 ---
-description: "Zaparoo Core CLI reference: command-line interface for controlling Zaparoo Core from scripts and terminals on all supported platforms."
+description: "Zaparoo Core command line reference for running ZapScript, calling the Core API, writing tokens, reloading settings, and managing platform services."
 keywords: [zaparoo cli, zaparoo command line, zaparoo core cli, zaparoo scripting cli]
 ---
 
 # Command Line
 
-Most [Zaparoo Core](./index.md) distributions ship with a common command line interface (CLI) that can be used to interact with the [API](./api/index.md). This interface is the same on every platform that supports it, and can be safely used as a scripting target.
+Zaparoo Core includes a command line interface for local scripting, quick tests, and platform service management. Most action flags call the local [Core API](./api/index.md), so Core needs to be running and reachable on the same device unless the flag starts or manages the service itself.
 
-The name of the Zaparoo core binary may differ slightly on your platform. For example, [MiSTer](../platforms/mister/index.md) ships with a binary named `zaparoo.sh`, whereas [Linux](../platforms/linux/index.md) ships with a binary named `zaparoo`. Functionally they're the same, just replace the filename in the examples.
+The executable name depends on the platform. [MiSTer FPGA](../platforms/mister/index.md) uses `zaparoo.sh`, while [Linux](../platforms/linux/index.md) usually uses `zaparoo`. Replace the executable name in the examples with the one from your platform.
 
-:::note Windows
-The [Windows](../platforms/windows/index.md) distribution does not support CLI flags and always runs with a GUI (system tray).
-:::
+```bash
+./zaparoo -version
+./zaparoo -run "**launch.system:menu"
+```
 
-## Common Flags
+Run `-help` on your installed binary for the exact flags supported by that build.
 
-These flags are available on all platforms:
+## Common flags
 
-### Help
+These flags are defined by the shared Core CLI and are available in current command-line builds.
 
-- **Flag:** `-help`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -help`
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-help` | None | Prints the available flags for the current binary. |
+| `-version` | None | Prints the binary version and platform ID, then exits. |
+| `-run` | ZapScript string | Runs text as [ZapScript](../zapscript/index.md), like a scanned token. |
+| `-launch` | ZapScript string | Deprecated alias of `-run`. |
+| `-api` | `method:params` | Calls one [Core API method](./api/index.md) and prints the response. |
+| `-read` | None | Prints the next scanned token without running its actions. |
+| `-write` | Text string | Writes text to the next token found by a write-capable reader. |
+| `-reload` | None | Reloads `config.toml` and mapping files from disk. |
+| `-pair` | None | Starts app/client pairing and prints the pairing result when complete. |
 
-The most important one. This will output a list of all available command line flags along with a brief summary of each.
+The `-config` flag may appear in `-help` output because it is still defined by the shared parser. In current Core source it does not run a separate action; start the platform UI or use the [Web UI](../app/web.md) for configuration instead.
 
-### Version
+## Run ZapScript
 
-- **Flag:** `-version`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -version`
+Use `-run` when you want the CLI to behave like a scanned token. The argument is ZapScript, so it can be a media path, launcher command, input command, or several commands joined with `||`.
 
-Outputs this Zaparoo binary's build version (not the currently started API service).
+```bash
+./zaparoo -run "**launch.system:menu"
+./zaparoo -run "SNES/Super Metroid.sfc"
+```
 
-### API Request
+`-launch` still works as an alias for older scripts, but new scripts should use `-run`.
 
-- **Flag:** `-api`
-- **Argument:** string
-- **Example:** `./zaparoo -api 'launch:{"text":"**launch.system:menu"}'`
+## Call the API
 
-Sends a single request to the [Zaparoo API](./api/index.md), waits for a response and then outputs the result body of that response. The format is `method:parameters` where parameters is a JSON string.
+Use `-api` to send one raw API call to the local Core service. The format is the method name, a colon, then the JSON parameters for that method.
 
-### Run
+```bash
+./zaparoo -api 'run:{"text":"**launch.system:menu"}'
+./zaparoo -api 'settings.reload'
+```
 
-- **Flag:** `-run`
-- **Argument:** string
-- **Example:** `./zaparoo -run "**launch.random:arcade"`
+If the method does not need parameters, omit the colon and JSON body. The CLI prints the response body returned by Core.
 
-Sends the string argument to the API via the run method, as if a token with that text on it was scanned.
+For method names and parameter shapes, see the [API methods reference](./api/methods.md).
 
-### Launch (Deprecated)
+## Read or write tokens
 
-- **Flag:** `-launch`
-- **Argument:** string
-- **Example:** `./zaparoo -launch "**launch.random:arcade"`
+Use `-read` to wait for the next token scan and print its stored text without running the token.
 
-:::caution Deprecated Feature
-This flag is deprecated and is an alias of `-run`. Use `-run` instead.
-:::
+```bash
+./zaparoo -read
+```
 
-### Write
+Use `-write` to write text to the next token detected by a write-capable reader.
 
-- **Flag:** `-write`
-- **Argument:** string
-- **Example:** `./zaparoo -write "SNES/MyGame.sfc"`
+```bash
+./zaparoo -write "SNES/Super Metroid.sfc"
+./zaparoo -write "**launch.system:menu"
+```
 
-If a [reader](../readers/index.md) is physically connected to the device and has the capability to write to a token, try to write the given string to that token. Reports an error if the token couldn't be written and times out after 30 seconds.
+While reading or writing, Core temporarily disables normal ZapScript execution so the scanned token is handled by the CLI action instead of launching media.
 
-### Read
+## Reload settings
 
-- **Flag:** `-read`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -read`
+Use `-reload` after editing the [config file](config.md) or [mapping files](../features/mappings.md) while Core is running.
 
-Print the next scanned token without running any actions. Useful for debugging or checking what text is stored on a token.
+```bash
+./zaparoo -reload
+```
 
-### Config
+This calls the `settings.reload` API method. Settings that require a full service restart still need the service to be restarted.
 
-- **Flag:** `-config`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -config`
+## Pair a client
 
-Start the text-based user interface (TUI) to handle Zaparoo configuration.
+Use `-pair` to start the same pairing flow used by clients such as the [Zaparoo App](../app/index.md).
 
-### Reload
+```bash
+./zaparoo -pair
+```
 
-- **Flag:** `-reload`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -reload`
+Core prints a PIN to the terminal. Enter that PIN in the client app. When pairing succeeds, the CLI prints the pairing response as a single line.
 
-Reloads the [config file](config.md) from disk and re-reads any [mapping files](../features/mappings.md) from disk.
+## Platform flags
 
-## Platform-Specific Flags
+Platform builds add their own service, UI, and installer flags. These are the user-facing flags in current Core source.
 
-These flags are only available on certain platforms:
+### Linux, SteamOS, Bazzite, and ChimeraOS
 
-### Linux
+These Linux desktop-style builds share the same extra flags.
 
-#### Install
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-install` | `application`, `desktop`, `service`, or `hardware` | Installs one component. |
+| `-uninstall` | `application`, `desktop`, `service`, or `hardware` | Uninstalls one component. |
+| `-daemon` | None | Runs the service in the foreground with no TUI. |
+| `-start` | None | Starts the user service if needed and opens the Web UI in the browser. |
 
-- **Flag:** `-install`
-- **Argument:** string (component name)
-- **Valid components:** `application`, `desktop`, `service`, `hardware`
-- **Example:** `./zaparoo -install service`
+Examples:
 
-Install a specific Zaparoo component. Components can be installed individually:
+```bash
+./zaparoo -install service
+./zaparoo -install hardware
+./zaparoo -start
+```
 
-- `application` - Core application files
-- `desktop` - Desktop integration (menu entries, icons)
-- `service` - Systemd service configuration
-- `hardware` - Hardware permissions and udev rules
+Outside install and uninstall commands, do not run these builds as root. The Linux service is a user service, and Core exits if normal service or UI mode starts with root privileges.
 
-#### Uninstall
+### MiSTer FPGA and MiSTeX
 
-- **Flag:** `-uninstall`
-- **Argument:** string (component name)
-- **Valid components:** `application`, `desktop`, `service`, `hardware`
-- **Example:** `./zaparoo -uninstall service`
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-service` | `start`, `stop`, `restart`, or `status` | Manages the Zaparoo service. |
+| `-add-startup` | None | Adds Zaparoo to MiSTer startup if it is not already there. |
+| `-show-loader` | JSON file path | Shows a MiSTer loading widget. |
+| `-show-notice` | JSON file path | Shows a MiSTer notice widget. |
+| `-show-picker` | JSON file path | Shows a MiSTer picker widget. |
 
-Uninstall a specific Zaparoo component.
+Examples:
 
-#### Daemon
+```bash
+/media/fat/Scripts/zaparoo.sh -service restart
+/media/fat/Scripts/zaparoo.sh -add-startup
+```
 
-- **Flag:** `-daemon`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -daemon`
-
-Run the service in the foreground with no user interface.
-
-#### Start
-
-- **Flag:** `-start`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -start`
-
-Start the service and open the web UI in the default browser. If the service is not installed, it will be installed automatically.
-
-### SteamOS
-
-#### Install
-
-- **Flag:** `-install`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -install`
-
-Install the Zaparoo service. Must be run as root.
-
-#### Uninstall
-
-- **Flag:** `-uninstall`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -uninstall`
-
-Uninstall the Zaparoo service. Must be run as root.
+The widget flags are mainly used by Core and MiSTer integrations. They expect a JSON configuration file path.
 
 ### Batocera
 
-#### Service
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-service` | `start`, `stop`, `restart`, or `status` | Manages the Zaparoo service. |
+| `-install` | None | Installs the Batocera service file. |
+| `-uninstall` | None | Removes the Batocera service file. |
 
-- **Flag:** `-service`
-- **Argument:** string (`start`, `stop`, `restart`, or `status`)
-- **Example:** `./zaparoo -service start`
+Examples:
 
-Manage the Zaparoo service state.
+```bash
+/userdata/system/zaparoo -service restart
+/userdata/system/zaparoo -install
+```
 
-#### Install
+### LibreELEC
 
-- **Flag:** `-install`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -install`
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-service` | `start`, `stop`, `restart`, or `status` | Manages the Zaparoo service. |
 
-Install the Zaparoo service file to `/userdata/system/services/`.
+Example:
 
-#### Uninstall
+```bash
+/storage/zaparoo -service restart
+```
 
-- **Flag:** `-uninstall`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -uninstall`
+### macOS
 
-Remove the Zaparoo service file.
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-daemon` | None | Runs the service without the TUI or system tray UI. |
+| `-gui` | None | Runs the service with the system tray UI. |
 
-### MiSTer
+Without either flag, the macOS build starts the local TUI after starting or connecting to the Core service.
 
-#### Service
+### Windows
 
-- **Flag:** `-service`
-- **Argument:** string (`start`, `stop`, `restart`, or `status`)
-- **Example:** `./zaparoo -service start`
+Windows does not support CLI arguments. The Windows build is compiled as a GUI application and starts Core in the system tray.
 
-Manage the Zaparoo service state.
-
-#### Add Startup
-
-- **Flag:** `-add-startup`
-- **Argument:** none (boolean switch)
-- **Example:** `./zaparoo -add-startup`
-
-Add the Zaparoo service to MiSTer startup if not already added.
-
-#### Show Loader
-
-- **Flag:** `-show-loader`
-- **Argument:** string (file path)
-- **Example:** `./zaparoo -show-loader "/tmp/loader.json"`
-
-Display a loading widget based on a JSON configuration file.
-
-#### Show Notice
-
-- **Flag:** `-show-notice`
-- **Argument:** string (file path)
-- **Example:** `./zaparoo -show-notice "/tmp/notice.json"`
-
-Display a notice widget based on a JSON configuration file.
-
-#### Show Picker
-
-- **Flag:** `-show-picker`
-- **Argument:** string (file path)
-- **Example:** `./zaparoo -show-picker "/tmp/picker.json"`
-
-Display a picker widget based on a JSON configuration file.
+Windows also refuses to run with elevated administrator rights. Start it as your normal user.

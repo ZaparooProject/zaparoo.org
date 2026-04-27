@@ -36,6 +36,7 @@ The global settings section does not start with a section header and is the only
 config_schema = 1
 debug_logging = true
 auto_update = false
+update_channel = "stable"
 ```
 
 #### config_schema
@@ -86,6 +87,20 @@ Platform defaults:
 - **Batocera (pacman)**: Disabled by default (updates managed by Batocera's package manager)
 
 When disabled, Zaparoo will not check for new versions or display update notifications.
+
+#### update_channel
+
+| Key            | Type                         | Default    |
+| -------------- | ---------------------------- | ---------- |
+| update_channel | string (`"stable"`, `"beta"`) | `"stable"` |
+
+`update_channel` controls which release channel Core uses when checking for updates.
+
+```toml
+update_channel = "stable"
+```
+
+Use `"stable"` for normal releases. Use `"beta"` only if you want Core to check for beta releases.
 
 ### Audio
 
@@ -951,6 +966,7 @@ allowed_ips = [
     "192.168.1.100",
     "192.168.1.0/24"
 ]
+encryption = false
 device_id = '4d01c19f-09ba-4871-a58a-82fb49f5b518'
 allowed_origins = [
     'https://app.zaparoo.org'
@@ -972,9 +988,9 @@ filter = [
 
 #### api_port
 
-| Key      | Type              | Default |
-| -------- | ----------------- | ------- |
-| api_port | integer (1-65535) | 7497    |
+| Key      | Type                 | Default |
+| -------- | -------------------- | ------- |
+| api_port | integer (1024-65535) | 7497    |
 
 `api_port` specifies which port the [API](./api/index.md) of Core should be accessible from.
 
@@ -1007,7 +1023,9 @@ Use `"127.0.0.1"` if you only want local access to the API and Web UI.
 | ----------- | -------- | ------- |
 | allowed_ips | string[] | []      |
 
-`allowed_ips` creates an IP allowlist for API access. Only requests from listed IPs will be accepted.
+`allowed_ips` creates an IP allowlist for remote HTTP API access. Localhost is always allowed. When this list is empty, remote HTTP and REST API requests are blocked by default.
+
+WebSocket API routes are not controlled by `allowed_ips`. They use API key authentication when API keys are configured, or [paired-client encryption](./api/encryption.md) when [`encryption`](#encryption) is enabled.
 
 ```toml
 [service]
@@ -1027,13 +1045,9 @@ Supports:
 - CIDR ranges for IPv4 (e.g., `"192.168.1.0/24"`)
 - CIDR ranges for IPv6 (e.g., `"2001:db8::/32"`)
 
-**Empty list (default)**: No IP filtering, all IPs allowed
+**Empty list (default)**: Localhost only for HTTP and REST API requests
 
 Port numbers in IP addresses are automatically stripped during matching.
-
-:::warning Important
-If you configure `allowed_ips`, you **must explicitly include `"127.0.0.1"`** to allow localhost connections. Without it, local tools like the TUI interface and CLI commands will be blocked.
-:::
 
 #### device_id
 
@@ -1053,6 +1067,21 @@ It's currently reserved for future use when devices can communicate with each ot
 
 `allowed_origins` specifies which origins are allowed to access the Core API via CORS (Cross-Origin Resource Sharing). By default, localhost and the active device IP address are allowed.
 
+#### encryption
+
+| Key        | Type    | Default |
+| ---------- | ------- | ------- |
+| encryption | boolean | false   |
+
+`encryption` requires remote WebSocket API clients to use the [paired-client encryption flow](./api/encryption.md). Localhost connections are always allowed without encryption.
+
+```toml
+[service]
+encryption = true
+```
+
+When disabled, remote WebSocket clients use API key authentication if API keys are configured.
+
 #### allow_run
 
 | Key       | Type                      | Default |
@@ -1066,7 +1095,7 @@ Each entry is a [Regular Expression](https://github.com/google/re2/wiki/Syntax).
 - Patterns are automatically anchored and must match the full command string. Characters `*` and `.` common in ZapScript must be escaped (e.g., `\*\*launch\.random:.*`).
 - The input is parsed as ZapScript and each command is checked individually. All commands in a chained script must match, so a pattern like `\*\*launch\.random:.*` covers both `**launch.random:SNES` alone and `**launch.random:SNES||**launch.random:NES`.
 - Plain file paths are normalized to a launch command before checking.
-- When `allow_run` is configured, remote IPs can access run endpoints regardless of `allowed_ips`. The allow list itself is the restriction.
+- When `allow_run` is configured, remote IPs can access run endpoints regardless of `allowed_ips`. The `allow_run` patterns still restrict which ZapScript can run.
 
 #### service.discovery
 
@@ -1187,7 +1216,7 @@ Available event types match the [Core API notification types](./api/notification
 
 `service.publishers.pixelcade` configures [PixelCade](https://pixelcade.org) publishers that display game marquee artwork on PixelCade LED displays. See the [Publishers](../features/publishers.md#pixelcade) feature page for an overview. It can be defined multiple times and must use this header: `[[service.publishers.pixelcade]]`
 
-On `media.started`, the publisher sends a GET request to the PixelCade arcade endpoint, mapping the Zaparoo system ID to the matching PixelCade console folder. On `media.stopped`, behaviour is controlled by the `on_stop` option.
+On `media.started`, the publisher sends a GET request to the PixelCade arcade endpoint, mapping the Zaparoo system ID to the matching PixelCade console folder.
 
 ```toml
 [[service.publishers.pixelcade]]
@@ -1195,10 +1224,8 @@ enabled = true
 host = "192.168.1.50"
 port = 8080
 mode = "stream"
-on_stop = "blank"
 filter = [
-    "media.started",
-    "media.stopped"
+    "media.started"
 ]
 ```
 
@@ -1247,31 +1274,18 @@ host = "192.168.1.50"
 - `"stream"` — uses the streaming endpoint (default)
 - `"write"` — uses the write endpoint
 
-###### on_stop {#pixelcade-publisher-on-stop}
-
-| Key     | Type   | Default    |
-| ------- | ------ | ---------- |
-| on_stop | string | `"blank"`  |
-
-`on_stop` controls what happens to the display when `media.stopped` is received. Accepted values:
-
-- `"blank"` — clears the display (default)
-- `"marquee"` — shows the default PixelCade marquee image
-- `"none"` — leaves the last image on the display
-
 ###### filter {#pixelcade-publisher-filter}
 
 | Key    | Type     | Default                  |
 | ------ | -------- | ------------------------ |
 | filter | string[] | [] (publish all events) |
 
-`filter` limits which event types trigger requests to PixelCade. When empty, all events are forwarded. Note that only `media.started` and `media.stopped` ever produce requests regardless of this setting; all other notification types are ignored.
+`filter` limits which event types trigger requests to PixelCade. When empty, all events are forwarded to the publisher. Only `media.started` produces PixelCade requests; all other notification types are ignored.
 
 ```toml
 [[service.publishers.pixelcade]]
 filter = [
-    "media.started",
-    "media.stopped"
+    "media.started"
 ]
 ```
 
@@ -1539,6 +1553,7 @@ config_schema = 1
 debug_logging = true
 error_reporting = false
 auto_update = false
+update_channel = "stable"
 
 [audio]
 scan_feedback = true
@@ -1573,6 +1588,7 @@ ignore_on_connect = true
 enabled = true
 timeout = 30
 delay = 5
+require_confirm = false
 
 [[readers.connect]]
 driver = 'acr122pcsc'
@@ -1635,6 +1651,7 @@ allowed_ips = [
     "192.168.1.100",
     "192.168.1.0/24"
 ]
+encryption = false
 device_id = '4d01c19f-09ba-4871-a58a-82fb49f5b518'
 allowed_origins = [
     'https://app.zaparoo.org'
