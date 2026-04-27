@@ -1,17 +1,17 @@
 ---
-description: Set up the PN532 USB NFC reader with Zaparoo. The recommended plug-and-play reader starting at $5, compatible with current Core platforms including MiSTer, SteamOS, and Windows.
-keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga, best nfc reader zaparoo]
+description: Set up the PN532 USB NFC reader with Zaparoo. Covers auto-detection, manual config, serial ports, and troubleshooting.
+keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga]
 ---
 
 # PN532 USB
 
-The PN532 is a common NFC chip used in many readers. This USB version is cheap, works out of the box, and runs on current Zaparoo Core platforms.
+<img className="readerHeroImage" src="/img/docs/readers/PN532-Type-C.jpg" alt="A PN532 USB-C module" width="300" />
+
+The PN532 USB is the ready-to-use NFC reader option for Zaparoo. It connects over USB serial, scans supported [NFC tags](../../tokens/nfc/index.md) and cards, and can write tokens through Zaparoo.
 
 :::tip
 This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Official hardware purchases support development.
 :::
-
-<img src="/img/docs/readers/PN532-Type-C.jpg" alt="A PN532 USB-C module" width="300" />
 
 ## Platforms
 
@@ -63,144 +63,95 @@ This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Off
   ]}
 />
 
-## Features
+## Configure the reader
 
-- **Plug and play** - No drivers or setup required
-- **Affordable** - Starting at around $5 USD
-- **Cross-platform** - Works on current Zaparoo Core platforms
-- **USB Type-C** - Common on newer modules
-- **Compact size** - Very small footprint
-- **Full NFC support** - Same functionality as all PN532 readers
-- **Community cases** - Fits in available 3D-printed cases
+[Zaparoo Core](../../core/index.md) auto-detects PN532 USB readers by default. In most setups, connect the reader to a normal USB port, start Core, and scan a tag.
 
-## Driver Configuration
+If auto-detection does not find it, add the serial port to your [`config.toml`](../../core/config.md). Use the `pn532uart` driver for USB serial modules.
 
-### Driver Details
+Use the serial device or COM port assigned by your operating system.
 
-- **Driver IDs**: `pn532`, `pn532uart`
-- **Transport**: USB Serial (UART)
-- **Platforms**: Current Zaparoo Core platforms
-- **Enabled by default**: Yes
-- **Auto-detect**: Yes
-
-:::tip Auto-Detection
-These readers are automatically detected on current Zaparoo Core platforms. You typically don't need any configuration.
-:::
-
-### Manual Configuration
-
-In rare cases where auto-detection doesn't work, you can manually specify the reader in your [`config.toml`](../../core/config.md):
-
-**Linux/MiSTer:**
+Linux-based platforms usually expose the reader as `/dev/ttyUSB0` or `/dev/ttyACM0`:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/ttyUSB0'
+driver = "pn532uart"
+path = "/dev/ttyUSB0"
 ```
 
-**Windows:**
+On Windows, use the COM port shown in [Device Manager](https://www.lifewire.com/device-manager-2625860):
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = 'COM3'
+driver = "pn532uart"
+path = "COM3"
 ```
 
-**macOS:**
+On macOS, use the matching `/dev/cu.*` device:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/cu.usbserial-1234'
+driver = "pn532uart"
+path = "/dev/cu.usbserial-1234"
 ```
 
-### Finding the Serial Port
-
-If you need to find the device path:
-
-**Linux/MiSTer:**
-
-```bash
-ls /dev/ttyUSB*
-# or
-dmesg | grep tty
-```
-
-**Windows:**
-Open Device Manager and look under "Ports (COM & LPT)"
-
-**macOS:**
-
-```bash
-ls /dev/cu.*
-```
-
-## Platform-Specific Notes
+## Platform notes
 
 ### MiSTer
 
-The PN532 USB reader is fully supported and auto-detected on MiSTer. It typically appears as `/dev/ttyUSB0`.
+On [MiSTer](../../platforms/mister/index.md), use one of the normal USB ports. The SNAC/USER port looks like USB, but it is not a standard USB port and will not work for NFC readers.
 
 ### Windows
 
-Windows may require a USB serial driver for some PN532 modules:
-
-- Most use CH340 chips
-- Drivers are usually installed automatically via Windows Update
+PN532 USB readers use a USB serial driver on Windows. If Windows does not create a COM port for the reader, install or reinstall the driver.
 
 :::info CH340 Driver Installation
-Windows normally comes with a driver for this reader by default, but if it's not working, you may want to try reinstalling it. You can download the [CH340 driver (ZIP)](https://zaparoo.org/drivers/Windows-CH340-Driver.zip) or [CH340 driver (EXE)](https://zaparoo.org/drivers/CH341SER.EXE) and see this [SparkFun installation guide](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) if you need help installing it.
+You can download the [CH340 driver (ZIP)](https://zaparoo.org/drivers/Windows-CH340-Driver.zip) or [CH340 driver (EXE)](https://zaparoo.org/drivers/CH341SER.EXE). The [SparkFun CH340 installation guide](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) has driver install steps if you need them.
 :::
 
-### Linux
+### Linux-based platforms
 
-You may need to add your user to the `dialout` group for serial port access:
+Desktop Linux users may need to add their account to the `dialout` group before Core can open the serial port:
 
 ```bash
 sudo usermod -a -G dialout $USER
 ```
 
-Log out and back in for the change to take effect.
+Log out and back in after changing groups.
 
 ### macOS
 
-The PN532 USB reader works out of the box on macOS. No additional drivers needed.
+The PN532 USB reader is supported on macOS. If auto-detection fails, configure the `/dev/cu.*` serial device manually.
 
 ## Troubleshooting
 
-### Reader Not Detected
+### Reader not detected
 
-1. **Check your cable** - Some USB cables are power-only and don't support data transfer. If your reader isn't detected, try a different cable that you know works for data.
-2. **Check USB connection** - Try a different USB port or cable.
-3. **MiSTer: Don't use the SNAC/USER port** - The SNAC/USER port on a MiSTer looks like a USB 3.0 port but is a custom port that won't work with NFC readers. Use one of the regular USB ports instead.
-4. **Verify auto-detect is enabled** - Check `auto_detect = true` in config.toml.
-5. **Check for device** - Verify the device appears in system (see "Finding the Serial Port" above).
-6. **Permissions** - On Linux, ensure dialout group membership.
-7. **Windows Driver** - If the reader doesn't appear as a COM port in Device Manager, try (re)installing the [CH340 driver](#windows) and rebooting.
-8. **Enable debug logging** - Set `debug_logging = true` in config.toml to see detection attempts.
+Check these first:
 
-### Slow or Inconsistent Scanning
+1. Use a USB cable that supports data, not a charge-only cable.
+2. Try a different normal USB port. On MiSTer, do not use the SNAC/USER port.
+3. Check that the reader appears as a serial device or COM port.
+4. On Linux-based platforms, check serial port permissions.
+5. On Windows, install or reinstall the [CH340 driver](#windows) if no COM port appears.
+6. Enable `debug_logging = true` in `config.toml`, restart Core, and check the logs for PN532 detection attempts.
 
-- **Check power** - Some USB hubs don't provide enough power.
-- **Reduce interference** - Keep away from metal surfaces and other electronics.
+### Slow or inconsistent scanning
 
-## Where To Buy
+Keep the reader away from metal surfaces and other electronics. If it is connected through a hub, test it directly on the host device.
+
+## Where to buy
 
 :::tip Official Support
-Buying from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> directly supports the project and includes a quality case!
+Buying from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> directly supports the project and includes a case.
 :::
 
-**Original Hardware:**
+Original hardware:
 
 - [Elechouse](https://www.elechouse.com/product/pn532-nfc-usb-module/) - Official PN532 USB module
 
-**Clones (Search for "PN532 Type C" or "PCR532"):**
+Other modules are usually listed as `PN532 Type C` or `PCR532`:
 
 - <ProductLink href="https://www.aliexpress.us/item/1005006326438326.html" store="aliexpress">AliExpress (China) - Allinbest Store</ProductLink>
 - <ProductLink href="https://www.aliexpress.com/item/1005005262748046.html" store="aliexpress">AliExpress (China) - MI YU KOUNG Official Store</ProductLink>
-
-
----
-
 <SponsorCallout variant="sponsor" />

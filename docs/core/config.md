@@ -1148,7 +1148,7 @@ Supported URL schemes:
 - `mqtt://` - Standard MQTT connection
 - `mqtts://` or `ssl://` - MQTT over TLS/SSL
 
-For TLS connections and authentication, see the MQTT reader's [auth.toml configuration](../readers/mqtt.md#authentication).
+For TLS connections and authentication, see the MQTT reader's [auth.toml configuration](../readers/mqtt.md#add-broker-credentials).
 
 ###### topic {#mqtt-publisher-topic}
 

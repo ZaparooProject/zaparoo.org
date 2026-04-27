@@ -87,6 +87,29 @@
     border-radius: 5px;
 }
 
+.readerHeroImage {
+    float: right;
+    margin: 0 0 1rem 1.5rem;
+    max-width: 300px;
+}
+
+.readerHeroImage ~ .theme-admonition {
+    display: flow-root;
+}
+
+.readerHeroImage ~ h2 {
+    clear: both;
+}
+
+@media (max-width: 768px) {
+    .readerHeroImage {
+        float: none;
+        display: block;
+        margin: 0 0 1rem;
+        max-width: 100%;
+    }
+}
+
 .hidden {
     display: none !important;
 }

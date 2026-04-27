@@ -1,13 +1,15 @@
 ---
-description: Use a raw PN532 NFC module with Zaparoo over USB UART or I2C. Wiring, pinout, and setup for DIY and microcontroller builds.
+description: Use a raw PN532 NFC module with Zaparoo over USB UART or I2C. Covers wiring, config, and troubleshooting for DIY builds.
 keywords: [pn532 module, pn532 uart, pn532 i2c, diy nfc reader zaparoo, pn532 wiring]
 ---
 
 # PN532 Module
 
-The PN532 module is a bare PCB NFC reader perfect for DIY projects and custom builds. While it requires more setup than the [USB version](./pn532-usb.md), it's extremely affordable and flexible.
+<img className="readerHeroImage" src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
 
-<img src="/img/docs/readers/PN532-module.jpg" alt="Standalone PN532 NFC module" width="300" />
+The PN532 Module is a bare NFC reader board for custom builds. It can scan and write supported [NFC tags](../../tokens/nfc/index.md) through Zaparoo. Use it when you want to mount a reader inside a case, wire it into another device, or connect it directly to a board that exposes UART or I2C.
+
+If you only want a reader you can plug in and use, choose the [PN532 USB](./pn532-usb.md) instead.
 
 ## Platforms
 
@@ -59,224 +61,116 @@ The PN532 module is a bare PCB NFC reader perfect for DIY projects and custom bu
   ]}
 />
 
-:::tip Prefer plug-and-play?
-The [PN532 USB](./pn532-usb.md) version requires no wiring and works out of the box. It's stocked in the [Zaparoo Shop](https://shop.zaparoo.com/).
+:::warning DIY hardware
+This is not a finished USB reader. Expect wiring, soldering, and some troubleshooting.
 :::
 
-:::danger Clone Quality Warning
-While the PN532 module is excellent on paper, most sold online are low-quality clones. They'll generally still work but often with poor read range. Despite this, they remain the best option for custom microcontroller builds.
+For a complete photographed build with a case and custom serial PCB, see the [DIY Reader](../../community-projects/diy-reader.md) community project. That guide shows the soldering, board assembly, and case fitment, and the custom serial PCB avoids the form factor and voltage issues found with some generic USB-to-serial adapters.
+
+:::caution Clone quality
+Many PN532 modules sold online are clones. They can work with Zaparoo, but read range and board quality vary by seller and revision.
 :::
 
-:::warning DIY Hardware
-This is **not a ready-to-use reader** - it's a bare PCB module for custom projects. You'll need a USB-to-serial adapter and basic soldering skills.
-:::
+## What you need
 
-## Features
+For the usual USB UART setup, you need:
 
-- **Extremely affordable** - Starting at around $3 USD
-- **Compact footprint** - Perfect for embedding in custom projects
-- **Excellent read range** - Quality modules read up to 5cm
-- **Multiple interfaces** - UART, I2C, and SPI support
-- **Flexible** - Full control over implementation
-- **Great learning project** - Perfect for beginners to electronics
+1. A PN532 module.
+2. A USB-to-serial adapter, such as a CH340, CP2102, or FT232RL board.
+3. Wires or pin headers.
+4. Basic soldering tools.
 
-## Requirements
+## Wire the module
 
-### Essential Components
+UART is the most practical connection for a Zaparoo host because it appears as a normal serial port.
 
-1. **PN532 Module** - The NFC reader module itself
-2. **USB-to-Serial Adapter** - Common options:
-   - CP2102 module
-   - CH340G module
-   - FT232RL module
-3. **Soldering Equipment** - For connecting wires/headers
+Most modules ship with the DIP switches already set to HSU, which is the UART mode used for USB-to-serial adapters. Check the switch labels before wiring the module.
 
-### Optional Components
+For HSU/UART wiring, use the labels on your PN532 board and USB-to-serial adapter:
 
-- Pin headers or JST connector
-- Jumper wires
-- Project case
-- 5V power supply (if not using USB power)
+1. Connect `GND` on the PN532 module to `GND` on the adapter.
+2. Connect `TX` or `TXD` on the PN532 module to `RX` or `RXD` on the adapter.
+3. Connect `RX` or `RXD` on the PN532 module to `TX` or `TXD` on the adapter.
+4. Connect `VCC` to a voltage your PN532 module supports.
 
-## Driver Configuration
+Check the markings on your module before connecting power. Some boards accept both 3.3V and 5V; others are stricter.
 
-### Driver Details
+## Configure the reader
 
-- **Driver IDs**: `pn532`, `pn532uart`, `pn532i2c`, `pn532spi`
-- **Primary Transport**: UART (via USB-to-serial adapter)
-- **Alternative Transports**: I2C, SPI (for advanced projects)
-- **Platforms**: Current Zaparoo Core platforms
-- **Enabled by default**: Yes
-- **Auto-detect**: Yes (UART and I2C)
+[Zaparoo Core](../../core/index.md) can auto-detect PN532 UART readers by default. If auto-detection does not find the module, add it to your [`config.toml`](../../core/config.md) with the `pn532uart` driver.
 
-### Hardware Setup
-
-#### UART Connection (Most Common)
-
-Connect the PN532 module to a USB-to-serial adapter:
-
-```
-PN532       USB-Serial
------       ----------
-VCC    -->  5V or 3.3V
-GND    -->  GND
-TX     -->  RX
-RX     -->  TX
-```
-
-:::tip DIP Switches
-Set the PN532 DIP switches to UART mode. They usually come set this way.
-:::
-
-### Software Configuration
-
-**Auto-detection:**
-
-PN532 modules using UART over a USB-to-serial adapter are auto-detected by default. Direct I2C connections can also auto-detect on current development builds when the operating system exposes the I2C device.
-
-**Manual Configuration:**
-
-Add to your [`config.toml`](../../core/config.md) if auto-detect doesn't work:
-
-**Linux/MiSTer:**
+Linux-based platforms usually expose the USB-to-serial adapter as `/dev/ttyUSB0` or `/dev/ttyACM0`:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/ttyUSB0'
+driver = "pn532uart"
+path = "/dev/ttyUSB0"
 ```
 
-**Windows:**
+On Windows, use the COM port shown in [Device Manager](https://www.lifewire.com/device-manager-2625860):
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = 'COM3'
+driver = "pn532uart"
+path = "COM3"
 ```
 
-**macOS:**
+On macOS, use the matching `/dev/cu.*` device:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/cu.usbserial-1234'
+driver = "pn532uart"
+path = "/dev/cu.usbserial-1234"
 ```
 
-### Advanced: I2C Configuration
+## I2C
 
-For direct I2C connections (e.g., Raspberry Pi GPIO):
+Direct I2C connections are for embedded setups, such as a Raspberry Pi-style board with an exposed I2C bus. I2C is supported, but it does not auto-detect. You must add the reader to `config.toml`.
+
+Set the module to I2C mode and configure the bus device:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532i2c'
-path = '/dev/i2c-1'
+driver = "pn532i2c"
+path = "/dev/i2c-1"
 ```
-
-Set DIP switches to I2C mode.
-
-Manual I2C configuration is useful if auto-detect does not find the module or you need to specify a particular bus.
-
-### Advanced: SPI Configuration
-
-For SPI connections:
-
-```toml
-[[readers.connect]]
-driver = 'pn532spi'
-path = '/dev/spidev0.0'
-```
-
-Set DIP switches to SPI mode.
-
-## Platform-Specific Notes
-
-### MiSTer
-
-The PN532 module with USB-to-serial adapter works excellently on MiSTer. Auto-detection typically works out of the box.
-
-### Raspberry Pi/Linux
-
-For direct I2C or SPI connections:
-
-1. Enable I2C/SPI in `raspi-config`
-2. Install required kernel modules
-3. Add user to `i2c` or `spi` groups
-
-For UART via USB-to-serial:
-
-```bash
-sudo usermod -a -G dialout $USER
-```
-
-### Windows
-
-Install the USB-to-serial driver for your adapter chip (CH340, CP2102, etc.). Usually automatic via Windows Update.
-
-## Known Issues
-
-### Variable Build Quality
-
-- **Quality varies significantly** between vendors
-- Cheaper modules may have issues
-- Look for reputable sellers with good reviews
-
-### Poor Read Range
-
-**Cause:** Low-quality inductors on cheap modules
-
-**Symptoms:** Module functions but only reads at very close range (&lt;1cm)
-
-**Solution:** Replace the inductors with quality components (advanced)
-
-### Connection Problems
-
-**USB-to-Serial Adapter Issues:**
-
-- Poor voltage regulators may not power the module properly
-- Some cheap adapters are unreliable
-- Try a different adapter if you have connection issues
-
-### Soldering Required
-
-This is a bare module - you **must solder** wires or headers. Not suitable if you don't have soldering equipment.
 
 ## Troubleshooting
 
-### Module Not Detected
+### Module not detected
 
-1. **Check wiring** - Verify TX→RX and RX→TX are not swapped
-2. **Check DIP switches** - Must be set to correct mode (UART)
-3. **Check power** - Module needs stable 3.3V or 5V
-4. **Try different USB port** - Some ports don't provide enough power
-5. **Test USB-to-serial adapter** - Verify it works separately
+Check these first:
 
-### Scanning Issues
+1. `TX` on the module goes to `RX` on the adapter, and `RX` goes to `TX`.
+2. The DIP switches match the configured transport: HSU/UART or I2C.
+3. The module has stable power. If you are using a generic USB-to-serial adapter and the reader is unreliable, compare it with the DIY Reader build that uses a custom serial PCB.
+4. For UART, the USB-to-serial adapter appears as a device path or COM port.
+5. For I2C, the `path` in `config.toml` matches the I2C device you connected the module to.
 
-- **Check for interference** - Keep away from metal and other electronics
-- **Verify tag compatibility** - Use ISO14443A tags (MIFARE, NTAG)
+### Scans are unreliable
 
-### LED Behavior
+Move the module away from metal, dense wiring, and other electronics. If the tag only reads at very close range, the module may be a low-quality clone.
 
-- **No LED** - Check power connection
+### Writing fails
 
-## Where To Buy
+Keep the tag still on the reader while writing. If writing [MIFARE Classic](../../tokens/nfc/mifare.md) tags fails repeatedly, test with an [NTAG](../../tokens/nfc/ntag.md) tag before replacing the reader.
 
-:::tip
-For a ready-to-use option, consider the [PN532 USB](./pn532-usb.md) instead!
-:::
+## Where to buy
 
-**Original Hardware:**
+For a ready-to-use reader, use the PN532 USB page instead.
+
+Original hardware:
 
 - [Elechouse](https://www.elechouse.com/product/pn532-nfc-rfid-module-v4/) - Official PN532 module
 
-**Common Sources (Search for "PN532 Module"):**
+Other modules are usually listed as `PN532 Module`:
 
 - Amazon
 - eBay
 - AliExpress
 - Local electronics shops
 
-**Known Listings:**
+Known listings submitted by users:
 
 - <ProductLink href="https://www.aliexpress.com/item/1005002755983375.html" store="aliexpress">AliExpress (China) - JIAQISHENG JQS Official Store</ProductLink>
 - <ProductLink href="https://www.aliexpress.com/item/1005005973913526.html" store="aliexpress">AliExpress (China) - TENSTAR ROBOT Store</ProductLink>

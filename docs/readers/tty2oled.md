@@ -1,19 +1,13 @@
 ---
-description: Integrate Zaparoo with TTY2OLED to show game titles and artwork on an external OLED display connected to MiSTer FPGA.
+description: Show active Zaparoo media on a TTY2OLED serial display.
 keywords: [tty2oled zaparoo, mister oled display, zaparoo game display, tty2oled integration]
 ---
 
 # TTY2OLED Display
 
-TTY2OLED is a serial display device that shows game information and artwork on external OLED displays. While not a traditional reader that scans tokens, Zaparoo Core treats it as a display "reader" driver that receives game information and displays it visually.
+TTY2OLED is a serial display device for external OLED screens. [Zaparoo Core](../core/index.md) treats it as a display reader: it does not scan tokens, but it can update the display when the active media changes.
 
-## Overview
-
-The TTY2OLED driver enables [Zaparoo Core](../core/index.md) to communicate with [TTY2OLED](https://github.com/venice1200/MiSTer_tty2oled) hardware, showing:
-- Game titles and metadata
-- System information
-- Artwork and logos
-- Custom display layouts
+Use this if you already have [TTY2OLED](https://github.com/venice1200/MiSTer_tty2oled) hardware and want Zaparoo to show the current system name or matching artwork.
 
 ## Platforms
 
@@ -59,87 +53,78 @@ The TTY2OLED driver enables [Zaparoo Core](../core/index.md) to communicate with
   ]}
 />
 
-## Hardware Requirements
+## Enable the reader
 
-- TTY2OLED serial display device (typically an OLED screen connected via USB serial)
-- USB connection to the host device running Zaparoo Core
-- Compatible OLED display (see [TTY2OLED project](https://github.com/venice1200/MiSTer_tty2oled) for supported displays)
-
-## Driver Configuration
-
-### Driver Details
-
-- **Driver ID**: `tty2oled`
-- **Platforms**: Current Zaparoo Core platforms
-- **Enabled by default**: No
-- **Auto-detect**: Yes
-
-:::warning
-This driver is **disabled by default** and must be explicitly enabled in your configuration file.
-:::
-
-### Enabling the Driver
-
-To enable TTY2OLED support, add the following to your [`config.toml`](../core/config.md) file:
+The `tty2oled` driver is disabled by default. Enable it in your [`config.toml`](../core/config.md):
 
 ```toml
 [readers.drivers.tty2oled]
 enabled = true
 ```
 
-### Manual Connection
+Restart Core after changing the config. With auto-detect enabled, Core probes serial ports for a TTY2OLED device.
 
-If auto-detection doesn't work, you can manually specify the serial device:
+If auto-detection does not find the display, add a manual `readers.connect` entry with the serial port path:
 
 ```toml
 [[readers.connect]]
-driver = 'tty2oled'
-path = '/dev/ttyUSB0'  # Linux/MiSTer path
+driver = "tty2oled"
+path = "/dev/ttyUSB0"
 ```
 
-On Windows, the path would typically be:
+On Windows, use the COM port shown in Device Manager:
+
 ```toml
 [[readers.connect]]
-driver = 'tty2oled'
-path = 'COM3'  # Windows COM port
+driver = "tty2oled"
+path = "COM3"
 ```
 
-## Platform-Specific Notes
+The serial connection uses `115200` baud. This is fixed in Core and is not currently configurable.
 
-### MiSTer
+## Display behavior
 
-TTY2OLED is commonly used with [MiSTer FPGA](../platforms/mister/index.md) systems. The display typically connects via USB and appears as a serial device at `/dev/ttyUSB0` or similar.
+When active media changes, Core sends the media system ID to the display. If matching artwork is already cached, Core sends the picture instead of text. If no cached picture is found, Core shows the system name first, then tries to download matching artwork from the [TTY2OLED pictures repository](https://github.com/venice1200/MiSTer_tty2oled_Pictures).
 
-### Linux
+Pictures are cached in Core's data directory under `assets/tty2oled_pics`. Core looks for TTY2OLED picture formats in this order: `GSC_US`, `XBM_US`, `GSC`, `XBM`, then `XBM_TEXT`.
 
-On Linux-based platforms, ensure your user has permission to access the serial device:
-```bash
-sudo usermod -a -G dialout $USER
-```
+Writing tokens through TTY2OLED is not supported.
 
-You may need to log out and back in for the permission change to take effect.
+## Hardware notes
 
-### Windows
+TTY2OLED devices usually connect over USB serial. Depending on the board, the operating system may identify the USB serial adapter as CH340, CP210x, FTDI, Arduino, or ESP32 hardware.
 
-Install the appropriate USB serial driver for your TTY2OLED device (typically CH340 or CP2102 drivers).
+On Linux-based platforms, the device usually appears as `/dev/ttyUSB0`, `/dev/ttyACM0`, or a similar path. The Core process needs permission to open that serial device.
+
+On Windows, install the USB serial driver required by your TTY2OLED board if the COM port does not appear in Device Manager.
 
 ## Troubleshooting
 
-### Display Not Working
+### Display not detected
 
-1. **Verify the driver is enabled** in your `config.toml`
-2. **Check the serial port path** - use `ls /dev/tty*` on Linux or Device Manager on Windows
-3. **Ensure proper permissions** on Linux (dialout group membership)
-4. **Check USB cable** - some cables are power-only and don't support data
+Check these first:
 
-### Finding the Serial Port
+1. The `tty2oled` driver is enabled in `config.toml`.
+2. Core was restarted after changing `config.toml`.
+3. The USB cable supports data, not only power.
+4. No other reader or service is already using the same serial port.
 
-**Linux/MiSTer:**
+If auto-detection still does not work, configure the serial path manually with `[[readers.connect]]`.
+
+### Find the serial port
+
+On Linux-based platforms, list likely serial devices:
+
 ```bash
-ls /dev/ttyUSB*
-# or
-dmesg | grep tty
+ls /dev/ttyUSB* /dev/ttyACM*
 ```
 
-**Windows:**
-Open Device Manager and look under "Ports (COM & LPT)"
+If the device exists but Core cannot open it, make sure the Core process has permission to access the serial port. Desktop Linux users may need to be in the `dialout` group, then log out and back in.
+
+On Windows, open Device Manager and look under **Ports (COM & LPT)**.
+
+### Display connects but does not update
+
+Enable `debug_logging = true` in `config.toml`, restart Core, then check the Core logs for TTY2OLED connection and media-change messages.
+
+If text appears but artwork does not, check that the device running Core can reach GitHub and can write to Core's data directory. Core keeps the text display when artwork cannot be downloaded.

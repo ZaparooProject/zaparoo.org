@@ -1,26 +1,27 @@
 ---
-description: "Zaparoo reader driver setup: install libnfc, USB HID support, and serial drivers for PN532, ACR122U, RC522, and other hardware."
+sidebar_position: 1
+description: "Configure Zaparoo reader drivers for PN532, ACR122U, RS-232 barcode scanners, optical drives, MQTT, and other reader hardware."
 keywords: [zaparoo drivers, libnfc, pn532 driver, acr122u driver, nfc reader driver]
 ---
 
 # Reader Drivers
 
-Reader drivers are software components that enable [Zaparoo Core](../core/index.md) to communicate with different types of [reader hardware](./index.md). Each driver implements the specific protocol and communication method required for a particular reader type.
+Reader drivers let [Zaparoo Core](../core/index.md) communicate with different types of [reader hardware](./index.md). Each driver handles the protocol and connection method for one reader type.
 
-## How Drivers Work
+## How drivers work
 
 When Zaparoo Core starts, it:
 
 1. Loads all enabled reader drivers
-2. Attempts to auto-detect connected readers (if enabled)
+2. Attempts to auto-detect connected readers when auto-detect is enabled
 3. Establishes connections to detected or manually configured readers
 4. Begins listening for token scans
 
-Most users don't need to worry about drivers - they work automatically! Auto-detection is enabled by default and works for most common hardware.
+Most PN532 and ACR122U setups are auto-detected. Serial readers, MQTT, display devices, external drives, and fallback NFC drivers usually need manual configuration or explicit enabling.
 
-## Available Drivers
+## Available drivers
 
-### NFC Readers
+### NFC readers
 
 NFC readers are the most common type, supporting NFC tags, cards, and compatible toys (Amiibo, Lego Dimensions, etc.).
 
@@ -30,38 +31,40 @@ NFC readers are the most common type, supporting NFC tags, cards, and compatible
 | `pn532i2c`, `pn532spi`     | PN532 bare modules | Current Core platforms | [PN532 Module](./nfc/pn532-module.md) |
 | `libnfcacr122`             | ACR122U reader     | Linux-based platforms | [ACR122U](./nfc/acr122u.md)           |
 | `acr122pcsc`               | ACR122U reader     | Windows               | [ACR122U](./nfc/acr122u.md)           |
-| `legacypn532uart` (legacy) | PN532 USB (old)    | Linux-based platforms | See [Legacy Drivers](#legacy-nfc-drivers)      |
-| `legacypn532i2c` (legacy)  | PN532 I2C (old)    | Linux-based platforms | See [Legacy Drivers](#legacy-nfc-drivers)      |
+| `legacypn532uart` (legacy) | PN532 USB fallback | Linux-based platforms | See [legacy NFC drivers](#legacy-nfc-drivers) |
+| `legacypn532i2c` (legacy)  | PN532 I2C fallback | Linux-based platforms | See [legacy NFC drivers](#legacy-nfc-drivers) |
 
-:::note Backwards Compatibility
-Driver IDs with underscores (e.g., `pn532_uart`, `simple_serial`) are still supported for backwards compatibility, but the underscore is automatically stripped. Use the non-underscore format in new configurations.
+:::note Backward compatibility
+Driver IDs with underscores, such as `pn532_uart` and `simple_serial`, are still supported. Core strips underscores internally, but new configurations should use the non-underscore driver IDs shown here.
 :::
 
-### Optical Readers
+### Optical readers
 
 | Driver ID      | Hardware              | Platforms             | Documentation                                |
 | -------------- | --------------------- | --------------------- | -------------------------------------------- |
 | `opticaldrive` | CD/DVD/Blu-ray drives | Linux-based platforms | [Optical Drive](./optical-drive.md) |
 
-### Display Devices
+### Display devices
 
 | Driver ID  | Hardware                 | Platforms     | Documentation                      |
 | ---------- | ------------------------ | ------------- | ---------------------------------- |
 | `tty2oled` | TTY2OLED serial displays | Current Core platforms | [TTY2OLED](./tty2oled.md) |
 
-### Barcode Readers
+`tty2oled` is disabled by default. Enable it before use.
+
+### Barcode readers
 
 | Driver ID      | Hardware                  | Platforms     | Documentation                                |
 | -------------- | ------------------------- | ------------- | -------------------------------------------- |
-| `rs232barcode` | RS232 barcode/QR scanners | Current Core platforms | [RS232 Scanner](./barcode/rs232.md) |
+| `rs232barcode` | RS-232 barcode/QR scanners | Current Core platforms | [RS-232 Scanner](./barcode/rs232.md) |
 
 :::info App Barcode Scanning
 The Zaparoo App can also scan barcodes and QR codes using your device's camera. Scanned codes are sent to Core via the API and don't require a dedicated reader driver.
 :::
 
-### Protocol & Virtual Readers
+### Protocol and virtual readers
 
-These drivers enable custom hardware integration and automation:
+These drivers support custom hardware, automation, and non-reader token sources:
 
 | Driver ID       | Purpose                        | Platforms     | Documentation                                  |
 | --------------- | ------------------------------ | ------------- | ---------------------------------------------- |
@@ -70,77 +73,83 @@ These drivers enable custom hardware integration and automation:
 | `simpleserial`  | Custom microcontroller readers | Current Core platforms | [Simple Serial](./simple-serial.md)   |
 | `file`          | File-based virtual reader      | Current Core platforms | [File Reader](./file.md)              |
 
+`externaldrive` is disabled by default. Enable it directly or add a manual connection for the drive you want Core to watch.
+
 ## Configuration
 
-### Auto-Detection
+### Auto-detection
 
-By default, Zaparoo Core automatically detects most readers:
+By default, Zaparoo Core automatically detects readers whose drivers support auto-detection:
 
 ```toml
 [readers]
-auto_detect = true  # Default setting
+auto_detect = true
 ```
 
-### Manual Reader Configuration
+Some drivers are enabled but not auto-detected by default. For those readers, add a manual connection or enable auto-detect for the specific driver.
+
+### Manual reader configuration
 
 To manually specify a reader, add a `readers.connect` section to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/ttyUSB0'
+driver = "pn532uart"
+path = "/dev/ttyUSB0"
 ```
 
-See individual hardware documentation for driver-specific configuration options.
+A `[[readers.connect]]` entry also enables that driver unless the driver is explicitly disabled with `[readers.drivers.DRIVER_ID]`. See the individual reader page for driver-specific paths and options.
 
-### Driver-Specific Settings
+### Driver-specific settings
 
 You can control individual drivers with `readers.drivers` sections:
 
 ```toml
 [readers.drivers.tty2oled]
-enabled = true  # Enable disabled-by-default drivers
+enabled = true
 
 [readers.drivers.simpleserial]
-enabled = false  # Disable problematic drivers
-auto_detect = false  # Disable auto-detect for specific drivers
+enabled = false
+auto_detect = false
 ```
+
+Use `[readers.drivers.DRIVER_ID]` for driver settings. `[[readers.drivers]]` is not valid config syntax.
 
 ## Troubleshooting
 
-### Reader Not Detected
+### Reader not detected
 
-1. **Check auto-detect is enabled** - Set `auto_detect = true` in config.toml
-2. **Enable debug logging** - Set `debug_logging = true` in config.toml
-3. **Check hardware connection** - Verify USB cable, power, etc. and make sure the cable is a _data cable_, not power-only
-4. **Review driver documentation** - See hardware-specific troubleshooting
-5. **Try manual configuration** - Explicitly configure the reader
+1. Check auto-detect is enabled with `auto_detect = true` in `config.toml`.
+2. Enable debug logging with `debug_logging = true` in `config.toml`.
+3. Check the hardware connection. Make sure the USB cable is a data cable, not power-only.
+4. Review the hardware-specific reader page for setup and troubleshooting notes.
+5. Try manual configuration with `[[readers.connect]]`.
 
-### Multiple Readers
+### Multiple readers
 
 You can connect multiple readers simultaneously:
 
 ```toml
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/ttyUSB0'
+driver = "pn532uart"
+path = "/dev/ttyUSB0"
 
 [[readers.connect]]
-driver = 'pn532uart'
-path = '/dev/ttyUSB1'
+driver = "pn532uart"
+path = "/dev/ttyUSB1"
 
 [[readers.connect]]
-driver = 'opticaldrive'
-path = '/dev/sr0'
+driver = "opticaldrive"
+path = "/dev/sr0"
 ```
 
 Each reader operates independently and can scan tokens.
 
-## Legacy NFC Drivers
+## Legacy NFC drivers
 
-Core v2.6.0 switched to a new NFC driver for PN532 readers with better performance and features. The old driver is still available as a fallback option if you experience issues with the new driver.
+Core v2.6.0 switched PN532 readers to the newer `pn532` driver. The old libnfc-based PN532 drivers are still available as fallback options if a reader worked before v2.6.0 but has trouble with the newer driver.
 
-### When to Use Legacy Drivers
+### When to use legacy drivers
 
 Use the legacy drivers if you experience:
 
@@ -152,32 +161,32 @@ Use the legacy drivers if you experience:
 
 Manually configure your reader to use the legacy driver:
 
-**For PN532 UART/USB readers:**
+For PN532 UART/USB readers:
 
 ```toml
 [[readers.connect]]
 driver = "legacypn532uart"
-path = "/dev/ttyUSB0"  # Your device path
+path = "/dev/ttyUSB0"
 ```
 
-**For PN532 I2C readers:**
+For PN532 I2C readers:
 
 ```toml
 [[readers.connect]]
 driver = "legacypn532i2c"
-path = "/dev/i2c-1"  # Your I2C device path
+path = "/dev/i2c-1"
 ```
 
 ### Limitations
 
 The legacy drivers have the following limitations compared to the new driver:
 
-- Higher CPU usage (~3x more resources)
+- Higher CPU usage
 - MIFARE tags require pre-formatting before use
 - No FeLiCa tag support
 - Less responsive feel when scanning
 - Windows is not supported
 
-### Reporting Issues
+### Reporting issues
 
-If you need to use the legacy drivers, please report the issue you're experiencing with the new driver on [GitHub](https://github.com/ZaparooProject/zaparoo-core/issues) or [Discord](https://zaparoo.org/discord). This helps improve the new driver for everyone.
+If you need to use the legacy drivers, please report the issue you're experiencing with the new driver on [GitHub](https://github.com/ZaparooProject/zaparoo-core/issues) or [Discord](https://zaparoo.org/discord). Reports help improve the current PN532 driver.

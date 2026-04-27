@@ -5,16 +5,9 @@ keywords: [zaparoo mqtt, home assistant game launcher, mqtt reader zaparoo, smar
 
 # MQTT Reader
 
-The MQTT reader connects to an MQTT broker and executes [ZapScript](../zapscript/index.md) commands received from subscribed topics. This enables integration with home automation systems like [Home Assistant](https://www.home-assistant.io/) and other MQTT-based services.
+The MQTT reader lets [Zaparoo Core](../core/index.md) listen to an MQTT topic and treat each non-empty message as [ZapScript](../zapscript/index.md).
 
-## Features
-
-- Subscribe to MQTT topics and execute ZapScript from messages
-- Support for standard MQTT and secure MQTT over TLS (mqtts://)
-- Authentication via username/password
-- Automatic reconnection if connection is lost
-- Integration with Home Assistant automations
-- QoS 1 (at-least-once delivery) for reliable message processing
+Use it when another system already speaks MQTT, such as [Home Assistant](https://www.home-assistant.io/) or a custom button, script, or device that publishes launch commands.
 
 ## Platforms
 
@@ -60,13 +53,9 @@ The MQTT reader connects to an MQTT broker and executes [ZapScript](../zapscript
   ]}
 />
 
-## Setup
+## Configure the reader
 
-The MQTT reader requires manual configuration in your [config file](../core/config.md). Auto-detection is not supported.
-
-### Basic Configuration
-
-Add the following to your `config.toml`:
+Add an MQTT reader to your [`config.toml`](../core/config.md):
 
 ```toml
 [[readers.connect]]
@@ -74,14 +63,11 @@ driver = "mqtt"
 path = "localhost:1883/zaparoo/tokens"
 ```
 
-The `path` format is: `broker:port/topic`
+The `path` is the broker address followed by the topic Core should subscribe to: `broker:port/topic`. The example above connects to `localhost:1883` and listens on `zaparoo/tokens`.
 
-- `broker:port` - Your MQTT broker address and port (e.g., `localhost:1883`)
-- `topic` - The MQTT topic to subscribe to (e.g., `zaparoo/tokens`)
+Restart Core after changing the config. MQTT readers are not auto-detected, so the `[[readers.connect]]` entry is what enables this reader.
 
-### Secure Connection (TLS)
-
-For encrypted connections using MQTT over TLS:
+For an encrypted broker, use `mqtts://` in the reader path:
 
 ```toml
 [[readers.connect]]
@@ -89,17 +75,9 @@ driver = "mqtt"
 path = "mqtts://broker.example.com:8883/zaparoo/tokens"
 ```
 
-Or using the `ssl://` scheme:
+## Add broker credentials
 
-```toml
-[[readers.connect]]
-driver = "mqtt"
-path = "ssl://broker.example.com:8883/zaparoo/tokens"
-```
-
-### Authentication
-
-If your MQTT broker requires authentication, add credentials to your `auth.toml` file:
+If your broker needs a username and password, add them to [`auth.toml`](../core/config.md#auth-file). Match the broker address, not the full topic path:
 
 ```toml
 ["mqtt://broker.example.com:1883"]
@@ -107,7 +85,7 @@ username = "your_username"
 password = "your_password"
 ```
 
-The credential key should match your broker address without the topic path. You can also use schemeless entries that match any connection scheme:
+If you want the same credentials to work with either `mqtt://` or `mqtts://`, use only the host and port:
 
 ```toml
 ["192.168.1.100:1883"]
@@ -115,49 +93,25 @@ username = "your_username"
 password = "your_password"
 ```
 
-For secure connections, use `mqtts://` or `ssl://`:
+For encrypted brokers, use an `mqtts://` credential key. Core also treats `ssl://` auth entries as `mqtts://`.
 
-```toml
-["mqtts://broker.example.com:8883"]
-username = "your_username"
-password = "your_password"
-```
+## Send a message
 
-Scheme aliases are supported: `tcp://` matches `mqtt://` credentials, and `ssl://` matches `mqtts://` credentials.
-
-## Usage
-
-Once configured, the MQTT reader will subscribe to the specified topic and execute any ZapScript received in message payloads.
-
-### Example: Send ZapScript via MQTT
-
-Using `mosquitto_pub` command-line tool:
+Publish ZapScript to the topic configured in `config.toml`:
 
 ```bash
-mosquitto_pub -h localhost -t zaparoo/tokens -m "**launch:Genesis/Sonic"
+mosquitto_pub -h localhost -t zaparoo/tokens -m "@Genesis/Sonic the Hedgehog"
 ```
 
-Using Python with paho-mqtt:
+The `@` prefix is shorthand for a [title launch](../zapscript/launch.md#launchtitle). You can send any valid ZapScript, including commands such as `**launch.random:snes`.
 
-```python
-import paho.mqtt.client as mqtt
+Choose whatever topic name fits your setup. For example, you could use `zaparoo/tokens`, `zaparoo/devices/living_room/tokens`, or `homeassistant/zaparoo/commands`. The important part is that the published topic matches the topic in your reader `path`.
 
-client = mqtt.Client()
-client.connect("localhost", 1883)
-client.publish("zaparoo/tokens", "**launch:Genesis/Sonic")
-client.disconnect()
-```
+The MQTT reader is read-only. It can receive ZapScript, but it cannot write anything back to NFC tags, cards, or other tokens.
 
-## Home Assistant Integration
+## Home Assistant integration
 
-The MQTT reader integrates with Home Assistant automations. This example shows how to launch a random game when a button is pressed:
-
-### Prerequisites
-
-1. Home Assistant with MQTT integration configured
-2. Zaparoo Core MQTT reader configured to the same broker
-
-### Example Automation
+Set up Home Assistant's MQTT integration to use the same broker as Zaparoo Core, then publish ZapScript from an automation. This example runs when an input button changes:
 
 ```yaml
 automation:
@@ -165,7 +119,6 @@ automation:
     triggers:
       - trigger: state
         entity_id: input_button.random_game
-        to: "on"
     actions:
       - action: mqtt.publish
         data:
@@ -173,70 +126,40 @@ automation:
           payload: "**launch.random:snes"
 ```
 
-### Advanced Example: Launch Specific Game Based on Sensor
-
-```yaml
-automation:
-  - alias: "Launch Game Based on Time of Day"
-    triggers:
-      - trigger: time
-        at: "19:00:00"
-    conditions:
-      - condition: state
-        entity_id: binary_sensor.someone_home
-        state: "on"
-    actions:
-      - action: mqtt.publish
-        data:
-          topic: "zaparoo/tokens"
-          payload: "@Genesis/Sonic the Hedgehog"
-```
-
-## Topic Structure
-
-You can use any topic structure you want, but here are some common patterns:
-
-- `zaparoo/tokens` - Simple, single topic for all commands
-- `zaparoo/devices/living_room/tokens` - Per-device topics
-- `homeassistant/zaparoo/commands` - Integrated with Home Assistant namespace
-
-Just make sure your Zaparoo Core `readers.connect` path matches the topic you're publishing to.
-
-## Limitations
-
-- **Read-only**: The MQTT reader cannot write ZapScript back to tokens (use NFC readers for writing)
-- **No auto-detection**: Must be manually configured in config file
-- **Message format**: Payloads must be valid ZapScript text (binary formats not supported)
+Change `topic` to match your reader path, and change `payload` to the ZapScript you want to run.
 
 ## Troubleshooting
 
-### Connection Issues
+### No connection
 
-Enable debug logging in your `config.toml`:
+Enable debug logging in `config.toml`, restart Core, then check the Core logs:
 
 ```toml
 debug_logging = true
 ```
 
-Then check your logs for MQTT connection messages:
+For a working connection, you should see messages like:
 
-```
+```text
 mqtt reader: connected to localhost:1883
 mqtt reader: subscribed to topic zaparoo/tokens
 ```
 
-### Authentication Failures
+If Core does not connect, check the broker host, port, network access, and whether encrypted brokers use `mqtts://` in the reader path.
 
-If authentication is failing:
+### Authentication fails
 
-1. Verify your credentials in `auth.toml`
-2. Ensure the broker address in `auth.toml` matches your reader path (with or without scheme)
-3. Check broker logs for authentication errors
+Check that your `auth.toml` entry matches the broker address and port. Do not include the MQTT topic in the auth key.
 
-### Messages Not Executing
+For example, if the reader path is `mqtts://broker.example.com:8883/zaparoo/tokens`, the auth key should be `mqtts://broker.example.com:8883`.
 
-If messages are received but not executing:
+### Messages do nothing
 
-1. Verify the payload is valid ZapScript
-2. Check logs for ZapScript execution errors
-3. Test the same ZapScript with an NFC token to verify it works
+Check these first:
+
+1. The publisher is using the same topic as the reader path.
+2. The payload is not empty.
+3. The payload is valid ZapScript.
+4. Core logs show the MQTT message being received.
+
+Test the same ZapScript with another reader or through the app. If it still does not work, the ZapScript probably needs fixing.
