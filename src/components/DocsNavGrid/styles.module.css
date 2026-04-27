@@ -16,12 +16,12 @@
 }
 
 .navCard {
-  background: white;
+  background: var(--z-card-background);
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  transition: all 0.2s ease;
+  border-radius: var(--z-card-radius);
+  box-shadow: var(--z-card-shadow);
+  border: 1px solid var(--z-card-border);
+  transition: var(--z-card-transition);
   text-decoration: none;
   color: inherit;
   display: block;
@@ -29,7 +29,8 @@
 
 .navCard:hover {
   text-decoration: none;
-  border-color: var(--ifm-color-primary-light);
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--z-card-shadow-hover);
 }
 
 .navCardHeader {
@@ -57,12 +58,6 @@
   color: var(--ifm-color-emphasis-700);
   line-height: 1.5;
   font-size: 0.95rem;
-}
-
-/* Dark mode */
-[data-theme="dark"] .navCard {
-  background: var(--ifm-background-color);
-  border-color: var(--ifm-color-emphasis-300);
 }
 
 [data-theme="dark"] .navCard:hover {

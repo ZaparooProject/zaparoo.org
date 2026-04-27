@@ -208,16 +208,17 @@
 
 .blogCard {
   display: block;
-  background: white;
+  background: var(--z-card-background);
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  transition: all 0.2s ease;
+  border-radius: var(--z-card-radius);
+  box-shadow: var(--z-card-shadow);
+  border: 1px solid var(--z-card-border);
+  transition: var(--z-card-transition);
 }
 
 .blogCard:hover {
   border-color: var(--ifm-color-primary);
+  box-shadow: var(--z-card-shadow-hover);
 }
 
 .blogCardDate {
@@ -241,12 +242,6 @@
   margin: 0;
   color: var(--ifm-color-emphasis-700);
   font-size: 0.9rem;
-}
-
-/* Dark mode adjustments for blog cards */
-[data-theme="dark"] .blogCard {
-  background: var(--ifm-background-color);
-  border-color: var(--ifm-color-emphasis-300);
 }
 
 [data-theme="dark"] .blogCard:hover {
@@ -364,21 +359,18 @@
 .supportTile {
   height: 100%;
   padding: 1.75rem 1.5rem;
-  border-radius: 8px;
-  background-color: var(--ifm-card-background-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  transition: border-color 0.2s ease;
+  border-radius: var(--z-card-radius);
+  background-color: var(--z-card-background);
+  border: 1px solid var(--z-card-border-strong);
+  box-shadow: var(--z-card-shadow);
+  transition: var(--z-card-transition);
   display: flex;
   flex-direction: column;
 }
 
 .supportTile:hover {
   border-color: var(--ifm-color-primary);
-}
-
-[data-theme='dark'] .supportTile {
-  background-color: var(--ifm-background-color);
-  border-color: var(--ifm-color-emphasis-200);
+  box-shadow: var(--z-card-shadow-hover);
 }
 
 [data-theme='dark'] .supportTile:hover {

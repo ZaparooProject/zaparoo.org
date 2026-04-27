@@ -1,15 +1,11 @@
 .combined {
   margin-top: 2rem;
   padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background-color: var(--ifm-card-background-color);
+  border-radius: var(--z-card-radius);
+  border: 1px solid var(--z-card-border-strong);
+  background-color: var(--z-card-background);
+  box-shadow: var(--z-card-shadow);
   text-align: center;
-}
-
-[data-theme='dark'] .combined {
-  background-color: var(--ifm-background-color);
-  border-color: var(--ifm-color-emphasis-200);
 }
 
 .combinedHeadline {

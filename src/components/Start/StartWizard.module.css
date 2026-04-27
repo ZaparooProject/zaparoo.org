@@ -42,13 +42,14 @@
 }
 
 .card {
-  background: var(--ifm-card-background-color);
-  border: 2px solid var(--ifm-color-emphasis-300);
-  border-radius: 12px;
+  background: var(--z-card-background);
+  border: 1px solid var(--z-card-border-strong);
+  border-radius: var(--z-card-radius);
   padding: 2rem 1.5rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: var(--z-card-shadow);
+  transition: var(--z-card-transition), background-color 0.2s ease;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -57,6 +58,7 @@
 
 .card:hover {
   border-color: var(--ifm-color-primary);
+  box-shadow: var(--z-card-shadow-hover);
 }
 
 .card.active {
@@ -102,9 +104,10 @@
 /* Summary */
 .summaryCard {
   padding: 2rem;
-  background: var(--ifm-card-background-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 12px;
+  background: var(--z-card-background);
+  border: 1px solid var(--z-card-border-strong);
+  border-radius: var(--z-card-radius);
+  box-shadow: var(--z-card-shadow);
 }
 
 /* Summary Layout */

@@ -123,9 +123,8 @@ export default function DownloadCard({
         flexDirection: "column",
         justifyContent: "center",
         margin: "10px",
-        borderRadius: "8px",
+        borderRadius: "var(--z-card-radius)",
         padding: "1rem",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         width: "250px",
         gap: "0.5rem",
       }}

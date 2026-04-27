@@ -47,6 +47,18 @@
     --ifm-font-size-base: 17px;
     --ifm-code-font-size: 95%;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+    --z-card-background: var(--ifm-card-background-color);
+    --z-card-border: var(--ifm-color-emphasis-200);
+    --z-card-border-strong: var(--ifm-color-emphasis-300);
+    --z-card-border-hover: var(--ifm-color-primary);
+    --z-card-radius: 12px;
+    --z-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --z-card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --z-card-transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    --z-badge-background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+    --z-badge-border: color-mix(in srgb, var(--ifm-color-primary) 35%, transparent);
+    --z-badge-color: var(--ifm-color-primary-darkest);
+    --z-badge-radius: 999px;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -61,6 +73,14 @@
     --zaparoo-footer-link-hover: var(--ifm-color-primary-lightest);
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
     --ifm-color-primary-contrast-foreground: #ffffff;
+    --z-card-background: var(--ifm-background-color);
+    --z-card-border: var(--ifm-color-emphasis-300);
+    --z-card-border-strong: var(--ifm-color-emphasis-300);
+    --z-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --z-card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.28);
+    --z-badge-background: color-mix(in srgb, var(--ifm-color-primary) 18%, transparent);
+    --z-badge-border: color-mix(in srgb, var(--ifm-color-primary) 45%, transparent);
+    --z-badge-color: var(--ifm-color-primary-lightest);
 }
 
 [data-theme="dark"] .button--primary {
@@ -341,11 +361,16 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 
 /* Download card styling */
 .download-card {
-    border: 1px solid var(--ifm-color-emphasis-300);
+    background: var(--z-card-background);
+    border: 1px solid var(--z-card-border-strong);
+    box-shadow: var(--z-card-shadow);
     scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
+    transition: var(--z-card-transition);
+}
+
+.download-card:hover {
+    border-color: var(--z-card-border-hover);
+    box-shadow: var(--z-card-shadow-hover);
 }
 
 .download-card:target,

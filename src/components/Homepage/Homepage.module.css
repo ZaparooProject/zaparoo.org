@@ -11,23 +11,20 @@
 }
 
 .platformBadge {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
+  background: var(--z-badge-background);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--z-badge-radius);
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ifm-color-primary-dark);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.2s ease;
+  font-weight: 700;
+  color: var(--z-badge-color);
+  border: 1px solid var(--z-badge-border);
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
   display: flex;
   align-items: center;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .platformBadge:hover {
-  background: rgba(255, 255, 255, 1);
   border-color: var(--ifm-color-primary);
 }
 
@@ -77,17 +74,18 @@
 }
 
 .platformCard {
-  background: white;
+  background: var(--z-card-background);
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: var(--z-card-radius);
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  transition: all 0.2s ease;
+  box-shadow: var(--z-card-shadow);
+  border: 1px solid var(--z-card-border);
+  transition: var(--z-card-transition);
 }
 
 .platformCard:hover {
   border-color: var(--ifm-color-primary);
+  box-shadow: var(--z-card-shadow-hover);
 }
 
 .platformIcon {
@@ -131,11 +129,11 @@
 }
 
 .useCaseCard {
-  background: white;
+  background: var(--z-card-background);
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--z-card-radius);
+  box-shadow: var(--z-card-shadow);
+  border: 1px solid var(--z-card-border);
 }
 
 
@@ -218,19 +216,6 @@
   background-color: var(--ifm-background-color);
 }
 
-[data-theme='dark'] .platformCard,
-[data-theme='dark'] .useCaseCard {
-  background: var(--ifm-background-color);
-  border-color: var(--ifm-color-emphasis-300);
-}
-
-[data-theme='dark'] .platformBadge {
-  background: var(--ifm-color-primary-darkest);
-  color: var(--ifm-color-primary-contrast-foreground);
-  border-color: var(--ifm-color-primary-dark);
-}
-
 [data-theme='dark'] .platformBadge:hover {
   border-color: var(--ifm-color-primary-light);
 }
-

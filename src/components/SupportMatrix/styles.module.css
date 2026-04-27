@@ -11,8 +11,10 @@
 
 .familyCard,
 .readerGroup {
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 12px;
+  background: var(--z-card-background);
+  border: 1px solid var(--z-card-border);
+  border-radius: var(--z-card-radius);
+  box-shadow: var(--z-card-shadow);
   padding: 0.9rem;
 }
 
@@ -85,9 +87,10 @@ a.readerItem:hover * {
 }
 
 .status {
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 999px;
-  color: var(--ifm-color-emphasis-800);
+  border: 1px solid var(--z-badge-border);
+  border-radius: var(--z-badge-radius);
+  color: var(--z-badge-color);
+  background: var(--z-badge-background);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1;
