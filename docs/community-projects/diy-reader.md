@@ -130,10 +130,6 @@ Then, place the top piece on top and push it in place into the bottom piece. The
 
 Congratulations, you did it! Welcome to Zaparoo. This reader should be plug and play with Zaparoo on a [MiSTer FPGA](../platforms/mister/index.md) and [Commodore 64](../platforms/commodore64.md).
 
-:::note
-Please note that this reader will not work natively with Windows, Mac or Linux.
-:::
-
 Have fun!
 
 ## Contributors
