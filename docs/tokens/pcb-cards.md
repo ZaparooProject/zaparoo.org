@@ -49,7 +49,7 @@ Download the Gerber files from the Zaparoo hardware repo and upload them to your
 
 ### 2-layer PCBs from JLCPCB
 
-1. Go to [JLCPCB.com](https://jlcpcb.com/).
+1. Go to <ProductLink href="https://jlcpcb.com/" store="jlcpcb">JLCPCB.com</ProductLink>.
 2. Click **Order Now**.
 3. Click **Add Gerber file** and choose the Gerber zip you want to fabricate.
 4. Choose the following options for the board:
@@ -81,7 +81,7 @@ Download the Gerber files from the Zaparoo hardware repo and upload them to your
 
 ### 6-layer PCBs from JLCPCB
 
-1. Go to [JLCPCB.com](https://jlcpcb.com/).
+1. Go to <ProductLink href="https://jlcpcb.com/" store="jlcpcb">JLCPCB.com</ProductLink>.
 2. Click **Order Now**.
 3. Click **Add Gerber file** and choose the Gerber zip you want to fabricate.
 4. Choose the following options for the board:

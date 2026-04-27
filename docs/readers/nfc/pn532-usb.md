@@ -10,7 +10,7 @@ keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga]
 The PN532 USB is the ready-to-use NFC reader option for Zaparoo. It connects over USB serial, scans supported [NFC tags](../../tokens/nfc/index.md) and cards, and can write tokens through Zaparoo.
 
 :::tip
-This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Official hardware purchases support development.
+This is the reader stocked in the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink>. Official hardware purchases support development.
 :::
 
 ## Platforms
@@ -37,7 +37,6 @@ This is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/). Off
       platforms: [
         { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
       ],
     },
     {
@@ -148,7 +147,7 @@ Buying from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zapar
 
 Original hardware:
 
-- [Elechouse](https://www.elechouse.com/product/pn532-nfc-usb-module/) - Official PN532 USB module
+- <ProductLink href="https://www.elechouse.com/product/pn532-nfc-usb-module/" store="elechouse">Elechouse</ProductLink> - Official PN532 USB module
 
 Other modules are usually listed as `PN532 Type C` or `PCR532`:
 

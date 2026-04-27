@@ -1,12 +1,14 @@
 .productLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
+  display: inline;
 }
 
 .externalIcon {
+  display: inline-block;
   width: 0.7em;
   height: 0.7em;
+  margin-left: 0.25rem;
+  vertical-align: -0.075em;
   fill: currentColor;
   flex-shrink: 0;
+  overflow: visible;
 }

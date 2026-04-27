@@ -19,6 +19,7 @@ import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
 import featureStyles from "@site/src/components/HomepageFeatures/styles.module.css";
 import Showcase, { showcaseCount } from "@site/src/components/Showcase";
 import StructuredData from "@site/src/components/StructuredData";
+import ProductLink, { type ProductStore } from "@site/src/components/ProductLink";
 
 import recentPostsData from "../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json";
 const recentPosts = recentPostsData;
@@ -121,6 +122,7 @@ function SupportTile({
   linkText,
   external,
   umamiEvent,
+  productStore,
 }: {
   title: string;
   description: string;
@@ -128,6 +130,7 @@ function SupportTile({
   linkText: string;
   external?: boolean;
   umamiEvent: string;
+  productStore?: ProductStore;
 }): ReactNode {
   const inner = (
     <div className={styles.supportTile}>
@@ -137,6 +140,22 @@ function SupportTile({
     </div>
   );
   if (external) {
+    if (productStore) {
+      return (
+        <div className="col col--4" style={{ marginBottom: "1.5rem" }}>
+          <ProductLink
+            href={href}
+            store={productStore}
+            unstyled
+            showIcon={false}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            {inner}
+          </ProductLink>
+        </div>
+      );
+    }
+
     return (
       <div className="col col--4" style={{ marginBottom: "1.5rem" }}>
         <a
@@ -184,6 +203,7 @@ function SupportStrip(): ReactNode {
             linkText="Visit the Shop"
             external
             umamiEvent="homepage-support-shop"
+            productStore="shop"
           />
           <SupportTile
             title="Sponsor"
@@ -362,7 +382,7 @@ export default function Home(): ReactNode {
                     })()}
                   </div>
                   <h3>3. Tap & Play!</h3>
-                  <p>No menus, no choice paralysis, just play your games.</p>
+                  <p>Tap the card and get straight into the game.</p>
                 </div>
               </div>
             </div>

@@ -56,7 +56,7 @@ Yes. The [Zaparoo App](../../app/index.md) can write NTAG tags from NFC-capable 
 
 **What's the cheapest way to buy NTAG215 tags?**
 
-Search for "NTAG215 NFC card" on AliExpress if you want bulk blank cards. If you want custom printed cards, the [Zaparoo Shop](https://shop.zaparoo.com/) stocks pre-printed card designs.
+Search for "NTAG215 NFC card" on AliExpress if you want bulk blank cards. If you want custom printed cards, the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks pre-printed card designs.
 
 ---
 

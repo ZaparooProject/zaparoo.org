@@ -11,7 +11,7 @@ Tokens are physical objects that trigger actions in Zaparoo. Writable tokens hol
 The most common tokens are NFC cards, but Zaparoo also supports QR codes, barcodes, and NFC toys like Amiibo figures.
 
 :::tip
-The [Zaparoo Shop](https://shop.zaparoo.com/) stocks premium NFC cards with pre-printed designs ready to use with Zaparoo.
+The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks premium NFC cards with pre-printed designs ready to use with Zaparoo.
 :::
 
 ## Token types

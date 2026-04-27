@@ -6,7 +6,7 @@ keywords: [zapscript syntax, zapscript format, zaparoo token syntax, zapscript r
 
 # Syntax
 
-A ZapScript script is a simple flat list of commands which are run in sequence:
+A ZapScript script is a flat list of commands that run in sequence:
 
 ```zapscript
 Genesis/Some Game.md?launcher=AltMegaDrive||**delay:500||**echo:"Hello, World!"
@@ -141,7 +141,7 @@ Or:
 **http.get:'http://google.com/?q=testing'
 ```
 
-There's functionally no difference between these quotes; it's just your preference whatever works best for the argument.
+Both quote styles behave the same. Use whichever one makes the argument easier to read.
 
 If you need to use a quote character at the start of an argument, you can escape it.
 
@@ -244,7 +244,7 @@ For example, the following URL is written to a token: `https://zpr.au/c$abcd1234
 
 Every time the token is scanned, Core will make a request to this URL checking for a ZapScript payload. If it successfully receives one, it will run that ZapScript instead. Core also stores the last successful payload for offline fallback, but normal online scans fetch the current response so the payload can still be dynamic.
 
-The payload itself is just a snippet of plaintext ZapScript to be run, with no special extra formatting. The only condition is that this payload has the MIME-type `application/vnd.zaparoo.zapscript` in the response's `Content-Type` header.
+The payload itself is plaintext ZapScript, with no extra formatting. The response's `Content-Type` header must use the MIME type `application/vnd.zaparoo.zapscript`.
 
 Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result is cached and later URLs on the same domain are treated as Zap Links immediately. If the domain responds but does not support Zap Links, Core caches that result and prunes non-supporting hosts after 30 days so they can be checked again. Temporary network and server errors are not cached.
 
@@ -266,7 +266,7 @@ Servers can use these headers to serve different scripts for different devices f
 
 ### Self-Hosting
 
-It's easy to host your own Zap Link server as long as it follows the conventions above.
+You can host your own Zap Link server as long as it follows the conventions above.
 
 Here's an example in Python which would serve a directory of text files as Zap Links:
 

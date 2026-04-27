@@ -31,7 +31,6 @@ Zaparoo supports reading [barcodes](../../tokens/barcodes.md) and [QR codes](../
       platforms: [
         { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
       ],
     },
     {

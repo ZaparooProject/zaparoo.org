@@ -10,7 +10,7 @@ keywords: [zaparoo online, virtual nfc cards, zaparoo cloud, online.zaparoo.com,
 Cards live online. Change a card's script on the website, and every NFC tag linked to that card updates instantly without rewriting.
 
 :::info Not Open Source
-Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It adds cloud features that complement the open source project without replacing any offline functionality. Using Zaparoo Online helps support the ongoing development of the Zaparoo open source project, the same way purchasing from the [Zaparoo Shop](https://shop.zaparoo.com) does.
+Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It adds cloud features that complement the open source project without replacing any offline functionality. Using Zaparoo Online helps support the ongoing development of the Zaparoo open source project, the same way purchasing from the <ProductLink href="https://shop.zaparoo.com" store="shop">Zaparoo Shop</ProductLink> does.
 :::
 
 ## Cards

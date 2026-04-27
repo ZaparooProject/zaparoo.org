@@ -7,7 +7,7 @@ keywords: [zaparoo nfc reader, pn532 usb, acr122u, rc522, nfc reader mister fpga
 
 NFC readers let Zaparoo scan [NFC tags](../../tokens/nfc/index.md), NFC cards, and compatible NFC toys. The token stores ZapScript or other token text, not the game itself.
 
-If you are buying your first reader, start with the [PN532 USB](./pn532-usb.md). It is the ready-to-use option in this section, and it is the reader stocked in the [Zaparoo Shop](https://shop.zaparoo.com/).
+If you are buying your first reader, start with the [PN532 USB](./pn532-usb.md). It is the ready-to-use option in this section, and it is the reader stocked in the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink>.
 
 ## Which reader to choose
 

@@ -13,7 +13,7 @@ Binders work well when you want to browse cards in pages. The pocket size depend
 
 **Standard NFC cards** (credit card size, 85.6 x 54mm) fit in K-pop photo card binders. Search for `K-pop card binder` or `photocard binder`.
 
-**Trading card size** NFC cards, including cards from the [Zaparoo Shop](https://shop.zaparoo.com/), fit in standard trading card binders with 9-pocket pages, the same kind used for Pokemon, Magic: The Gathering, and other TCGs.
+**Trading card size** NFC cards, including cards from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink>, fit in standard trading card binders with 9-pocket pages, the same kind used for Pokemon, Magic: The Gathering, and other TCGs.
 
 Top-loading pockets are usually better than side-loading pockets because cards are less likely to slip out as you turn pages. If you use double-sided pages, pulling cards from the back side can be awkward once the binder is full.
 

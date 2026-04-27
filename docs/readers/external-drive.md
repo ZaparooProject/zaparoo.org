@@ -33,7 +33,6 @@ This is useful if you want physical tokens without buying [NFC cards](../tokens/
       platforms: [
         { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
       ],
     },
     {

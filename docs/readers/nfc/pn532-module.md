@@ -35,7 +35,6 @@ If you only want a reader you can plug in and use, choose the [PN532 USB](./pn53
       platforms: [
         { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../../platforms/recalbox", support: "supported" },
       ],
     },
     {
@@ -161,7 +160,7 @@ For a ready-to-use reader, use the PN532 USB page instead.
 
 Original hardware:
 
-- [Elechouse](https://www.elechouse.com/product/pn532-nfc-rfid-module-v4/) - Official PN532 module
+- <ProductLink href="https://www.elechouse.com/product/pn532-nfc-rfid-module-v4/" store="elechouse">Elechouse</ProductLink> - Official PN532 module
 
 Other modules are usually listed as `PN532 Module`:
 

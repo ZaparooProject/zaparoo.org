@@ -33,7 +33,6 @@ Use this for custom readers, barcode or QR scanners, button panels, or hardware 
       platforms: [
         { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
       ],
     },
     {

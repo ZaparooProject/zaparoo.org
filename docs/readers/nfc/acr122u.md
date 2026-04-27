@@ -14,7 +14,7 @@ The ACR122U, also sold as ACR122, is a USB NFC reader in a finished case with a 
 Internally it uses a PN532 NFC chip, but the host device does not talk to that chip the same way it talks to PN532 USB modules. Zaparoo uses different ACR122U drivers depending on the platform.
 
 :::warning Before you buy
-If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer choice. It avoids the ACR122U clone compatibility issues described below. The [Zaparoo Shop](https://shop.zaparoo.com/) stocks official PN532 readers that support the project.
+If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer choice. It avoids the ACR122U clone compatibility issues described below. The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks official PN532 readers that support the project.
 :::
 
 :::info
@@ -49,7 +49,6 @@ Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. [NTAG](../../to
       platforms: [
         { name: "Batocera", href: "../../platforms/batocera/", support: "limited" },
         { name: "ReplayOS", href: "../../platforms/replayos", support: "limited" },
-        { name: "Recalbox", href: "../../platforms/recalbox", support: "limited" },
       ],
     },
     {
@@ -140,7 +139,7 @@ These are some known working listings submitted by users:
 
 - <ProductLink href="https://www.amazon.com/dp/B00GYPIZG6/" store="amazon">Amazon (US) - Yosoo Store</ProductLink>
 - <ProductLink href="https://www.amazon.com/dp/B07KRKPWYC" store="amazon">Amazon (US) - ACS Store</ProductLink>
-- [Kogan (Australia)](https://www.kogan.com/au/buy/zoestore-kkmoon-nfc-acr122u-rfid-contactless-smart-reader-writerusb-sdk-c-card-d8a0-h10391/)
+- <ProductLink href="https://www.kogan.com/au/buy/zoestore-kkmoon-nfc-acr122u-rfid-contactless-smart-reader-writerusb-sdk-c-card-d8a0-h10391/" store="kogan">Kogan (Australia)</ProductLink>
 - [Everything ID (Australia)](https://www.everythingid.com.au/rfid-equipment-c-13/acr122u-usb-nfc-rfid-card-reader-writer-mifare-nfc-p-324)
 - <ProductLink href="https://www.aliexpress.us/item/2251832554165448.html" store="aliexpress">AliExpress (China) - 5YOA Official Store</ProductLink>
 <SponsorCallout variant="sponsor" />

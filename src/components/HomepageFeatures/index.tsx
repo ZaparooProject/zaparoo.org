@@ -15,8 +15,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/hand-metal.svg").default,
     description: (
       <>
-        Tap a card, launch a game. No scrolling through menus, no loading screens,
-        no complexity. Just pure gaming magic that works in seconds.
+        Tap a card and launch a game without digging through menus. Zaparoo
+        keeps the setup physical, quick, and ready to show off.
       </>
     ),
   },
@@ -25,8 +25,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/heart.svg").default,
     description: (
       <>
-        Works with your existing devices without any modifications. Start with
-        just your phone and some NFC cards - no soldering, no special hardware required.
+        Works with your existing devices without hardware mods. You can start
+        with your phone and NFC cards, then add dedicated readers when you want.
       </>
     ),
   },
@@ -35,8 +35,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/waypoints.svg").default,
     description: (
       <>
-        One system works everywhere: MiSTer FPGA, Steam Deck, RetroPie, Windows,
-        and more. Set up once, use everywhere with your entire game collection.
+        Use the same tokens across supported setups like MiSTer FPGA, Steam Deck,
+        Windows, Linux, and more.
       </>
     ),
   },

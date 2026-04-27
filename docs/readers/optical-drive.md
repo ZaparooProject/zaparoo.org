@@ -33,7 +33,6 @@ This reader does not read games or media from the disc. It uses the disc as a ph
       platforms: [
         { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
       ],
     },
     {

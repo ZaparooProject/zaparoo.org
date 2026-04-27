@@ -77,7 +77,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type = 'homepage' }) =>
       {
         "@type": "HowToStep",
         "name": "Tap & Play",
-        "text": "Tap your card on the reader to instantly launch your content. No menus, just play!"
+        "text": "Tap your card on the reader to launch your content."
       }
     ]
   };

@@ -5,7 +5,7 @@ keywords: [zaparoo diy reader, diy nfc reader mister, zaparoo reader build, chea
 
 # DIY Reader
 
-This guide explains how to create a low cost NFC reader using easily available parts, which is guaranteed to be compatible with the Zaparoo project on MiSTer. The total cost of a single reader is approximately $10 USD in a small batch of 5.
+This guide explains how to create a low-cost NFC reader using easily available parts. The design is compatible with Zaparoo on MiSTer, and the total cost of a single reader is approximately $10 USD in a small batch of 5.
 
 <img src="/img/docs/community-projects/diy-reader/DIY_Reader_Complete.jpg" alt="A complete DIY Reader build" width="300"/>
 
@@ -18,7 +18,7 @@ This guide explains how to create a low cost NFC reader using easily available p
 - Flux
 - 3D printer
 
-Some soldering is necessary to attach the header pins that connect the serial board to the NFC module. It only requires 8 through-hole solders though, so it's a great way to start for a beginner.
+Some soldering is necessary to attach the header pins that connect the serial board to the NFC module. It requires 8 through-hole solder joints, so it's a good beginner soldering project.
 
 Access to a 3D printer is required for color switching to show the top markings and LED window, but it's also possible to use a 3D printing service and print in one color.
 
@@ -34,11 +34,11 @@ Feel free to shop around for components.
 ## Serial PCB
 
 This is a custom PCB which allows the PN532 to communicate with the MiSTer over a serial USB connection. It functions the same as a standard USB to serial cable/adapter, but has a better form factor for use in a case and does not risk incorrect voltage issues that have been found in these adapters.
-This section will explain how to order the PCB from [JLCPCB](https://jlcpcb.com/), but any PCB manufacturer will work.
+This section will explain how to order the PCB from <ProductLink href="https://jlcpcb.com/" store="jlcpcb">JLCPCB</ProductLink>, but any PCB manufacturer will work.
 
 ### Upload gerber file
 
-From the [JLCPCB](https://jlcpcb.com/) home page, click the "Add gerber file" button and upload the [Gerber.zip file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) from this repo. You'll be forwarded to the order page.
+From the <ProductLink href="https://jlcpcb.com/" store="jlcpcb">JLCPCB</ProductLink> home page, click the "Add gerber file" button and upload the [Gerber.zip file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) from this repo. You'll be forwarded to the order page.
 
 ### Beginning order
 
@@ -46,7 +46,7 @@ Scroll down to the "PCB Assembly" section and enable this option with the side t
 
 ### Board confirmation
 
-Just click "NEXT" on this page.
+Click "NEXT" on this page.
 
 ### Upload BOM and CPL files
 
@@ -58,11 +58,11 @@ You may receive an error about the "J2 designator" as seen below. Ignore this an
 
 ### Bill of materials
 
-There should be nothing to do on this page, just click "NEXT".
+There should be nothing to do on this page. Click "NEXT".
 
 ### Component placements
 
-You may see the error regarding components being offset when this page loads, just click "Ok". You can make sure the components aren't obviously in the wrong place, but it should be OK to just click "NEXT" here too.
+You may see an error about components being offset when this page loads. Click "Ok". You can make sure the components aren't obviously in the wrong place, but it should be OK to click "NEXT" here too.
 
 ### Quote & order
 
@@ -70,7 +70,7 @@ Select a "Product Description" option. Something like "DIY" is fine. Then click 
 
 ### Checkout
 
-From here, just follow the prompts to specify shipping and payment for your boards. You can also change the quantity of boards here.
+From here, follow the prompts to specify shipping and payment for your boards. You can also change the quantity of boards here.
 
 And that's it. When your boards arrive you're ready for assembly.
 
@@ -110,7 +110,7 @@ It's important that this one goes on straight too, and it can be a little tricky
 If you touch the male pins at any point, make sure to give them a quick clean with alcohol. This can affect the connection to the module.
 :::
 
-Lastly, check the DIP switches on the PN532 module, next to the connector you just soldered. They should be set to "HSU". Usually this is how the come by default.
+Lastly, check the DIP switches on the PN532 module, next to the connector you soldered. They should be set to "HSU". This is how they usually come by default.
 
 Now you can connect the 2 boards together like shown.
 

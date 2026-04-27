@@ -12,7 +12,7 @@ Buying generic hardware? Pay attention to the recommendations in the docs. The h
 :::
 
 :::tip
-The [Zaparoo Shop](https://shop.zaparoo.com/) stocks official NFC readers and cards that are tested and ready to use out of the box.
+The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks official NFC readers and cards that are tested and ready to use out of the box.
 :::
 
 ## Comparison
@@ -98,8 +98,8 @@ All NFC readers can scan:
 
 **Which reader should I buy?**
 
-- 95% of users should get the [PN532 USB](./nfc/pn532-usb.md)
-- It's cheap, reliable, and works everywhere
+- Start with the [PN532 USB](./nfc/pn532-usb.md) if you want a ready-to-use NFC reader
+- It has broad platform support and needs the least setup
 
 **Can I use multiple readers?**
 

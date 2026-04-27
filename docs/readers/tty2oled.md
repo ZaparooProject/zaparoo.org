@@ -33,7 +33,6 @@ Use this if you already have [TTY2OLED](https://github.com/venice1200/MiSTer_tty
       platforms: [
         { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
       ],
     },
     {

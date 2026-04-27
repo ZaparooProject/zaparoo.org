@@ -5,9 +5,9 @@ keywords: [zaparoo community projects, zaparoo 3d print, diy zaparoo reader, zap
 
 # Projects
 
-An index of projects created by the Zaparoo community. We love seeing what people create - if you've made something cool with Zaparoo, please share it! You can submit your project by opening a pull request to add it to this list, or by sharing it on our Discord or Reddit communities.
+An index of projects created by the Zaparoo community. We love seeing what people create. If you've made something cool with Zaparoo, please share it! You can submit your project by opening a pull request to add it to this list, or by sharing it on our Discord or Reddit communities.
 
-Projects can be anything from 3D printed cases to custom tokens, software integrations, or creative ways to use Zaparoo. Even if you think it's simple, others may find it useful or inspiring!
+Projects can be anything from 3D printed cases to custom tokens, software integrations, or creative ways to use Zaparoo. Even if it feels small, others may find it useful or inspiring!
 
 ## Custom Cases
 

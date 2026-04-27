@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import ProductLink from '@site/src/components/ProductLink';
 import styles from './styles.module.css';
 
 interface Props {
@@ -21,15 +22,15 @@ export default function SponsorCallout({ variant = 'sponsor' }: Props) {
           >
             Get the App
           </a>
-          <a
+          <ProductLink
             href="https://shop.zaparoo.com"
+            store="shop"
             className={styles.combinedButton}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-umami-event="release-callout-shop"
+            unstyled
+            showIcon={false}
           >
             Visit the Shop
-          </a>
+          </ProductLink>
           <Link
             to="/sponsor/"
             className={styles.combinedButton}

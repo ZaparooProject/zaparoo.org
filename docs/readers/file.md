@@ -33,7 +33,6 @@ This is useful for scripts, local tools, and automation that need to trigger Zap
       platforms: [
         { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
         { name: "ReplayOS", href: "../platforms/replayos", support: "supported" },
-        { name: "Recalbox", href: "../platforms/recalbox", support: "supported" },
       ],
     },
     {
