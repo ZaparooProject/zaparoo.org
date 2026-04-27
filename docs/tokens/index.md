@@ -19,7 +19,7 @@ The [Zaparoo Shop](https://shop.zaparoo.com/) stocks premium NFC cards with pre-
 | Token | Storage | Writable | Reader needed | Notes |
 | ----- | ------- | -------- | ------------- | ----- |
 | [NFC tags](./nfc/) | 48–888 bytes | Yes | NFC reader | Cards, stickers, key fobs |
-| [PCB cards](./pcb-cards) | 540+ bytes | Yes | NFC reader | Custom PCBs with NFC stickers |
+| [PCB cards](./pcb-cards) | NFC sticker | Yes | NFC reader | Custom PCBs with NFC stickers |
 | [NFC toys](./nfc-toys/) | UID | No (mapped) | NFC reader | Amiibo, Skylanders, and similar |
 | [QR codes](./qr-codes) | Text or URL | Printable | App, camera, or scanner | Free to create, no special hardware |
 | [Barcodes](./barcodes) | Barcode value | Printable | App or barcode scanner | Works with existing product barcodes |
