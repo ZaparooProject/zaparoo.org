@@ -39,6 +39,7 @@ type Platform =
   | "bazzite"
   | "chimeraos"
   | "libreelec"
+  | "replayos"
   | null;
 type Token =
   | "nfc-cards"
@@ -133,6 +134,13 @@ const platforms: PlatformConfig[] = [
       CAPABILITIES.USB_PORT,
       CAPABILITIES.NETWORK,
     ],
+  },
+  {
+    id: "replayos",
+    name: "RePlayOS",
+    icon: "/img/logos/replayos.webp",
+    iconStyle: { width: "125px", height: "22.06px" },
+    provides: [CAPABILITIES.USB_PORT, CAPABILITIES.NETWORK],
   },
   {
     id: "windows",
@@ -597,6 +605,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
     bazzite: "Bazzite",
     chimeraos: "ChimeraOS",
     libreelec: "LibreELEC",
+    replayos: "RePlayOS",
   };
 
   const needsAppPro = choice.reader === "zaparoo-app";
@@ -956,7 +965,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           The Zaparoo App provides the best and most convenient experience. If
           you can't or prefer not to use it, Zaparoo Core includes{" "}
           <a href="/docs/app/web/">Web UI</a> and{" "}
-          <a href="/docs/core/cli">TUI</a> alternatives.
+          <a href="/docs/core/tui">TUI</a> alternatives.
         </Admonition>
       )}
 

@@ -63,7 +63,8 @@ Important notes:
 - [ChimeraOS](https://zaparoo.org/docs/platforms/chimeraos/): Install Zaparoo on ChimeraOS.
 - [Linux](https://zaparoo.org/docs/platforms/linux/): Install Zaparoo on generic Linux systems.
 - [LibreELEC](https://zaparoo.org/docs/platforms/libreelec/): Install Zaparoo on LibreELEC media systems.
-- [MiSTex](https://zaparoo.org/docs/platforms/mistex/): Install Zaparoo on the MiSTex FPGA board.
+- [MiSTeX](https://zaparoo.org/docs/platforms/mistex/): Install Zaparoo on the MiSTeX FPGA board.
+- [RePlayOS](https://zaparoo.org/docs/platforms/replayos/): Install Zaparoo on RePlayOS.
 
 ## App
 
@@ -77,6 +78,7 @@ Important notes:
 - [Core Overview](https://zaparoo.org/docs/core/): Zaparoo Core daemon reference and architecture.
 - [Configuration](https://zaparoo.org/docs/core/config/): Full config.toml reference for Zaparoo Core.
 - [CLI Reference](https://zaparoo.org/docs/core/cli/): Command-line interface for interacting with Core.
+- [Terminal UI](https://zaparoo.org/docs/core/tui/): Local terminal menu for Core status, token writing, media updates, settings, and logs.
 - [Contributing / Developer Guide](https://zaparoo.org/docs/core/contributing/): Guide for developers building on or contributing to Core.
 
 ## Features
@@ -87,6 +89,7 @@ Important notes:
 - [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
 - [Playtime](https://zaparoo.org/docs/features/playtime/): Track how long games are played via token scans.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
+- [Launch Guard](https://zaparoo.org/docs/features/launch-guard/): Optional protection against accidental game switching while a game is running.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.
 
 ## ZapScript

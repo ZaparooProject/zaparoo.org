@@ -1,0 +1,132 @@
+---
+slug: core-v2.11.0
+title: "Zaparoo Core v2.11.0 released"
+description: "Zaparoo Core v2.11.0: Launch Guard, PixelCade LED marquee support, RePlayOS support, MiSTer improvements, and media library updates."
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.11.0 is now available. This release adds optional Launch Guard for accidental tap protection, PixelCade LED marquee support, RePlayOS support, and a batch of media library, MiSTer, and ZapScript updates.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **[Launch Guard](#launch-guard)**: prevent accidental game switching mid-session
+- **[PixelCade](#pixelcade)**: LED marquee displays for game launches
+- **[RePlayOS](#replayos)**: launch, tracking, and screenshot support for RePlayOS
+- **[Media library](#media-library)**: faster reindexing, title matching, and filename tag parsing
+- **[MiSTer](#mister)**: custom core paths, DualRAM launchers, and HTTPS certificate fallback
+
+:::warning Compatibility warning
+This release tightens a few security defaults. If you use [`allow_execute`](/docs/next/core/config#allow_execute), patterns now match the full command instead of any substring, so broad matches need `.*` where appropriate. Remote HTTP POST API calls are now localhost-only unless you configure [`allowed_ips`](/docs/next/core/config#allowed_ips), and remote `/run/` or `/r/` launches need matching [`allow_run`](/docs/next/core/config#allow_run) patterns.
+:::
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.11.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Launch guard
+
+When enabled, [Launch Guard](/docs/next/features/launch-guard) holds incoming scans while a game is already running instead of launching immediately. A sound plays when the staged scan is ready, and a deliberate second tap confirms the switch. If nothing happens within 15 seconds, the scan is discarded and the running game continues uninterrupted.
+
+This helps with accidental scans from cards left on readers, bumped setups, or children enthusiastically scanning everything in reach.
+
+Enable it in `config.toml`:
+
+```toml
+[readers.scan.launch_guard]
+enabled = true
+timeout = 15
+delay = 2
+```
+
+The `delay` setting adds a mandatory wait before the second tap is accepted, so an impatient double-tap can't bypass it. There's also a `require_confirm` mode where only a physical button or API call can confirm a switch; re-taps do nothing. A [Python GPIO example](https://github.com/ZaparooProject/zaparoo-core/blob/main/scripts/examples/launch_guard_gpio.py) is available for wiring a confirm button on a Raspberry Pi.
+
+## PixelCade
+
+[PixelCade](https://pixelcade.org) LED matrix displays now work as a [publisher](/docs/next/features/publishers#pixelcade) in Zaparoo. When a game starts, Zaparoo sends the system and launched filename to PixelCade's local API and the matching artwork appears on the display. Dozens of systems are mapped out of the box, with a lowercase fallback for anything not in the list.
+
+Configure it in `config.toml`:
+
+```toml
+[[service.publishers.pixelcade]]
+host = "192.168.1.x"
+mode = "arcade"
+```
+
+## RePlayOS
+
+[RePlayOS](https://replayos.net) now has its own [Zaparoo Core platform integration](/docs/next/platforms/replayos). Zaparoo can launch RePlayOS games, track active games, capture screenshots, and install as a systemd service.
+
+## Media library
+
+Thanks to work from [BossRighteous](https://github.com/BossRighteous), media library reindexing now updates the existing database in place instead of rewriting it from scratch. Unchanged entries are kept, which can cut reindex time roughly in half once you already have an established media library.
+
+The library now reads more details from filenames, so multi-disc games, editions, publishers, and similar tags show up more consistently.
+
+Search and matching also handle awkward game titles, numbered series, and names that use unusual punctuation more consistently.
+
+The background media scanner now pauses while a game is running and resumes when it stops, reducing the risk of crashes when indexing overlaps with demanding MiSTer cores.
+
+## New ZapScript command
+
+[`**launch.last`](/docs/next/zapscript/launch#launchlast) re-launches the most recently played game. Add a number to step further back in history:
+
+```zapscript
+**launch.last
+**launch.last:2
+**launch.last:3
+```
+
+Handy for a dedicated "last played" card, or a physical button that cycles through recent sessions.
+
+## MiSTer
+
+- **DualRAM alt launchers**: support for 3DO, Jaguar, PSX, and Saturn using the [Dual RAM Console Cores](https://github.com/TheJesusFish/Dual-Ram-Console-Cores) builds in `_Console (Dual SDRAM)/`
+- **`load_path` config override**: point a launcher at a specific RBF file, so MiSTer users can launch their own custom cores
+- **CA bundle fallback**: HTTPS requests can use Update_All or system CA bundles when the system trust store is out of date, without disabling certificate verification
+
+## Other changes
+
+- **Reader enable/disable**: individual reader connections can be [enabled or disabled](/docs/next/core/config#readers-connect-enabled) without removing them from config. The TUI shows "(disabled)" next to disabled entries
+- **Audio volume**: new [`volume`](/docs/next/core/config#volume) setting in `[audio]` (0-200, default 100). Values above 100 amplify the feedback sounds. Configurable without a restart via the settings API
+- **ZapScript security hardening**: new config options to block commands by name with [`block_commands`](/docs/next/core/config#block_commands), restrict `http.get` and `http.post` URLs with [`allow_http`](/docs/next/core/config#allow_http), and control keyboard input through [`[zapscript.input]`](/docs/next/core/config#zapscriptinput)
+- **Server-Sent Events**: new [`/api/v0.1/events`](/docs/next/core/api#server-sent-events-sse) endpoint for receiving API notifications over a standard HTTP connection
+- **Tag database expanded**: dozens of new tags from the [GameDataBase project](https://github.com/PigSaint/GameDataBase) for arcade boards, input devices, and more. Old deprecated tag names on existing cards resolve automatically, so nothing breaks
+- **Linux external drives**: [external drive readers](/docs/next/readers/external-drive) now listen for UDisks2 and inotify mount changes, with duplicate suppression and stale-state cleanup
+- **Relative media paths**: custom launcher [`media_dirs`](/docs/next/features/launchers#creating-a-custom-launcher) entries can now use paths relative to the Core executable directory
+- **New API method**: [`confirm`](/docs/next/core/api/methods#confirm) confirms a staged Launch Guard scan for physical buttons and automations
+
+## Bug fixes
+
+- Fixed high CPU usage on multi-core systems caused by an overly low Go memory limit
+- Fixed sensitive input sequences (such as passphrases) being written to debug logs in plaintext
+- Fixed media index hanging on resume from a previously interrupted indexing run
+- Fixed ZapLink token size limit not being enforced correctly
+- Fixed ZapLink and updater HTTPS failures on MiSTer systems with stale certificate stores
+- Fixed LLAPISuperGrafx launcher not handling `.sgx` files on LLAPI cores
+- Fixed Saturn launches on MiSTer by waiting longer before mounting disc images
+- Fixed Windows system tray menu items not opening correctly
+- Fixed macOS `.DS_Store` and other system files causing noise during indexing
+- Fixed several URI decoding edge cases involving `?`, `#`, and literal `%` characters
+- Fixed unused reader detection probes leaking resources during repeated detection cycles
+- Fixed service stop/restart paths that could leave stale listeners, queued work, or database operations running after shutdown
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

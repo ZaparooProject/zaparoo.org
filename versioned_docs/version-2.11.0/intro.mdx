@@ -1,0 +1,118 @@
+---
+sidebar_position: 1
+slug: /
+title: Introduction
+description: "Documentation for Zaparoo: use NFC cards, QR codes, optical discs, and more to launch games on MiSTer FPGA, SteamOS, Windows, Batocera, Linux, and more."
+keywords: [zaparoo, nfc game launcher, rfid game launcher, mister fpga, steamos, batocera, documentation]
+---
+
+import { NavCardGroup } from "@site/src/components/DocsNavGrid";
+import {
+  Monitor,
+  ScanLine,
+  CreditCard,
+  Cpu,
+  Smartphone,
+  Code2,
+  Puzzle,
+  Wand2,
+  Palette,
+  Hammer,
+  Users,
+} from "lucide-react";
+
+# Introduction
+
+First time here? The [setup wizard](/start/) asks 3 questions and builds a guide for your specific hardware.
+
+<NavCardGroup
+  title="Start building"
+  cards={[
+    {
+      icon: Monitor,
+      title: "Platforms",
+      description: "Supported platforms like MiSTer, Windows, SteamOS, and more.",
+      link: "./platforms/",
+    },
+    {
+      icon: ScanLine,
+      title: "Readers",
+      description: "NFC readers, barcode scanners, and other hardware.",
+      link: "./readers/",
+    },
+    {
+      icon: CreditCard,
+      title: "Tokens",
+      description: "NFC cards, QR codes, and other scannable objects.",
+      link: "./tokens/",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Install & configure"
+  cards={[
+    {
+      icon: Cpu,
+      title: "Zaparoo Core",
+      description: "The background service that powers Zaparoo.",
+      link: "./core/",
+    },
+    {
+      icon: Smartphone,
+      title: "Zaparoo App",
+      description: "Official mobile app for iOS and Android.",
+      link: "./app/",
+    },
+    {
+      icon: Code2,
+      title: "ZapScript",
+      description: "The scripting language written to tokens.",
+      link: "./zapscript/",
+    },
+    {
+      icon: Puzzle,
+      title: "Features",
+      description: "Mappings, playtime limits, custom launchers, and more.",
+      link: "./features/",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Design your collection"
+  cards={[
+    {
+      icon: Wand2,
+      title: "Zaparoo Designer",
+      description: "Web app for generating custom labels.",
+      link: "./designer/",
+    },
+    {
+      icon: Palette,
+      title: "Labels",
+      description: "Tools and templates for creating card artwork.",
+      link: "./labels/",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Extend & contribute"
+  cards={[
+    {
+      icon: Hammer,
+      title: "Community Projects",
+      description: "DIY builds, 3D prints, and community tools.",
+      link: "./community-projects/",
+    },
+    {
+      icon: Users,
+      title: "Community Hub",
+      description: "Discord, Reddit, and community resources.",
+      link: "./community-hub/",
+    },
+  ]}
+/>
+
+The docs are open for contributions, so if you see something missing or want to add something, please [create a pull request](https://github.com/ZaparooProject/zaparoo.org/pulls).

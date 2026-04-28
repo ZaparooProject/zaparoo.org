@@ -1,7 +1,7 @@
 ---
 title: "Downloads"
-description: Download Zaparoo Core for MiSTer, Windows, SteamOS, Batocera, Linux, and more. Plus the free Zaparoo App for iOS and Android.
-keywords: [zaparoo download, zaparoo core, mister fpga, steamos, batocera, nfc launcher download]
+description: Download Zaparoo Core for MiSTer, Windows, SteamOS, Batocera, RePlayOS, Linux, and more. Plus the free Zaparoo App for iOS and Android.
+keywords: [zaparoo download, zaparoo core, mister fpga, steamos, batocera, replayos, nfc launcher download]
 ---
 
 import Button from "@site/src/components/Button";
@@ -122,6 +122,21 @@ won't interfere with your media playing.
       label: "Content Downloader",
       link: "/docs/platforms/batocera#install",
     }}
+  />
+  <DownloadCard
+    id="replayos"
+    name="RePlayOS"
+    platform="replayos"
+    architectures={["arm64"]}
+    icon={
+      <img
+        src="/img/logos/replayos.webp"
+        alt="RePlayOS logo"
+        style={{ width: "125px", height: "22.06px" }}
+      />
+    }
+    docLink="/docs/platforms/replayos"
+    platformLink="https://www.replayos.com/"
   />
   <DownloadCard
     id="mistex"

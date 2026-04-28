@@ -5,6 +5,7 @@ import styles from "./Homepage.module.css";
 const platforms = [
   { name: "MiSTer FPGA", link: "/docs/platforms/mister" },
   { name: "MiSTeX", link: "/docs/platforms/mistex" },
+  { name: "RePlayOS", link: "/docs/platforms/replayos" },
   { name: "Windows", link: "/docs/platforms/windows/" },
   { name: "Linux", link: "/docs/platforms/linux" },
   { name: "SteamOS", link: "/docs/platforms/steamos" },

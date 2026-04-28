@@ -28,11 +28,15 @@ This command generates static content into the `build` directory and can be serv
 
 1. Check commits since last release for changelog
 2. Update `docs/` with new features/config options
-3. Create docs snapshot: `pnpm docusaurus docs:version X.X.X`
-4. Update `docusaurus.config.ts` (lastVersion + versions config)
+3. Create Stable docs snapshot: `pnpm docusaurus docs:version X.X.X`
+4. Update Stable/Next versioning:
+   - `docusaurus.config.ts` (`lastVersion`, Stable version config, and `docusaurus-plugin-llms` `docsDir`)
+   - `versions.json` should contain only the new Stable version
+   - Remove old `versioned_docs/` and `versioned_sidebars/` snapshots unless intentionally retaining them
 5. Copy install script: `cp ../zaparoo-core/scripts/install.sh static/`
 6. Update versions in:
    - `src/components/DownloadCard/index.tsx` (version, date, blog slug)
    - `static/install.sh` (DEFAULT_VERSION)
-7. Write blog post in `blog/YYYY-MM-DD-core-vX.X.X/index.mdx`
-8. Build and verify: `pnpm build && pnpm serve`
+7. Update `static/llms.txt` manually with new important docs pages or platform changes
+8. Write blog post in `blog/YYYY-MM-DD-core-vX.X.X/index.mdx`
+9. Build and verify: `pnpm build && pnpm serve`

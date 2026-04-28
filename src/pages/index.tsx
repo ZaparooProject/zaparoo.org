@@ -74,7 +74,7 @@ function Stats(): ReactNode {
         <div className={styles.statLabel}>Discord Members</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>150</div>
+        <div className={styles.statNumber}>160</div>
         <div className={styles.statLabel}>GitHub Stars</div>
       </div>
     </div>

@@ -1,0 +1,341 @@
+---
+sidebar_position: 4
+description: "ZapScript playlist commands: sequence multiple launches or actions in a single Zaparoo token scan."
+keywords: [zapscript playlist, zaparoo playlist, multi-action token zaparoo, sequence zapscript]
+---
+
+# Playlist
+
+Zaparoo supports keeping a [playlist](../features/playlists.md) of media in memory and tracking the current position. You can load playlists from files, folders, or define them inline.
+
+## Playlist Formats
+
+### Folder
+
+Load all files from a folder as a playlist:
+
+```zapscript
+**playlist.play:/media/fat/games/Genesis
+```
+
+Only immediate contents are loaded (no subfolders). Zip file contents are not supported with this method.
+
+### .pls File
+
+A `.pls` file lists media files, one per line:
+
+```
+[playlist]
+File1=/media/fat/games/Genesis/Some Game (USA).md
+Title1=Some Game
+File2=/media/fat/games/Genesis/Another Game (USA).md
+Title2=Another Game
+```
+
+The `Title` line is optional. Items are sorted by the ID numbers (`File1`, `File2`, etc.), not by order in the file.
+
+File paths are ZapScript commands, they can either be literal paths or use any supported command(s).
+
+```
+[playlist]
+File1=Some Game (USA).md
+Title1=A different name
+File2=Another Game (USA).md?launcher=LLAPIMegaDrive
+```
+
+### Inline JSON
+
+Define a playlist directly in the command using JSON:
+
+```zapscript
+**playlist.play:{"id":"my-list","name":"My Playlist","items":[{"name":"Game 1","zapscript":"Genesis/Game.md"},{"name":"Game 2","zapscript":"SNES/Game.sfc"}]}
+```
+
+Fields:
+
+- `id` - Unique identifier (used to detect if the same playlist is reloaded)
+- `name` - Display name for the playlist (optional)
+- `items` - Array of playlist items:
+  - `name` - Display name for the item (optional, auto-generated if missing)
+  - `zapscript` - The ZapScript to run (can be any command, not just paths)
+
+---
+
+## playlist.play
+
+Loads a playlist and immediately launches the first item.
+
+### Syntax
+
+```zapscript
+**playlist.play:[<source>]
+```
+
+### Arguments
+
+**`source`** (optional)
+Path to a folder, `.pls` file, or inline JSON playlist. If omitted, resumes the current paused playlist.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Load the Favorites folder as a playlist and launch the first item:
+
+```zapscript
+**playlist.play:/media/fat/_@Favorites
+```
+
+Load a playlist file in shuffled order:
+
+```zapscript
+**playlist.play:/media/fat/playlist.pls?mode=shuffle
+```
+
+Resume a paused playlist:
+
+```zapscript
+**playlist.play
+```
+
+---
+
+## playlist.load
+
+Loads a playlist into memory without launching anything.
+
+### Syntax
+
+```zapscript
+**playlist.load:<source>
+```
+
+### Arguments
+
+**`source`** (required)
+Path to a folder, `.pls` file, or inline JSON playlist.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Load a playlist file:
+
+```zapscript
+**playlist.load:/media/fat/playlist.pls
+```
+
+Load a folder in shuffled order:
+
+```zapscript
+**playlist.load:/media/fat/games/Genesis?mode=shuffle
+```
+
+---
+
+## playlist.open
+
+Loads a playlist and opens an interactive picker menu to select an item.
+
+:::note Platform Support
+The interactive picker is currently only supported on [MiSTer](../platforms/mister/index.md).
+:::
+
+### Syntax
+
+```zapscript
+**playlist.open:[<source>]
+```
+
+### Arguments
+
+**`source`** (optional)
+Path to a folder, `.pls` file, or inline JSON playlist. If omitted, reopens the picker for the current playlist.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Open a picker menu for the playlist:
+
+```zapscript
+**playlist.open:/media/fat/playlist.pls
+```
+
+Reopen the picker for the currently active playlist, showing the current position:
+
+```zapscript
+**playlist.open
+```
+
+---
+
+## playlist.stop
+
+Stops the current media and clears the playlist from memory.
+
+### Syntax
+
+```zapscript
+**playlist.stop
+```
+
+### Arguments
+
+None.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Stop playback and clear the playlist:
+
+```zapscript
+**playlist.stop
+```
+
+---
+
+## playlist.pause
+
+Pauses the current playlist without clearing it.
+
+### Syntax
+
+```zapscript
+**playlist.pause
+```
+
+### Arguments
+
+None.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Pause the playlist. Use `playlist.play` without arguments to resume:
+
+```zapscript
+**playlist.pause
+```
+
+---
+
+## playlist.next
+
+Launches the next item in the playlist.
+
+### Syntax
+
+```zapscript
+**playlist.next
+```
+
+### Arguments
+
+None.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Advance to the next item:
+
+```zapscript
+**playlist.next
+```
+
+---
+
+## playlist.previous
+
+Launches the previous item in the playlist.
+
+### Syntax
+
+```zapscript
+**playlist.previous
+```
+
+### Arguments
+
+None.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Go back to the previous item:
+
+```zapscript
+**playlist.previous
+```
+
+---
+
+## playlist.goto
+
+Jumps to a specific position in the playlist.
+
+### Syntax
+
+```zapscript
+**playlist.goto:<index>
+```
+
+### Arguments
+
+**`index`** (required)
+The 1-based index of the item to launch.
+
+### Advanced Arguments
+
+| Argument | Type       | Default | Description                                                        |
+| -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+### Examples
+
+Jump to the first item:
+
+```zapscript
+**playlist.goto:1
+```
+
+Jump to the fifth item:
+
+```zapscript
+**playlist.goto:5
+```
