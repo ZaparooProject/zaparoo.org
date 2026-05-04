@@ -1,0 +1,99 @@
+---
+slug: zaparoo-launcher
+title: "Zaparoo Launcher released"
+description: "Zaparoo Launcher is now available as an early MiSTer-focused frontend for browsing and launching your Zaparoo Core media library from the TV."
+tags: [software]
+authors: [wizzo]
+---
+
+import Gallery from "@site/src/components/Gallery";
+import mainMenuImage from "./main-menu.png";
+import systemsImage from "./systems.png";
+import gamesImage from "./games.png";
+
+Zaparoo Launcher is now available. It's a new TV and controller-friendly frontend for browsing and launching your [Zaparoo Core](/docs/core/) media library, currently targeted at [MiSTer FPGA](/docs/platforms/mister/).
+
+{/* truncate */}
+
+This is an early release, but it is already functional: browse your library on the MiSTer display, launch games through Core, see scraped artwork, jump back into recently played media, and write selected games to NFC tokens. It's free to use too. No paywall, and available to try today.
+
+A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) who created Zaparoo Launcher with me!
+
+<Gallery captions={false} media={[
+  { src: mainMenuImage, width: 1278, height: 718, alt: "Zaparoo Launcher main menu" },
+  { src: systemsImage, width: 1279, height: 718, alt: "Zaparoo Launcher systems browser" },
+  { src: gamesImage, width: 1277, height: 717, alt: "Zaparoo Launcher games browser" },
+]} />
+
+## Why a launcher?
+
+Zaparoo has mostly been controlled through physical tokens, the [Zaparoo App](/docs/app/), the [Web UI](/docs/app/web), or the [TUI](/docs/core/tui). Those are still the main ways to manage Zaparoo, and Launcher does not replace any of them. What Launcher does is take Core's now pretty sophisticated media library system and put it on the host's display.
+
+It also opens up some things that are impossible to do with the stock MiSTer menu alone. Cover art can be a real accessibility improvement for some people, and having our own UI gives us room to explore features like translations and text-to-speech later. It's still a thin client on top of Core, like the app, so the main Zaparoo behavior stays in one backend instead of turning into a separate launcher stack.
+
+If you have used frontends like EmulationStation, the general idea will feel familiar: browse artwork from a controller-friendly interface, then launch into the game.
+
+## What works today
+
+The first release will let you:
+
+- Browse categories, systems, and games
+- View scraped artwork while browsing
+- Launch games through Core
+- Add and browse favorites
+- Browse recently played media
+- Write selected games to NFC tokens
+
+On first run, Launcher connects to Core locally. If your media database is empty, it will prompt you to scan your games before browsing. You can also update the media database later from the Settings screen.
+
+Large libraries are a major design target. The UI lazy-loads data where possible, and Core has had a lot of work put into search speed. Search, filtering, and possibly playlists or collections are planned for making big libraries manageable. Page skipping is in the current controls, and letter filtering exists in development but is not hooked up in the UI yet.
+
+Launcher uses Core as the backend, so anything Core can already launch is the starting point. That includes things like 0MHz MGL files. Manuals are not supported right now, but they seem like a good fit. Scripts are also not in the beta flow yet, but you can drop back to the stock MiSTer OSD when you need it.
+
+CRT output has been confirmed to work, but it needs more UI tuning before it is ready in the beta. Readability at 240p, 480i, 576i, and 4:3 layouts needs specific testing and design tweaks.
+
+## Scraping metadata
+
+This part is new for MiSTer. If you want cover art or other images in Launcher, there is some setup to do first. Core now has initial support for scrapers, starting with the `gamelist.xml` files used by EmulationStation. It's a stopgap, but it means you can reuse existing metadata if you have a shared collection between devices and use existing scraper tools on a desktop.
+
+We've confirmed this works using the [Skraper](https://www.skraper.net/) tool along with a [ScreenScraper](https://www.screenscraper.fr/) account. Before you run a scrape, you **must set it to RecalBox mode** so that it outputs the correct `gamelist.xml` files. Set the default image style to whatever you prefer. Skraper supports the game folder names that MiSTer uses, so you can point it directly at your SD card or a NAS share.
+
+Once you've finished scraping, open the Launcher Settings page and run **Scrape metadata**. Launcher will process the metadata in the background and reconcile it against Core's own database. Once it's done, you should start seeing images in the game browser.
+
+## Install on MiSTer
+
+Launcher currently comes as a manually installed set of three files:
+
+- A development version of Zaparoo Core
+- A custom fork of MiSTer Main
+- The Launcher itself
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Launcher"
+  link="https://github.com/ZaparooProject/zaparoo-launcher/releases/tag/v0.1.0"
+  variant="primary"
+/>
+
+---
+
+Install by copying the folders in the ZIP file to the root of your SD card (check README.txt).
+
+Then edit your `MiSTer.ini` file to add these two lines under the `[MiSTer]` section:
+
+```ini
+main=zaparoo/MiSTer_Zaparoo
+alt_launcher=zaparoo/launcher
+```
+
+Restart your MiSTer and you should see the Launcher UI immediately.
+
+If you want to disable or uninstall it, remove those two lines from `MiSTer.ini` to go back to stock. You can also press `B` or `Escape` on the main menu to quit Launcher and return to the OSD. Reboot from the OSD to relaunch Launcher.
+
+## Source and license
+
+The [Zaparoo Launcher source code](https://github.com/ZaparooProject/zaparoo-launcher) is available on GitHub under the [PolyForm Noncommercial License 1.0.0](https://github.com/ZaparooProject/zaparoo-launcher/blob/main/COPYING). Non-commercial use is allowed under that license. For commercial licensing, contact [legal@zaparoo.org](mailto:legal@zaparoo.org).
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-launcher/).
+
+<SponsorCallout variant="combined" />
