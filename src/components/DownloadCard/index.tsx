@@ -5,9 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-export const defaultVersion = "2.11.0";
-export const defaultReleaseDate = "2026-04-28";
-export const latestReleaseBlogPost = "/blog/core-v2.11.0";
+export const defaultVersion = "2.12.0";
+export const defaultReleaseDate = "2026-05-09";
+export const latestReleaseBlogPost = "/blog/core-v2.12.0";
 
 type Arch = "amd64" | "arm64" | "arm" | "386";
 

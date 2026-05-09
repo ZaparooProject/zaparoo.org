@@ -249,7 +249,7 @@ The payload itself is plaintext ZapScript, with no extra formatting. The respons
 Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result is cached and later URLs on the same domain are treated as Zap Links immediately. If the domain responds but does not support Zap Links, Core caches that result and prunes non-supporting hosts after 30 days so they can be checked again. Temporary network and server errors are not cached.
 
 :::warning
-Currently all ZapScript received via a Zap Link will be tagged as "unsafe" which will disable the `input.keyboard`, `input.gamepad` and `execute` commands from running. This may be configurable in the future.
+ZapScript received via a Zap Link is treated as a remote source. For security, remote sources cannot run `input.keyboard`, `input.gamepad`, or `execute`. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
 :::
 
 ### Platform Detection

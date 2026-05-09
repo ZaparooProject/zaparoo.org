@@ -1,0 +1,93 @@
+---
+slug: core-v2.12.0
+title: "Zaparoo Core v2.12.0 released"
+description: "Zaparoo Core v2.12.0 adds Launcher backend support, media browsing and metadata improvements, gamelist.xml scraping, favorites, MiSTer launcher updates, and reliability fixes."
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.12.0 is now available. This release adds the Core-side support needed for the new [Zaparoo Launcher](/docs/launcher/), including faster media browsing, richer metadata and artwork APIs, per-system launcher settings, and favorites.
+
+{/* truncate */}
+
+It also adds local `gamelist.xml` metadata scraping, new MiSTer launcher support, cleaner scan feedback audio, and several indexing and startup reliability fixes.
+
+A big thank you to [BossRighteous](https://github.com/BossRighteous) for the metadata system work behind this release, and to [Tim Wilsie](https://github.com/timwilsie) for creating the brand new scan feedback sound effects.
+
+**The highlights:**
+
+- **[Zaparoo Launcher support](#zaparoo-launcher-support)**: faster media browsing, favorites, metadata, artwork, and launcher settings for the TV UI
+- **[`gamelist.xml` scraping](#gamelistxml-scraping)**: reuse local EmulationStation metadata and artwork with Core
+- **[Media title fix](#media-title-fix)**: restored display names from local metadata where raw filenames were showing instead
+- **[MiSTer updates](#mister)**: Virtual Boy support and `.chd` support for 3DO
+- **[Reliability fixes](#reliability-fixes)**: smoother scan sounds, faster startup, and more dependable indexing progress
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.12.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Zaparoo Launcher support
+
+The first [Zaparoo Launcher](/docs/launcher/) release used a development Core build. Core v2.12.0 brings that backend work into a normal Core release.
+
+Launcher now has the Core APIs it needs to browse large media libraries by system, load metadata and artwork efficiently, update favorites, view recently played media, and choose launcher defaults. Most of this is backend work, but it makes the Launcher more responsive and reliable as new builds move away from bundled development Core versions.
+
+This also helps the [Zaparoo App](/docs/app/) and other API clients. Media responses now include stable IDs for follow-up metadata and artwork requests, and per-system launcher settings can be read and updated without editing `config.toml` manually.
+
+## Gamelist.xml scraping
+
+Core now reads local `gamelist.xml` metadata files, the format used by EmulationStation-style frontends. This gives Zaparoo a way to reuse existing scraped names, descriptions, genres, publishers, developers, ratings, years, and artwork paths.
+
+On MiSTer, this is mainly useful for getting artwork into [Zaparoo Launcher](/docs/launcher/#scraping-metadata). If you use Skraper, set it to RecalBox mode so it writes the `gamelist.xml` files Core expects.
+
+Metadata scraping runs separately from media indexing. Start it from Launcher settings after your media database is up to date.
+
+## Media title fix
+
+A recent change caused some media entries to show raw ROM filenames instead of the display names already provided by local metadata. This release fixes that regression for sources including NeoGeo `romsets.xml`, ScummVM, EmulationStation `gamelist.xml` files, Kodi, Heroic, LaunchBox, RetroBat, and related sources.
+
+For example, a MiSTer NeoGeo entry like `mslug` now shows as `Metal Slug` once the matching metadata is available.
+
+## MiSTer
+
+MiSTer gets two launcher updates in this release:
+
+- Virtual Boy games in the `VirtualBoy` folder with `.vb` files are now detected and launched
+- 3DO games now use `.chd` files alongside `.iso` and `.cue`
+
+MiSTer scan feedback audio is cleaner too. Core prepares the embedded sound effects differently before playback, which avoids the crackly or corrupted feedback sounds some setups were hearing.
+
+## Reliability fixes
+
+Media browsing and indexing had a lot of cleanup in this release. Indexing progress notifications now update when the active system or phase changes.
+
+Startup is less blocked by background maintenance. Core now moves more database cleanup and maintenance work out of the critical startup path, resumes interrupted media work more reliably, and keeps more search cache data on disk between restarts. You can start tapping faster than ever!
+
+Linux user services also launch desktop and game processes with fewer inherited systemd restrictions, improving launch reliability on generic Linux installs.
+
+## Other changes
+
+- Added new favorite media support through Core's media tags API
+- Added batch metadata and image lookups for API clients
+- Replaced the embedded scan feedback sounds with brand new effects created by [Tim Wilsie](https://github.com/timwilsie)
+- Preserved Windows drive and UNC roots when resolving virtual `.zip` and `.txt` paths
+- Tightened WebSocket origin handling so it matches the configured CORS behavior
+- Reduced noisy media payload debug logging
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

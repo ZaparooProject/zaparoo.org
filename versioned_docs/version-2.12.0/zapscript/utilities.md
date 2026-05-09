@@ -117,7 +117,7 @@ Send a desktop notification on Linux systems with `notify-send`:
 ```
 
 :::caution Security Requirement
-This command requires explicitly enabling the arguments in the [`allow_execute`](../core/config.md#allow_execute) config option. Commands from remote sources are always blocked.
+This command requires explicitly enabling the arguments in the [`allow_execute`](../core/config.md#allow_execute) config option. It is always blocked from remote sources. Currently, [Zap Links](./syntax.md#zap-links) are the only remote source; scripts sent through the [Zaparoo App](../app/index.md) are checked against `allow_execute` normally.
 :::
 
 ---

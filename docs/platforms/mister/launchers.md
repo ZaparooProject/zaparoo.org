@@ -13,7 +13,7 @@ MiSTer FPGA uses a built-in launcher that automatically detects games from your 
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
-| `3DO` | 3DO | `.iso`, `.cue` |
+| `3DO` | 3DO | `.iso`, `.cue`, `.chd` |
 | `AdventureVision` | AVision | `.bin` |
 | `Arcadia` | Arcadia | `.bin` |
 | `AmigaCD32` | AmigaCD32 | `.cue`, `.chd`, `.iso` |
@@ -66,6 +66,7 @@ MiSTer FPGA uses a built-in launcher that automatically detects games from your 
 | `TurboGrafx16CD` | TGFX16-CD | `.cue`, `.chd` |
 | `VC4000` | VC4000 | `.bin` |
 | `Vectrex` | VECTREX | `.vec`, `.bin`, `.rom` |
+| `VirtualBoy` | VirtualBoy | `.vb` |
 | `WonderSwan` | WonderSwan | `.ws` |
 | `WonderSwanColor` | WonderSwan, WonderSwanColor | `.wsc` |
 

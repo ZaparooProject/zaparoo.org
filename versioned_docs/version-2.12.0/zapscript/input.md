@@ -6,7 +6,7 @@ keywords: [zapscript input, zaparoo keyboard shortcut, zapscript button press, i
 
 # Input
 
-These commands simulate input devices like keyboards and gamepads. All input commands are blocked when the script comes from a remote source for security reasons.
+These commands simulate input devices like keyboards and gamepads. For security, Core blocks input commands from remote sources. Currently, [Zap Links](./syntax.md#zap-links) are the only remote source. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
 
 The platform sets a default input mode, which you can configure with [`[zapscript.input]`](../core/config.md#zapscriptinput). On desktop platforms, single-character keys are blocked by default; only key combos and special keys like `{f1}` work. Embedded platforms like MiSTer allow all keys.
 
