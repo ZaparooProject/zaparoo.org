@@ -98,18 +98,6 @@ function HardwarePartners(): ReactNode {
             height="60"
           />
         </a>
-        <a
-          href="https://retroremake.co/pages/superstation%E1%B5%92%E2%81%BF%E1%B5%89"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={clsx(styles.partnerLogo, styles.partnerLogoInvert)}
-        >
-          <img
-            src="/img/partners/retroremake.png"
-            alt="Retro Remake SuperStationᵒⁿᵉ"
-            height="60"
-          />
-        </a>
       </div>
     </div>
   );
