@@ -122,6 +122,43 @@ This command requires explicitly enabling the arguments in the [`allow_execute`]
 
 ---
 
+## write
+
+Stages text to be written to the next writable card scanned by a reader.
+
+### Syntax
+
+```zapscript
+**write:<text>
+```
+
+### Arguments
+
+**`text`** (required)
+The text to write to the next scanned writable card. Expressions are evaluated before the write is staged.
+
+### Examples
+
+Write the currently active media path to the next scanned card:
+
+```zapscript
+**write:[[active_media.path]]
+```
+
+Write a specific launch command to the next scanned card:
+
+```zapscript
+**write:Genesis/Sonic the Hedgehog.md
+```
+
+After scanning a token with `**write:...`, scan the card you want to write within one minute. The source token is ignored, so scanning the setup token again will not overwrite it.
+
+:::info Reader support
+This command requires a writable reader that supports targeted writes, such as PN532 or supported libnfc readers.
+:::
+
+---
+
 ## delay
 
 Pauses script execution for a specified duration.

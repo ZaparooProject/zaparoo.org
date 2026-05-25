@@ -70,7 +70,7 @@ Important notes:
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
-- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library.
+- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install and metadata scraping setup.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Cloud service for virtual card decks and remote ZapScript sync.
 
@@ -99,7 +99,7 @@ Important notes:
 - [Syntax](https://zaparoo.org/docs/zapscript/syntax/): ZapScript syntax rules and command format.
 - [Launch Commands](https://zaparoo.org/docs/zapscript/launch/): Commands for launching games and media.
 - [Input Commands](https://zaparoo.org/docs/zapscript/input/): Send keyboard, mouse, and gamepad input via ZapScript.
-- [Utilities](https://zaparoo.org/docs/zapscript/utilities/): Utility commands: delays, variables, conditionals.
+- [Utilities](https://zaparoo.org/docs/zapscript/utilities/): Utility commands: delays, variables, conditionals, and staged token writes.
 - [Playlists](https://zaparoo.org/docs/zapscript/playlist/): Cycle through a list of actions on repeated scans.
 - [MiSTer Commands](https://zaparoo.org/docs/zapscript/mister/): MiSTer-specific ZapScript commands.
 - [HTTP Requests](https://zaparoo.org/docs/zapscript/http/): Make HTTP requests from ZapScript.
