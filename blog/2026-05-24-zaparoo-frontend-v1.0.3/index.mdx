@@ -1,0 +1,182 @@
+---
+slug: zaparoo-frontend-v1.0.3
+title: "Zaparoo Frontend v1.0.3 and Core v2.13.0 released"
+description: "Zaparoo Frontend v1.0.3 adds MiSTer CRT support, while Core v2.13.0 adds MiSTer RetroAchievements launchers, MiSTer Companion scraping, new ZapScript flows, and platform fixes."
+tags: [software]
+authors: [wizzo]
+---
+
+import Gallery from "@site/src/components/Gallery";
+import frontendCrtModeImage from "./frontend_crt_mode.png";
+import frontendListViewImage from "./frontend_list_view.png";
+import frontendMainMenuImage from "./frontend_main_menu.png";
+
+Zaparoo Frontend v1.0.3 is available alongside Zaparoo Core v2.13.0.
+
+Frontend v1.0.3 is the CRT release. It adds native 240p CRT output on MiSTer, a 240p-focused layout pass, list browsing, per-system launcher selection, Arcade alternates, and a batch of MiSTer fixes.
+
+Core v2.13.0 adds MiSTer RetroAchievements launchers, MiSTer Companion scraping support, new ZapScript next-scan flows, Amstrad CPC and 3DO file support, and fixes for readers, the TUI, API clients, RetroBat, and MiSTer audio.
+
+A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), [Tim Wilsie](https://github.com/timwilsie), and [Carlos R.](https://github.com/crodriguezdominguez) for their work on this release.
+
+{/* truncate */}
+
+<Gallery captions={false} media={[
+  { src: frontendMainMenuImage, width: 1278, height: 713, alt: "Zaparoo Frontend main menu" },
+  { src: frontendListViewImage, width: 1278, height: 713, alt: "Zaparoo Frontend list view" },
+  { src: frontendCrtModeImage, width: 1278, height: 959, alt: "Zaparoo Frontend CRT mode" },
+]} />
+
+**Frontend highlights:**
+
+- **MiSTer CRT support**: native 320×240 output through a MiSTer FPGA core, with CRT layout tuning.
+- **Project rename**: Zaparoo Launcher becomes Zaparoo Frontend, including the app name, binary, config, and logs.
+- **List browsing mode**: browse games, favorites, recents, and folders in a detailed list view with metadata and artwork.
+- **Per-system launcher selection**: choose emulator or MiSTer core launcher overrides per system from the Frontend UI.
+- **MiSTer OSD scripts**: launch scripts from the MiSTer OSD while Frontend is running.
+- **Arcade alternates**: optionally discover, view, and launch alternate Arcade versions.
+- **Screensaver and mouse support**: screensaver timeout settings, right-click context menus, mouse wheel paging, and pointer cursors.
+
+**Core highlights:**
+
+- **MiSTer support**: RetroAchievements launchers, Amstrad CPC `.sna` snapshots, 3DO `.chd` fixes, and AmigaVision launching.
+- **MiSTer Companion metadata**: parent/child XML scraping and extra artwork types.
+- **ZapScript next-scan actions**: staged writes and one-shot launcher overrides from scripts.
+- **Reader and platform fixes**: ACR122 detection, RetroBat hold mode, TUI focus, API origin handling, media image limits, and MiSTer audio playback.
+
+## Download
+
+### Frontend
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Frontend v1.0.3"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v1.0.3"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="link" />}
+  label="Install Guide"
+  link="/docs/frontend/#install-on-mister"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Frontend GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/"
+  variant="primary"
+/>
+
+### Core
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Core v2.13.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Core GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Frontend: MiSTer CRT support
+
+CRT support is the main feature in Frontend v1.0.3. Frontend has a native MiSTer CRT output path that renders at 320×240 RGB8888 for CRT setups.
+
+Layout, padding, grid geometry, headers, and titles have a 240p-focused pass for readability at normal viewing distance on real CRT hardware.
+
+On MiSTer, Frontend sends its 320×240 output through an FPGA core for native CRT display.
+
+## Frontend: Rename and config
+
+The project has been renamed from Zaparoo Launcher to Zaparoo Frontend. The old name kept colliding with another important Zaparoo concept: Core launchers, which are the emulator, MiSTer core, app, or script integrations used to start media.
+
+Frontend is the TV and controller-friendly UI that sits on top of Zaparoo Core. Core launchers handle starting games and media. The new name makes that split clearer.
+
+The app name, binary, config, and logs have all been renamed. The old `launcher.toml` config is now `frontend.toml`.
+
+:::warning Beta config migration
+
+There is no automatic migration from `launcher.toml` to `frontend.toml` in this release. If you were using beta builds with custom Frontend settings, copy or recreate those settings in the new config file.
+
+:::
+
+## Frontend: Browsing and launcher controls
+
+Frontend has a detailed list view alongside the grid view. It works across Games, Favorites, Recents, and browse screens.
+
+The list view shows metadata for the selected item: descriptions, file names, cover art, and media images can all appear in the detail pane.
+
+Per-system launcher selection is available from the context menu. You can pick a different emulator or MiSTer core launcher for a system without editing config files by hand.
+
+Arcade gets optional alternate version discovery. When enabled, Frontend can search for alternate Arcade versions from the context menu and launch the version you choose.
+
+Scripts can be launched from the MiSTer OSD while Frontend is running.
+
+## Frontend: Settings, languages, and UI
+
+A screensaver setting lets you choose a timeout or turn the screensaver off. When active, Frontend shows an animated logo overlay and dismisses it when you press a button, move the mouse, or use other input.
+
+Mouse support covers right-click context menus, mouse wheel page navigation, and pointer cursors on interactive UI.
+
+Settings have section headers, card-styled toggles, and list picker modals for language, layout, resolution, and screensaver choices.
+
+Spanish has been added, and Korean, Simplified Chinese, Hebrew, Arabic, and Hindi catalogs have been added or backfilled. Fallback fonts for CJK, Arabic, and Devanagari text were added so non-Latin text has the fallback fonts it needs.
+
+A Style D button glyph set is included.
+
+## Frontend: Fixes
+
+Game grid pagination and scrolling have fixes for several visible bugs. Page wrapping reaches the real last page, and pending page jumps resolve after data loads. Trailing pages no longer pop into place half-loaded, large-library paging has a paging-speed fix, and the **Loading more...** message no longer covers the bottom row of tiles.
+
+Cold boot connection has a retry fix while Core is starting.
+
+A shutdown crash that could show up when quitting has been fixed.
+
+Resolution or settings changes that need a restart use a confirmation and relaunch flow. A restart loop crash is fixed too.
+
+Missing artwork has flicker fixes.
+
+The Settings log upload flow has success and error feedback.
+
+## Core: MiSTer support
+
+Core v2.13.0 adds [MiSTer RetroAchievements alternate launchers](/docs/platforms/mister/launchers/#alternate-launchers) for supported systems. Core also scans `_RA_Cores/Cores`, so RetroAchievements RBFs can resolve through the RBF cache.
+
+Amstrad CPC `.sna` snapshots are detected and launched on MiSTer. 3DO `.chd` files also get a MiSTer MGL slot fix so they mount in the expected 3DO core slot. AmigaVision launching on MiSTer has been fixed.
+
+MiSTer audio playback has a change for stutter issues, and clock-healing log spam has been cleaned up.
+
+## Core: Metadata and scraping
+
+Core v2.13.0 adds [MiSTer Companion XML support](/docs/frontend/#scraping-metadata) to the `gamelist.xml` scraper. The [Frontend scraping docs](/docs/frontend/#scraping-metadata) cover Boss's Basic Batch, ZapScraper, and Skraper setup options.
+
+Core can read parent/child records from `gamelist.xml`, apply shared game metadata to matching ROM entries, and handle extra artwork types like 3D box art, side art, back art, screenshots, title screens, and logos.
+
+## Core: ZapScript next-scan actions
+
+ZapScript gets next-scan actions in Core v2.13.0. See the [launch docs](/docs/zapscript/launch) and [utility command docs](/docs/zapscript/utilities) for examples.
+
+`**write:...` stages a write for the next writable scanned card. `**launch?launcher=...` sets a one-shot launcher override for the next reader-origin media launch.
+
+Core also restores active MiSTer media on tracker startup so `[[active_media.path]]` works after a service restart.
+
+## Core: Reader, API, and platform fixes
+
+ACR122 detection through libnfc has fixes for concrete device paths, duplicate devices, and normalized connection strings.
+
+The TUI has a reader-edit focus lock fix. API and WebSocket local-origin validation has a refresh fix for local IP changes. Media image reads and stored binary metadata have size limits so oversized files do not get loaded into responses.
+
+On Windows, RetroBat hold mode can stop a running game before launching the next one.
+
+This Core cycle also includes dependency and maintenance updates.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/).

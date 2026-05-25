@@ -70,7 +70,7 @@ Important notes:
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
-- [Zaparoo Launcher](https://zaparoo.org/docs/launcher/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library.
+- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Cloud service for virtual card decks and remote ZapScript sync.
 

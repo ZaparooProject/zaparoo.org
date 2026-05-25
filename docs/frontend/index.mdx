@@ -1,0 +1,111 @@
+---
+description: "Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your Zaparoo Core media library on MiSTer FPGA."
+keywords: [zaparoo frontend, mister frontend, zaparoo mister frontend, mister fpga game frontend]
+---
+
+# Zaparoo Frontend
+
+Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your [Zaparoo Core](../core/index.md) media library on [MiSTer FPGA](../platforms/mister/index.md). It runs on the MiSTer display and uses Core as its backend, so your media scanning, launching, metadata, favorites, and token writing stay in Zaparoo Core.
+
+Frontend does not replace physical tokens, the [Zaparoo App](../app/index.md), the [Web UI](../app/web.md), or the [TUI](../core/tui.md). It gives Zaparoo a controller-friendly on-screen browser for users who want to browse artwork, launch games from the TV, or use Zaparoo on CRT setups.
+
+## Current features
+
+Frontend currently supports:
+
+- Browsing categories, systems, games, favorites, recents, and folders
+- Grid and detailed list views
+- Scraped artwork and metadata display
+- Launching games and media through Core
+- Per-system launcher selection from the context menu
+- Optional Arcade alternate version discovery
+- NFC token writing for selected games
+- Configurable screensaver
+- Mouse support, including right-click context menus and mouse wheel paging
+- Native MiSTer CRT output at 320×240 through an FPGA core
+- Language selection and bundled translation catalogs
+
+On first run, Frontend connects to Core locally. If your media database is empty, it prompts you to scan your games before browsing. You can update the media database later from the Settings screen.
+
+Frontend can launch anything Core can already launch on MiSTer, including standard games, MGL files, scripts from the MiSTer OSD, videos, and supported special launchers. For platform-specific launcher details, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
+
+## Install on MiSTer
+
+Frontend requires Zaparoo Core v2.13.0 or newer. Use the latest Core release for current Frontend builds.
+
+You can install Frontend through [MiSTer Companion](https://github.com/Anime0t4ku/mister-companion) or install it manually from the release ZIP.
+
+For manual installation, download the release ZIP from [GitHub Releases](https://github.com/ZaparooProject/zaparoo-frontend/releases).
+
+The ZIP contains a `zaparoo` folder with these files:
+
+- `MiSTer_Zaparoo`
+- `frontend`
+- `menu_zaparoo.rbf`
+
+Install Frontend:
+
+1. Copy the `zaparoo` folder to the root of your MiSTer SD card.
+2. Edit your `MiSTer.ini` file and add this line under the `[MiSTer]` or `[Menu]` section:
+
+   ```ini
+   main=zaparoo/MiSTer_Zaparoo
+   ```
+
+3. Start or reboot your MiSTer. Frontend will start automatically.
+
+To disable or uninstall Frontend, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
+
+## Scraping metadata
+
+Frontend shows artwork and metadata after Core imports compatible `gamelist.xml` files. There are three supported ways to get metadata onto your MiSTer so far.
+
+### Boss's Basic Batch
+
+[Boss's Basic Batch](https://github.com/BossRighteous/MiSTer-Media-DB/releases/tag/basic-batch-1.0) is an opinionated metadata and artwork pack from [BossRighteous](https://github.com/BossRighteous), who created Zaparoo Core's scraper system. It includes image dumps and `gamelist.xml` files mapped to Zaparoo title slugs for known ROM sets.
+
+To use it, download the ZIP and extract it into your MiSTer `games` directory. The release notes also mention that Arcade contents need to be moved to `/media/fat/_Arcade`, where MiSTer's `.mra` files live.
+
+This is the lowest-effort option if you use common ROM names and want a ready-made metadata set. It may not match custom naming, ROM hacks, or unusual library layouts.
+
+### ZapScraper in MiSTer Companion
+
+[MiSTer Companion v4.4.0](https://github.com/Anime0t4ku/mister-companion/releases/tag/v4.4.0) adds ZapScraper in Offline Mode. ZapScraper can scrape artwork for Zaparoo Frontend directly to a selected MiSTer SD card, or to a custom local or network location on your PC.
+
+ZapScraper has two output modes:
+
+- **Recalbox Mode** creates a standard Recalbox-style `gamelist.xml` structure.
+- **Zaparoo Companion Mode** creates output for Zaparoo Frontend and requires Zaparoo Core v2.13.0 or newer.
+
+ZapScraper currently focuses on console and handheld ROM folders. PC and Arcade cores are planned for a later ZapScraper update.
+
+### Skraper
+
+You can also use [Skraper](https://www.skraper.net/) with a [ScreenScraper](https://www.screenscraper.fr/) account. Before you run a scrape, set Skraper to **RecalBox mode** so that it outputs the `gamelist.xml` files Core expects. Set the default image style to whatever you prefer. Skraper supports the game folder names that MiSTer uses, so you can point it directly at your SD card or a NAS share.
+
+### Import into Frontend
+
+After using one of the methods above, open the Frontend Settings page and run **Scrape metadata**. Frontend will process the metadata in the background and reconcile it against Core's media database. Once it's done, you should start seeing images in the game browser.
+
+## Controls
+
+The default keyboard controls are:
+
+| Action | Default keys |
+| ------ | ------------ |
+| Move | Arrow keys |
+| Select | `Enter` |
+| Back | `Escape` |
+| Options menu | `Tab` |
+| Previous page | `PageUp` |
+| Next page | `PageDown` |
+
+MiSTer will automatically map your controller buttons to these keys.
+
+## Credits
+
+A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) for creating Zaparoo Frontend with [Wizzo](https://github.com/wizzomafizzo).
+
+## Source and license
+
+The [Frontend source code](https://github.com/ZaparooProject/zaparoo-frontend) is available under the [PolyForm Noncommercial License 1.0.0](https://github.com/ZaparooProject/zaparoo-frontend/blob/main/COPYING). Non-commercial use is allowed under that license. For commercial licensing, contact [legal@zaparoo.org](mailto:legal@zaparoo.org).

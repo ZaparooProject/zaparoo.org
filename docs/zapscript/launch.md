@@ -56,6 +56,14 @@ Launch with a specific launcher override:
 **launch:Genesis/Sonic.md?launcher=LLAPIMegaDrive
 ```
 
+Set a launcher override for the next game scanned from a reader:
+
+```zapscript
+**launch?launcher=LLAPIMegaDrive
+```
+
+Use this on a setup token when you want the next scanned game token to use a specific launcher. The override applies once, then clears.
+
 Open a Steam game's details page instead of launching:
 
 ```zapscript

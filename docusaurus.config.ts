@@ -524,6 +524,14 @@ const config: Config = {
             to: "/docs/readers/drivers/",
             from: "/docs/core/drivers/",
           },
+          {
+            to: "/docs/frontend/",
+            from: "/docs/launcher/",
+          },
+          {
+            to: "/docs/next/frontend/",
+            from: "/docs/next/launcher/",
+          },
           // old site news redirects
           {
             to: "/blog/",

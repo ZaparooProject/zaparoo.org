@@ -1,12 +1,12 @@
 ---
 slug: core-v2.12.0
 title: "Zaparoo Core v2.12.0 released"
-description: "Zaparoo Core v2.12.0 adds Launcher backend support, media browsing and metadata improvements, gamelist.xml scraping, favorites, MiSTer launcher updates, and reliability fixes."
+description: "Zaparoo Core v2.12.0 adds Frontend backend support, media browsing and metadata improvements, gamelist.xml scraping, favorites, MiSTer launcher updates, and reliability fixes."
 tags: [software, core]
 authors: [wizzo]
 ---
 
-Zaparoo Core v2.12.0 is now available. This release adds the Core-side support needed for the new [Zaparoo Launcher](/docs/launcher/), including faster media browsing, richer metadata and artwork APIs, per-system launcher settings, and favorites.
+Zaparoo Core v2.12.0 is now available. This release adds the Core-side support needed for the new [Zaparoo Frontend](/docs/frontend/), including faster media browsing, richer metadata and artwork APIs, per-system launcher settings, and favorites.
 
 {/* truncate */}
 
@@ -16,7 +16,7 @@ A big thank you to [BossRighteous](https://github.com/BossRighteous) for the met
 
 **The highlights:**
 
-- **[Zaparoo Launcher support](#zaparoo-launcher-support)**: faster media browsing, favorites, metadata, artwork, and launcher settings for the TV UI
+- **[Zaparoo Frontend support](#zaparoo-frontend-support)**: faster media browsing, favorites, metadata, artwork, and launcher settings for the TV UI
 - **[`gamelist.xml` scraping](#gamelistxml-scraping)**: reuse local EmulationStation metadata and artwork with Core
 - **[Media title fix](#media-title-fix)**: restored display names from local metadata where raw filenames were showing instead
 - **[MiSTer updates](#mister)**: Virtual Boy support and `.chd` support for 3DO
@@ -38,11 +38,11 @@ A big thank you to [BossRighteous](https://github.com/BossRighteous) for the met
   variant="primary"
 />
 
-## Zaparoo Launcher support
+## Zaparoo Frontend support
 
-The first [Zaparoo Launcher](/docs/launcher/) release used a development Core build. Core v2.12.0 brings that backend work into a normal Core release.
+The first [Zaparoo Frontend](/docs/frontend/) release used a development Core build. Core v2.12.0 brings that backend work into a normal Core release.
 
-Launcher now has the Core APIs it needs to browse large media libraries by system, load metadata and artwork efficiently, update favorites, view recently played media, and choose launcher defaults. Most of this is backend work, but it makes the Launcher more responsive and reliable as new builds move away from bundled development Core versions.
+Frontend now has the Core APIs it needs to browse large media libraries by system, load metadata and artwork efficiently, update favorites, view recently played media, and choose launcher defaults. Most of this is backend work, but it makes Frontend more responsive and reliable as new builds move away from bundled development Core versions.
 
 This also helps the [Zaparoo App](/docs/app/) and other API clients. Media responses now include stable IDs for follow-up metadata and artwork requests, and per-system launcher settings can be read and updated without editing `config.toml` manually.
 
@@ -50,9 +50,9 @@ This also helps the [Zaparoo App](/docs/app/) and other API clients. Media respo
 
 Core now reads local `gamelist.xml` metadata files, the format used by EmulationStation-style frontends. This gives Zaparoo a way to reuse existing scraped names, descriptions, genres, publishers, developers, ratings, years, and artwork paths.
 
-On MiSTer, this is mainly useful for getting artwork into [Zaparoo Launcher](/docs/launcher/#scraping-metadata). If you use Skraper, set it to RecalBox mode so it writes the `gamelist.xml` files Core expects.
+On MiSTer, this is mainly useful for getting artwork into [Zaparoo Frontend](/docs/frontend/#scraping-metadata). If you use Skraper, set it to RecalBox mode so it writes the `gamelist.xml` files Core expects.
 
-Metadata scraping runs separately from media indexing. Start it from Launcher settings after your media database is up to date.
+Metadata scraping runs separately from media indexing. Start it from Frontend settings after your media database is up to date.
 
 ## Media title fix
 

@@ -78,7 +78,7 @@ MiSTer FPGA uses a built-in launcher that automatically detects games from your 
 | `AcornElectron` | AcornElectron | `.vhd` |
 | `AliceMC10` | AliceMC10 | `.c10` |
 | `Amiga` | Amiga | `.adf` |
-| `Amstrad` | Amstrad | `.dsk`, `.cdt` |
+| `Amstrad` | Amstrad | `.dsk`, `.cdt`, `.sna` |
 | `AmstradPCW` | Amstrad PCW | `.dsk` |
 | `Apogee` | APOGEE | `.rka`, `.rkr`, `.gam` |
 | `AppleI` | Apple-I | `.txt` |
@@ -212,6 +212,26 @@ load_path = "_LLAPI/N64_LLAPI"
 ```
 
 `load_path` is an MGL-form RBF path relative to `/media/fat`, without extension. A config reload is sufficient after changing this — no service restart required.
+
+### RetroAchievements
+
+RetroAchievements cores from [Odelot's MiSTer FPGA RetroAchievements Cores](https://github.com/odelot/mister-cores) are supported when installed in `_RA_Cores/Cores`.
+
+| Launcher ID | System |
+|-------------|--------|
+| `RAAtari7800` | Atari 7800 |
+| `RAGameboy` | Game Boy |
+| `RAGBA` | Game Boy Advance |
+| `RAMegaDrive` | Genesis/Mega Drive |
+| `RAMegaCD` | Mega CD |
+| `RASMS` | Master System |
+| `RANeoGeo` | Neo Geo |
+| `RANES` | NES |
+| `RANintendo64` | Nintendo 64 |
+| `RAPSX` | PlayStation |
+| `RAS32X` | Sega 32X |
+| `RASNES` | SNES |
+| `RATurboGrafx16` | TurboGrafx-16 |
 
 ### LLAPI
 
