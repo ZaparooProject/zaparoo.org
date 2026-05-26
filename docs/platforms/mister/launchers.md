@@ -203,6 +203,12 @@ Some alternate or unofficial versions of cores are supported and can be used by 
 
 To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `N64/some/game.n64?launcher=80MHzNintendo64`
 
+MiSTer launch commands also support `set_name` and `set_name_same_dir` advanced arguments. These map to MiSTer's MGL `<setname>` tag and `same_dir` attribute. Use `set_name_same_dir=1` when you want a separate config name while keeping the normal games folder. Without `set_name_same_dir=1`, MiSTer also uses the set name as the games folder.
+
+```zapscript
+NES/Mega Man 2.nes?set_name=RA_NES&set_name_same_dir=1
+```
+
 To set an alternate core as the default for all tokens of a launcher (instead of per-token), use the [`load_path`](../../core/config.md#launchersdefault) field in `config.toml`:
 
 ```toml
@@ -216,6 +222,8 @@ load_path = "_LLAPI/N64_LLAPI"
 ### RetroAchievements
 
 RetroAchievements cores from [Odelot's MiSTer FPGA RetroAchievements Cores](https://github.com/odelot/mister-cores) are supported when installed in `_RA_Cores/Cores`.
+
+These launchers automatically use an `RA_*` set name with `same_dir` enabled. This gives each RetroAchievements core its own MiSTer config while still loading games from the normal system folder.
 
 | Launcher ID | System |
 |-------------|--------|
