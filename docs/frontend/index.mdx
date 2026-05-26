@@ -31,7 +31,13 @@ Frontend can launch anything Core can already launch on MiSTer, including standa
 
 ## Install on MiSTer
 
-Frontend requires Zaparoo Core v2.13.0 or newer. Use the latest Core release for current Frontend builds.
+Frontend requires Zaparoo Core v2.13.0 or newer. Use the latest Core release for current Frontend builds. On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install) or the [Downloads page](/downloads/).
+
+:::tip SuperStation ONE users
+
+If you are using a SuperStation ONE or another MiSTer image that already includes Zaparoo, update Zaparoo Core before starting Frontend. Some images include old Core builds, such as v2.6.2, that do not support Frontend. If first-time setup stays on `Preparing...`, update Core, then reboot MiSTer or restart Frontend.
+
+:::
 
 You can install Frontend through [MiSTer Companion](https://github.com/Anime0t4ku/mister-companion) or install it manually from the release ZIP.
 
@@ -55,6 +61,16 @@ Install Frontend:
 3. Start or reboot your MiSTer. Frontend will start automatically.
 
 To disable or uninstall Frontend, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
+
+## Enable CRT mode
+
+If you use Frontend on a CRT, enable CRT mode in the MiSTer OSD. CRT output can work without this setting, but the UI will use the wrong layout and fonts.
+
+1. Press the menu button or `F12` to open the OSD.
+2. Press right to move to the next OSD page, then open **Video**.
+3. Set **CRT mode** to **On**.
+
+CRT mode enables the pixel fonts and tighter layouts designed for 240p output.
 
 ## Scraping metadata
 
