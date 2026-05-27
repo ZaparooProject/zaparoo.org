@@ -31,6 +31,82 @@ interface ShowcaseVideo {
 type ShowcaseItem = ShowcasePhoto | ShowcaseVideo;
 
 const allMedia: ShowcaseItem[] = [
+  // Community Showcase #5
+  {
+    src: "/img/showcase/tunnotron3000_nfc_engine_reader.webp",
+    width: 900,
+    height: 1200,
+    alt: "NFC Engine reader with printed cards. Credit: tunnotron3000 @ Discord",
+  },
+  {
+    src: "/img/showcase/tunnotron3000_card_backs.webp",
+    width: 900,
+    height: 1200,
+    alt: "Custom NFC card backs. Credit: tunnotron3000 @ Discord",
+  },
+  {
+    src: "/img/showcase/tunnotron3000_double_sided_cards.webp",
+    width: 900,
+    height: 1200,
+    alt: "Double-sided NFC cards. Credit: tunnotron3000 @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/KarlFayeton_diy_card_holder_demo_thumb.webp",
+    src: "/img/showcase/KarlFayeton_diy_card_holder_demo.mp4",
+    width: 480,
+    height: 854,
+    alt: "Custom MiSTer case card slot demo. Credit: Karl Fayeton @ Discord",
+  },
+  {
+    src: "/img/showcase/KarlFayeton_diy_card_holder.webp",
+    width: 1200,
+    height: 900,
+    alt: "Custom MiSTer case with card slot. Credit: Karl Fayeton @ Discord",
+  },
+  {
+    src: "/img/showcase/wonderloid3455_first_card_case.webp",
+    width: 901,
+    height: 1200,
+    alt: "First Zaparoo card and case. Credit: wonderloid3455 @ Discord",
+    featured: true,
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/JakeTheDog_card_batch_demo_thumb.webp",
+    src: "/img/showcase/JakeTheDog_card_batch_demo.mp4",
+    width: 674,
+    height: 1200,
+    alt: "Spring-loaded card reader demo. Credit: JakeTheDog @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/Galewin_floppy_drive_demo_thumb.webp",
+    src: "/img/showcase/Galewin_floppy_drive_demo.mp4",
+    width: 854,
+    height: 480,
+    alt: "USB floppy disk drive launching games. Credit: Galewin @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/Galewin_floppy_label_demo_thumb.webp",
+    src: "/img/showcase/Galewin_floppy_label_demo.mp4",
+    width: 854,
+    height: 480,
+    alt: "Labeled floppy disk launching games. Credit: Galewin @ Discord",
+  },
+  {
+    src: "/img/showcase/V1605_floppy_disk_case.webp",
+    width: 904,
+    height: 1200,
+    alt: "Floppy disk storage case. Credit: V1605 @ Discord",
+  },
+  {
+    src: "/img/showcase/KuroNankin_setup_after.webp",
+    width: 904,
+    height: 1200,
+    alt: "Custom printed Metal Slug Zaparoo discs. Credit: Kuro_Nankin @ Discord",
+  },
   // Community Showcase #4
   {
     type: "video",
@@ -273,7 +349,6 @@ const allMedia: ShowcaseItem[] = [
     width: 1200,
     height: 904,
     alt: "Retro NFC reader. Credit: SunieFairbreeze @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/brogasaurusrex_custom_mister_build.webp",
