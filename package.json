@@ -16,10 +16,10 @@
     "tag-release": "TIMESTAMP=$(date '+%Y%m%d%H%M') && pnpm build && git tag \"v$TIMESTAMP\" && git push origin \"v$TIMESTAMP\""
   },
   "dependencies": {
-    "@docusaurus/core": "3.10.0",
-    "@docusaurus/plugin-client-redirects": "3.10.0",
-    "@docusaurus/preset-classic": "3.10.0",
-    "@docusaurus/theme-mermaid": "3.10.0",
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/plugin-client-redirects": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
+    "@docusaurus/theme-mermaid": "3.10.1",
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
@@ -38,10 +38,10 @@
     "yet-another-react-lightbox": "^3.31.0"
   },
   "devDependencies": {
-    "@docusaurus/faster": "3.10.0",
-    "@docusaurus/module-type-aliases": "3.10.0",
-    "@docusaurus/tsconfig": "3.10.0",
-    "@docusaurus/types": "3.10.0",
+    "@docusaurus/faster": "3.10.1",
+    "@docusaurus/module-type-aliases": "3.10.1",
+    "@docusaurus/tsconfig": "3.10.1",
+    "@docusaurus/types": "3.10.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "docusaurus-plugin-llms": "^0.4.0",
