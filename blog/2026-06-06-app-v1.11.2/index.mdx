@@ -1,0 +1,96 @@
+---
+slug: app-v1.11.2
+title: "Zaparoo App v1.11.2 released"
+description: "Zaparoo App v1.11.2 adds a Controls modal, media management tools, mapping management, Launch Guard support, Spanish translation, and compatibility fixes."
+tags: [software]
+authors: [wizzo]
+draft: true
+---
+
+The Zaparoo App v1.11.2 update is now available in the [App Store](https://apps.apple.com/us/app/zaparoo/id6480331015) and [Play Store](https://play.google.com/store/apps/details?id=dev.wizzo.tapto). This release adds a Controls modal, mapping management, media scraper controls, Launch Guard support, and a Spanish translation.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **Controls modal** - use remote-style controls, screenshots, or full keyboard input from the new Controls button
+- **Manage Media** - run metadata scrapers, resume paused jobs, and clean missing media
+- **Mapping management** - list, create, edit, and delete [mappings](/docs/features/mappings/) from inside the app
+- **Launch Guard support** - confirm or dismiss staged [Launch Guard](/docs/features/launch-guard/) tokens from the app
+- **Spanish translation** - new Spanish language support from [Carlos R.](https://github.com/crodriguezdominguez)
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download App v1.11.2"
+  link="https://zaparoo.org/downloads#zaparoo-app"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app/"
+  variant="primary"
+/>
+
+## Controls modal
+
+The Zap page has a new **Controls** button. It opens a modal with two tabs.
+
+The **Remote** tab works like a remote control, with directional and action buttons plus a screenshot button. The **Keyboard** tab gives you a full keyboard input view for sending key presses to the connected device.
+
+The Controls modal requires Core v2.10.0 or newer.
+
+## Manage Media
+
+Settings now has a **Manage Media** page that brings the database and scraper tools together. You can update the media database, choose systems, watch indexing progress, and cancel or resume paused indexing.
+
+Metadata scraper controls are also available from this page. You can select a scraper, choose target systems, re-scrape already scraped media when needed, and monitor progress across the current system and the whole job.
+
+There is also a clean missing media action for removing database entries whose files no longer exist.
+
+Database update controls require Core v2.7.0 or newer. Media scrapers and clean missing media require Core v2.12.0 or newer.
+
+## Mapping management
+
+Mappings are no longer limited to a scan-and-save flow. The Create tab now has a mappings manager where you can list existing mappings, create new ones, edit them, delete them, and capture match patterns from NFC scans or barcodes.
+
+The editor supports ID, value, and raw data matches, with exact, partial, and regex match modes.
+
+## Launch Guard
+
+[Launch Guard](/docs/features/launch-guard/) also has app support now. When Core stages a token, the app shows a modal with the token details and **Confirm**/**Hide** actions. **Settings > Play Controls** can enable Launch Guard and adjust the timeout and delay without editing `config.toml` by hand.
+
+## Compatibility and fixes
+
+This release also makes the app behave better across different Core versions and connection states.
+
+The app now has Core version gates for features that depend on newer APIs. Unsupported controls are hidden or disabled instead of failing later, and Settings can show when your connected Core is too old for newer app features.
+
+There is also backend support for encrypted Core connections and Core inbox notifications. If a Core device requires pairing, the app can prompt for the PIN shown by Core, store the paired credentials, and reconnect later.
+
+Other fixes include:
+
+- Search tag filters hide automatically when connected Core does not support media tags.
+- Browse-all media searches are gated to Core versions that support them.
+- Media database setup errors degrade into clearer inline states instead of noisy toasts.
+- Device addresses are validated before connection attempts.
+- Saved device details and switching are more reliable.
+- Malformed Core JSON responses are handled on recoverable UI paths.
+- Cold-start deep links are captured earlier and deduplicated.
+- WebSocket reconnect handling is more reliable after app resume.
+- Pro purchases restore correctly after Firebase login.
+- Live update channels now use corrected versioned release channels.
+
+## Translation
+
+Spanish language support has been added by [Carlos R.](https://github.com/crodriguezdominguez). Thank you!
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-app/).
+
+
+<SponsorCallout variant="combined" />

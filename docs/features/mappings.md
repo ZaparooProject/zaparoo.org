@@ -9,6 +9,8 @@ Mappings let Zaparoo Core run custom [ZapScript](../zapscript/index.md) when a s
 
 Core can load mappings from local TOML files or from mappings stored in its database through the API. Database mappings are checked first. If a database mapping matches, Core uses that ZapScript and does not check file mappings or legacy platform mappings.
 
+The [Zaparoo App](../app/index.md) can manage database mappings from **Create > Mappings**. Use the app or API for mappings you want to create, edit, enable, disable, and delete interactively. Use mapping files for bulk lists, hand-authored mappings, or mappings you want to keep outside the Core database.
+
 ## Mapping files
 
 Create mapping files in the `mappings` folder inside the Core data folder. Check the page for your [platform](../platforms/index.mdx) to find that folder. You can organize mappings in subfolders, and each mapping file must use the `.toml` extension.

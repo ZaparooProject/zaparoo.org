@@ -9,9 +9,11 @@ Launch guard protects your active game session from accidental token scans. When
 
 ## Setup
 
-Launch guard is configured in `config.toml`. There is no Web UI for this feature yet.
+Launch guard can be configured in the Zaparoo App under **Settings > Play Controls**, or manually in `config.toml`.
 
-Add a `[readers.scan.launch_guard]` section with at minimum:
+When Launch Guard stages a token, the Zaparoo App can show the pending token and let you confirm or dismiss it from your phone. Re-tapping the same token still works when `require_confirm` is disabled.
+
+For manual setup, add a `[readers.scan.launch_guard]` section with at minimum:
 
 ```toml
 [readers.scan.launch_guard]

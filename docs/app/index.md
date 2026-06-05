@@ -13,13 +13,15 @@ If you'd rather not use a phone at all, there's a browser-based version of the a
 
 The app has three main sections:
 
-**Zap** is the home screen. You can scan [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [barcodes](../tokens/barcodes.md), see what's currently playing on the connected device, stop playback, and check what was last scanned. Tapping the scan button puts the phone into active scanning mode; once you're done you can review your scan history too.
+**Zap** is the home screen. You can scan [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [barcodes](../tokens/barcodes.md), see what's currently playing on the connected device, stop playback, and check what was last scanned. Tapping the scan button puts the phone into active scanning mode; once you're done you can review your scan history too. On supported Core versions, the Controls button opens remote-style controls, screenshot capture, and a full keyboard input view.
 
-**Create** is where you make tokens. Search your connected device's media library and write results directly to an NFC tag, or write the currently playing media to a new tag. There's also a custom [ZapScript](../zapscript/index.md) editor for arbitrary commands, a set of NFC utilities for reading raw tag data, formatting, erasing, and making tags read-only, and a [mappings](../features/mappings.md) tool for assigning [NFC toys](../tokens/nfc-toys/index.md) and barcodes to media without writing to the tag itself.
+**Create** is where you make tokens. Search your connected device's media library and write results directly to an NFC tag, or write the currently playing media to a new tag. There's also a custom [ZapScript](../zapscript/index.md) editor for arbitrary commands, a set of NFC utilities for reading raw tag data, formatting, erasing, and making tags read-only, and a [mappings](../features/mappings.md) manager for assigning [NFC toys](../tokens/nfc-toys/index.md) and barcodes to media without writing to the tag itself.
 
-**Settings** covers everything else: entering your device address or searching for nearby Zaparoo devices automatically, updating the media database, configuring reader behavior (scan mode, audio feedback, auto-detecting [external readers](../readers/index.md)), accessibility options, language, and your [Zaparoo Online](../online/index.md) account for managing purchases and subscriptions. Pro features and purchase restoration are also in here.
+**Settings** covers everything else: entering your device address or searching for nearby Zaparoo devices automatically, managing saved devices and pairing credentials, updating and scraping the media database, configuring play controls such as [Launch Guard](../features/launch-guard.md), configuring reader behavior (scan mode, audio feedback, auto-detecting [external readers](../readers/index.md)), viewing inbox notifications, accessibility options, language, and your [Zaparoo Online](../online/index.md) account for managing purchases and subscriptions. Pro features and purchase restoration are also in here.
 
-The app is available in English, Chinese (Simplified), Dutch, French, German, Japanese, and Korean.
+If a Core device requires encrypted connections, the app prompts for the pairing PIN shown by Core and remembers the paired device for future reconnects.
+
+The app is available in English, Chinese (Simplified), Dutch, French, German, Japanese, Korean, and Spanish.
 
 ## Zaparoo Pro
 
