@@ -161,18 +161,22 @@ This command requires a writable reader that supports targeted writes, such as P
 
 ## delay
 
-Pauses script execution for a specified duration.
+Pauses script execution for a specified duration, or waits until active media is ready when readiness support is available.
 
 ### Syntax
 
 ```zapscript
 **delay:<milliseconds>
+**delay:media_ready
 ```
 
 ### Arguments
 
-**`milliseconds`** (required)
+**`milliseconds`**
 The number of milliseconds to pause. Must be an integer.
+
+**`media_ready`**
+Wait until active media is considered ready for controls or raw input. This is useful after a launch command before sending input or a launcher control.
 
 ### Advanced Arguments
 
@@ -200,15 +204,21 @@ Launch SNES, wait 10 seconds, then press F12:
 _Console/SNES||**delay:10000||**input.keyboard:{f12}
 ```
 
+Launch a game, wait for media readiness, then press F12:
+
+```zapscript
+SNES/Super Mario World.sfc||**delay:media_ready||**input.keyboard:{f12}
+```
+
 :::info Blocking Command
-This is a blocking command. The entire script pauses until the delay completes.
+This is a blocking command. The entire script pauses until the delay completes. `media_ready` waits have an internal timeout, so scripts do not wait forever if readiness cannot be detected.
 :::
 
 ---
 
 ## control
 
-Dispatches a [launcher control](../features/launcher-controls.md) action to the active media's launcher. This allows you to send commands to whatever is currently playing, such as pausing, saving state, or skipping tracks.
+Dispatches a [launcher control](../features/launchers.md#launcher-controls) action to the active media's launcher. This allows you to send commands to whatever is currently playing, such as pausing, saving state, or skipping tracks.
 
 ### Syntax
 

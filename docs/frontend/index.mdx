@@ -14,8 +14,11 @@ Frontend does not replace physical tokens, the [Zaparoo App](../app/index.md), t
 Frontend currently supports:
 
 - Browsing categories, systems, games, favorites, recents, and folders
+- Resume Game action for jumping back into recent play history
 - Grid and detailed list views
 - Scraped artwork and metadata display
+- Metadata scrape progress and re-scrape controls
+- System-scoped media database updates and metadata scraping from options menus
 - Launching games and media through Core
 - Per-system launcher selection from the context menu
 - Optional Arcade alternate version discovery
@@ -23,15 +26,23 @@ Frontend currently supports:
 - Configurable screensaver
 - Mouse support, including right-click context menus and mouse wheel paging
 - Native MiSTer CRT output at 320×240 through an FPGA core
-- Language selection and bundled translation catalogs
+- TATE mode for vertical display setups
+- MiSTer resolution selection
+- Settings grouped into Display, Controls, Library, and Support pages
+- Support log uploads from Settings
+- Language selection and bundled translation catalogs, including Basque and Spanish
 
 On first run, Frontend connects to Core locally. If your media database is empty, it prompts you to scan your games before browsing. You can update the media database later from the Settings screen.
 
-Frontend can launch anything Core can already launch on MiSTer, including standard games, MGL files, scripts from the MiSTer OSD, videos, and supported special launchers. For platform-specific launcher details, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
+Frontend can launch anything Core can already launch on MiSTer, including standard games, MGL files and supported special launchers. For platform-specific launcher details, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
 
 ## Install on MiSTer
 
-Frontend requires Zaparoo Core v2.13.0 or newer. Use the latest Core release for current Frontend builds. On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install) or the [Downloads page](/downloads/).
+Frontend requires Zaparoo Core v2.14.0 or newer.
+
+On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
+
+You can also install Frontend through [MiSTer Companion](https://github.com/Anime0t4ku/mister-companion), or install it manually from the release ZIP.
 
 :::tip SuperStation ONE users
 
@@ -39,7 +50,7 @@ If you are using a SuperStation ONE or another MiSTer image that already include
 
 :::
 
-You can install Frontend through [MiSTer Companion](https://github.com/Anime0t4ku/mister-companion) or install it manually from the release ZIP.
+### Manual install
 
 For manual installation, download the release ZIP from [GitHub Releases](https://github.com/ZaparooProject/zaparoo-frontend/releases).
 
@@ -62,7 +73,11 @@ Install Frontend:
 
 To disable or uninstall Frontend, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
 
-## Enable CRT mode
+## Display modes
+
+Frontend has display options for CRT and vertical setups.
+
+### Enable CRT mode
 
 If you use Frontend on a CRT, enable CRT mode in the MiSTer OSD. CRT output can work without this setting, but the UI will use the wrong layout and fonts.
 
@@ -71,6 +86,16 @@ If you use Frontend on a CRT, enable CRT mode in the MiSTer OSD. CRT output can 
 3. Set **CRT mode** to **On**.
 
 CRT mode enables the pixel fonts and tighter layouts designed for 240p output.
+
+### Enable TATE mode
+
+TATE mode rotates Frontend for vertical display setups, such as arcade cabinets or MiSTer displays mounted for vertical games.
+
+Open **Settings**, then set **Orientation** to the clockwise or counter-clockwise option that matches your display.
+
+### Change MiSTer resolution
+
+On MiSTer, open **Settings** and change **Resolution** when you need a fixed output mode instead of the default Frontend video settings. Frontend includes HD options plus larger modes such as `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
 
 ## Scraping metadata
 
@@ -82,7 +107,7 @@ Frontend shows artwork and metadata after Core imports compatible `gamelist.xml`
 
 To use it, download the ZIP and extract it into your MiSTer `games` directory. The release notes also mention that Arcade contents need to be moved to `/media/fat/_Arcade`, where MiSTer's `.mra` files live.
 
-This is the lowest-effort option if you use common ROM names and want a ready-made metadata set. It may not match custom naming, ROM hacks, or unusual library layouts.
+This option works well if your ROM names match the pack and you want a ready-made metadata set. It may not match custom naming, ROM hacks, or unusual library layouts.
 
 ### ZapScraper in MiSTer Companion
 
@@ -102,6 +127,20 @@ You can also use [Skraper](https://www.skraper.net/) with a [ScreenScraper](http
 ### Import into Frontend
 
 After using one of the methods above, open the Frontend Settings page and run **Scrape metadata**. Frontend will process the metadata in the background and reconcile it against Core's media database. Once it's done, you should start seeing images in the game browser.
+
+Core pauses metadata scraping while media is running and resumes when playback stops. Frontend shows scrape progress by system when Core provides it.
+
+Use **Re-scrape existing** when you want Core to refresh media that already has scraper metadata.
+
+To update or scrape one system at a time, open a system's options menu and choose the media database or metadata scrape action for that system.
+
+## Upload support logs
+
+Settings are grouped into **Display**, **Controls**, **Library**, and **Support** pages.
+
+If you need help troubleshooting Frontend, open **Settings**, then **Support**, then **Upload log file**. Frontend uploads a support bundle and shows a link you can share in Discord or a GitHub issue.
+
+The upload includes a support summary, the Frontend log tail, and the Core log tail when Core is reachable.
 
 ## Controls
 

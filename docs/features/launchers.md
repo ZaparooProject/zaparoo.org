@@ -1,13 +1,79 @@
 ---
 title: Launchers
-description: Create custom launchers in Zaparoo to integrate emulators and media applications using TOML configuration files.
-keywords: [zaparoo custom launchers, zaparoo emulator integration, custom launcher toml, zaparoo launcher config]
+description: Create custom launchers and use launcher controls in Zaparoo to integrate emulators and media applications.
+keywords: [zaparoo launchers, zaparoo custom launchers, zaparoo launcher controls, zaparoo emulator integration, custom launcher toml]
 ---
 
 A launcher tells Zaparoo Core how to open a game, video, app, or other media file.
 Each [platform](../platforms/index.mdx) has its own launchers for matching a [system](./systems.md) and file to the right program.
 
-## Custom Launchers
+## Launcher controls
+
+Launcher controls send actions to the launcher handling the currently active media. Use them for actions like pause, stop, save state, load state, fast forward, rewind, or next and previous track.
+
+Control support depends on the active launcher. If no media is active, or the launcher does not support the requested action, the command returns an error.
+
+:::note Control support varies
+Each launcher supports its own set of actions. Check the active media response to see which controls are available.
+:::
+
+### How control actions work
+
+Zaparoo Core asks the active launcher to run a named control action. Official launchers can implement controls directly. [Custom launchers](#controls) can define controls as ZapScript snippets in their launcher configuration.
+
+When Core can tell that media is still starting, the `control` command waits before sending the action.
+
+Built-in action names include:
+
+| Action | Typical use |
+| ------ | ----------- |
+| `toggle_pause` | Pause or unpause active media |
+| `save_state` | Save emulator state |
+| `load_state` | Load emulator state |
+| `save_ram` | Save RAM data |
+| `toggle_menu` | Open or close an in-game menu |
+| `reset` | Reset active media |
+| `stop` | Stop active media |
+| `fast_forward` | Fast forward |
+| `rewind` | Rewind |
+| `next` | Move to the next item |
+| `previous` | Move to the previous item |
+
+Not every launcher supports every action. Use the [`media`](../core/api/methods.md#media) or [`media.active`](../core/api/methods.md#mediaactive) API response to check the `launcherControls` available for the current media.
+
+### Current support
+
+Built-in launcher support currently includes:
+
+| Launcher | Supported actions |
+| -------- | ----------------- |
+| Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
+| EmuDeck RetroArch-based launchers on SteamOS | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `stop` |
+| Custom launchers | Whatever is defined in the launcher's `controls` table |
+
+EmuDeck standalone emulator launchers and RetroDECK launchers do not currently define built-in launcher controls.
+
+### ZapScript control
+
+Use the `control` command to send a control action from a token:
+
+```zapscript
+**control:toggle_pause
+```
+
+Save state for the active media, if the launcher supports it:
+
+```zapscript
+**control:save_state
+```
+
+See the [ZapScript utility command reference](../zapscript/utilities.md#control) for exact syntax and examples.
+
+### API control
+
+Apps and integrations can use the [`media.control`](../core/api/methods.md#mediacontrol) API method to send launcher control actions. The active media response includes `launcherControls` when controls are available.
+
+## Custom launchers
 
 Custom launchers are user-defined launchers configured with [TOML](https://toml.io/) files, similar to [mapping files](./mappings.md#mapping-files). Use them when your [platform](../platforms/index.mdx) does not include a launcher for an emulator or media app you want to use.
 
@@ -124,7 +190,7 @@ lifecycle = "background"
 
 #### controls
 
-Define control actions that can be triggered on active media via [launcher controls](./launcher-controls.md). Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime. Media-launching, playlist, and nested `control` commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay`, and `echo` are allowed.
+Define control actions that can be triggered on active media via [launcher controls](#launcher-controls). Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime. Media-launching, playlist, and nested `control` commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay`, and `echo` are allowed.
 
 The `execute` command in control scripts still requires a matching [`allow_execute`](../core/config.md#allow_execute) entry.
 
@@ -181,6 +247,12 @@ media_dirs = ["games"]
 file_exts = [".rom"]
 execute = "/opt/launchers/[[platform]]/run.sh \"[[media_path]]\" --host [[device.hostname]]"
 ```
+
+## Default launchers
+
+Use [`[[systems.default]]`](../core/config.md#systemsdefault) to choose the default launcher for a system. Core applies this to title/search launches and direct path launches when it can infer the system from the path.
+
+Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action` or `load_path`.
 
 ### Troubleshooting
 

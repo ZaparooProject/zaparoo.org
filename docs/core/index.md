@@ -36,7 +36,7 @@ Most Core settings live in `config.toml`. See the [configuration reference](./co
 
 ## Features and customization
 
-Core includes user-configurable features for larger setups and custom workflows. The [features section](../features/index.md) covers mappings, playlists, launch guard, playtime limits, publishers, launcher controls, custom launchers, systems, and tags.
+Core includes user-configurable features for larger setups and custom workflows. The [features section](../features/index.md) covers mappings, playlists, play controls, hooks, publishers, launcher controls, custom launchers, systems, and tags.
 
 If you are setting up hardware, start with the [readers](../readers/index.md) and [tokens](../tokens/index.md) sections first. If you already have a reader working and want to control what a scan does, start with [ZapScript](../zapscript/index.md).
 

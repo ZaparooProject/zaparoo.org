@@ -19,7 +19,7 @@ Zaparoo Core v2.11.0 is now available. This release adds optional Launch Guard f
 - **[MiSTer](#mister)**: custom core paths, DualRAM launchers, and HTTPS certificate fallback
 
 :::warning Compatibility warning
-This release tightens a few security defaults. If you use [`allow_execute`](/docs/next/core/config#allow_execute), patterns now match the full command instead of any substring, so broad matches need `.*` where appropriate. Remote HTTP POST API calls are now localhost-only unless you configure [`allowed_ips`](/docs/next/core/config#allowed_ips), and remote `/run/` or `/r/` launches need matching [`allow_run`](/docs/next/core/config#allow_run) patterns.
+This release tightens a few security defaults. If you use [`allow_execute`](/docs/core/config/#allow_execute), patterns now match the full command instead of any substring, so broad matches need `.*` where appropriate. Remote HTTP POST API calls are now localhost-only unless you configure [`allowed_ips`](/docs/core/config/#allowed_ips), and remote `/run/` or `/r/` launches need matching [`allow_run`](/docs/core/config/#allow_run) patterns.
 :::
 
 ## Download
@@ -40,7 +40,7 @@ This release tightens a few security defaults. If you use [`allow_execute`](/doc
 
 ## Launch guard
 
-When enabled, [Launch Guard](/docs/next/features/launch-guard) holds incoming scans while a game is already running instead of launching immediately. A sound plays when the staged scan is ready, and a deliberate second tap confirms the switch. If nothing happens within 15 seconds, the scan is discarded and the running game continues uninterrupted.
+When enabled, [Launch Guard](/docs/features/launch-guard/) holds incoming scans while a game is already running instead of launching immediately. A sound plays when the staged scan is ready, and a deliberate second tap confirms the switch. If nothing happens within 15 seconds, the scan is discarded and the running game continues uninterrupted.
 
 This helps with accidental scans from cards left on readers, bumped setups, or children enthusiastically scanning everything in reach.
 
@@ -57,7 +57,7 @@ The `delay` setting adds a mandatory wait before the second tap is accepted, so 
 
 ## PixelCade
 
-[PixelCade](https://pixelcade.org) LED matrix displays now work as a [publisher](/docs/next/features/publishers#pixelcade) in Zaparoo. When a game starts, Zaparoo sends the system and launched filename to PixelCade's local API and the matching artwork appears on the display. Dozens of systems are mapped out of the box, with a lowercase fallback for anything not in the list.
+[PixelCade](https://pixelcade.org) LED matrix displays now work as a [publisher](/docs/features/publishers/#pixelcade) in Zaparoo. When a game starts, Zaparoo sends the system and launched filename to PixelCade's local API and the matching artwork appears on the display. Dozens of systems are mapped out of the box, with a lowercase fallback for anything not in the list.
 
 Configure it in `config.toml`:
 
@@ -69,7 +69,7 @@ mode = "arcade"
 
 ## RePlayOS
 
-[RePlayOS](https://replayos.net) now has its own [Zaparoo Core platform integration](/docs/next/platforms/replayos). Zaparoo can launch RePlayOS games, track active games, capture screenshots, and install as a systemd service.
+[RePlayOS](https://replayos.net) now has its own [Zaparoo Core platform integration](/docs/platforms/replayos/). Zaparoo can launch RePlayOS games, track active games, capture screenshots, and install as a systemd service.
 
 ## Media library
 
@@ -83,7 +83,7 @@ The background media scanner now pauses while a game is running and resumes when
 
 ## New ZapScript command
 
-[`**launch.last`](/docs/next/zapscript/launch#launchlast) re-launches the most recently played game. Add a number to step further back in history:
+[`**launch.last`](/docs/zapscript/launch/#launchlast) re-launches the most recently played game. Add a number to step further back in history:
 
 ```zapscript
 **launch.last
@@ -101,14 +101,14 @@ Handy for a dedicated "last played" card, or a physical button that cycles throu
 
 ## Other changes
 
-- **Reader enable/disable**: individual reader connections can be [enabled or disabled](/docs/next/core/config#readers-connect-enabled) without removing them from config. The TUI shows "(disabled)" next to disabled entries
-- **Audio volume**: new [`volume`](/docs/next/core/config#volume) setting in `[audio]` (0-200, default 100). Values above 100 amplify the feedback sounds. Configurable without a restart via the settings API
-- **ZapScript security hardening**: new config options to block commands by name with [`block_commands`](/docs/next/core/config#block_commands), restrict `http.get` and `http.post` URLs with [`allow_http`](/docs/next/core/config#allow_http), and control keyboard input through [`[zapscript.input]`](/docs/next/core/config#zapscriptinput)
-- **Server-Sent Events**: new [`/api/v0.1/events`](/docs/next/core/api#server-sent-events-sse) endpoint for receiving API notifications over a standard HTTP connection
+- **Reader enable/disable**: individual reader connections can be [enabled or disabled](/docs/core/config/#readers-connect-enabled) without removing them from config. The TUI shows "(disabled)" next to disabled entries
+- **Audio volume**: new [`volume`](/docs/core/config/#volume) setting in `[audio]` (0-200, default 100). Values above 100 amplify the feedback sounds. Configurable without a restart via the settings API
+- **ZapScript security hardening**: new config options to block commands by name with [`block_commands`](/docs/core/config/#block_commands), restrict `http.get` and `http.post` URLs with [`allow_http`](/docs/core/config/#allow_http), and control keyboard input through [`[zapscript.input]`](/docs/core/config/#zapscriptinput)
+- **Server-Sent Events**: new [`/api/v0.1/events`](/docs/core/api/#server-sent-events-sse) endpoint for receiving API notifications over a standard HTTP connection
 - **Tag database expanded**: dozens of new tags from the [GameDataBase project](https://github.com/PigSaint/GameDataBase) for arcade boards, input devices, and more. Old deprecated tag names on existing cards resolve automatically, so nothing breaks
-- **Linux external drives**: [external drive readers](/docs/next/readers/external-drive) now listen for UDisks2 and inotify mount changes, with duplicate suppression and stale-state cleanup
-- **Relative media paths**: custom launcher [`media_dirs`](/docs/next/features/launchers#creating-a-custom-launcher) entries can now use paths relative to the Core executable directory
-- **New API method**: [`confirm`](/docs/next/core/api/methods#confirm) confirms a staged Launch Guard scan for physical buttons and automations
+- **Linux external drives**: [external drive readers](/docs/readers/external-drive/) now listen for UDisks2 and inotify mount changes, with duplicate suppression and stale-state cleanup
+- **Relative media paths**: custom launcher [`media_dirs`](/docs/features/launchers/#creating-a-custom-launcher) entries can now use paths relative to the Core executable directory
+- **New API method**: [`confirm`](/docs/core/api/methods/#confirm) confirms a staged Launch Guard scan for physical buttons and automations
 
 ## Bug fixes
 

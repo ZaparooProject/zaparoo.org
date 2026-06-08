@@ -1,0 +1,149 @@
+---
+slug: zaparoo-frontend-v1.1.0
+title: "Zaparoo Frontend v1.1.0 and Core v2.14.0 released"
+description: "Zaparoo Frontend v1.1.0 adds TATE mode, Resume Game, faster browsing, settings subpages, system media actions, and language updates, while Core v2.14.0 improves metadata scraping, media images, media browsing, MiSTer launchers, ZapScript, and service hooks."
+tags: [software]
+authors: [wizzo]
+---
+
+[Zaparoo Frontend](/docs/frontend/) v1.1.0 and [Zaparoo Core](/docs/core/) v2.14.0 are the next paired Zaparoo releases.
+
+Thank you to [Andrea Bogazzi](https://github.com/asturur) for the Frontend TATE, layout, and performance work plus the Core service startup hooks, Matthew O'Gorman for player 3 and 4 coin input commands, and [devilschile2](https://github.com/devilschile2) for Basque translation work.
+
+{/* truncate */}
+
+:::info
+Now available via [Update All](https://github.com/theypsilon/Update_All_MiSTer) on MiSTer! Thank you [theypsilon](https://github.com/theypsilon) who has added a dedicated Zaparoo item to Update All in the *Tools & Scripts* section. This moves Zaparoo out of the old MiSTer Extensions repo and replaces the manual *mrext/tapto* repo. **Update All also allows you to enable [Zaparoo Frontend](/docs/frontend/#install-on-mister) in your MiSTer.ini file automatically.**
+:::
+
+**Frontend highlights:**
+
+- **[TATE mode](/docs/frontend/#enable-tate-mode)**: rotate Frontend for vertical CRT setups.
+- **[More MiSTer display options](/docs/frontend/#change-mister-resolution)**: extra resolution choices: `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
+- **Resume Game**: a new hub action can jump back into the most recently played game.
+- **Faster browsing**: smoother rapid navigation, smarter cover prefetching, faster Arcade browsing.
+- **Detail view updates**: improved metadata display, including compact CRT metadata labels.
+- **Settings subpages**: settings are grouped into Display, Controls, Library, and Support pages.
+- **[Media actions by system](/docs/frontend/#scraping-metadata)**: update the media database or scrape metadata for one system from that system's options menu.
+- **Language selection**: Basque and Spanish can be selected from Frontend settings.
+
+**Core highlights:**
+
+- **Scraping status**: metadata scraping now reports clearer lifecycle state, per-system progress, pause state, and whole-run step progress.
+- **Scrape resume fixes**: scraping pauses while media is running, resumes more reliably, and can be resumed through the [`media.scrape.resume`](/docs/core/api/methods#mediascraperesume) API.
+- **[`gamelist.xml` improvements](/docs/frontend/#scraping-metadata)**: more reliable artwork matching, Companion entry handling, nested media support, region/language tags, and tag display names.
+- **Frontend API support**: faster latest-history lookup, resized media images, more reliable media browsing, and WebSocket request prioritization.
+- **[MiSTer updates](/docs/platforms/mister/launchers/#alternate-launchers)**: DB9 core launchers, RA Atari2600, RA Game Boy Color, RA Super Game Boy, RA set names, NeoGeo subfolder scanning, and AmigaVision diagnostics.
+- **[ZapScript updates](/docs/zapscript/input/#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4)**: system launcher defaults now apply to direct path launches, and `input.coinp3` / `input.coinp4` are available.
+- **[Service hooks](/docs/features/hooks/#service-startup-hooks)**: new `on_boot` and `on_ready` hooks run ZapScript during Core startup.
+
+## Download
+
+### Frontend
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Frontend v1.1.0"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v1.1.0"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="link" />}
+  label="Install Guide"
+  link="/docs/frontend/#install-on-mister"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Frontend GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/"
+  variant="primary"
+/>
+
+### Core
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Core v2.14.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Core GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Frontend: Display modes
+
+Frontend v1.1.0 adds [TATE mode](/docs/frontend/#enable-tate-mode) for vertical CRT and cabinet setups. The list/detail layout has been tuned for portrait orientation, so browsing a vertical game library does not feel like a sideways version of the normal layout.
+
+[MiSTer display settings](/docs/frontend/#change-mister-resolution) also get more fixed resolution choices: `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
+
+## Frontend: Browsing
+
+Browsing has had another responsiveness pass. The new Resume Game hub action can jump back into the most recently played game, recent games are deduplicated by path, Arcade browsing is quicker, and rapid navigation keeps more covers ready around the current position.
+
+Frontend also asks Core for resized cover images now, which keeps the cache useful without pulling huge artwork into memory. Detail views got a smaller polish pass too: compact CRT metadata labels, list picker scroll indicators, and selection auto-scroll when a picker has more rows than fit on screen.
+
+## Frontend: Settings
+
+Settings are now split into Display, Controls, Library, and Support pages. The old single settings list was getting crowded.
+
+## Frontend: Library tools
+
+Library actions can be more focused in this release. You can still update the whole media database or [scrape metadata](/docs/frontend/#scraping-metadata) globally, but you can now update or scrape a single system from that system's options menu.
+
+The Core status pill also shows nicer progress and spinner states while indexing or scraping is active.
+
+## Frontend: Support and languages
+
+Support log uploads now include a short support summary, the Frontend log tail, and the Core log tail when Core is reachable. That gives Discord and GitHub support threads more context up front.
+
+Basque and Spanish can also be selected from Frontend settings, and the bundled translation catalogs have been refreshed.
+
+## Core: Scraping status
+
+Core v2.14.0 has media-library work behind many of the Frontend changes. Scrape status now includes lifecycle state, pause state, per-system progress, and whole-run step progress.
+
+Scraping pauses while media is running, resumes after playback stops, and can be resumed manually through [`media.scrape.resume`](/docs/core/api/methods#mediascraperesume).
+
+## Core: Metadata imports
+
+The [`gamelist.xml` scraper](/docs/frontend/#scraping-metadata) handles more of the messy metadata layouts people already have on disk. That includes nested games, MiSTer Companion parent/child records, region and language tags, tag display names, and stale artwork paths that should be ignored instead of blocking a good match.
+
+## Core: Media APIs
+
+The media APIs got faster under UI load. [`media.image`](/docs/core/api/methods#mediaimage) can return resized images, preserving PNG transparency when needed and using smaller JPEGs for opaque artwork.
+
+Browse requests, image misses, tag attachment, and WebSocket request priority all got work so Frontend can stay responsive while background media tasks are busy.
+
+## Core: Launching
+
+Core now handles logical single-game folders more carefully. Single-child folders, cue/bin disc folders, and m3u disc folders can appear as launchable entries when there is one safe launch target. Ambiguous folders stay browseable instead of being guessed incorrectly.
+
+Direct path launches also respect system launcher defaults when Core can infer the system, which makes Frontend's per-system launcher choices apply more consistently.
+
+## Core: MiSTer
+
+[MiSTer](/docs/platforms/mister/) gets [DB9 core launchers and more RetroAchievements launcher coverage](/docs/platforms/mister/launchers/#alternate-launchers): Atari2600, Game Boy Color, and Super Game Boy. RA launcher set-name handling has been fixed, NeoGeo romsets can be scanned from subfolders, and AmigaVision has extra launch diagnostics for troubleshooting (there is an upstream bug in AmigaVision which will be fixed in its next release).
+
+## Core: ZapScript
+
+ZapScript gets [`input.coinp3` and `input.coinp4`](/docs/zapscript/input/#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) for player 3 and 4 coin inputs.
+
+## Core: Startup hooks
+
+Core v2.14.0 adds two [service startup hooks](/docs/features/hooks/#service-startup-hooks): `on_boot` and `on_ready`.
+
+`on_boot` runs once after the device boots. `on_ready` runs every time Core starts and reaches readiness. Both run ZapScript, and `**execute:` scripts receive `ZAPAROO_ENVIRONMENT` with hook context.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

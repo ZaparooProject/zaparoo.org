@@ -19,8 +19,10 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`launch.last`](./launch.md#launchlast) | Launch a recently played game |
 | [`input.keyboard`](./input.md#inputkeyboard) | Simulate keyboard input |
 | [`input.gamepad`](./input.md#inputgamepad) | Simulate gamepad input |
-| [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2) | Insert coin for player 1 |
-| [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2) | Insert coin for player 2 |
+| [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 1 |
+| [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 2 |
+| [`input.coinp3`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 3 |
+| [`input.coinp4`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 4 |
 | [`http.get`](./http.md#httpget) | Make an HTTP GET request |
 | [`http.post`](./http.md#httppost) | Make an HTTP POST request |
 | [`playlist.play`](./playlist.md#playlistplay) | Load and play a playlist |

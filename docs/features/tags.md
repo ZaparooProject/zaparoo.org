@@ -137,6 +137,12 @@ These are the tag types most likely to matter when writing title IDs by hand.
 
 Core defines many more tag types than this, including hardware add-ons, embedded cartridge chips, compatibility tags, publishers, developers, genres, and player counts. Most users do not need to write those by hand.
 
+## Scraped tags and labels
+
+Metadata scrapers can add tags for publishers, developers, genres, arcade boards, game families, regions, and languages. Core stores these tag values as normalized slugs so matching stays consistent. For example, `T&E Soft` is stored as `t-and-e-soft`.
+
+When scraped metadata includes a human-readable label, API responses can preserve that label alongside the normalized tag value. Use the normalized `type:value` form when writing title IDs or tag filters by hand.
+
 ## Credit
 
 Zaparoo's tag taxonomy is inspired by [GameDataBase](https://github.com/PigSaint/GameDataBase), a game metadata project by [PigSaint](https://github.com/PigSaint). GameDataBase uses a deeper hierarchical tag system; Zaparoo uses simpler `type:value` tags for filename parsing and title matching.

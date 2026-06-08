@@ -167,7 +167,7 @@ Two cores are supported:
 
 ### NeoGeo
 
-NeoGeo supports launching `.zip` files and folders directly with Zaparoo, as supported by the MiSTer core itself.
+NeoGeo supports launching `.zip` files and folders directly with Zaparoo, including romset folders in subfolders, as supported by the MiSTer core itself.
 
 For example, a `.zip` file:
 
@@ -227,8 +227,9 @@ These launchers automatically use an `RA_*` set name with `same_dir` enabled. Th
 
 | Launcher ID | System |
 |-------------|--------|
-| `RAAtari7800` | Atari 7800 |
+| `RAAtari2600` | Atari 2600 |
 | `RAGameboy` | Game Boy |
+| `RAGameboyColor` | Game Boy Color |
 | `RAGBA` | Game Boy Advance |
 | `RAMegaDrive` | Genesis/Mega Drive |
 | `RAMegaCD` | Mega CD |
@@ -239,7 +240,47 @@ These launchers automatically use an `RA_*` set name with `same_dir` enabled. Th
 | `RAPSX` | PlayStation |
 | `RAS32X` | Sega 32X |
 | `RASNES` | SNES |
+| `RASuperGameboy` | Super Game Boy |
 | `RATurboGrafx16` | TurboGrafx-16 |
+
+### DB9
+
+DB9 cores are alternate MiSTer cores for DB9 controller adapters. Install them in the matching `_Console` core locations, then select them with `?launcher=<launcher ID>` or a default launcher override.
+
+| Launcher ID | System |
+|-------------|--------|
+| `DB9AdventureVision` | Adventure Vision |
+| `DB9Astrocade` | Astrocade |
+| `DB9Atari5200` | Atari 5200 |
+| `DB9Atari7800` | Atari 7800 |
+| `DB9AtariLynx` | Atari Lynx |
+| `DB9CasioPV1000` | Casio PV-1000 |
+| `DB9CDI` | CD-i |
+| `DB9ColecoVision` | ColecoVision |
+| `DB9CreatiVision` | CreatiVision |
+| `DB9Gameboy` | Game Boy |
+| `DB9Gameboy2P` | Game Boy 2P |
+| `DB9GameNWatch` | Game & Watch |
+| `DB9GBA` | Game Boy Advance |
+| `DB9GBAAccuracy` | Game Boy Advance (accuracy) |
+| `DB9GBA2P` | Game Boy Advance 2P |
+| `DB9MegaDrive` | Mega Drive |
+| `DB9Genesis` | Genesis |
+| `DB9SMS` | Master System |
+| `DB9MegaCD` | Mega CD |
+| `DB9NeoGeo` | Neo Geo |
+| `DB9NeoGeo24MHz` | Neo Geo (24 MHz) |
+| `DB9NES` | NES |
+| `DB9Odyssey2` | Odyssey 2 |
+| `DB9PSX` | PlayStation |
+| `DB9DualRAMPSX` | PlayStation (DualRAM) |
+| `DB9Sega32X` | Sega 32X |
+| `DB9SuperGameboy` | Super Game Boy |
+| `DB9Saturn` | Saturn |
+| `DB9DualRAMSaturn` | Saturn (DualRAM) |
+| `DB9SNES` | SNES |
+| `DB9TurboGrafx16` | TurboGrafx-16 |
+| `DB9Vectrex` | Vectrex |
 
 ### LLAPI
 

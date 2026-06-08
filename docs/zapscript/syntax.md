@@ -211,6 +211,7 @@ Expressions have access to a set of environment variables:
   - `value`: value/text contents of the token.
   - `data`: raw binary data of the token as a hex string.
 - `media_playing`: returns true if media is currently playing. E.g. `true` or `false`
+- `media_ready`: returns true if active media is considered ready for controls or raw input. E.g. `true` or `false`
 - `active_media`: object with information about the active media.
   - `launcher_id`: ID of the launcher which launched the media, if available.
   - `system_id`: ID of the media's system.
@@ -225,6 +226,9 @@ Expressions have access to a set of environment variables:
   - `launcher_id`: ID of the launcher launching the media.
   - `system_id`: ID of the media's system.
   - `path`: path to the media file.
+- `hook`: object with information about the current [hook](../features/hooks.md), when a script is running from a hook.
+  - `name`: name of the current hook, such as `on_scan`, `on_boot`, or `on_ready`.
+  - `first_boot_start`: `true` if this Core start is the first service start for the current OS boot.
 
 Objects can be accessed with a `.`, for example `device.os` or `last_scanned.id`. Empty values will return an empty string, so if a token was never scanned, `last_scanned.value` would return an empty string.
 
@@ -304,8 +308,8 @@ These older command names are kept for compatibility. New scripts should use the
 | ----------- | ----------------------------------------------------- |
 | `key`       | [`input.keyboard`](./input.md#inputkeyboard)          |
 | `input.key` | [`input.keyboard`](./input.md#inputkeyboard)          |
-| `coinp1`    | [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2) |
-| `coinp2`    | [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2) |
+| `coinp1`    | [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) |
+| `coinp2`    | [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) |
 | `random`    | [`launch.random`](./launch.md#launchrandom)           |
 | `shell`     | [`execute`](./utilities.md#execute)                   |
 | `command`   | [`execute`](./utilities.md#execute)                   |

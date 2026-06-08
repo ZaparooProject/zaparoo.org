@@ -490,5 +490,5 @@ Cycle back to the third most recently played unique game:
 ```
 
 :::info
-Requires [playtime tracking](../features/playtime.md) to have recorded history. If not enough unique games are in history to satisfy the offset, the command logs a warning and does nothing.
+Requires [playtime tracking](../features/play-controls.md#playtime-limits) to have recorded history. If not enough unique games are in history to satisfy the offset, the command logs a warning and does nothing.
 :::

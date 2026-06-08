@@ -664,8 +664,12 @@ const config: Config = {
           },
           // IA restructure: features/ section
           {
-            to: "/docs/features/playtime/",
-            from: "/docs/core/playtime/",
+            to: "/docs/next/features/play-controls/",
+            from: ["/docs/core/playtime/", "/docs/next/features/playtime/", "/docs/next/features/launch-guard/"],
+          },
+          {
+            to: "/docs/next/features/launchers/#launcher-controls",
+            from: "/docs/next/features/launcher-controls/",
           },
           {
             to: "/docs/features/mappings/",
