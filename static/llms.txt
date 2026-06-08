@@ -70,7 +70,7 @@ Important notes:
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
-- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install and metadata scraping setup.
+- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, metadata scraping, support log uploads, and library tools.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Cloud service for virtual card decks and remote ZapScript sync.
 
@@ -85,12 +85,12 @@ Important notes:
 ## Features
 
 - [Features Overview](https://zaparoo.org/docs/features/): Overview of all Zaparoo Core features.
-- [Launchers](https://zaparoo.org/docs/features/launchers/): How Core resolves and launches games from token scans.
+- [Launchers](https://zaparoo.org/docs/features/launchers/): How Core resolves and launches games from token scans, including launcher defaults and launch hooks.
 - [Mappings](https://zaparoo.org/docs/features/mappings/): Map token IDs to specific games or scripts.
 - [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
-- [Playtime](https://zaparoo.org/docs/features/playtime/): Track how long games are played via token scans.
+- [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
+- [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
-- [Launch Guard](https://zaparoo.org/docs/features/launch-guard/): Optional protection against accidental game switching while a game is running.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.
 
 ## ZapScript
@@ -98,7 +98,7 @@ Important notes:
 - [ZapScript Overview](https://zaparoo.org/docs/zapscript/): Introduction to ZapScript, the token scripting language.
 - [Syntax](https://zaparoo.org/docs/zapscript/syntax/): ZapScript syntax rules and command format.
 - [Launch Commands](https://zaparoo.org/docs/zapscript/launch/): Commands for launching games and media.
-- [Input Commands](https://zaparoo.org/docs/zapscript/input/): Send keyboard, mouse, and gamepad input via ZapScript.
+- [Input Commands](https://zaparoo.org/docs/zapscript/input/): Send keyboard, mouse, gamepad, and MiSTer coin inputs via ZapScript.
 - [Utilities](https://zaparoo.org/docs/zapscript/utilities/): Utility commands: delays, variables, conditionals, and staged token writes.
 - [Playlists](https://zaparoo.org/docs/zapscript/playlist/): Cycle through a list of actions on repeated scans.
 - [MiSTer Commands](https://zaparoo.org/docs/zapscript/mister/): MiSTer-specific ZapScript commands.

@@ -200,7 +200,7 @@ Configuration works the same as [`success_sound`](#success_sound):
 | ------------- | ------ | ------------------ |
 | pending_sound | string | (embedded default) |
 
-`pending_sound` specifies a custom audio file to play when a token is staged by [launch guard](../features/launch-guard.md). Supports WAV, MP3, OGG, and FLAC formats.
+`pending_sound` specifies a custom audio file to play when a token is staged by [launch guard](../features/play-controls.md#launch-guard). Supports WAV, MP3, OGG, and FLAC formats.
 
 ```toml
 [audio]
@@ -407,11 +407,11 @@ This feature can be useful if you want to, using a single reader, scan other tok
 | ------- | ------ | ------- |
 | on_scan | string |         |
 
-`on_scan` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is scanned but before ZapScript on the token itself (or a mapping) is run. It is always active if enabled.
+`on_scan` is a [hook](../features/hooks.md) containing a snippet of [ZapScript](../zapscript/index.md). It runs immediately after a token is scanned but before ZapScript on the token itself (or a mapping) is run. It is always active if enabled.
 
 This hook can block the scan by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the token processing is blocked.
 
-Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state.
+Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing the [expression environment](../zapscript/syntax.md#expression-environment) as JSON.
 
 ##### on_remove
 
@@ -419,13 +419,13 @@ Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment va
 | --------- | ------ | ------- |
 | on_remove | string |         |
 
-`on_remove` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#scan-mode).
+`on_remove` is a [hook](../features/hooks.md) containing a snippet of [ZapScript](../zapscript/index.md). It runs immediately after a token is removed from the reader. It's only active in `hold` [`mode`](#scan-mode).
 
 Note that this will _always_ run in `hold` mode when a token is removed from the reader, no matter if any media was launched or is active. It also does not respect the [`exit_delay`](#exit_delay) setting and runs before any media exit logic happens.
 
 This hook can block the remove action by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the remove processing is blocked.
 
-Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state.
+Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing the [expression environment](../zapscript/syntax.md#expression-environment) as JSON.
 
 ##### ignore_on_connect
 
@@ -637,7 +637,7 @@ ID of the [system](../features/systems.md) this default override entry applies t
 | -------- | ------ | ------- |
 | launcher | string |         |
 
-ID of the [launcher](../features/launchers.md) that should be used by default when media in this system is launched.
+ID of the [launcher](../features/launchers.md) that should be used by default when media in this system is launched. This applies to title/search launches and direct path launches when Core can infer the system.
 
 ##### before_exit
 
@@ -645,7 +645,7 @@ ID of the [launcher](../features/launchers.md) that should be used by default wh
 | ----------- | ------ | ------- |
 | before_exit | string |         |
 
-A snippet of [ZapScript](../zapscript/index.md) to be run before media exits if [hold mode](#scan-mode) is enabled. Blocks before moving onto exit so commands like [delay](../zapscript/utilities.md) can be used.
+A [hook](../features/hooks.md) containing a snippet of [ZapScript](../zapscript/index.md) to run before media exits if [hold mode](#scan-mode) is enabled. Core waits for it before continuing exit handling, so commands like [`delay`](../zapscript/utilities.md#delay) can be used.
 
 ### Launchers
 
@@ -702,7 +702,7 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 | -------------- | ------ | ------- |
 | on_media_start | string |         |
 
-`on_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately after media starts launching, regardless of the scan mode. See also [`on_scan`](#on_scan) and [`on_remove`](#on_remove) for related scan events.
+`on_media_start` is a [hook](../features/hooks.md#media-launch-hooks) containing a snippet of [ZapScript](../zapscript/index.md). It runs after Core sets active media, regardless of the scan mode. See also [`on_scan`](#on_scan) and [`on_remove`](#on_remove) for related scan events.
 
 #### before_media_start
 
@@ -710,7 +710,7 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 | ------------------ | ------ | ------- |
 | before_media_start | string |         |
 
-`before_media_start` is a snippet of [ZapScript](../zapscript/index.md) which is run immediately before media launches.
+`before_media_start` is a [hook](../features/hooks.md#media-launch-hooks) containing a snippet of [ZapScript](../zapscript/index.md). It runs immediately before media launches.
 
 ```toml
 [launchers]
@@ -719,45 +719,9 @@ before_media_start = "**execute:/path/to/script.sh"
 
 This hook can block the launch by returning an error. If the ZapScript command fails or a script executed via `**execute:` returns a non-zero exit code, the media launch is blocked and an error is shown.
 
-Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the current system state:
+Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment variable containing the [expression environment](../zapscript/syntax.md#expression-environment) as JSON.
 
-```json
-{
-  "platform": "mister",
-  "version": "2.9.0",
-  "scan_mode": "tap",
-  "media_playing": false,
-  "device": {
-    "hostname": "mister",
-    "os": "linux",
-    "arch": "arm"
-  },
-  "active_media": {
-    "launcher_id": "",
-    "system_id": "",
-    "system_name": "",
-    "path": "",
-    "name": ""
-  },
-  "last_scanned": {
-    "id": "04:AB:CD:EF:12:34:56",
-    "value": "**launch:Genesis/Sonic.bin",
-    "data": ""
-  },
-  "scanned": {
-    "id": "04:AB:CD:EF:12:34:56",
-    "value": "**launch:Genesis/Sonic.bin",
-    "data": ""
-  },
-  "launching": {
-    "path": "/media/fat/games/Genesis/Sonic.bin",
-    "system_id": "Genesis",
-    "launcher_id": "MiSTer"
-  }
-}
-```
-
-The `launching` object contains information about the media that is about to launch, which is only available in this hook.
+The `launching` object contains information about the media that is about to launch, which is only available in this hook. See [Hooks](../features/hooks.md) for examples.
 
 #### launchers.default
 
@@ -962,6 +926,8 @@ The `block` list is ignored when `allow` is configured.
 [service]
 api_port = 7497
 api_listen = "0.0.0.0"
+on_boot = "**execute:/media/fat/zaparoo/scripts/on-boot.sh"
+on_ready = "**execute:/media/fat/zaparoo/scripts/on-ready.sh"
 allowed_ips = [
     "192.168.1.100",
     "192.168.1.0/24"
@@ -995,6 +961,34 @@ filter = [
 `api_port` specifies which port the [API](./api/index.md) of Core should be accessible from.
 
 **Don't change this unless you know what you're doing. It will currently break external tools that rely on it being the default value.**
+
+#### on_boot
+
+| Key     | Type   | Default |
+| ------- | ------ | ------- |
+| on_boot | string |         |
+
+`on_boot` is a [hook](../features/hooks.md#service-startup-hooks) containing a snippet of [ZapScript](../zapscript/index.md). It runs after Core initializes, only on the first Core start for the current operating system boot.
+
+```toml
+[service]
+on_boot = "**execute:/media/fat/zaparoo/scripts/on-boot.sh"
+```
+
+If Core cannot detect boot state, `on_boot` is skipped and a warning is logged.
+
+#### on_ready
+
+| Key      | Type   | Default |
+| -------- | ------ | ------- |
+| on_ready | string |         |
+
+`on_ready` is a [hook](../features/hooks.md#service-startup-hooks) containing a snippet of [ZapScript](../zapscript/index.md). It runs after Core initializes on every service start. On platforms that report service readiness, Core waits for that readiness signal first.
+
+```toml
+[service]
+on_ready = "**execute:/media/fat/zaparoo/scripts/on-ready.sh"
+```
 
 #### api_listen
 
@@ -1340,7 +1334,7 @@ warnings = ["10m", "5m", "2m", "1m"]
 
 The `playtime` section configures playtime tracking, limits, and parental controls.
 
-See the [Playtime documentation](../features/playtime.md) for detailed information and examples.
+See the [Play Controls documentation](../features/play-controls.md#playtime-limits) for detailed information and examples.
 
 #### retention
 

@@ -1,11 +1,11 @@
 ---
-description: "Use the Zaparoo Core terminal UI to check Core status, write tokens, update media, change settings, and export logs."
+description: "Use the Zaparoo Core terminal UI to check Core status, write tokens, manage media, change settings, and export logs."
 keywords: [zaparoo tui, zaparoo terminal ui, zaparoo core settings, zaparoo logs]
 ---
 
 # Terminal UI
 
-The Zaparoo Core terminal UI, or TUI, is Core's local menu interface. Use it when you are on the device running Core and want to check status, write a token, update media, or change settings without opening the [Zaparoo App](../app/index.md), [Web UI](../app/web.md), or [command line](cli.md).
+The Zaparoo Core terminal UI, or TUI, is Core's local menu interface. Use it when you are on the device running Core and want to check status, write a token, manage media, or change settings without opening the [Zaparoo App](../app/index.md), [Web UI](../app/web.md), or [command line](cli.md).
 
 Windows does not use the TUI. It runs Core from the system tray instead.
 
@@ -36,9 +36,13 @@ Exiting the TUI may leave the Core service running in the background, depending 
 | ------ | ------------ |
 | **Search media** | Searches indexed media and writes the selected result to a token. |
 | **Custom write** | Writes custom [ZapScript](../zapscript/index.md) to a token. |
-| **Update media** | Scans configured media folders and updates the media database. |
+| **Manage media** | Updates the media index and runs metadata scraping. |
 | **Settings** | Opens Core settings, TUI settings, reader settings, audio settings, and logs. |
 | **Exit** | Closes the TUI. |
+
+## Managing media
+
+Open **Manage media** to update the media index, scrape metadata, or resume/cancel media jobs.
 
 ## Writing tokens
 

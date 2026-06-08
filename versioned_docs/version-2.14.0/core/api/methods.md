@@ -544,7 +544,7 @@ All parameters are optional. When called with no parameters, returns root entrie
 | maxResults | number | No       | Maximum results per page. Default is 100, maximum is 1000.                                                 |
 | cursor     | string | No       | Opaque pagination cursor from a previous response's `nextCursor`. Omit for first page. Cursors are valid only with the same path, systems, letter, and sort parameters. |
 | letter     | string | No       | Filter results to entries starting with this letter.                                                       |
-| sort       | string | No       | Sort order. One of: `name-asc` (default), `name-desc`, `filename-asc`, `filename-desc`. The `filename` variants sort by full file path. |
+| sort       | string | No       | Sort order. One of: `name-asc` (default), `name-desc`, `filename-asc`, `filename-desc`. Name sorting is prefix-aware for detected ranked/date collection folders. The `filename` variants sort by full file path. |
 
 #### Result
 
@@ -559,7 +559,7 @@ All parameters are optional. When called with no parameters, returns root entrie
 
 | Key          | Type     | Required | Description                                                                                      |
 | :----------- | :------- | :------- | :----------------------------------------------------------------------------------------------- |
-| mediaId      | number   | No       | Opaque media database row ID. Present on `media` entries for efficient follow-up `media.meta` and `media.image` requests. |
+| mediaId      | number   | No       | Opaque media database row ID. Present on `media` entries, and on zip-as-directory platform `directory` entries whose direct contents collapse to one logical launch target, for efficient follow-up `media.meta` and `media.image` requests. |
 | name         | string   | Yes      | Display name of the entry.                                                                       |
 | path         | string   | Yes      | Full path to the entry.                                                                          |
 | type         | string   | Yes      | Entry type: `root`, `directory`, or `media`.                                                     |
@@ -567,9 +567,9 @@ All parameters are optional. When called with no parameters, returns root entrie
 | group        | string   | No       | Launcher group name. Present on virtual scheme `root` entries.                                   |
 | systemId     | string   | No       | System ID for the media or single-system filtered route (e.g. `SNES`). Present on `media` entries and filtered `root` entries when exactly one system applies. |
 | systemIds    | string[] | No       | System IDs represented by a filtered `root` or `directory` entry.                                |
-| zapScript    | string   | No       | ZapScript command to launch this media. Present on `media` entries.                              |
-| relativePath | string   | No       | Relative path from root directory. Present on `media` entries.                                   |
-| tags         | object[] | No       | Tags attached to the media. Each object has `tag` (string) and `type` (string). Present on `media` entries. |
+| zapScript    | string   | No       | ZapScript command to launch this media. Present on `media` entries and logical single-game container `directory` entries on zip-as-directory platforms. |
+| relativePath | string   | No       | Relative path from root directory. Present on `media` entries and logical single-game container `directory` entries on zip-as-directory platforms. |
+| tags         | object[] | No       | Tags attached to the media. Each object has `tag` (string) and `type` (string). Present on `media` entries and logical single-game container `directory` entries on zip-as-directory platforms. |
 
 ##### Browse pagination object
 
@@ -1038,6 +1038,64 @@ Returns `null` on success.
   "jsonrpc": "2.0",
   "id": "47f80537-7a5d-11ef-9c7b-020304050607",
   "result": null
+}
+```
+
+### media.history.latest
+
+Return the most recent played media entry from the user database only. This is intended for startup paths that need the last played game as quickly as possible, without media database enrichment.
+
+This method does not return tags, metadata, media IDs, relative paths, pagination, end time, or play time.
+
+#### Parameters
+
+None. Empty params may be omitted or sent as `{}`.
+
+#### Result
+
+| Key   | Type                                                         | Required | Description                                                   |
+| :---- | :----------------------------------------------------------- | :------- | :------------------------------------------------------------ |
+| entry | [MediaHistoryLatestEntry](#media-history-latest-entry-object) | Yes      | Most recent media play history entry, or `null` when none exists. |
+
+##### Media history latest entry object
+
+| Key        | Type   | Required | Description                                     |
+| :--------- | :----- | :------- | :---------------------------------------------- |
+| systemId   | string | Yes      | ID of the system.                               |
+| systemName | string | Yes      | Display name of the system from the history row. |
+| mediaName  | string | Yes      | Display name of the media from the history row. |
+| mediaPath  | string | Yes      | Path to the media file from the history row.    |
+| launcherId | string | Yes      | ID of the launcher used.                        |
+| startedAt  | string | Yes      | Timestamp when media started in RFC3339 format. |
+
+#### Example
+
+##### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "9f2c6a52-7a5d-11ef-9c7b-020304050607",
+  "method": "media.history.latest"
+}
+```
+
+##### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "9f2c6a52-7a5d-11ef-9c7b-020304050607",
+  "result": {
+    "entry": {
+      "systemId": "SNES",
+      "systemName": "Super Nintendo Entertainment System",
+      "mediaName": "Super Mario World",
+      "mediaPath": "/roms/snes/Super Mario World (USA).sfc",
+      "launcherId": "SNES",
+      "startedAt": "2025-01-22T14:30:00Z"
+    }
+  }
 }
 ```
 
@@ -1593,7 +1651,7 @@ Returns `null` on success. The scraper continues after the response is sent.
 
 Return the latest known metadata scraper status.
 
-This method behaves like `media` does for indexing status: clients can query the current scrape snapshot after opening a UI, then continue listening for `media.scraping` notifications. If no scrape has run since startup, the result is idle with `scraping: false` and `done: false`.
+This method behaves like `media` does for indexing status: clients can query the current scrape snapshot after opening a UI, then continue listening for `media.scraping` notifications. If no scrape has run since startup, the result is idle with `scraping: false`, `done: false`, and `state: "idle"`. Existing flat counter fields remain for compatibility; new UIs should prefer `currentSystem` for per-system progress and `totalSteps`/`currentStep`/`currentStepDisplay` for whole-run progress.
 
 #### Parameters
 
@@ -1613,6 +1671,12 @@ None.
 | scraping  | boolean | Yes      | Whether a scrape is currently running.                     |
 | done      | boolean | Yes      | Whether the latest scrape reached a terminal state.        |
 | paused    | boolean | Yes      | Whether the active scrape is paused because media is running or until resumed. |
+| state     | string  | No       | Explicit lifecycle state: `idle`, `running`, `paused`, `completed`, `cancelled`, or `failed`. |
+| error     | string  | No       | Fatal scrape error on failed terminal updates.             |
+| totalSteps | integer | No      | Total systems in the scrape run, when known.               |
+| currentStep | integer | No     | 1-based current system step, when known.                   |
+| currentStepDisplay | string | No | Display name for the current system step, falling back to system ID. |
+| currentSystem | object | No    | Per-system progress object with `systemId`, `systemName`, `processed`, `total`, `matched`, and `skipped`. |
 
 #### Example
 
@@ -1642,7 +1706,19 @@ None.
     "totalScraped": 1200,
     "scraping": true,
     "done": false,
-    "paused": false
+    "paused": false,
+    "state": "running",
+    "totalSteps": 2,
+    "currentStep": 1,
+    "currentStepDisplay": "Super Nintendo Entertainment System",
+    "currentSystem": {
+      "systemId": "snes",
+      "systemName": "Super Nintendo Entertainment System",
+      "processed": 42,
+      "total": 100,
+      "matched": 38,
+      "skipped": 4
+    }
   }
 }
 ```

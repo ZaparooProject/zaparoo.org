@@ -146,9 +146,9 @@ This command is blocked when the script comes from a remote source.
 
 ---
 
-## input.coinp1 / input.coinp2
+## input.coinp1 / input.coinp2 / input.coinp3 / input.coinp4
 
-Inserts coins for player 1 or player 2 in arcade games.
+Inserts coins for players 1 through 4 in arcade games.
 
 :::note Platform Support
 Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
@@ -159,6 +159,8 @@ Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/miste
 ```zapscript
 **input.coinp1:<amount>
 **input.coinp2:<amount>
+**input.coinp3:<amount>
+**input.coinp4:<amount>
 ```
 
 ### Arguments
@@ -188,12 +190,24 @@ Insert 3 coins for player 2:
 **input.coinp2:3
 ```
 
+Insert 1 coin for player 3:
+
+```zapscript
+**input.coinp3:1
+```
+
+Insert 1 coin for player 4:
+
+```zapscript
+**input.coinp4:1
+```
+
 Insert 2 coins for each player:
 
 ```zapscript
-**input.coinp1:2||**input.coinp2:2
+**input.coinp1:2||**input.coinp2:2||**input.coinp3:2||**input.coinp4:2
 ```
 
 :::info
-These commands press the `5` key (player 1) or `6` key (player 2), which are the standard coin insert keys for MiSTer arcade cores and MAME. If it doesn't work, try mapping the coin insert keys manually.
+These commands press the `5`, `6`, `7`, or `8` key for players 1 through 4, which are standard coin insert keys for MiSTer arcade cores and MAME. If it doesn't work, try mapping the coin insert keys manually.
 :::

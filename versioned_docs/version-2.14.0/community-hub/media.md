@@ -196,6 +196,9 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo agora no Batocera](https://www.youtube.com/watch?v=Pfb8CWQFVhg)** - *YouTube* (March 20, 2026)
   Portuguese language walkthrough of Zaparoo running on Batocera
 
+- **[La magia dei giochi fisici su Batocera! Scopriamo Zaparoo](https://www.youtube.com/watch?v=aZPFoFqYJuc)** - *80 voglia di arcade* (May 26, 2026)
+  Italian language Batocera walkthrough showing NFC cards, arcade cabinet setup, and Zaparoo Designer
+
 ### News & Updates
 
 - **[MiSTer, Analogue Pocket, FPGA, Random & Retro Gaming News (ep129)](https://www.youtube.com/watch?v=ZNOjMzGHwHY)** - *Pixel Cherry Ninja* (December 14, 2024)

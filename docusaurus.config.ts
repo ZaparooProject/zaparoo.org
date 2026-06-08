@@ -50,7 +50,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/ZaparooProject/zaparoo.org/tree/main/",
-          lastVersion: "2.13.0",
+          lastVersion: "2.14.0",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -59,7 +59,7 @@ const config: Config = {
               banner: "unreleased",
               badge: true,
             },
-            "2.13.0": {
+            "2.14.0": {
               label: "Stable",
               path: "/",
               banner: "none",
@@ -528,10 +528,6 @@ const config: Config = {
             to: "/docs/frontend/",
             from: "/docs/launcher/",
           },
-          {
-            to: "/docs/next/frontend/",
-            from: "/docs/next/launcher/",
-          },
           // old site news redirects
           {
             to: "/blog/",
@@ -664,12 +660,12 @@ const config: Config = {
           },
           // IA restructure: features/ section
           {
-            to: "/docs/next/features/play-controls/",
-            from: ["/docs/core/playtime/", "/docs/next/features/playtime/", "/docs/next/features/launch-guard/"],
+            to: "/docs/features/play-controls/",
+            from: ["/docs/core/playtime/", "/docs/features/playtime/", "/docs/features/launch-guard/"],
           },
           {
-            to: "/docs/next/features/launchers/#launcher-controls",
-            from: "/docs/next/features/launcher-controls/",
+            to: "/docs/features/launchers/#launcher-controls",
+            from: "/docs/features/launcher-controls/",
           },
           {
             to: "/docs/features/mappings/",
@@ -710,7 +706,7 @@ const config: Config = {
       {
         generateLLMsTxt: false,
         generateLLMsFullTxt: true,
-        docsDir: "versioned_docs/version-2.13.0",
+        docsDir: "versioned_docs/version-2.14.0",
         includeBlog: false,
         excludeImports: true,
         removeDuplicateHeadings: true,

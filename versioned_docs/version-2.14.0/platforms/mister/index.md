@@ -20,18 +20,11 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 
 ## Install
 
-Zaparoo Core is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) by enabling the `MiSTer Extensions` repository in the `Tools & Scripts` menu.
+Zaparoo is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) as a dedicated item in **Tools & Scripts**. Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file.
 
-Alternatively, add this to your `downloader.ini`:
+Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
 
-```ini
-[mrext/tapto]
-db_url = https://github.com/ZaparooProject/zaparoo-core/raw/main/scripts/mister/repo/tapto.json
-```
-
-Once installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
-
-For manual installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
+For manual Core installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
 :::info Upgrading from TapTo?
 If you previously had TapTo installed, make sure the old `tapto.sh` is removed from your Scripts folder and that `linux/user-startup.sh` no longer references it. Having both services running simultaneously can cause double-launches and detection conflicts. Zaparoo is a direct replacement. Your existing NFC cards will continue to work.
@@ -39,7 +32,7 @@ If you previously had TapTo installed, make sure the old `tapto.sh` is removed f
 
 ### Game Tracking
 
-Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../features/playtime.md) to work correctly. It requires the `recents` setting in MiSTer's configuration.
+Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../features/play-controls.md#playtime-limits) to work correctly. It requires the `recents` setting in MiSTer's configuration.
 
 To enable it:
 

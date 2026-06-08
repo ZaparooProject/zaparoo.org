@@ -167,7 +167,7 @@ Two cores are supported:
 
 ### NeoGeo
 
-NeoGeo supports launching `.zip` files and folders directly with Zaparoo, as supported by the MiSTer core itself.
+NeoGeo supports launching `.zip` files and folders directly with Zaparoo, including romset folders in subfolders, as supported by the MiSTer core itself.
 
 For example, a `.zip` file:
 
@@ -203,6 +203,12 @@ Some alternate or unofficial versions of cores are supported and can be used by 
 
 To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `N64/some/game.n64?launcher=80MHzNintendo64`
 
+MiSTer launch commands also support `set_name` and `set_name_same_dir` advanced arguments. These map to MiSTer's MGL `<setname>` tag and `same_dir` attribute. Use `set_name_same_dir=1` when you want a separate config name while keeping the normal games folder. Without `set_name_same_dir=1`, MiSTer also uses the set name as the games folder.
+
+```zapscript
+NES/Mega Man 2.nes?set_name=RA_NES&set_name_same_dir=1
+```
+
 To set an alternate core as the default for all tokens of a launcher (instead of per-token), use the [`load_path`](../../core/config.md#launchersdefault) field in `config.toml`:
 
 ```toml
@@ -217,10 +223,13 @@ load_path = "_LLAPI/N64_LLAPI"
 
 RetroAchievements cores from [Odelot's MiSTer FPGA RetroAchievements Cores](https://github.com/odelot/mister-cores) are supported when installed in `_RA_Cores/Cores`.
 
+These launchers automatically use an `RA_*` set name with `same_dir` enabled. This gives each RetroAchievements core its own MiSTer config while still loading games from the normal system folder.
+
 | Launcher ID | System |
 |-------------|--------|
-| `RAAtari7800` | Atari 7800 |
+| `RAAtari2600` | Atari 2600 |
 | `RAGameboy` | Game Boy |
+| `RAGameboyColor` | Game Boy Color |
 | `RAGBA` | Game Boy Advance |
 | `RAMegaDrive` | Genesis/Mega Drive |
 | `RAMegaCD` | Mega CD |
@@ -231,7 +240,47 @@ RetroAchievements cores from [Odelot's MiSTer FPGA RetroAchievements Cores](http
 | `RAPSX` | PlayStation |
 | `RAS32X` | Sega 32X |
 | `RASNES` | SNES |
+| `RASuperGameboy` | Super Game Boy |
 | `RATurboGrafx16` | TurboGrafx-16 |
+
+### DB9
+
+DB9 cores are alternate MiSTer cores for DB9 controller adapters. Install them in the matching `_Console` core locations, then select them with `?launcher=<launcher ID>` or a default launcher override.
+
+| Launcher ID | System |
+|-------------|--------|
+| `DB9AdventureVision` | Adventure Vision |
+| `DB9Astrocade` | Astrocade |
+| `DB9Atari5200` | Atari 5200 |
+| `DB9Atari7800` | Atari 7800 |
+| `DB9AtariLynx` | Atari Lynx |
+| `DB9CasioPV1000` | Casio PV-1000 |
+| `DB9CDI` | CD-i |
+| `DB9ColecoVision` | ColecoVision |
+| `DB9CreatiVision` | CreatiVision |
+| `DB9Gameboy` | Game Boy |
+| `DB9Gameboy2P` | Game Boy 2P |
+| `DB9GameNWatch` | Game & Watch |
+| `DB9GBA` | Game Boy Advance |
+| `DB9GBAAccuracy` | Game Boy Advance (accuracy) |
+| `DB9GBA2P` | Game Boy Advance 2P |
+| `DB9MegaDrive` | Mega Drive |
+| `DB9Genesis` | Genesis |
+| `DB9SMS` | Master System |
+| `DB9MegaCD` | Mega CD |
+| `DB9NeoGeo` | Neo Geo |
+| `DB9NeoGeo24MHz` | Neo Geo (24 MHz) |
+| `DB9NES` | NES |
+| `DB9Odyssey2` | Odyssey 2 |
+| `DB9PSX` | PlayStation |
+| `DB9DualRAMPSX` | PlayStation (DualRAM) |
+| `DB9Sega32X` | Sega 32X |
+| `DB9SuperGameboy` | Super Game Boy |
+| `DB9Saturn` | Saturn |
+| `DB9DualRAMSaturn` | Saturn (DualRAM) |
+| `DB9SNES` | SNES |
+| `DB9TurboGrafx16` | TurboGrafx-16 |
+| `DB9Vectrex` | Vectrex |
 
 ### LLAPI
 

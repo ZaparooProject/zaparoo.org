@@ -27,14 +27,16 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 
 ### Advanced Arguments
 
-| Argument     | Type       | Default | Description                                          |
-| ------------ | ---------- | ------- | ---------------------------------------------------- |
-| `launcher`   | string     | -       | Override the default launcher                        |
-| `system`     | string     | -       | Apply system defaults to a local file path           |
-| `action`     | string     | `run`   | `run` to launch, `details` to show info (launcher support varies) |
-| `name`       | string     | -       | Custom display name for remote downloads             |
-| `pre_notice` | string     | -       | Message to show before launching                     |
-| `when`       | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument            | Type       | Default | Description                                                        |
+| ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `launcher`          | string     | -       | Override the default launcher                                      |
+| `system`            | string     | -       | Apply system defaults to a local file path                         |
+| `action`            | string     | `run`   | `run` to launch, `details` to show info (launcher support varies)  |
+| `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
+| `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
+| `name`              | string     | -       | Custom display name for remote downloads                           |
+| `pre_notice`        | string     | -       | Message to show before launching                                   |
+| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -69,6 +71,14 @@ Open a Steam game's details page instead of launching:
 ```zapscript
 **launch:steam://1145360?action=details
 ```
+
+Use a MiSTer set name for a one-off launch:
+
+```zapscript
+**launch:NES/Mega Man 2.nes?set_name=RA_NES&set_name_same_dir=1
+```
+
+`set_name` and `set_name_same_dir` are currently used by MiSTer launchers. Unsupported platforms may ignore them. On MiSTer, `set_name` maps to the MGL `<setname>` tag. Add `set_name_same_dir=1` when you want a separate core config name while still loading games from the original core folder. Without `set_name_same_dir=1`, MiSTer also changes the core's games folder.
 
 ### Path Formats
 
@@ -215,12 +225,14 @@ The game title to search for. Supports fuzzy matching.
 
 ### Advanced Arguments
 
-| Argument   | Type       | Default | Description                                |
-| ---------- | ---------- | ------- | ------------------------------------------ |
-| `launcher` | string     | -       | Override the default launcher              |
-| `tags`     | string     | -       | Tag filters (alternative to inline format) |
-| `action`   | string     | `run`   | `run` to launch, `details` to show info    |
-| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument            | Type       | Default | Description                                                        |
+| ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `launcher`          | string     | -       | Override the default launcher                                      |
+| `tags`              | string     | -       | Tag filters (alternative to inline format)                         |
+| `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
+| `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
+| `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
+| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -320,12 +332,14 @@ One of the following formats:
 
 ### Advanced Arguments
 
-| Argument   | Type       | Default | Description                             |
-| ---------- | ---------- | ------- | --------------------------------------- |
-| `launcher` | string     | -       | Override the default launcher           |
-| `tags`     | string     | -       | Tag filters to narrow results           |
-| `action`   | string     | `run`   | `run` to launch, `details` to show info |
-| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument            | Type       | Default | Description                                                        |
+| ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `launcher`          | string     | -       | Override the default launcher                                      |
+| `tags`              | string     | -       | Tag filters to narrow results                                      |
+| `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
+| `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
+| `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
+| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -392,12 +406,14 @@ The system ID to search within. If omitted, searches all systems.
 
 ### Advanced Arguments
 
-| Argument   | Type       | Default | Description                             |
-| ---------- | ---------- | ------- | --------------------------------------- |
-| `launcher` | string     | -       | Override the default launcher           |
-| `tags`     | string     | -       | Tag filters to narrow results           |
-| `action`   | string     | `run`   | `run` to launch, `details` to show info |
-| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument            | Type       | Default | Description                                                        |
+| ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `launcher`          | string     | -       | Override the default launcher                                      |
+| `tags`              | string     | -       | Tag filters to narrow results                                      |
+| `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
+| `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
+| `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
+| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -445,11 +461,13 @@ Defaults to `1`. Duplicate plays of the same game are collapsed, so
 
 ### Advanced Arguments
 
-| Argument   | Type       | Default | Description                                |
-| ---------- | ---------- | ------- | ------------------------------------------ |
-| `launcher` | string     | -       | Override the default launcher              |
-| `action`   | string     | `run`   | `run` to launch, `details` to show info    |
-| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument            | Type       | Default | Description                                                        |
+| ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `launcher`          | string     | -       | Override the default launcher                                      |
+| `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
+| `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
+| `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
+| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -472,5 +490,5 @@ Cycle back to the third most recently played unique game:
 ```
 
 :::info
-Requires [playtime tracking](../features/playtime.md) to have recorded history. If not enough unique games are in history to satisfy the offset, the command logs a warning and does nothing.
+Requires [playtime tracking](../features/play-controls.md#playtime-limits) to have recorded history. If not enough unique games are in history to satisfy the offset, the command logs a warning and does nothing.
 :::
