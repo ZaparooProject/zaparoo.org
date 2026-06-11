@@ -1,0 +1,80 @@
+---
+slug: zaparoo-frontend-v1.1.1
+title: "Zaparoo Frontend v1.1.1 and Core v2.14.1 released"
+description: "Zaparoo Frontend v1.1.1 and Core v2.14.1 are patch releases focused on media browsing speed, scraping reliability, cover loading, settings pickers, and database resilience."
+tags: [software]
+authors: [wizzo]
+---
+
+[Zaparoo Frontend](/docs/frontend/) v1.1.1 and [Zaparoo Core](/docs/core/) v2.14.1 are patch releases for the v1.1.0 / v2.14.0 cycle.
+
+This update focuses on smoother browsing, fewer unnecessary cover requests, more reliable scraping, and safer media database indexing after unexpected shutdowns.
+
+{/* truncate */}
+
+## Download
+
+### Frontend
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Frontend v1.1.1"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v1.1.1"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="link" />}
+  label="Install Guide"
+  link="/docs/frontend/#install-on-mister"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Frontend GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/"
+  variant="primary"
+/>
+
+### Core
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Core v2.14.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Core GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## What changed
+
+**Frontend fixes:**
+
+- Browse titles now keep useful disc and file markers instead of collapsing everything to the same display name.
+- List/detail browsing has less loading flicker when moving between entries.
+- Collapsed disc folders now resolve launches to the correct child media path.
+- Language and resolution pickers in settings behave correctly.
+- Cover loading skips entries Core already knows have no artwork, reducing wasted image requests.
+
+**Core fixes:**
+
+- Browsing large folders full of single-disc game directories is much faster.
+- Media indexing has been optimized and hardened against corrupt media databases after power loss.
+- Interrupted scrapes, including force re-scrapes, resume more reliably after an unexpected reboot.
+- Arcade scanning now includes `.mgl` files.
+- `gamelist.xml` scraping keeps system order stable.
+- Media set markers such as disc and file numbers are preserved in display names.
+- Database checkpointing avoids foreground stalls during media work.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />
