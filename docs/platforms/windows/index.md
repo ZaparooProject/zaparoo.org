@@ -94,7 +94,7 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 |----------|---------|-------|
 | Steam | PC | Auto-detected from registry |
 | LaunchBox | 100+ | Requires plugin installation |
-| RetroBat | 80+ | Auto-detected, requires running |
+| RetroBat | 80+ | Auto-detected, requires running with web API enabled |
 | Flashpoint | PC | Manual token creation |
 | Kodi | Video, Music | Local files and library media |
 | Web Browser | Any | Opens URLs in default browser |

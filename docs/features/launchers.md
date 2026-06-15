@@ -7,6 +7,16 @@ keywords: [zaparoo launchers, zaparoo custom launchers, zaparoo launcher control
 A launcher tells Zaparoo Core how to open a game, video, app, or other media file.
 Each [platform](../platforms/index.mdx) has its own launchers for matching a [system](./systems.md) and file to the right program.
 
+## Launchables
+
+Some things can be launched but don't map cleanly to a file on disk or a normal [system](./systems.md), like a ROM-less FPGA core. Launchables are how Core handles these. Core defines them in code and exposes them as virtual versions of the things you already use: a virtual system or a virtual media entry, whichever fits.
+
+You don't deal with launchables as a separate concept. They show up in the [Zaparoo App](../app/index.md) as ordinary systems or media that you can browse, pick, and write to a token like anything else. The only difference is that there is no real file or system behind them.
+
+MiSTer's ROM-less [Other cores](../platforms/mister/launchers.md#other-cores), like Chess or Flappy Bird, are the first example. They have no game file and no system of their own, so Core exposes each one as a virtual system and indexes the ones you have installed.
+
+The one place this shows through is the token value. A launchable is identified by a compact `zaparoo://` URI instead of a file path, so a token that launches one holds a value like `zaparoo://gezdgnbvgy3tqojqgezdgnbvgy` rather than a normal path. You don't write this by hand; the App fills it in when you save a launchable.
+
 ## Launcher controls
 
 Launcher controls send actions to the launcher handling the currently active media. Use them for actions like pause, stop, save state, load state, fast forward, rewind, or next and previous track.
@@ -28,6 +38,8 @@ Built-in action names include:
 | Action | Typical use |
 | ------ | ----------- |
 | `toggle_pause` | Pause or unpause active media |
+| `pause` | Pause active media |
+| `resume` | Resume active media |
 | `save_state` | Save emulator state |
 | `load_state` | Load emulator state |
 | `save_ram` | Save RAM data |
@@ -49,9 +61,12 @@ Built-in launcher support currently includes:
 | -------- | ----------------- |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
 | EmuDeck RetroArch-based launchers on SteamOS | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `stop` |
+| Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |
 
 EmuDeck standalone emulator launchers and RetroDECK launchers do not currently define built-in launcher controls.
+
+To control [background audio](./audio.md) instead of the active game, add `?slot=background` to the control action.
 
 ### ZapScript control
 

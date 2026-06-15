@@ -129,7 +129,7 @@ ready_sound = "custom_ready.ogg"
 | ------ | ----------------- | ------- |
 | volume | integer (0–200)   | 100     |
 
-`volume` sets the playback volume for audio feedback sounds. At the default `100`, sounds play at their original recorded level. Lower values quiet them down; higher values amplify, up to double at `200`.
+`volume` sets the playback volume for audio feedback sounds and [native audio playback](../features/audio.md). At the default `100`, sounds play at their original recorded level. Lower values quiet them down; higher values amplify, up to double at `200`.
 
 ```toml
 [audio]
@@ -646,6 +646,20 @@ ID of the [launcher](../features/launchers.md) that should be used by default wh
 | before_exit | string |         |
 
 A [hook](../features/hooks.md) containing a snippet of [ZapScript](../zapscript/index.md) to run before media exits if [hold mode](#scan-mode) is enabled. Core waits for it before continuing exit handling, so commands like [`delay`](../zapscript/utilities.md#delay) can be used.
+
+##### pause_on_launch
+
+| Key             | Type    | Default |
+| --------------- | ------- | ------- |
+| pause_on_launch | boolean | true    |
+
+`pause_on_launch` controls whether [background audio](../features/audio.md) for this system pauses when a game launches in the primary slot, then resumes when the game quits. It currently applies to the `Audio` system. Set it to `false` to keep background music playing through game launches.
+
+```toml
+[[systems.default]]
+system = "Audio"
+pause_on_launch = false
+```
 
 ### Launchers
 

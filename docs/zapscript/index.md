@@ -18,6 +18,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`launch.search`](./launch.md#launchsearch) | Search indexed media and launch the first result |
 | [`launch.last`](./launch.md#launchlast) | Launch a recently played game |
 | [`input.keyboard`](./input.md#inputkeyboard) | Simulate keyboard input |
+| [`input.text`](./input.md#inputtext) | Type a string of literal text |
 | [`input.gamepad`](./input.md#inputgamepad) | Simulate gamepad input |
 | [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 1 |
 | [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 2 |

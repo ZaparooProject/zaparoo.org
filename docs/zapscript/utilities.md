@@ -233,6 +233,8 @@ The control action to dispatch. Available actions depend on the launcher handlin
 
 Defined action names include:
 - `toggle_pause` - Pause or unpause
+- `pause` - Pause
+- `resume` - Resume
 - `save_state` - Save the current state
 - `load_state` - Load a saved state
 - `save_ram` - Save RAM data
@@ -246,9 +248,11 @@ Defined action names include:
 
 ### Advanced Arguments
 
-| Argument | Type       | Default | Description                                                        |
-| -------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument  | Type       | Default | Description                                                        |
+| --------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `slot`    | string     | `primary` | Media slot to control: `primary` or `background` ([audio](../features/audio.md)) |
+| `seconds` | number     | `10`    | Seek amount for `fast_forward` and `rewind` on [audio playback](../features/audio.md) |
+| `when`    | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -262,6 +266,12 @@ Save the current state, such as a save state in an emulator:
 
 ```zapscript
 **control:save_state
+```
+
+Pause [background music](../features/audio.md) without affecting the active game:
+
+```zapscript
+**control:pause?slot=background
 ```
 
 :::info

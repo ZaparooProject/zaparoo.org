@@ -36,6 +36,7 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
 | `name`              | string     | -       | Custom display name for remote downloads                           |
 | `pre_notice`        | string     | -       | Message to show before launching                                   |
+| `slot`              | string     | `primary` | Media slot to play in: `primary` or `background` ([audio](../features/audio.md)) |
 | `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -77,6 +78,14 @@ Use a MiSTer set name for a one-off launch:
 ```zapscript
 **launch:NES/Mega Man 2.nes?set_name=RA_NES&set_name_same_dir=1
 ```
+
+Play an audio file as background music so it keeps playing while you launch games:
+
+```zapscript
+**launch:/media/fat/music/album/track01.flac?slot=background
+```
+
+Audio files (`.wav`, `.mp3`, `.ogg`, `.flac`) launch through Core's built-in [audio playback](../features/audio.md). The `slot` argument is only used by audio playback; other launchers ignore it.
 
 `set_name` and `set_name_same_dir` are currently used by MiSTer launchers. Unsupported platforms may ignore them. On MiSTer, `set_name` maps to the MGL `<setname>` tag. Add `set_name_same_dir=1` when you want a separate core config name while still loading games from the original core folder. Without `set_name_same_dir=1`, MiSTer also changes the core's games folder.
 

@@ -58,6 +58,18 @@ launcher = "RetroBat"
 install_dir = "D:\\RetroBat"  # Optional custom install directory
 ```
 
+### Web API access
+
+Core launches games and detects the running game through RetroBat's EmulationStation web API, which it reaches at `http://localhost:1234` on the same PC. If RetroBat is running but games won't launch, two things on the RetroBat side usually need attention.
+
+First, enable EmulationStation's web access. In RetroBat's EmulationStation menu this sits under the system settings, typically **Main Menu** > **System Settings** > **Frontend Developer Options** > **Enable public web access**. Restart RetroBat after changing it. If you can't find the option, the RetroBat Discord and wiki are the best places to check, since the menu layout changes between versions.
+
+Second, make sure `localhost` resolves to `127.0.0.1`. Core connects to `localhost`, and on some Windows setups that name resolves only to IPv6 (`::1`) or fails to resolve, which stops Core from reaching the web server. Editing the Windows hosts file at `C:\Windows\System32\drivers\etc\hosts` as administrator to include this line forces an IPv4 match:
+
+```text
+127.0.0.1 localhost
+```
+
 ### Supported Systems
 
 | System ID | RetroBat Folder |

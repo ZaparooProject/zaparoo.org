@@ -59,6 +59,30 @@ Fields:
   - `name` - Display name for the item (optional, auto-generated if missing)
   - `zapscript` - The ZapScript to run (can be any command, not just paths)
 
+## Media slots
+
+Playlists can play in the `primary` slot, the default that is shared with games, or the `background` slot, which plays alongside whatever is in the primary slot. Add `?slot=background` (or `?slot=bg`) to load a playlist into the background slot, typically for [background music](../features/audio.md).
+
+```zapscript
+**playlist.play:/media/fat/music/album?slot=background
+```
+
+All playlist commands accept the `slot` argument, so `playlist.next`, `playlist.pause`, and the rest can target a specific slot. When omitted, commands act on the active playlist's slot.
+
+## Repeat modes
+
+The `playlist.play`, `playlist.load`, and `playlist.open` commands accept a `repeat` argument that sets how the playlist loops:
+
+| Value | Behavior |
+| ----- | -------- |
+| `off` | Stop at the end of the playlist (default) |
+| `all` | Loop back to the first item after the last |
+| `one` | Repeat the current item |
+
+```zapscript
+**playlist.play:/media/fat/music/album?repeat=all
+```
+
 ---
 
 ## playlist.play
@@ -81,6 +105,8 @@ Path to a folder, `.pls` file, or inline JSON playlist. If omitted, resumes the 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -125,6 +151,8 @@ Path to a folder, `.pls` file, or inline JSON playlist.
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -167,6 +195,8 @@ Path to a folder, `.pls` file, or inline JSON playlist. If omitted, reopens the 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
+| `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -203,6 +233,7 @@ None.
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -233,6 +264,7 @@ None.
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -263,6 +295,7 @@ None.
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -293,6 +326,7 @@ None.
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
@@ -324,6 +358,7 @@ The 1-based index of the item to launch.
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
+| `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
 | `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples

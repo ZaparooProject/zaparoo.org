@@ -139,7 +139,7 @@ Core defines many more tag types than this, including hardware add-ons, embedded
 
 ## Scraped tags and labels
 
-Metadata scrapers can add tags for publishers, developers, genres, arcade boards, game families, regions, and languages. Core stores these tag values as normalized slugs so matching stays consistent. For example, `T&E Soft` is stored as `t-and-e-soft`.
+[Metadata scrapers](./scraping.md) can add tags for publishers, developers, genres, arcade boards, game families, regions, and languages. Core stores these tag values as normalized slugs so matching stays consistent. For example, `T&E Soft` is stored as `t-and-e-soft`.
 
 When scraped metadata includes a human-readable label, API responses can preserve that label alongside the normalized tag value. Use the normalized `type:value` form when writing title IDs or tag filters by hand.
 
