@@ -132,6 +132,10 @@ The `file_exts` line is a list of file extensions which will match to this launc
 
 The `execute` line is the command which will be run when a token is scanned which matches to this launcher. Expression variables are replaced by their values, then the resulting string is split into a program and arguments (respecting double and single quoted strings) and executed directly without a shell interpreter. If you need shell features like pipes or redirection, create a wrapper script and reference it here instead.
 
+:::tip Avoid nesting another shell
+Core runs your command directly, without a shell. If your `execute` command starts PowerShell or `cmd`, that shell parses your arguments again and can split quoted paths on their spaces. Run the target program directly when you can. See [Windows custom launchers](../platforms/windows/launchers.md#quoting-paths-and-powershell) for a worked example.
+:::
+
 #### Available expression variables
 
 You can use the following variables in your execute command:
@@ -267,6 +271,8 @@ execute = "/opt/launchers/[[platform]]/run.sh \"[[media_path]]\" --host [[device
 
 Use [`[[systems.default]]`](../core/config.md#systemsdefault) to choose the default launcher for a system. Core applies this to title/search launches and direct path launches when it can infer the system from the path.
 
+API clients can also save a per-media launcher override through [`media.meta.update`](../core/api/methods.md#mediametaupdate). Use this when one game should always use a different launcher from the rest of its system. Explicit ZapScript `?launcher=` arguments still win for one-off launches, then Core checks the per-media override, then system defaults.
+
 Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action` or `load_path`.
 
 ### Troubleshooting
@@ -286,7 +292,7 @@ Before adding a command to your launcher config, test it manually in your termin
 
 #### Common issues
 
-- **Paths with spaces**: Quote paths in your `execute` command, especially on Windows
+- **Paths with spaces**: Quote the program path and `[[media_path]]` separately in your `execute` command, especially on Windows. If you wrap the command in another shell like PowerShell, that shell can split the path on its spaces. Launch the program directly instead when you can. See [Windows custom launchers](../platforms/windows/launchers.md#quoting-paths-and-powershell)
 - **Launcher selection**: If several launchers match the same file, Core prefers more specific matches. Duplicate IDs or equally specific matches can be order-dependent
 - **File not found**: Ensure your `media_dirs` paths are absolute or correctly relative to the Core executable directory
 - **Command not found**: Verify the programs you're calling in `execute` are installed and in your system's PATH

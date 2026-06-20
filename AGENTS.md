@@ -83,6 +83,8 @@ Before writing, identify the page type and audience: install guide, reader page,
 
 Match the structure to the job: install/setup pages need ordered steps, reference pages need accurate tables, concept pages explain what and why, and troubleshooting starts with symptoms and checks.
 
+Do not turn a commit list into a feature dump. Document the user-visible behavior where readers need it, not wherever it sounds new. Keep overview and intro pages focused on stable purpose and primary tasks; put niche features, edge cases, and platform-specific details in the relevant setup, reference, or troubleshooting section.
+
 Search existing docs before adding new content. Prefer the smallest useful change, and push back with sources when a requested change conflicts with verified behavior.
 
 For doc rewrites, read nearby pages first so the structure and links fit the surrounding section. Do not blindly copy older pages if they conflict with the rules here.

@@ -1,0 +1,95 @@
+---
+description: "Customize Zaparoo Frontend system artwork, Hub icons, and system display names on MiSTer FPGA."
+keywords: [zaparoo frontend customization, zaparoo system artwork, mister frontend icons, zaparoo system names]
+sidebar_position: 4
+---
+
+# Frontend Customization
+
+Zaparoo Frontend can load your own system artwork, Hub icons, and system display names without rebuilding Frontend.
+
+Customization is read at startup. Restart Frontend after adding, changing, or removing custom files.
+
+## Custom folder
+
+On MiSTer, the default customization folder is:
+
+```text
+/media/fat/zaparoo/custom/
+```
+
+Create one subfolder for each kind of image override:
+
+```text
+/media/fat/zaparoo/custom/
+  systems/      # system artwork in the systems grid
+  hub/          # Hub category and action icons
+```
+
+To use another folder, edit `/media/fat/zaparoo/frontend.toml`:
+
+```toml title="frontend.toml"
+[custom]
+dir = "/media/usb/zaparoo-art"
+```
+
+## Image filenames
+
+Name each image after the ID it overrides. Matching is case-insensitive, so `snes.png` and `SNES.png` match the same system.
+
+Supported image types are PNG, JPG, JPEG, WEBP, BMP, and SVG.
+
+### System artwork
+
+System artwork in `systems/` uses [Zaparoo system IDs](../features/systems.md):
+
+```text
+systems/snes.png
+systems/genesis.svg
+systems/turbografx16.webp
+```
+
+### Hub icons
+
+Hub icons in `hub/` use category or action IDs:
+
+| ID | Hub item |
+| --- | --- |
+| `arcade` | Arcade category |
+| `computer` | Computer category |
+| `console` | Console category |
+| `handheld` | Handheld category |
+| `other` | Other category |
+| `resume` | Resume Game |
+| `favorites` | Favorites |
+| `recents` | Recently Played |
+| `settings` | Settings & Utilities |
+
+```text
+hub/arcade.png
+hub/favorites.svg
+hub/settings.svg
+```
+
+Custom images are shown as-is. Built-in icons can be tinted by Frontend's theme, but your override images are not recolored.
+
+## System names
+
+To rename systems in Frontend, add a `[custom.system_names]` table to `/media/fat/zaparoo/frontend.toml`:
+
+```toml title="frontend.toml"
+[custom.system_names]
+snes = "Super Nintendo"
+psx = "PlayStation"
+genesis = "Mega Drive"
+```
+
+The key is the system ID. Matching is forgiving about case and punctuation, so `snes`, `SNES`, and `S.N.E.S` resolve to the same system.
+
+Custom names take priority over Frontend's built-in regional names and names reported by Core.
+
+## Regional system names
+
+Frontend also includes built-in regional system names and logo variants. Open **Settings**, then **Language**, then **System names** to choose **Automatic**, **Americas**, **Europe**, or **Japan**.
+
+Use custom system names when you want a specific name regardless of the regional setting.

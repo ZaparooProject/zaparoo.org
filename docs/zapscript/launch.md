@@ -29,7 +29,7 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `launcher`          | string     | -       | Override the default launcher                                      |
+| `launcher`          | string     | -       | Explicit launcher override. Wins over stored per-media overrides and system defaults. |
 | `system`            | string     | -       | Apply system defaults to a local file path                         |
 | `action`            | string     | `run`   | `run` to launch, `details` to show info (launcher support varies)  |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
@@ -66,6 +66,8 @@ Set a launcher override for the next game scanned from a reader:
 ```
 
 Use this on a setup token when you want the next scanned game token to use a specific launcher. The override applies once, then clears.
+
+If a media row has a stored launcher override from [`media.meta.update`](../core/api/methods.md#mediametaupdate), Core uses it automatically for title, search, path, random, and history launches. A `?launcher=` argument on the token is still an explicit one-off override and takes priority.
 
 Open a Steam game's details page instead of launching:
 
@@ -236,7 +238,7 @@ The game title to search for. Supports fuzzy matching.
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `launcher`          | string     | -       | Override the default launcher                                      |
+| `launcher`          | string     | -       | Explicit launcher override. Wins over stored per-media overrides and system defaults. |
 | `tags`              | string     | -       | Tag filters (alternative to inline format)                         |
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
@@ -343,7 +345,7 @@ One of the following formats:
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `launcher`          | string     | -       | Override the default launcher                                      |
+| `launcher`          | string     | -       | Explicit launcher override. Wins over stored per-media overrides and system defaults. |
 | `tags`              | string     | -       | Tag filters to narrow results                                      |
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
@@ -417,7 +419,7 @@ The system ID to search within. If omitted, searches all systems.
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `launcher`          | string     | -       | Override the default launcher                                      |
+| `launcher`          | string     | -       | Explicit launcher override. Wins over stored per-media overrides and system defaults. |
 | `tags`              | string     | -       | Tag filters to narrow results                                      |
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
@@ -472,7 +474,7 @@ Defaults to `1`. Duplicate plays of the same game are collapsed, so
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `launcher`          | string     | -       | Override the default launcher                                      |
+| `launcher`          | string     | -       | Explicit launcher override. Wins over stored per-media overrides and system defaults. |
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |

@@ -263,8 +263,26 @@ id = "PCSX2PS2"
 system = "PS2"
 media_dirs = ["D:\\Emulation\\Roms\\PS2"]
 file_exts = [".iso", ".bin", ".img", ".nrg", ".mdf", ".chd"]
-execute = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath 'D:\\Emulation\\Emulators\\PCSX2-Nightly\\pcsx2-qt.exe' -ArgumentList '\"[[media_path]]\"'"
+execute = "\"D:\\Emulation\\Emulators\\PCSX2-Nightly\\pcsx2-qt.exe\" \"[[media_path]]\""
 ```
+
+### Quoting paths and PowerShell
+
+Core runs the `execute` command directly, without a shell. It splits the string into a program and arguments itself (respecting single and double quotes), then starts the program. This stops characters in a ROM path from being treated as shell commands.
+
+Launch the emulator executable directly whenever you can, as in the example above. Quote the program path and `[[media_path]]` separately so paths with spaces (like `D:\Roms\Sony - PlayStation 2\`) stay intact. Running the executable directly also lets Core track the process for [media tracking](../../features/launchers.md#custom-launchers).
+
+:::warning Avoid wrapping the command in PowerShell
+Wrapping the launch in PowerShell with `Start-Process -ArgumentList '"[[media_path]]"'` makes PowerShell parse the arguments a second time. It can strip your quotes and split the path on its spaces. A folder name with a space or hyphen like `Sony - PlayStation 2` then breaks, giving errors such as `Unknown parameter: '-'` and launching the emulator with no game. Use a PowerShell wrapper only when you need PowerShell-specific behavior.
+:::
+
+If you do need PowerShell, such as to set an environment variable before launching, put the whole script in one `-Command "..."` argument and use the call operator `&` with single-quoted paths:
+
+```toml
+execute = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command \"& 'D:\\Emulation\\Emulators\\PCSX2-Nightly\\pcsx2-qt.exe' '[[media_path]]'\""
+```
+
+The whole `& '...' '...'` script is a single argument to `-Command`, so Core passes it to PowerShell untouched, and PowerShell's single quotes keep the paths intact.
 
 <details>
   <summary>PowerShell script for automatic launcher creation</summary>
@@ -341,10 +359,12 @@ $rompath = $rompath -replace '\\', '\\'
 $emupath = $emupath -replace '\\', '\\'
 if ($corepath) { $corepath = $corepath -replace '\\', '\\' }
 
+# Launch the executable directly. Single quotes keep paths with spaces intact
+# through Core's command split, and avoid a second round of PowerShell parsing.
 if ($corepath) {
-    $exec = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath '$emupath' -ArgumentList '-L', '$corepath', '[[media_path]]'"
+    $exec = "'$emupath' -L '$corepath' '[[media_path]]'"
 } else {
-    $exec = "powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath '$emupath' -ArgumentList '[[media_path]]'"
+    $exec = "'$emupath' '[[media_path]]'"
 }
 
 $exts = if ($extMap.ContainsKey($system)) { $extMap[$system] } else { '".zip"' }

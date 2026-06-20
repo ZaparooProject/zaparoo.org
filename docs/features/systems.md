@@ -87,6 +87,7 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `GameboyColor` | Game Boy Color | `GBC` | `Gameboy` |
 | `GameCom` | Tiger Game.com | | |
 | `GameGear` | Sega Game Gear | `GG` | |
+| `GameGear2P` | Game Gear (2 Player) | | |
 | `GameNWatch` | Game & Watch | | |
 | `GBA` | Game Boy Advance | `GameboyAdvance` | |
 | `GBA2P` | Game Boy Advance (2 Player) | | |

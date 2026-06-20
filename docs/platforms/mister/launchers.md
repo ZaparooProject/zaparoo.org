@@ -35,6 +35,7 @@ Zaparoo also indexes `.mgl` files placed directly in your games folders. Drop a 
 | `GameboyColor` | GAMEBOY, GBC | `.gbc` |
 | `Gameboy2P` | GAMEBOY2P | `.gb`, `.gbc` |
 | `GameGear` | SMS, GameGear | `.gg` |
+| `GameGear2P` | GameGear2P | `.gg` |
 | `GameNWatch` | GameNWatch | `.bin` |
 | `GBA` | GBA | `.gba` |
 | `GBA2P` | GBA2P | `.gba` |
@@ -149,6 +150,8 @@ MiSTer's `_Other` folder holds standalone FPGA cores that run without a ROM file
 Supported cores: Chess, Donut, Epoch Galaxy II, Flappy Bird, Game of Life, GBMidi, GenMidi, Slug Cross, Tomy Scramble.
 
 Only cores you have installed are indexed. Update the media database after adding new `_Other` cores.
+
+The 3S-ARM port of Street Fighter III: 3rd Strike also ships as an `_Other` core, but Zaparoo exposes it as virtual media under the `Arcade` system instead of as an Other core entry.
 
 ### ao486
 

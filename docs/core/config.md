@@ -637,7 +637,7 @@ ID of the [system](../features/systems.md) this default override entry applies t
 | -------- | ------ | ------- |
 | launcher | string |         |
 
-ID of the [launcher](../features/launchers.md) that should be used by default when media in this system is launched. This applies to title/search launches and direct path launches when Core can infer the system.
+ID of the [launcher](../features/launchers.md) that should be used by default when media in this system is launched. This applies to title/search launches and direct path launches when Core can infer the system. Explicit ZapScript `?launcher=` arguments and per-media launcher overrides saved through [`media.meta.update`](./api/methods.md#mediametaupdate) take priority over this default.
 
 ##### before_exit
 

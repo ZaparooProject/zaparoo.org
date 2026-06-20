@@ -48,7 +48,9 @@ can produce tags like:
 - `lang:de`
 - `rev:a`
 
-Core also extracts tags from other recognized markers, including years, disc numbers, versions, dumps, prototypes, demos, translations, and re-releases.
+Core also extracts tags from other recognized markers, including years, disc numbers, versions, dumps, prototypes, demos, translations, unofficial hacks, set numbers, and re-releases.
+
+MiSTer Arcade filenames can include a region and build date in one parenthetical group. For example, `(World 931005)` becomes `region:world` and `builddate:1993-10-05`. Core also accepts `YYYYMMDD`, `YYYY-MM-DD`, and comma-separated forms such as `(EU, 961004)`.
 
 ## Using tags in title IDs
 
@@ -58,6 +60,7 @@ Use tags when a title ID needs to be more specific than the game name alone.
 @SNES/Super Mario World
 @SNES/Super Mario World (region:us)
 @SNES/Super Mario World (region:eu) (lang:de)
+@Arcade/X-Men Vs. Street Fighter (region:eu) (builddate:1996-10-04)
 @Genesis/Sonic (+unfinished:demo)
 @SNES/Game Title (~lang:en) (~lang:fr)
 ```
@@ -83,6 +86,12 @@ Examples:
 @SNES/Game Title (~lang:en) (~lang:fr)
 ```
 
+Multiple tags can share one parenthetical group when separated by commas:
+
+```zapscript
+@SNES/Game Title (region:us, lang:en)
+```
+
 The `tags` argument uses the same operators without parentheses:
 
 ```zapscript
@@ -103,6 +112,8 @@ Core also filters out some variants by default, including demos, betas, prototyp
 ```
 
 If several good matches remain, Core applies your configured region and language preferences, then other scoring rules such as launcher file type priority and filename quality.
+
+For same-named variants, browse, search, and lookup responses include `disambiguatingTags`: the tags that distinguish one variant from another. Clients can show those labels to help you pick the right entry, and the generated ZapScript includes the same tags so the token resolves back to that specific variant.
 
 ## Default regions and languages
 
@@ -126,6 +137,7 @@ These are the tag types most likely to matter when writing title IDs by hand.
 | `lang` | Language | `lang:en`, `lang:fr`, `lang:de`, `lang:ja` |
 | `rev` | Revision or version | `rev:a`, `rev:b`, `rev:1`, `rev:prg0` |
 | `year` | Release year | `year:1991`, `year:1996`, `year:19xx` |
+| `builddate` | ROM set build date, often from arcade filenames | `builddate:1996-10-04` |
 | `unfinished` | Pre-release or incomplete builds | `unfinished:alpha`, `unfinished:beta`, `unfinished:demo`, `unfinished:proto` |
 | `dump` | Dump quality or dump status | `dump:verified`, `dump:bad`, `dump:overdump`, `dump:underdump` |
 | `unlicensed` | Unofficial releases and modifications | `unlicensed:bootleg`, `unlicensed:hack`, `unlicensed:translation` |
@@ -133,6 +145,7 @@ These are the tag types most likely to matter when writing title IDs by hand.
 | `reboxed` | Re-releases and packaging variants | `reboxed:playerschoice`, `reboxed:satakore` |
 | `disc` and `disctotal` | Multi-disc sets | `disc:1`, `disc:2`, `disctotal:3` |
 | `media` | Media type or side | `media:disc`, `media:tape`, `media:side-a` |
+| `set` | ROM set number or variant group | `set:1`, `set:2` |
 | `video` | Video standard | `video:ntsc`, `video:pal`, `video:pal-60` |
 
 Core defines many more tag types than this, including hardware add-ons, embedded cartridge chips, compatibility tags, publishers, developers, genres, and player counts. Most users do not need to write those by hand.
