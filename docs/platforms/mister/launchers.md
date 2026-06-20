@@ -363,7 +363,7 @@ Dual-SDRAM cores from [TheJesusFish/Dual-Ram-Console-Cores](https://github.com/T
 Sinden Lightgun cores.
 
 :::info
-The Sinden cores must be installed in a custom `_Sinden` folder at the top of the SD card, or in the `Light Gun` folder if using newer core versions. Otherwise Zaparoo won't see them and they will conflict with official cores.
+Zaparoo looks for Sinden cores in `Light Gun/<Core>-Sinden.rbf` first, then the legacy `_Sinden/<Core>_Sinden.rbf` path. If both paths exist, Zaparoo uses the `Light Gun` version.
 :::
 
 | Launcher ID | System |

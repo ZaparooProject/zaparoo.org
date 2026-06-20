@@ -53,6 +53,8 @@ SNES/media/screenshot/Super Mario World.png
 
 Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxart3d`, `screenshot`, `thumbnail`, `marquee`, `wheel` (and `logo`), `fanart`, `titleshot`, and `map`. Supported image types are PNG, JPG, JPEG, and WEBP. Games in subfolders are matched against the mirrored path first, then the flat filename.
 
+When a system exists in more than one indexed root, such as the normal games folder plus an [`index_root`](../core/config.md#index_root), Core checks each root's `media/` folder in root order and uses the first matching file. The same lookup applies when `gamelist.xml` falls back to `media/`. This lets setups with ROMs on one root and artwork on another use the same EmulationStation `media/` folder layout.
+
 A force re-scrape also removes image references that follow this naming convention when their file is no longer on disk.
 
 ## What scraping produces
