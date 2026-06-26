@@ -1,0 +1,63 @@
+---
+description: "Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your Zaparoo Core media library on MiSTer FPGA."
+keywords: [zaparoo frontend, mister frontend, zaparoo mister frontend, mister fpga game frontend]
+sidebar_position: 1
+---
+
+# Zaparoo Frontend
+
+Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your [Zaparoo Core](../core/index.md) media library on [MiSTer FPGA](../platforms/mister/index.md). It runs on the MiSTer display and uses Core as its backend, so media scanning, launching, metadata, favorites, and token writing stay in Zaparoo Core.
+
+Frontend does not replace physical tokens, the [Zaparoo App](../app/index.md), the [Web UI](../app/web.md), or the [TUI](../core/tui.md). It gives Zaparoo an on-screen browser for users who want to browse artwork or launch games from the TV.
+
+## Quick start
+
+1. [Install or update Frontend](./setup.mdx) on MiSTer.
+2. Start Frontend. It connects to the local Core service.
+3. If your media database is empty, run the first-time media scan.
+4. Optional: [add artwork and metadata](./scraping.mdx) for game covers, descriptions, and variant names.
+5. Optional: [customize artwork, Hub icons, and system names](./customization.mdx).
+
+On MiSTer, Frontend launches through Core. For platform-specific launcher details, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
+
+## Using Frontend
+
+Frontend starts at your library hub. From there you can browse categories, systems, games, favorites, recents, and folders. Games launch through Core, so launcher configuration and media paths follow your normal Zaparoo setup.
+
+Use the options menu to manage the item you are viewing. Depending on context, it can launch a system core, change a system launcher, update the media database, scrape metadata, hide or unhide a category or system, write an NFC token, or discover alternate Arcade versions.
+
+While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through long lists.
+
+The **Other** category holds [launchable items](../features/launchers.md#launchables) that have no normal game file behind them, such as ROM-less MiSTer cores. You can launch them like any other game or write them to a token.
+
+The Settings screen is split into **Display**, **Browsing**, **Language**, **Controls**, **Library**, and **Support** pages. Common browsing preferences include grid or list layout, preferred artwork type, system logo style, hidden item visibility, original filename display, regional system names, clock format, mouse support, and reduced motion.
+
+## Controls
+
+The default keyboard controls are:
+
+| Action | Default keys |
+| ------ | ------------ |
+| Move | Arrow keys |
+| Select | `Enter` |
+| Back | `Escape` |
+| Options menu | `Tab` |
+| View menu | `Space` |
+| Previous page | `PageUp` |
+| Next page | `PageDown` |
+
+MiSTer will automatically map your controller buttons to these keys.
+
+## Support logs
+
+If you need help troubleshooting Frontend, open **Settings**, then **Support**, then **Upload log file**. Frontend uploads a support bundle and shows a link you can share in Discord or a GitHub issue.
+
+The upload includes a support summary, the Frontend log tail, and the Core log tail when Core is reachable.
+
+## Credits
+
+A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) for creating Zaparoo Frontend with [Wizzo](https://github.com/wizzomafizzo).
+
+## Source and license
+
+The [Frontend source code](https://github.com/ZaparooProject/zaparoo-frontend) is available under the [PolyForm Noncommercial License 1.0.0](https://github.com/ZaparooProject/zaparoo-frontend/blob/main/COPYING). Non-commercial use is allowed under that license. For commercial licensing, contact [legal@zaparoo.org](mailto:legal@zaparoo.org).

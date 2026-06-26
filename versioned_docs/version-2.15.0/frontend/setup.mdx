@@ -1,0 +1,88 @@
+---
+description: "Install Zaparoo Frontend on MiSTer FPGA and configure first-run display options."
+keywords: [zaparoo frontend setup, install zaparoo frontend, mister frontend setup]
+sidebar_position: 2
+---
+
+# Frontend Setup
+
+Zaparoo Frontend runs on MiSTer FPGA and connects to the local [Zaparoo Core](../core/index.md) service.
+
+## Requirements
+
+Frontend requires Zaparoo Core v2.15.0 or newer. If Core is too old for your installed Frontend, Frontend shows a warning on startup.
+
+On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
+
+You can also install Frontend through [MiSTer Companion](https://github.com/Anime0t4ku/mister-companion), or install it manually from the release ZIP.
+
+:::tip SuperStation ONE users
+
+If you are using a SuperStation ONE or another MiSTer image that already includes Zaparoo, update Zaparoo Core before starting Frontend. Some images include old Core builds, such as v2.6.2, that do not support Frontend. If first-time setup stays on `Preparing...`, update Core, then reboot MiSTer or restart Frontend.
+
+:::
+
+## Manual install
+
+For manual installation, download the release ZIP from [GitHub Releases](https://github.com/ZaparooProject/zaparoo-frontend/releases).
+
+The ZIP contains a `zaparoo` folder with these files:
+
+- `MiSTer_Zaparoo`
+- `frontend`
+- `menu_zaparoo.rbf`
+
+Install Frontend:
+
+1. Copy the `zaparoo` folder to the root of your MiSTer SD card.
+2. Edit your `MiSTer.ini` file and add this line under the `[MiSTer]` or `[Menu]` section:
+
+   ```ini
+   main=zaparoo/MiSTer_Zaparoo
+   ```
+
+3. Start or reboot your MiSTer. Frontend will start automatically.
+
+To disable or uninstall Frontend, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
+
+## Updating
+
+The standard MiSTer build of Frontend includes a built-in updater. From the Hub, select **Update** to run the MiSTer Downloader, the same tool behind [Update All](../platforms/mister/index.md#install), without leaving Frontend. It updates your MiSTer firmware, cores, and Zaparoo, and shows progress on a controller-friendly screen.
+
+This is separate from **Update media database**, which only rescans your game library. See [First run](#first-run) for the library scan.
+
+You can still update manually by downloading a new release ZIP and replacing the files from the [Manual install](#manual-install) steps.
+
+## First run
+
+On first run, Frontend connects to Core locally. If your media database is empty, it prompts you to scan your games before browsing.
+
+You can update the media database later from **Settings**, then **Library**. You can also open a system's options menu and update that system on its own.
+
+## Display setup
+
+Frontend has display options for HDMI, CRT, and vertical setups.
+
+### Enable CRT mode
+
+If you use Frontend on a CRT, open **Settings**, then **Display**, then **Analog video**.
+
+- **CRT mode** turns native analog output on or off. Confirming this setting restarts Frontend so MiSTer can relaunch it in the new video mode.
+- **Video standard** chooses NTSC or PAL when CRT mode is active. Changing it also requires a Frontend restart.
+- **Screen position** opens a calibration screen. Use the directional controls to move the image, then save when the picture is centered on your display.
+
+You can also toggle CRT mode from the MiSTer OSD, which is useful when you need to turn CRT mode on before you have access to an HDMI display. Press Menu on a controller or `F12` on a keyboard, as you would in a normal MiSTer core, then open **System Settings**. **CRT mode** is the last setting in the list, directly above **Reboot**.
+
+CRT mode enables the pixel fonts and tighter layouts designed for 240p output. It also uses a safe area for menus while backgrounds and screensaver art can still fill the full CRT frame.
+
+### Enable TATE mode
+
+TATE mode rotates Frontend for vertical display setups, such as arcade cabinets or MiSTer displays mounted for vertical games.
+
+Open **Settings**, then set **Orientation** to the clockwise or counter-clockwise option that matches your display.
+
+### Change MiSTer resolution
+
+On MiSTer, open **Settings**, then **Display**, then change **Resolution** when you need a fixed HDMI output mode instead of the default Frontend video settings. Frontend includes HD options plus larger modes such as `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
+
+Resolution changes apply after Frontend restarts.

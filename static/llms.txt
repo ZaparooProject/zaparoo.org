@@ -89,6 +89,8 @@ Important notes:
 - [Mappings](https://zaparoo.org/docs/features/mappings/): Map token IDs to specific games or scripts.
 - [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
 - [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
+- [Audio](https://zaparoo.org/docs/features/audio/): Play WAV, MP3, OGG, and FLAC files through Core's native audio launcher, including a background slot that keeps music playing while games launch.
+- [Scraping](https://zaparoo.org/docs/features/scraping/): Import local game artwork from gamelist.xml and EmulationStation-style media folders.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.

@@ -13,25 +13,25 @@ Thank you to [Andrea Bogazzi](https://github.com/asturur) for the Frontend TATE,
 {/* truncate */}
 
 :::info
-Now available via [Update All](https://github.com/theypsilon/Update_All_MiSTer) on MiSTer! Thank you [theypsilon](https://github.com/theypsilon) who has added a dedicated Zaparoo item to Update All in the *Tools & Scripts* section. This moves Zaparoo out of the old MiSTer Extensions repo and replaces the manual *mrext/tapto* repo. **Update All also allows you to enable [Zaparoo Frontend](/docs/frontend/#install-on-mister) in your MiSTer.ini file automatically.**
+Now available via [Update All](https://github.com/theypsilon/Update_All_MiSTer) on MiSTer! Thank you [theypsilon](https://github.com/theypsilon) who has added a dedicated Zaparoo item to Update All in the *Tools & Scripts* section. This moves Zaparoo out of the old MiSTer Extensions repo and replaces the manual *mrext/tapto* repo. **Update All also allows you to enable [Zaparoo Frontend](/docs/frontend/setup/) in your MiSTer.ini file automatically.**
 :::
 
 **Frontend highlights:**
 
-- **[TATE mode](/docs/frontend/#enable-tate-mode)**: rotate Frontend for vertical CRT setups.
-- **[More MiSTer display options](/docs/frontend/#change-mister-resolution)**: extra resolution choices: `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
+- **[TATE mode](/docs/frontend/setup/#enable-tate-mode)**: rotate Frontend for vertical CRT setups.
+- **[More MiSTer display options](/docs/frontend/setup/#change-mister-resolution)**: extra resolution choices: `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
 - **Resume Game**: a new hub action can jump back into the most recently played game.
 - **Faster browsing**: smoother rapid navigation, smarter cover prefetching, faster Arcade browsing.
 - **Detail view updates**: improved metadata display, including compact CRT metadata labels.
 - **Settings subpages**: settings are grouped into Display, Controls, Library, and Support pages.
-- **[Media actions by system](/docs/frontend/#scraping-metadata)**: update the media database or scrape metadata for one system from that system's options menu.
+- **[Media actions by system](/docs/frontend/scraping/)**: update the media database or scrape metadata for one system from that system's options menu.
 - **Language selection**: Basque and Spanish can be selected from Frontend settings.
 
 **Core highlights:**
 
 - **Scraping status**: metadata scraping now reports clearer lifecycle state, per-system progress, pause state, and whole-run step progress.
 - **Scrape resume fixes**: scraping pauses while media is running, resumes more reliably, and can be resumed through the [`media.scrape.resume`](/docs/core/api/methods#mediascraperesume) API.
-- **[`gamelist.xml` improvements](/docs/frontend/#scraping-metadata)**: more reliable artwork matching, Companion entry handling, nested media support, region/language tags, and tag display names.
+- **[`gamelist.xml` improvements](/docs/frontend/scraping/)**: more reliable artwork matching, Companion entry handling, nested media support, region/language tags, and tag display names.
 - **Frontend API support**: faster latest-history lookup, resized media images, more reliable media browsing, and WebSocket request prioritization.
 - **[MiSTer updates](/docs/platforms/mister/launchers/#alternate-launchers)**: DB9 core launchers, RA Atari2600, RA Game Boy Color, RA Super Game Boy, RA set names, NeoGeo subfolder scanning, and AmigaVision diagnostics.
 - **[ZapScript updates](/docs/zapscript/input/#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4)**: system launcher defaults now apply to direct path launches, and `input.coinp3` / `input.coinp4` are available.
@@ -51,7 +51,7 @@ Now available via [Update All](https://github.com/theypsilon/Update_All_MiSTer) 
 <Button
   icon={<FAIcon icon="link" />}
   label="Install Guide"
-  link="/docs/frontend/#install-on-mister"
+  link="/docs/frontend/setup/"
   variant="primary"
 />
 
@@ -80,9 +80,9 @@ Now available via [Update All](https://github.com/theypsilon/Update_All_MiSTer) 
 
 ## Frontend: Display modes
 
-Frontend v1.1.0 adds [TATE mode](/docs/frontend/#enable-tate-mode) for vertical CRT and cabinet setups. The list/detail layout has been tuned for portrait orientation, so browsing a vertical game library does not feel like a sideways version of the normal layout.
+Frontend v1.1.0 adds [TATE mode](/docs/frontend/setup/#enable-tate-mode) for vertical CRT and cabinet setups. The list/detail layout has been tuned for portrait orientation, so browsing a vertical game library does not feel like a sideways version of the normal layout.
 
-[MiSTer display settings](/docs/frontend/#change-mister-resolution) also get more fixed resolution choices: `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
+[MiSTer display settings](/docs/frontend/setup/#change-mister-resolution) also get more fixed resolution choices: `1920x1200`, `1920x1440`, `2048x1536`, and `2560x1440`.
 
 ## Frontend: Browsing
 
@@ -96,7 +96,7 @@ Settings are now split into Display, Controls, Library, and Support pages. The o
 
 ## Frontend: Library tools
 
-Library actions can be more focused in this release. You can still update the whole media database or [scrape metadata](/docs/frontend/#scraping-metadata) globally, but you can now update or scrape a single system from that system's options menu.
+Library actions can be more focused in this release. You can still update the whole media database or [scrape metadata](/docs/frontend/scraping/) globally, but you can now update or scrape a single system from that system's options menu.
 
 The Core status pill also shows nicer progress and spinner states while indexing or scraping is active.
 
@@ -114,7 +114,7 @@ Scraping pauses while media is running, resumes after playback stops, and can be
 
 ## Core: Metadata imports
 
-The [`gamelist.xml` scraper](/docs/frontend/#scraping-metadata) handles more of the messy metadata layouts people already have on disk. That includes nested games, MiSTer Companion parent/child records, region and language tags, tag display names, and stale artwork paths that should be ignored instead of blocking a good match.
+The [`gamelist.xml` scraper](/docs/frontend/scraping/) handles more of the messy metadata layouts people already have on disk. That includes nested games, MiSTer Companion parent/child records, region and language tags, tag display names, and stale artwork paths that should be ignored instead of blocking a good match.
 
 ## Core: Media APIs
 
