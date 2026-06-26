@@ -10,7 +10,7 @@ Zaparoo Frontend runs on MiSTer FPGA and connects to the local [Zaparoo Core](..
 
 ## Requirements
 
-Frontend requires Zaparoo Core v2.14.0 or newer.
+Frontend requires Zaparoo Core v2.15.0 or newer. If Core is too old for your installed Frontend, Frontend shows a warning on startup.
 
 On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
 
@@ -44,6 +44,14 @@ Install Frontend:
 3. Start or reboot your MiSTer. Frontend will start automatically.
 
 To disable or uninstall Frontend, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
+
+## Updating
+
+The standard MiSTer build of Frontend includes a built-in updater. From the Hub, select **Update** to run the MiSTer Downloader, the same tool behind [Update All](../platforms/mister/index.md#install), without leaving Frontend. It updates your MiSTer firmware, cores, and Zaparoo, and shows progress on a controller-friendly screen.
+
+This is separate from **Update media database**, which only rescans your game library. See [First run](#first-run) for the library scan.
+
+You can still update manually by downloading a new release ZIP and replacing the files from the [Manual install](#manual-install) steps.
 
 ## First run
 

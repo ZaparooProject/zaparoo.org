@@ -273,11 +273,13 @@ Use [`[[systems.default]]`](../core/config.md#systemsdefault) to choose the defa
 
 API clients can also save a per-media launcher override through [`media.meta.update`](../core/api/methods.md#mediametaupdate). Use this when one game should always use a different launcher from the rest of its system. Explicit ZapScript `?launcher=` arguments still win for one-off launches, then Core checks the per-media override, then system defaults.
 
+Per-media overrides are stored alongside favorites in Core's user database, separate from the rebuildable media database, so they are kept even if Core has to rebuild the media database after corruption. This user data is included in Core's [database backups](../core/cli.md#back-up-and-restore-user-data).
+
 Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action` or `load_path`.
 
-### Troubleshooting
+## Troubleshooting
 
-#### Verifying your launcher loaded
+### Verifying your launcher loaded
 
 Check the Zaparoo Core logs when it starts up. Look for messages about custom launchers, such as:
 - `parsed custom launcher from TOML`
@@ -286,11 +288,11 @@ Check the Zaparoo Core logs when it starts up. Look for messages about custom la
 
 If your launcher isn't loading, check for TOML syntax errors in the logs.
 
-#### Testing commands
+### Testing commands
 
 Before adding a command to your launcher config, test it manually in your terminal or command prompt. Replace `[[media_path]]` with an actual file path to verify it works.
 
-#### Common issues
+### Common issues
 
 - **Paths with spaces**: Quote the program path and `[[media_path]]` separately in your `execute` command, especially on Windows. If you wrap the command in another shell like PowerShell, that shell can split the path on its spaces. Launch the program directly instead when you can. See [Windows custom launchers](../platforms/windows/launchers.md#quoting-paths-and-powershell)
 - **Launcher selection**: If several launchers match the same file, Core prefers more specific matches. Duplicate IDs or equally specific matches can be order-dependent

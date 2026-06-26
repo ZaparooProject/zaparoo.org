@@ -31,6 +31,9 @@ These flags are defined by the shared Core CLI and are available in current comm
 | `-write` | Text string | Writes text to the next token found by a write-capable reader. |
 | `-reload` | None | Reloads `config.toml` and mapping files from disk. |
 | `-pair` | None | Starts app/client pairing and prints the pairing result when complete. |
+| `-backup` | None | Creates a manual backup of the user database. |
+| `-backups` | None | Lists available user database backups. |
+| `-restore` | Backup name | Restores the user database from a named backup. |
 
 The `-config` flag may appear in `-help` output because it is still defined by the shared parser. In current Core source it does not run a separate action; start the [TUI](tui.md) or use the [Web UI](../app/web.md) for configuration instead.
 
@@ -94,6 +97,30 @@ Use `-pair` to start the same pairing flow used by clients such as the [Zaparoo 
 ```
 
 Core prints a PIN to the terminal. Enter that PIN in the client app. When pairing succeeds, the CLI prints the pairing response as a single line.
+
+## Back up and restore user data
+
+Core keeps your favorites, per-media [launcher overrides](../features/launchers.md#default-launchers), history, and token mappings in a user database that is separate from the rebuildable media database. Favorites and overrides are not lost if Core has to rebuild the media database after corruption. Core takes automatic backups of the whole user database and prunes old ones, keeping the most recent few. It can also recover automatically if the database is found to be corrupt on startup.
+
+Use `-backup` to create a manual backup. Manual backups are kept until you remove them yourself.
+
+```bash
+./zaparoo -backup
+```
+
+Use `-backups` to list the backups Core currently has, including their names.
+
+```bash
+./zaparoo -backups
+```
+
+Use `-restore` with a backup name to restore the user database from that backup. Core takes a safety backup of the current database before restoring.
+
+```bash
+./zaparoo -restore backup-20260624-130454-000000000-manual.db
+```
+
+These flags call the `settings.backup`, `settings.backup.list`, and `settings.backup.restore` [API methods](./api/methods.md).
 
 ## Platform flags
 

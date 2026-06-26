@@ -1,0 +1,177 @@
+---
+slug: zaparoo-frontend-v1.2.0
+title: "Zaparoo Frontend v1.2.0 and Core v2.15.0 released"
+description: "Zaparoo Frontend v1.2.0 adds a built-in MiSTer updater, native CRT setup, custom artwork and names, faster browsing, launchable Other cores, and jump-to-letter navigation, while Core v2.15.0 adds background audio, local media-folder scraping, launchables, user data backups, and MiSTer launcher updates."
+tags: [software]
+authors: [wizzo]
+draft: true
+---
+
+[Zaparoo Frontend](/docs/frontend/) v1.2.0 and [Zaparoo Core](/docs/core/) v2.15.0 are the next paired Zaparoo releases.
+
+This update focuses on Frontend's new built-in MiSTer updater, a smoother CRT and browsing experience, more ways to customize your library, launchable ROM-less MiSTer cores, and local artwork scraping.
+
+Thank you to [Andrea Bogazzi](https://github.com/asturur) for the Frontend startup and media loading performance work, and to [theypsilon](https://github.com/theypsilon) for developing and contributing the new built-in updater.
+
+{/* truncate */}
+
+**Frontend highlights:**
+
+- **[Built-in MiSTer updater](/docs/frontend/setup/#updating)**: run the MiSTer Downloader straight from the Hub to update firmware, cores, and Zaparoo without leaving Frontend.
+- **[Native CRT setup](/docs/frontend/setup/#enable-crt-mode)**: CRT mode, NTSC/PAL selection, and screen-position calibration are now available from Frontend settings.
+- **[Custom artwork and names](/docs/frontend/customization/)**: use your own system artwork, Hub icons, and system display names.
+- **Regional system names and logos**: choose automatic, Americas, Europe, or Japan naming in the Language settings, and switch system logos between tintable and full-color styles.
+- **Faster browsing**: smoother navigation, faster startup, less loading flicker, and fewer redundant cover image loads.
+- **View menu and jump navigation**: open the View menu while browsing and jump directly to a letter or group.
+- **Better variant display**: show original filenames and inline [tags](/docs/features/tags/) for regions, revisions, discs, and other same-name variants.
+- **Library visibility controls**: hide categories and systems you do not want in the normal view.
+- **Launchable Other cores**: ROM-less MiSTer cores exposed by Core now appear in Frontend's Other category and can be launched or written to [tokens](/docs/tokens/).
+- **Settings polish**: category-based settings pages, reduced-motion support, clock format options, mouse toggle fixes, a smoother startup restore, and a warning when Core is too old for the installed Frontend.
+
+**Core highlights:**
+
+- **[Background audio](/docs/features/audio/)**: play music through Core's native audio launcher while launching games, with a background slot, playlist repeat modes, and launcher controls.
+- **More reliable [playtime limits](/docs/features/play-controls/#playtime-limits)**: in-progress sessions now survive a Core restart, and playtime is saved during play so a crash or power loss loses less progress.
+- **[Media-folder scraping](/docs/features/scraping/#media-folder)**: import EmulationStation-style `media/` folder artwork even without a `gamelist.xml`.
+- **Better local artwork lookup**: `gamelist.xml` fallback art and media-folder scraping can resolve artwork across indexed roots.
+- **[Launchables](/docs/features/launchers/#launchables)**: Core can index and launch virtual media, starting with MiSTer `_Other` cores and the 3S-ARM Arcade core.
+- **User data backups**: Core can now back up and restore its whole user database, which holds your favorites, launcher overrides, history, and token mappings. Favorites and overrides are also protected when Core has to rebuild its media database after SD card corruption.
+- **Variant tags for same-name games**: browse, search, and lookup results now carry tags that distinguish games sharing a title, so results are easier to tell apart and you can point a [title ID](/docs/features/tags/#using-tags-in-title-ids) at the exact version you want.
+- **[ZapScript input updates](/docs/zapscript/input/#macros)**: keyboard macros can repeat, delay, hold, press, and release keys, and `input.text` types literal text.
+- **Frontend API support**: browse letter indexes, per-media launcher overrides, file-based [mappings](/docs/features/mappings/) listed as read-only, and faster media queries.
+- **MiSTer launcher updates**: MGL files in games folders, AmigaVision paths and display names, GameGear2P, GenesisPlus, Sinden Lightgun core resolution, and extra launchable core support.
+
+## Download
+
+### Frontend
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Frontend v1.2.0"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v1.2.0"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="link" />}
+  label="Install Guide"
+  link="/docs/frontend/setup/"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Frontend GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/"
+  variant="primary"
+/>
+
+### Core
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Core v2.15.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Core GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Frontend: Updater
+
+A huge addition in v1.2.0 is a built-in updater. The Hub now has an **Update** tile that runs the MiSTer Downloader, the same tool behind [Update All](/docs/platforms/mister/#install), without leaving Frontend. You can update your MiSTer firmware, cores, and Zaparoo itself, with progress shown on a controller-friendly screen, instead of dropping back to the MiSTer menu.
+
+This is separate from **Update media database** in Settings: the updater keeps your whole MiSTer current, while the media database scan only rebuilds Frontend's game catalog.
+
+The updater ships in the standard MiSTer build. See [Updating](/docs/frontend/setup/#updating) for details.
+
+## Frontend: CRT setup
+
+Frontend v1.2.0 makes [CRT setup](/docs/frontend/setup/#enable-crt-mode) a first-class part of the settings UI. Open **Settings**, then **Display**, then **Analog video** to turn CRT mode on or off, pick NTSC or PAL, and open the calibration screen.
+
+CRT mode uses the native analog video path, pixel fonts, and tighter layouts designed for 240p output. The UI keeps menus inside a safer center area while backgrounds and screensaver art can still fill the full CRT frame.
+
+If you need to enable CRT mode before you have HDMI access, compatible MiSTer builds also expose the same toggle from the MiSTer OSD under **System Settings**.
+
+## Frontend: Browsing
+
+Browsing got another responsiveness pass. Startup loads less media data before the Hub appears, restored screens show a loading cue instead of flashing the wrong page, and folder back navigation is more cache-aware.
+
+Large lists are easier to move through too. The new **View** menu adds **Go to...**, which jumps to a letter or group using Core's new browse index API instead of paging through everything manually.
+
+Same-name variants are clearer in this release. Frontend can show small inline tags for regions, revisions, discs, player counts, build dates, and other distinguishing labels. If you would rather see filenames as-is, turn on **Show original filenames** in Browsing settings.
+
+## Frontend: Customization
+
+Frontend can now load custom system artwork, Hub icons, and system display names without rebuilding anything. Artwork and icons go under `/media/fat/zaparoo/custom/`, or another folder you point `frontend.toml` at, while display names are set in `frontend.toml` itself.
+
+The built-in artwork set also moved to tintable SVG logos by default, so system and Hub icons fit the active theme more consistently. If you prefer the original look, the [**System logos**](/docs/frontend/customization/#system-logo-style) setting can switch back to full-color logos. Regional naming is available from Language settings, with automatic, Americas, Europe, and Japan options.
+
+## Frontend: Library controls
+
+You can hide categories and systems from the normal library view. Turn on **Show hidden items** in Browsing settings to bring them back, dimmed with a **Hidden** badge so you can unhide them.
+
+Frontend also understands Core's new launchable systems. MiSTer `_Other` cores exposed by Core now appear in the Other category, launch directly, and can be written to NFC tokens like normal media.
+
+Settings have been split into clearer category pages for Display, Browsing, Language, Controls, Library, and Support. This release also adds reduced-motion support, clock format options, and fixes for the mouse support toggle.
+
+## Core: Background audio
+
+Core v2.15.0 adds a [native audio launcher](/docs/features/audio/) for the `Audio` system. It can play WAV, MP3, OGG, and FLAC files directly through Core, including a separate background slot that keeps music loaded while games launch in the primary slot.
+
+Background playlists can repeat one track or the whole playlist. By default, background music pauses when a game starts and resumes when the game quits, so it does not compete with game audio. You can change that per system in [Core config](/docs/core/config/#audio).
+
+The native audio launcher also supports media controls like pause, resume, stop, fast forward, and rewind through [ZapScript](/docs/zapscript/) or the [API](/docs/core/api/).
+
+Background audio is still experimental on MiSTer specifically. It works, but playback can be a bit crackly or cut in and out. It is worth a try if you want music while you browse, but expect some rough edges for now while we keep improving it.
+
+## Core: Play controls
+
+[Playtime limits](/docs/features/play-controls/#playtime-limits) already let you set daily and per-session limits, and this release focuses on making them more reliable. Core now restores an in-progress session after a restart instead of resetting the timer, and it saves playtime during a session rather than only when a game stops, so a crash or power loss loses less progress.
+
+Launch guard and media-task pause behavior are also more reliable under heavy library work, so indexing and scraping no longer drown out the media start and stop events these features depend on.
+
+## Core: User data and backups
+
+Favorites and per-media launcher overrides are now stored as the source of truth in their own user database, separate from the rebuildable media database. The media database can be rebuilt from scratch when an SD card corrupts it, and keeping user data in its own database means a rebuild like that no longer takes your favorites and launcher overrides with it.
+
+Core can also back up the whole user database now, which was not possible before. As well as your favorites and launcher overrides, that covers your scan and play history and your token mappings. Core keeps a rolling set of automatic backups, you can take a manual backup that is kept until you remove it, and you can restore from any backup, so you can keep copies of data you care about. Core takes a safety backup before each restore, and can recover on its own if the database is found to be corrupt on startup. You can create, list, and restore backups from the [command line](/docs/core/cli/#back-up-and-restore-user-data) or the API.
+
+## Core: Metadata and artwork
+
+Core now includes a [`media-folder` scraper](/docs/features/scraping/#media-folder) for EmulationStation-style artwork folders. This is useful when you have `media/images`, `media/boxart`, `media/screenshot`, and similar folders but no `gamelist.xml`.
+
+The `gamelist.xml` scraper also shares the same local artwork fallback. When a system exists in more than one indexed root, Core checks each root's `media/` folder in root order, so ROMs and artwork can live on different roots and still match.
+
+## Core: Tags and browsing APIs
+
+When several games share a title, Core now works out which tags actually differ between them while it indexes. Browse, search, and lookup results carry those distinguishing tags, so it is clearer which result is which, and generated title ZapScript includes them too, so a token keeps pointing at the version you meant.
+
+Filename tag parsing has also improved for arcade sets and common ROM naming conventions. MiSTer Arcade names like `(World 931005)` can produce both a region and build date, and more hack, translation, set, and WIP markers are classified into useful tag types instead of generic labels.
+
+For clients, Core adds `media.browse.index`, which returns browse buckets with counts and offsets for jump-to-letter navigation. Media APIs also picked up per-media launcher overrides, file-based mappings listed as read-only, and faster browse, history, and favorites queries.
+
+## Core: Launching and platforms
+
+Core can now expose [launchable items](/docs/features/launchers/#launchables) that do not have normal files behind them. On MiSTer, that starts with supported `_Other` cores such as Chess, Flappy Bird, Game of Life, and similar ROM-less cores. The 3S-ARM port of Street Fighter III: 3rd Strike is exposed as Arcade media.
+
+MiSTer scanning and launching also get several updates: `.mgl` files in games folders can be indexed, AmigaVision launch paths and display names are cleaner, GameGear2P and GenesisPlus/MD+ system definitions are available, and Sinden Lightgun launchers prefer the modern `Light Gun/<Core>-Sinden.rbf` path with the legacy `_Sinden` path as a fallback.
+
+Outside MiSTer, Batocera game tracking starts more reliably when the EmulationStation API is not available at startup.
+
+## Core: ZapScript input
+
+ZapScript input commands now support a larger macro language. [`input.keyboard`](/docs/zapscript/input/#inputkeyboard) can repeat keys, type literal quoted text, insert delays, hold keys, and explicitly press or release keys.
+
+The new [`input.text`](/docs/zapscript/input/#inputtext) command types literal text exactly as written, without interpreting braces or advanced-argument syntax. Use it for search terms, URLs, or other text that includes punctuation.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />
