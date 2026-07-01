@@ -1,0 +1,79 @@
+---
+slug: zaparoo-frontend-v1.2.2
+title: "Zaparoo Frontend v1.2.2 and Core v2.15.1 released"
+description: "Zaparoo Frontend v1.2.2 and Core v2.15.1 fix browsing issues, cover caching, launch responsiveness, and folder-based media."
+tags: [software]
+authors: [wizzo]
+---
+
+[Zaparoo Frontend](/docs/frontend/) v1.2.2 and [Zaparoo Core](/docs/core/) v2.15.1 are hotfix releases.
+
+Main fixes: browsing reliability, faster cover loading, more responsive launches, and folder-based systems like PSX.
+
+{/* truncate */}
+
+## Download
+
+### Frontend
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Frontend v1.2.2"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v1.2.2"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="link" />}
+  label="Install Guide"
+  link="/docs/frontend/setup/"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Frontend GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-frontend/"
+  variant="primary"
+/>
+
+### Core
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Download Core v2.15.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="Core GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## What changed
+
+**Frontend fixes:**
+
+- Fixed duplicate controller inputs caused by very fast repeated events.
+- Improved game launching responsiveness.
+- Preserved hub category focus when backing out from category screens.
+- Improved media cover image caching for faster, more stable browsing.
+- Added pagination to media directory browsing so large directories load properly.
+- Fixed NFC card write modal positioning.
+- Fixed updater progress display so stale `100%` progress is not shown. Thanks to [theypsilon](https://github.com/theypsilon).
+
+**Core fixes:**
+
+- Fixed blank browse grids on folder-based systems like PSX.
+- Paginated directory entries so large folders of folders no longer stall the app.
+- Improved filename tag matching for Arcade games.
+- Fixed dynamic cover resizing and WebP conversion.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />
