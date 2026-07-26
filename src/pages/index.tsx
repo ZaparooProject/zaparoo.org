@@ -82,10 +82,10 @@ function Stats(): ReactNode {
   );
 }
 
-function HardwarePartners(): ReactNode {
+function OfficialPartners(): ReactNode {
   return (
-    <div className={styles.hardwarePartners}>
-      <h3 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>Official Hardware Partners</h3>
+    <div className={styles.officialPartners}>
+      <h3 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>Official Partners</h3>
       <div className={styles.partnersLogos}>
         <a
           href="https://multisystem.uk/products/mister-multisystem-2/"
@@ -96,6 +96,18 @@ function HardwarePartners(): ReactNode {
           <img
             src="/img/partners/multisystem.png"
             alt="MiSTer Multisystem²"
+            height="60"
+          />
+        </a>
+        <a
+          href="https://www.reboot-games.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.partnerLogo}
+        >
+          <img
+            src="/img/partners/reboot-games-logo.webp"
+            alt="Reboot Games"
             height="60"
           />
         </a>
@@ -296,7 +308,7 @@ export default function Home(): ReactNode {
         <section className={styles.socialProofSection}>
           <div className="container">
             <Stats />
-            <HardwarePartners />
+            <OfficialPartners />
           </div>
         </section>
 

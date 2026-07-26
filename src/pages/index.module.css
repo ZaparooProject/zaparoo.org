@@ -261,7 +261,7 @@
   background-color: var(--ifm-color-emphasis-50);
 }
 
-.hardwarePartners {
+.officialPartners {
   text-align: center;
   margin-top: 2.5rem;
 }
@@ -338,7 +338,7 @@
     padding: 2rem 0;
   }
 
-  .hardwarePartners {
+  .officialPartners {
     margin-bottom: 2rem;
   }
 
