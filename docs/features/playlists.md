@@ -173,8 +173,8 @@ Stop the current media and clear the active playlist:
 
 `playlist.open` opens an interactive picker for the active playlist or for a playlist source you provide.
 
-:::note Platform Support
-The interactive picker is currently only supported on [MiSTer](../platforms/mister/index.md).
+:::note Picker display
+[MiSTer](../platforms/mister/index.md) displays the picker locally. On other platforms, a connected client that supports Core's global UI events can display and answer it. If no local or connected renderer is available, the playlist still loads but the picker expires without a selection after 30 seconds.
 :::
 
 ## Command reference

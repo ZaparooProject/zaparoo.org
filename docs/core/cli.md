@@ -29,11 +29,14 @@ These flags are defined by the shared Core CLI and are available in current comm
 | `-api` | `method:params` | Calls one [Core API method](./api/index.md) and prints the response. |
 | `-read` | None | Prints the next scanned token without running its actions. |
 | `-write` | Text string | Writes text to the next token found by a write-capable reader. |
-| `-reload` | None | Reloads `config.toml` and mapping files from disk. |
+| `-reload` | None | Reloads settings, mappings, launchers, and platform launcher dependencies. |
 | `-pair` | None | Starts app/client pairing and prints the pairing result when complete. |
-| `-backup` | None | Creates a manual backup of the user database. |
-| `-backups` | None | Lists available user database backups. |
-| `-restore` | Backup name | Restores the user database from a named backup. |
+| `-backup` | None | Creates a portable full-device backup ZIP on supported platforms. |
+| `-backups` | None | Lists available full-device backup ZIPs. |
+| `-restore` | Backup name | Restores a full-device backup ZIP and restarts Core. |
+| `-profiles` | None | Lists device profile IDs, roles, and names for local recovery. |
+| `-profile-reset-pin` | Profile ID | Replaces a profile PIN with a generated eight-digit PIN. |
+| `-profile-reset-switch-id` | Profile ID | Generates a new profile switch ID and invalidates existing switch cards. |
 
 The `-config` flag may appear in `-help` output because it is still defined by the shared parser. In current Core source it does not run a separate action; start the [TUI](tui.md) or use the [Web UI](../app/web.md) for configuration instead.
 
@@ -78,15 +81,15 @@ Use `-write` to write text to the next token detected by a write-capable reader.
 
 While reading or writing, Core temporarily disables normal ZapScript execution so the scanned token is handled by the CLI action instead of launching media.
 
-## Reload settings
+## Reload Core
 
-Use `-reload` after editing the [config file](config.md) or [mapping files](../features/mappings.md) while Core is running.
+Use `-reload` after editing the [config file](config.md), [mapping files](../features/mappings.md), or [custom launcher files](../features/launchers.md#custom-launchers) while Core is running. It also refreshes supported platform launcher dependencies, including MiSTer RBF files and Batocera's EmulationStation system configuration.
 
 ```bash
 ./zaparoo -reload
 ```
 
-This calls the `settings.reload` API method. Settings that require a full service restart still need the service to be restarted.
+This calls `settings.reload` followed by [`launchers.refresh`](./api/methods.md#launchersrefresh). If either operation fails, the command reports which stage failed. Settings that require a full service restart still need the service to be restarted.
 
 ## Pair a client
 
@@ -98,29 +101,57 @@ Use `-pair` to start the same pairing flow used by clients such as the [Zaparoo 
 
 Core prints a PIN to the terminal. Enter that PIN in the client app. When pairing succeeds, the CLI prints the pairing response as a single line.
 
-## Back up and restore user data
+<a id="back-up-and-restore-user-data"></a>
 
-Core keeps your favorites, per-media [launcher overrides](../features/launchers.md#default-launchers), history, and token mappings in a user database that is separate from the rebuildable media database. Favorites and overrides are not lost if Core has to rebuild the media database after corruption. Core takes automatic backups of the whole user database and prunes old ones, keeping the most recent few. It can also recover automatically if the database is found to be corrupt on startup.
+## Back up and restore device data
 
-Use `-backup` to create a manual backup. Manual backups are kept until you remove them yourself.
+On supported platforms, `-backup` creates a portable full-device ZIP containing Zaparoo configuration and user data together with supported platform settings, inputs, saves, and save states. See [Device Backups](../features/backups.md) for included data, platform support, cloud backup, and restore behavior.
 
 ```bash
 ./zaparoo -backup
 ```
 
-Use `-backups` to list the backups Core currently has, including their names.
+Use `-backups` to list local backup ZIPs, including their names.
 
 ```bash
 ./zaparoo -backups
 ```
 
-Use `-restore` with a backup name to restore the user database from that backup. Core takes a safety backup of the current database before restoring.
+Use `-restore` with a backup name to restore it. Active media must be stopped. Core validates the backup, creates a local safety backup, applies the restore transaction, and restarts.
 
 ```bash
-./zaparoo -restore backup-20260624-130454-000000000-manual.db
+./zaparoo -restore backup-20260720-120000-000000000-manual.zip
 ```
 
-These flags call the `settings.backup`, `settings.backup.list`, and `settings.backup.restore` [API methods](./api/methods.md).
+These flags call the `settings.backup`, `settings.backup.list`, and `settings.backup.restore` [API methods](./api/methods.md#device-backup-methods).
+
+## Database recovery
+
+Favorites, per-media [launcher overrides](../features/launchers.md#default-launchers), history, and token mappings live in the user database, separate from the rebuildable media database. Core keeps automatic safety copies of the user database and can rebuild a corrupt media database without losing that data.
+
+After rebuilding the media database, Core starts a full media index and adds an Inbox message. Scraped artwork and metadata must be imported again. If recovery repeatedly fails, Core stops retrying until it restarts and prompts you to check the free space and storage device.
+
+## Recover profile access
+
+Use `-profiles` to find the IDs of [device profiles](../features/profiles.md):
+
+```bash
+./zaparoo -profiles
+```
+
+If a profile PIN is forgotten, use its profile ID to replace the PIN with a generated eight-digit value:
+
+```bash
+./zaparoo -profile-reset-pin 07e8e954-a624-4f49-a24e-4036ff6b1c32
+```
+
+If a profile card is lost, generate a new switch ID:
+
+```bash
+./zaparoo -profile-reset-switch-id 07e8e954-a624-4f49-a24e-4036ff6b1c32
+```
+
+The new switch ID is printed to the terminal. Existing switch cards for that profile stop working. These recovery commands call the local Core API, so Core must be running on the same device.
 
 ## Platform flags
 

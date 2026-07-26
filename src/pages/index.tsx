@@ -22,6 +22,7 @@ import StructuredData from "@site/src/components/StructuredData";
 import ProductLink, { type ProductStore } from "@site/src/components/ProductLink";
 
 import recentPostsData from "../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json";
+import siteStats from "@site/src/data/stats";
 const recentPosts = recentPostsData;
 
 function LatestNews(): ReactNode {
@@ -66,15 +67,15 @@ function Stats(): ReactNode {
   return (
     <div className={styles.statsBar}>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>100k</div>
+        <div className={styles.statNumber}>{siteStats.downloads}</div>
         <div className={styles.statLabel}>Downloads</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>1.8k</div>
+        <div className={styles.statNumber}>{siteStats.discordMembers}</div>
         <div className={styles.statLabel}>Discord Members</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>250</div>
+        <div className={styles.statNumber}>{siteStats.githubStars}</div>
         <div className={styles.statLabel}>GitHub Stars</div>
       </div>
     </div>

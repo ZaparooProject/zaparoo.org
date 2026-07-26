@@ -7,6 +7,12 @@ keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, 
 
 Detailed launcher configuration for Windows.
 
+## Window focus
+
+Core brings tracked applications to the foreground after launching them, including minimized windows. It waits up to five seconds for a window owned by the launched process or one of its descendants. This applies to built-in and [custom launchers](../../features/launchers.md#custom-launchers) that start a tracked process.
+
+If an application still opens behind another window, check whether its launcher starts a detached process more than five seconds later. Core cannot focus a window it can no longer associate with the launched process tree.
+
 ## Steam
 
 Launches games from your Steam library via the `steam://` URL scheme. Both official Steam games and non-Steam shortcuts are detected.

@@ -86,7 +86,7 @@ Alignment is the hardest part of the whole process. Here are techniques that wor
 
 **Manual application:** Cut the label from the sheet first. Align the top edge of the label with the top edge of the card. Using a credit card or similar flat edge, slowly press the label down from top to bottom, pushing air out as you go. Vinyl sticker paper is slightly elastic, so you can steer it a little if it starts going off-center.
 
-**3D printed alignment jigs** are being developed by community members to hold cards in place during label application. Check [Printables](https://www.printables.com/) for "NFC card label alignment" or similar.
+**3D-printed alignment jigs** can hold cards in place during label application. One example is the [TapTo Sticker Applicator](https://www.printables.com/model/1022980-tapto-sticker-applicator) on Printables.
 
 **Double-sided approach:** If your binder pages or sleeves are double-sided, consider only labeling the front of the card. Getting both sides aligned cleanly is significantly harder.
 

@@ -1,11 +1,11 @@
 ---
-description: "Zaparoo launcher configuration for Linux: Steam game launching, Kodi media playback, web browser, and shell script support."
-keywords: [zaparoo linux launchers, zaparoo steam linux, zaparoo kodi, linux nfc game launch]
+description: "Configure Steam, RetroArch, Kodi, browser, and script launchers in Zaparoo Core for Linux."
+keywords: [zaparoo linux launchers, zaparoo steam linux, zaparoo retroarch, zaparoo kodi, linux nfc game launch]
 ---
 
 # Launchers
 
-Linux supports multiple game launchers, Kodi media playback, web browser URLs, and shell scripts.
+Linux supports Steam and RetroArch game launchers, Kodi media playback, web browser URLs, and shell scripts.
 
 ## Steam
 
@@ -28,6 +28,27 @@ To specify a custom Steam installation directory:
 launcher = "Steam"
 install_dir = "/path/to/steam"
 ```
+
+## RetroArch
+
+Core includes launchers for supported systems when the `org.libretro.RetroArch` Flatpak and matching RetroArch core are installed. Missing Flatpaks or core files are reported as unavailable, so Core does not select a launcher that cannot run the game.
+
+Install the Flatpak from Flathub, then use RetroArch to install the cores for the systems you want to launch:
+
+```bash
+flatpak install flathub org.libretro.RetroArch
+```
+
+RetroArch launchers scan ES-DE-style system folders such as `nes`, `snes`, and `megadrive` under each configured [`launchers.index_root`](../../core/config.md#index_root). For example:
+
+```toml
+[launchers]
+index_root = ["/home/user/ROMs"]
+```
+
+Core maps each supported system to a default RetroArch core. You can change a launcher's core with its [`load_path`](../../core/config.md#load_path) default.
+
+Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop. Core enables these through a small network-command overlay at `~/.config/zaparoo/retroarch-network.cfg`; it does not modify your primary RetroArch configuration.
 
 ## Kodi
 

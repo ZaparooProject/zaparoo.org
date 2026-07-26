@@ -341,6 +341,8 @@ One of the following formats:
 | `/path/to/folder`         | Random file from a folder      |
 | `<system>/*pattern*`      | Random indexed media matching a search query |
 
+When the selected [system has fallbacks](../features/systems.md#usage-notes), Core tries the requested system first and only moves to the next fallback tier when no matching media exists.
+
 ### Advanced Arguments
 
 | Argument            | Type       | Default | Description                                                        |
@@ -413,7 +415,7 @@ Searches indexed media and launches the first result.
 A media database search query. `*` can be used for broad partial matches.
 
 **`system`** (optional)
-The system ID to search within. If omitted, searches all systems.
+The system ID to search within. If omitted, searches all systems. When the selected [system has fallbacks](../features/systems.md#usage-notes), Core searches the requested system first and only moves to the next fallback tier when no matching media exists.
 
 ### Advanced Arguments
 

@@ -37,6 +37,41 @@ It imports:
 
 When a `gamelist.xml` entry does not list an image directly, the scraper falls back to looking in the system's `media/` folder, the same place the media-folder scraper reads.
 
+#### Custom gamelist bundles
+
+You can keep `gamelist.xml` metadata and artwork in a separate directory instead of copying them into each ROM folder. Set a bundle root in `config.toml`:
+
+```toml
+[scraper.gamelist_xml]
+custom_path = "/path/to/gamelists"
+```
+
+Create one subdirectory for each exact [system ID](./systems.md):
+
+```text
+/path/to/gamelists/
+├── NES/
+│   ├── gamelist.xml
+│   ├── assets/
+│   └── media/
+└── SNES/
+    ├── gamelist.xml
+    └── media/
+```
+
+Core checks `<custom_path>/<system ID>/gamelist.xml` for every indexed system. Custom bundles only enrich games already in the media database; they do not create systems or game entries. Run a [media database update](../core/tui.md#managing-media) before scraping when the games have not been indexed yet.
+
+Game `<path>` values in a custom gamelist resolve against the system's first ROM root. Artwork, video, and manual paths resolve against the custom system directory, so an image such as `./assets/cover.png` is read from `<custom_path>/<system ID>/assets/cover.png`.
+
+For custom bundles, Core only stores an explicit image path when the file exists. If that image is missing, Core looks through EmulationStation-style `media/` folders in this order:
+
+1. The custom system directory
+2. The system's ROM roots, in configured order
+
+A bundle can provide metadata before all of its artwork is installed. Run a force re-scrape after adding more artwork.
+
+A normal `gamelist.xml` beside the ROMs takes precedence when it and the custom bundle both match the same game. Invalid or malformed custom files are logged and skipped without stopping other systems from scraping.
+
 ### media-folder
 
 The `media-folder` scraper imports artwork from EmulationStation-style `media/` folders without needing a `gamelist.xml`. Use it when you have media folders but no gamelist, or to pick up artwork a gamelist did not list.

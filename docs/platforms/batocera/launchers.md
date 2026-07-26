@@ -17,15 +17,16 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 |-----------|---------|------------|
 | `3DO` | `3do` | `.iso`, `.chd`, `.cue` |
 | `3DS` | `3ds` | `.3ds`, `.cci`, `.cxi`, `.squashfs`, `.zcci` |
-| `Amiga` | `amigacdtv` | `.bin`, `.cue`, `.iso`, `.chd`, `.m3u` |
 | `Amiga500` | `amiga500` | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip` |
 | `Amiga1200` | `amiga1200` | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip` |
 | `AmigaCD32` | `amigacd32` | `.bin`, `.cue`, `.iso`, `.chd` |
-| `Amstrad` | `amstradcpc`, `gx4000` | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.m3u`, `.zip`, `.7z`, `.cpr` |
+| `Amstrad` | `amstradcpc` | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.m3u`, `.zip`, `.7z` |
+| `AmstradGX4000` | `gx4000` | `.dsk`, `.m3u`, `.cpr`, `.zip`, `.7z` |
 | `AcornAtom` | `atom` | `.wav`, `.tap`, `.csw`, `.uef`, `.mfi`, `.dfi`, `.hfe`, `.mfm`, `.td0`, `.imd`, `.d77`, `.d88`, `.1dd`, `.cqm`, `.cqi`, `.dsk`, `.40t`, `.atm`, `.bin`, `.rom`, `.zip`, `.7z` |
 | `AcornElectron` | `electron` | `.wav`, `.csw`, `.uef`, `.mfi`, `.dfi`, `.hfe`, `.mfm`, `.td0`, `.imd`, `.d77`, `.d88`, `.1dd`, `.cqm`, `.cqi`, `.dsk`, `.ssd`, `.bbc`, `.img`, `.dsd`, `.adf`, `.ads`, `.adm`, `.adl`, `.rom`, `.bin`, `.zip`, `.7z` |
 | `AdventureVision` | `advision` | `.bin`, `.zip`, `.7z` |
-| `AppleII` | `apple2`, `apple2gs` | `.nib`, `.do`, `.po`, `.dsk`, `.mfi`, `.dfi`, `.rti`, `.edd`, `.woz`, `.wav`, `.zip`, `.7z` |
+| `AppleII` | `apple2` | `.nib`, `.do`, `.po`, `.dsk`, `.mfi`, `.dfi`, `.rti`, `.edd`, `.woz`, `.wav`, `.zip`, `.7z` |
+| `AppleIIGS` | `apple2gs` | `.nib`, `.do`, `.po`, `.dsk`, `.mfi`, `.dfi`, `.rti`, `.edd`, `.woz`, `.wav`, `.zip`, `.7z` |
 | `Arcade` | `arcade`, `mame`, `fbneo`, `apfm1000`, `cannonball`, `cave3rd`, `gong`, `systemsp` | `.zip`, `.7z`, `.cannonball`, `.game` |
 | `Arcadia` | `arcadia` | `.bin`, `.zip`, `.7z` |
 | `Archimedes` | `archimedes` | `.mfi`, `.dfi`, `.hfe`, `.mfm`, `.td0`, `.imd`, `.d77`, `.d88`, `.1dd`, `.cqm`, `.cqi`, `.dsk`, `.ima`, `.img`, `.ufi`, `.360`, `.ipf`, `.adf`, `.apd`, `.jfd`, `.ads`, `.adm`, `.adl`, `.ssd`, `.bbc`, `.dsd`, `.st`, `.msa`, `.chd`, `.zip`, `.7z` |
@@ -41,8 +42,9 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `Atomiswave` | `atomiswave` | `.lst`, `.bin`, `.dat`, `.zip`, `.7z` |
 | `Audio` | `vgmplay` | `.vgm`, `.vgz` |
 | `BBCMicro` | `bbc` | `.mfi`, `.dfi`, `.hfe`, `.mfm`, `.td0`, `.imd`, `.d77`, `.d88`, `.1dd`, `.cqm`, `.cqi`, `.dsk`, `.ima`, `.img`, `.ufi`, `.360`, `.ipf`, `.ssd`, `.bbc`, `.dsd`, `.adf`, `.ads`, `.adm`, `.adl`, `.fsd`, `.wav`, `.tap`, `.bin`, `.zip`, `.7z` |
-| `C16` | `cplus4` | `.d64`, `.prg`, `.tap`, `.m3u`, `.zip`, `.7z` |
 | `C64` | `c64`, `c128` | `.d64`, `.d81`, `.crt`, `.prg`, `.tap`, `.t64`, `.lnx`, `.m3u`, `.zip`, `.7z` |
+| `CommodoreCDTV` | `amigacdtv` | `.bin`, `.cue`, `.iso`, `.chd`, `.m3u` |
+| `CommodorePlus4` | `cplus4` | `.d64`, `.prg`, `.tap`, `.m3u`, `.zip`, `.7z` |
 | `CasioPV1000` | `pv1000` | `.bin`, `.zip`, `.7z` |
 | `CDI` | `cdi` | `.chd`, `.cue`, `.toc`, `.nrg`, `.gdi`, `.iso`, `.cdr` |
 | `ChannelF` | `channelf` | `.zip`, `.rom`, `.bin`, `.chf` |
@@ -71,7 +73,7 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `Gameboy2P` | `gb2players`, `gbc2players` | `.gb`, `.gb2`, `.gbc2`, `.gbc`, `.zip`, `.7z` |
 | `GameboyColor` | `gbc` | `.gbc`, `.zip`, `.7z` |
 | `GBA` | `gba` | `.gba`, `.zip`, `.7z` |
-| `Genesis` | `megadrive`, `pico`, `sonic3-air`, `sonicretro` | `.bin`, `.gen`, `.md`, `.sg`, `.smd`, `.zip`, `.7z`, `.sonic3air`, `.sonicretro` |
+| `Genesis` | `megadrive`, `sonic3-air`, `sonicretro` | `.bin`, `.gen`, `.md`, `.sg`, `.smd`, `.zip`, `.7z`, `.sonic3air`, `.sonicretro` |
 | `GenesisMSU` | `msu-md` | `.msu`, `.md` |
 | `GP32` | `gp32` | `.smc`, `.zip`, `.7z` |
 | `Hikaru` | `hikaru` | `.chd`, `.zip` |
@@ -106,14 +108,16 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `NGage` | `ngage` | `.ngage`, `.jar` |
 | `Nintendo64` | `n64`, `n64dd` | `.z64`, `.n64`, `.v64`, `.zip`, `.7z`, `.z64.ndd` |
 | `Odyssey2` | `o2em` | `.bin`, `.zip`, `.7z` |
+| `OpenBOR` | `openbor` | `.pak` |
 | `Oric` | `oricatmos` | `.dsk`, `.tap` |
-| `PC` | `bennugd`, `cavestory`, `corsixth`, `devilutionx`, `doom3`, `easyrpg`, `etlegacy`, `flash`, `hcl`, `hurrican`, `iortcw`, `jazz2`, `jkdf2`, `jknight`, `library`, `lowresnx`, `lutro`, `mohaa`, `moonlight`, `mrboom`, `odcommander`, `openjazz`, `ports`, `pygame`, `quake`, `quake2`, `quake3`, `reminiscence`, `sdlpop`, `solarus`, `sonic-mania`, `superbroswar`, `theforceengine`, `thextech`, `traider1`, `traider2`, `tyrquake`, `uqm`, `uzebox`, `vemulator`, `vircon32`, `vis`, `wasm4`, `flatpak`, `steam`, `xash3d_fwgs`, `xrick`, `zc210`, `pyxel` | Various |
+| `PC` | `bennugd`, `cavestory`, `corsixth`, `devilutionx`, `doom3`, `easyrpg`, `etlegacy`, `flash`, `hcl`, `hurrican`, `iortcw`, `jazz2`, `jkdf2`, `jknight`, `library`, `lowresnx`, `lutro`, `mohaa`, `moonlight`, `mrboom`, `odcommander`, `openjazz`, `ports`, `pygame`, `quake`, `quake2`, `quake3`, `reminiscence`, `sdlpop`, `solarus`, `sonic-mania`, `superbroswar`, `theforceengine`, `thextech`, `traider1`, `traider2`, `tyrquake`, `uqm`, `vemulator`, `vircon32`, `vis`, `wasm4`, `flatpak`, `steam`, `xash3d_fwgs`, `xrick`, `zc210`, `pyxel` | Various |
 | `PC88` | `pc88` | `.d88`, `.u88`, `.m3u` |
 | `PC98` | `pc98` | `.d98`, `.zip`, `.98d`, `.fdi`, `.fdd`, `.2hd`, `.tfd`, `.d88`, `.88d`, `.hdm`, `.xdf`, `.dup`, `.cmd`, `.hdi`, `.thd`, `.nhd`, `.hdd`, `.hdn`, `.m3u` |
 | `PCFX` | `pcfx` | `.cue`, `.ccd`, `.toc`, `.chd`, `.zip`, `.7z` |
 | `PDP1` | `pdp1` | `.zip`, `.7z`, `.tap`, `.rim`, `.drm` |
 | `PET2001` | `pet` | `.a0`, `.b0`, `.crt`, `.d64`, `.d81`, `.prg`, `.tap`, `.t64`, `.m3u`, `.zip`, `.7z` |
 | `Pico8` | `pico8` | `.p8`, `.png`, `.m3u` |
+| `Pinball` | `vpinball` | `.vpx`, `.vpt` |
 | `PlugNPlay` | `plugnplay` | `.game` |
 | `PokemonMini` | `pokemini` | `.min`, `.zip`, `.7z` |
 | `PS2` | `ps2` | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u` |
@@ -125,7 +129,8 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `Saturn` | `saturn` | `.cue`, `.ccd`, `.m3u`, `.chd`, `.iso`, `.zip` |
 | `ScummVM` | `scummvm` | `.scummvm`, `.squashfs` |
 | `Sega32X` | `sega32x` | `.32x`, `.chd`, `.smd`, `.bin`, `.md`, `.zip`, `.7z` |
-| `SG1000` | `sg1000`, `scv` | `.bin`, `.sg`, `.zip`, `.7z`, `.0` |
+| `SegaPico` | `pico` | `.bin`, `.md`, `.zip`, `.7z` |
+| `SG1000` | `sg1000` | `.bin`, `.sg`, `.zip`, `.7z` |
 | `SGBMSU1` | `sgb-msu1` | `.gb`, `.gbc`, `.zip`, `.7z` |
 | `Singe` | `singe` | `.singe` |
 | `SNES` | `snes`, `satellaview` | `.smc`, `.fig`, `.sfc`, `.gd3`, `.gd7`, `.dx2`, `.bsx`, `.swc`, `.zip`, `.7z`, `.bs` |
@@ -134,6 +139,7 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `Spectravideo` | `spectravideo` | `.cas`, `.rom`, `.ri`, `.mx1`, `.mx2`, `.dsk`, `.zip` |
 | `Sufami` | `sufami` | `.st`, `.zip` |
 | `SuperACan` | `supracan` | `.bin`, `.zip` |
+| `SuperCassetteVision` | `scv` | `.bin`, `.zip`, `.0` |
 | `SuperGameboy` | `sgb` | `.gb`, `.gbc`, `.zip`, `.7z` |
 | `SuperGrafx` | `supergrafx` | `.pce`, `.sgx`, `.cue`, `.ccd`, `.chd`, `.zip`, `.7z` |
 | `SuperVision` | `supervision` | `.sv`, `.zip`, `.7z` |
@@ -145,6 +151,7 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `Triforce` | `triforce` | `.iso`, `.gcz` |
 | `TurboGrafx16` | `pcengine` | `.pce`, `.bin`, `.zip`, `.7z` |
 | `TurboGrafx16CD` | `pcenginecd` | `.pce`, `.cue`, `.ccd`, `.iso`, `.img`, `.chd` |
+| `Uzebox` | `uzebox` | `.uze` |
 | `VC4000` | `vc4000` | `.bin`, `.rom`, `.pgm`, `.tvc`, `.zip`, `.7z` |
 | `Vectrex` | `vectrex` | `.bin`, `.gam`, `.vec`, `.zip`, `.7z` |
 | `VIC20` | `c20` | `.a0`, `.b0`, `.crt`, `.d64`, `.d81`, `.prg`, `.tap`, `.t64`, `.m3u`, `.zip`, `.7z` |
@@ -169,12 +176,12 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 
 These folders run games through standalone game engines:
 
-| Folder | Description | Extensions |
-|--------|-------------|------------|
-| `ikemen` | Ikemen GO fighting game engine | `.ikemen` |
-| `mugen` | M.U.G.E.N fighting game engine | `.mugen` |
-| `openbor` | OpenBOR beat 'em up engine | `.pak` |
-| `vpinball` | Visual Pinball | `.vpx`, `.vpt` |
+| Folder | System ID | Description | Extensions |
+|--------|-----------|-------------|------------|
+| `ikemen` | `PC` | Ikemen GO fighting game engine | `.ikemen` |
+| `mugen` | `PC` | M.U.G.E.N fighting game engine | `.mugen` |
+| `openbor` | `OpenBOR` | OpenBOR beat 'em up engine | `.pak` |
+| `vpinball` | `Pinball` | Visual Pinball | `.vpx`, `.vpt` |
 
 ## Kodi
 

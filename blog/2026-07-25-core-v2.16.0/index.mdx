@@ -1,0 +1,282 @@
+---
+slug: core-v2.16.0
+title: "Zaparoo Core v2.16.0 released"
+description: "Zaparoo Core v2.16.0 adds profiles and parental controls, device backups, large-library recovery, physical-disc launching, and new Linux, SteamOS, and MiSTer launchers."
+tags: [software, core]
+authors: [wizzo]
+draft: true
+---
+
+Zaparoo Core v2.16.0 is now available. This release adds profiles and parental controls, portable device backups, more resilient indexing for large libraries, and physical-disc matching.
+
+{/* truncate */}
+
+Linux and SteamOS gain built-in RetroArch and native emulator launchers, while MiSTer gets more launch options, arcade hardware categories, and better coordination between Frontend, scripts, and ARM apps.
+
+**The highlights:**
+
+- **[Profiles and parental controls](#profiles-and-parental-controls)**: per-person playtime limits, profile cards, and separate MiSTer saves
+- **[Device backups](#back-up-settings-and-saves)**: local MiSTer and MiSTeX backups, transactional restore, and optional Warp cloud snapshots
+- **[Large-library recovery](#large-library-indexing-and-recovery)**: lower memory use, resumable indexing, gameplay-aware throttling, and automatic corruption recovery
+- **[Physical-disc launching](#launch-indexed-games-from-physical-discs)**: use original game discs to launch matching copies from your indexed library
+- **[Linux and SteamOS launchers](#retroarch-on-linux-and-steamos)**: built-in RetroArch support and experimental native SteamOS emulators
+- **[MiSTer updates](#more-reliable-mister-console-apps)**: console-app reliability, arcade hardware categories, custom launchables, and broader core coverage
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.16.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Profiles and parental controls
+
+Families and other shared-device setups can now create a [profile](/docs/features/profiles/) for each person. Every profile can inherit the device's playtime settings or use its own daily and session limits, with usage tracked against the person who launched the game. You can also require a personal profile before any media launches, leaving the device parked until someone identifies themselves.
+
+Profiles are created and managed from the Core terminal UI. Switch from the profile list with an optional PIN, or write a profile card for instant switching. Core remembers the active profile across restarts, and selecting the shared profile returns to the device's existing global settings and data. Profile cards bypass the PIN, so treat them like keys: anyone with the card can activate that profile.
+
+On MiSTer, profiles also get separate save files and save states automatically. Existing saves stay with the shared profile, while each personal profile starts with its own empty save directories. If you switch while a game is running, Core waits for it to stop before changing the live save data. Save separation is currently limited to MiSTer; profiles on other platforms still provide switching and individual playtime controls.
+
+MiSTer users running [odelot's custom RetroAchievements Main](https://github.com/odelot/Main_MiSTer) can also keep a separate RetroAchievements account for each profile. First activation copies the currently visible account configuration, which can then be changed independently. The shared profile returns to the original account. These configuration files contain plaintext passwords, so Core intentionally excludes them from local and cloud backups.
+
+Admin and member roles protect profile and settings management in the terminal UI. Paired clients can also be approved as admin or member devices. To enforce those client restrictions remotely, enable **Require encryption** under **Settings > Clients**. Profiles are designed as household parental or kiosk controls rather than operating-system account security.
+
+<!--
+Intake source: zaparoo-core PR #950, resolving issues #250 and #883.
+Initial user-facing management is through the Core TUI. The API is complete but not worth emphasizing to the release-post audience; do not claim Zaparoo App or Web UI profile management ships with this release.
+Profile cards contain `**profile:<switchId>`; switch IDs are bearer credentials and bypass PINs on scan and API paths. The first profile is admin and requires a PIN; later profiles default member. Profile and paired-client roles are separate. Existing paired clients migrate to member and can be revoked/re-paired as admin locally.
+Per-profile limits override enabled/daily/session fields while warnings and session-reset remain global. Personal daily usage is profile-scoped; shared-profile limits count device-wide history to prevent deactivation granting a fresh allowance. Limits remain pinned to the profile that launched active media, and deactivation does not clear cooldown/session state.
+MiSTer swaps saves and savestates using bind mounts under the selected SD/USB storage root, retaining existing saves under Shared Profile and preserving foreign/NAS mounts. Core configs, input mappings, recents, arcade NVRAM, and computer-core disk images remain shared. Other platforms do not yet swap data (issue #1101). Do not fold per-profile RetroAchievements config into this PR; that arrives in PR #1128.
+Validation reviewed during intake: 13 of 14 final checks passed; Codecov patch coverage failed at 62.63%. All functional review findings were fixed. Five threads remain formally unresolved, but three findings were fixed in later commits and two PBKDF2 findings assumed the wrong package API. Current main passed 2,727 tests across nine relevant packages.
+PR #1128 adds per-profile /media/fat/retroachievements.cfg handling for odelot's custom RetroAchievements Main. First activation seeds each profile copy from the visible config, switching uses a file bind mount fixed to the SD root, and profile deletion leaves the copy on disk. Shared and per-profile configs are excluded from local and cloud backups because they contain plaintext passwords. Its 15 final checks passed; Codecov reported 69.07% patch coverage, and current main passed 545 relevant tests.
+Docs added/updated during intake: docs/features/profiles.md, docs/features/index.md, docs/features/play-controls.md, docs/core/tui.md, docs/core/cli.md, docs/core/config.md, docs/features/backups.md, docs/zapscript/utilities.md, docs/zapscript/index.md, and docs/platforms/mister/index.md.
+-->
+
+## Back up settings and saves
+
+MiSTer and MiSTeX devices can now create [portable backups](/docs/features/backups/) containing Zaparoo configuration and user data together with MiSTer settings, input mappings, saves, save states, and profile-specific save directories. Local backups are stored as ZIP files and do not require an online account.
+
+Restores validate the backup and its contents before changing the device, create a local safety backup, and roll back if anything fails. Core restarts after a successful restore while keeping the destination device's identity, paired clients, encryption setting, and Zaparoo Online link. Backups do not include ROMs, downloaded cores, scraped artwork, or authentication credentials.
+
+Zaparoo Warp members can also link Core to their Zaparoo Online account for cloud snapshots. Upload manually or choose a daily or weekly schedule, then browse snapshots by their source device and restore one to another compatible device. Restoring copies the snapshot without changing the source device or cloud backup.
+
+Backup work yields to games. Most launches throttle collection and uploads, while storage-sensitive CD cores pause them until the game stops. Interrupted scheduled backups retry sooner after Core restarts instead of waiting for the next full schedule interval.
+
+<!--
+Intake sources: zaparoo-core PRs #1124 and #1131.
+Full-device backup providers currently exist for MiSTer and MiSTeX. Platform scope includes Zaparoo-owned files plus MiSTer INI/Downloader settings, config and input files, common saves/savestates, and profile data. It excludes ROMs, downloaded cores, binaries, rebuildable media.db, scraped thumbnails, logs, and auth.toml.
+Restore requires an exact platform match and no active media. It verifies ZIP structure, manifest policy, and SHA-256 payload hashes before mutation, creates a pre-restore ZIP, applies a durable transaction, rolls back on failure, and restarts Core after responding. The three newest automatic pre-restore backups are retained. Destination DeviceID, encryption setting, paired UserDB clients, and stored auth credentials are preserved.
+Local manual backups remain until deleted. Cloud remote.enabled controls automatic scheduling only; linked Warp members can upload manually while scheduling is disabled. Linked users can list and restore existing snapshots without current Warp availability. Cloud snapshots are grouped by opaque source device identity, and restore still requires the same Core platform.
+Collection uses gameplay-aware throttling and a full pause for storage-sensitive CD cores. Interrupted in-flight scheduled attempts receive an earlier retry rather than waiting for a full daily or weekly interval.
+PR #1131 completes the initial implementation with verified pack-based cloud restores, bounded 429 retries, upload quota preflight, accurate unchanged-run timestamps, all-payload local restore staging, stale staging cleanup, exact size/hash checks, and Windows database-rename retries. Cloud files that cannot fit in a 64 MiB pack are skipped and reported as a partial snapshot.
+Validation reviewed during intake: #1124 passed all 14 final checks and resolved all three review threads; #1131 passed all 15 final checks with no review threads. Codecov reported 66.70% and 69.29% patch coverage respectively. Current main passed 3,225 tests across seven packages relevant to the final implementation.
+Docs added/updated during intake: docs/features/backups.md, docs/features/index.md, docs/core/tui.md, docs/core/cli.md, docs/core/config.md, docs/online/index.md, and docs/platforms/mister/index.md. Owning API docs corrected to state restore preserves destination pairings and credentials.
+-->
+
+## Large-library indexing and recovery
+
+Media indexing has been reworked to handle very large libraries without loading the existing media database into memory. Core now processes one system at a time and keeps completed systems available for search and browsing while the rest of the update continues.
+
+Interrupted indexes keep their completed work and resume on startup. If an index repeatedly stalls at the same system, Core pauses it, keeps the cached library browsable, and adds an Inbox warning with recovery steps. Large browse requests can also show a populated folder with an unknown count instead of failing while Core repairs stale cache data in the background.
+
+Indexing and metadata scraping now yield to gameplay. Most systems use a light throttle, optical systems use a heavier one, and 3DO, CD-i, Jaguar CD, and Saturn pause background media work completely. Linux workers also use low CPU and I/O priority.
+
+Core can now recover automatically when it detects corruption in the rebuildable media database. It verifies the replacement, starts a full index, and preserves favorites, history, token mappings, and saved launcher overrides in the separate user database. An Inbox message reminds you to scrape artwork and metadata again. After three failed recovery attempts in one Core session, it stops and suggests checking free space or replacing the storage device instead of repeatedly rebuilding.
+
+Apps can also list every system supported by the platform before its emulator or runtime is installed, allowing those systems to be selected for indexing while setup is still in progress.
+
+<!--
+Intake sources: zaparoo-core PRs #1040, #1060, #1085, and #1091.
+PR #1040 size: 14 commits, 107 changed files.
+PR #1060 refines the unreleased interrupted-index recovery: only five consecutive resumes without completing another system trigger cancellation; progress resets the durable stall counter, allowing a healthy long index to resume across any number of power cycles.
+PR #1085 replaces path scanning after route-count timeouts with index-backed system presence checks and expands systems API discovery. Core API docs were updated for systems params.all. Follow-up performance issue #1147 tracks memoizing identical fallback probes across multiple timed-out routes.
+PR #1091 centralizes corruption classification after transaction rollback, polls durable recovery markers, verifies replacement databases with quick_check, bounds rebuilds to three attempts per process, and preserves live UserDB files until staged restores install successfully. It resolves issue #1062.
+Validation reviewed during intake: all four PRs passed all 15 CI checks; #1040 resolved all 19 review threads and reported successful MiSTer testing against a large media.db; #1060 and #1085 had no review threads. PR #1091 had 11 review threads; seven were marked resolved, three unresolved requests are present in merged code, and the remaining thread concerns test-fixture style rather than runtime behavior.
+-->
+
+## Smarter artwork caching
+
+Core now keeps resized artwork caches separate for each system. A selective media update or metadata scrape only clears thumbnails for systems whose images actually changed, instead of discarding unrelated artwork. Metadata-only and no-change scrape results leave existing thumbnails alone, reducing repeated image processing and unnecessary SD-card writes.
+
+Image requests can now use 32px and 64px resize tiers alongside the existing larger sizes. These small WebP images give clients a lightweight placeholder that is faster to decode on devices such as MiSTer while full-size cover art loads in the background.
+
+Thumbnail writes now use atomic replacement, and Core cleans up abandoned temporary files and older cache formats automatically. If a scrape is interrupted, Core invalidates only the known affected systems when it can do so safely, falling back to a full refresh when the scope is uncertain.
+
+<!--
+Intake source: zaparoo-core PR #1088.
+The cache is stored in versioned per-system directories. Scrape transactions track committed image-property changes by system; metadata-only/no-op writes do not invalidate. Interrupted scrape recovery consumes the known scrape scope or conservatively wipes all.
+Core API docs were updated for media.image maxSize tiers 32, 64, 128, 256, 512, and 768, including WebP and snapping behavior.
+Validation reviewed during intake: all 15 CI checks passed and both review findings were resolved.
+-->
+
+## Custom gamelist bundles
+
+Thanks to [BossRighteous](https://github.com/BossRighteous), Core can now import [per-system `gamelist.xml` bundles](/docs/features/scraping/#custom-gamelist-bundles) stored separately from your ROM folders. This keeps a curated metadata and artwork library in a separate location while leaving game storage unchanged.
+
+Set `scraper.gamelist_xml.custom_path` to the bundle directory, with one subfolder for each system ID. Custom gamelists enrich games already in the media database and use their own directory for artwork and other assets. Regular gamelists beside the ROMs still take priority, and missing bundle images can fall back to EmulationStation-style `media/` folders in the bundle or ROM roots.
+
+<!--
+Intake source: zaparoo-core PR #927 by external contributor BossRighteous.
+Custom layout is <custom_path>/<system ID>/gamelist.xml. Game paths resolve against the first ROM root; asset paths resolve against the custom system directory. Custom entries never create systems, titles, or media rows.
+Only custom image references require the file to exist before being stored. Missing image references fall back through the bundle's media folders, then all ROM-root media folders. Video/manual paths retain normal behavior. Regular ROM-root gamelists are processed first and consume matching candidates before the custom source.
+Validation reviewed during intake: all 14 final listed checks passed; Codecov reported 33.78% patch coverage. Both review threads were resolved, and current main passed 759 relevant tests.
+Docs updated during intake: docs/features/scraping.md and docs/core/config.md. Owning scraper developer docs were updated in the PR.
+-->
+
+## Launch indexed games from physical discs
+
+Core can now [identify supported physical game discs](/docs/readers/optical-drive/#launch-an-indexed-game-from-its-original-disc) and launch the matching disc image from your indexed media library. It still does not run the game directly from the disc: the disc works as a physical trigger for the copy already stored on your device.
+
+Run a media database update after installing this release so Core can add game IDs to supported disc images. Matching works with `.chd`, `.cue`, `.gcm`, and `.iso` files for Nintendo GameCube, Sega CD/Mega CD, Neo Geo CD, PlayStation, PlayStation 2, PSP, and Sega Saturn. Compressed `.cso`, `.gcz`, and `.rvz` images are not supported for this matching.
+
+Insert the corresponding game disc into a connected Linux optical drive and Core launches the indexed file when exactly one match is found. Existing token mappings still take priority, and Core does not guess when a disc matches zero or multiple indexed files.
+
+MiSTer can now automatically detect optical drives exposed as `/dev/sr0`, `/dev/sr1`, and similar Linux device paths. Manual reader configuration remains available when detection is unavailable. Disc identification remains stable while a disc is inserted, avoiding unnecessary repeat scans and tolerating temporary read failures.
+
+<!--
+Intake sources: zaparoo-core PRs #1058 and #1059.
+PR #1058 establishes typed reader-property matching for future reader metadata, while current automatic database matching is limited to GameID properties.
+PR #1059 stabilizes this unreleased feature before release: direct ISO 9660 identity parsing, GameID kept out of token UIDs, stable scan state, cancellable Linux reads, transient read retries, and strict id_source semantics. Keep these implementation details out of the user-facing post unless they explain observed behavior.
+Validation reviewed during intake: both PRs passed all 15 CI checks; #1058 had no review threads and #1059's one review finding was resolved.
+Docs updated during intake: docs/readers/optical-drive.md and docs/readers/index.md.
+-->
+
+## RetroArch on Linux and SteamOS
+
+Core now includes [built-in RetroArch launchers](/docs/platforms/linux/launchers/#retroarch) on generic Linux and SteamOS. These launchers map supported systems to default RetroArch cores and scan ROMs from ES-DE-style system folders, removing the need to create a custom launcher for each core.
+
+Core checks whether the RetroArch Flatpak and required core are installed before using each launcher. Missing dependencies no longer lead to a failed automatic launch: apps can show that the launcher is unavailable and explain what is missing. You can also override the core selected for an individual launcher through its `load_path` default.
+
+RetroArch launchers support save state, load state, menu, pause, reset, fast forward, rewind, and stop controls. Core enables these through a separate network-command config overlay instead of changing your primary RetroArch configuration.
+
+On SteamOS, the same launchers integrate with EmuDeck's RetroArch systems while standalone EmuDeck emulators remain supported. RetroArch launches also receive Gaming Mode focus handling. Process tracking has been tightened so active-media state is cleared when the launched emulator exits without an older process clearing a newer launch.
+
+<!--
+Intake source: zaparoo-core PR #1066.
+Runtime availability is exposed through the launchers API as available and availabilityReason; unavailable launchers remain visible to clients but are excluded from automatic selection and media scanning.
+Internal ZapOS ARM64 entrypoint and release plumbing intentionally omitted from public documentation and release copy at user request.
+Validation reviewed during intake: all 15 CI checks passed; three review threads were resolved. One unresolved thread identified stale active-media cleanup on Windows, but later PR #1144 added guarded Windows process ownership and regression tests, so no issue was opened.
+Docs updated during intake: docs/platforms/linux/index.md, docs/platforms/linux/launchers.md, docs/platforms/steamos.md, docs/features/launchers.md, and docs/core/config.md.
+-->
+
+## Native emulators on SteamOS
+
+SteamOS can now [launch games through experimental native emulator integrations](/docs/platforms/steamos/#native-emulators), without requiring EmuDeck or RetroDECK. Supported emulators include Xenia Canary, Ryubing, shadPS4, PCSX2, Cemu, Azahar, Vita3K, RPCS3, DuckStation, PPSSPP, Dolphin, melonDS, ScummVM, Supermodel, xemu, and PrimeHack. Core checks whether each Flatpak or executable is installed before selecting it, so missing runtimes can be reported instead of producing a failed launch.
+
+A new `launchers.preference` setting chooses an ordered fallback across launcher groups. SteamOS users can prefer `Native`, `EmuDeck`, or `RetroDECK`, while explicit token launchers, saved per-game overrides, and system defaults continue to take priority. When several launchers scan the same system, Core now merges duplicate paths while preserving the best available display metadata.
+
+Native RetroArch launches use Zaparoo-owned low-latency configuration profiles for each system. These enable network controls while tuning video and audio latency and disabling features that conflict with the profile. Your primary RetroArch configuration remains unchanged.
+
+Gaming Mode handling is more reliable across SteamOS, Bazzite, and ChimeraOS. Core carries the active session environment into launched apps, finds Flatpak windows more reliably, restores the previous gamescope focus after exit, and stops the active launcher when returning to the menu. Steam tracking also ignores stale process events from older launches so they cannot clear or stop a newer game.
+
+<!--
+Intake source: zaparoo-core PR #1080.
+Native standalone launchers use tracked lifecycle processes, gate availability on exact Flatpak IDs or executable lookup, and expose only the launched media's parent directory to Flatpaks as read-only. Marker-file details remain in the SteamOS docs rather than release copy.
+Launcher precedence: explicit ?launcher, per-media override, explicit systems.default, first available launchers.preference entry, then platform auto-detection. Stable SteamOS groups are Native, EmuDeck, and RetroDECK.
+Native RetroArch and EmuDeck RetroArch launches receive Zaparoo-owned low-latency overlays. Current profile enables vsync/audio sync and network commands while disabling threaded video, run-ahead, rewind, shaders, overlays, and automatic overrides.
+Shared Gamescope handling covers SteamOS, Bazzite, and ChimeraOS with Flatpak-compatible window discovery, topmost fallback, focus restoration, and cancellation. Steam lifecycle tracking binds AppID/reaper ownership and rejects stale stop events across Linux, macOS, and Windows.
+Validation reviewed during intake: all 14 final checks passed. Nine of ten review threads were resolved; the only unresolved thread is outdated and concerns a hardcoded path in a test. No release-blocking bug found on current main.
+Docs updated during intake: docs/core/config.md, docs/features/launchers.md, docs/platforms/steamos.md, docs/platforms/bazzite.mdx, and docs/platforms/chimeraos.mdx.
+-->
+
+## More reliable MiSTer console apps
+
+Core now [coordinates MiSTer console ownership](/docs/platforms/mister/launchers/#console-launcher-rendering) between Zaparoo Frontend widgets, visible scripts, video playback, ScummVM, and other ARM apps. This fixes Core-side conflicts where starting media from Zaparoo App while Frontend was active could briefly interrupt the display, then reload Frontend instead of showing the media.
+
+Console launchers now wait for earlier processes and their child processes to stop before taking over the display. Core restores the console and Frontend after a launcher exits, crashes, or is forcibly stopped, and ScummVM receives a graceful exit before Core falls back to terminating it. Newer compatible MiSTer Main builds can explicitly hand console ownership to Core, while stock and older builds continue using the existing fallback behavior.
+
+:::note Frontend update required
+Launching visible scripts or ARM apps while Zaparoo Frontend is active also requires a corresponding Zaparoo Frontend update. Updating Core alone does not fully resolve those conflicts.
+:::
+
+Video and ScummVM rendering can now be tuned through launcher defaults. `render_scale` supports 25%, 33%, 50%, or 100% of the current output dimensions, while `render_resolution` accepts an exact `WIDTHxHEIGHT` framebuffer size. These settings do not change the physical display output mode. Existing defaults remain unchanged: video uses one-third dimensions and ScummVM uses 640×480.
+
+<!--
+Intake source: zaparoo-core PR #1090, resolving issue #1061.
+Console leases use the compatible MiSTer Main command/state protocol with nonce validation, delayed-capability retry, and cleanup after uncertain acquisitions. F9/F12 behavior remains as the backward-compatible fallback.
+Dedicated VTs: tty2 visible scripts, tty3 ARM launchers, tty7 Frontend widgets. Do not include VT numbers in user-facing copy unless troubleshooting requires them.
+Tracked processes own cleanup completion channels and process-group state. Stop escalation is graceful callback, SIGTERM, then SIGKILL, with remaining descendants removed and console restoration always attempted.
+GenericVideo uses RGB32 and defaults to one-third dimensions; ScummVM uses RGB16 and defaults to 640x480. render_scale and render_resolution are mutually exclusive.
+Validation reviewed during intake: all 15 CI checks passed. Ten review threads were resolved. The two unresolved threads were outdated, and their requested changes are present in merged code: tty7 widget isolation and injected filesystem handling for notices.
+Docs updated during intake: docs/core/config.md, docs/features/launchers.md, and docs/platforms/mister/launchers.md.
+User context: complete script and ARM-app launching while Zaparoo Frontend is active requires a separate Frontend update; Core v2.16.0 alone is insufficient.
+-->
+
+## MiSTer arcade games by hardware
+
+MiSTer arcade games can now [appear under their specific hardware family](/docs/platforms/mister/launchers/#hardware-classification) as well as the general Arcade library. Core uses MiSTer's Arcade Database to classify CPS1, CPS2, CPS3, Irem M72 and M92, Jaleco Mega System 1, Namco System 1, IGS PGM, Sega ST-V, Sega System 16 and 18, and Taito F2 games. Unclassified titles and the complete collection remain available under Arcade as before.
+
+This makes it possible to browse, search, or launch a random game from one arcade platform. Core checks the requested hardware system first and only falls back to the general Arcade pool when the specific system has no matching result, rather than mixing both pools together.
+
+Neo Geo games are also indexed under both `NeoGeo` and `NeoGeoMVS`. MVS entries keep the normal games folder but use an independent MiSTer set name, allowing separate core configuration. Run a media database update after installing v2.16.0 to add the new classifications.
+
+<!--
+Intake source: zaparoo-core PR #1094, resolving issue #1050.
+All .mra files remain in Arcade. Classification duplicates matching media into granular systems based on ArcadeDB platform labels; .mgl files and unclassified MRA files remain generic only. Arcade cache cancellation does not retain partial results.
+Granular systems fall back to Arcade. Random and search resolution now queries ordered primary/fallback tiers and stops at the first tier with results instead of combining result pools.
+NeoGeoMVS shares the base NeoGeo scanner cache and launches the Neo Geo core with setname NeoGeoMVS and same_dir=true unless explicitly overridden.
+Validation reviewed during intake: all 15 final checks passed. Five of six review threads were marked resolved; the unresolved Neo Geo MVS scanner-coverage request is present in merged tests.
+Docs updated during intake: docs/platforms/mister/launchers.md, docs/features/systems.md, and docs/zapscript/launch.md.
+-->
+
+## Custom launchables
+
+Thanks to work from [Grant McNaught](https://github.com/gmcnaught), [custom launchers can now create virtual systems](/docs/features/launchers/#launchables) that appear in browse and search without needing a media file. Selecting one runs its configured command, making it possible to expose tools, apps, or other launch-only entries through the same interface used for games and media. This works across Core platforms.
+
+MiSTer users can use the same system to add ROM-less FPGA cores that are not included in Core's built-in `_Other` list. Custom entries can also override the name, category, or path of a built-in Other core while preserving its existing identity, so App visibility, naming, and artwork settings remain attached.
+
+Launchable identities are stable across restarts and devices as long as the configured backend and ID stay the same. Entries can be grouped under Other, Console, Computer, Handheld, or Arcade. Core validates custom launcher files and ignores unsafe paths, malformed entries, duplicate IDs, and incompatible field combinations.
+
+<!--
+Intake source: zaparoo-core PR #1063.
+Final implementation expanded the original MiSTer-specific proposal into cross-platform command-backed virtual systems plus the MiSTer mister_core backend. Existing command launcher configurations remain backward compatible.
+External TOML files are strictly decoded in sorted order; invalid entries are logged, and a reload where no files can be parsed retains the last loaded snapshot.
+Validation reviewed during intake: all 12 CI checks passed and the only review thread was resolved.
+Docs updated during intake: docs/features/launchers.md and docs/platforms/mister/launchers.md.
+-->
+
+## More MiSTer launch coverage
+
+MiSTer can now [index and launch PICO-8, OpenBOR, and MegaVGMDrive media](/docs/platforms/mister/launchers/#companion-installed-media-cores): `.p8` and `.p8.png` carts, `.pak` games, and `.vgm` music. Core detects companion-installed RBF files under `_Custom Cores/Cores`, and the default OpenBOR launcher works with either the 4086 or 7533 core.
+
+Apple IIGS and Apple Lisa now have dedicated media launchers, while Intellivision adds support for homebrew games distributed as `.rom` files. Installed MiSTer Quake, Sonic Mania, and Tamagotchi cores also appear as browsable launchables. Paprium and the **Load GB/GBC Cartridge** shortcut appear when their standard MGL files are installed.
+
+System matching has also been expanded across Batocera and LaunchBox, with distinct classifications for systems including PocketStation, Sega Pico, Commodore CDTV, Commodore Plus/4, Apple IIGS, Super Cassette Vision, Uzebox, and Pinball.
+
+<!--
+Intake source: zaparoo-core PR #1109, resolving issues #655, #1021, and #1104.
+PICO-8 accepts .p8 and .p8.png carts from games/PICO-8. OpenBOR defaults to _Other/OpenBOR_4086 and falls back to _Other/OpenBOR_7533; OpenBOR7533 remains available as an explicit launcher. MegaVGMDrive loads .vgm through _Custom Cores/Cores/VGM_MD_MiSTer.
+Paprium is virtual Genesis media backed by _Custom Cores/PapriumMD.mgl. Load GB/GBC Cartridge is a virtual console system backed by /media/fat/Load GB-GBC Cartridge.mgl. All file-backed launchables require those files to exist.
+The PR also adds 74 system definitions and updates ES-DE, RetroArch, and LaunchBox mappings. Keep the release copy focused on direct launch and classification outcomes rather than listing the full taxonomy.
+Validation reviewed during intake: all 14 final checks passed. Two review threads remain formally unresolved, but both requested test additions are present in merged code. Current main passed 2,049 tests across 13 relevant non-Windows packages; native Windows and macOS PR checks passed.
+Docs updated during intake: docs/features/systems.md, docs/platforms/mister/launchers.md, and docs/platforms/batocera/launchers.md.
+-->
+
+## Other changes
+
+- Added [opt-in play history sync](/docs/online/#play-history-sync) for linked Zaparoo Online accounts without requiring Warp. It is off by default; first use uploads retained local history, then syncs new and updated sessions about once an hour.
+- Fixed [MiSTer Neo Geo indexing](/docs/platforms/mister/launchers/#neogeo) for root-level, nested, and symlinked ROM-set folders, with safer `romsets.xml` fallback handling and clearer diagnostics.
+- Fixed stale MiSTer core detection after `.rbf` files are added, removed, replaced, or changed through symlinks. Standardized unstable-nightly filenames now work as fallbacks for systems such as 3DO, while regular cores keep priority.
+- Fixed [MiSTer AmigaVision](/docs/platforms/mister/launchers/#amigavision-amiga) and Amiga 500 virtual entries failing with `No RBF found!` instead of routing through the installed AmigaVision MGL.
+- Fixed absolute-folder [`launch.random`](/docs/zapscript/launch/#launchrandom) commands timing out after large libraries were indexed, including organized MiSTer arcade folders, without bypassing tag filters.
+- Added MiSTer RetroAchievements launchers for Atari 7800, Famicom Disk System, Game Gear, Neo Geo CD, Saturn, and TurboGrafx-16 CD, including correct paths for systems that share another core. All MiSTer RetroAchievements launchers can now be [preferred with one `RetroAchievements` group setting](/docs/platforms/mister/launchers/#retroachievements).
+- Thanks to [Gareth Jones](https://github.com/symm), fixed [`/run/` URLs](/docs/core/api/#launch-endpoint) failing when media paths contained encoded spaces or parentheses.
+- Fixed [Windows applications launched through tracked built-in or custom launchers](/docs/platforms/windows/launchers/#window-focus) opening behind the current app or minimized instead of coming to the foreground.
+- Updated the [terminal UI's media search](/docs/core/tui/#writing-tokens) to load beyond the first 100 results automatically while keeping your current selection in place.
+- Added [**Reload Core**](/docs/core/cli/#reload-core) under Advanced settings and expanded `-reload` to refresh settings, mappings, launchers, MiSTer RBF files, and Batocera system configuration.
+- Updated project dependencies and GitHub Actions.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

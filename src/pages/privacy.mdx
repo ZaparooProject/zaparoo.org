@@ -3,6 +3,8 @@ title: Privacy Policy
 description: "Zaparoo Privacy Policy: how we handle personal data collected through our websites and services."
 ---
 
+**Last updated:** July 26, 2026
+
 This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
 
 We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.
@@ -108,6 +110,40 @@ Zaparoo Core and related Software include an optional error reporting feature th
 Error reports are transmitted to our error tracking service (Sentry) via a secure tunnel at errors.zaparoo.org. This data is used solely to identify and fix bugs in the Software.
 
 You can disable error reporting at any time by changing the `error_reporting` setting in Your configuration file or through the Software interface.
+
+#### Zaparoo Online
+
+Zaparoo Online is an optional Account service. Zaparoo Core can be used without creating an Account or linking a device.
+
+When You create or use a Zaparoo Online Account, We may collect and process:
+
+- **Account and authentication information**, such as Your email address, optional username, internal Account identifier, authentication and security status, acceptance of Our legal terms, and subscription or entitlement status.
+- **Content You create or manage**, such as cards, decks, names, descriptions, custom ZapScript, display and sharing settings, and redemption or license information.
+- **Linked device information**, such as a device name and identifier, platform, operating system, architecture, Zaparoo Core version, supported capabilities, link date, and last-seen time.
+
+Cards and decks You choose to share may be accessible to anyone with their public link. Do not include confidential or personal information in content You intend to share publicly.
+
+Linking a device creates a credential that allows it to use linked-device services for Your Zaparoo Online Account. Linked devices send status information so We can authenticate them, show them in Your Account, and determine which Online services are available. Linking alone does not enable play history sync or create a cloud backup.
+
+**Play history sync** is disabled by default and requires separate consent in Zaparoo Core. The first sync uploads retained local history, followed by new and updated sessions while sync remains enabled and the device remains linked. Synced sessions may include:
+
+- Internal session, device, and profile identifiers
+- Game or media name and file path
+- System and launcher identifiers
+- Parsed filename details such as region or disc number
+- Session start and end times and play duration
+- Clock-reliability information used to correct timestamps
+- Whether a session record was marked as deleted
+
+Profile names, profile PINs, token data, save files, and save states are not included in play history sync.
+
+**Cloud backup** uploads only when You start a backup or enable a backup schedule. Depending on the selected backup scope and platform, a snapshot may include Zaparoo Core configuration and user data, local play history, profiles, token mappings, custom launchers, device settings, input mappings, save files, and save states. Backup records include file paths, sizes, hashes, and categories, together with snapshot timestamps and device, platform, and Zaparoo Core version information. Local play history may therefore be present inside a cloud backup even when play history sync is disabled.
+
+Zaparoo Core excludes ROMs, downloaded cores and binaries, the rebuildable media database, scraped artwork, logs, Account and device authentication credentials, and `retroachievements.cfg` files from device backups.
+
+We use Zaparoo Online data to provide and secure the requested services, authenticate linked devices, synchronize and restore data, manage subscription and storage limits, provide support, diagnose faults, and improve the Service. We use service providers for functions such as authentication, hosting, database and object storage, error reporting, and subscription management. Those providers process information on Our behalf as needed to provide their services.
+
+Disabling play history sync stops future history uploads but does not delete history already stored online. Unlinking a device revokes its access and stops future transfers, but does not itself delete stored play history or cloud backups. You can request Account deletion as described under **Delete Your Personal Data**. Zaparoo Online provides a 14-day cancellation period before completing Account deletion; completion removes associated device links, play history, and cloud-backup data, subject to any retention required by law.
 
 ### Use of Your Personal Data
 

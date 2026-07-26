@@ -1,11 +1,11 @@
 ---
-description: "Install Zaparoo on Linux: desktop integration with Steam game launching support. Foundation for SteamOS, Bazzite, ChimeraOS, and other Linux platforms."
+description: "Install Zaparoo on Linux with Steam, RetroArch, media, and desktop launcher support."
 keywords: [zaparoo linux, linux nfc game launcher, zaparoo raspberry pi, zaparoo ubuntu, linux nfc reader]
 ---
 
 # Linux
 
-Zaparoo Core on Linux provides desktop integration with support for Steam game launching. This platform serves as the foundation for other Linux-based platforms.
+Zaparoo Core on Linux provides desktop integration with support for Steam and RetroArch game launching. This platform serves as the foundation for other Linux-based platforms.
 
 ## File Paths
 
@@ -79,6 +79,7 @@ For manual component-based installation, see [Manual Install](./install.md).
 | Launcher | Description |
 |----------|-------------|
 | Steam | Steam games and non-Steam shortcuts |
+| RetroArch | Games through the RetroArch Flatpak, with built-in core mappings and controls |
 | Kodi | Movies, TV, Music (requires Kodi API) |
 | Web Browser | Opens URLs in default browser |
 | Shell Scripts | Custom `.sh` execution (allowlist required) |

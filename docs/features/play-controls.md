@@ -48,7 +48,7 @@ Setting `require_confirm = true` disables re-tap confirmation. The staged token 
 
 ## Playtime limits
 
-Playtime limits track how long games are played and can enforce a daily limit, a per-session limit, or both. Core sends warnings before time runs out, stops active media when a limit is reached, and blocks new launches until the limit resets.
+Playtime limits track how long games are played and can enforce a daily limit, a per-session limit, or both. Core sends warnings before time runs out, stops active media when a limit is reached, and blocks new launches until the limit resets. [Device profiles](./profiles.md#profile-playtime-limits) can give each person separate limit overrides and usage totals.
 
 ### Sessions
 
@@ -84,6 +84,12 @@ When a session limit is reached, the cooldown becomes the enforced break before 
 Daily limits reset at midnight in the local timezone. The total includes all sessions from the current calendar day.
 
 If less than 1 minute remains, the launch is blocked entirely.
+
+## Online play history
+
+Play history stays local unless you explicitly enable sync under **Settings > Online**. The first sync uploads retained history to your linked Zaparoo Online account, then checks for new or updated sessions about once an hour. Linking an account by itself does not grant consent.
+
+See [Zaparoo Online play history sync](../online/index.md#play-history-sync) for setup, uploaded fields, retention behavior, and how to stop syncing.
 
 ## Manual configuration
 
@@ -168,7 +174,7 @@ See the [playtime config reference](../core/config.md#playtime) for all options.
 
 Disabling playtime limits resets the current session and clears cooldown timers. Daily usage history is kept. Re-enabling starts a fresh session, but daily usage from history still counts toward the daily limit.
 
-Playtime history is kept for 365 days by default. Change [`playtime.retention`](../core/config.md#retention) to keep fewer days or set it to `0` to keep all history.
+Playtime history is kept locally for 365 days by default. Change [`playtime.retention`](../core/config.md#retention) to keep fewer days or set it to `0` to keep all history. When online sync is enabled and linked, cleanup waits for a session to be acknowledged before removing its local copy.
 
 ## Platform support
 

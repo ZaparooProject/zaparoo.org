@@ -17,6 +17,26 @@ MiSTer's ROM-less [Other cores](../platforms/mister/launchers.md#other-cores), l
 
 The one place this shows through is the token value. A launchable is identified by a compact `zaparoo://` URI instead of a file path, so a token that launches one holds a value like `zaparoo://gezdgnbvgy3tqojqgezdgnbvgy` rather than a normal path. You don't write this by hand; the App fills it in when you save a launchable.
 
+### Create a command launchable
+
+A custom launcher can expose a command as a virtual system on any Core platform. Add an entry to a launcher TOML file in Core's `launchers` directory:
+
+```toml
+[[launchers.custom]]
+id = "Tools"
+kind = "virtual_system"
+backend = "command"
+name = "Tools"
+category = "Computer"
+execute = "echo tools"
+```
+
+The virtual system appears in browse and search without needing a media file. Selecting it runs `execute`. Valid categories are `Other`, `Console`, `Computer`, `Handheld`, and `Arcade`; `Other` is used when `category` is omitted.
+
+Core derives a stable launchable identity from `backend` and `id`, so keep those values unchanged if you want App display settings and artwork to stay attached to the entry. Restart Core or refresh the launchers, then update the media database after adding a virtual system.
+
+For MiSTer cores that launch without media, use the [`mister_core` backend](../platforms/mister/launchers.md#add-your-own-other-core) instead.
+
 ## Launcher controls
 
 Launcher controls send actions to the launcher handling the currently active media. Use them for actions like pause, stop, save state, load state, fast forward, rewind, or next and previous track.
@@ -60,7 +80,7 @@ Built-in launcher support currently includes:
 | Launcher | Supported actions |
 | -------- | ----------------- |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
-| EmuDeck RetroArch-based launchers on SteamOS | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `stop` |
+| Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `stop` |
 | Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |
 
@@ -87,6 +107,12 @@ See the [ZapScript utility command reference](../zapscript/utilities.md#control)
 ### API control
 
 Apps and integrations can use the [`media.control`](../core/api/methods.md#mediacontrol) API method to send launcher control actions. The active media response includes `launcherControls` when controls are available.
+
+## Launcher availability
+
+Core checks whether each launcher's runtime dependencies are present. Unavailable launchers are excluded from automatic selection, but remain in the [`launchers`](../core/api/methods.md#launchers) API response with `available: false` and an `availabilityReason` explaining what is missing.
+
+After installing a missing dependency, restart Core or use **Settings > Advanced > Reload Core** in the terminal UI. You can also run [`-reload`](../core/cli.md#reload-core). Reloading asks supported platforms to rediscover launcher data such as MiSTer RBF files and Batocera's EmulationStation system configuration.
 
 ## Custom launchers
 
@@ -269,13 +295,28 @@ execute = "/opt/launchers/[[platform]]/run.sh \"[[media_path]]\" --host [[device
 
 ## Default launchers
 
-Use [`[[systems.default]]`](../core/config.md#systemsdefault) to choose the default launcher for a system. Core applies this to title/search launches and direct path launches when it can infer the system from the path.
+Core resolves launcher choices in this order:
 
-API clients can also save a per-media launcher override through [`media.meta.update`](../core/api/methods.md#mediametaupdate). Use this when one game should always use a different launcher from the rest of its system. Explicit ZapScript `?launcher=` arguments still win for one-off launches, then Core checks the per-media override, then system defaults.
+1. Explicit ZapScript `?launcher=` argument
+2. Saved per-media launcher override
+3. Explicit [`[[systems.default]]`](../core/config.md#systemsdefault) launcher
+4. First available [`launchers.preference`](../core/config.md#preference) entry
+5. Normal platform launcher detection
 
-Per-media overrides are stored alongside favorites in Core's user database, separate from the rebuildable media database, so they are kept even if Core has to rebuild the media database after corruption. This user data is included in Core's [database backups](../core/cli.md#back-up-and-restore-user-data).
+Use a system default when every game in one system should use the same launcher. Core applies it to title/search launches and direct path launches when it can infer the system from the path. System defaults remain authoritative even when their selected launcher is unavailable, so Core reports the missing dependency instead of choosing another launcher.
 
-Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action` or `load_path`.
+API clients can save a per-media launcher override through [`media.meta.update`](../core/api/methods.md#mediametaupdate). Use this when one game should always use a different launcher from the rest of its system.
+
+Per-media overrides are stored alongside favorites in Core's user database, separate from the rebuildable media database, so they are kept even if Core has to rebuild the media database after corruption. This user data is included in Core's [device backups](./backups.md).
+
+Use `launchers.preference` when you want an ordered fallback across launcher groups or IDs. Unavailable preference entries are skipped. SteamOS supports the `Native`, `EmuDeck`, and `RetroDECK` groups, for example:
+
+```toml
+[launchers]
+preference = ["Native", "EmuDeck", "RetroDECK"]
+```
+
+Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action`, `load_path`, `render_scale`, or `render_resolution`.
 
 ## Troubleshooting
 
@@ -286,7 +327,7 @@ Check the Zaparoo Core logs when it starts up. Look for messages about custom la
 - `registered custom launcher`
 - `loaded custom launchers`
 
-If your launcher isn't loading, check for TOML syntax errors in the logs.
+If your launcher isn't loading, check for TOML syntax or validation errors in the logs. Invalid custom entries are ignored and logged.
 
 ### Testing commands
 

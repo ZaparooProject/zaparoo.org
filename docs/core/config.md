@@ -102,6 +102,31 @@ update_channel = "stable"
 
 Use `"stable"` for normal releases. Use `"beta"` only if you want Core to check for beta releases.
 
+### Backup
+
+```toml
+[backup]
+local_dir = "/path/to/backups"
+scope = "platform"
+
+[backup.remote]
+enabled = false
+schedule = "daily"
+base_url = "https://api.zaparoo.com"
+```
+
+| Key | Type | Default | Description |
+| --- | --- | --- | --- |
+| `local_dir` | string | `<data directory>/backups/files` | Directory for local backup ZIP files. |
+| `scope` | string | `"platform"` | `"platform"` includes supported device settings and save data; `"zaparoo"` includes only Zaparoo-owned data. |
+| `remote.enabled` | boolean | `false` | Enables automatic cloud backup scheduling. Manual uploads remain available while disabled. |
+| `remote.schedule` | string | `"daily"` | Cloud schedule: `"daily"`, `"weekly"`, or `"manual"`. |
+| `remote.base_url` | string | `"https://api.zaparoo.com"` | Cloud backup service URL. |
+
+Full platform backups are currently supported on MiSTer and MiSTeX. See [Device Backups](../features/backups.md) for included data and restore behavior.
+
+Keep `remote.base_url` at its default unless you use a custom service. Custom public servers must use HTTPS. Plain HTTP is accepted only for localhost, private IP addresses, and link-local development endpoints.
+
 ### Audio
 
 ```toml
@@ -322,6 +347,27 @@ default_langs = ["en", "es"]
 ```
 
 Languages are checked in order. Common language codes: `en`, `es`, `fr`, `de`, `it`, `ja`, `pt`
+
+### Scraper
+
+```toml
+[scraper.gamelist_xml]
+custom_path = "/path/to/gamelists"
+```
+
+The `scraper` section configures metadata sources used by Core's [local scrapers](../features/scraping.md).
+
+#### custom_path {#scraper-gamelist-xml-custom-path}
+
+| Key         | Type   | Default |
+| ----------- | ------ | ------- |
+| custom_path | string | none    |
+
+`custom_path` specifies a directory containing separate per-system `gamelist.xml` bundles. Core checks `<custom_path>/<system ID>/gamelist.xml` for each indexed system. Metadata and artwork stay outside the ROM directories.
+
+Use the exact [system ID](../features/systems.md) for each subdirectory. Game paths in a custom gamelist resolve against the system's first ROM root, while artwork and other asset paths resolve against that system's custom bundle directory.
+
+See [custom gamelist bundles](../features/scraping.md#custom-gamelist-bundles) for the directory layout, source precedence, and artwork fallback behavior.
 
 ### Readers
 
@@ -668,6 +714,11 @@ pause_on_launch = false
 index_root = [
     '/media/alt_mount/games'
 ]
+preference = [
+    'Native',
+    'EmuDeck',
+    'RetroDECK'
+]
 allow_file = [
     '^/media/fat/something.mgl$'
 ]
@@ -685,6 +736,30 @@ on_media_start = '**echo:media started'
 For example, if `index_root` was set to `[ '/media/fat/other_place' ]`, a database update will search all standard locations like normal but then also attempt to search _/media/fat/other_place/SNES_, _/media/fat/other_place/Genesis_, etc. for potential media.
 
 To exclude specific directories from being scanned, create an empty file named `.zaparooignore` in that directory. The directory and all subdirectories will be skipped during media database updates.
+
+#### preference
+
+| Key        | Type     | Default |
+| ---------- | -------- | ------- |
+| preference | string[] | []      |
+
+`preference` sets an ordered list of launcher IDs or launcher groups for systems that do not have an explicit launcher choice. Core uses the first matching launcher whose runtime dependencies are available, then continues through the list when an emulator or other dependency is missing.
+
+SteamOS provides the `Native`, `EmuDeck`, and `RetroDECK` groups:
+
+```toml
+[launchers]
+preference = ["Native", "EmuDeck", "RetroDECK"]
+```
+
+MiSTer provides the `RetroAchievements` group for every built-in RetroAchievements launcher. Use it to prefer an installed achievement-enabled core while retaining normal launcher fallback:
+
+```toml
+[launchers]
+preference = ["RetroAchievements"]
+```
+
+An explicit ZapScript `?launcher=` argument takes priority, followed by a saved per-media override and [`systems.default`](#systemsdefault). Core only consults `preference` after those choices. If no preference matches, normal platform launcher detection applies.
 
 #### allow_file
 
@@ -799,12 +874,40 @@ This can be overridden per-token using the `?action=` advanced argument in ZapSc
 | --------- | ------ | ------- |
 | load_path | string |         |
 
-Override the implementation file the launcher loads. Only supported by some launchers. For MiSTer, this is an MGL-form RBF path relative to `/media/fat`, without extension. This is useful when multiple versions of a core share the same short name and you want to set a specific one as the default.
+Override the implementation file the launcher loads. Only supported by some launchers. For MiSTer, this is an MGL-form RBF path relative to `/media/fat`, without extension. For built-in RetroArch launchers, use a core filename from the RetroArch cores directory, such as `bsnes_libretro.so`. This is useful when multiple versions of a core are available and you want to set a specific one as the default.
 
 ```toml
 [[launchers.default]]
 launcher = "Nintendo64"
 load_path = "_LLAPI/N64_LLAPI"
+```
+
+##### render_scale
+
+| Key          | Type    | Default |
+| ------------ | ------- | ------- |
+| render_scale | integer |         |
+
+`render_scale` sets a launcher-specific internal rendering size as a percentage. On MiSTer, the `GenericVideo` and `ScummVM` console launchers support `25`, `33`, `50`, or `100`. This changes their framebuffer size without changing the physical display output mode.
+
+```toml
+[[launchers.default]]
+launcher = "GenericVideo"
+render_scale = 33
+```
+
+##### render_resolution
+
+| Key               | Type   | Default |
+| ----------------- | ------ | ------- |
+| render_resolution | string |         |
+
+`render_resolution` sets a launcher-specific internal rendering size in positive `WIDTHxHEIGHT` form. It cannot be combined with `render_scale` in the same launcher default.
+
+```toml
+[[launchers.default]]
+launcher = "ScummVM"
+render_resolution = "640x480"
 ```
 
 ### ZapScript
@@ -1088,7 +1191,7 @@ It's currently reserved for future use when devices can communicate with each ot
 encryption = true
 ```
 
-When disabled, remote WebSocket clients use API key authentication if API keys are configured.
+Paired clients can have admin or member permissions. Requiring encryption makes these restrictions enforceable because every remote client must identify itself through pairing. When encryption is disabled, unpaired remote clients retain full API permissions for compatibility with older clients. Manage pairing, roles, and this setting under **Settings > Clients** in the [terminal UI](./tui.md#managing-profiles).
 
 #### allow_run
 
@@ -1332,11 +1435,51 @@ gmc_proxy_beacon_interval = '2s'
 
 `gmc_proxy_beacon_interval` sets the interval for GMC proxy beacon broadcasts.
 
+### Profiles
+
+```toml
+[profiles]
+require_for_launch = false
+swap_data = true
+```
+
+The `profiles` section configures device-wide [profile behavior](../features/profiles.md). Profile names, roles, PINs, and limit overrides are stored in Core's user database rather than this file.
+
+#### require_for_launch
+
+| Key                | Type    | Default |
+| ------------------ | ------- | ------- |
+| require_for_launch | boolean | false   |
+
+`require_for_launch` blocks media launches while the device is using the shared profile. Profile switching and non-launch ZapScript commands continue to work. A script that switches profiles before its launch command can still launch in one scan.
+
+```toml
+[profiles]
+require_for_launch = true
+```
+
+#### swap_data
+
+| Key       | Type    | Default |
+| --------- | ------- | ------- |
+| swap_data | boolean | true    |
+
+`swap_data` lets supported platforms activate profile-owned data when profiles change. MiSTer currently uses it to separate save files and save states. Other platforms ignore it. Set it to `false` to use shared data locations for every profile.
+
+```toml
+[profiles]
+swap_data = false
+```
+
+Restart Core after changing `swap_data` manually to reconcile the active data mounts.
+
 ### Playtime
 
 ```toml
 [playtime]
 retention = 365
+sync = false
+base_url = "https://api.zaparoo.com"
 
 [playtime.limits]
 enabled = true
@@ -1364,6 +1507,33 @@ retention = 90  # Keep 90 days
 ```
 
 Set to `0` to keep all history forever (disables cleanup).
+
+When play history sync is enabled and the device is linked, cleanup preserves local sessions until the server acknowledges them.
+
+#### base_url
+
+| Key      | Type   | Default                     |
+| -------- | ------ | --------------------------- |
+| base_url | string | `"https://api.zaparoo.com"` |
+
+`base_url` selects the API service used for play history sync. It is independent of [`backup.remote.base_url`](#backup), so custom backup and play history services can use different endpoints.
+
+Keep `base_url` at its default unless you use a custom service. Core uses the linked credential stored for the endpoint's scheme and host. Public services must use HTTPS; plain HTTP is accepted only for localhost, private IP addresses, and link-local development endpoints.
+
+#### sync
+
+| Key  | Type    | Default |
+| ---- | ------- | ------- |
+| sync | boolean | false   |
+
+`sync` records explicit consent to upload play history to a linked Zaparoo Online account. Linking an account does not enable it. The first sync includes retained local history.
+
+```toml
+[playtime]
+sync = true
+```
+
+You can also change this setting under **Settings > Online** in the terminal UI. See [Play history sync](../online/index.md#play-history-sync) for the data included and how disabling sync behaves.
 
 #### playtime.limits
 
@@ -1563,6 +1733,15 @@ error_reporting = false
 auto_update = false
 update_channel = "stable"
 
+[backup]
+local_dir = "/path/to/backups"
+scope = "platform"
+
+[backup.remote]
+enabled = false
+schedule = "daily"
+base_url = "https://api.zaparoo.com"
+
 [audio]
 scan_feedback = true
 volume = 100
@@ -1579,6 +1758,9 @@ gamepad_enabled = true
 filename_tags = true
 default_regions = ["us", "world"]
 default_langs = ["en"]
+
+[scraper.gamelist_xml]
+custom_path = "/path/to/gamelists"
 
 [readers]
 auto_detect = true
@@ -1619,6 +1801,11 @@ before_exit = '**input.keyboard:{f12}||**delay:2000'
 index_root = [
     '/media/alt_mount/games'
 ]
+preference = [
+    'Native',
+    'EmuDeck',
+    'RetroDECK'
+]
 allow_file = [
     '^/media/fat/something.mgl$'
 ]
@@ -1642,8 +1829,14 @@ block_commands = []
 mode = 'combos'
 block = []
 
+[profiles]
+require_for_launch = false
+swap_data = true
+
 [playtime]
 retention = 365
+sync = false
+base_url = "https://api.zaparoo.com"
 
 [playtime.limits]
 enabled = true

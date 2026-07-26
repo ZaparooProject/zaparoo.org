@@ -175,8 +175,8 @@ Load a folder in shuffled order:
 
 Loads a playlist and opens an interactive picker menu to select an item.
 
-:::note Platform Support
-The interactive picker is currently only supported on [MiSTer](../platforms/mister/index.md).
+:::note Picker display
+[MiSTer](../platforms/mister/index.md) displays the picker locally. On other platforms, a connected client that supports Core's global UI events can display and answer it. If no renderer is available, the playlist still loads and the picker expires after 30 seconds.
 :::
 
 ### Syntax

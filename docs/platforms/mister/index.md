@@ -42,6 +42,14 @@ To enable it:
 
 This setting makes MiSTer write recent game data to the SD card each time a game is loaded. MiSTer.ini warns about the extra SD card writes, but it's not a real concern with modern SD cards.
 
+## Device profile data
+
+[Device profiles](../../features/profiles.md) automatically separate save files and save states on MiSTer. Existing saves remain under the shared profile, while each personal profile gets separate directories in the active storage location. When odelot's custom RetroAchievements Main is installed, Core can also switch account configuration with each profile.
+
+## Device backups
+
+MiSTer supports portable [device backups](../../features/backups.md) containing Zaparoo data, MiSTer settings, input mappings, saves, save states, and profile-specific save directories. Create local backups from the Core terminal UI, or link Zaparoo Online for cloud snapshots and scheduling.
+
 ## Readers
 
 <ReaderSupport

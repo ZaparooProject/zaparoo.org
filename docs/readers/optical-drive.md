@@ -1,13 +1,13 @@
 ---
-description: "Use a CD, DVD, or Blu-ray disc as a Zaparoo token with a Linux optical drive."
-keywords: [zaparoo optical drive, cd token, dvd token, disc launcher zaparoo]
+description: "Use a CD, DVD, or Blu-ray disc to launch matching indexed media or trigger a Zaparoo command on Linux."
+keywords: [zaparoo optical drive, cd token, dvd token, physical disc launcher, disc game ID]
 ---
 
 # Optical Drive Reader
 
-An optical disc can work as a [Zaparoo token](../tokens/index.md) on Linux-based systems. Connect a CD, DVD, or Blu-ray drive to the device running [Core](../core/index.md), point the reader at the drive device, and Core uses the disc ID reported by Linux.
+An optical disc can work as a [Zaparoo token](../tokens/index.md) on Linux-based systems. Connect a CD, DVD, or Blu-ray drive to the device running [Core](../core/index.md), and Core can match supported game discs to indexed disc images or use the disc ID for a [mapping](../features/mappings.md).
 
-This reader does not read games or media from the disc. It uses the disc as a physical trigger for a [mapping](../features/mappings.md) or [ZapScript](../zapscript/index.md) command.
+Core does not run games or media directly from the physical disc. The disc acts as a trigger for an indexed file or [ZapScript](../zapscript/index.md) command.
 
 ## Platforms
 
@@ -54,7 +54,7 @@ This reader does not read games or media from the disc. It uses the disc as a ph
 
 ## Enable the reader
 
-The optical drive reader is available on supported Linux-based platforms, but you usually need to tell Core which drive device to watch. Linux optical drives usually appear as `/dev/sr0`, `/dev/sr1`, and so on.
+MiSTer can automatically detect optical drives exposed as `/dev/sr0`, `/dev/sr1`, and similar paths. If Core does not detect your drive, or you use another Linux-based platform, configure its device path manually.
 
 Add a `readers.connect` entry to your [`config.toml`](../core/config.md):
 
@@ -66,9 +66,27 @@ path = "/dev/sr0"
 
 Restart Core after changing the config. Use `lsblk` or check `/dev/sr*` if you are not sure which path your drive uses.
 
+## Launch an indexed game from its original disc
+
+Core can identify supported game discs and match them to disc images in your indexed media library. Disc identification is based on [GameID](https://github.com/niemasd/GameID), created by [Niema Moshiri](https://github.com/niemasd). Insert the original disc, and Core launches the matching indexed file when exactly one match is found. Existing token mappings take priority over automatic matching.
+
+Supported systems are:
+
+- Nintendo GameCube
+- Sega CD/Mega CD
+- Neo Geo CD
+- PlayStation
+- PlayStation 2
+- PSP
+- Sega Saturn
+
+Core indexes game IDs from `.chd`, `.cue`, `.gcm`, and `.iso` files. Compressed `.cso`, `.gcz`, and `.rvz` images are not supported for game ID matching.
+
+Run a [media database update](../core/tui.md#managing-media) after updating Core so game IDs are added to existing indexed media. The physical disc and indexed image must produce the same game ID. If no match or multiple matches are found, Core does not choose a game automatically; you can still map the disc ID manually.
+
 ## Choose the scanned ID
 
-Core checks the configured drive about once a second. It asks Linux `blkid` for the disc `UUID` and `LABEL`, then scans the result as a `disc` token.
+Core reads the disc's ISO 9660 volume identity to find its `UUID` and `LABEL`, checks supported game discs for a game ID, then scans the result as a `disc` token.
 
 The `id_source` option controls which value is used for matching:
 
@@ -81,17 +99,17 @@ id_source = "merged"
 
 The available modes are:
 
-- `merged` combines UUID and label as `<UUID>/<LABEL>`. This is the default when both values are available.
+- `merged` combines UUID and label as `<UUID>/<LABEL>`. This is the default and requires both values.
 - `uuid` uses only the disc UUID.
 - `label` uses only the disc label.
 
-If only one value is available, Core uses that value. If neither value is available, nothing is scanned. Removing the disc clears the active token.
+Core does not fall back to another value when the selected source is unavailable. Choose `uuid` or `label` when your disc only provides one of them. A supported game disc can still match indexed media by game ID when no token ID is available, but the game ID never becomes the token ID used by mappings. If Core cannot read the selected token ID or a supported game ID, nothing is scanned. Removing the disc clears the active token.
 
-`merged` is usually the safest option for matching a specific disc. `label` can be easier for custom burned discs if you control the label and keep it unique.
+Use `merged` to distinguish a disc by both values when they are present. For custom burned discs, `label` gives you a token ID you can choose and keep unique.
 
 ## Map a disc to a command
 
-For a custom disc, one practical setup is to use the disc label as the token ID.
+Mappings override automatic game ID matching. For a custom disc, one practical setup is to use the disc label as the token ID.
 
 Configure the reader to use labels:
 
@@ -113,15 +131,11 @@ zapscript = "**launch.random:SNES"
 
 Restart Core after changing mapping files. If you are using an existing disc, check the Core logs to see the exact ID Zaparoo scanned before writing the mapping.
 
-Core does not write anything to the disc. Completely blank discs usually will not work because Linux has no UUID or label to report.
+Core does not write anything to the disc. Blank discs do not work because they contain no volume UUID or label to read.
 
-## Supported drives and platforms
+## Drive requirements
 
-This reader is for Linux-based systems where Core includes the optical drive reader and the operating system exposes the drive as `/dev/sr0`, `/dev/sr1`, or another `/dev/` path.
-
-USB optical drives are the most common option. Internal SATA drives can also work if Linux exposes them the same way. Blu-ray drives can be used when Linux exposes the disc and `blkid` can read its metadata.
-
-The reader is available on Linux-based Zaparoo platforms such as [MiSTer](../platforms/mister/index.md), [Batocera](../platforms/batocera/index.md), [SteamOS](../platforms/steamos.md), and [LibreELEC](../platforms/libreelec.md). It is not supported on Windows, macOS, or MiSTeX.
+On a supported Linux-based platform, the operating system must expose the drive as `/dev/sr0`, `/dev/sr1`, or another `/dev/` path. USB and internal SATA optical drives can work through these paths. Blu-ray drives can also work when Core can read the disc's ISO 9660 volume information.
 
 ## Troubleshooting
 
@@ -138,16 +152,17 @@ Make sure the configured `path` is absolute and points to a device under `/dev/`
 
 If the drive still is not scanned, enable `debug_logging = true` in `config.toml` and check the Core logs.
 
+### Indexed game does not launch
+
+Update the media database after installing this Core version. Confirm the indexed file uses a supported system and one of the `.chd`, `.cue`, `.gcm`, or `.iso` formats.
+
+Core only launches automatically when the physical disc matches exactly one indexed file. Check the Core debug logs for `gameid` identification and property-matching messages. Existing mappings take priority, so check whether the disc UUID or label already has a mapping.
+
 ### Disc ignored
 
-Check whether Linux can read a UUID or label from the disc:
+Enable `debug_logging = true` in `config.toml`, insert the disc again, and find the `optical media identification probe changed` message in the Core logs. It reports whether Core found a UUID, label, or game ID property.
 
-```bash
-blkid -o value -s UUID /dev/sr0
-blkid -o value -s LABEL /dev/sr0
-```
-
-If both commands return nothing or fail, Core has no disc ID to scan. Try a different disc, or burn a data disc with a label if you want a custom token.
+If the UUID and label are empty, the disc may not contain readable ISO 9660 volume information. Supported game discs may still work through game ID matching. Other discs need the UUID or label required by your configured `id_source`. Try a different disc, or burn a data disc with a label if you want a custom token.
 
 ### Wrong command launches
 
