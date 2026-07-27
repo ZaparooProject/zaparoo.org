@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
-import { getStatusLabel, resolveSupportHref, type ReaderSupportGroup } from "./types";
+import { getStatusLabel, getStatusSymbol, resolveSupportHref, type ReaderSupportGroup } from "./types";
 import styles from "./styles.module.css";
 
 interface ReaderSupportProps {
@@ -24,7 +24,12 @@ export default function ReaderSupport({ groups }: ReaderSupportProps): ReactNode
                   <>
                     <div className={styles.itemMain}>
                       <span className={styles.itemName}>{reader.name}</span>
-                      <span className={styles.status}>{getStatusLabel(reader.support)}</span>
+                      <span className={styles.status}>
+                        <span className={styles.statusIcon} aria-hidden="true">
+                          {getStatusSymbol(reader.support)}
+                        </span>
+                        {getStatusLabel(reader.support)}
+                      </span>
                     </div>
                     <div className={styles.readerMeta}>
                       {reader.setup && <span className={styles.setup}>{reader.setup}</span>}

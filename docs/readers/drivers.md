@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-description: "Configure Zaparoo reader drivers for PN532, ACR122U, RS-232 barcode scanners, optical drives, MQTT, and other reader hardware."
-keywords: [zaparoo drivers, libnfc, pn532 driver, acr122u driver, nfc reader driver]
+description: "Configure Zaparoo reader drivers for NFC, cartridge bridges, barcode scanners, optical drives, MQTT, and other reader hardware."
+keywords: [zaparoo drivers, cartridge reader driver, pn532 driver, acr122u driver, nfc reader driver]
 ---
 
 # Reader Drivers
@@ -17,7 +17,7 @@ When Zaparoo Core starts, it:
 3. Establishes connections to detected or manually configured readers
 4. Begins listening for token scans
 
-Most PN532 and ACR122U setups are auto-detected. Serial readers, MQTT, display devices, external drives, and fallback NFC drivers usually need manual configuration or explicit enabling.
+Most PN532 and ACR122U setups are auto-detected. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. Serial readers, MQTT, display devices, external drives, and fallback NFC drivers usually need manual configuration or explicit enabling.
 
 ## Available drivers
 
@@ -43,6 +43,14 @@ Driver IDs with underscores, such as `pn532_uart` and `simple_serial`, are still
 | Driver ID      | Hardware              | Platforms             | Documentation                                |
 | -------------- | --------------------- | --------------------- | -------------------------------------------- |
 | `opticaldrive` | CD/DVD/Blu-ray drives | Linux-based platforms | [Optical Drive](./optical-drive.md) |
+
+### Cartridge readers
+
+| Driver ID  | Hardware                                      | Platforms | Documentation                                      |
+| ---------- | --------------------------------------------- | --------- | -------------------------------------------------- |
+| `operator` | Epilogue GB, SN, and 64 Operator cartridge bridges | MiSTer | [Epilogue Operator](./epilogue-operator.md) |
+
+The `operator` driver is enabled by default. Core auto-detects it when `/media/fat/Scripts/Operator.sh` is present; no manual reader configuration is required.
 
 ### Display devices
 

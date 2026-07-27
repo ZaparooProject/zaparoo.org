@@ -49,7 +49,7 @@ A big thank you to [BossRighteous](https://github.com/BossRighteous) for custom 
 
 - **Every Core platform:** [Profiles](#profiles-and-parental-controls), [large-library recovery](#large-library-indexing-and-recovery), [artwork caching](#smarter-artwork-caching), [custom gamelist bundles](#custom-gamelist-bundles), [custom launchables](#custom-launchables), and [other Core, API, and terminal UI changes](#core-api-and-terminal-ui)
 - **Shared and family devices:** [Profiles, personal playtime limits, and access controls](#profiles-and-parental-controls)
-- **MiSTer:** [Separate profile saves](#profiles-and-parental-controls), [backups](#back-up-settings-and-saves), [physical-disc support](#launch-indexed-games-from-physical-discs), [console-app reliability](#more-reliable-mister-console-apps), [arcade hardware categories](#mister-arcade-games-by-hardware), and [more launch coverage](#more-mister-launch-coverage)
+- **MiSTer:** [Separate profile saves](#profiles-and-parental-controls), [backups](#back-up-settings-and-saves), [Epilogue Operator support](#epilogue-operator-cartridge-bridges), [physical-disc support](#launch-indexed-games-from-physical-discs), [console-app reliability](#more-reliable-mister-console-apps), [arcade hardware categories](#mister-arcade-games-by-hardware), and [more launch coverage](#more-mister-launch-coverage)
 - **Linux-based platforms:** [Physical-disc matching](#launch-indexed-games-from-physical-discs)
 - **Linux:** [Built-in RetroArch launchers](#retroarch-on-linux-and-steamos)
 - **SteamOS:** [RetroArch](#retroarch-on-linux-and-steamos), plus [native emulators and improved Gaming Mode handling](#native-emulators-on-steamos)
@@ -195,6 +195,12 @@ Docs updated during intake: docs/features/scraping.md and docs/core/config.md. O
 -->
 
 ## Launchers and platform support
+
+### Epilogue Operator cartridge bridges
+
+**Applies to:** MiSTer.
+
+Core now automatically detects the official [Epilogue Operator bridge](/docs/readers/epilogue-operator/). Install the bridge, connect a GB Operator, SN Operator, or 64 Operator, then insert a cartridge to launch the matching core. No manual reader configuration is needed.
 
 ### Launch indexed games from physical discs
 
@@ -392,10 +398,11 @@ Docs updated during intake: docs/features/systems.md, docs/platforms/mister/laun
 
 ### Zaparoo Online support
 
-Core v2.16.0 includes support for new Zaparoo Online features that will be covered in a separate announcement. [Play history sync](/docs/online/#play-history-sync) is opt-in, off by default, and does not require Warp. Cloud backup snapshots are available to Warp members.
+Core v2.16.0 adds support for new Zaparoo Online features that we'll cover in a separate announcement. Play history sync is optional, off by default, and available without Warp; it sends completed sessions after each game closes, with hourly sync as a fallback. Cloud backup snapshots are available to Warp members.
 
 ### MiSTer
 
+- **Fixed:** Games launched manually from the MiSTer menu are tracked again, including recent entries stored on SD or USB. This restores accurate active-game state and play history for those launches.
 - **Fixed:** [Neo Geo indexing](/docs/platforms/mister/launchers/#neogeo) now handles root-level, nested, and symlinked ROM-set folders, with safer `romsets.xml` fallback handling and clearer diagnostics.
 - **Fixed:** Core detection now refreshes after `.rbf` files are added, removed, replaced, or changed through symlinks. Standardized unstable-nightly filenames work as fallbacks for systems such as 3DO, while regular cores keep priority.
 - **Fixed:** [AmigaVision](/docs/platforms/mister/launchers/#amigavision-amiga) and Amiga 500 virtual entries now route through the installed AmigaVision MGL instead of failing with `No RBF found!`.
@@ -407,6 +414,8 @@ Core v2.16.0 includes support for new Zaparoo Online features that will be cover
 
 ### Core, API, and terminal UI
 
+- **Improved:** Relative paths on [external drive tokens](/docs/readers/external-drive/#launch-media-from-the-drive) can launch games stored on the drive without depending on its mount point. Core uses the system folder and file extension to select the launcher.
+- **Fixed:** Reloading Core now preserves credentials already in memory if `auth.toml` is malformed or unreadable.
 - **Fixed:** Absolute-folder [`launch.random`](/docs/zapscript/launch/#launchrandom) commands no longer time out after large libraries are indexed, including organized MiSTer arcade folders, and still respect tag filters.
 - **Fixed:** Thanks to [Gareth Jones](https://github.com/symm), [`/run/` URLs](/docs/core/api/#launch-endpoint) now handle media paths containing encoded spaces or parentheses.
 - **Improved:** The [terminal UI's media search](/docs/core/tui/#writing-tokens) loads beyond the first 100 results automatically while keeping the current selection in place.

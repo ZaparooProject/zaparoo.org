@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
-import { getStatusLabel, resolveSupportHref, type PlatformSupportGroup } from "./types";
+import { getStatusLabel, getStatusSymbol, resolveSupportHref, type PlatformSupportGroup } from "./types";
 import styles from "./styles.module.css";
 
 interface PlatformSupportProps {
@@ -25,7 +25,12 @@ export default function PlatformSupport({ note, groups }: PlatformSupportProps):
                   <>
                     <div className={styles.itemMain}>
                       <span className={styles.itemName}>{platform.name}</span>
-                      <span className={styles.status}>{getStatusLabel(platform.support)}</span>
+                      <span className={styles.status}>
+                        <span className={styles.statusIcon} aria-hidden="true">
+                          {getStatusSymbol(platform.support)}
+                        </span>
+                        {getStatusLabel(platform.support)}
+                      </span>
                     </div>
                     {platform.note && <div className={styles.note}>{platform.note}</div>}
                   </>

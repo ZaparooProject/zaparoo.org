@@ -56,23 +56,83 @@ a.readerItem:hover * {
 }
 
 .supported {
-  border-left-color: #2e8b57;
-  background: color-mix(in srgb, #2e8b57 7%, transparent);
+  --support-accent: #15803d;
+  --support-border: #86efac;
+  --support-background: #f0fdf4;
+  --support-badge-background: #dcfce7;
+  --support-badge-color: #14532d;
+
+  background: var(--support-background);
+  border-color: var(--support-border);
+  border-left-color: var(--support-accent);
 }
 
 .limited {
-  border-left-color: #b7791f;
-  background: color-mix(in srgb, #b7791f 8%, transparent);
+  --support-accent: #a16207;
+  --support-border: #fcd34d;
+  --support-background: #fffbeb;
+  --support-badge-background: #fef3c7;
+  --support-badge-color: #713f12;
+
+  background: var(--support-background);
+  border-color: var(--support-border);
+  border-left-color: var(--support-accent);
 }
 
 .unsupported {
-  border-left-color: var(--ifm-color-emphasis-500);
-  background: var(--ifm-color-emphasis-100);
+  --support-accent: #b91c1c;
+  --support-border: #fca5a5;
+  --support-background: #fef2f2;
+  --support-badge-background: #fee2e2;
+  --support-badge-color: #7f1d1d;
+
+  background: var(--support-background);
+  border-color: var(--support-border);
+  border-left-color: var(--support-accent);
 }
 
 .unknown {
-  border-left-color: var(--ifm-color-primary);
-  background: color-mix(in srgb, var(--ifm-color-primary) 7%, transparent);
+  --support-accent: #1d4ed8;
+  --support-border: #93c5fd;
+  --support-background: #eff6ff;
+  --support-badge-background: #dbeafe;
+  --support-badge-color: #1e3a8a;
+
+  background: var(--support-background);
+  border-color: var(--support-border);
+  border-left-color: var(--support-accent);
+}
+
+[data-theme="dark"] .supported {
+  --support-accent: #4ade80;
+  --support-border: #166534;
+  --support-background: #102719;
+  --support-badge-background: #14532d;
+  --support-badge-color: #dcfce7;
+}
+
+[data-theme="dark"] .limited {
+  --support-accent: #fbbf24;
+  --support-border: #854d0e;
+  --support-background: #2b210d;
+  --support-badge-background: #713f12;
+  --support-badge-color: #fef3c7;
+}
+
+[data-theme="dark"] .unsupported {
+  --support-accent: #f87171;
+  --support-border: #991b1b;
+  --support-background: #301414;
+  --support-badge-background: #7f1d1d;
+  --support-badge-color: #fee2e2;
+}
+
+[data-theme="dark"] .unknown {
+  --support-accent: #60a5fa;
+  --support-border: #1e40af;
+  --support-background: #111f3d;
+  --support-badge-background: #1e3a8a;
+  --support-badge-color: #dbeafe;
 }
 
 .itemMain {
@@ -87,15 +147,23 @@ a.readerItem:hover * {
 }
 
 .status {
-  border: 1px solid var(--z-badge-border);
+  align-items: center;
+  background: var(--support-badge-background);
+  border: 1px solid var(--support-accent);
   border-radius: var(--z-badge-radius);
-  color: var(--z-badge-color);
-  background: var(--z-badge-background);
+  color: var(--support-badge-color);
+  display: inline-flex;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 750;
+  gap: 0.25rem;
   line-height: 1;
   padding: 0.3rem 0.45rem;
   white-space: nowrap;
+}
+
+.statusIcon {
+  font-size: 0.85rem;
+  line-height: 0.8;
 }
 
 .note,

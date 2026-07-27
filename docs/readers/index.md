@@ -1,11 +1,11 @@
 ---
-description: "Compatible Zaparoo hardware readers: NFC/RFID readers, barcode scanners, QR cameras, optical drives, MQTT, and custom serial devices."
-keywords: [zaparoo readers, nfc reader, rfid reader, barcode scanner, zaparoo hardware]
+description: "Compatible Zaparoo hardware readers: NFC/RFID readers, cartridge bridges, barcode scanners, optical drives, MQTT, and custom serial devices."
+keywords: [zaparoo readers, nfc reader, rfid reader, cartridge reader, barcode scanner, zaparoo hardware]
 ---
 
 # Readers
 
-Readers are the physical hardware that scan [tokens](../tokens/index.md) and trigger actions in Zaparoo. Choose from ready-to-use USB readers, DIY modules, optical drives, or even virtual software-based readers.
+Readers are the physical hardware that scan [tokens](../tokens/index.md) and trigger actions in Zaparoo. Choose from ready-to-use USB readers, DIY modules, cartridge bridges, optical drives, or virtual software-based readers.
 
 :::caution Hardware Selection
 Buying generic hardware? Pay attention to the recommendations in the docs. The hardware can be complicated without guidance, and it's easy to buy stuff that won't work or is low quality.
@@ -26,6 +26,7 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 | [App/Camera Scanner](./barcode/index.md) | Barcodes, QR codes | Via Zaparoo App | All |
 | [RS232 Scanner](./barcode/rs232.md) | Barcodes, QR codes | Manual config | All |
 | [Optical Drive](./optical-drive.md) | CDs, DVDs, Blu-rays | Auto-detect on MiSTer; manual config elsewhere | Linux-based platforms except MiSTeX |
+| [Epilogue Operator](./epilogue-operator.md) | GB/GBC/GBA, SNES, N64 cartridges | Install bridge | MiSTer |
 | [MQTT Reader](./mqtt.md) | Virtual/any | Network configuration | All |
 | [File Reader](./file.md) | Text files | No hardware needed | All |
 
@@ -41,6 +42,10 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 ### Optical Readers
 
 - **[Optical Drive](./optical-drive.md)**
+
+### Cartridge Readers
+
+- **[Epilogue Operator](./epilogue-operator.md)**
 
 ### Display Devices
 
@@ -59,7 +64,7 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 
 ## Platform compatibility
 
-Each reader page includes a platform support card with current platform notes. Check those cards before buying hardware, especially for [ACR122U](./nfc/acr122u.md), [RC522](./nfc/rc522.md), and [Optical Drive](./optical-drive.md) setups.
+Each reader page includes a platform support card with current platform notes. Check those cards before buying hardware, especially for [Epilogue Operator](./epilogue-operator.md), [ACR122U](./nfc/acr122u.md), [RC522](./nfc/rc522.md), and [Optical Drive](./optical-drive.md) setups.
 
 ## NFC Readers
 

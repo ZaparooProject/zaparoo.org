@@ -36,6 +36,19 @@ export function getStatusLabel(status: SupportStatus): string {
   }
 }
 
+export function getStatusSymbol(status: SupportStatus): string {
+  switch (status) {
+    case "supported":
+      return "✓";
+    case "limited":
+      return "!";
+    case "unsupported":
+      return "×";
+    case "unknown":
+      return "?";
+  }
+}
+
 const docsSections = new Set([
   "app",
   "core",
