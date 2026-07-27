@@ -31,6 +31,103 @@ interface ShowcaseVideo {
 type ShowcaseItem = ShowcasePhoto | ShowcaseVideo;
 
 const allMedia: ShowcaseItem[] = [
+  // Community Showcase #6
+  {
+    src: "/img/showcase/Suiren_floppy_collection.webp",
+    width: 1200,
+    height: 573,
+    alt: "Custom Zaparoo floppy disk collection. Credit: Suiren @ Discord",
+  },
+  {
+    src: "/img/showcase/Suiren_floppy_nfc_reader.webp",
+    width: 988,
+    height: 1200,
+    alt: "Combined floppy disk and NFC card reader. Credit: Suiren @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/Drakosss_zapafloppy_demo_thumb.webp",
+    src: "/img/showcase/Drakosss_zapafloppy_demo.mp4",
+    width: 800,
+    height: 450,
+    alt: "Zapafloppy 3D printed floppy reader demo. Credit: Drakosss @ Discord",
+    featured: true,
+  },
+  {
+    src: "/img/showcase/Drakosss_zapafloppy_left.webp",
+    width: 1200,
+    height: 828,
+    alt: "Zapafloppy reader side view. Credit: Drakosss @ Discord",
+  },
+  {
+    src: "/img/showcase/LinaBlue_reader_case_top.webp",
+    width: 1200,
+    height: 800,
+    alt: "Red and black dual NFC reader case. Credit: Lina Blue @ Discord",
+    featured: true,
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/Liz_steam_big_picture_demo_thumb.webp",
+    src: "/img/showcase/Liz_steam_big_picture_demo.mp4",
+    width: 480,
+    height: 854,
+    alt: "Steam Big Picture switching demo. Credit: Liz @ Discord",
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/Foolz_arcade_coin_reader_demo_thumb.webp",
+    src: "/img/showcase/Foolz_arcade_coin_reader_demo.mp4",
+    width: 704,
+    height: 480,
+    alt: "Arcade coin reader demo. Credit: Foolz @ Discord",
+  },
+  {
+    src: "/img/showcase/Foolz_arcade_coin_collection.webp",
+    width: 1200,
+    height: 801,
+    alt: "Arcade reader with custom NFC coin collection. Credit: Foolz @ Discord",
+    featured: true,
+  },
+  {
+    src: "/img/showcase/grego2d_snes_card_batch.webp",
+    width: 1200,
+    height: 900,
+    alt: "Printed SNES-style NFC card batch. Credit: grego2d @ Discord",
+  },
+  {
+    src: "/img/showcase/grego2d_chrono_trigger_card.webp",
+    width: 1200,
+    height: 900,
+    alt: "Lacquered Chrono Trigger NFC card. Credit: grego2d @ Discord",
+  },
+  {
+    src: "/img/showcase/evansoft_holographic_cards.webp",
+    width: 1200,
+    height: 872,
+    alt: "Holographic Super Famicom NFC cards. Credit: evansoft @ Discord",
+  },
+  {
+    src: "/img/showcase/BigBlue709_crt_setup.webp",
+    width: 1200,
+    height: 900,
+    alt: "Zaparoo setup on a CRT with physical game cases. Credit: BigBlue709 @ Discord",
+  },
+  {
+    src: "/img/showcase/CygnusSquared_tactile_cartridge.webp",
+    width: 1200,
+    height: 900,
+    alt: "Tactile cartridge-style NFC card holder. Credit: CygnusSquared @ Discord",
+    featured: true,
+  },
+  {
+    type: "video",
+    poster: "/img/showcase/CygnusSquared_floppy_demo_thumb.webp",
+    src: "/img/showcase/CygnusSquared_floppy_demo.mp4",
+    width: 720,
+    height: 720,
+    alt: "Real floppy disk launching a game through Zaparoo. Credit: CygnusSquared @ Discord",
+  },
   // Community Showcase #5
   {
     src: "/img/showcase/tunnotron3000_nfc_engine_reader.webp",
@@ -135,7 +232,6 @@ const allMedia: ShowcaseItem[] = [
     width: 1200,
     height: 900,
     alt: "Handmade wooden NFC reader case. Credit: SBB @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/SBB_wooden_case_alt4.webp",
@@ -150,7 +246,6 @@ const allMedia: ShowcaseItem[] = [
     width: 480,
     height: 854,
     alt: "Numpad dialer with phone book. Credit: hobbett @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/BigBlue709_nes_snes_cards1.webp",
@@ -183,7 +278,6 @@ const allMedia: ShowcaseItem[] = [
     width: 1200,
     height: 900,
     alt: "3D printed mini MegaCD II with custom boxes. Credit: LoVeMaKeRz @ Discord",
-    featured: true,
   },
   {
     src: "/img/showcase/LinaBlue_printed_cards.webp",
@@ -237,7 +331,6 @@ const allMedia: ShowcaseItem[] = [
     width: 1200,
     height: 900,
     alt: "SHELFMODE project with vertical NFC carts. Credit: Pullle @ Discord",
-    featured: true,
   },
   {
     type: "video",
