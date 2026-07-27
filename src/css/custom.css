@@ -253,19 +253,14 @@
     transform: translateY(0);
 }
 
-/* Mobile line break for hero subtitle */
-.mobile-break {
-    display: none;
-}
-
-@media screen and (max-width: 768px) {
-    .mobile-break {
-        display: block;
-    }
-}
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
+    .zaparoo-animated-bg::before {
+        animation: none;
+        transform: translateX(16.667%);
+    }
+
     .rotating-word {
         transition: none;
         transform: none !important;

@@ -29,9 +29,9 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type = 'homepage' }) =>
     "@type": "SoftwareApplication",
     "name": "Zaparoo",
     "alternateName": "Zaparoo Universal Loading System",
-    "applicationCategory": "MultimediaApplication",
+    "applicationCategory": "UtilitiesApplication",
     "operatingSystem": ["Windows", "Linux", "macOS", "Android"],
-    "description": "Open source universal loading system for launching games, media and scripted actions using physical objects like NFC cards and RFID tags",
+    "description": "Free, open-source software for launching games with NFC cards, toys, QR codes, optical discs, and other physical objects",
     "url": "https://zaparoo.org",
     "downloadUrl": "https://zaparoo.org/downloads/",
     "author": {
@@ -49,35 +49,36 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type = 'homepage' }) =>
     "softwareVersion": "latest",
     "screenshot": "https://zaparoo.org/img/social-card.webp",
     "featureList": [
-      "Launch games instantly with NFC cards",
-      "Support for multiple media types",
-      "Open source and customizable",
+      "Launch games with NFC cards, toys, QR codes, barcodes, and optical discs",
+      "Works across supported gaming platforms",
+      "Free and open source",
       "No hardware modifications required",
-      "Works with existing emulators and media players"
+      "Works with existing games and emulators",
+      "Supports media launching and custom scripted actions"
     ],
-    "keywords": "NFC, RFID, game launcher, media player, physical computing, open source"
+    "keywords": "NFC game launcher, physical game collection, QR code game launcher, MiSTer FPGA, Batocera, SteamOS, open source"
   };
 
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to use Zaparoo",
-    "description": "Learn how to set up and use Zaparoo to launch games and media with physical objects",
+    "name": "How to launch games with Zaparoo NFC cards",
+    "description": "Set up Zaparoo with NFC cards, then explore other supported ways to launch games",
     "step": [
       {
         "@type": "HowToStep",
         "name": "Install Zaparoo",
-        "text": "Download and install Zaparoo on your device. Works with your existing games and emulators."
+        "text": "Download and install the free Zaparoo software for your existing games and emulators."
       },
       {
         "@type": "HowToStep",
-        "name": "Write Your Cards",
-        "text": "Use your phone or an NFC reader to link games and media to cards."
+        "name": "Link a Card",
+        "text": "Choose a game in the Zaparoo App and save it to an NFC card."
       },
       {
         "@type": "HowToStep",
-        "name": "Tap & Play",
-        "text": "Tap your card on the reader to launch your content."
+        "name": "Tap and Play",
+        "text": "Tap the card on your reader to launch the game."
       }
     ]
   };

@@ -36,9 +36,10 @@ export default function PlatformShowcase(): ReactNode {
     <section className={`${styles.section} ${styles.sectionGray}`}>
       <div className="container">
         <div className="text--center padding-horiz--md">
-          <h2 className={styles.sectionTitle}>Supported Hardware</h2>
+          <h2 className={styles.sectionTitle}>Works with Your Setup</h2>
           <p className={styles.sectionSubtitle}>
-            Our mission is Zaparoo on any platform with any hardware.
+            Use Zaparoo across supported gaming platforms, readers, and token
+            types.
           </p>
         </div>
 
@@ -59,7 +60,7 @@ export default function PlatformShowcase(): ReactNode {
         </div>
 
         <div>
-          <h3 className={styles.sectionHeader}>Tokens</h3>
+          <h3 className={styles.sectionHeader}>Ways to Launch</h3>
           <div className={styles.platformBadges}>
             {tokens.map((item, index) => (
               <Link

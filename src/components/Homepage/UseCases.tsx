@@ -1,13 +1,11 @@
 import type { ReactNode } from "react";
 import {
-  Joystick,
-  Users,
-  Trophy,
-  Library,
-  Download,
-  Tv,
   Code2,
-  Wrench,
+  Gamepad2,
+  Joystick,
+  Library,
+  Trophy,
+  Users,
   Zap,
 } from "lucide-react";
 import Link from "@docusaurus/Link";
@@ -15,34 +13,40 @@ import styles from "./Homepage.module.css";
 
 const useCases = [
   {
-    icon: Joystick,
-    title: "Arcade Cabinets",
-    description: "Build the ultimate arcade with instant game switching.",
+    icon: Library,
+    title: "Physical Collections",
+    description:
+      "Give digital games a place on your shelf with cards, cartridges, discs, and more.",
   },
   {
     icon: Users,
     title: "Family Gaming",
-    description: "Kids can play independently without complex menus.",
+    description:
+      "Let kids choose and launch games without navigating complex menus.",
+  },
+  {
+    icon: Joystick,
+    title: "Arcade Cabinets",
+    description:
+      "Switch games with a token instead of opening menus or reaching for a keyboard.",
+  },
+  {
+    icon: Gamepad2,
+    title: "Game Nights and Guests",
+    description:
+      "Let guests browse physical choices and start playing without learning your frontend.",
   },
   {
     icon: Trophy,
-    title: "Tournaments",
-    description: "Quick game switching for competitive events.",
-  },
-  {
-    icon: Library,
-    title: "Collectors",
-    description: "Organize your digital collection with physical cards.",
-  },
-  {
-    icon: Tv,
-    title: "Media Centers",
-    description: "Launch movies, music, and TV shows instantly.",
+    title: "Events and Tournaments",
+    description:
+      "Move between games quickly during tournaments and community events.",
   },
   {
     icon: Code2,
-    title: "Developer Friendly",
-    description: "Open API for custom integrations and automation.",
+    title: "Makers and Integrators",
+    description:
+      "Build custom readers, cabinets, and automations with open APIs and protocols.",
   },
 ];
 
@@ -51,9 +55,10 @@ export default function UseCases(): ReactNode {
     <section className={`${styles.section} ${styles.sectionGray}`}>
       <div className="container">
         <div className="text--center padding-horiz--md">
-          <h2 className={styles.sectionTitle}>Your Perfect Setup</h2>
+          <h2 className={styles.sectionTitle}>Why People Use Zaparoo</h2>
           <p className={styles.sectionSubtitle}>
-            Zaparoo is designed to work how you want it to.
+            Turn digital game libraries into collections people can browse,
+            share, and play.
           </p>
         </div>
         <div className={styles.useCasesGrid}>
@@ -74,6 +79,10 @@ export default function UseCases(): ReactNode {
             );
           })}
         </div>
+        <p className={styles.beyondGames}>
+          Beyond games, <Link to="/docs/zapscript/">ZapScript</Link> can launch
+          media and trigger custom actions.
+        </p>
         <div className={styles.buttonGroup}>
           <Link
             className="button button--primary button--lg"

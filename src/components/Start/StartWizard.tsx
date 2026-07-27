@@ -487,6 +487,7 @@ export const StartWizard: React.FC = () => {
           {platforms.map((platform) => (
             <button
               key={platform.id}
+              data-umami-event="start-wizard-platform-selected"
               className={`${styles.card} ${
                 choice.platform === platform.id ? styles.active : ""
               }`}
@@ -526,6 +527,7 @@ export const StartWizard: React.FC = () => {
               return (
                 <button
                   key={token.id}
+                  data-umami-event="start-wizard-token-selected"
                   className={`${styles.card} ${
                     choice.token === token.id ? styles.active : ""
                   }`}
@@ -560,6 +562,7 @@ export const StartWizard: React.FC = () => {
               return (
                 <button
                   key={reader.id}
+                  data-umami-event="start-wizard-completed"
                   className={`${styles.card} ${
                     choice.reader === reader.id ? styles.active : ""
                   }`}
@@ -711,6 +714,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               outline
               block
               icon={<Download size={16} />}
+              dataUmamiEvent="start-summary-download-core"
             >
               Zaparoo Core
             </StyledButton>
@@ -720,6 +724,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               outline
               block
               icon={<Download size={16} />}
+              dataUmamiEvent="start-summary-download-app"
             >
               Zaparoo App
             </StyledButton>
@@ -760,6 +765,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                   outline
                   block
                   icon={<ShoppingCart size={16} />}
+                  dataUmamiEvent="start-summary-shop"
                 >
                   Zaparoo Shop
                 </StyledButton>
@@ -803,6 +809,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 block
                 icon={<Book size={16} />}
                 className={styles.emphasizedStepButton}
+                dataUmamiEvent="start-summary-install-guide"
               >
                 Install Guide
               </StyledButton>
@@ -989,6 +996,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             variant="secondary"
             outline
             icon={<DiscordIcon size={16} />}
+            dataUmamiEvent="start-summary-discord"
           >
             Join Discord
           </StyledButton>

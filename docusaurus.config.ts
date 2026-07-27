@@ -6,7 +6,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Zaparoo",
-  tagline: "Universal Loading System",
+  tagline: "Make Your Digital Game Library Physical",
   favicon: "img/favicon.ico",
 
   url: "https://zaparoo.org",
@@ -717,7 +717,7 @@ const config: Config = {
         removeDuplicateHeadings: true,
         title: "Zaparoo Documentation",
         description:
-          "Universal loading system — NFC, QR codes, and discs for launching games and media across MiSTer FPGA, Steam Deck, Batocera, Windows, and more.",
+          "Free, open-source software for launching games with NFC cards, QR codes, discs, and more across MiSTer FPGA, SteamOS, Batocera, Windows, and Linux.",
       },
     ],
     // Custom image optimization plugin (disabled - breaks MDX image imports)

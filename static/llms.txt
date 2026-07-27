@@ -1,6 +1,6 @@
 # Zaparoo Documentation
 
-> Zaparoo is a free, open-source universal loading system. Tap an NFC card, scan a QR code, or insert a disc to instantly launch games and media on MiSTer FPGA, Steam Deck, Batocera, Windows, and more.
+> Zaparoo is free, open-source software that turns NFC cards, toys, QR codes, discs, and other physical objects into shortcuts to games on MiSTer FPGA, SteamOS, Batocera, Windows, Linux, and more. It can also launch media and run custom actions.
 
 Important notes:
 

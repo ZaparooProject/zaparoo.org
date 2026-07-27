@@ -32,6 +32,7 @@ export interface StyledButtonProps {
   icon?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  dataUmamiEvent?: string;
 }
 
 export const StyledButton: React.FC<StyledButtonProps> = ({
@@ -42,6 +43,7 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
   icon,
   children,
   className = "",
+  dataUmamiEvent,
 }) => {
   const classes = [
     "button",
@@ -57,6 +59,7 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
     <Link
       to={to}
       className={classes}
+      data-umami-event={dataUmamiEvent}
       style={{
         display: "flex",
         alignItems: "center",

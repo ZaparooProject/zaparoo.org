@@ -8,7 +8,6 @@ import {
   defaultReleaseDate,
   latestReleaseBlogPost,
 } from "@site/src/components/DownloadCard";
-import RotatingText from "@site/src/components/RotatingText";
 import DemoVideo from "@site/src/components/DemoVideo";
 import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
 import UseCases from "@site/src/components/Homepage/UseCases";
@@ -75,8 +74,8 @@ function Stats(): ReactNode {
         <div className={styles.statLabel}>Discord Members</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>{siteStats.githubStars}</div>
-        <div className={styles.statLabel}>GitHub Stars</div>
+        <div className={styles.statNumber}>{siteStats.platforms}</div>
+        <div className={styles.statLabel}>Platforms</div>
       </div>
     </div>
   );
@@ -185,7 +184,7 @@ function SupportStrip(): ReactNode {
     <section className={clsx(homepageStyles.section, homepageStyles.sectionLight)}>
       <div className="container">
         <div className="text--center padding-horiz--md" style={{ marginBottom: "2rem" }}>
-          <h2 className={homepageStyles.sectionTitle}>Zaparoo is free and open source</h2>
+          <h2 className={homepageStyles.sectionTitle}>Zaparoo Is Free and Open Source</h2>
           <p className={homepageStyles.sectionSubtitle}>Here's how to help it keep growing.</p>
         </div>
         <div className="row">
@@ -225,36 +224,20 @@ function HomepageHeader(): ReactNode {
       <div className={styles.heroBannerBackground} />
       <div className="zaparoo-animated-bg" />
       <div className={clsx("container", styles.heroBannerContent)}>
-        <Heading as="h1" className="hero__title">
-          <span className="sr-only">Zaparoo - Open Source Universal Loading System</span>
-          <img
-            src="/img/logo_lockup_white_sm.webp"
-            alt=""
-            aria-hidden="true"
-            height="200px"
-            width="286px"
-            className={styles.heroTitle}
-          />
+        <img
+          src="/img/logo_lockup_white_sm.webp"
+          alt="Zaparoo"
+          height="130"
+          width="186"
+          className={styles.heroTitle}
+        />
+        <Heading as="h1" className={styles.heroHeading}>
+          Make your digital game library physical.
         </Heading>
-        <p className={clsx("hero__subtitle", styles.heroSubtitle)}>
-          Tap a Card,
-          <br className="mobile-break" /> Launch{" "}
-          <RotatingText
-            words={[
-              "a Game",
-              "a Movie",
-              "a TV Show",
-              "Music",
-              "a Podcast",
-              "a Book",
-              "a Comic",
-              "an App",
-            ]}
-          />
-        </p>
         <p className={styles.heroDefinition}>
-          Launch anything with anything. Use NFC cards, QR codes, optical discs,
-          and more to instantly play your games and media.
+          Free, open-source software that turns cards, toys, QR codes, discs,
+          and more into shortcuts for launching games across your existing
+          setup.
         </p>
         <div className={styles.buttons}>
           <Link
@@ -291,8 +274,8 @@ function HomepageHeader(): ReactNode {
 export default function Home(): ReactNode {
   return (
     <Layout
-      title="Open Source Universal Loading System"
-      description="The open source universal loading system. Launch media and scripted actions using physical objects. Create your collection how YOU want."
+      title="Launch Games with NFC Cards, QR Codes, Discs & More"
+      description="Launch games with NFC cards, toys, QR codes, discs, and more across MiSTer FPGA, Batocera, SteamOS, Windows, and Linux. Free and open source."
     >
       <StructuredData type="homepage" />
       <HomepageHeader />
@@ -317,9 +300,12 @@ export default function Home(): ReactNode {
         >
           <div className="container">
             <div className="text--center padding-horiz--md">
-              <h2 className={homepageStyles.sectionTitle}>How It Works</h2>
+              <h2 className={homepageStyles.sectionTitle}>
+                Start with NFC Cards
+              </h2>
               <p className={homepageStyles.sectionSubtitle}>
-                Get started with affordable gear you might already own.
+                The most popular setup uses affordable gear you might already
+                own.
               </p>
             </div>
             <div className="row">
@@ -341,7 +327,7 @@ export default function Home(): ReactNode {
                     })()}
                   </div>
                   <h3>1. Install Zaparoo</h3>
-                  <p>Works with your existing games and emulators.</p>
+                  <p>Free software for your existing games and emulators.</p>
                 </div>
               </div>
               <div className="col col--4">
@@ -361,8 +347,8 @@ export default function Home(): ReactNode {
                       );
                     })()}
                   </div>
-                  <h3>2. Write Your Cards</h3>
-                  <p>Use your phone or an NFC reader to link games to cards.</p>
+                  <h3>2. Link a Card</h3>
+                  <p>Choose a game in the Zaparoo App and save it to a card.</p>
                 </div>
               </div>
               <div className="col col--4">
@@ -382,8 +368,8 @@ export default function Home(): ReactNode {
                       );
                     })()}
                   </div>
-                  <h3>3. Tap & Play!</h3>
-                  <p>Tap the card and get straight into the game.</p>
+                  <h3>3. Tap and Play</h3>
+                  <p>Tap the card on your reader and the game launches.</p>
                 </div>
               </div>
             </div>

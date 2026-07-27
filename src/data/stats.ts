@@ -4,7 +4,7 @@ const siteStats = {
   downloads: '120k',
   discordMembers: '2k',
   githubStars: '270',
-  platforms: '13',
+  platforms: '11',
 } as const;
 
 export default siteStats;

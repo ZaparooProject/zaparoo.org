@@ -20,7 +20,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const PLATFORM_COUNT = 13; // keep in sync with zaparoo.org/docs/platforms
+const PLATFORM_COUNT = 11; // keep in sync with zaparoo.org/docs/platforms
 const DISCORD_INVITE_FALLBACK = 'jNdWq52rBP';
 
 const orgRepo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
