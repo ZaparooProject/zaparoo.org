@@ -9,7 +9,7 @@ The Zaparoo community is active on several platforms.
 
 ## Discord
 
-[Discord](https://discord.gg/zaparoo) is our main community hub for real-time discussion and support. It's the best place to:
+[Discord](https://zaparoo.org/discord) is our main community hub for real-time discussion and support. It's the best place to:
 
 - Get quick help with technical issues
 - Chat with other community members

@@ -7,6 +7,10 @@ keywords: [zaparoo qr codes, qr code game launcher, zapscript qr code, zaparoo a
 
 QR codes can be used as Zaparoo tokens, just like an [NFC tag](./nfc/index.md). A QR code can store [ZapScript](../zapscript/index.md) directly, and Zaparoo runs that ZapScript when the code is scanned.
 
+<img src="/img/showcase/discord5.webp" alt="Zaparoo launch QR code printed beside a game entry in a book" width="500" loading="lazy" />
+
+*Elphive added Zaparoo launch codes to a retro gaming book and shared the result in the [Showcase gallery](/showcase/).*
+
 ## QR code generator
 
 Use the generator below to create QR codes with your ZapScript:

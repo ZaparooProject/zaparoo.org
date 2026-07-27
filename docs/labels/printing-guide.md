@@ -21,6 +21,10 @@ You are responsible for making sure you have the legal right to print any artwor
 
 **Holographic rainbow vinyl** is a popular option for special or favorite cards. It gives a foil/shimmer effect, but the metallic layer can slightly weaken the NFC signal when applied to a card. Search for "holographic vinyl sticker paper A4" on Amazon.
 
+<img src="/img/showcase/whtafckremix_cards.webp" alt="Game card labels printed on holographic vinyl" width="500" loading="lazy" />
+
+*Holographic vinyl labels by whtafck_remix, featured in [Community Showcase #2](/blog/community-showcase-2).*
+
 **Matte sticker paper** (non-vinyl, like Avery) is a cheaper option that works fine for testing or large batches where cost matters.
 
 ### Inkjet-printable PVC cards
@@ -34,6 +38,10 @@ Unprotected inkjet prints will smear when touched. You have a few options:
 **Self-adhesive cold lamination sheets** are the community favorite. Apply a lamination sheet over your printed sticker paper before cutting. This protects against scratches, fingerprints, UV, and water. Matte vinyl with glossy lamination is a good combination for appearance and durability.
 
 **Clear coat spray** is a quicker alternative. Spray your printed sheets and let them dry before cutting. Less durable than lamination but much faster for large batches.
+
+<img src="/img/showcase/grego2d_lacquer_batch.webp" alt="Printed NFC cards laid out for a protective lacquer coating" width="100%" loading="lazy" />
+
+*Cards being protected with lacquer by grego2d, featured in [Community Showcase #6](/blog/community-showcase-6).*
 
 **Holographic lamination sheets** can be applied over matte prints for a shimmer effect without needing holographic sticker paper.
 
@@ -65,6 +73,10 @@ A basic setup is an X-Acto knife, metal ruler, and cutting mat. Many community m
 A **corner rounder** helps match the rounded corners of NFC cards. A **3mm (R3) corner rounder** is the closest fit. Cheap 3-in-1 rounders from Amazon or AliExpress work fine for many people. Clean the adhesive buildup out of the punch every few cuts or it can jam.
 
 A **paper trimmer/guillotine** speeds up straight cuts significantly compared to a knife.
+
+<img src="/img/showcase/tangocat_cutting_labels.webp" alt="Hand-cut NFC card labels with scissors and a corner rounder" width="100%" loading="lazy" />
+
+*Hand-cut labels and corner-rounding tools shared by tangocat in [Community Showcase #2](/blog/community-showcase-2).*
 
 ### Plotter cutters
 

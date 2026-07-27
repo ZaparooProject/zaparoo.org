@@ -7,6 +7,14 @@ keywords: [zaparoo card storage, nfc card collection, zaparoo binder, game card 
 
 As your collection grows, you'll want a way to organize and display your [NFC cards](../nfc/index.md). These are a few options Zaparoo users have shared or adapted from trading card and retro gaming collections.
 
+<Gallery media={[
+  { src: "/img/showcase/MechaRebecca_cassette_cases.webp", width: 1200, height: 606, alt: "Cassette cases used to store NFC cards" },
+  { src: "/img/showcase/BigBlue709_custom_switch_cases.webp", width: 1200, height: 900, alt: "Nintendo Switch cases with custom cover inserts for NFC cards" },
+  { src: "/img/showcase/ArielAces_card_storage.webp", width: 1200, height: 900, alt: "Sectioned acrylic box for organizing NFC cards" },
+]} />
+
+*Storage shared by MechaRebecca in the [Showcase gallery](/showcase/), plus BigBlue709 and ArielAces in [Community Showcase #1](/blog/community-showcase-1).*
+
 ## Binders
 
 Binders work well when you want to browse cards in pages. The pocket size depends on the cards you're using:

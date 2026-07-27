@@ -13,7 +13,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type = 'homepage' }) =>
     "logo": "https://zaparoo.org/img/logo_sm.webp",
     "sameAs": [
       "https://github.com/ZaparooProject",
-      "https://discord.gg/zaparoo",
+      "https://zaparoo.org/discord",
       "https://reddit.com/r/Zaparoo",
       "https://www.youtube.com/@HeyZaparoo"
     ],

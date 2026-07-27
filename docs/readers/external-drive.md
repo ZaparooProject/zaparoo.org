@@ -9,6 +9,10 @@ A USB stick or SD card can work as a [Zaparoo token](../tokens/index.md). Put a 
 
 This is useful if you want physical tokens without buying [NFC cards](../tokens/nfc/index.md) or a separate reader.
 
+<img src="/img/showcase/Galewin_floppy_drive_demo_thumb.webp" alt="USB floppy drive reading a disk as a Zaparoo token" width="100%" loading="lazy" />
+
+*A USB floppy drive used as removable token media by Galewin in [Community Showcase #5](/blog/community-showcase-5). USB sticks and SD cards work the same way.*
+
 ## Platforms
 
 <PlatformSupport

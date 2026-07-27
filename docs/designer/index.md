@@ -18,6 +18,18 @@ Zaparoo Designer is a web app for creating custom [labels](../labels/index.md) f
 - Export print-ready files in PDF or PNG formats with printer/plotter configuration options
 - Use media sizes for standard NFC cards, slim NFC cards, mini cards, Zap Trading Cards, cassette tape cases, foldable sleeves, and supported PCB card designs
 
+## Community creations
+
+Zaparoo users have turned Designer output into cards, cassette packaging, and foldable sleeves:
+
+<Gallery media={[
+  { src: "/img/showcase/Schlarp_game_cards.webp", width: 1200, height: 900, alt: "Collection of game-themed NFC cards made with Zaparoo Designer" },
+  { src: "/img/showcase/wonderloid3455_first_card_case.webp", width: 901, height: 1200, alt: "Matching arcade-themed NFC card and cassette case" },
+  { src: "/img/showcase/Zag_sleeve1.webp", width: 546, height: 1200, alt: "Printed foldable sleeve for an NFC card" },
+]} />
+
+*Creations by Schlarp from [Community Showcase #2](/blog/community-showcase-2), wonderloid3455 from [Community Showcase #5](/blog/community-showcase-5), and Zag from [Community Showcase #3](/blog/community-showcase-3).*
+
 ## Getting started
 
 1. Navigate to [Zaparoo Designer](https://design.zaparoo.org/)

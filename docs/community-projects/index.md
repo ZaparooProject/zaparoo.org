@@ -9,6 +9,14 @@ An index of projects created by the Zaparoo community. We love seeing what peopl
 
 Projects can be anything from 3D printed cases to custom tokens, software integrations, or creative ways to use Zaparoo. Even if it feels small, others may find it useful or inspiring!
 
+<Gallery media={[
+  { src: "/img/showcase/Pullle_shelfmode4.webp", width: 1200, height: 900, alt: "SHELFMODE NFC cartridge library and reader" },
+  { src: "/img/showcase/SunieFairbreeze_retro_nfc_reader.webp", width: 1200, height: 904, alt: "Retro NFC reader with cartridge and card tokens" },
+  { src: "/img/showcase/Phoenix_super_zap_boy.webp", width: 1200, height: 1200, alt: "Super Zap Boy console build with NFC cartridge reader" },
+]} />
+
+*From left: SHELFMODE by Pullle from [Community Showcase #3](/blog/community-showcase-3), SunieFairbreeze's Retro NFC reader from the [Showcase gallery](/showcase/), and Super Zap Boy by Phoenix from Community Showcase #3.*
+
 ## Custom Cases
 
 - **[3.5" TFT Display NFC Enclosure for MiSTer de-10-nano](https://www.printables.com/model/1125804-35-tft-display-nfc-enclosure-for-mister-de-10-nano)** by *MiSTerConsoles*
@@ -108,6 +116,10 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   A custom case for the TapTo DIY Reader, adjusted for the USB-C adapter variant.
 
+- **[Zapafloppy](https://makerworld.com/en/models/2700039-zapafloppy-floppy-reader-for-zaparoo-system)** by *Drakos-Prod*
+
+  Floppy drive-inspired case for a PN532 reader. It uses 25mm NTAG215 stickers to turn old floppy disks into Zaparoo tokens.
+
 - **[Zaploader V2](https://makerworld.com/en/models/1695030-zaploader-v2)** by *Ninja3DP*
 
   NFC cart reader for SNES (PAL/JAP) carts and NFC cards. Supports ZapPad and USB-C NFC readers.
@@ -173,6 +185,22 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Fork of the MiSTerFPGA main binary that adds optional Zaparoo-aware features: a standby screen while waiting for a card tap, and per-core loading screens with cover art.
 
+- **[MiSTer Companion](https://github.com/Anime0t4ku/mister-companion)** by *Anime0t4ku*
+
+  Cross-platform GUI for managing a MiSTer over the network or from an SD card. Includes Zaparoo installation and media scraping workflows.
+
+- **[MiSTer Media DB](https://github.com/BossRighteous/MiSTer-Media-DB)** by *BossRighteous*
+
+  Python workflows for building MiSTer game metadata and artwork collections. It can export Zaparoo title mappings and prebuilt media batches for Zaparoo Frontend.
+
+- **[MiSTerZine](https://misterzine.fyi/releases/)** by *Matija Erceg*
+
+  Searchable tracker for public MiSTer cores and arcade games, with release dates, screenshots, hardware details, and RSS feeds. Each entry provides a copyable ZapScript token for launching it through Zaparoo.
+
+- **[zaparoo-operator](https://github.com/epilogue-co/zaparoo-operator)** by *Epilogue*
+
+  Bridges Epilogue Operator cartridge readers to Zaparoo on MiSTer and SuperStation ONE. Supports Game Boy, Game Boy Advance, SNES, and N64 cartridges, with save data written back to supported cartridges.
+
 ## Tokens
 
 ### Storage
@@ -211,9 +239,17 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   3D printed floppy disks for use with the TapTo NFC 1541 case.
 
+- **[NES Game Cart Tap-to-Play Mini NFC Retro Keychains](https://makerworld.com/en/models/2018756-nes-game-cart-tap-to-play-mini-nfc-retro-keychain)** by *Powerpill.prints*
+
+  Mini NES cartridge keychains with embedded NFC tags. Includes printable labels, a display stand, and setup instructions for Zaparoo and Delta on iOS.
+
 - **[SNES Game Cart Tap-to-Play Mini NFC Keychains](https://makerworld.com/en/models/2387775-snes-game-cart-tap-to-play-mini-nfc-retro-keychain)** by *kertgartner*
 
   Mini SNES cartridge keychains with embedded NFC. Works with Zaparoo and Delta (iOS). Includes video tutorial.
+
+- **[Zaparoo (TapTo) Sega Cartridge/Cart NFC](https://makerworld.com/en/models/1746040-zaparoo-tapto-sega-cartridgecart-nfc)** by *psybertech*
+
+  Mini Mega Drive/Genesis-style cartridge designed for a 1-inch round NFC sticker and compatible Zaparoo cartridge readers.
 
 - **[Zaparoo(TapTo) Retro Game Cartridges/Carts NFC](https://makerworld.com/en/models/1417529-zaparoo-tapto-retro-game-cartridges-carts-nfc)** by *psybertech*
 

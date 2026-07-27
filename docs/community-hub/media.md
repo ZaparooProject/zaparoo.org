@@ -109,6 +109,18 @@ Coverage of the Zaparoo project online.
 - **[MiSTer Companion v2.2.0 Released](https://metalgamesolid.com/misc/mister-companion-v2-2-0-released/)** - *MetalGameSolid* (March 8, 2026)
   Coverage highlighting the built-in Zaparoo install flow in MiSTer Companion v2.2.0
 
+- **[MiSTer FPGA News – Mat Mania, PC Jr, Atari Jaguar & More](https://retrorgb.com/mister-fpga-news-mat-mania-pc-jr-atari-jaguar-more.html)** - *RetroRGB* (March 12, 2026)
+  Coverage of Zaparoo game distribution launching with Atari Jaguar titles from Reboot Games
+
+- **[MiSTer FPGA News – Graphical User Interface, Rainbow Islands, MultiSystem 2 Arcade](https://retrorgb.com/mister-fpga-news-graphical-user-interface-rainbow-islands-multisystem-2-arcade.html)** - *RetroRGB* (May 9, 2026)
+  Initial coverage of Zaparoo Frontend and its artwork-based game browser
+
+- **[MiSTer FPGA News – New PC Core, Atari Star Wars, Darius 2 & More](https://retrorgb.com/mister-fpga-news-new-pc-core-atari-star-wars-darius-2-more.html)** - *RetroRGB* (June 1, 2026)
+  Coverage of the Frontend rename, CRT and list modes, per-system launchers, and related Core updates
+
+- **[Zaparoo Frontend: Upgraded MiSTer GUI](https://retrorgb.com/zaparoo-frontend-upgraded-mister-gui.html)** - *RetroRGB* (June 29, 2026)
+  Dedicated look at Zaparoo Frontend v1.2.0, including CRT support and the built-in MiSTer updater
+
 ### Developer Articles & Community
 
 - **[Creating TapTo](https://timwilsie.com/creating-tapto)** - *Tim Wilsie* (March 26, 2024)
@@ -196,8 +208,23 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo agora no Batocera](https://www.youtube.com/watch?v=Pfb8CWQFVhg)** - *YouTube* (March 20, 2026)
   Portuguese language walkthrough of Zaparoo running on Batocera
 
+- **[Il FUTURO del gaming è FISICO | Scopri Zaparoo giochi fisici FAI DA TE!](https://www.youtube.com/watch?v=HyhR_riEaOw)** - *AVK Studio* (April 18, 2026)
+  Italian language introduction to Zaparoo and making physical NFC game cards
+
+- **[Zaparooの作り方・使い方ガイド！ 自作のNFCカードをかざしてゲームが起動可能。アミーボもどきも作れちゃう!?【MiSTer FPGA・SuperStation One用】](https://www.youtube.com/watch?v=pTwi96VbCoQ)** - *レトロゲームで遊ぼう！* (May 1, 2026)
+  Japanese language setup guide covering card writing, phone scanning, and printed labels
+
+- **[New Zaparoo Mister Front End! Fresh coast of paint of your Mister screen!](https://www.youtube.com/watch?v=-RQubRqBVyc)** - *Pixel to Polygon Gaming* (May 4, 2026)
+  Hands-on look at the initial Zaparoo Frontend beta for MiSTer
+
+- **[MiSTer FPGA : ZAPAROO LAUNCHER](https://www.youtube.com/watch?v=MDgKR6qRXEw)** - *Nico Klem* (May 4, 2026)
+  French language installation guide and demo for the initial Frontend release
+
 - **[La magia dei giochi fisici su Batocera! Scopriamo Zaparoo](https://www.youtube.com/watch?v=aZPFoFqYJuc)** - *80 voglia di arcade* (May 26, 2026)
   Italian language Batocera walkthrough showing NFC cards, arcade cabinet setup, and Zaparoo Designer
+
+- **[Zaparoo Frontend | Is It For You? | Let's Check It Out | MiSTer FPGA](https://www.youtube.com/watch?v=4tsXWUWIQw0)** - *Pixel Cherry Ninja* (July 6, 2026)
+  Full Frontend tour covering artwork browsing, CRT and TATE modes, favorites, and the built-in updater
 
 ### News & Updates
 
@@ -218,6 +245,9 @@ Coverage of the Zaparoo project online.
 
 - **[New Frontend for MiSTer FPGA in the Works... and it Looks Awesome!](https://www.youtube.com/watch?v=5896iuzbrck)** - *Pixel Cherry Ninja* (December 19, 2025)
   First-look video on the upcoming Zaparoo graphical front-end
+
+- **[Zaparoo Frontend Announced for MiSTer FPGA | Next-Level UI](https://www.youtube.com/watch?v=q-kboBTl23A)** - *Pixel Cherry Ninja* (May 3, 2026)
+  Preview of the initial Zaparoo Frontend release and its artwork-based library browser
 
 ## Official Resources
 
