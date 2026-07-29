@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-description: "Zaparoo Core features: device backups, profiles, mappings, playlists, audio playback, play controls, hooks, launchers, publishers, game tags, and scraping."
-keywords: [zaparoo features, zaparoo backup, zaparoo profiles, zaparoo mappings, zaparoo playlists, zaparoo play controls, zaparoo hooks, zaparoo launchers, zaparoo audio, zaparoo scraping]
+description: "Zaparoo Core features: device backups, profiles, mappings, playlists, audio playback, media database scraping, play controls, hooks, launchers, publishers, and game tags."
+keywords: [zaparoo features, zaparoo backup, zaparoo profiles, zaparoo mappings, zaparoo playlists, zaparoo media database, zaparoo hooks, zaparoo launchers, zaparoo audio, zaparoo scraping]
 ---
 
 # Features
@@ -19,4 +19,4 @@ Zaparoo Core includes several features that expand what you can do with your tok
 - [Publishers](./publishers.md) - broadcast Core events to MQTT brokers or PixelCade LED displays
 - [Systems](./systems.md) - reference of all system IDs used in configuration and ZapScript commands
 - [Tags](./tags.md) - metadata labels extracted from filenames used to filter and match games
-- [Scraping](./scraping.md) - import local metadata and artwork into your media library with the gamelist.xml and media-folder scrapers
+- [Media Database and Scraping](./scraping.md) - index launchable media, then import local metadata and artwork with the gamelist.xml and media-folder scrapers

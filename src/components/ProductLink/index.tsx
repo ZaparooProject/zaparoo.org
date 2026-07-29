@@ -18,6 +18,7 @@ type ProductLinkProps = {
   style?: CSSProperties;
   showIcon?: boolean;
   unstyled?: boolean;
+  umamiEvent?: string;
 };
 
 export default function ProductLink({
@@ -28,6 +29,7 @@ export default function ProductLink({
   style,
   showIcon = true,
   unstyled = false,
+  umamiEvent,
 }: ProductLinkProps) {
   const linkClassName = [unstyled ? undefined : styles.productLink, className]
     .filter(Boolean)
@@ -40,7 +42,7 @@ export default function ProductLink({
       rel="noopener noreferrer"
       className={linkClassName || undefined}
       style={style}
-      data-umami-event={`product-${store}`}
+      data-umami-event={umamiEvent ?? `product-${store}`}
     >
       {children}
       {showIcon && (

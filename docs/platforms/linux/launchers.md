@@ -1,11 +1,11 @@
 ---
-description: "Configure Steam, RetroArch, Kodi, browser, and script launchers in Zaparoo Core for Linux."
-keywords: [zaparoo linux launchers, zaparoo steam linux, zaparoo retroarch, zaparoo kodi, linux nfc game launch]
+description: "Configure Steam, Lutris, Heroic, RetroArch, Kodi, browser, and script launchers in Zaparoo Core for Linux."
+keywords: [zaparoo linux launchers, zaparoo steam linux, zaparoo lutris, zaparoo heroic, zaparoo retroarch, linux nfc game launch]
 ---
 
 # Launchers
 
-Linux supports Steam and RetroArch game launchers, Kodi media playback, web browser URLs, and shell scripts.
+Linux supports Steam, Lutris, Heroic, and RetroArch game launchers, Kodi media playback, web browser URLs, and shell scripts.
 
 ## Steam
 
@@ -28,6 +28,36 @@ To specify a custom Steam installation directory:
 launcher = "Steam"
 install_dir = "/path/to/steam"
 ```
+
+## Lutris
+
+Core indexes games marked as installed in your Lutris library. It checks both native and Flatpak library locations, and the `lutris` command must be available in your `PATH`.
+
+| System ID | Scheme |
+|-----------|--------|
+| `PC` | `lutris://` |
+
+Auto-detected library databases:
+
+- `~/.local/share/lutris/pga.db`
+- `~/.var/app/net.lutris.Lutris/data/lutris/pga.db` (Flatpak)
+
+Run Lutris and install a game before updating the media database. Core creates launchable entries from the installed games and opens them through Lutris by their game slug.
+
+## Heroic
+
+Core indexes installed Epic Games and GOG titles from Heroic Games Launcher. It checks both native and Flatpak library locations, and the `heroic` command must be available in your `PATH`.
+
+| System ID | Scheme |
+|-----------|--------|
+| `PC` | `heroic://` |
+
+Auto-detected library directories:
+
+- `~/.config/heroic/store_cache`
+- `~/.var/app/com.heroicgameslauncher.hgl/config/heroic/store_cache` (Flatpak)
+
+Run Heroic and install a game before updating the media database. Core creates launchable entries from Heroic's Epic Games and GOG library files.
 
 ## RetroArch
 

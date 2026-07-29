@@ -1,13 +1,25 @@
 ---
-description: "How Zaparoo Core scraping imports local metadata and artwork into your media library using the gamelist.xml and media-folder scrapers."
-keywords: [zaparoo scraping, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, zaparoo metadata]
+sidebar_label: Scraping
+description: "Update the Zaparoo Core media database and import local metadata and artwork with the gamelist.xml and media-folder scrapers."
+keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder]
 ---
 
-# Scraping
+# Media Database and Scraper Guide
 
-Scraping enriches your indexed media with extra metadata and artwork. Media indexing finds your files and creates the records; scraping fills those records with details like cover art, descriptions, developers, and genres.
+Core's media database is a rebuildable index of games, apps, videos, music, and other launchable media on your device. A media database update finds those items and makes them searchable. Scraping then enriches the indexed records with local metadata and artwork such as cover images, descriptions, developers, and genres.
 
-Scrapers only update media that already exists in your library. They never create, move, or delete your games, and a scrape never changes the files on disk.
+Database updates and scrapes never move, modify, or delete your games. Scrapers only update media that already exists in the database.
+
+## Updating the media database
+
+Update the database after adding or removing media, installing games in a supported launcher, or changing launcher paths. Start an update from either interface:
+
+- In the Zaparoo App, open **Settings > Manage Media**, choose **All systems** or specific systems, then select **Update media database**.
+- In the [terminal UI](../core/tui.md#managing-media), open **Manage media** and start an update.
+
+After changing settings, mappings, or custom launchers outside the app, [reload Core](../core/tui.md#reload-core) before updating the database. This lets Core rediscover launcher configuration before it scans for media.
+
+The rebuildable media database is separate from Core's user database, which stores favorites, launcher overrides, history, and token mappings. If the media database is corrupt, Core can [rebuild it without deleting that user data](../core/cli.md#database-recovery). Scraped metadata and artwork must be imported again after a rebuild.
 
 :::info Local sources only
 Core's built-in scrapers read metadata and artwork that already exist on your device. They do not download anything from the internet. To fetch artwork, scrape it first with a tool like MiSTer Companion or Skraper, then run a Zaparoo scrape to import the results.

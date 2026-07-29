@@ -1,6 +1,6 @@
 ---
-description: "Zaparoo launcher configuration for Windows: Steam, LaunchBox, and custom launcher setup with file path examples."
-keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, windows game launch nfc]
+description: "Zaparoo launcher configuration for Windows: Steam, LaunchBox, Big Box, and custom launcher setup with file path examples."
+keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, zaparoo big box, windows game launch nfc]
 ---
 
 # Launchers
@@ -29,6 +29,8 @@ install_dir = "D:\\Steam"  # Optional custom Steam install directory
 
 ## LaunchBox
 
+The Zaparoo LaunchBox integration works in both the desktop LaunchBox interface and Big Box. You may also see Big Box written as `BigBox`. Both interfaces use the same plugin, indexed game library, and `launchbox://` token format.
+
 :::tip Required Plugin
 LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration v1.0.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.0.0.zip) and follow the installation steps below.
 :::
@@ -37,14 +39,14 @@ LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox I
 
 1. Download the [Zaparoo LaunchBox Integration v1.0.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.0.0.zip) file
 2. Extract the zip file
-3. Copy the `Zaparoo LaunchBox Integration` folder to your LaunchBox `Plugins` directory (usually `<LaunchBox>/Plugins/`)
+3. Copy the `Zaparoo LaunchBox Integration` folder to the `Plugins` directory under your LaunchBox installation
 4. Restart LaunchBox
 
-To verify the plugin loaded correctly, right-click any game in LaunchBox - you should see "Write to tag" in the context menu.
+To verify the plugin loaded correctly, right-click any game in the desktop LaunchBox interface. You should see **Write to tag** in the context menu.
 
-Once installed, Zaparoo will automatically detect LaunchBox and add all games to the media database.
+Once installed, Zaparoo automatically detects the LaunchBox library and adds its games to the media database. When Big Box is running, the plugin launches the selected game through the Big Box interface.
 
-To manually create a LaunchBox game token, write `launchbox://<game_id>` to a token.
+To manually create a LaunchBox or Big Box game token, write `launchbox://<game_id>` to a token.
 
 ```toml title="config.toml"
 [[launchers.default]]
@@ -66,9 +68,9 @@ install_dir = "D:\\RetroBat"  # Optional custom install directory
 
 ### Web API access
 
-Core launches games and detects the running game through RetroBat's EmulationStation web API, which it reaches at `http://localhost:1234` on the same PC. If RetroBat is running but games won't launch, two things on the RetroBat side usually need attention.
+Core launches games and detects the running game through RetroBat's EmulationStation web API, which it reaches at `http://localhost:1234` on the same PC. If RetroBat is running but games won't launch, check its web access setting and Windows `localhost` resolution.
 
-First, enable EmulationStation's web access. In RetroBat's EmulationStation menu this sits under the system settings, typically **Main Menu** > **System Settings** > **Frontend Developer Options** > **Enable public web access**. Restart RetroBat after changing it. If you can't find the option, the RetroBat Discord and wiki are the best places to check, since the menu layout changes between versions.
+First, enable EmulationStation's web access. In RetroBat's EmulationStation menu this sits under the system settings, typically **Main Menu** > **System Settings** > **Frontend Developer Options** > **Enable public web access**. Restart RetroBat after changing it. If the option has moved, check the RetroBat wiki or Discord; the menu layout changes between versions.
 
 Second, make sure `localhost` resolves to `127.0.0.1`. Core connects to `localhost`, and on some Windows setups that name resolves only to IPv6 (`::1`) or fails to resolve, which stops Core from reaching the web server. Editing the Windows hosts file at `C:\Windows\System32\drivers\etc\hosts` as administrator to include this line forces an IPv4 match:
 

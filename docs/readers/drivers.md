@@ -17,13 +17,13 @@ When Zaparoo Core starts, it:
 3. Establishes connections to detected or manually configured readers
 4. Begins listening for token scans
 
-Most PN532 and ACR122U setups are auto-detected. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. Serial readers, MQTT, display devices, external drives, and fallback NFC drivers usually need manual configuration or explicit enabling.
+PN532 USB and ACR122U readers support auto-detection on their listed platforms. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. RS-232 barcode and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
 
 ## Available drivers
 
 ### NFC readers
 
-NFC readers are the most common type, supporting NFC tags, cards, and compatible toys (Amiibo, Lego Dimensions, etc.).
+NFC readers support NFC tags, cards, and compatible toys such as Amiibo and LEGO Dimensions.
 
 | Driver ID                  | Hardware           | Platforms      | Documentation                                  |
 | -------------------------- | ------------------ | -------------- | ---------------------------------------------- |
@@ -132,6 +132,22 @@ Use `[readers.drivers.DRIVER_ID]` for driver settings. `[[readers.drivers]]` is 
 3. Check the hardware connection. Make sure the USB cable is a data cable, not power-only.
 4. Review the hardware-specific reader page for setup and troubleshooting notes.
 5. Try manual configuration with `[[readers.connect]]`.
+
+### Unable to enumerate USB device
+
+A Linux message such as `usb 1-1-port2: unable to enumerate USB device` means the operating system could not identify the USB hardware. This happens before Zaparoo Core can open the reader, so changing reader-driver settings will not fix it until the device appears to the operating system.
+
+Check the connection in this order:
+
+1. Disconnect the reader, wait a few seconds, and reconnect it.
+2. Try another standard USB port without an extension cable or unpowered hub. On MiSTer, do not use the SNAC/USER port.
+3. If the cable is detachable, replace it with a known data cable.
+4. Power the host off completely, then start it again with the reader disconnected and reconnect it after startup.
+5. Test the reader and cable on another computer. If it works there but not through a hub, try a powered hub.
+
+On Linux-based platforms, run `lsusb` to check whether the device is present. Review `dmesg` or the system log for repeated USB protocol, disconnect, or power errors. [Linux kernel USB errors](https://docs.kernel.org/driver-api/usb/error-codes.html) such as `-EPROTO`, `-EILSEQ`, and `-EOVERFLOW` can point to hardware, firmware, or cable problems.
+
+After the device appears in `lsusb`, restart Core, then continue with the reader-specific troubleshooting steps.
 
 ### Multiple readers
 

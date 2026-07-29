@@ -9,6 +9,7 @@ import {
   latestReleaseBlogPost,
 } from "@site/src/components/DownloadCard";
 import DemoVideo from "@site/src/components/DemoVideo";
+import CardLink from "@site/src/components/Homepage/CardLink";
 import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
 import UseCases from "@site/src/components/Homepage/UseCases";
 import { Zap, Download, ChevronRight } from "lucide-react";
@@ -49,7 +50,14 @@ function LatestNews(): ReactNode {
               })}
             </div>
             <h3 className={styles.blogCardTitle}>{item.title}</h3>
-            <div className={styles.blogCardFooter}>Read more <ChevronRight size={14} className="inline-icon" /></div>
+            <div className={styles.blogCardFooter}>
+              Read more{" "}
+              <ChevronRight
+                size={14}
+                className="inline-icon"
+                aria-hidden="true"
+              />
+            </div>
           </Link>
         ))}
       </div>
@@ -84,7 +92,11 @@ function Stats(): ReactNode {
 function OfficialPartners(): ReactNode {
   return (
     <div className={styles.officialPartners}>
-      <h3 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>Official Partners</h3>
+      <h3
+        className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}
+      >
+        Official Partners
+      </h3>
       <div className={styles.partnersLogos}>
         <a
           href="https://multisystem.uk/products/mister-multisystem-2/"
@@ -136,7 +148,7 @@ function SupportTile({
     <div className={styles.supportTile}>
       <h3 className={styles.supportTileTitle}>{title}</h3>
       <p className={styles.supportTileDesc}>{description}</p>
-      <span className={styles.supportTileLink}>{linkText} <ChevronRight size={14} className="inline-icon" /></span>
+      <CardLink>{linkText}</CardLink>
     </div>
   );
   if (external) {
@@ -149,6 +161,7 @@ function SupportTile({
             unstyled
             showIcon={false}
             style={{ textDecoration: "none", color: "inherit" }}
+            umamiEvent={umamiEvent}
           >
             {inner}
           </ProductLink>
@@ -172,7 +185,11 @@ function SupportTile({
   }
   return (
     <div className="col col--4" style={{ marginBottom: "1.5rem" }}>
-      <Link to={href} style={{ textDecoration: "none", color: "inherit" }} data-umami-event={umamiEvent}>
+      <Link
+        to={href}
+        style={{ textDecoration: "none", color: "inherit" }}
+        data-umami-event={umamiEvent}
+      >
         {inner}
       </Link>
     </div>
@@ -181,16 +198,25 @@ function SupportTile({
 
 function SupportStrip(): ReactNode {
   return (
-    <section className={clsx(homepageStyles.section, homepageStyles.sectionLight)}>
+    <section
+      className={clsx(homepageStyles.section, homepageStyles.sectionLight)}
+    >
       <div className="container">
-        <div className="text--center padding-horiz--md" style={{ marginBottom: "2rem" }}>
-          <h2 className={homepageStyles.sectionTitle}>Zaparoo Is Free and Open Source</h2>
-          <p className={homepageStyles.sectionSubtitle}>Here's how to help it keep growing.</p>
+        <div
+          className="text--center padding-horiz--md"
+          style={{ marginBottom: "2rem" }}
+        >
+          <h2 className={homepageStyles.sectionTitle}>
+            Zaparoo Is Free and Open Source
+          </h2>
+          <p className={homepageStyles.sectionSubtitle}>
+            Here's how to help it keep growing.
+          </p>
         </div>
         <div className="row">
           <SupportTile
             title="Zaparoo App"
-            description="Get the best Zaparoo experience on your phone. Your purchase directly funds continued development."
+            description="Manage Zaparoo from your phone. Your purchase directly funds continued development."
             href="https://zaparoo.app"
             linkText="Get the App"
             external
@@ -245,7 +271,11 @@ function HomepageHeader(): ReactNode {
             to="/start/"
             data-umami-event="hero-get-started"
           >
-            <Zap size={16} className={styles.buttonIcon} />
+            <Zap
+              size={16}
+              className={styles.buttonIcon}
+              aria-hidden="true"
+            />
             Start Here
           </Link>
           <Link
@@ -256,7 +286,11 @@ function HomepageHeader(): ReactNode {
             to="/downloads/"
             data-umami-event="hero-download"
           >
-            <Download size={16} className={styles.buttonIcon} />
+            <Download
+              size={16}
+              className={styles.buttonIcon}
+              aria-hidden="true"
+            />
             Downloads
           </Link>
         </div>
@@ -304,11 +338,10 @@ export default function Home(): ReactNode {
                 Start with NFC Cards
               </h2>
               <p className={homepageStyles.sectionSubtitle}>
-                The most popular setup uses affordable gear you might already
-                own.
+                This setup uses affordable gear you might already own.
               </p>
             </div>
-            <div className="row">
+            <div className={clsx("row", styles.howItWorksGrid)}>
               <div className="col col--4">
                 <div className="text--center padding-horiz--md">
                   <div className="text--center">
@@ -321,13 +354,19 @@ export default function Home(): ReactNode {
                             featureStyles.featureSvg,
                             styles.featureIcon
                           )}
-                          role="img"
+                          aria-hidden="true"
                         />
                       );
                     })()}
                   </div>
                   <h3>1. Install Zaparoo</h3>
                   <p>Free software for your existing games and emulators.</p>
+                  <CardLink
+                    to="/docs/platforms/"
+                    umamiEvent="homepage-step-platform-guides"
+                  >
+                    Platform installation guides
+                  </CardLink>
                 </div>
               </div>
               <div className="col col--4">
@@ -342,13 +381,19 @@ export default function Home(): ReactNode {
                             featureStyles.featureSvg,
                             styles.featureIcon
                           )}
-                          role="img"
+                          aria-hidden="true"
                         />
                       );
                     })()}
                   </div>
                   <h3>2. Link a Card</h3>
                   <p>Choose a game in the Zaparoo App and save it to a card.</p>
+                  <CardLink
+                    to="/docs/tokens/nfc/"
+                    umamiEvent="homepage-step-create-nfc-tokens"
+                  >
+                    Create NFC tokens
+                  </CardLink>
                 </div>
               </div>
               <div className="col col--4">
@@ -363,13 +408,19 @@ export default function Home(): ReactNode {
                             featureStyles.featureSvg,
                             styles.featureIcon
                           )}
-                          role="img"
+                          aria-hidden="true"
                         />
                       );
                     })()}
                   </div>
                   <h3>3. Tap and Play</h3>
                   <p>Tap the card on your reader and the game launches.</p>
+                  <CardLink
+                    to="/docs/readers/"
+                    umamiEvent="homepage-step-choose-reader"
+                  >
+                    Choose a reader
+                  </CardLink>
                 </div>
               </div>
             </div>
@@ -382,7 +433,11 @@ export default function Home(): ReactNode {
                 to="/start/"
                 data-umami-event="how-it-works-get-started"
               >
-                <Zap size={16} className={styles.buttonIcon} />
+                <Zap
+                  size={16}
+                  className={styles.buttonIcon}
+                  aria-hidden="true"
+                />
                 Start Here
               </Link>
               <Link
@@ -413,6 +468,7 @@ export default function Home(): ReactNode {
                 viewBox="0 0 384 512"
                 fill="currentColor"
                 className={styles.communityShowcaseIcon}
+                aria-hidden="true"
               >
                 <path d="M0 256L28.5 28c2-16 15.6-28 31.8-28H228.9c15 0 27.1 12.1 27.1 27.1c0 3.2-.6 6.5-1.7 9.5L208 160H347.3c20.2 0 36.7 16.4 36.7 36.7c0 7.4-2.2 14.6-6.4 20.7l-192.2 281c-5.9 8.6-15.6 13.7-25.9 13.7h-2.9c-15.7 0-28.5-12.8-28.5-28.5c0-2.3 .3-4.6 .9-6.9L176 288H32c-17.7 0-32-14.3-32-32z" />
               </svg>
@@ -443,7 +499,7 @@ export default function Home(): ReactNode {
                 >
                   <img
                     src="/img/discord-logo.svg"
-                    alt="Discord logo"
+                    alt=""
                     height="16px"
                     width="16px"
                     className={styles.discordLogo}

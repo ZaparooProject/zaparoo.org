@@ -414,7 +414,7 @@ Core v2.16.0 adds support for new Zaparoo Online features that we'll cover in a 
 
 ### Core, API, and terminal UI
 
-- **Improved:** Relative paths on [external drive tokens](/docs/readers/external-drive/#launch-media-from-the-drive) can launch games stored on the drive without depending on its mount point. Core uses the system folder and file extension to select the launcher.
+- **Improved:** Relative paths on [external drive tokens](/docs/readers/external-drive/#launch-media-from-the-drive) can launch games stored on the drive without depending on its mount point. Add `?system=` to identify top-level files or formats shared by several systems.
 - **Fixed:** Reloading Core now preserves credentials already in memory if `auth.toml` is malformed or unreadable.
 - **Fixed:** Absolute-folder [`launch.random`](/docs/zapscript/launch/#launchrandom) commands no longer time out after large libraries are indexed, including organized MiSTer arcade folders, and still respect tag filters.
 - **Fixed:** Thanks to [Gareth Jones](https://github.com/symm), [`/run/` URLs](/docs/core/api/#launch-endpoint) now handle media paths containing encoded spaces or parentheses.

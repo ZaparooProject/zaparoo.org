@@ -28,7 +28,7 @@ curl -fsSL https://zaparoo.org/install.sh | bash
 
 This installs and enables the `zaparoo.service` systemd unit to run on startup. Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in web UI to manage your setup and write tokens.
 
-To uninstall:
+## Uninstall
 
 ```bash
 /media/sd/zaparoo/zaparoo -uninstall

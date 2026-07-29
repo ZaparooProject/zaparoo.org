@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
+import CardLink from "./CardLink";
 import styles from "./Homepage.module.css";
 
 const platforms = [
@@ -46,9 +47,9 @@ export default function PlatformShowcase(): ReactNode {
         <div style={{ marginBottom: "3rem" }}>
           <h3 className={styles.sectionHeader}>Platforms</h3>
           <div className={styles.platformBadges}>
-            {platforms.map((platform, index) => (
+            {platforms.map((platform) => (
               <Link
-                key={index}
+                key={platform.name}
                 to={platform.link}
                 className={styles.platformBadge}
                 style={{ textDecoration: "none" }}
@@ -57,14 +58,22 @@ export default function PlatformShowcase(): ReactNode {
               </Link>
             ))}
           </div>
+          <div className={styles.categoryLinks}>
+            <CardLink
+              to="/docs/platforms/"
+              umamiEvent="homepage-compare-platforms"
+            >
+              Compare all platforms
+            </CardLink>
+          </div>
         </div>
 
         <div>
           <h3 className={styles.sectionHeader}>Ways to Launch</h3>
           <div className={styles.platformBadges}>
-            {tokens.map((item, index) => (
+            {tokens.map((item) => (
               <Link
-                key={index}
+                key={item.name}
                 to={item.link}
                 className={styles.platformBadge}
                 style={{ textDecoration: "none" }}
@@ -72,6 +81,20 @@ export default function PlatformShowcase(): ReactNode {
                 {item.name}
               </Link>
             ))}
+          </div>
+          <div className={styles.categoryLinks}>
+            <CardLink
+              to="/docs/tokens/"
+              umamiEvent="homepage-compare-token-types"
+            >
+              Compare token types
+            </CardLink>
+            <CardLink
+              to="/docs/readers/"
+              umamiEvent="homepage-compare-readers"
+            >
+              Compare readers
+            </CardLink>
           </div>
         </div>
       </div>

@@ -7,6 +7,25 @@ keywords: [zaparoo launchers, zaparoo custom launchers, zaparoo launcher control
 A launcher tells Zaparoo Core how to open a game, video, app, or other media file.
 Each [platform](../platforms/index.mdx) has its own launchers for matching a [system](./systems.md) and file to the right program.
 
+## Loading games
+
+Core first adds installed games and media files to its [media database](./scraping.md#updating-the-media-database). It then uses the matching platform launcher when you scan a token or select a search result. If a game is missing from search, update the media database. If the game appears but does not open, check its platform launcher guide for required software and setup.
+
+## Platform launcher guides
+
+Use your platform guide for exact setup, supported systems, and launcher limitations. Built-in integrations include:
+
+| Platform | Launcher integrations |
+| -------- | --------------------- |
+| [MiSTer FPGA](../platforms/mister/launchers.md) | MiSTer cores, AO486, ScummVM, video, and scripts |
+| [Windows](../platforms/windows/launchers.md) | Steam, LaunchBox/Big Box, RetroBat, Flashpoint, Kodi, executables, and scripts |
+| [Linux](../platforms/linux/launchers.md) | Steam, Lutris, Heroic, RetroArch, Kodi, browser URLs, and scripts |
+| [SteamOS](../platforms/steamos.md#launchers) | Steam, native emulators, RetroArch, EmuDeck, RetroDECK, Kodi, and scripts |
+| [Bazzite](../platforms/bazzite.mdx#launchers) | Steam, Lutris, Heroic, Kodi, browser URLs, and scripts |
+| [Batocera](../platforms/batocera/launchers.md) | EmulationStation, Kodi, and scripts |
+
+For an emulator or media app without a built-in integration, use a [custom launcher](#custom-launchers).
+
 ## Launchables
 
 Some things can be launched but don't map cleanly to a file on disk or a normal [system](./systems.md), like a ROM-less FPGA core. Launchables are how Core handles these. Core defines them in code and exposes them as virtual versions of the things you already use: a virtual system or a virtual media entry, whichever fits.
@@ -118,7 +137,7 @@ After installing a missing dependency, restart Core or use **Settings > Advanced
 
 Custom launchers are user-defined launchers configured with [TOML](https://toml.io/) files, similar to [mapping files](./mappings.md#mapping-files). Use them when your [platform](../platforms/index.mdx) does not include a launcher for an emulator or media app you want to use.
 
-Custom launchers are less configurable than official launchers. They work best when the app can launch media from a file path or URL.
+Custom launchers provide fewer options than built-in launchers. Use one when the target app can open media from a file path or URL.
 
 :::note Media tracking limitations
 Custom launcher tracking depends on how the launcher starts the app:

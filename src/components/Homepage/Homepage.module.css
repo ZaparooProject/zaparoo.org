@@ -1,13 +1,29 @@
-/* Homepage component styles */
+.cardLink {
+  color: var(--ifm-color-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
 
-/* Platform badges - now used in What is Zaparoo section */
+.cardLink:hover,
+:global(a:hover) .cardLink {
+  text-decoration: underline;
+}
+
 .platformBadges {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.25rem;
   max-width: 800px;
+}
+
+.categoryLinks {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
 }
 
 .platformBadge {
@@ -62,7 +78,6 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
-
 
 /* Platform showcase grid */
 .platformGrid {
@@ -129,13 +144,14 @@
 }
 
 .useCaseCard {
+  display: flex;
+  flex-direction: column;
   background: var(--z-card-background);
   padding: 2rem;
   border-radius: var(--z-card-radius);
   box-shadow: var(--z-card-shadow);
   border: 1px solid var(--z-card-border);
 }
-
 
 .useCaseHeader {
   display: flex;
@@ -158,9 +174,14 @@
 }
 
 .useCaseDescription {
+  flex: 1;
   margin: 0;
   color: var(--ifm-color-emphasis-700);
   line-height: 1.5;
+}
+
+.useCaseCard .cardLink {
+  margin-top: 1rem;
 }
 
 .beyondGames {
@@ -220,10 +241,10 @@
 }
 
 /* Dark mode adjustments */
-[data-theme='dark'] .sectionLight {
+[data-theme="dark"] .sectionLight {
   background-color: var(--ifm-background-color);
 }
 
-[data-theme='dark'] .platformBadge:hover {
+[data-theme="dark"] .platformBadge:hover {
   border-color: var(--ifm-color-primary-light);
 }

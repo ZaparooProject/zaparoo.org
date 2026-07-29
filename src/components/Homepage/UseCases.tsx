@@ -9,6 +9,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "@docusaurus/Link";
+import CardLink from "./CardLink";
 import styles from "./Homepage.module.css";
 
 const useCases = [
@@ -47,6 +48,8 @@ const useCases = [
     title: "Makers and Integrators",
     description:
       "Build custom readers, cabinets, and automations with open APIs and protocols.",
+    docsLink: "/docs/core/api/",
+    docsLinkText: "Build with the Core API",
   },
 ];
 
@@ -62,19 +65,27 @@ export default function UseCases(): ReactNode {
           </p>
         </div>
         <div className={styles.useCasesGrid}>
-          {useCases.map((useCase, index) => {
+          {useCases.map((useCase) => {
             const IconComponent = useCase.icon;
             return (
-              <div key={index} className={styles.useCaseCard}>
+              <div key={useCase.title} className={styles.useCaseCard}>
                 <div className={styles.useCaseHeader}>
                   <div className={styles.useCaseIcon}>
-                    <IconComponent size={32} />
+                    <IconComponent size={32} aria-hidden="true" />
                   </div>
                   <h3 className={styles.useCaseTitle}>{useCase.title}</h3>
                 </div>
                 <p className={styles.useCaseDescription}>
                   {useCase.description}
                 </p>
+                {useCase.docsLink && (
+                  <CardLink
+                    to={useCase.docsLink}
+                    umamiEvent="homepage-makers-core-api"
+                  >
+                    {useCase.docsLinkText}
+                  </CardLink>
+                )}
               </div>
             );
           })}
@@ -89,7 +100,11 @@ export default function UseCases(): ReactNode {
             to="/start/"
             data-umami-event="use-cases-start"
           >
-            <Zap size={16} style={{ marginRight: "8px" }} />
+            <Zap
+              size={16}
+              style={{ marginRight: "8px" }}
+              aria-hidden="true"
+            />
             Start Here
           </Link>
           <Link
@@ -104,7 +119,7 @@ export default function UseCases(): ReactNode {
           >
             <img
               src="/img/discord-logo.svg"
-              alt="Discord logo"
+              alt=""
               height="16px"
               width="16px"
               style={{ marginRight: "8px" }}

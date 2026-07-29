@@ -32,13 +32,15 @@ curl -fsSL https://zaparoo.org/install.sh | bash
 
 This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
 
-To uninstall:
+## Uninstall
+
+Remove the installed components, leaving the application binary until last:
 
 ```bash
-~/.local/bin/zaparoo -uninstall application
 ~/.local/bin/zaparoo -uninstall service
 ~/.local/bin/zaparoo -uninstall desktop
 sudo ~/.local/bin/zaparoo -uninstall hardware
+~/.local/bin/zaparoo -uninstall application
 ```
 
 ## Readers

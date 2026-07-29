@@ -393,7 +393,7 @@ const config: Config = {
       indexName: "zaparoo",
       contextualSearch: true,
       searchPagePath: "search",
-      insights: false,
+      insights: true,
     },
     // zoom: {
     //   selector: ".markdown img:not(a img)",

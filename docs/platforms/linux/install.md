@@ -34,11 +34,11 @@ systemctl --user start zaparoo.service
 
 ## Uninstalling
 
-To uninstall components:
+Remove the installed components in this order. Keep the application binary until last so it remains available for the other commands:
 
 ```bash
-./zaparoo -uninstall application
-./zaparoo -uninstall desktop
 ./zaparoo -uninstall service
-./zaparoo -uninstall hardware
+./zaparoo -uninstall desktop
+sudo ./zaparoo -uninstall hardware
+./zaparoo -uninstall application
 ```

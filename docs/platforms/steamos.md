@@ -28,13 +28,15 @@ curl -fsSL https://zaparoo.org/install.sh | bash
 
 This installs all necessary components and sets up the service to run on startup. Since SteamOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`). Once running, use the [Zaparoo App](/docs/app/) or the built-in web UI to manage your setup and write tokens.
 
-To uninstall:
+## Uninstall
+
+Remove the installed components, leaving the application binary until last:
 
 ```bash
-~/.local/bin/zaparoo -uninstall application
 ~/.local/bin/zaparoo -uninstall service
 ~/.local/bin/zaparoo -uninstall desktop
 sudo ~/.local/bin/zaparoo -uninstall hardware
+~/.local/bin/zaparoo -uninstall application
 ```
 
 ## Readers
@@ -233,7 +235,7 @@ allow_file = [
 
 **What NFC reader should I use with a Steam Deck?**
 
-The [PN532 USB](../readers/nfc/pn532-usb.md) reader is the recommended choice. Plug it into the Steam Deck or a connected USB hub and it will be auto-detected by Zaparoo.
+Use a [PN532 USB](../readers/nfc/pn532-usb.md) reader. Plug it into the Steam Deck or a connected USB hub and Core detects it automatically.
 
 **Can Zaparoo launch non-Steam games on the Steam Deck?**
 

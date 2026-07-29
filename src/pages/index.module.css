@@ -122,6 +122,17 @@
   color: var(--ifm-color-primary);
 }
 
+.howItWorksGrid > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.howItWorksGrid p {
+  flex: 1;
+}
+
 .communityShowcaseWrapper {
   padding: 1rem;
   padding-bottom: 2rem;
@@ -380,7 +391,7 @@
   box-shadow: var(--z-card-shadow-hover);
 }
 
-[data-theme='dark'] .supportTile:hover {
+[data-theme="dark"] .supportTile:hover {
   border-color: var(--ifm-color-primary-light);
 }
 
@@ -399,12 +410,6 @@
   font-size: 0.95rem;
 }
 
-[data-theme='dark'] .supportTileDesc {
+[data-theme="dark"] .supportTileDesc {
   color: var(--ifm-color-emphasis-600);
-}
-
-.supportTileLink {
-  font-weight: 600;
-  color: var(--ifm-color-primary);
-  font-size: 0.9rem;
 }

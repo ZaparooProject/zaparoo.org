@@ -1,11 +1,11 @@
 ---
-description: "Install Zaparoo on Windows: system tray app with support for Steam, LaunchBox, and custom game launchers. NFC card game launching on PC."
-keywords: [zaparoo windows, nfc game launcher windows, zaparoo pc, zaparoo steam windows, windows nfc reader]
+description: "Install Zaparoo on Windows: system tray app with support for Steam, LaunchBox, Big Box, and custom game launchers."
+keywords: [zaparoo windows, nfc game launcher windows, zaparoo launchbox, zaparoo big box, zaparoo steam windows]
 ---
 
 # Windows
 
-Zaparoo Core on Windows runs in the system tray with support for Steam, LaunchBox, and custom launcher configurations.
+Zaparoo Core on Windows runs in the system tray and supports Steam, LaunchBox, Big Box, and custom launcher configurations.
 
 ## File Paths
 
@@ -28,6 +28,10 @@ Download Zaparoo Core for Windows from the [Downloads page](/downloads/).
 **Manual**: Extract `Zaparoo.exe` from the zip and run it. It starts in the system tray.
 
 Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in web UI to manage your setup and write tokens.
+
+## Uninstall
+
+Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application but leaves your Core configuration and user data under `%localappdata%\zaparoo`.
 
 ## System Tray
 
@@ -93,7 +97,7 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 | Launcher | Systems | Notes |
 |----------|---------|-------|
 | Steam | PC | Auto-detected from registry |
-| LaunchBox | 100+ | Requires plugin installation |
+| LaunchBox / Big Box | 100+ | Both interfaces use the same required plugin |
 | RetroBat | 80+ | Auto-detected, requires running with web API enabled |
 | Flashpoint | PC | Manual token creation |
 | Kodi | Video, Music | Local files and library media |

@@ -34,6 +34,28 @@ After Core is installed, you can control it through:
 
 Most Core settings live in `config.toml`. See the [configuration reference](./config.md) for file locations, option names, and examples.
 
+## Media database and scraping
+
+Core keeps a rebuildable media database so the app, Web UI, TUI, and ZapScript can search for games and other launchable media. Update it after adding files, installing games in a supported launcher, or changing launcher paths. Scraping is a separate step that imports local metadata and artwork into those indexed records.
+
+The [media database and scraper guide](../features/scraping.md) explains how to update all systems or selected systems, run scrapers, and recover a damaged media database without deleting favorites, history, mappings, or launcher overrides.
+
+## Maintenance and troubleshooting
+
+Use these starting points for Core maintenance tasks:
+
+| Task | Start here |
+| ---- | ---------- |
+| Reload settings, mappings, or launchers | [Reload Core from the TUI](./tui.md#reload-core) or [command line](./cli.md#reload-core) |
+| Restart or manage the Core service | [Platform command-line flags](./cli.md#platform-flags) and your [platform guide](../platforms/index.mdx) |
+| Find, view, or export logs | [TUI logs](./tui.md#logs) and the log path in your [platform guide](../platforms/index.mdx) |
+| Update the media database or run a scraper | [Media database and scraper guide](../features/scraping.md) |
+| Edit `config.toml` | [Configuration reference](./config.md) |
+| Recover a corrupt media database | [Database recovery](./cli.md#database-recovery) |
+| Update or uninstall Core | Your [platform guide](../platforms/index.mdx); uninstall steps are platform-specific |
+
+Direct uninstall instructions are available for [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
+
 ## Features and customization
 
 Core includes user-configurable features for larger setups and custom workflows. The [features section](../features/index.md) covers mappings, playlists, play controls, hooks, publishers, launcher controls, custom launchers, systems, and tags.

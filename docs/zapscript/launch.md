@@ -30,7 +30,7 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `launcher`          | string     | -       | Explicit launcher override. Wins over stored per-media overrides and system defaults. |
-| `system`            | string     | -       | Apply system defaults to a local file path                         |
+| `system`            | string     | -       | Select the system for a file path and apply its launcher defaults  |
 | `action`            | string     | `run`   | `run` to launch, `details` to show info (launcher support varies)  |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
@@ -167,6 +167,16 @@ _Arcade/Game.mra
 ```
 
 Similar to system lookup but uses the exact system games folder name.
+
+#### Select a system for a file path
+
+Add `?system=<id>` when a local file's path and extension do not identify one system. This is useful for top-level relative files and formats such as `.bin` that several systems share:
+
+```zapscript
+SomeGame.bin?system=Genesis
+```
+
+Core uses any launcher default configured for the system. Otherwise, it uses the system and file extension to select a launcher. An explicit `?launcher=` still takes priority.
 
 #### Search queries
 

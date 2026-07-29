@@ -1,3 +1,17 @@
+.actionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .navCardGroup {
   margin-bottom: 2rem;
 }
@@ -66,8 +80,13 @@
 
 /* Responsive */
 @media screen and (max-width: 768px) {
+  .actionGroup,
   .navCardGrid {
     grid-template-columns: 1fr;
+  }
+
+  .actionGroup {
+    display: grid;
   }
 
   .navCard {

@@ -90,6 +90,22 @@ Example `zaparoo.txt`:
 
 The filename is matched case-insensitively, so `zaparoo.txt`, `ZAPAROO.TXT`, and similar casing work.
 
+## Launch media from the drive
+
+You can store a game on the drive and launch it with a path relative to the drive's root. For example, save the game as `GBC/Tetris.gbc`, then put this in `zaparoo.txt`:
+
+```zapscript
+GBC/Tetris.gbc
+```
+
+Using a relative path means the token works without knowing where the drive will be mounted. For a game at the top level of the drive, add [`?system=`](../zapscript/launch.md#select-a-system-for-a-file-path) to identify its system:
+
+```zapscript
+Sonic.bin?system=Genesis
+```
+
+This is the preferred format when a file extension is used by several systems. Without `?system=`, Core must infer the system from a recognized folder name or an extension unique to one system.
+
 ## What happens when you insert it
 
 When the drive mounts, Core looks for `zaparoo.txt`. If it finds one, it trims surrounding whitespace and scans the remaining text as an `externaldrive` token. On Linux, Core can also find the file on sibling partitions mounted under `/media` or `/mnt`, which helps with multi-partition USB drives.
