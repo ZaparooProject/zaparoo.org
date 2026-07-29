@@ -1,0 +1,177 @@
+---
+sidebar_position: 1
+sidebar_label: Overview
+slug: /
+title: Documentation
+description: "Set up Zaparoo, choose compatible hardware, create tokens, customize launches, and build integrations on supported gaming platforms."
+keywords: [zaparoo, nfc game launcher, rfid game launcher, mister fpga, steamos, batocera, documentation]
+---
+
+import {
+  DocsActionGroup,
+  NavCardGroup,
+} from "@site/src/components/DocsNavGrid";
+import {
+  CircuitBoard,
+  Cloud,
+  Code2,
+  Cpu,
+  CreditCard,
+  Hammer,
+  ListChecks,
+  Monitor,
+  Palette,
+  Puzzle,
+  ScanLine,
+  Search,
+  Smartphone,
+  Tv,
+  Users,
+  Wand2,
+} from "lucide-react";
+
+# Zaparoo Documentation
+
+Zaparoo connects a token, a reader, and Zaparoo Core running on your gaming device. Start with guided setup, search for a specific answer, or browse the documentation below.
+
+<DocsActionGroup
+  actions={[
+    {
+      icon: ListChecks,
+      title: "Guided setup",
+      link: "/start/",
+      primary: true,
+      umamiEvent: "docs-home-setup-guide",
+    },
+    {
+      icon: Search,
+      title: "Search documentation",
+      link: "/search",
+      umamiEvent: "docs-home-search",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Hardware and setup"
+  cards={[
+    {
+      icon: Monitor,
+      title: "Platforms",
+      description: "Install Zaparoo on MiSTer, Windows, SteamOS, Batocera, Linux, and more.",
+      link: "./platforms/",
+      umamiEvent: "docs-home-card-platforms",
+    },
+    {
+      icon: ScanLine,
+      title: "Readers",
+      description: "Choose and configure NFC, barcode, cartridge, optical, and virtual readers.",
+      link: "./readers/",
+      umamiEvent: "docs-home-card-readers",
+    },
+    {
+      icon: CreditCard,
+      title: "Tokens",
+      description: "Create NFC cards, QR codes, barcodes, toys, and removable-drive tokens.",
+      link: "./tokens/",
+      umamiEvent: "docs-home-card-tokens",
+    },
+    {
+      icon: CircuitBoard,
+      title: "ZapESP32",
+      description: "Build and configure a wireless DIY NFC reader with an ESP32.",
+      link: "./zapesp32/",
+      umamiEvent: "docs-home-card-zapesp32",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Apps and services"
+  cards={[
+    {
+      icon: Smartphone,
+      title: "Zaparoo App",
+      description: "Connect to Core, scan tokens, write NFC tags, and manage your device from iOS or Android.",
+      link: "./app/",
+      umamiEvent: "docs-home-card-app",
+    },
+    {
+      icon: Tv,
+      title: "Zaparoo Frontend",
+      description: "Browse and launch your MiSTer media library from a TV-friendly interface.",
+      link: "./frontend/",
+      umamiEvent: "docs-home-card-frontend",
+    },
+    {
+      icon: Cloud,
+      title: "Zaparoo Online",
+      description: "Manage virtual cards and decks, sync play history, and back up supported devices.",
+      link: "./online/",
+      umamiEvent: "docs-home-card-online",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Customize and automate"
+  cards={[
+    {
+      icon: Cpu,
+      title: "Zaparoo Core",
+      description: "Configure the service that reads tokens, launches media, and powers Zaparoo clients.",
+      link: "./core/",
+      umamiEvent: "docs-home-card-core",
+    },
+    {
+      icon: Puzzle,
+      title: "Features",
+      description: "Set up mappings, profiles, playlists, backups, play controls, and custom launchers.",
+      link: "./features/",
+      umamiEvent: "docs-home-card-features",
+    },
+    {
+      icon: Code2,
+      title: "ZapScript",
+      description: "Control what happens when a token is scanned, from launches to custom actions.",
+      link: "./zapscript/",
+      umamiEvent: "docs-home-card-zapscript",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Design and community"
+  cards={[
+    {
+      icon: Wand2,
+      title: "Zaparoo Designer",
+      description: "Create custom card label artwork in your browser.",
+      link: "./designer/",
+      umamiEvent: "docs-home-card-designer",
+    },
+    {
+      icon: Palette,
+      title: "Labels",
+      description: "Choose templates, print artwork, and apply labels to your cards.",
+      link: "./labels/",
+      umamiEvent: "docs-home-card-labels",
+    },
+    {
+      icon: Hammer,
+      title: "Community Projects",
+      description: "Browse DIY readers, 3D prints, and community-built tools.",
+      link: "./community-projects/",
+      umamiEvent: "docs-home-card-projects",
+    },
+    {
+      icon: Users,
+      title: "Community Hub",
+      description: "Find Discord, Reddit, vendors, contributors, and other community resources.",
+      link: "./community-hub/",
+      umamiEvent: "docs-home-card-community",
+    },
+  ]}
+/>
+
+Found something missing? [Open a pull request](https://github.com/ZaparooProject/zaparoo.org/pulls).

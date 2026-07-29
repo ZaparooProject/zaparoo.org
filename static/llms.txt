@@ -28,6 +28,7 @@ Important notes:
 - [Barcode Readers](https://zaparoo.org/docs/readers/barcode/): Use USB barcode scanners as token readers.
 - [MQTT Reader](https://zaparoo.org/docs/readers/mqtt/): Receive token scans over MQTT from any device.
 - [External Drive](https://zaparoo.org/docs/readers/external-drive/): Use USB drives or SD cards as token readers.
+- [Epilogue Operator](https://zaparoo.org/docs/readers/epilogue-operator/): Launch original cartridges with GB, SN, and 64 Operator readers on MiSTer.
 - [TTY2OLED](https://zaparoo.org/docs/readers/tty2oled/): Integration with the TTY2OLED MiSTer display addon.
 - [Reader Drivers](https://zaparoo.org/docs/readers/drivers/): How to develop or configure custom reader drivers.
 
@@ -62,6 +63,7 @@ Important notes:
 - [Bazzite](https://zaparoo.org/docs/platforms/bazzite/): Install Zaparoo on Bazzite Linux.
 - [ChimeraOS](https://zaparoo.org/docs/platforms/chimeraos/): Install Zaparoo on ChimeraOS.
 - [Linux](https://zaparoo.org/docs/platforms/linux/): Install Zaparoo on generic Linux systems.
+- [Linux Launchers](https://zaparoo.org/docs/platforms/linux/launchers/): Launch games through Steam, Lutris, Heroic, RetroArch, Kodi, and custom launchers on Linux.
 - [LibreELEC](https://zaparoo.org/docs/platforms/libreelec/): Install Zaparoo on LibreELEC media systems.
 - [MiSTeX](https://zaparoo.org/docs/platforms/mistex/): Install Zaparoo on the MiSTeX FPGA board.
 - [RePlayOS](https://zaparoo.org/docs/platforms/replayos/): Install Zaparoo on RePlayOS.
@@ -89,6 +91,8 @@ Important notes:
 - [Mappings](https://zaparoo.org/docs/features/mappings/): Map token IDs to specific games or scripts.
 - [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
 - [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
+- [Device Profiles](https://zaparoo.org/docs/features/profiles/): Give each person separate playtime limits and profile cards, with separate saves and save states on MiSTer.
+- [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, MiSTer configuration, saves, and save states.
 - [Audio](https://zaparoo.org/docs/features/audio/): Play WAV, MP3, OGG, and FLAC files through Core's native audio launcher, including a background slot that keeps music playing while games launch.
 - [Scraping](https://zaparoo.org/docs/features/scraping/): Import local game artwork from gamelist.xml and EmulationStation-style media folders.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.

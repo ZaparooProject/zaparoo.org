@@ -1,0 +1,148 @@
+---
+description: "Install Zaparoo on ChimeraOS: launch Steam games, GOG games, and scripts from NFC cards on ChimeraOS gaming devices."
+keywords: [zaparoo chimeraos, chimeraos nfc, chimera game launcher nfc, zaparoo chimera]
+---
+
+# ChimeraOS
+
+:::warning[Beta]
+ChimeraOS support is currently in beta. Some features may not work as expected.
+:::
+
+Zaparoo Core on [ChimeraOS](https://chimeraos.org/) supports launching Steam games, GOG games via the Chimera web app, and shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
+
+## File Paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `/tmp/<session_id>-zaparoo/core.log`   |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+
+Where `~` is the home directory of the `gamer` user.
+
+## Install
+
+Access the terminal with `Ctrl+Alt+F2` (default credentials: `gamer` / `gamer`) and run:
+
+```bash
+curl -fsSL https://zaparoo.org/install.sh | bash
+```
+
+This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
+
+## Uninstall
+
+Remove the installed components, leaving the application binary until last:
+
+```bash
+~/.local/bin/zaparoo -uninstall service
+~/.local/bin/zaparoo -uninstall desktop
+sudo ~/.local/bin/zaparoo -uninstall hardware
+~/.local/bin/zaparoo -uninstall application
+```
+
+## Readers
+
+<ReaderSupport
+  groups={[
+    {
+      name: "NFC/RFID",
+      readers: [
+        { name: "PN532 USB", href: "../readers/nfc/pn532-usb", support: "supported", setup: "Auto-detected" },
+        { name: "PN532 Module", href: "../readers/nfc/pn532-module", support: "supported", setup: "Depends on wiring", note: "UART can auto-detect. I2C is supported." },
+        { name: "ACR122U", href: "../readers/nfc/acr122u", support: "supported", setup: "Auto-detected", note: "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible." },
+        { name: "RC522", href: "../readers/nfc/rc522", support: "limited", setup: "Via Simple Serial", note: "Requires a microcontroller; not a direct USB reader." },
+      ],
+    },
+    {
+      name: "Barcode and QR",
+      readers: [
+        { name: "App/Camera Scanner", href: "../app/", support: "supported", setup: "Via Zaparoo App" },
+        { name: "RS232 Scanner", href: "../readers/barcode/rs232", support: "supported", setup: "Manual config" },
+      ],
+    },
+    {
+      name: "Optical and Media",
+      readers: [
+        { name: "Optical Drive", href: "../readers/optical-drive", support: "supported", setup: "Manual config" },
+        { name: "External Drive", href: "../readers/external-drive", support: "supported", setup: "Manual enable" },
+      ],
+    },
+    {
+      name: "Custom and Virtual",
+      readers: [
+        { name: "MQTT Reader", href: "../readers/mqtt", support: "supported", setup: "Manual config" },
+        { name: "Simple Serial", href: "../readers/simple-serial", support: "supported", setup: "Manual config" },
+        { name: "File Reader", href: "../readers/file", support: "supported", setup: "Manual config" },
+      ],
+    },
+    {
+      name: "Displays and Integrations",
+      readers: [
+        { name: "TTY2OLED", href: "../readers/tty2oled", support: "supported", setup: "Manual enable" },
+      ],
+    },
+  ]}
+/>
+
+## Launchers
+
+| Launcher      | Systems | Notes                               |
+| ------------- | ------- | ----------------------------------- |
+| Steam         | PC      | Games and non-Steam shortcuts       |
+| ChimeraGOG    | PC      | GOG games from Chimera web app      |
+| Kodi          | Media   | Videos, movies, TV shows, music     |
+| Shell Scripts | Any     | Custom `.sh` file execution         |
+
+### Steam
+
+Launches games from your Steam library. Both official Steam games and non-Steam shortcuts added to your library are detected.
+
+Games are indexed from:
+- `~/.steam/steam/steamapps/`
+- `~/.local/share/Steam/`
+
+To manually launch a Steam game, write `steam://<app_id>` to a token.
+
+### Gaming Mode
+
+Core manages gamescope focus for non-Steam launchers in Gaming Mode, including ChimeraGOG, Kodi, scripts, and custom launchers. It restores the previous focus state after the launched window closes. Return to Menu stops the active launcher; ChimeraOS remains responsible for displaying its menu.
+
+### ChimeraGOG
+
+Zaparoo automatically indexes GOG games installed through the Chimera web app.
+
+Games are indexed from:
+- `~/.local/share/chimera/content/gog/`
+
+Games are launched using the `gog://` scheme.
+
+### Kodi
+
+Launch media content from a [Kodi](https://kodi.tv/) instance running on your network.
+
+Supported content:
+- Video and audio files
+- Movies and TV episodes
+- Music (songs, albums, artists)
+
+```toml title="config.toml"
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://kodi:8080"
+```
+
+Replace `kodi:8080` with your Kodi instance's address and web interface port.
+
+### Shell Scripts
+
+Execute arbitrary shell scripts. Requires explicit allow list configuration for security.
+
+```toml title="config.toml"
+[launchers]
+allow_file = [
+    "^/home/gamer/scripts/.*\\.sh$"
+]
+```
