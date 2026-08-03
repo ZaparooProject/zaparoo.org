@@ -139,7 +139,7 @@ Launch guard and media-task pause behavior are also more reliable under heavy li
 
 Favorites and per-media launcher overrides are now stored as the source of truth in their own user database, separate from the rebuildable media database. The media database can be rebuilt from scratch when an SD card corrupts it, and keeping user data in its own database means a rebuild like that no longer takes your favorites and launcher overrides with it.
 
-Core can also back up the whole user database now, which was not possible before. As well as your favorites and launcher overrides, that covers your scan and play history and your token mappings. Core keeps a rolling set of automatic backups, you can take a manual backup that is kept until you remove it, and you can restore from any backup, so you can keep copies of data you care about. Core takes a safety backup before each restore, and can recover on its own if the database is found to be corrupt on startup. You can create, list, and restore backups from the [command line](/docs/core/cli/#back-up-and-restore-user-data) or the API.
+Core can also back up the whole user database now, which was not possible before. As well as your favorites and launcher overrides, that covers your scan and play history and your token mappings. Core keeps a rolling set of automatic backups, you can take a manual backup that is kept until you remove it, and you can restore from any backup, so you can keep copies of data you care about. Core takes a safety backup before each restore, and can recover on its own if the database is found to be corrupt on startup. You can create, list, and restore backups from the [command line](/docs/core/cli/#back-up-and-restore-device-data) or the API.
 
 ## Core: Metadata and artwork
 

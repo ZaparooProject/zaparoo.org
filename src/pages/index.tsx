@@ -19,7 +19,9 @@ import homepageStyles from "@site/src/components/Homepage/Homepage.module.css";
 import featureStyles from "@site/src/components/HomepageFeatures/styles.module.css";
 import Showcase, { showcaseCount } from "@site/src/components/Showcase";
 import StructuredData from "@site/src/components/StructuredData";
-import ProductLink, { type ProductStore } from "@site/src/components/ProductLink";
+import ProductLink, {
+  type ProductStore,
+} from "@site/src/components/ProductLink";
 
 import recentPostsData from "../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json";
 import siteStats from "@site/src/data/stats";
@@ -92,9 +94,7 @@ function Stats(): ReactNode {
 function OfficialPartners(): ReactNode {
   return (
     <div className={styles.officialPartners}>
-      <h3
-        className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}
-      >
+      <h3 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>
         Official Partners
       </h3>
       <div className={styles.partnersLogos}>
@@ -215,12 +215,12 @@ function SupportStrip(): ReactNode {
         </div>
         <div className="row">
           <SupportTile
-            title="Zaparoo App"
-            description="Manage Zaparoo from your phone. Your purchase directly funds continued development."
-            href="https://zaparoo.app"
-            linkText="Get the App"
+            title="Zaparoo Warp"
+            description="Automatic off-site backups for MiSTer, with App Pro included. Your subscription funds continued development."
+            href="https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=homepage_support"
+            linkText="See Warp backup plans"
             external
-            umamiEvent="homepage-support-app"
+            umamiEvent="homepage-support-warp"
           />
           <SupportTile
             title="Zaparoo Shop"
@@ -271,17 +271,13 @@ function HomepageHeader(): ReactNode {
             to="/start/"
             data-umami-event="hero-get-started"
           >
-            <Zap
-              size={16}
-              className={styles.buttonIcon}
-              aria-hidden="true"
-            />
+            <Zap size={16} className={styles.buttonIcon} aria-hidden="true" />
             Start Here
           </Link>
           <Link
             className={clsx(
               "button button--secondary button--lg",
-              styles.button
+              styles.button,
             )}
             to="/downloads/"
             data-umami-event="hero-download"
@@ -352,7 +348,7 @@ export default function Home(): ReactNode {
                         <DownloadSvg
                           className={clsx(
                             featureStyles.featureSvg,
-                            styles.featureIcon
+                            styles.featureIcon,
                           )}
                           aria-hidden="true"
                         />
@@ -379,7 +375,7 @@ export default function Home(): ReactNode {
                         <SmartphoneNfcSvg
                           className={clsx(
                             featureStyles.featureSvg,
-                            styles.featureIcon
+                            styles.featureIcon,
                           )}
                           aria-hidden="true"
                         />
@@ -406,7 +402,7 @@ export default function Home(): ReactNode {
                         <GamepadSvg
                           className={clsx(
                             featureStyles.featureSvg,
-                            styles.featureIcon
+                            styles.featureIcon,
                           )}
                           aria-hidden="true"
                         />
@@ -428,7 +424,7 @@ export default function Home(): ReactNode {
               <Link
                 className={clsx(
                   "button button--primary button--lg",
-                  styles.button
+                  styles.button,
                 )}
                 to="/start/"
                 data-umami-event="how-it-works-get-started"
@@ -443,7 +439,7 @@ export default function Home(): ReactNode {
               <Link
                 className={clsx(
                   "button button--secondary button--lg",
-                  styles.button
+                  styles.button,
                 )}
                 to="/docs/"
                 data-umami-event="how-it-works-docs"
@@ -484,7 +480,7 @@ export default function Home(): ReactNode {
                 <Link
                   className={clsx(
                     "button button--primary button--md",
-                    styles.button
+                    styles.button,
                   )}
                   to="/showcase/"
                 >
@@ -493,7 +489,7 @@ export default function Home(): ReactNode {
                 <a
                   className={clsx(
                     "button button--secondary button--md",
-                    styles.button
+                    styles.button,
                   )}
                   href="https://zaparoo.org/discord"
                 >

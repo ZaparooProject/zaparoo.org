@@ -1,33 +1,45 @@
 ---
-description: "Zaparoo Online: create virtual NFC card decks, sync play history, create cloud backups, write ZapScript to physical tags, and share collections."
-keywords: [zaparoo online, virtual nfc cards, zaparoo cloud, zaparoo play history, online.zaparoo.com, nfc card sync]
+description: "Zaparoo Online: protect MiSTer saves with Warp cloud backup, sync play history, use the User API, and manage virtual cards and decks."
+keywords:
+  [
+    zaparoo online,
+    zaparoo user api,
+    virtual nfc cards,
+    zaparoo cloud,
+    zaparoo play history,
+    online.zaparoo.com,
+    nfc card sync,
+  ]
 ---
 
 # Zaparoo Online
 
-[Zaparoo Online](https://online.zaparoo.com) is a companion web service for managing virtual cards and decks. Create cards with ZapScript on them, organize them into shareable decks, and write them to physical NFC tags using the [Zaparoo App](../app/index.md).
+[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up a [MiSTer](../platforms/mister/index.md) off-site, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
-Linked Core devices can also upload play history when you explicitly opt in. Warp members can use the same account for cloud device backups.
+Cloud backup requires Warp. Play history sync, the User API, and cards and decks are free.
 
-Cards live online. Change a card's script on the website, and every NFC tag linked to that card updates instantly without rewriting.
+Online currently provides:
 
-:::info Not Open Source
-Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It adds cloud features that complement the open source project without replacing any offline functionality. Using Zaparoo Online helps support the ongoing development of the Zaparoo open source project, the same way purchasing from the <ProductLink href="https://shop.zaparoo.com" store="shop">Zaparoo Shop</ProductLink> does.
+- **Cloud backup with Warp:** keep off-site snapshots of MiSTer saves, settings, and Zaparoo data
+- **Play history sync:** optionally upload play sessions to your account
+- **User API:** give apps scoped, read-only access to data from your account
+- **Cards and decks:** create virtual cards and collections, then write them to physical NFC tags
+
+:::info Optional Online Service
+Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It complements the open-source Zaparoo projects without replacing local functionality. Linking a device does not enable cloud backup or play history sync automatically.
 :::
 
-## Cards
+## Cloud backup with Warp
 
-A card is a virtual container for one or more [ZapScript](../zapscript/index.md) commands. Each card gets a unique short URL that can be written to a physical NFC tag.
+Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked MiSTer devices and includes Zaparoo App Pro while the subscription is active.
 
-You can create cards from the dashboard or by redeeming a code, then add ZapScripts to define what happens when the card is scanned. Because the tag points to the card (not the script), changes you make apply instantly to all NFC tags linked to that card.
+Core can upload snapshots manually or on a daily or weekly schedule. Online keeps the latest 30 changed snapshots for each linked device. You can browse or restore those snapshots from another MiSTer linked to the same account. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 
-## Decks
+Portable local backups remain free. Ending a Warp subscription stops new cloud snapshots but leaves existing snapshots available to browse, download, and restore.
 
-Decks are collections of cards, like playlists. You can organize cards into themed sets, reorder them, and share the deck via a public URL. Decks can also be locked to prevent changes after sharing.
+Existing Patreon Supporter and Sponsor members already have Warp access. Link Patreon from your Zaparoo Online account instead of subscribing again.
 
-## Writing to NFC tags
-
-Cards and decks are written to physical NFC tags using the [Zaparoo App](../app/index.md). The tag stores a link to the card, not the script itself, so the tag never needs to be rewritten when you change what it does.
+<a href="https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=online_docs" data-umami-event="online-docs-warp">See Warp plans and pricing</a>.
 
 ## Play history sync
 
@@ -53,8 +65,41 @@ Core checks the setting again before each batch. Disabling it stops later upload
 
 While sync is enabled and the device is linked, local retention cleanup preserves sessions that have not reached the server yet. After a session is acknowledged, the normal [`playtime.retention`](../core/config.md#retention) period still applies to the local copy.
 
-## Warp
+## User API
 
-Warp is the premium tier for Zaparoo Online, available through [Patreon](https://www.patreon.com/wizzo). It unlocks higher card and deck limits, features like hiding zap counts on shared cards, and cloud backups for supported Core devices.
+The [Zaparoo Online User API](https://developers.zaparoo.com/) gives apps read-only access to data from your account. It is free to use and does not require Warp.
 
-Link a device from the Core terminal UI to upload snapshots manually or on a daily or weekly schedule. Existing snapshots can be browsed and restored from other compatible devices linked to the same account. See [Device Backups](../features/backups.md#cloud-backup) for setup and restore behavior.
+Version 1 can read:
+
+- Your profile and premium-access status
+- Play sessions, active now-playing status, and play-time summaries
+- Redeemed cards and decks
+- Linked Core devices
+- Backup snapshots, manifests, and individual files
+
+To create a key:
+
+1. Open [Zaparoo Online](https://online.zaparoo.com) and go to **Account**.
+2. Select **User API**.
+3. Choose only the permissions the app needs.
+4. Create the key and save it when shown. The secret cannot be viewed again.
+
+Send the key as a bearer token with requests to `https://user.api.zaparoo.com`:
+
+```http
+Authorization: Bearer zpk1_...
+```
+
+Keys use separate scopes for profile, play history, cards, decks, devices, and backups, and can be revoked at any time. The `read:backups` scope can download files from your snapshots, so only give it to apps you trust.
+
+Version 1 has no write permissions. Apps cannot change your account data or control linked devices through the current API. See the [complete User API reference](https://developers.zaparoo.com/) for endpoints, pagination, rate limits, and response schemas.
+
+## Cards and decks
+
+Cards and decks are free Zaparoo Online features. You can create as many as you would reasonably need; only high abuse-prevention limits apply.
+
+A card is a virtual container for one or more [ZapScript](../zapscript/index.md) commands. Each card gets a unique short URL that can be written to a physical NFC tag. Because the tag points to the card rather than storing the script itself, changes made in Online apply without rewriting the tag.
+
+Decks organize cards into shareable collections. You can reorder cards, group them into themed sets, share a deck through a public URL, and lock a deck to prevent further changes.
+
+Use the [Zaparoo App](../app/index.md) to write cards and decks to physical NFC tags.

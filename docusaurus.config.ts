@@ -95,16 +95,25 @@ const config: Config = {
               .filter((item) => !item.url.includes("/page/"))
               .map((item) => {
                 const path = item.url.replace(base, "");
-                if (path === "/" || path === "") return { ...item, priority: 1.0 };
-                if (/^\/(start|downloads)\//.test(path)) return { ...item, priority: 0.9 };
+                if (path === "/" || path === "")
+                  return { ...item, priority: 1.0 };
+                if (/^\/(start|downloads)\//.test(path))
+                  return { ...item, priority: 0.9 };
                 if (
                   path === "/docs/" ||
-                  /^\/docs\/(readers|tokens|platforms|features|zapscript|app|core)\/?$/.test(path)
-                ) return { ...item, priority: 0.8 };
-                if (/^\/(privacy|terms|conduct|app-privacy|tokens)\/?$/.test(path))
+                  /^\/docs\/(readers|tokens|platforms|features|zapscript|app|core)\/?$/.test(
+                    path,
+                  )
+                )
+                  return { ...item, priority: 0.8 };
+                if (
+                  /^\/(privacy|terms|conduct|app-privacy|tokens)\/?$/.test(path)
+                )
                   return { ...item, priority: 0.3 };
-                if (path.startsWith("/blog/")) return { ...item, priority: 0.6 };
-                if (path.startsWith("/docs/")) return { ...item, priority: 0.7 };
+                if (path.startsWith("/blog/"))
+                  return { ...item, priority: 0.6 };
+                if (path.startsWith("/docs/"))
+                  return { ...item, priority: 0.7 };
                 return { ...item, priority: 0.5 };
               });
           },
@@ -223,9 +232,9 @@ const config: Config = {
               "data-umami-event": "footer-shop",
             },
             {
-              label: "Zaparoo.com",
-              href: "https://zaparoo.com",
-              "data-umami-event": "footer-zaparoo-com",
+              label: "Warp cloud backup",
+              href: "https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=footer",
+              "data-umami-event": "footer-warp",
             },
             {
               label: "Zaparoo Online",
@@ -445,7 +454,12 @@ const config: Config = {
         sourceBaseUrl:
           "https://raw.githubusercontent.com/ZaparooProject/zaparoo-core/refs/heads/main/docs/api/",
         outDir: "docs/core/api",
-        documents: ["index.md", "methods.md", "notifications.md", "encryption.md"],
+        documents: [
+          "index.md",
+          "methods.md",
+          "notifications.md",
+          "encryption.md",
+        ],
       },
     ],
     [
@@ -477,20 +491,20 @@ const config: Config = {
           // Fix image URLs: convert github.com blob URLs to raw.githubusercontent.com
           let modifiedContent = content.replace(
             /https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\//g,
-            "https://raw.githubusercontent.com/$1/$2/$3/"
+            "https://raw.githubusercontent.com/$1/$2/$3/",
           );
 
           // Convert internal wiki links to relative links
           // Use ../ because trailingSlash: true means pages are /Page-Name/
           modifiedContent = modifiedContent.replace(
             /https:\/\/github\.com\/ZaparooProject\/zaparoo-esp32\/wiki\/([^\s)]+)/g,
-            "../$1"
+            "../$1",
           );
 
           // Fix broken ESP32-S2-Mini link (missing -Default-GPIO-Pins suffix)
           modifiedContent = modifiedContent.replace(
             /\.\.\/ESP32%E2%80%90S2-Mini\)/g,
-            "../ESP32%E2%80%90S2-Mini-Default-GPIO-Pins)"
+            "../ESP32%E2%80%90S2-Mini-Default-GPIO-Pins)",
           );
 
           // Generate title from filename (replace hyphens with spaces, remove .md)
@@ -498,9 +512,7 @@ const config: Config = {
           // Replace hyphens (both regular and unicode) with spaces
           // Special case: Home.md becomes ZapESP32
           const title =
-            baseName === "Home"
-              ? "ZapESP32"
-              : baseName.replace(/[-‐]/g, " ");
+            baseName === "Home" ? "ZapESP32" : baseName.replace(/[-‐]/g, " ");
 
           // Add frontmatter with title
           const frontmatter = `---\ntitle: "${title}"\n---\n\n`;
@@ -666,7 +678,11 @@ const config: Config = {
           // IA restructure: features/ section
           {
             to: "/docs/features/play-controls/",
-            from: ["/docs/core/playtime/", "/docs/features/playtime/", "/docs/features/launch-guard/"],
+            from: [
+              "/docs/core/playtime/",
+              "/docs/features/playtime/",
+              "/docs/features/launch-guard/",
+            ],
           },
           {
             to: "/docs/features/launchers/#launcher-controls",
@@ -697,11 +713,17 @@ const config: Config = {
           },
           {
             to: "/docs/core/contributing/scan-behavior/",
-            from: ["/docs/core/dev/scan-behavior/", "/docs/contributing/scan-behavior/"],
+            from: [
+              "/docs/core/dev/scan-behavior/",
+              "/docs/contributing/scan-behavior/",
+            ],
           },
           {
             to: "/docs/core/contributing/media-titles/",
-            from: ["/docs/core/dev/media-titles/", "/docs/contributing/media-titles/"],
+            from: [
+              "/docs/core/dev/media-titles/",
+              "/docs/contributing/media-titles/",
+            ],
           },
         ],
       },

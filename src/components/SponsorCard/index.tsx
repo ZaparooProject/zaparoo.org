@@ -1,6 +1,6 @@
-import React from 'react';
-import { ChevronRight } from 'lucide-react';
-import styles from './styles.module.css';
+import React from "react";
+import { ChevronRight } from "lucide-react";
+import styles from "./styles.module.css";
 
 interface SponsorCardProps {
   title: string;
@@ -10,6 +10,7 @@ interface SponsorCardProps {
   linkText: string;
   badge?: string;
   umami?: string;
+  columns?: 4 | 6;
 }
 
 export default function SponsorCard({
@@ -20,9 +21,10 @@ export default function SponsorCard({
   linkText,
   badge,
   umami,
+  columns = 6,
 }: SponsorCardProps) {
   return (
-    <div className="col col--6" style={{ marginBottom: '1.5rem' }}>
+    <div className={`col col--${columns}`} style={{ marginBottom: "1.5rem" }}>
       <a
         href={link}
         className={styles.sponsorCard}
@@ -35,7 +37,12 @@ export default function SponsorCard({
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
         <div className={styles.link}>
-          {linkText} <ChevronRight size={14} className="inline-icon" style={{ marginBottom: '2px' }} />
+          {linkText}{" "}
+          <ChevronRight
+            size={14}
+            className="inline-icon"
+            style={{ marginBottom: "2px" }}
+          />
         </div>
       </a>
     </div>

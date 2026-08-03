@@ -1,0 +1,19 @@
+.callout {
+  margin: 2rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  color: var(--ifm-color-emphasis-800);
+}
+
+.callout p {
+  margin-bottom: 0.75rem;
+}
+
+.callout p:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  color: var(--ifm-heading-color);
+  font-weight: 700;
+}

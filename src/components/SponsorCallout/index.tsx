@@ -1,53 +1,41 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
-import ProductLink from '@site/src/components/ProductLink';
-import styles from './styles.module.css';
+import React from "react";
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.css";
 
 interface Props {
-  variant?: 'sponsor' | 'combined';
+  variant?: "sponsor" | "combined";
 }
 
-export default function SponsorCallout({ variant = 'sponsor' }: Props) {
-  if (variant === 'combined') {
-    return (
-      <div className={styles.combined}>
-        <p className={styles.combinedHeadline}>Enjoying this release? Three ways to support Zaparoo's development.</p>
-        <div className={styles.combinedButtons}>
-          <a
-            href="https://zaparoo.app"
-            className={styles.combinedButton}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-umami-event="release-callout-app"
-          >
-            Get the App
-          </a>
-          <ProductLink
-            href="https://shop.zaparoo.com"
-            store="shop"
-            className={styles.combinedButton}
-            unstyled
-            showIcon={false}
-          >
-            Visit the Shop
-          </ProductLink>
-          <Link
-            to="/sponsor/"
-            className={styles.combinedButton}
-            data-umami-event="release-callout-sponsor"
-          >
-            Sponsor
-          </Link>
-        </div>
-      </div>
-    );
-  }
+export default function SponsorCallout({ variant = "sponsor" }: Props) {
+  const warpUrl = `https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=${
+    variant === "combined" ? "release_callout" : "sponsor_callout"
+  }`;
 
   return (
-    <div className={styles.sponsor}>
-      Zaparoo is free and open source. If it's made your setup better,{' '}
-      <Link to="/sponsor/">supporting the project</Link> helps fund continued
-      development.
+    <div className={variant === "combined" ? styles.combined : styles.sponsor}>
+      Zaparoo is free and open source.{" "}
+      <a
+        href={warpUrl}
+        data-umami-event={
+          variant === "combined"
+            ? "release-callout-warp"
+            : "sponsor-callout-warp"
+        }
+      >
+        Warp cloud backup
+      </a>{" "}
+      and{" "}
+      <Link
+        to="/sponsor/"
+        data-umami-event={
+          variant === "combined"
+            ? "release-callout-support"
+            : "sponsor-callout-support"
+        }
+      >
+        other ways to support the project
+      </Link>{" "}
+      help fund continued development.
     </div>
   );
 }

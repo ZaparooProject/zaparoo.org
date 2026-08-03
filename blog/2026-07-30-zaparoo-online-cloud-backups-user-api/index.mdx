@@ -6,6 +6,8 @@ tags: [online]
 authors: [wizzo]
 ---
 
+import WarpCallout from "@site/src/components/WarpCallout";
+
 ![MiSTer running a game beside a phone showing Zaparoo Online backups](cover.webp)
 
 Hi everyone. I want to talk about Zaparoo Online properly for the first time.
@@ -46,13 +48,7 @@ I want to be direct about why this is paid. There are storage and infrastructure
 
 I previously used higher card and deck limits as a Warp benefit. That never became a useful reason to subscribe, so I've removed those restrictions. Everyone can now create effectively as many cards and decks as they could reasonably need, with only very high abuse-prevention limits in the background. I'd rather Warp pay for features with real ongoing value than keep arbitrary limits around because they used to be part of the plan.
 
-<Button
-  icon={<FAIcon icon="link" />}
-  label="Start Warp"
-  link="https://zaparoo.com/pricing"
-  variant="primary"
-  dataUmamiEvent="online-announcement-warp-cta"
-/>
+<WarpCallout />
 
 ## Yes, you can keep doing this locally
 
@@ -121,11 +117,3 @@ What I can commit to is the boundary around it. An Online account will not becom
 For now, I'm starting with something I personally wanted badly enough to build: less worrying about my MiSTer saves, plus a way for other developers to do more interesting things with Zaparoo data.
 
 Update to [Zaparoo Core v2.16.0](/blog/core-v2.16.0), take a look at the [device backup guide](/docs/features/backups/) and let me know how it goes. If you're building something with the User API, I especially want to hear from you. Come and talk to us on [Discord](https://zaparoo.org/discord).
-
-<Button
-  icon={<FAIcon icon="link" />}
-  label="Start Warp"
-  link="https://zaparoo.com/pricing"
-  variant="primary"
-  dataUmamiEvent="online-announcement-cta"
-/>

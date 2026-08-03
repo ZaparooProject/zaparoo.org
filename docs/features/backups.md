@@ -1,13 +1,20 @@
 ---
 description: "Back up and restore Zaparoo Core settings and user data, plus MiSTer configuration, saves, and save states, locally or through Zaparoo Online."
-keywords: [zaparoo backup, zaparoo restore, mister backup, zaparoo cloud backup, zaparoo online]
+keywords:
+  [
+    zaparoo backup,
+    zaparoo restore,
+    mister backup,
+    zaparoo cloud backup,
+    zaparoo online,
+  ]
 ---
 
 # Device Backups
 
 Device backups capture Zaparoo configuration and user data together with supported platform settings and save data. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
 
-Full-device backup is currently supported on MiSTer. You can create portable ZIP backups on the device without an online account. Cloud backup currently works only on MiSTer, requires a linked [Zaparoo Online](../online/index.md) account, and requires [Warp](../online/index.md#warp) to create new snapshots.
+Full-device backup is currently supported on MiSTer. You can create portable ZIP backups on the device without an online account. Cloud backup currently works only on MiSTer and requires a linked [Zaparoo Online](../online/index.md) account.
 
 ## What is included
 
@@ -60,6 +67,8 @@ A restore changes the backed-up settings and data but keeps the current device i
 
 Link the device from **Settings > Online**, or select **Link account** under **Settings > Backup > Cloud**. Core shows a URL and one-time code to approve from your Zaparoo Online account.
 
+Creating new cloud snapshots requires Warp. <a href="https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=backup_docs" data-umami-event="backup-docs-warp">See Warp plans and pricing</a>.
+
 After linking, the Cloud section provides:
 
 - **Automatic backup**: enables or disables scheduled uploads
@@ -68,7 +77,7 @@ After linking, the Cloud section provides:
 - **View backups**: groups snapshots by their source device and lets you inspect or restore them
 - **Status**: shows the latest result, warnings, and service availability
 
-The automatic-backup toggle only controls scheduling. You can run a manual cloud backup while scheduling is disabled. Creating or scheduling cloud snapshots requires Warp, but linked devices can still list and restore existing snapshots without an active Warp subscription.
+The automatic-backup toggle only controls scheduling. You can run a manual cloud backup while scheduling is disabled. Linked devices can still list and restore existing snapshots after a Warp subscription ends.
 
 Cloud snapshots transfer files in packs. An individual file close to or larger than 64 MiB cannot fit in a pack, so Core skips it and reports a partial backup. Local backups can include larger files when the device has enough free space.
 
