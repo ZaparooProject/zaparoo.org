@@ -460,6 +460,15 @@ const config: Config = {
           "notifications.md",
           "encryption.md",
         ],
+        modifyContent(filename: string, content: string) {
+          if (filename !== "methods.md") return undefined;
+          return {
+            content: content.replace(
+              /\]\(\.\/encryption\/?\)/g,
+              "](./encryption.md)",
+            ),
+          };
+        },
       },
     ],
     [
