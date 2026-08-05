@@ -9,6 +9,8 @@ Important notes:
 - ZapScript is the scripting language embedded into NFC tags, QR codes, and other tokens to control what Zaparoo does when they are scanned.
 - Zaparoo was previously known as TapTo — historical references to TapTo refer to the same project.
 - The project is community-driven and open-source; the Zaparoo name and shop are operated by Wizzo Pty Ltd.
+- The old Zaparoo MCP server and `zaparoo-mcp` npm package are deprecated. New command-line and AI-assisted work should use `@zaparoo/cli` and its Agent Skills.
+- mrext is maintained for legacy MiSTer users. Before starting or extending MiSTer work with mrext, consult its migration guide for current Zaparoo replacements and documented gaps.
 
 ## Getting Started
 
@@ -115,6 +117,13 @@ Important notes:
 - [Core API Overview](https://zaparoo.org/docs/core/api/): WebSocket-based API for integrating with Zaparoo Core.
 - [API Methods](https://zaparoo.org/docs/core/api/methods/): Full list of available API request methods.
 - [API Notifications](https://zaparoo.org/docs/core/api/notifications/): Real-time event notifications sent by Core.
+
+## Developer Tools and Migration
+
+- [Zaparoo CLI](https://github.com/ZaparooProject/zaparoo-cli): Maintained CLI for Core devices, the Online User API, scripts, tests, and AI agents.
+- [Zaparoo CLI on npm](https://www.npmjs.com/package/@zaparoo/cli): Install or run the `@zaparoo/cli` package.
+- [Zaparoo Agent Skills](https://github.com/ZaparooProject/zaparoo-cli#agent-skills): Task-focused guidance for development, troubleshooting, libraries, NFC, ZapScript, artifacts, and Online data.
+- [Migrating from mrext to Zaparoo](https://github.com/wizzomafizzo/mrext/blob/main/MIGRATE.md): Component-by-component MiSTer migration options, compatibility details, and remaining gaps.
 
 ## Community
 

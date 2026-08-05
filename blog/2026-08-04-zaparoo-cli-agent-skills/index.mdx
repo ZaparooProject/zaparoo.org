@@ -1,0 +1,117 @@
+---
+slug: zaparoo-cli-agent-skills
+title: "Zaparoo CLI and Agent Skills for Developers"
+description: "The new Zaparoo CLI gives developers, scripts, and AI agents a maintained interface for Core devices and the Online User API, with task-focused Agent Skills and explicit safety controls."
+tags: [software]
+authors: [wizzo]
+---
+
+Hi everyone. I've published the new [Zaparoo CLI](https://github.com/ZaparooProject/zaparoo-cli), along with seven [Agent Skills](https://agentskills.io/) for developing integrations, testing changes, and working with Zaparoo devices.
+
+This is now the supported starting point for new command-line and AI-assisted Zaparoo development. If you want an agent to diagnose a Core device, prototype an integration, or check behavior against the public APIs, this is the package to give it.
+
+The CLI is available now as [`@zaparoo/cli`](https://www.npmjs.com/package/@zaparoo/cli).
+
+{/* truncate */}
+
+## What Zaparoo CLI can do
+
+The CLI is a remote client for the public [Zaparoo Core API](/docs/core/api/) and [Zaparoo Online User API](https://developers.zaparoo.com/). It can discover and pair with Core devices, inspect state and logs, search media, monitor notifications, work with NFC readers and mappings, manage settings, and query account-owned Online data.
+
+It is useful outside an agent too. The same commands work in a terminal, a shell script, or a test harness, with human-readable output for interactive use and structured output for automation.
+
+A troubleshooting session can start with three read-only commands:
+
+```bash
+zaparoo-cli doctor --device 192.168.1.50:7497 --agent
+zaparoo-cli capabilities --device 192.168.1.50:7497 --agent
+zaparoo-cli state --device 192.168.1.50:7497 --agent
+```
+
+The CLI also provides `rpc` for direct Core JSON-RPC calls and `online request` for GET requests to official `/v1` User API paths when no first-class command exists.
+
+## Install it and give your agent a job
+
+The CLI requires Node.js 22 or newer:
+
+```bash
+npm install --global @zaparoo/cli
+zaparoo-cli --version
+```
+
+From the project where you want to use it, install all seven Skills into the shared `.agents/skills` directory and check the result:
+
+```bash
+zaparoo-cli agent install --client agents --yes
+zaparoo-cli agent doctor
+```
+
+Reload your agent session after installing or updating the Skills.
+
+Pi can install the CLI and all packaged Skills together:
+
+```bash
+pi install npm:@zaparoo/cli
+```
+
+After installation, give your agent a concrete task. For example:
+
+> Use the `zaparoo-development` Skill to add Zaparoo Core media search to this project. Verify request shapes against the public API documentation.
+
+> Use the `zaparoo-troubleshooting` Skill to diagnose Core at `192.168.1.50:7497`. Start with read-only checks.
+
+> Use the `zaparoo-library` Skill to inspect my game library and explain the available systems without launching anything.
+
+Compatible agents can select a Skill automatically from the task and its description. Naming it directly is useful for the first run and when checking that the right workflow is installed.
+
+## Seven focused Agent Skills
+
+The package includes:
+
+- `zaparoo-development` for choosing public APIs, prototyping requests, and verifying integrations
+- `zaparoo-troubleshooting` for connections, pairing, logs, and diagnostics
+- `zaparoo-library` for media search, metadata, history, and launching
+- `zaparoo-nfc` for readers, writes, tokens, and mappings
+- `zaparoo-zapscript` for composing and explaining [ZapScript](/docs/zapscript/)
+- `zaparoo-artifacts` for guided log and database collection
+- `zaparoo-online` for account profile, history, cards, decks, devices, and backups
+
+An agent loads the guidance for its current task, then calls the same CLI a person can run and inspect. The CLI can also explain its exact command surface without source access:
+
+```bash
+zaparoo-cli help media search
+zaparoo-cli catalog --filter "media index" --json
+zaparoo-cli docs search "notifications" --agent
+```
+
+When they call the CLI, the Skills use `--agent` for read operations. This returns bounded structured output and defaults the CLI to read-only policy, while commands that change a device or account require explicit approval. Content returned by Core devices and the Online User API is marked as untrusted data. The detailed behavior is documented in the [CLI output contract](https://github.com/ZaparooProject/zaparoo-cli/blob/main/docs/cli-output.md).
+
+## Why move away from MCP
+
+The old Zaparoo MCP server worked well. It proved that an AI assistant could inspect noisy logs, exercise remote devices, compose ZapScript, and find API problems that were easy to miss during normal App development. I did not run into any major problems with its large tool list.
+
+The first reason for moving away from it was the direction coding harnesses were taking. The tools I use have been putting more emphasis on Agent Skills, while MCP has become less central to their workflows. A CLI with packaged Skills now fits those tools better.
+
+The other reason was the persistent device connections. I originally expected keeping a WebSocket connection open to every Core device to be one of the MCP server's main advantages. Opening a connection for each CLI call turned out to add negligible overhead. An agent cannot continuously read a live connection either: it still has to poll and wait for updates. Even when the MCP server updated resources from live connection data, the agent could only request those resources again to see what had changed. From the agent's perspective, that was almost identical to making another CLI call.
+
+The old `zaparoo-mcp` npm package is now deprecated. The CLI is not a drop-in replacement for an MCP client entry, so existing users should install the CLI and relevant Skills, verify their workflow, then remove the old MCP configuration.
+
+MCP may still make sense later for clients that cannot run local commands, persistent notification resources, or remote OAuth workflows. I do not want to maintain another broad interface unless there is a measured need that the CLI and Skills cannot meet.
+
+## Where mrext fits now
+
+Before Zaparoo, I built [mrext](https://github.com/wizzomafizzo/mrext) as a collection of MiSTer utilities including Remote, Search, Random, LastPlayed, PlayLog, Favorites, GamesMenu, and LaunchSync. A lot of what I learned there eventually moved into [Zaparoo Core](/docs/core/), the [Zaparoo App](/docs/app/), [Zaparoo Frontend](/docs/frontend/), and the public APIs. The permanent [mrext migration guide](https://github.com/wizzomafizzo/mrext/blob/main/MIGRATE.md) maps each workflow to current options and records the remaining gaps.
+
+For new integrations that depend on Zaparoo, developers should use the public Core API or this CLI instead of building around mrext internals and temporary files. Core now provides media state, play history, notifications, library search, and an [MQTT publisher](/docs/features/publishers/#mqtt) as maintained interfaces. ZapScript covers portable launch and automation logic, including random and recently played media. The Online User API provides scoped access to account-owned history, cards, decks, devices, and backups.
+
+Zaparoo covers the shareable, live-updating part of [LaunchSync](https://github.com/wizzomafizzo/mrext/blob/main/docs/launchsync.md) in two ways. [Cards and decks in Zaparoo Online](/docs/online/#cards-and-decks) provide a hosted option through Zap Links. You can also host playlist ZapScript yourself with a [Zap Link server](/docs/zapscript/syntax/#self-hosting). LaunchSync is where the idea for cards and decks came from.
+
+Neither option generates LaunchSync's `.mgl` shortcuts inside the stock MiSTer menu. Favorites and GamesMenu have the same gap, and I have no immediate plans to replace that shortcut workflow. Remote also has a few MiSTer-specific management features with no current equivalent, including listing wallpapers and editing individual `MiSTer.ini` settings. I may add support later, but these features are not a high priority because they only apply to MiSTer.
+
+I'll add migration notes to the old projects as I go. Existing installations can keep working, while new projects get maintained options with the remaining gaps clearly called out.
+
+## Try it and report the rough edges
+
+The [Zaparoo CLI repository](https://github.com/ZaparooProject/zaparoo-cli) contains the complete command and Skill documentation. Install it, give your agent a real Zaparoo task, and let me know where it gets stuck.
+
+If you are building an integration or find a mrext workflow with no practical migration path, please open an issue on GitHub or come and talk to us on [Discord](https://zaparoo.org/discord). Those examples will show whether the next improvement belongs in Core, the CLI, an Agent Skill, or a narrowly scoped adapter.
