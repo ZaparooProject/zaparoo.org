@@ -50,7 +50,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/ZaparooProject/zaparoo.org/tree/main/",
-          lastVersion: "2.16.0",
+          lastVersion: "2.16.1",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -59,7 +59,7 @@ const config: Config = {
               banner: "unreleased",
               badge: true,
             },
-            "2.16.0": {
+            "2.16.1": {
               label: "Stable",
               path: "/",
               banner: "none",
@@ -742,7 +742,7 @@ const config: Config = {
       {
         generateLLMsTxt: false,
         generateLLMsFullTxt: true,
-        docsDir: "versioned_docs/version-2.16.0",
+        docsDir: "versioned_docs/version-2.16.1",
         includeBlog: false,
         excludeImports: true,
         removeDuplicateHeadings: true,

@@ -14,7 +14,7 @@ keywords:
 
 Device backups capture Zaparoo configuration and user data together with supported platform settings and save data. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
 
-Full-device backup is currently supported on MiSTer and MiSTeX. You can create portable ZIP backups on the device without an online account. Cloud backup requires a linked [Zaparoo Online](../online/index.md) account.
+Full-device backup is currently supported on MiSTer. You can create portable ZIP backups on the device without an online account. Cloud backup currently works only on MiSTer and requires a linked [Zaparoo Online](../online/index.md) account.
 
 ## What is included
 
@@ -25,7 +25,7 @@ Every backup includes:
 - Zaparoo Frontend and terminal UI configuration
 - Custom launcher and mapping TOML files
 
-MiSTer and MiSTeX backups also include supported platform data:
+MiSTer backups also include supported platform data:
 
 - `MiSTer.ini`, alternate MiSTer INI files, and Downloader configuration
 - MiSTer core configuration files and input mappings

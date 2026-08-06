@@ -123,7 +123,7 @@ Use `-restore` with a backup name to restore it. Active media must be stopped. C
 ./zaparoo -restore backup-20260720-120000-000000000-manual.zip
 ```
 
-These flags call the `settings.backup`, `settings.backup.list`, and `settings.backup.restore` [API methods](./api/methods.md#device-backup-methods).
+These flags call the [`settings.backup`](./api/methods.md#settingsbackup), `settings.backup.list`, and `settings.backup.restore` API methods.
 
 ## Database recovery
 

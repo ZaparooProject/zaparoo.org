@@ -54,9 +54,25 @@ Core does not run games or media directly from the physical disc. The disc acts 
 
 ## Enable the reader
 
-MiSTer can automatically detect optical drives exposed as `/dev/sr0`, `/dev/sr1`, and similar paths. If Core does not detect your drive, or you use another Linux-based platform, configure its device path manually.
+Optical drives are not automatically detected by default. Choose automatic detection or configure a specific device path.
 
-Add a `readers.connect` entry to your [`config.toml`](../core/config.md):
+### Enable automatic detection
+
+On MiSTer, automatic detection can conflict with physical CD cores. Enable it when you want Core to use the drive as a Zaparoo token reader.
+
+Add these driver settings to your [`config.toml`](../core/config.md):
+
+```toml
+[readers.drivers.opticaldrive]
+enabled = true
+auto_detect = true
+```
+
+Core will look for optical drives exposed as `/dev/sr0`, `/dev/sr1`, and similar Linux device paths.
+
+### Use a specific device path
+
+Add a `readers.connect` entry to `config.toml`:
 
 ```toml
 [[readers.connect]]

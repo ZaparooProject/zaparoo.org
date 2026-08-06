@@ -1,0 +1,74 @@
+---
+slug: core-v2.16.1
+title: "Zaparoo Core v2.16.1 released"
+description: "Zaparoo Core v2.16.1 fixes media indexing, search, backups, Hold mode, native audio, MiSTer launching, and macOS URL cards."
+tags: [software, core]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo Core v2.16.1 is now available. This patch release fixes problems found after v2.16.0, with faster media updates on slow storage and reliability fixes across the media library, readers, backups, native audio, MiSTer, and macOS.
+
+{/* truncate */}
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.16.1"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Optical drive setup change
+
+Automatic optical drive detection is now disabled by default because it can conflict with the new MiSTer physical CD cores. If you use an optical drive as a Zaparoo token reader, you can turn detection back on explicitly:
+
+```toml
+[readers.drivers.opticaldrive]
+enabled = true
+auto_detect = true
+```
+
+Manual configuration is also available through [`readers.connect`](/docs/readers/optical-drive/#use-a-specific-device-path) using the drive's device path, such as `/dev/sr0`.
+
+## Library and backup fixes
+
+- Media updates and database optimization are much faster on slow storage, especially for large libraries and MiSTer setups with thousands of arcade files.
+- The one-time media database upgrade from v2.16.0 now saves its progress after each system and resumes after an interruption instead of starting over. Fresh databases skip this work.
+- Interrupted media database rebuilds now resume recovery on startup. Core also rebuilds incomplete search caches automatically.
+- Search now keeps cached results within the requested media type and filters. Negative tag filters are also faster on large libraries.
+- Editing media tags now refreshes the affected caches and correctly replaces an existing value when the tag type allows only one.
+- When a physical disc matches several indexed copies, Core now prefers a regular release over samples, prototypes, hacks, translations, and other variants instead of refusing to launch anything.
+- [Backups](/docs/features/backups/) no longer fail on platforms without platform-specific files to include. The terminal UI also reports unchanged cloud backup runs more clearly.
+- When [Zaparoo Online play history sync](/docs/online/#play-history-sync) is enabled, Core now sends a complete media identity. Existing history is updated in the background after indexing, with work paused during gameplay.
+
+## Reader, launch, and playback fixes
+
+- [Hold mode](/docs/core/config/#scan-mode) now stays tied to the token that launched the game. Scanning and removing a command card no longer closes the active game or resets its exit countdown.
+- Reinserting a launch token during a delayed `on_remove` hook now cancels the remaining hook and keeps the game running.
+- Stop requests now wait for an in-progress launch to finish, fixing a race that could leave the new game running.
+- [Native audio](/docs/features/audio/) stays responsive while playback controls run. Playlist pause and resume state is also preserved and reported correctly to API clients.
+- MiSTer [TTY2OLED displays](/docs/readers/tty2oled/) now show game artwork for arcade launches, including artwork identified from the active `.mra` file.
+- MiSTer no longer reports a successful launch when an `.mgl`, `.mra`, or `.rbf` file is missing.
+- MiSTer utility widgets can run ZapScript controls again. ZapScript suppression is now limited to the main terminal UI.
+- URL cards on macOS now open in the default web browser.
+
+## Other fixes
+
+- Authentication errors and logs now redact claim tokens, linking codes, and other secrets from remote URLs and server responses.
+- Default backup and play-history service URLs are no longer saved as user overrides, so future default changes do not require config edits.
+- [Core's API reference](/docs/core/api/) now documents every registered method.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

@@ -25,7 +25,7 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 | [RC522](./nfc/rc522.md) | NFC/RFID | Via Simple Serial | All |
 | [App/Camera Scanner](./barcode/index.md) | Barcodes, QR codes | Via Zaparoo App | All |
 | [RS232 Scanner](./barcode/rs232.md) | Barcodes, QR codes | Manual config | All |
-| [Optical Drive](./optical-drive.md) | CDs, DVDs, Blu-rays | Auto-detect on MiSTer; manual config elsewhere | Linux-based platforms except MiSTeX |
+| [Optical Drive](./optical-drive.md) | CDs, DVDs, Blu-rays | Enable auto-detect or configure manually | Linux-based platforms except MiSTeX |
 | [Epilogue Operator](./epilogue-operator.md) | GB/GBC/GBA, SNES, N64 cartridges | Install bridge | MiSTer |
 | [MQTT Reader](./mqtt.md) | Virtual/any | Network configuration | All |
 | [File Reader](./file.md) | Text files | No hardware needed | All |
