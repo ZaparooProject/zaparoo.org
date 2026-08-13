@@ -37,7 +37,6 @@
 .platformItem,
 .readerItem {
   border: 1px solid var(--ifm-color-emphasis-200);
-  border-left-width: 4px;
   border-radius: 10px;
   color: inherit;
   display: grid;
@@ -64,7 +63,6 @@ a.readerItem:hover * {
 
   background: var(--support-background);
   border-color: var(--support-border);
-  border-left-color: var(--support-accent);
 }
 
 .limited {
@@ -76,7 +74,6 @@ a.readerItem:hover * {
 
   background: var(--support-background);
   border-color: var(--support-border);
-  border-left-color: var(--support-accent);
 }
 
 .unsupported {
@@ -88,7 +85,6 @@ a.readerItem:hover * {
 
   background: var(--support-background);
   border-color: var(--support-border);
-  border-left-color: var(--support-accent);
 }
 
 .unknown {
@@ -100,7 +96,6 @@ a.readerItem:hover * {
 
   background: var(--support-background);
   border-color: var(--support-border);
-  border-left-color: var(--support-accent);
 }
 
 [data-theme="dark"] .supported {

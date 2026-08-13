@@ -1,19 +1,8 @@
 import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
 import CardLink from "./CardLink";
+import { listedPlatforms } from "@site/src/data/platforms";
 import styles from "./Homepage.module.css";
-
-const platforms = [
-  { name: "MiSTer FPGA", link: "/docs/platforms/mister" },
-  { name: "MiSTeX", link: "/docs/platforms/mistex" },
-  { name: "RePlayOS", link: "/docs/platforms/replayos" },
-  { name: "Windows", link: "/docs/platforms/windows/" },
-  { name: "Linux", link: "/docs/platforms/linux" },
-  { name: "SteamOS", link: "/docs/platforms/steamos" },
-  { name: "Batocera", link: "/docs/platforms/batocera" },
-  { name: "LibreELEC", link: "/docs/platforms/libreelec" },
-  { name: "Commodore 64", link: "/docs/platforms/commodore64" },
-];
 
 const tokens = [
   { name: "NFC Cards", link: "/docs/tokens/nfc/" },
@@ -47,10 +36,10 @@ export default function PlatformShowcase(): ReactNode {
         <div style={{ marginBottom: "3rem" }}>
           <h3 className={styles.sectionHeader}>Platforms</h3>
           <div className={styles.platformBadges}>
-            {platforms.map((platform) => (
+            {listedPlatforms.map((platform) => (
               <Link
-                key={platform.name}
-                to={platform.link}
+                key={platform.id}
+                to={platform.docsPath}
                 className={styles.platformBadge}
                 style={{ textDecoration: "none" }}
               >
@@ -69,7 +58,7 @@ export default function PlatformShowcase(): ReactNode {
         </div>
 
         <div>
-          <h3 className={styles.sectionHeader}>Ways to Launch</h3>
+          <h3 className={styles.sectionHeader}>Ways to launch</h3>
           <div className={styles.platformBadges}>
             {tokens.map((item) => (
               <Link

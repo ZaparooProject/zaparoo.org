@@ -1,5 +1,5 @@
 ---
-description: "Back up and restore Zaparoo Core settings and user data, plus MiSTer configuration, saves, and save states, locally or through Zaparoo Online."
+description: "Back up and restore Zaparoo Core data on every platform, plus supported MiSTer settings, saves, and save states."
 keywords:
   [
     zaparoo backup,
@@ -12,9 +12,9 @@ keywords:
 
 # Device Backups
 
-Device backups capture Zaparoo configuration and user data together with supported platform settings and save data. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
+Device backups capture Zaparoo configuration and user data on every Core platform. MiSTer backups can also include supported settings, input mappings, saves, and save states. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
 
-Full-device backup is currently supported on MiSTer. You can create portable ZIP backups on the device without an online account. Cloud backup currently works only on MiSTer and requires a linked [Zaparoo Online](../online/index.md) account.
+Local backups are portable ZIP files and do not require an online account. Cloud backups require a linked [Zaparoo Online](../online/index.md) account and Warp for new snapshots.
 
 ## What is included
 
@@ -32,6 +32,8 @@ MiSTer backups also include supported platform data:
 - Shared saves and save states
 - Separate save and save-state directories created by [device profiles](./profiles.md)
 
+Unless listed above, backups do not include platform settings, emulator configuration, saves, save states, or game library data. Support for more platform data is planned.
+
 Backups do not include ROMs, disc images, downloaded cores, Core binaries, the rebuildable media database, scraped artwork, logs, or authentication credentials. This includes shared and per-profile `retroachievements.cfg` files used by [MiSTer profiles](./profiles.md#retroachievements-accounts), because they contain plaintext passwords. Paired clients and the destination device's identity, encryption setting, and Zaparoo Online credentials are preserved during restore rather than copied from the backup.
 
 If Core cannot include every file, it marks the backup as partial. Check the backup details for skipped categories and warnings before relying on it.
@@ -44,7 +46,7 @@ From the Core terminal UI:
 2. Under **Local**, select **Back up now**.
 3. Wait for the backup to finish.
 
-Local backups are portable ZIP files. On MiSTer, the default location is `/media/fat/zaparoo/backups/files`. Manual backups remain there until you delete them.
+Local backups are stored in the `backups/files` folder inside the platform's Core data directory. Manual backups remain there until you delete them.
 
 Open **Settings > Backup > Local > View backups** to inspect, restore, or delete a backup.
 
@@ -95,7 +97,7 @@ Stop active media and wait for any launch, backup, or restore operation to finis
 
 ### Backup completed with warnings
 
-Inspect the backup details to see which files or categories were skipped. Cloud backups also skip individual files that cannot fit in a 64 MiB transfer pack. On MiSTer, an active personal profile can hide shared-profile saves from the backup, while unavailable network storage can hide other save data. Switch to **Shared Profile**, reconnect any storage, and retry.
+Inspect the backup details to see which files or categories were skipped. Cloud backups also skip individual files that cannot fit in a 64 MiB transfer pack. If MiSTer saves are stored on USB or network storage, make sure that storage is mounted before starting the backup.
 
 ### Cloud backup is unavailable
 

@@ -84,8 +84,8 @@ function Stats(): ReactNode {
         <div className={styles.statLabel}>Discord Members</div>
       </div>
       <div className={styles.statItem}>
-        <div className={styles.statNumber}>{siteStats.platforms}</div>
-        <div className={styles.statLabel}>Platforms</div>
+        <div className={styles.statNumber}>{siteStats.githubStars}</div>
+        <div className={styles.statLabel}>GitHub Stars</div>
       </div>
     </div>
   );
@@ -94,9 +94,9 @@ function Stats(): ReactNode {
 function OfficialPartners(): ReactNode {
   return (
     <div className={styles.officialPartners}>
-      <h3 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>
-        Official Partners
-      </h3>
+      <h2 className={clsx(homepageStyles.sectionHeader, styles.partnersHeader)}>
+        Official partners
+      </h2>
       <div className={styles.partnersLogos}>
         <a
           href="https://multisystem.uk/products/mister-multisystem-2/"
@@ -216,7 +216,7 @@ function SupportStrip(): ReactNode {
         <div className="row">
           <SupportTile
             title="Zaparoo Warp"
-            description="Automatic off-site backups for MiSTer, with App Pro included. Your subscription funds continued development."
+            description="Automatic off-site backups for Zaparoo data on every platform, plus supported MiSTer settings and saves. App Pro is included."
             href="https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=homepage_support"
             linkText="See Warp backup plans"
             external

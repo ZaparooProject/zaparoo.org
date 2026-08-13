@@ -1,0 +1,32 @@
+.feedback {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--z-card-border-strong);
+  border-radius: var(--z-card-radius);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.feedback p {
+  margin: 0.25rem 0 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.feedback a {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .feedback {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .feedback a {
+    width: 100%;
+  }
+}

@@ -67,6 +67,9 @@
     );
     --z-badge-color: var(--ifm-color-primary-darkest);
     --z-badge-radius: 999px;
+    --z-status-stable: #237804;
+    --z-status-beta: #ad6800;
+    --z-status-community: #096dd9;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -97,6 +100,9 @@
         transparent
     );
     --z-badge-color: var(--ifm-color-primary-lightest);
+    --z-status-stable: #73d13d;
+    --z-status-beta: #ffc53d;
+    --z-status-community: #69c0ff;
 }
 
 [data-theme="dark"] .button--primary {
@@ -127,6 +133,194 @@
     float: right;
     margin: 0 0 1rem 1.5rem;
     max-width: 300px;
+}
+
+/* Shared card language for documentation notices and custom callouts. */
+.theme-admonition,
+.theme-doc-version-banner,
+details.alert,
+.z-notice {
+    --z-notice-accent: var(--ifm-alert-border-color, var(--ifm-color-primary));
+    --ifm-alert-background-color: color-mix(
+        in srgb,
+        var(--z-notice-accent) 7%,
+        var(--z-card-background)
+    );
+    --ifm-alert-foreground-color: var(--ifm-font-color-base);
+    --docusaurus-details-decoration-color: var(--z-notice-accent);
+    background: var(--ifm-alert-background-color);
+    border: 1px solid
+        color-mix(in srgb, var(--z-notice-accent) 38%, var(--z-card-border));
+    border-radius: var(--z-card-radius);
+    box-shadow: var(--z-card-shadow);
+    color: var(--ifm-font-color-base);
+    padding: 1.25rem;
+}
+
+.z-notice[data-tone="brand"] {
+    --z-notice-accent: var(--ifm-color-primary);
+}
+
+.z-notice[data-tone="stable"] {
+    --z-notice-accent: var(--z-status-stable);
+}
+
+.z-notice[data-tone="beta"] {
+    --z-notice-accent: var(--z-status-beta);
+}
+
+.z-notice--compact {
+    padding: 0.85rem 1rem;
+}
+
+.z-notice--compact .z-notice__heading:not(:last-child) {
+    margin-bottom: 0.45rem;
+}
+
+.theme-admonition [class*="admonitionHeading"],
+.z-notice__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-font-color-base));
+    font: 700 1rem/1.3 var(--ifm-heading-font-family);
+    text-transform: none;
+}
+
+.theme-admonition [class*="admonitionHeading"]:not(:last-child),
+.z-notice__heading:not(:last-child) {
+    margin-bottom: 0.75rem;
+}
+
+.theme-admonition [class*="admonitionIcon"],
+.z-notice__icon,
+.theme-doc-version-banner::before {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    border: 1px solid
+        color-mix(in srgb, var(--z-notice-accent) 35%, transparent);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--z-notice-accent) 13%, transparent);
+    color: var(--z-notice-accent);
+}
+
+.theme-admonition [class*="admonitionIcon"] svg,
+.z-notice__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    color: inherit;
+}
+
+.theme-admonition [class*="admonitionIcon"] svg {
+    fill: currentColor;
+}
+
+.z-notice__icon svg {
+    fill: none;
+    stroke: currentColor;
+}
+
+.z-notice__content > :last-child {
+    margin-bottom: 0;
+}
+
+.theme-admonition a,
+.theme-doc-version-banner a,
+details.alert a,
+.z-notice a {
+    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-link-color));
+    text-decoration-color: color-mix(
+        in srgb,
+        var(--z-notice-accent) 55%,
+        transparent
+    );
+}
+
+.theme-doc-version-banner {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    align-items: start;
+}
+
+.theme-doc-version-banner::before {
+    content: "!";
+    grid-row: 1 / span 2;
+    font-weight: 800;
+}
+
+.theme-doc-version-banner > div {
+    grid-column: 2;
+}
+
+.theme-doc-version-banner > div:first-child {
+    display: flex;
+    align-items: center;
+    min-height: 2rem;
+    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-font-color-base));
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.theme-doc-version-banner > .margin-top--md {
+    margin-top: 0.35rem !important;
+}
+
+details.alert > summary {
+    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-font-color-base));
+    font-weight: 700;
+}
+
+/* Give tables inside shared details panels solid surfaces and clear hierarchy. */
+details.alert table {
+    --ifm-table-border-color: color-mix(
+        in srgb,
+        var(--z-notice-accent) 22%,
+        var(--z-card-border-strong)
+    );
+    --ifm-table-head-background: color-mix(
+        in srgb,
+        var(--z-notice-accent) 10%,
+        var(--z-card-background)
+    );
+    --ifm-table-stripe-background: color-mix(
+        in srgb,
+        var(--z-notice-accent) 4%,
+        var(--z-card-background)
+    );
+    background: var(--z-card-background);
+    display: table;
+    width: 100%;
+}
+
+details.alert table thead tr {
+    border-bottom-color: var(--ifm-table-border-color);
+}
+
+details.alert table :is(th, td):first-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+details.alert table tbody tr:nth-child(even) {
+    background: var(--ifm-table-stripe-background);
+}
+
+[data-theme="dark"] .theme-admonition,
+[data-theme="dark"] .theme-doc-version-banner,
+[data-theme="dark"] details.alert,
+[data-theme="dark"] .z-notice {
+    --ifm-alert-background-color: color-mix(
+        in srgb,
+        var(--z-notice-accent) 10%,
+        var(--z-card-background)
+    );
 }
 
 .docHeroImage ~ .theme-admonition {
@@ -377,11 +571,38 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 
 /* Download card styling */
 .download-card {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    position: relative;
+    width: 100%;
     background: var(--z-card-background);
     border: 1px solid var(--z-card-border-strong);
     box-shadow: var(--z-card-shadow);
     scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
     transition: var(--z-card-transition);
+}
+
+.download-card__status {
+    display: inline-flex;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.download-card__status[data-status="stable"] {
+    color: var(--z-status-stable);
+}
+
+.download-card__status[data-status="beta"] {
+    color: var(--z-status-beta);
+}
+
+.download-card__native-install {
+    min-height: 2.75rem;
+    width: 100%;
 }
 
 .download-card:hover {
@@ -399,6 +620,21 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 [data-theme="dark"] .download-card--targeted {
     border-color: var(--ifm-color-primary);
     box-shadow: 0 0 0 3px var(--ifm-color-primary-dark);
+}
+
+@media (max-width: 768px) {
+    .download-card {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .download-card .button {
+        font-size: 0.78rem;
+        padding-inline: 0.45rem;
+    }
+
+    .download-card select {
+        min-width: 0;
+    }
 }
 
 /* Architecture help icon */

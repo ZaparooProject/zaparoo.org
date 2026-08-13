@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import Notice, { type NoticeVariant } from "@site/src/components/Notice";
 import { Info, AlertTriangle, Lightbulb } from "lucide-react";
 
 // Social Icons
@@ -33,6 +34,9 @@ export interface StyledButtonProps {
   children: React.ReactNode;
   className?: string;
   dataUmamiEvent?: string;
+  umamiPlatform?: string;
+  umamiToken?: string;
+  umamiReader?: string;
 }
 
 export const StyledButton: React.FC<StyledButtonProps> = ({
@@ -44,6 +48,9 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
   children,
   className = "",
   dataUmamiEvent,
+  umamiPlatform,
+  umamiToken,
+  umamiReader,
 }) => {
   const classes = [
     "button",
@@ -60,6 +67,9 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
       to={to}
       className={classes}
       data-umami-event={dataUmamiEvent}
+      data-umami-event-platform={umamiPlatform}
+      data-umami-event-token={umamiToken}
+      data-umami-event-reader={umamiReader}
       style={{
         display: "flex",
         alignItems: "center",
@@ -90,111 +100,22 @@ export const Admonition: React.FC<AdmonitionProps> = ({
   children,
   className = "",
 }) => {
-  // Map admonition types to icons and variants
   const iconMap: Record<
     AdmonitionType,
-    { icon: React.ReactNode; variant: string }
+    { icon: React.ReactNode; variant: NoticeVariant }
   > = {
-    note: {
-      icon: (
-        <Info
-          size={20}
-          style={{
-            marginTop: "0.1rem",
-            flexShrink: 0,
-            marginBottom: "0.2rem",
-          }}
-        />
-      ),
-      variant: "secondary",
-    },
-    tip: {
-      icon: (
-        <Lightbulb
-          size={20}
-          style={{
-            marginTop: "0.1rem",
-            flexShrink: 0,
-            marginBottom: "0.2rem",
-          }}
-        />
-      ),
-      variant: "success",
-    },
-    info: {
-      icon: (
-        <Info
-          size={20}
-          style={{
-            marginTop: "0.1rem",
-            flexShrink: 0,
-            marginBottom: "0.2rem",
-          }}
-        />
-      ),
-      variant: "info",
-    },
-    warning: {
-      icon: (
-        <AlertTriangle
-          size={20}
-          style={{
-            marginTop: "0.1rem",
-            flexShrink: 0,
-            marginBottom: "0.2rem",
-          }}
-        />
-      ),
-      variant: "warning",
-    },
-    danger: {
-      icon: (
-        <AlertTriangle
-          size={20}
-          style={{
-            marginTop: "0.1rem",
-            flexShrink: 0,
-            marginBottom: "0.2rem",
-          }}
-        />
-      ),
-      variant: "danger",
-    },
+    note: { icon: <Info size={20} />, variant: "secondary" },
+    tip: { icon: <Lightbulb size={20} />, variant: "success" },
+    info: { icon: <Info size={20} />, variant: "info" },
+    warning: { icon: <AlertTriangle size={20} />, variant: "warning" },
+    danger: { icon: <AlertTriangle size={20} />, variant: "danger" },
   };
 
   const { icon, variant } = iconMap[type];
 
   return (
-    <div className={`alert alert--${variant} ${className}`}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-        }}
-      >
-        <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              textTransform: "uppercase",
-            }}
-          >
-            {icon}
-            <span
-              style={{
-                fontWeight: 600,
-                fontSize: "90%",
-                paddingBottom: "0.1rem",
-              }}
-            >
-              {title}
-            </span>
-          </div>
-          <div style={{ marginTop: "0.5rem" }}>{children}</div>
-        </div>
-      </div>
-    </div>
+    <Notice title={title} icon={icon} variant={variant} className={className}>
+      {children}
+    </Notice>
   );
 };

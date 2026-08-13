@@ -1,5 +1,5 @@
 ---
-description: "Zaparoo Online: protect MiSTer saves with Warp cloud backup, sync play history, use the User API, and manage virtual cards and decks."
+description: "Use Zaparoo Online for cloud backups, play history sync, the User API, and virtual cards and decks."
 keywords:
   [
     zaparoo online,
@@ -14,13 +14,13 @@ keywords:
 
 # Zaparoo Online
 
-[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up a [MiSTer](../platforms/mister/index.md) off-site, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
+[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up Zaparoo data from every Core platform, include supported [MiSTer](../platforms/mister/index.md) settings and saves, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
 Cloud backup requires Warp. Play history sync, the User API, and cards and decks are free.
 
 Online currently provides:
 
-- **Cloud backup with Warp:** keep off-site snapshots of MiSTer saves, settings, and Zaparoo data
+- **Cloud backup with Warp:** keep off-site snapshots of Zaparoo data, plus supported MiSTer saves and settings
 - **Play history sync:** optionally upload play sessions to your account
 - **User API:** give apps scoped, read-only access to data from your account
 - **Cards and decks:** create virtual cards and collections, then write them to physical NFC tags
@@ -31,9 +31,9 @@ Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizz
 
 ## Cloud backup with Warp
 
-Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked MiSTer devices and includes Zaparoo App Pro while the subscription is active.
+Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active.
 
-Core can upload snapshots manually or on a daily or weekly schedule. Online keeps the latest 30 changed snapshots for each linked device. You can browse or restore those snapshots from another MiSTer linked to the same account. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
+Core can upload snapshots manually or on a daily or weekly schedule. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer snapshots can also contain supported platform settings, input mappings, saves, and save states. Comparable platform-data backup support is planned for more platforms. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 
 Portable local backups remain free. Ending a Warp subscription stops new cloud snapshots but leaves existing snapshots available to browse, download, and restore.
 
@@ -51,7 +51,9 @@ To opt in from the Core terminal UI:
 2. Link the device to your Zaparoo Online account if it is not already linked.
 3. Enable **Play history sync**.
 
-Play history sync does not require Warp. The first sync uploads all retained local history. Core then checks for new and updated sessions about once an hour.
+On SteamOS, use **Zaparoo Online > Link device** in the Decky plugin, approve the displayed QR code or URL, then enable **Sync play history**. Linking alone uploads nothing.
+
+Play history sync does not require Warp. The first sync uploads all retained local history. Core requests another sync when a session starts or ends, refreshes an active session about every five minutes, and also runs periodic reconciliation.
 
 Each synced session includes:
 

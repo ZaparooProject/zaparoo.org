@@ -49,7 +49,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/ZaparooProject/zaparoo.org/tree/main/",
           lastVersion: "2.16.1",
           includeCurrentVersion: true,
           versions: {
@@ -129,6 +128,7 @@ const config: Config = {
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://zaparoo.org/#organization",
         name: "Zaparoo Project",
         url: "https://zaparoo.org",
         logo: "https://zaparoo.org/img/logo_sm.webp",

@@ -1,55 +1,41 @@
 import type { ReactNode } from "react";
-import {
-  Code2,
-  Gamepad2,
-  Joystick,
-  Library,
-  Trophy,
-  Users,
-  Zap,
-} from "lucide-react";
+import { Joystick, Library, Users } from "lucide-react";
 import Link from "@docusaurus/Link";
-import CardLink from "./CardLink";
 import styles from "./Homepage.module.css";
 
 const useCases = [
   {
     icon: Library,
-    title: "Physical Collections",
+    title: "Physical collections",
     description:
-      "Give digital games a place on your shelf with cards, cartridges, discs, and more.",
+      "Give digital games a place on your shelf with cards, cartridges, discs, and other objects.",
+    image: "/img/showcase/Suiren_floppy_collection.webp",
+    width: 1200,
+    height: 573,
+    alt: "Custom Zaparoo floppy disk collection by Suiren",
+    credit: "Suiren",
   },
   {
     icon: Users,
-    title: "Family Gaming",
+    title: "Family and game nights",
     description:
-      "Let kids choose and launch games without navigating complex menus.",
+      "Let family and guests browse physical choices and start playing without learning your frontend.",
+    image: "/img/showcase/BigBlue709_crt_setup.webp",
+    width: 1200,
+    height: 900,
+    alt: "Zaparoo CRT setup with physical game cases by BigBlue709",
+    credit: "BigBlue709",
   },
   {
     icon: Joystick,
-    title: "Arcade Cabinets",
+    title: "Arcades and custom builds",
     description:
-      "Switch games with a token instead of opening menus or reaching for a keyboard.",
-  },
-  {
-    icon: Gamepad2,
-    title: "Game Nights and Guests",
-    description:
-      "Let guests browse physical choices and start playing without learning your frontend.",
-  },
-  {
-    icon: Trophy,
-    title: "Events and Tournaments",
-    description:
-      "Move between games quickly during tournaments and community events.",
-  },
-  {
-    icon: Code2,
-    title: "Makers and Integrators",
-    description:
-      "Build custom readers, cabinets, and automations with open APIs and protocols.",
-    docsLink: "/docs/core/api/",
-    docsLinkText: "Build with the Core API",
+      "Switch games with tokens in cabinets, event setups, and custom hardware without opening menus.",
+    image: "/img/showcase/Foolz_arcade_coin_collection.webp",
+    width: 1200,
+    height: 801,
+    alt: "Arcade reader with a custom NFC coin collection by Foolz",
+    credit: "Foolz",
   },
 ];
 
@@ -58,7 +44,7 @@ export default function UseCases(): ReactNode {
     <section className={`${styles.section} ${styles.sectionGray}`}>
       <div className="container">
         <div className="text--center padding-horiz--md">
-          <h2 className={styles.sectionTitle}>Why People Use Zaparoo</h2>
+          <h2 className={styles.sectionTitle}>Why people use Zaparoo</h2>
           <p className={styles.sectionSubtitle}>
             Turn digital game libraries into collections people can browse,
             share, and play.
@@ -68,7 +54,19 @@ export default function UseCases(): ReactNode {
           {useCases.map((useCase) => {
             const IconComponent = useCase.icon;
             return (
-              <div key={useCase.title} className={styles.useCaseCard}>
+              <article key={useCase.title} className={styles.useCaseCard}>
+                <img
+                  className={styles.useCaseImage}
+                  src={useCase.image}
+                  width={useCase.width}
+                  height={useCase.height}
+                  alt={useCase.alt}
+                  loading="lazy"
+                />
+                <div className={styles.useCaseCredit}>
+                  Community build by{" "}
+                  <Link to="/blog/community-showcase-6/">{useCase.credit}</Link>
+                </div>
                 <div className={styles.useCaseHeader}>
                   <div className={styles.useCaseIcon}>
                     <IconComponent size={32} aria-hidden="true" />
@@ -78,34 +76,22 @@ export default function UseCases(): ReactNode {
                 <p className={styles.useCaseDescription}>
                   {useCase.description}
                 </p>
-                {useCase.docsLink && (
-                  <CardLink
-                    to={useCase.docsLink}
-                    umamiEvent="homepage-makers-core-api"
-                  >
-                    {useCase.docsLinkText}
-                  </CardLink>
-                )}
-              </div>
+              </article>
             );
           })}
         </div>
         <p className={styles.beyondGames}>
-          Beyond games, <Link to="/docs/zapscript/">ZapScript</Link> can launch
-          media and trigger custom actions.
+          Makers can build with the <Link to="/docs/core/api/">Core API</Link>,
+          while <Link to="/docs/zapscript/">ZapScript</Link> can launch media
+          and trigger custom actions beyond games.
         </p>
         <div className={styles.buttonGroup}>
           <Link
             className="button button--primary button--lg"
-            to="/start/"
-            data-umami-event="use-cases-start"
+            to="/showcase/"
+            data-umami-event="use-cases-showcase"
           >
-            <Zap
-              size={16}
-              style={{ marginRight: "8px" }}
-              aria-hidden="true"
-            />
-            Start Here
+            Browse Community Builds
           </Link>
           <Link
             className="button button--secondary button--lg"

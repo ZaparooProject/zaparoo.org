@@ -1,9 +1,6 @@
 .combined {
   margin-top: 1rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--ifm-color-primary);
   font-size: 0.95rem;
-  color: var(--ifm-color-emphasis-700);
 }
 
 .sponsor {

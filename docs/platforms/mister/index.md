@@ -32,15 +32,16 @@ If you previously had TapTo installed, make sure the old `tapto.sh` is removed f
 
 ### Game Tracking
 
-Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../features/play-controls.md#playtime-limits) to work correctly. It requires the `recents` setting in MiSTer's configuration.
+Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../features/play-controls.md#playtime-limits) to work correctly. Enable the `recents` and `log_file_entry` settings in MiSTer's configuration for the most accurate tracking.
 
-To enable it:
+To enable them:
 
 1. Open `MiSTer.ini` on your SD card (located at `/media/fat/MiSTer.ini`)
 2. Look for a `recents=` line. If it exists, change it to `recents=1`. If there's no `recents` line, add `recents=1` to the file.
-3. Save the file and reboot MiSTer
+3. Look for a `log_file_entry=` line and set it to `log_file_entry=1`. Add the line if it isn't already present.
+4. Save the file and reboot MiSTer
 
-This setting makes MiSTer write recent game data to the SD card each time a game is loaded. MiSTer.ini warns about the extra SD card writes, but it's not a real concern with modern SD cards.
+The `recents` setting records recently launched games. `log_file_entry` records the filename selected in MiSTer's file browser, which lets Zaparoo match a MiSTer launch to a specific game. MiSTer.ini warns about the extra SD card writes from `recents`, but it's not a real concern with modern SD cards.
 
 ## Device profile data
 

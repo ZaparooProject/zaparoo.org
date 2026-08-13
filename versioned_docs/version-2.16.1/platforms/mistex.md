@@ -1,4 +1,5 @@
 ---
+sidebar_class_name: hidden
 description: "Install Zaparoo on MiSTeX: identical to MiSTer in functionality, with a different installation method for the MiSTeX hardware."
 keywords: [zaparoo mistex, mistex nfc, mistex fpga zaparoo, nfc mistex]
 ---
@@ -20,7 +21,7 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 
 ## Install
 
-Download Zaparoo Core for MiSTeX from the [Downloads page](/downloads/) and copy the `zaparoo.sh` file to the `Scripts` folder on your SD card.
+Download Zaparoo Core for MiSTeX from the [GitHub releases page](https://github.com/ZaparooProject/zaparoo-core/releases/latest) and copy the `zaparoo.sh` file to the `Scripts` folder on your SD card.
 
 Run `zaparoo` from the MiSTeX `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
 

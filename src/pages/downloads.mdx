@@ -4,20 +4,16 @@ description: Download Zaparoo Core for MiSTer, Windows, SteamOS, Batocera, RePla
 keywords: [zaparoo download, zaparoo core, mister fpga, steamos, batocera, replayos, nfc launcher download]
 ---
 
-import Button from "@site/src/components/Button";
-import { latestReleaseBlogPost } from "@site/src/components/DownloadCard";
+import CoreDownloads from "@site/src/components/CoreDownloads";
+import CoreReleaseBar from "@site/src/components/CoreReleaseBar";
 
-:::info New to Zaparoo?
-See the [Getting Started](/start/) guide for more detailed steps on getting up and running.
-:::
+# Downloads
 
-Zaparoo requires [Zaparoo Core](#zaparoo-core) installed on your target device,
-plus a frontend app such as [Zaparoo App](#zaparoo-app) to manage it and create
-tokens like NFC tags.
+Download Zaparoo App to manage your setup, then install Zaparoo Core on your gaming device. New here? [Build your setup with the Getting Started guide](/start/).
 
 ## Zaparoo App
 
-[Zaparoo App](/docs/app) is the primary frontend for Zaparoo. Manage the Zaparoo Core service, create NFC tags, edit ZapScripts, and browse your media library right from your phone. Free to download.
+Use the free [Zaparoo App](/docs/app) to manage Core, create tokens, and browse your media library.
 
 <div
   style={{
@@ -55,259 +51,27 @@ tokens like NFC tags.
   </a>
 </div>
 
-If you don't want to or can't use your phone, other frontends are available like
-the built-in [web UI](/docs/app/web/), terminal UI, [CLI](/docs/core/cli) and [API](/docs/core/api/) interfaces. Zaparoo is an open
-platform that encourages useful and unique ways to access media!
-
-An optional Pro upgrade turns your phone into a wireless reader. It's a one-time purchase that supports ongoing Zaparoo development. See the [Zaparoo App](/docs/app/) page for details.
+Prefer another interface? Use the [web UI](/docs/app/web/), terminal UI, [CLI](/docs/core/cli), or [API](/docs/core/api/). The optional [App Pro upgrade](/docs/app/) also turns your phone into a wireless reader.
 
 ## Zaparoo Core
 
-The [Zaparoo Core](/docs/core) application
-runs in the background on your device and coordinates all hardware and software
-to make Zaparoo work. The service is built for minimal resource usage, so it
-won't interfere with your media playing.
+Install [Zaparoo Core](/docs/core) on the device that launches your games and media.
 
-<div style={{ marginBottom: "1rem" }}>
-  <Button
-    outline
-    label="Release Notes"
-    variant="secondary"
-    link={latestReleaseBlogPost}
-  />
-</div>
+<CoreReleaseBar />
 
-<div
-  style={{
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "start",
-    paddingBottom: "1rem",
-  }}
->
-  <DownloadCard
-    id="mister"
-    name="MiSTer FPGA"
-    platform="mister"
-    architectures={["arm"]}
-    icon={
-      <img
-        src="/img/logos/mister.svg"
-        alt="MiSTer FPGA logo"
-        style={{ width: "75px", height: "75px" }}
-      />
-    }
-    docLink="/docs/platforms/mister"
-    platformLink="https://misterfpga.org/"
-    nativeInstall={{
-      label: "Update All",
-      link: "/docs/platforms/mister#install",
-    }}
-  />
-  <DownloadCard
-    id="batocera"
-    name="Batocera"
-    platform="batocera"
-    architectures={["amd64", "arm64", "arm"]}
-    icon={
-      <img
-        src="/img/logos/batocera.png"
-        alt="Batocera logo"
-        style={{ width: "75px", height: "73.83px" }}
-      />
-    }
-    docLink="/docs/platforms/batocera"
-    platformLink="https://batocera.org/"
-    nativeInstall={{
-      label: "Content Downloader",
-      link: "/docs/platforms/batocera#install",
-    }}
-  />
-  <DownloadCard
-    id="replayos"
-    name="RePlayOS"
-    platform="replayos"
-    architectures={["arm64"]}
-    icon={
-      <img
-        src="/img/logos/replayos.webp"
-        alt="RePlayOS logo"
-        style={{ width: "125px", height: "22.06px" }}
-      />
-    }
-    docLink="/docs/platforms/replayos"
-    platformLink="https://www.replayos.com/"
-  />
-  <DownloadCard
-    id="mistex"
-    name="MiSTeX"
-    platform="mistex"
-    architectures={["arm64"]}
-    icon={
-      <img
-        src="/img/logos/mistex.jpeg"
-        alt="MiSTeX logo"
-        style={{ width: "75px", height: "75px", borderRadius: "10%" }}
-      />
-    }
-    docLink="/docs/platforms/mistex"
-    platformLink="https://github.com/MiSTeX-devel"
-  />
-  <DownloadCard
-    id="windows"
-    name="Windows"
-    platform="windows"
-    architectures={["amd64", "arm64", "386"]}
-    icon={
-      <img
-        src="/img/logos/windows.svg"
-        alt="Windows logo"
-        style={{ width: "75px", height: "75px" }}
-      />
-    }
-    docLink="/docs/platforms/windows"
-    platformLink="https://www.microsoft.com/en-us/windows"
-    status="beta"
-  />
-  <DownloadCard
-    id="linux"
-    name="Linux"
-    platform="linux"
-    architectures={["amd64", "arm64"]}
-    icon={
-      <img
-        src="/img/logos/linux.webp"
-        alt="Linux logo"
-        style={{ width: "63.28px", height: "75px" }}
-      />
-    }
-    docLink="/docs/platforms/linux"
-    platformLink="https://www.linux.org/"
-    status="beta"
-  />
-  {/* <DownloadCard
-    name="macOS"
-    platform="mac"
-    architectures={["arm64", "amd64"]}
-    icon={
-      <img
-        src="/img/logos/mac.svg"
-        alt="macOS logo"
-        style={{
-          width: "75px",
-          height: "75px",
-          borderRadius: "100%",
-          backgroundColor: "white",
-          border: "1px solid white",
-        }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://www.apple.com/macos/"
-    status="beta"
-  />
-  <DownloadCard
-    name="Recalbox"
-    platform="recalbox"
-    architectures={["amd64", "arm64", "arm"]}
-    icon={
-      <img
-        src="/img/logos/recalbox.svg"
-        alt="Recalbox logo"
-        style={{ width: "62.29px", height: "75px" }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="https://recalbox.com/"
-    status="beta"
-  /> */}
-  <DownloadCard
-    id="steamos"
-    name="SteamOS"
-    platform="steamos"
-    architectures={["amd64"]}
-    icon={
-      <img
-        src="/img/logos/steamos.svg"
-        alt="SteamOS logo"
-        style={{
-          width: "125px",
-          height: "33.33px",
-          backgroundColor: "white",
-          borderRadius: "5px",
-        }}
-      />
-    }
-    platformLink="https://store.steampowered.com/steamos/"
-    docLink="/docs/platforms/steamos"
-    status="beta"
-  />
-  <DownloadCard
-    id="bazzite"
-    name="Bazzite"
-    platform="bazzite"
-    architectures={["amd64", "arm64"]}
-    icon={
-      <img
-        src="/img/logos/bazzite.svg"
-        alt="Bazzite logo"
-        style={{ width: "75px", height: "75px" }}
-      />
-    }
-    docLink="/docs/platforms/bazzite"
-    platformLink="https://bazzite.gg/"
-    status="beta"
-  />
-  <DownloadCard
-    id="chimeraos"
-    name="ChimeraOS"
-    platform="chimeraos"
-    architectures={["amd64", "arm64"]}
-    icon={
-      <img
-        src="/img/logos/chimeraos.webp"
-        alt="ChimeraOS logo"
-        style={{ width: "67.09px", height: "75px" }}
-      />
-    }
-    docLink="/docs/platforms/chimeraos"
-    platformLink="https://chimeraos.org/"
-    status="beta"
-  />
-  <DownloadCard
-    id="libreelec"
-    name="LibreELEC"
-    platform="libreelec"
-    architectures={["amd64", "arm64", "arm"]}
-    defaultArch="arm64"
-    icon={
-      <img
-        src="/img/logos/libreelec.png"
-        alt="LibreELEC logo"
-        style={{ width: "75px", height: "75px", borderRadius: "10%" }}
-      />
-    }
-    docLink="https://wiki.zaparoo.org/MiSTer_FPGA"
-    platformLink="/docs/platforms/libreelec"
-    status="beta"
-  />
-</div>
+<CoreDownloads />
 
-### Device Architectures {#arch-help}
+<details id="arch-help">
+  <summary>Which architecture do I need?</summary>
 
-If you're not sure which download to pick:
+  | Architecture | Common devices |
+  |--------------|----------------|
+  | **x86-64** | Steam Deck, ROG Ally, Legion Go, most Windows PCs and laptops, Intel Macs |
+  | **ARM64** | Raspberry Pi 4/5, Zero 2, handheld emulators, Apple Silicon Macs |
+  | **ARM32** | Raspberry Pi 3, Zero, older handhelds |
+  | **x86** | Legacy PCs (rarely needed) |
 
-| Architecture | Common Devices |
-|--------------|----------------|
-| **x86-64** | Steam Deck, ROG Ally, Legion Go, most Windows PCs and laptops, Intel Macs |
-| **ARM64** | Raspberry Pi 4/5, Zero 2, handheld emulators, Apple Silicon Macs (M1/M2/M3) |
-| **ARM32** | Raspberry Pi 3, Zero, older handhelds |
-| **x86** | Legacy PCs (rarely needed) |
+  Choosing the wrong architecture will not damage your device. The download will not run.
+</details>
 
-You won't damage anything by trying the wrong one. If it's wrong, it just won't run.
-
-_Trademarks shown on this page are property of their respective owners. The
-Zaparoo project uses these logos in good faith and/or under published usage
-guidelines to show compatibility with the operating systems they represent.
-The project is not affiliated with or endorsed by any of the projects or
-companies shown above._
+_Trademarks shown on this page are property of their respective owners. The Zaparoo project uses these logos in good faith and/or under published usage guidelines to show compatibility with the operating systems they represent. The project is not affiliated with or endorsed by any of the projects or companies shown above._

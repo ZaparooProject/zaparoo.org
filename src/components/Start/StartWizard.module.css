@@ -101,6 +101,32 @@
   line-height: 1.4;
 }
 
+.supportBadge {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.supportBadge[data-tier="stable"] {
+  color: var(--z-status-stable);
+}
+
+.supportBadge[data-tier="beta"] {
+  color: var(--z-status-beta);
+}
+
+.card.active .supportBadge {
+  border-color: var(--ifm-button-color);
+  color: var(--ifm-button-color);
+}
+
+[data-theme="dark"] .card.active .supportBadge {
+  color: var(--ifm-button-color);
+}
+
 /* Summary */
 .summaryCard {
   padding: 2rem;
@@ -243,6 +269,10 @@ ol.gettingStartedList {
 /* App Pro Callout */
 .appProCallout {
   margin: 0;
+}
+
+.sponsorCallout {
+  margin-top: 0;
 }
 
 /* Footer */

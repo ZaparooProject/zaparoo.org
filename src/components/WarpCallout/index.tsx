@@ -1,4 +1,6 @@
 import React from "react";
+import { CloudUpload } from "lucide-react";
+import Notice from "@site/src/components/Notice";
 import styles from "./styles.module.css";
 
 const warpUrl =
@@ -6,10 +8,14 @@ const warpUrl =
 
 export default function WarpCallout() {
   return (
-    <aside className={styles.callout} aria-label="Zaparoo Warp">
-      <p className={styles.title}>
-        Want automatic off-site backups on your MiSTer?
-      </p>
+    <Notice
+      as="aside"
+      title="Want automatic off-site backups on your MiSTer?"
+      icon={<CloudUpload size={20} />}
+      tone="brand"
+      className={styles.callout}
+      ariaLabel="Zaparoo Warp"
+    >
       <p>
         Warp keeps up to 30 changed snapshots per device and can restore them to
         this MiSTer or a replacement. It costs US$29.99/year or US$3.99/month.
@@ -18,6 +24,6 @@ export default function WarpCallout() {
       <a href={warpUrl} data-umami-event="backup-post-warp">
         See Warp backup plans
       </a>
-    </aside>
+    </Notice>
   );
 }

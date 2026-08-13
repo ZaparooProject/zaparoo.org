@@ -4,15 +4,23 @@ import styles from "./styles.module.css";
 
 interface Props {
   variant?: "sponsor" | "combined";
+  className?: string;
 }
 
-export default function SponsorCallout({ variant = "sponsor" }: Props) {
+export default function SponsorCallout({
+  variant = "sponsor",
+  className = "",
+}: Props) {
+  const combined = variant === "combined";
   const warpUrl = `https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=${
-    variant === "combined" ? "release_callout" : "sponsor_callout"
+    combined ? "release_callout" : "sponsor_callout"
   }`;
 
   return (
-    <div className={variant === "combined" ? styles.combined : styles.sponsor}>
+    <div
+      className={`${combined ? `${styles.combined} z-notice z-notice--compact` : styles.sponsor} ${className}`}
+      data-tone={combined ? "brand" : undefined}
+    >
       Zaparoo is free and open source.{" "}
       <a
         href={warpUrl}

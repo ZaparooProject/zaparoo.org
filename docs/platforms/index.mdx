@@ -5,63 +5,32 @@ keywords: [zaparoo platforms, zaparoo mister, zaparoo windows, zaparoo steamos, 
 ---
 
 import PlatformGrid from "@site/src/components/PlatformGrid";
+import { platformDocsGroups } from "@site/src/data/platforms";
 
 # Platforms
 
-Zaparoo is available on multiple platforms. If you're not sure where to start, the [getting started guide](/start/) can walk you through picking the right platform and reader for your setup.
+Zaparoo Core runs directly on the stable and beta platforms below. If you're not sure where to start, the [getting started guide](/start/) can build a setup around hardware you already use.
 
-## Base OS
+Support labels describe Zaparoo Core integration, not the maturity of the platform itself:
 
-<PlatformGrid platforms={[
-  { name: "Windows", icon: "/img/logos/windows.svg",
-    iconStyle: { width: "75px", height: "75px" }, link: "windows/" },
-  { name: "Linux", icon: "/img/logos/linux.webp",
-    iconStyle: { width: "63.28px", height: "75px" }, link: "linux" },
-]} />
+- **Stable:** Core installs and launches supported media on the platform
+- **Beta:** Core installs, but some setup paths and launchers remain incomplete
+- **Community integration:** uses Zaparoo tokens without running Core directly
 
-## FPGA Gaming
+## Stable Core platforms
 
-<PlatformGrid platforms={[
-  { name: "MiSTer", icon: "/img/logos/mister.svg",
-    iconStyle: { width: "75px", height: "75px" }, link: "mister" },
-  { name: "MiSTeX", icon: "/img/logos/mistex.jpeg",
-    iconStyle: { width: "75px", height: "75px", borderRadius: "10%" }, link: "mistex" },
-]} />
+<PlatformGrid platforms={platformDocsGroups.stable} />
 
-## Retro Gaming
+## Beta Core platforms
 
-<PlatformGrid platforms={[
-  { name: "Batocera", icon: "/img/logos/batocera.png",
-    iconStyle: { width: "75px", height: "73.83px" }, link: "batocera" },
-  { name: "RePlayOS", icon: "/img/logos/replayos.webp",
-    iconStyle: { width: "125px", height: "22.06px" }, link: "replayos" },
-]} />
+<PlatformGrid platforms={platformDocsGroups.beta} />
 
-## Gaming Handhelds
+## Community integrations
 
-<PlatformGrid platforms={[
-  { name: "SteamOS", icon: "/img/logos/steamos.svg",
-    iconStyle: { width: "125px", height: "33.33px", backgroundColor: "white", borderRadius: "5px" }, link: "steamos" },
-  { name: "Bazzite", icon: "/img/logos/bazzite.svg",
-    iconStyle: { width: "75px", height: "75px" }, link: "bazzite" },
-  { name: "ChimeraOS", icon: "/img/logos/chimeraos.webp",
-    iconStyle: { width: "67.09px", height: "75px" }, link: "chimeraos" },
-]} />
+These projects use Zaparoo-compatible tokens through their own software. Zaparoo Core does not run on the target hardware.
 
-## Media Centers
-
-<PlatformGrid platforms={[
-  { name: "LibreELEC", icon: "/img/logos/libreelec.png",
-    iconStyle: { width: "75px", height: "75px", borderRadius: "10%" }, link: "libreelec" },
-]} />
-
-## Retro Hardware
-
-<PlatformGrid platforms={[
-  { name: "Commodore 64", icon: "/img/logos/commodore64.webp",
-    iconStyle: { width: "200px", height: "20px" }, link: "commodore64" },
-]} />
+<PlatformGrid platforms={platformDocsGroups.community} />
 
 ---
 
-*Trademarks shown on this page are property of their respective owners. The Zaparoo project uses logos on this page in good faith and/or within published usage guidelines, to show compatibility with the respective operating system they represent. The Zaparoo project is not affiliated with nor receives endorsement from any of the projects or companies shown above.*
+*Trademarks shown on this page are property of their respective owners. The Zaparoo project uses logos on this page in good faith and/or within published usage guidelines to show compatibility with the respective operating system they represent. The Zaparoo project is not affiliated with or endorsed by any of the projects or companies shown above.*

@@ -26,6 +26,7 @@ yarn-error.log*
 .claude
 .opencode
 .pi
+.playwright-cli
 CLAUDE.md
 
 docs/plans/

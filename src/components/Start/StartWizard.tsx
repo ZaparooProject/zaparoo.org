@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SponsorCallout from "@site/src/components/SponsorCallout";
 import {
-  CreditCard,
+  supportTierDetails,
+  wizardPlatforms,
+  type PlatformId,
+  type SupportTier,
+} from "@site/src/data/platforms";
+import {
   QrCode,
-  Gamepad2,
   Disc,
   Usb,
   Smartphone,
@@ -30,17 +34,7 @@ import {
   RedditIcon,
 } from "./SummaryComponents";
 
-type Platform =
-  | "mister"
-  | "batocera"
-  | "windows"
-  | "linux"
-  | "steamos"
-  | "bazzite"
-  | "chimeraos"
-  | "libreelec"
-  | "replayos"
-  | null;
+type Platform = PlatformId | null;
 type Token =
   | "nfc-cards"
   | "qr-codes"
@@ -91,8 +85,10 @@ interface PlatformConfig {
   id: NonNullable<Platform>;
   name: string;
   icon: string;
-  iconStyle: React.CSSProperties;
-  provides: Capability[]; // What capabilities this platform offers
+  iconStyle?: React.CSSProperties;
+  docsPath: string;
+  provides: Capability[];
+  supportTier: SupportTier;
 }
 
 interface TokenConfig {
@@ -112,104 +108,15 @@ interface ReaderConfig {
   requires: Capability[]; // What this reader needs from a token
 }
 
-const platforms: PlatformConfig[] = [
-  {
-    id: "mister",
-    name: "MiSTer FPGA",
-    icon: "/img/logos/mister.svg",
-    iconStyle: { width: "75px", height: "75px" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "batocera",
-    name: "Batocera",
-    icon: "/img/logos/batocera.png",
-    iconStyle: { width: "75px", height: "73.83px" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "replayos",
-    name: "RePlayOS",
-    icon: "/img/logos/replayos.webp",
-    iconStyle: { width: "125px", height: "22.06px" },
-    provides: [CAPABILITIES.USB_PORT, CAPABILITIES.NETWORK],
-  },
-  {
-    id: "windows",
-    name: "Windows",
-    icon: "/img/logos/windows.svg",
-    iconStyle: { width: "75px", height: "75px" },
-    provides: [CAPABILITIES.USB_PORT, CAPABILITIES.NETWORK],
-  },
-  {
-    id: "linux",
-    name: "Linux",
-    icon: "/img/logos/linux.webp",
-    iconStyle: { width: "63.28px", height: "75px" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "steamos",
-    name: "SteamOS",
-    icon: "/img/logos/steamos.svg",
-    iconStyle: {
-      width: "125px",
-      height: "33.33px",
-      backgroundColor: "white",
-      borderRadius: "5px",
-    },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "bazzite",
-    name: "Bazzite",
-    icon: "/img/logos/bazzite.svg",
-    iconStyle: { width: "75px", height: "75px" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "chimeraos",
-    name: "ChimeraOS",
-    icon: "/img/logos/chimeraos.webp",
-    iconStyle: { width: "67.09px", height: "75px" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-  {
-    id: "libreelec",
-    name: "LibreELEC",
-    icon: "/img/logos/libreelec.png",
-    iconStyle: { width: "75px", height: "75px", borderRadius: "10%" },
-    provides: [
-      CAPABILITIES.OPTICAL_DRIVE,
-      CAPABILITIES.USB_PORT,
-      CAPABILITIES.NETWORK,
-    ],
-  },
-];
+const platforms: PlatformConfig[] = wizardPlatforms.map((platform) => ({
+  id: platform.id,
+  name: platform.name,
+  icon: platform.icon,
+  iconStyle: platform.iconStyle,
+  docsPath: platform.docsPath,
+  provides: [...platform.wizard.provides],
+  supportTier: platform.supportTier,
+}));
 
 const tokens: TokenConfig[] = [
   {
@@ -275,14 +182,14 @@ const readers: ReaderConfig[] = [
     id: "usb-nfc-reader",
     name: "USB NFC Reader",
     icon: Usb,
-    description: "Best experience",
+    description: "Plug-and-play hardware",
     requires: [CAPABILITIES.NFC_TAG],
   },
   {
     id: "zaparoo-app",
     name: "Zaparoo App",
     icon: Smartphone,
-    description: "Fastest way to try",
+    description: "Phone NFC or camera",
     requires: [
       CAPABILITIES.NFC_TAG,
       CAPABILITIES.QR_CODE,
@@ -293,7 +200,7 @@ const readers: ReaderConfig[] = [
     id: "phone-camera",
     name: "Phone Camera",
     icon: Camera,
-    description: "Built-in QR scanner",
+    description: "Free URL-based QR codes",
     requires: [CAPABILITIES.QR_CODE],
   },
   {
@@ -377,7 +284,6 @@ export const StartWizard: React.FC = () => {
     token: null,
     reader: null,
   });
-
   const tokenSectionRef = React.useRef<HTMLElement>(null);
   const readerSectionRef = React.useRef<HTMLElement>(null);
   const summarySectionRef = React.useRef<HTMLElement>(null);
@@ -397,11 +303,23 @@ export const StartWizard: React.FC = () => {
       const token = params.get("token") as Token;
       const reader = params.get("reader") as Reader;
 
-      // Validate platform
       const validPlatform = platforms.find((p) => p.id === platform);
       if (validPlatform) {
+        const validToken = getValidTokens(validPlatform).find(
+          (candidate) => candidate.id === token,
+        );
+        const validReader = validToken
+          ? getValidReaders(validToken).find(
+              (candidate) => candidate.id === reader,
+            )
+          : undefined;
+
         isRestoringFromHash.current = true;
-        setChoice({ platform, token, reader });
+        setChoice({
+          platform: validPlatform.id,
+          token: validToken?.id ?? null,
+          reader: validReader?.id ?? null,
+        });
         // Reset flag after state updates have processed
         setTimeout(() => {
           isRestoringFromHash.current = false;
@@ -417,7 +335,11 @@ export const StartWizard: React.FC = () => {
     if (!choice.platform && !choice.token && !choice.reader) {
       // Clear fragment if no choices
       if (window.location.hash) {
-        history.replaceState(null, "", window.location.pathname);
+        history.replaceState(
+          null,
+          "",
+          `${window.location.pathname}${window.location.search}`,
+        );
       }
       return;
     }
@@ -430,7 +352,11 @@ export const StartWizard: React.FC = () => {
     const encoded = btoa(params.toString());
     const newHash = `#${encoded}`;
     if (window.location.hash !== newHash) {
-      history.replaceState(null, "", `${window.location.pathname}${newHash}`);
+      history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}${newHash}`,
+      );
     }
   }, [choice]);
 
@@ -482,12 +408,13 @@ export const StartWizard: React.FC = () => {
     <div id="start-wizard" className={styles.wizard}>
       {/* Step 1: Platform */}
       <section className={styles.step}>
-        <h2 className={styles.stepTitle}>Pick a Platform</h2>
+        <h2 className={styles.stepTitle}>Pick a platform</h2>
         <div className={styles.grid}>
           {platforms.map((platform) => (
             <button
               key={platform.id}
               data-umami-event="start-wizard-platform-selected"
+              data-umami-event-platform={platform.id}
               className={`${styles.card} ${
                 choice.platform === platform.id ? styles.active : ""
               }`}
@@ -507,6 +434,12 @@ export const StartWizard: React.FC = () => {
                 />
               </div>
               <div className={styles.name}>{platform.name}</div>
+              <span
+                className={styles.supportBadge}
+                data-tier={platform.supportTier}
+              >
+                {supportTierDetails[platform.supportTier].label}
+              </span>
             </button>
           ))}
         </div>
@@ -520,7 +453,7 @@ export const StartWizard: React.FC = () => {
           }`}
           ref={tokenSectionRef}
         >
-          <h2 className={styles.stepTitle}>Pick a Token</h2>
+          <h2 className={styles.stepTitle}>Pick a token</h2>
           <div className={styles.grid}>
             {getValidTokens(selectedPlatform).map((token) => {
               const IconComponent = token.icon;
@@ -528,6 +461,8 @@ export const StartWizard: React.FC = () => {
                 <button
                   key={token.id}
                   data-umami-event="start-wizard-token-selected"
+                  data-umami-event-platform={choice.platform ?? undefined}
+                  data-umami-event-token={token.id}
                   className={`${styles.card} ${
                     choice.token === token.id ? styles.active : ""
                   }`}
@@ -555,7 +490,7 @@ export const StartWizard: React.FC = () => {
           }`}
           ref={readerSectionRef}
         >
-          <h2 className={styles.stepTitle}>Pick a Reader</h2>
+          <h2 className={styles.stepTitle}>Pick a reader</h2>
           <div className={styles.grid}>
             {getValidReaders(selectedToken).map((reader) => {
               const IconComponent = reader.icon;
@@ -563,6 +498,9 @@ export const StartWizard: React.FC = () => {
                 <button
                   key={reader.id}
                   data-umami-event="start-wizard-completed"
+                  data-umami-event-platform={choice.platform ?? undefined}
+                  data-umami-event-token={choice.token ?? undefined}
+                  data-umami-event-reader={reader.id}
                   className={`${styles.card} ${
                     choice.reader === reader.id ? styles.active : ""
                   }`}
@@ -588,7 +526,7 @@ export const StartWizard: React.FC = () => {
           }`}
           ref={summarySectionRef}
         >
-          <h2 className={styles.stepTitle}>Your Zaparoo Setup</h2>
+          <h2 className={styles.stepTitle}>Your Zaparoo setup</h2>
           <div className={styles.summaryCard}>
             <SummaryContent choice={choice} />
           </div>
@@ -599,20 +537,13 @@ export const StartWizard: React.FC = () => {
 };
 
 const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
-  const platformNames = {
-    mister: "MiSTer FPGA",
-    batocera: "Batocera",
-    windows: "Windows",
-    linux: "Linux",
-    steamos: "SteamOS",
-    bazzite: "Bazzite",
-    chimeraos: "ChimeraOS",
-    libreelec: "LibreELEC",
-    replayos: "RePlayOS",
-  };
-
+  const selectedPlatform = platforms.find(
+    (platform) => platform.id === choice.platform,
+  );
+  const selectedToken = tokens.find((token) => token.id === choice.token);
+  const usesPhoneCamera = choice.reader === "phone-camera";
   const needsAppPro = choice.reader === "zaparoo-app";
-  const needsPhone = needsAppPro || choice.reader === "phone-camera";
+  const needsPhone = needsAppPro || usesPhoneCamera;
   const needsUSBReader = choice.reader === "usb-nfc-reader";
   const needsOpticalDrive = choice.reader === "optical-drive";
   const needsZapESP32 = choice.reader === "zapesp32";
@@ -622,19 +553,17 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
   const needsFileReader = choice.reader === "file-reader";
   const needsAPI = choice.reader === "api";
 
-  const selectedToken = tokens.find((t) => t.id === choice.token);
-
   return (
     <div className={styles.summaryContainer}>
       {/* Main two-column layout */}
       <div className={styles.summaryMainGrid}>
         {/* Left Column: What You'll Need */}
         <div className={styles.summarySection}>
-          <h3>What You'll Need</h3>
+          <h3>What you'll need</h3>
           <ul>
             <li>
-              <a href={`/docs/platforms/${choice.platform}`}>
-                {platformNames[choice.platform!]}
+              <a href={selectedPlatform?.docsPath}>
+                {selectedPlatform?.name}
               </a>{" "}
               device
             </li>
@@ -692,7 +621,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               <li>
                 <a href="/docs/tokens/nfc-toys/amiibo">Amiibo</a> or{" "}
                 <a href="/docs/tokens/nfc-toys/lego-dimensions">
-                  Lego Dimensions
+                  LEGO Dimensions
                 </a>{" "}
                 figurines
               </li>
@@ -705,7 +634,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
 
           {/* Downloads */}
           <h4 style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
-            Get Software
+            Get software
           </h4>
           <div className={styles.downloadButtons}>
             <StyledButton
@@ -715,19 +644,27 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               block
               icon={<Download size={16} />}
               dataUmamiEvent="start-summary-download-core"
+              umamiPlatform={choice.platform ?? undefined}
+              umamiToken={choice.token ?? undefined}
+              umamiReader={choice.reader ?? undefined}
             >
               Zaparoo Core
             </StyledButton>
-            <StyledButton
-              to="/downloads/#zaparoo-app"
-              variant="primary"
-              outline
-              block
-              icon={<Download size={16} />}
-              dataUmamiEvent="start-summary-download-app"
-            >
-              Zaparoo App
-            </StyledButton>
+            {!usesPhoneCamera && (
+              <StyledButton
+                to="/downloads/#zaparoo-app"
+                variant="primary"
+                outline
+                block
+                icon={<Download size={16} />}
+                dataUmamiEvent="start-summary-download-app"
+                umamiPlatform={choice.platform ?? undefined}
+                umamiToken={choice.token ?? undefined}
+                umamiReader={choice.reader ?? undefined}
+              >
+                Zaparoo App
+              </StyledButton>
+            )}
             {needsZapESP32 && (
               <>
                 <StyledButton
@@ -756,7 +693,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           {(needsUSBReader || choice.token === "nfc-cards") && (
             <>
               <h4 style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
-                Get Hardware
+                Get hardware
               </h4>
               <div className={styles.shopLinks}>
                 <StyledButton
@@ -766,6 +703,9 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                   block
                   icon={<ShoppingCart size={16} />}
                   dataUmamiEvent="start-summary-shop"
+                  umamiPlatform={choice.platform ?? undefined}
+                  umamiToken={choice.token ?? undefined}
+                  umamiReader={choice.reader ?? undefined}
                 >
                   Zaparoo Shop
                 </StyledButton>
@@ -798,27 +738,46 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
 
         {/* Right Column: Getting Started */}
         <div className={styles.summarySection}>
-          <h3>Getting Started</h3>
+          <h3>Getting started</h3>
           <ol className={styles.gettingStartedList}>
             <li className={styles.emphasizedStep}>
               Install <a href="/docs/core/">Zaparoo Core</a> on device
               <StyledButton
-                to={`/docs/platforms/${choice.platform}#install`}
+                to={`${selectedPlatform?.docsPath ?? "/docs/platforms/"}#install`}
                 variant="secondary"
                 outline
                 block
                 icon={<Book size={16} />}
                 className={styles.emphasizedStepButton}
                 dataUmamiEvent="start-summary-install-guide"
+                umamiPlatform={choice.platform ?? undefined}
+                umamiToken={choice.token ?? undefined}
+                umamiReader={choice.reader ?? undefined}
               >
                 Install Guide
               </StyledButton>
             </li>
 
-            <li>
-              Install <a href="/docs/app/">Zaparoo App</a> on your phone and
-              connect to device
-            </li>
+            {usesPhoneCamera ? (
+              <li>
+                Follow the{" "}
+                <a href="/docs/tokens/qr-codes/#phone-camera-url">
+                  phone camera URL guide
+                </a>{" "}
+                to include your Core address in each QR code and allow remote
+                launch requests
+              </li>
+            ) : needsAppPro ? (
+              <li>
+                Install <a href="/docs/app/">Zaparoo App</a>, connect to your
+                device, and enable Pro Launch on scan
+              </li>
+            ) : (
+              <li>
+                Install <a href="/docs/app/">Zaparoo App</a> on your phone to
+                connect, manage setup, and create tokens
+              </li>
+            )}
 
             {needsUSBReader && <li>Connect your NFC reader</li>}
             {needsZapESP32 && (
@@ -887,12 +846,18 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 </li>
               </>
             )}
-            {choice.token === "qr-codes" && (
-              <li>
-                <a href="/docs/tokens/qr-codes/">Generate QR codes</a> with{" "}
-                <a href="/docs/zapscript">ZapScript</a> on them
-              </li>
-            )}
+            {choice.token === "qr-codes" &&
+              (usesPhoneCamera ? (
+                <li>
+                  Scan each URL-based QR code with your normal camera app and
+                  open the link to launch it
+                </li>
+              ) : (
+                <li>
+                  <a href="/docs/tokens/qr-codes/">Generate QR codes</a> with{" "}
+                  <a href="/docs/zapscript">ZapScript</a> on them
+                </li>
+              ))}
             {choice.token === "barcode" && (
               <li>
                 Set up <a href="/docs/features/mappings">mappings</a> to barcode
@@ -942,9 +907,8 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           className={styles.appProCallout}
         >
           Not all generic NFC readers are compatible with Zaparoo. Check{" "}
-          <a href="/docs/readers/nfc/">our documentation</a> for recommended
-          models that offer the best combination of quality, compatibility, and
-          availability.
+          <a href="/docs/readers/nfc/">the NFC reader documentation</a> for
+          models with verified compatibility and setup notes.
         </Admonition>
       )}
 
@@ -955,41 +919,41 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           className={styles.appProCallout}
         >
           Using your phone as a reader requires the{" "}
-          <a href="/docs/app/">Pro upgrade</a> (a small one-time purchase that
-          funds development).{" "}
+          <a href="/docs/app/">Pro upgrade</a> (a one-time purchase that funds
+          development).{" "}
           <strong>
             Configuring Zaparoo and creating tokens is always free.
           </strong>
         </Admonition>
       )}
 
-      {choice.reader !== "zaparoo-app" && (
+      {choice.reader !== "zaparoo-app" && !usesPhoneCamera && (
         <Admonition
           type="tip"
           title="Don't want an app?"
           className={styles.appProCallout}
         >
-          The Zaparoo App provides the best and most convenient experience. If
-          you can't or prefer not to use it, Zaparoo Core includes{" "}
+          The Zaparoo App is the main phone interface. If you can't or prefer
+          not to use it, Zaparoo Core includes{" "}
           <a href="/docs/app/web/">Web UI</a> and{" "}
           <a href="/docs/core/tui">TUI</a> alternatives.
         </Admonition>
       )}
 
       {/* Sponsor callout */}
-      <SponsorCallout variant="sponsor" />
+      <SponsorCallout variant="sponsor" className={styles.sponsorCallout} />
 
       {/* Need Help - Full Width Footer */}
       <div className={styles.summaryFooter}>
-        <h3>Need Help?</h3>
+        <h3>Need help?</h3>
         <div className={styles.helpButtons}>
           <StyledButton
-            to={`/docs/platforms/${choice.platform}`}
+            to={selectedPlatform?.docsPath ?? "/docs/platforms/"}
             variant="secondary"
             outline
             icon={<Book size={16} />}
           >
-            {platformNames[choice.platform!]} Guide
+            {selectedPlatform?.name} Guide
           </StyledButton>
           <StyledButton
             to="https://zaparoo.org/discord"

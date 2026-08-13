@@ -3,13 +3,23 @@ import Button from "../Button";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Box,
+  CircleCheck,
+  FlaskConical,
+  RefreshCw,
+  Terminal,
+} from "lucide-react";
+import coreRelease from "@site/src/data/coreRelease";
+import type { CoreArchitecture } from "@site/src/data/platforms";
 library.add(fas);
 
-export const defaultVersion = "2.16.1";
-export const defaultReleaseDate = "2026-08-06";
-export const latestReleaseBlogPost = "/blog/core-v2.16.1";
+export const defaultVersion = coreRelease.version;
+export const defaultReleaseDate = coreRelease.releaseDate;
+export const latestReleaseBlogPost = coreRelease.blogPost;
 
-type Arch = "amd64" | "arm64" | "arm" | "386";
+type Arch = CoreArchitecture;
+type ReleaseStatus = "stable" | "beta";
 
 const displayArch = (arch: Arch) => {
   switch (arch) {
@@ -30,7 +40,7 @@ const downloadUrl = (platform: string, arch: Arch, version: string) => {
   if (platform === "windows") {
     return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${arch}-${version}-setup.exe`;
   }
-  // Linux-based platforms (except mister/mistex) use .tar.gz
+  // Linux-based platforms use .tar.gz; FPGA builds use .zip.
   const useTarGz = !["mister", "mistex", "windows"].includes(platform);
   const ext = useTarGz ? "tar.gz" : "zip";
   return `https://github.com/ZaparooProject/zaparoo-core/releases/download/v${version}/zaparoo-${platform}_${arch}-${version}.${ext}`;
@@ -39,8 +49,7 @@ const downloadUrl = (platform: string, arch: Arch, version: string) => {
 type DownloadCard = {
   name: string;
   platform: string;
-  version?: string | null;
-  status: "stable" | "beta";
+  status: ReleaseStatus;
   architectures: Arch[];
   defaultArch?: Arch;
   icon: ReactNode | null;
@@ -49,40 +58,40 @@ type DownloadCard = {
   nativeInstall?: {
     link: string;
     label: string;
+    icon: "refresh" | "package" | "terminal";
   };
   id?: string;
 };
 
-const BetaBubble = () => (
-  <img
-    src="/img/beta-badge.svg"
-    alt="Beta version"
-    style={{
-      width: "55px",
-      minWidth: "55px",
-      height: "18.79px",
-      minHeight: "18.79px",
-    }}
-  />
-);
+const statusDetails = {
+  stable: { label: "Stable", icon: CircleCheck },
+  beta: { label: "Beta", icon: FlaskConical },
+} as const;
 
-const StableBubble = () => (
-  <img
-    src="/img/stable-badge.svg"
-    alt="Stable version"
-    style={{
-      width: "55px",
-      minWidth: "55px",
-      height: "18.79px",
-      minHeight: "18.79px",
-    }}
-  />
-);
+const installIcons = {
+  refresh: RefreshCw,
+  package: Box,
+  terminal: Terminal,
+} as const;
+
+const StatusIcon = ({ status }: { status: ReleaseStatus }) => {
+  const details = statusDetails[status];
+  const Icon = details.icon;
+  return (
+    <span
+      className="download-card__status"
+      data-status={status}
+      aria-label={details.label}
+      title={details.label}
+    >
+      <Icon size={24} aria-hidden="true" />
+    </span>
+  );
+};
 
 export default function DownloadCard({
   name,
   platform,
-  version = null,
   status = "stable",
   architectures,
   defaultArch,
@@ -98,7 +107,6 @@ export default function DownloadCard({
       : architectures[0]
   );
   const [isTargeted, setIsTargeted] = useState(false);
-  const resolvedVersion = version ? version : defaultVersion;
 
   useEffect(() => {
     if (!id) return;
@@ -121,34 +129,11 @@ export default function DownloadCard({
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        justifyContent: "center",
-        margin: "10px",
         borderRadius: "var(--z-card-radius)",
-        padding: "1rem",
-        width: "250px",
         gap: "0.5rem",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: "5px",
-          left: "10px",
-          fontSize: "0.8rem",
-          fontWeight: "bold",
-        }}
-      >
-        {"v" + resolvedVersion}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          top: "5px",
-          right: "5px",
-        }}
-      >
-        {status === "beta" ? <BetaBubble /> : <StableBubble />}
-      </div>
+      <StatusIcon status={status} />
       <div
         style={{
           height: "75px",
@@ -178,22 +163,32 @@ export default function DownloadCard({
           dataUmamiEvent={`download-docs-${platform}`}
         />
       )}
-      {nativeInstall && (
-        <Button
-          label={nativeInstall.label}
-          variant="primary"
-          link={nativeInstall.link}
-          icon={<FontAwesomeIcon icon={["fas", "download"]} />}
-          fullWidth
-          dataUmamiEvent={`core-${platform}-native-install`}
-        />
-      )}
+      <div className="download-card__native-install">
+        {nativeInstall && (() => {
+          const InstallIcon = installIcons[nativeInstall.icon];
+          return (
+            <Button
+              label={nativeInstall.label}
+              variant="primary"
+              link={nativeInstall.link}
+              icon={
+                <InstallIcon
+                  size={16}
+                  style={{ position: "relative", top: "0.2em" }}
+                />
+              }
+              fullWidth
+              dataUmamiEvent={`core-${platform}-native-install`}
+            />
+          );
+        })()}
+      </div>
       {architectures.length === 1 ? (
         <Button
           outline={!!nativeInstall}
-          label={"Download " + displayArch(architectures[0])}
+          label="Download"
           variant={nativeInstall ? "secondary" : "primary"}
-          link={downloadUrl(platform, architectures[0], resolvedVersion)}
+          link={downloadUrl(platform, architectures[0], defaultVersion)}
           icon={<FontAwesomeIcon icon={["fas", "download"]} />}
           fullWidth
           dataUmamiEvent={`core-${platform}-${architectures[0]}-download`}
@@ -227,6 +222,19 @@ export default function DownloadCard({
               title="Which architecture should I get?"
               aria-label="Help choosing architecture"
               className="arch-help-icon"
+              onClick={(event) => {
+                event.preventDefault();
+                const architectureHelp = document.getElementById("arch-help");
+                if (!(architectureHelp instanceof HTMLDetailsElement)) return;
+
+                if (!architectureHelp.open) {
+                  architectureHelp.querySelector("summary")?.click();
+                }
+                window.history.pushState(null, "", "#arch-help");
+                window.requestAnimationFrame(() => {
+                  architectureHelp.scrollIntoView({ behavior: "smooth" });
+                });
+              }}
             >
               <FontAwesomeIcon icon={["fas", "question-circle"]} />
             </a>
@@ -235,7 +243,7 @@ export default function DownloadCard({
             outline={!!nativeInstall}
             label="Download"
             variant={nativeInstall ? "secondary" : "primary"}
-            link={downloadUrl(platform, selectedArch, resolvedVersion)}
+            link={downloadUrl(platform, selectedArch, defaultVersion)}
             icon={<FontAwesomeIcon icon={["fas", "download"]} />}
             fullWidth
             dataUmamiEvent={`core-${platform}-${selectedArch}-download`}
