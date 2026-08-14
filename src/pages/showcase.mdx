@@ -1,29 +1,121 @@
 ---
 title: "Showcase"
 description: Community showcase of Zaparoo setups, NFC card collections, DIY readers, and creative builds from the Zaparoo community.
+hide_table_of_contents: true
 ---
 
-# Community Showcase
+import Showcase from "@site/src/components/Showcase";
+import Button from "@site/src/components/Button";
+import Notice from "@site/src/components/Notice";
+import {
+  DocsActionGroup,
+  NavCardGroup,
+} from "@site/src/components/DocsNavGrid";
+import { Images, MessageCircle, Newspaper } from "lucide-react";
+import styles from "./showcase.module.css";
 
-Check out all the awesome Zaparoo stuff our community is making. Click on an image to get a closer look.
+# Showcase
 
-Make sure to join the [Discord](https://zaparoo.org/discord) to share your own projects, or have them featured here!
+Cards, custom readers, arcade builds, physical collections, and plenty of ideas we never would have thought of ourselves. Browse what the Zaparoo community is making, or share your own build.
 
-<div style={{
-  padding: '1.5rem',
-  borderRadius: '12px',
-  backgroundColor: 'var(--ifm-card-background-color)',
-  border: '1px solid var(--ifm-color-emphasis-200)',
-  marginTop: '2rem',
-  marginBottom: '2rem'
-}}>
+<DocsActionGroup
+  actions={[
+    {
+      icon: Images,
+      title: "Browse creations",
+      link: "#all-creations",
+      primary: true,
+      umamiEvent: "showcase-browse-creations",
+    },
+    {
+      icon: MessageCircle,
+      title: "Share your build",
+      link: "https://zaparoo.org/discord",
+      umamiEvent: "showcase-share-build",
+    },
+  ]}
+/>
 
-## Featured Creators
+## Featured creations
 
-<Showcase featured={true} />
+Standout builds from across the community. Select one for a closer look.
 
+<div className="margin-bottom--xl">
+  <Showcase featured showCaptions />
 </div>
 
-## All Creations
+## All creations
 
-<Showcase />
+Browse the latest additions first, or narrow the gallery to photos or videos.
+
+<div className="margin-bottom--xl">
+  <Showcase excludeFeatured browsable showCaptions initialLimit={24} />
+</div>
+
+## Community Showcase archive
+
+Meet the creators and see more photos, videos, resources, and build details.
+
+<NavCardGroup
+  cards={[
+    {
+      icon: Newspaper,
+      title: "Showcase #6",
+      description: "Floppy readers, arcade coins, and custom cards.",
+      link: "/blog/community-showcase-6/",
+      umamiEvent: "showcase-archive-6",
+    },
+    {
+      icon: Newspaper,
+      title: "Showcase #5",
+      description: "MiSTer cases, real floppies, and card templates.",
+      link: "/blog/community-showcase-5/",
+      umamiEvent: "showcase-archive-5",
+    },
+    {
+      icon: Newspaper,
+      title: "Showcase #4",
+      description: "Wooden readers, mini consoles, and dialers.",
+      link: "/blog/community-showcase-4/",
+      umamiEvent: "showcase-archive-4",
+    },
+    {
+      icon: Newspaper,
+      title: "Showcase #3",
+      description: "Custom hardware, collections, and shelf displays.",
+      link: "/blog/community-showcase-3/",
+      umamiEvent: "showcase-archive-3",
+    },
+    {
+      icon: Newspaper,
+      title: "Showcase #2",
+      description: "Card designs, storage ideas, and arcade setups.",
+      link: "/blog/community-showcase-2/",
+      umamiEvent: "showcase-archive-2",
+    },
+    {
+      icon: Newspaper,
+      title: "Showcase #1",
+      description: "The first community build roundup.",
+      link: "/blog/community-showcase-1/",
+      umamiEvent: "showcase-archive-1",
+    },
+  ]}
+/>
+
+<Notice
+  as="aside"
+  title="Made something with Zaparoo?"
+  icon={<MessageCircle size={20} />}
+  tone="brand"
+  className={styles.shareNotice}
+>
+  <p>{"Share it in Discord and it may appear in the next community showcase."}</p>
+  <Button
+    label="Join the Discord"
+    link="https://zaparoo.org/discord"
+    variant="primary"
+    icon={null}
+    dataUmamiEvent="showcase-join-discord"
+  />
+</Notice>

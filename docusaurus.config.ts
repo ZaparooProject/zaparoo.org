@@ -221,6 +221,12 @@ const config: Config = {
           className: "navbar__item--no-icon",
         },
         {
+          to: "/showcase/",
+          label: "Showcase",
+          position: "left",
+          "data-umami-event": "navbar-showcase",
+        },
+        {
           to: "/blog/",
           label: "Blog",
           position: "left",

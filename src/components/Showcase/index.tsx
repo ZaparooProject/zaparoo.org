@@ -7,7 +7,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import { useState } from "react";
 import { Captions, Video } from "yet-another-react-lightbox/plugins";
-import styles from "../Gallery/styles.module.css";
+import styles from "./styles.module.css";
 
 interface ShowcasePhoto {
   type?: "photo";
@@ -718,33 +718,67 @@ const allMedia: ShowcaseItem[] = [
 
 export const showcaseCount = allMedia.length;
 
+type MediaFilter = "all" | "photo" | "video";
+
+const parseCaption = (alt?: string) => {
+  const fallback = { description: "Community creation", creator: "" };
+  if (!alt) return fallback;
+
+  const separator = ". Credit: ";
+  const separatorIndex = alt.lastIndexOf(separator);
+  if (separatorIndex === -1) {
+    return { description: alt, creator: "" };
+  }
+
+  return {
+    description: alt.slice(0, separatorIndex),
+    creator: alt.slice(separatorIndex + separator.length).replace(
+      / @ Discord$/,
+      "",
+    ),
+  };
+};
+
 export default function Showcase(props: {
   limit?: number;
   featured?: boolean;
   excludeFeatured?: boolean;
+  browsable?: boolean;
+  showCaptions?: boolean;
+  initialLimit?: number;
 }) {
-  let media = allMedia;
+  const initialLimit = props.initialLimit ?? 24;
+  const [index, setIndex] = useState(-1);
+  const [mediaFilter, setMediaFilter] = useState<MediaFilter>("all");
+  const [visibleCount, setVisibleCount] = useState(initialLimit);
+
+  let selectedMedia = allMedia;
 
   if (props.featured) {
-    media = allMedia.filter((item) => item.featured);
+    selectedMedia = allMedia.filter((item) => item.featured);
   } else if (props.excludeFeatured) {
-    media = allMedia.filter((item) => !item.featured);
+    selectedMedia = allMedia.filter((item) => !item.featured);
   }
 
-  if (props.limit) {
-    media = media.slice(0, props.limit);
+  const filteredMedia = selectedMedia.filter((item) => {
+    if (!props.browsable || mediaFilter === "all") return true;
+    if (mediaFilter === "video") return item.type === "video";
+    return item.type !== "video";
+  });
+
+  let media = filteredMedia;
+  if (props.browsable) {
+    media = filteredMedia.slice(0, visibleCount);
+  } else if (props.limit) {
+    media = filteredMedia.slice(0, props.limit);
   }
 
-  const [index, setIndex] = useState(-1);
-
-  // Track which sources are videos (by poster URL)
   const videoPosterUrls = new Set(
     media
       .filter((item): item is ShowcaseVideo => item.type === "video")
-      .map((item) => item.poster)
+      .map((item) => item.poster),
   );
 
-  // For the photo album grid, use poster images for videos
   const photos: Photo[] = media.map((item) => ({
     src: item.type === "video" ? item.poster : item.src,
     width: item.width,
@@ -752,7 +786,6 @@ export default function Showcase(props: {
     alt: item.alt,
   }));
 
-  // For the lightbox, map to correct slide types
   const slides = media.map((item) => {
     if (item.type === "video") {
       return {
@@ -774,27 +807,80 @@ export default function Showcase(props: {
 
   const renderImage = ({ alt, src, ...restProps }: RenderImageProps) => {
     const isVideo = videoPosterUrls.has(src);
-    if (isVideo) {
-      return (
-        <div className={styles.videoContainer}>
-          <img alt={alt} src={src} {...restProps} />
-          <div className={styles.playButton} />
-        </div>
-      );
+    const caption = parseCaption(alt);
+
+    if (!props.showCaptions && !isVideo) {
+      return <img alt={alt} src={src} {...restProps} />;
     }
-    return <img alt={alt} src={src} {...restProps} />;
+
+    return (
+      <div className={styles.mediaCard}>
+        <img alt={alt} src={src} {...restProps} />
+        {isVideo && <div className={styles.playButton} />}
+        {props.showCaptions && (
+          <div className={styles.caption} aria-hidden="true">
+            <span className={styles.captionTitle}>{caption.description}</span>
+            {caption.creator && (
+              <span className={styles.captionCreator}>by {caption.creator}</span>
+            )}
+          </div>
+        )}
+      </div>
+    );
   };
 
   const PhotoAlbum = props.featured ? RowsPhotoAlbum : MasonryPhotoAlbum;
   const albumProps = props.featured
     ? {
-        targetRowHeight: 200,
-        rowConstraints: { singleRowMaxHeight: 300 },
+        targetRowHeight: 230,
+        rowConstraints: { maxPhotos: 3, singleRowMaxHeight: 320 },
       }
-    : {};
+    : props.browsable
+      ? {
+          columns: (containerWidth: number) =>
+            containerWidth < 500 ? 2 : containerWidth < 900 ? 3 : 4,
+        }
+      : {};
+
+  const setFilter = (filter: MediaFilter) => {
+    setMediaFilter(filter);
+    setVisibleCount(initialLimit);
+    setIndex(-1);
+  };
+
+  const remainingCount = filteredMedia.length - media.length;
 
   return (
     <>
+      {props.browsable && (
+        <div className={styles.browserHeader}>
+          <div className={styles.filters} aria-label="Filter creations">
+            {(["all", "photo", "video"] as const).map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                className={`button button--sm ${
+                  mediaFilter === filter
+                    ? "button--primary"
+                    : "button--secondary button--outline"
+                }`}
+                aria-pressed={mediaFilter === filter}
+                onClick={() => setFilter(filter)}
+              >
+                {filter === "all"
+                  ? "All"
+                  : filter === "photo"
+                    ? "Photos"
+                    : "Videos"}
+              </button>
+            ))}
+          </div>
+          <span className={styles.resultCount} aria-live="polite">
+            {filteredMedia.length} creations
+          </span>
+        </div>
+      )}
+
       <PhotoAlbum
         photos={photos}
         onClick={({ index }) => setIndex(index)}
@@ -804,6 +890,22 @@ export default function Showcase(props: {
         render={{ image: renderImage }}
         {...albumProps}
       />
+
+      {props.browsable && remainingCount > 0 && (
+        <div className={styles.loadMoreWrapper}>
+          <button
+            type="button"
+            className="button button--secondary button--lg"
+            onClick={() => setVisibleCount((count) => count + initialLimit)}
+          >
+            Load {Math.min(initialLimit, remainingCount)} More
+          </button>
+          <span className={styles.loadMoreStatus}>
+            Showing {media.length} of {filteredMedia.length}
+          </span>
+        </div>
+      )}
+
       <Lightbox
         slides={slides}
         open={index >= 0}

@@ -251,6 +251,12 @@ details.alert a,
     );
 }
 
+.z-notice .button--primary,
+.z-notice .button--primary:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 .theme-doc-version-banner {
     display: grid;
     grid-template-columns: 2rem minmax(0, 1fr);
