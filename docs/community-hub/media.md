@@ -138,6 +138,9 @@ Coverage of the Zaparoo project online.
 - **[Launching retro games with NFC cards for fun and pleasure](https://forums.bit-tech.net/index.php?threads/launching-retro-games-with-nfc-cards-for-fun-and-pleasure.387972/)** - *Bit-Tech Forums* (September 28, 2025)
   User build log and discussion
 
+- **[TapTo NFC Reader Enclosure](https://theschlock.com/tapto-nfc-reader-enclosure)** - *Jim Hendricks* (October 19, 2025)
+  Build log covering Zaparoo's random-launch features and a custom NFC reader enclosure with a downloadable bracket
+
 ## Video Content
 
 ### Tutorials & Demos
@@ -153,6 +156,9 @@ Coverage of the Zaparoo project online.
 
 - **[Launch Games With Your Phones NFC | TapTo Life | MiSTer FPGA](https://www.youtube.com/watch?v=YzEqLl4ow0Q)** - *Retro Dodo Gaming* (April 18, 2024)
   Tutorial on using phone NFC with TapTo
+
+- **[Tapto Mister FPGA NFC Karten erstellen/ PC-Engine 2024](https://www.youtube.com/watch?v=f2rthdnlAS8)** - *Klaus Wolf* (June 3, 2024)
+  German-language tutorial for creating NFC cards and installing a MiSTer with Zaparoo inside a PC Engine shell
 
 - **[Launch Games with NFC Cards: Zaparoo + Batocera!](https://www.youtube.com/watch?v=BnnAX9cNUIE)** - *Zaparoo Official* (April 26, 2025)
   Zaparoo with Batocera on Raspberry Pi 5 demo
@@ -171,6 +177,9 @@ Coverage of the Zaparoo project online.
 
 - **[1,001 games to play instantly on MiSTer FPGA with TapTo/Zaparoo](https://www.youtube.com/watch?v=jSHnx0W8qR4)** - *Video Game Esoterica* (December 2, 2024)
   Showcase of 1001 games book integration
+
+- **[TapTo Cinema on MiSTer FPGA, Part II](https://www.youtube.com/watch?v=75G6p0GAdSw)** - *Aitor Gómez García* (November 21, 2024)
+  Development demo of launching movies through TapTo on MiSTer
 
 - **[You Can Have This Too | MiSTer FPGA | SMES + TapTo](https://www.youtube.com/watch?v=M220qOaxymY)** - *Retro Dodo Gaming* (September 15, 2024)
   SMES integration showcase
@@ -208,8 +217,14 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo agora no Batocera](https://www.youtube.com/watch?v=Pfb8CWQFVhg)** - *YouTube* (March 20, 2026)
   Portuguese language walkthrough of Zaparoo running on Batocera
 
+- **[NFC Cassette Cover Generator](https://www.youtube.com/watch?v=6N4aYAAY3uQ)** - *Lu's Retro Extras* (March 23, 2026)
+  Walkthrough of the NFC Cassette Cover Generator and launching cards stored in cassette cases
+
 - **[Il FUTURO del gaming è FISICO | Scopri Zaparoo giochi fisici FAI DA TE!](https://www.youtube.com/watch?v=HyhR_riEaOw)** - *AVK Studio* (April 18, 2026)
   Italian language introduction to Zaparoo and making physical NFC game cards
+
+- **[Pixelcade + MiSTer + Zaparoo NFC Game Loads](https://www.youtube.com/watch?v=DC0vLnwrMA0)** - *Pixelcade Arcade Marquees* (April 20, 2026)
+  Demo of synchronizing Pixelcade LED marquee artwork with Zaparoo NFC launches on MiSTer
 
 - **[Zaparooの作り方・使い方ガイド！ 自作のNFCカードをかざしてゲームが起動可能。アミーボもどきも作れちゃう!?【MiSTer FPGA・SuperStation One用】](https://www.youtube.com/watch?v=pTwi96VbCoQ)** - *レトロゲームで遊ぼう！* (May 1, 2026)
   Japanese language setup guide covering card writing, phone scanning, and printed labels
@@ -219,6 +234,9 @@ Coverage of the Zaparoo project online.
 
 - **[MiSTer FPGA : ZAPAROO LAUNCHER](https://www.youtube.com/watch?v=MDgKR6qRXEw)** - *Nico Klem* (May 4, 2026)
   French language installation guide and demo for the initial Frontend release
+
+- **[Inside the SuperStation One](https://www.youtube.com/watch?v=gEKTp0RCc-U)** - *What's Ken Making* (May 16, 2026)
+  Teardown with detailed inspection and testing of the built-in Zaparoo NFC reader
 
 - **[La magia dei giochi fisici su Batocera! Scopriamo Zaparoo](https://www.youtube.com/watch?v=aZPFoFqYJuc)** - *80 voglia di arcade* (May 26, 2026)
   Italian language Batocera walkthrough showing NFC cards, arcade cabinet setup, and Zaparoo Designer
@@ -248,6 +266,9 @@ Coverage of the Zaparoo project online.
 
 - **[Zaparoo Frontend Announced for MiSTer FPGA | Next-Level UI](https://www.youtube.com/watch?v=q-kboBTl23A)** - *Pixel Cherry Ninja* (May 3, 2026)
   Preview of the initial Zaparoo Frontend release and its artwork-based library browser
+
+- **[MiSTer FPGA News Bytes - Nintendo DS, Zaparoo, PSX & MiSTer Organize](https://www.youtube.com/watch?v=qQQ2nhlZ8tU)** - *Lu's Retro Extras* (August 11, 2026)
+  News update covering Zaparoo Core v2.16.1 reliability and media library improvements
 
 ## Official Resources
 
