@@ -3,11 +3,43 @@ description: "Community-built Zaparoo projects: 3D printed cases, custom hardwar
 keywords: [zaparoo community projects, zaparoo 3d print, diy zaparoo reader, zaparoo hardware projects]
 ---
 
-# Projects
+import {
+  DocsActionGroup,
+  NavCardGroup,
+} from "@site/src/components/DocsNavGrid";
+import {
+  Archive,
+  Box,
+  Code2,
+  Images,
+  MessageCircle,
+  Nfc,
+} from "lucide-react";
+import styles from "./styles.module.css";
 
-An index of projects created by the Zaparoo community. We love seeing what people create. If you've made something cool with Zaparoo, please share it! You can submit your project by opening a pull request to add it to this list, or by sharing it on our Discord or Reddit communities.
+# Community Projects
 
-Projects can be anything from 3D printed cases to custom tokens, software integrations, or creative ways to use Zaparoo. Even if it feels small, others may find it useful or inspiring!
+Find downloadable cases, software tools, token designs, and other resources built by the Zaparoo community. To add a project, open a pull request or share it through [Discord](https://zaparoo.org/discord) or [Reddit](https://www.reddit.com/r/zaparoo/).
+
+<DocsActionGroup
+  actions={[
+    {
+      icon: MessageCircle,
+      title: "Share a project",
+      link: "https://zaparoo.org/discord",
+      primary: true,
+      umamiEvent: "community-projects-share",
+    },
+    {
+      icon: Images,
+      title: "View Showcase",
+      link: "/showcase/",
+      umamiEvent: "community-projects-showcase",
+    },
+  ]}
+/>
+
+These community builds show how custom readers and physical collections can make Zaparoo part of a gaming setup.
 
 <Gallery media={[
   { src: "/img/showcase/Pullle_shelfmode4.webp", width: 1200, height: 900, alt: "SHELFMODE NFC cartridge library and reader" },
@@ -17,7 +49,40 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
 *From left: SHELFMODE by Pullle from [Community Showcase #3](/blog/community-showcase-3), SunieFairbreeze's Retro NFC reader from the [Showcase gallery](/showcase/), and Super Zap Boy by Phoenix from Community Showcase #3.*
 
-## Custom Cases
+## Browse by category
+
+<NavCardGroup
+  cards={[
+    {
+      icon: Box,
+      title: "Custom cases",
+      description: "Download enclosures, docks, readers, and console integrations.",
+      link: "#custom-cases",
+    },
+    {
+      icon: Code2,
+      title: "Software tools",
+      description: "Find label generators, launchers, artwork tools, and integrations.",
+      link: "#software-tools",
+    },
+    {
+      icon: Archive,
+      title: "Token storage",
+      description: "Print cases, boxes, dividers, and display stands for cards.",
+      link: "#storage",
+    },
+    {
+      icon: Nfc,
+      title: "Custom tokens",
+      description: "Print cartridge, floppy disk, and keychain token designs.",
+      link: "#custom-tokens",
+    },
+  ]}
+/>
+
+## Custom cases
+
+<div className={styles.projectGrid}>
 
 - **[3.5" TFT Display NFC Enclosure for MiSTer de-10-nano](https://www.printables.com/model/1125804-35-tft-display-nfc-enclosure-for-mister-de-10-nano)** by *MiSTerConsoles*
 
@@ -151,7 +216,11 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Mounts to bottom of MiSTer stack with M3 screws. For PN532 NFC board.
 
-## Software Tools
+</div>
+
+## Software tools
+
+<div className={styles.projectGrid}>
 
 - **[ZaparooSkraper](https://github.com/AchillesPDX/ZaparooSkraper)** by *AchillesPDX*
 
@@ -201,9 +270,13 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Bridges Epilogue Operator cartridge readers to Zaparoo on MiSTer and SuperStation ONE. Supports Game Boy, Game Boy Advance, SNES, and N64 cartridges, with save data written back to supported cartridges.
 
+</div>
+
 ## Tokens
 
 ### Storage
+
+<div className={styles.projectGrid}>
 
 - **[NFC card box](https://www.printables.com/model/1272025-nfc-card-box)** by *EtNSiD*
 
@@ -233,7 +306,11 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 
   Storage box for larger number of standard size NFC cards, plus printable divider cards with example logos.
 
-### Custom Tokens
+</div>
+
+### Custom tokens
+
+<div className={styles.projectGrid}>
 
 - **[54mm Floppy Disks](https://www.printables.com/model/805885-54mm-floppy-disk-for-tapto-nfc-1541)** by *iZero*
 
@@ -254,3 +331,5 @@ Projects can be anything from 3D printed cases to custom tokens, software integr
 - **[Zaparoo(TapTo) Retro Game Cartridges/Carts NFC](https://makerworld.com/en/models/1417529-zaparoo-tapto-retro-game-cartridges-carts-nfc)** by *psybertech*
 
   Multiple cart styles: NES, SNES, N64, GB, Atari 2600, 3.5" floppy, CD/DVD, custom cart. Uses 1" (25mm) circular NFC tags. Includes organizers and label size guide.
+
+</div>
