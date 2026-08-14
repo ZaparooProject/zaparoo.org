@@ -22,7 +22,16 @@ Assuming the default `deck` account.
 
 ## Install
 
-In Desktop Mode, open Konsole and run:
+In Desktop Mode:
+
+1. <a href="https://zaparoo.org/install-zaparoo.desktop" download>Download the Zaparoo installer</a>.
+2. Open the **Downloads** folder in Dolphin.
+3. Double-click **install-zaparoo.desktop**, then select **Execute**.
+4. Follow the installer prompts.
+
+The desktop installer provides guided dialogs and progress while it runs the same verified install script described below.
+
+If you prefer the terminal, open Konsole and run:
 
 ```bash
 curl -fsSL https://zaparoo.org/install.sh | bash

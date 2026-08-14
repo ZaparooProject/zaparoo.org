@@ -33,7 +33,9 @@ This command generates static content into the `build` directory and can be serv
    - `docusaurus.config.ts` (`lastVersion`, Stable version config, and `docusaurus-plugin-llms` `docsDir`)
    - `versions.json` should contain only the new Stable version
    - Remove old `versioned_docs/` and `versioned_sidebars/` snapshots unless intentionally retaining them
-5. Copy install script: `cp ../zaparoo-core/scripts/install.sh static/`
+5. Copy installer files:
+   - `cp ../zaparoo-core/scripts/install.sh static/`
+   - `cp ../zaparoo-core/scripts/install-zaparoo.desktop static/`
 6. Update versions in:
    - `src/components/DownloadCard/index.tsx` (version, date, blog slug)
    - `static/install.sh` (DEFAULT_VERSION)

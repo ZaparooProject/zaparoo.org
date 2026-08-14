@@ -228,18 +228,22 @@ export const platforms: readonly PlatformDefinition[] = [
     docsPath: "/docs/platforms/steamos/",
     projectUrl: "https://store.steampowered.com/steamos/",
     supportTier: "beta",
-    description: "User-local install script for Steam Deck.",
+    description: "Guided Desktop Mode installer for Steam Deck.",
     wizard: {
       provides: [
         CAPABILITIES.OPTICAL_DRIVE,
         CAPABILITIES.USB_PORT,
         CAPABILITIES.NETWORK,
       ],
-      setup: "Install script",
+      setup: "Desktop installer",
     },
     download: {
       architectures: ["amd64"],
-      nativeInstall: installScript("/docs/platforms/steamos/#install"),
+      nativeInstall: {
+        label: "Installer",
+        link: "https://zaparoo.org/install-zaparoo.desktop",
+        icon: "package",
+      },
     },
   },
   {
