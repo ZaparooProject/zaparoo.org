@@ -81,8 +81,9 @@ const StatusIcon = ({ status }: { status: ReleaseStatus }) => {
     <span
       className="download-card__status"
       data-status={status}
-      aria-label={details.label}
-      title={details.label}
+      role="img"
+      aria-label={`${details.label} platform support`}
+      title={`${details.label} platform support`}
     >
       <Icon size={24} aria-hidden="true" />
     </span>

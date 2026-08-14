@@ -67,31 +67,39 @@ export default function Button({
   const variantClass = variant ? `button--${variant}` : "";
   const blockClass = block ? "button--block" : "";
   const disabledClass = disabled ? "disabled" : "";
-  // If the button is disabled, set the destination to null.
-  const destination = disabled ? undefined : link;
+  const classes = clsx(
+    "button",
+    sizeClass,
+    outlineClass,
+    variantClass,
+    blockClass,
+    disabledClass,
+    className
+  );
+  const buttonStyle = fullWidth ? { width: "100%", ...style } : style;
+  const content = (
+    <>
+      {icon && <span style={{ paddingRight: 8 }}>{icon}</span>}
+      {label}
+    </>
+  );
+
+  if (disabled) {
+    return (
+      <span className={classes} style={buttonStyle} aria-disabled="true">
+        {content}
+      </span>
+    );
+  }
+
   return (
     <Link
-      to={destination}
-      style={fullWidth ? { width: "100%" } : {}}
-      data-umami-event={disabled ? null : dataUmamiEvent}
+      to={link}
+      className={classes}
+      style={buttonStyle}
+      data-umami-event={dataUmamiEvent}
     >
-      <button
-        className={clsx(
-          "button",
-          sizeClass,
-          outlineClass,
-          variantClass,
-          blockClass,
-          disabledClass,
-          className
-        )}
-        style={fullWidth ? { width: "100%", ...style } : style}
-        role="button"
-        aria-disabled={disabled}
-      >
-        {icon && <span style={{ paddingRight: 8 }}>{icon}</span>}
-        {label}
-      </button>
+      {content}
     </Link>
   );
 }

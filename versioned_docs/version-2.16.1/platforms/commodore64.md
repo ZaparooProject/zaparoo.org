@@ -9,6 +9,6 @@ The Commodore 64 is not a directly supported platform for Zaparoo Core, but Zapa
 
 TeensyROM is a custom cartridge for the Commodore 64 that supports the [PN532 NFC reader](../readers/nfc/pn532-usb.md). See the [NFC guide](https://github.com/SensoriumEmbedded/TeensyROM/blob/main/docs/NFC_Loader.md) on the TeensyROM GitHub for setup instructions.
 
-<div class='embed-container'><iframe src='https://www.youtube.com/embed/mjeFCk1kH3Y' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/mjeFCk1kH3Y' title='Using Zaparoo NFC tokens with TeensyROM on Commodore 64' frameborder='0' allowfullscreen></iframe></div>
 
 Video by [What's Ken Making](https://www.youtube.com/@whatskenmaking).

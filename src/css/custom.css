@@ -68,19 +68,19 @@
     --z-badge-color: var(--ifm-color-primary-darkest);
     --z-badge-radius: 999px;
     --z-status-stable: #237804;
-    --z-status-beta: #ad6800;
+    --z-status-beta: #8b5400;
     --z-status-community: #096dd9;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-    --ifm-color-primary: #068fff;
-    --ifm-color-primary-dark: #0088f8;
-    --ifm-color-primary-darker: #0087f5;
-    --ifm-color-primary-darkest: #0083ee;
-    --ifm-color-primary-light: #209bff;
-    --ifm-color-primary-lighter: #2da1ff;
-    --ifm-color-primary-lightest: #54b2ff;
+    --ifm-color-primary: #54b2ff;
+    --ifm-color-primary-dark: #209bff;
+    --ifm-color-primary-darker: #068fff;
+    --ifm-color-primary-darkest: #005fcc;
+    --ifm-color-primary-light: #6ec0ff;
+    --ifm-color-primary-lighter: #7bc6ff;
+    --ifm-color-primary-lightest: #8fcfff;
     --zaparoo-footer-link-hover: var(--ifm-color-primary-lightest);
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
     --ifm-color-primary-contrast-foreground: #ffffff;
@@ -106,7 +106,14 @@
 }
 
 [data-theme="dark"] .button--primary {
+    background-color: var(--ifm-color-primary-darkest);
+    border-color: var(--ifm-color-primary-darkest);
     color: var(--ifm-color-primary-contrast-foreground);
+}
+
+[data-theme="dark"] .button--primary:hover {
+    background-color: #0054b5;
+    border-color: #0054b5;
 }
 
 .footer__link-item:hover {
@@ -182,7 +189,7 @@ details.alert,
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-font-color-base));
+    color: color-mix(in srgb, var(--z-notice-accent) 45%, var(--ifm-font-color-base));
     font: 700 1rem/1.3 var(--ifm-heading-font-family);
     text-transform: none;
 }
@@ -234,7 +241,7 @@ details.alert,
 .theme-doc-version-banner a,
 details.alert a,
 .z-notice a {
-    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-link-color));
+    color: color-mix(in srgb, var(--z-notice-accent) 45%, var(--ifm-font-color-base));
     text-decoration-color: color-mix(
         in srgb,
         var(--z-notice-accent) 55%,
@@ -263,7 +270,7 @@ details.alert a,
     display: flex;
     align-items: center;
     min-height: 2rem;
-    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-font-color-base));
+    color: color-mix(in srgb, var(--z-notice-accent) 45%, var(--ifm-font-color-base));
     font-weight: 700;
     line-height: 1.4;
 }
@@ -273,7 +280,7 @@ details.alert a,
 }
 
 details.alert > summary {
-    color: color-mix(in srgb, var(--z-notice-accent) 80%, var(--ifm-font-color-base));
+    color: color-mix(in srgb, var(--z-notice-accent) 45%, var(--ifm-font-color-base));
     font-weight: 700;
 }
 
@@ -483,14 +490,30 @@ details.alert table tbody tr:nth-child(even) {
     color: var(--ifm-color-emphasis-800);
 }
 
-/* Enhanced focus styles for better accessibility */
-.button:focus-visible {
-    outline: 2px solid var(--ifm-color-primary);
-    outline-offset: 2px;
+/* Keep keyboard focus visible and consistent across custom and theme controls. */
+:where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+):focus-visible {
+    outline: 3px solid var(--ifm-color-primary);
+    outline-offset: 3px;
 }
 
-[data-theme="dark"] .button:focus-visible {
-    outline-color: var(--ifm-color-primary-light);
+[data-theme="dark"] :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+):focus-visible {
+    outline-color: var(--ifm-color-primary-lightest);
 }
 
 /* Fix iOS Safari lightbox gap at bottom */
@@ -648,9 +671,57 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
     color: var(--ifm-color-primary);
 }
 
+/* Distinguish prose links without relying on color alone. */
+:where(.theme-doc-markdown, .markdown, main article, .z-notice, .theme-admonition) :where(p, li, dd, figcaption, td, th, h2, h3, h4, h5, h6) a:not(.button),
+.z-notice > a:not(.button),
+[class*="sponsor"] > a:not(.button) {
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.15em;
+}
+
+:where(.theme-doc-markdown, .markdown, main article, .z-notice, .theme-admonition) :where(p, li, dd, figcaption, td, th, h2, h3, h4, h5, h6) a:not(.button):hover,
+.z-notice > a:not(.button):hover,
+[class*="sponsor"] > a:not(.button):hover {
+    text-decoration-thickness: 0.14em;
+}
+
+.search-page-wrapper [class*="searchLogoColumn"] > span {
+    color: var(--ifm-color-emphasis-700);
+}
+
+main header > a[href="/blog/tags/"] {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+/* Preserve usable targets and reflow for shared controls. */
+.button {
+    max-width: 100%;
+    white-space: normal;
+}
+
+[class*="authorSocialLink"] {
+    align-items: center;
+    display: inline-flex;
+    height: 2rem;
+    justify-content: center;
+    min-width: 2rem;
+}
+
+/* Ensure generated task-list checkboxes derive a name from adjacent text. */
+.task-list-item {
+    position: relative;
+}
+
+/* Give overflowed Markdown tables a visible keyboard focus indicator. */
+.theme-doc-markdown table:focus-visible {
+    outline-offset: 2px;
+}
+
 /* ZapScript syntax highlighting */
 .token.separator {
-    color: #d63384;
+    color: #8a1c55;
     font-weight: bold;
 }
 
@@ -661,12 +732,12 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 }
 
 .token.expression .token.punctuation {
-    color: #fd7e14;
+    color: #8b3a00;
     font-weight: bold;
 }
 
 .token.expression .token.variable {
-    color: #0d6efd;
+    color: #005fcc;
 }
 
 .token.expression .token.property {
@@ -674,15 +745,15 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 }
 
 .token.advanced-arg {
-    color: #20c997;
+    color: #006d77;
 }
 
 .token.special-key {
-    color: #0dcaf0;
+    color: #0b69a3;
 }
 
 .token.escape {
-    color: #ffc107;
+    color: #735c0f;
 }
 
 .token.system-id {
@@ -690,11 +761,15 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 }
 
 .token.title-prefix {
-    color: #fd7e14;
+    color: #8b3a00;
     font-weight: bold;
 }
 
 /* Dark mode adjustments for ZapScript */
+[data-theme="dark"] .theme-code-block .token.comment {
+    color: #959da5 !important;
+}
+
 [data-theme="dark"] .token.separator {
     color: #f783ac;
 }
@@ -728,7 +803,7 @@ html:not(.docs-doc-page) .navbar__item:has(.navbar-version-dropdown) {
 }
 
 [data-theme="dark"] .token.system-id {
-    color: #b197fc;
+    color: #b197fc !important;
 }
 
 [data-theme="dark"] .token.title-prefix {

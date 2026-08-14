@@ -4,6 +4,39 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const accessibleLightCodeTheme = {
+  ...prismThemes.github,
+  styles: prismThemes.github.styles.map((rule) => {
+    const tokenColors: Record<string, string> = {
+      comment: "#6a737d",
+      prolog: "#6a737d",
+      doctype: "#6a737d",
+      cdata: "#6a737d",
+      string: "#8a1c55",
+      "attr-value": "#8a1c55",
+      entity: "#006d77",
+      url: "#006d77",
+      symbol: "#006d77",
+      number: "#006d77",
+      boolean: "#006d77",
+      variable: "#006d77",
+      constant: "#006d77",
+      property: "#006d77",
+      regex: "#006d77",
+      inserted: "#146c2e",
+      atrule: "#0b69a3",
+      "attr-name": "#0b69a3",
+      selector: "#004f9e",
+      keyword: "#00009f",
+      function: "#b31d28",
+      deleted: "#b31d28",
+      tag: "#b31d28",
+    };
+    const color = rule.types.map((type) => tokenColors[type]).find(Boolean);
+    return color ? { ...rule, style: { ...rule.style, color } } : rule;
+  }),
+};
+
 const config: Config = {
   title: "Zaparoo",
   tagline: "Make Your Digital Game Library Physical",
@@ -392,7 +425,7 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Contributors to the Zaparoo project. The Zaparoo name and logos are trademarks of <a href="https://wizzo.au/">Wizzo Pty Ltd</a>. Branding by <a href="https://timwilsie.com/">Tim Wilsie</a>.`,
     },
     prism: {
-      theme: prismThemes.github,
+      theme: accessibleLightCodeTheme,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["powershell", "toml"],
     },

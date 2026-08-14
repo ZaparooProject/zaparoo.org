@@ -37,7 +37,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -125,6 +125,12 @@
 
 [data-theme="dark"] .card.active .supportBadge {
   color: var(--ifm-button-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step.animated {
+    animation: none;
+  }
 }
 
 /* Summary */
@@ -298,7 +304,7 @@ ol.gettingStartedList {
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
   }
 
@@ -339,5 +345,11 @@ ol.gettingStartedList {
 
   .helpButtons .button {
     width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

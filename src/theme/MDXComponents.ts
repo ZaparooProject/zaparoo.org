@@ -15,6 +15,8 @@ import ProductLink from "@site/src/components/ProductLink";
 import QRCodeGenerator from "@site/src/components/QRCodeGenerator";
 import TokenTable from "@site/src/components/TokenTable";
 import SponsorCallout from "@site/src/components/SponsorCallout";
+import AccessibleListItem from "@site/src/components/AccessibleListItem";
+import AccessibleTable from "@site/src/components/AccessibleTable";
 import {
   PlatformSupport,
   ReaderSupport,
@@ -35,4 +37,6 @@ export default {
   SponsorCallout,
   PlatformSupport,
   ReaderSupport,
+  li: AccessibleListItem,
+  table: AccessibleTable,
 };

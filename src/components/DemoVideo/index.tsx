@@ -1,9 +1,23 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./DemoVideo.module.css";
 
 export default function DemoVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      video.pause();
+      setPlaying(false);
+      return;
+    }
+
+    void video.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+  }, []);
 
   function toggle() {
     const video = videoRef.current;
@@ -22,7 +36,6 @@ export default function DemoVideo() {
       <div className={styles.videoWrapper}>
         <video
           ref={videoRef}
-          autoPlay
           loop
           muted
           playsInline
