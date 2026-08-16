@@ -22,6 +22,20 @@ Try searching the docs first. When reporting a bug, please include a [log file](
   - [ZapScript](/docs/zapscript) - Commands and syntax for tokens
   - [Config](/docs/core/config) - All configuration options
 
+## What to include
+
+Include enough context for someone else to reproduce and diagnose the problem:
+
+1. Your platform and device model
+2. Relevant Zaparoo Core, App, or Frontend versions
+3. Your reader model or a link to its product listing
+4. The exact token contents, including any ZapScript, when relevant
+5. Steps to reproduce the problem
+6. What you expected to happen and what actually happened
+7. A log captured immediately after reproducing the problem
+
+On MiSTer, collect the log before rebooting or powering off because its log file is stored in `/tmp` and is deleted at shutdown.
+
 ## Error Reporting
 
 Zaparoo has built-in error reporting powered by [Sentry](https://sentry.io). Error reports are anonymized and contain no personal information, but this is off by default for privacy. Turning it on helps us find and fix bugs faster.

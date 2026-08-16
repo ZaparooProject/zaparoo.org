@@ -14,6 +14,20 @@ The file is always called `config.toml` on every platform.
 
 The config file is written in [TOML](https://toml.io/en/).
 
+:::tip Windows paths
+Backslashes must be escaped inside double-quoted TOML strings. You can instead use a single-quoted literal string, which preserves backslashes:
+
+```toml
+# Double-quoted string
+install_dir = "C:\\Games\\LaunchBox"
+
+# Literal string
+install_dir = 'C:\Games\LaunchBox'
+```
+
+An invalid TOML file can prevent Core from loading any configuration, not just the affected launcher. If Core stops loading configuration after a manual edit, check the whole file for syntax errors.
+:::
+
 :::warning
 Although comments are supported in TOML, _they will be lost if Core updates this file_ (e.g. when adjusting settings via the Zaparoo App). Manual edits to values are preserved on save.
 :::

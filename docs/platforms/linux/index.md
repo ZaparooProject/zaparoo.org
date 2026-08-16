@@ -30,6 +30,17 @@ This installs all necessary components and sets up the service to run on startup
 
 For manual component-based installation, see [Manual Install](./install.md).
 
+## Service controls
+
+Zaparoo runs as a systemd user service. Do not add `sudo` to these commands:
+
+```bash
+systemctl --user status zaparoo.service
+systemctl --user restart zaparoo.service
+systemctl --user stop zaparoo.service
+systemctl --user start zaparoo.service
+```
+
 ## Uninstall
 
 See [Uninstalling](./install.md#uninstalling) for the component removal commands and required permissions.

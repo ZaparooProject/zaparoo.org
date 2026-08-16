@@ -20,7 +20,7 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 
 ## Install
 
-Zaparoo is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) as a dedicated item in **Tools & Scripts**. Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file.
+Zaparoo is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) as a dedicated item in **Tools & Scripts**. Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file. Frontend is optional; Core can run in the background with the standard MiSTer menu.
 
 Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
 
@@ -132,6 +132,10 @@ The [PN532 USB](../../readers/nfc/pn532-usb.md) reader is the recommended choice
 **Do I need the app to use Zaparoo on MiSTer?**
 
 No. Once Zaparoo Core is installed, you can write tokens using the built-in TUI from the Scripts menu or the Web UI. The Zaparoo App makes things easier but is not required.
+
+**Do I have to use Zaparoo Frontend?**
+
+No. Core runs as a background service and can scan tokens while you continue using the standard MiSTer menu. Frontend is an optional controller-friendly library interface. The App and Web UI are also optional ways to manage Core.
 
 **Will Zaparoo work with SNAC or through a USB hub?**
 

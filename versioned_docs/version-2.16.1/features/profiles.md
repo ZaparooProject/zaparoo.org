@@ -35,7 +35,7 @@ You can also open a profile and select **Write Card**. Core writes a profile com
 **profile:<switchId>
 ```
 
-A switch card does not ask for the profile PIN. Its switch ID is a **bearer credential**: anyone who has the card or knows its contents can activate that profile. Keep switch cards and IDs private when the profile has limits or administrative access.
+A switch card does not ask for the profile PIN. Anyone with the card, or a copy of its switch ID, can activate that profile. Treat the card and switch ID like a key, and keep them private when the profile has limits or administrative access.
 
 If a switch card is lost, open the profile's **Switch ID** action and reset it. Existing cards for that profile stop working. Use **Write Card** to create a replacement.
 

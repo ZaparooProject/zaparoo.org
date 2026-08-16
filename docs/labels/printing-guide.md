@@ -106,8 +106,12 @@ Alignment is the hardest part of the whole process. Here are techniques that wor
 
 - Set quality to "High" or "Photo" mode
 - Select the correct paper type in your printer settings (glossy photo, matte, etc.)
-- Print a test page on regular paper first to check alignment and colors
+- Print Designer PDFs at **100%** or **Actual size**
+- Disable **Fit**, **Fit to page**, **Shrink oversized pages**, and similar automatic scaling
+- Print a test page on regular paper, then place a card over one label to verify its size before using sticker paper
 - Let ink dry completely before handling or laminating
+
+If a print shop is handling the PDF, explicitly ask them to print it without scaling.
 
 ## Commercial printing
 

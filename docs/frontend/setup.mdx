@@ -1,16 +1,16 @@
 ---
-description: "Install Zaparoo Frontend on MiSTer FPGA and configure first-run display options."
-keywords: [zaparoo frontend setup, install zaparoo frontend, mister frontend setup]
+description: "Install and set up Zaparoo Frontend on MiSTer FPGA, scan your game library, and configure the display."
+keywords: [zaparoo frontend setup, install zaparoo frontend, mister frontend setup, frontend first run]
 sidebar_position: 2
 ---
 
-# Frontend Setup
+# Install and Set Up Frontend
 
 Zaparoo Frontend runs on MiSTer FPGA and connects to the local [Zaparoo Core](../core/index.md) service.
 
 ## Requirements
 
-Frontend requires Zaparoo Core v2.15.0 or newer. If Core is too old for your installed Frontend, Frontend shows a warning on startup.
+Frontend requires Zaparoo Core v2.17.0 or newer. If Core is too old for your installed Frontend, Frontend shows a warning on startup.
 
 On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
 
@@ -58,6 +58,12 @@ You can still update manually by downloading a new release ZIP and replacing the
 On first run, Frontend connects to Core locally. If your media database is empty, it prompts you to scan your games before browsing.
 
 You can update the media database later from **Settings**, then **Library**. You can also open a system's options menu and update that system on its own.
+
+After the first scan:
+
+- [Add artwork and metadata](./scraping.mdx) for game covers, screenshots, and descriptions.
+- [Browse and launch games](./browsing.mdx) from the library hub.
+- [Troubleshoot Frontend](./troubleshooting.mdx) if games do not appear or setup does not finish.
 
 ## Display setup
 

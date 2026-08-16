@@ -1,61 +1,101 @@
 ---
-description: "Add scraped artwork and metadata to Zaparoo Frontend on MiSTer FPGA."
-keywords: [zaparoo frontend scraping, zaparoo metadata, mister artwork, zaparoo scraping]
+description: "Add game artwork and metadata to Zaparoo Frontend on MiSTer FPGA using metadata packs, ZapScraper, Skraper, or existing gamelist.xml files."
+keywords: [zaparoo frontend artwork, mister box art, mister cover art, zaparoo scraping, scrape metadata, missing artwork, gamelist.xml]
+sidebar_label: Add Artwork and Metadata
 sidebar_position: 3
 ---
 
-# Scraping Artwork and Metadata
+# Add Artwork and Metadata
 
-Frontend shows artwork and metadata after Core imports compatible `gamelist.xml` files. There are currently three supported ways to get metadata onto your MiSTer.
+Frontend displays artwork and game information after [Zaparoo Core](../core/index.md) imports compatible local files. Frontend and Core do not download artwork from the internet. Start with a metadata pack or an external scraper, then import the results into Core.
+
+## How artwork reaches Frontend
+
+1. **Update the media database.** Core finds your games and makes them available to Frontend.
+2. **Obtain artwork and metadata.** Use a metadata pack, ZapScraper, Skraper, or compatible EmulationStation files you already have.
+3. **Scrape metadata.** Core imports the local artwork and game information and matches it to indexed games.
+4. **Browse the results.** Frontend displays the imported covers, screenshots, descriptions, and other metadata.
+
+Artwork can be stored on the MiSTer SD card, USB storage, or a NAS that Core can read.
+
+## Understand the library actions
+
+| Action | What it does | When to use it |
+| ------ | ------------ | -------------- |
+| **Update media database** | Finds added or removed games and updates Core's library index. | After changing your game library or launcher paths. |
+| **Scrape metadata** | Imports local metadata and artwork for entries that have not already been scraped. | After adding a pack, `gamelist.xml`, or compatible media folders. |
+| **Re-scrape existing** | Refreshes previously imported metadata and cleans up artwork references that no longer exist. | After replacing artwork, correcting paths, or changing imported metadata. |
+
+Scraping cannot start while a media database update is running, and only one scrape can run at a time. Core pauses metadata scraping while media is running and resumes when playback stops.
+
+## Choose an artwork source
+
+| Source | Use it when |
+| ------ | ----------- |
+| [**Metadata pack**](#metadata-packs) | You have a compatible ROM set and want prebuilt artwork. |
+| [**ZapScraper**](#zapscraper-in-mister-companion) | You want artwork generated for a specific MiSTer SD card, local folder, or network location. |
+| [**Skraper**](#skraper) | You want to choose the artwork and metadata generated for your library. |
+| [**Existing EmulationStation files**](../features/scraping.md#scrapers) | You already have compatible `gamelist.xml` files or media folders from another frontend. |
+
+Metadata packs may not match custom naming, ROM hacks, or unusual library layouts. The [Core media database and scraper guide](../features/scraping.md) documents compatible `gamelist.xml` files, media folders, custom bundle paths, and path resolution.
 
 ## Metadata packs
 
-Metadata packs provide ready-made artwork and `gamelist.xml` files for compatible ROM sets. They may not match custom naming, ROM hacks, or unusual library layouts.
+Metadata packs provide ready-made artwork and `gamelist.xml` files for compatible ROM sets.
 
 ### Boss's Basic Batch
 
 [Boss's Basic Batch](https://github.com/BossRighteous/MiSTer-Media-DB/releases/tag/basic-batch-1.0) is a metadata and artwork pack from [BossRighteous](https://github.com/BossRighteous). It includes image dumps and `gamelist.xml` files mapped to Zaparoo title slugs for known ROM sets.
 
-To use it, download the ZIP and extract it into your MiSTer `games` directory. The release notes also mention that Arcade contents need to be moved to `/media/fat/_Arcade`, where MiSTer's `.mra` files live.
+Download the ZIP and extract it into your MiSTer `games` directory. The release notes also explain that Arcade contents need to be moved to `/media/fat/_Arcade`, where MiSTer's `.mra` files live.
 
-### Big Blue's Bundle
+### Big Blue's Big Bundle
 
-[Big Blue's Bundle](https://www.dropbox.com/scl/fi/mu972fyxuc5j0xxddieio/Big-Blue-s-Bundle.zip?rlkey=9pkvia8yxifctzpkc75rb4p2k&st=nm73ur44&e=1&dl=0) is a metadata and artwork pack from BigBlue709 made specifically for MiSTer's Arcade system.
+[Big Blue's Big Bundle](https://www.dropbox.com/scl/fi/3buck8l86p8lzsjafihh6/Big-Blue-s-Big-Bundle.zip?rlkey=3de6qnibadu4em0fgyh5aol9r&st=s92n9xo3&dl=0) is a metadata and artwork pack from BigBlue709. It includes Neo Geo, broad MiSTer Arcade coverage, and some console artwork.
+
+Use it as a starting point rather than a complete current set because newer Arcade cores may not have artwork yet.
 
 ## ZapScraper in MiSTer Companion
 
-[MiSTer Companion v4.4.0](https://github.com/Anime0t4ku/mister-companion/releases/tag/v4.4.0) adds ZapScraper in Offline Mode. ZapScraper can scrape artwork for Zaparoo Frontend directly to a selected MiSTer SD card, or to a custom local or network location on your PC.
+[MiSTer Companion](https://mistercompanion.org) includes ZapScraper, which downloads game artwork through ScreenScraper for Recalbox-style setups or Frontend. It can write to a selected MiSTer SD card or a custom local or network location.
 
-ZapScraper has two output modes:
+ZapScraper has two output formats:
 
-- **Recalbox Mode** creates a standard Recalbox-style `gamelist.xml` structure.
-- **Zaparoo Companion Mode** creates output for Zaparoo Frontend and requires Zaparoo Core v2.13.0 or newer.
+- **Recalbox Compatible** creates a standard Recalbox-style `gamelist.xml` structure.
+- **Zaparoo Companion** creates output for Frontend and requires Zaparoo Core v2.13.0 or newer.
 
-ZapScraper supports console, handheld, and Arcade folders. PC cores are planned for a later ZapScraper update.
+Supported folders include console and handheld systems, Arcade, and AmigaVision.
 
 ## Skraper
 
-You can also use [Skraper](https://www.skraper.net/) with a [ScreenScraper](https://www.screenscraper.fr/) account. Before you run a scrape, set Skraper to **RecalBox mode** so that it outputs the `gamelist.xml` files Core expects. Set the default image style to whatever you prefer. Skraper supports the game folder names that MiSTer uses, so you can point it directly at your SD card or a NAS share.
+You can use [Skraper](https://www.skraper.net/) with a [ScreenScraper](https://www.screenscraper.fr/) account. Before running a scrape, set Skraper to **RecalBox mode** so it outputs the `gamelist.xml` files Core expects. Set the default image style to the artwork you want.
 
-## Import into Frontend
+Skraper supports the game folder names MiSTer uses, so you can point it directly at your SD card or a NAS share.
 
-After using one of the methods above, open **Settings**, then **Library**, then run **Scrape metadata**. Frontend processes the metadata in the background and reconciles it against Core's media database. When it finishes, artwork appears in the game browser.
+## Import artwork and metadata
 
-Core pauses metadata scraping while media is running and resumes when playback stops. Frontend shows scrape progress by system when Core provides it.
+After adding compatible files:
 
-Use **Re-scrape existing** when you want Core to refresh media that already has scraper metadata.
+1. Open **Settings**, then **Library**.
+2. Run **Update media database** if you added games or have not indexed the library yet.
+3. Run **Scrape metadata**.
 
-To update or scrape one system at a time, open a system's options menu and choose the media database or metadata scrape action for that system.
+Frontend shows scrape progress by system when Core provides it. When the import finishes, artwork appears in the game browser.
 
-## Browse metadata options
+To update or scrape one system at a time, open that system's options menu and choose its media database or metadata scrape action.
 
-Open **Settings**, then **Browsing** to change how scraped media appears:
+## Add Arcade artwork
 
-- **Preferred artwork** chooses which scraped image type Frontend asks Core for first.
-- **Show original filenames** uses each game's original filename without the extension instead of Core's cleaned title.
+MiSTer Arcade games use `.mra` files under `/media/fat/_Arcade`. Use a pack that explicitly includes `_Arcade` content or use ZapScraper's Arcade support. A general console pack does not necessarily cover Arcade games.
 
-When multiple games have the same display name, Frontend can show variant tags inline to help distinguish regions, versions, and other variants.
+## Change the displayed artwork
 
-## Custom artwork and names
+Open **Settings**, then **Browsing**, then change **Preferred artwork** to choose which imported image type Frontend asks Core for first. See [Browse and Launch Games](./browsing.mdx#change-browsing-options) for the other library display settings.
 
-Frontend can also use your own system artwork, Hub icons, and system display names. See [Frontend customization](./customization.mdx) for the custom folder layout and `frontend.toml` examples.
+For your own system artwork, Hub icons, and system names, see [Customize Frontend](./customization.mdx).
+
+## Fix artwork problems
+
+Follow [Troubleshoot Frontend](./troubleshooting.mdx) if games are missing, scrape actions are unavailable, new artwork does not replace old artwork, or files on USB storage or a NAS are not found.
+
+For detailed scraper behavior, supported file layouts, custom bundles, and recovery options, see the [Core media database and scraper guide](../features/scraping.md).

@@ -11,6 +11,20 @@ Core can load mappings from local TOML files or from mappings stored in its data
 
 The [Zaparoo App](../app/index.md) can manage database mappings from **Create > Mappings**. Use the app or API for mappings you want to create, edit, enable, disable, and delete interactively. Use mapping files for bulk lists, hand-authored mappings, or mappings you want to keep outside the Core database.
 
+## Create a mapping from a token
+
+Use this workflow for a read-only NFC toy, locked tag, barcode, optical disc, or any other token you want to associate with media or custom ZapScript:
+
+1. Scan the token.
+2. Find its ID on the App's **Zap** screen or the TUI's latest-token display.
+3. In the App, open **Create > Mappings**.
+4. Create a mapping for that ID, then choose the media or custom ZapScript it should run.
+5. Scan the token again to test the mapping.
+
+Most mappings should match `id`, which is the identifier reported by the reader. Use `value` when you specifically need to match text stored on a writable token, or `data` when an integration requires matching its raw hexadecimal data. See [Matching fields](#matching-fields) for the exact behavior.
+
+Optical-drive mappings also depend on the reader's [`id_source`](../readers/optical-drive.md#choose-the-scanned-id), which selects whether the token ID comes from the disc UUID, label, or both.
+
 ## Mapping files
 
 Create mapping files in the `mappings` folder inside the Core data folder. Check the page for your [platform](../platforms/index.mdx) to find that folder. You can organize mappings in subfolders, and each mapping file must use the `.toml` extension.

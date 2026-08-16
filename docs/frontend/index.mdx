@@ -1,62 +1,77 @@
 ---
-description: "Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your Zaparoo Core media library on MiSTer FPGA."
-keywords: [zaparoo frontend, mister frontend, zaparoo mister frontend, mister fpga game frontend]
+description: "Browse, launch, and customize your MiSTer game library with Zaparoo Frontend."
+keywords: [zaparoo frontend, mister frontend, zaparoo mister frontend, mister fpga game frontend, mister game browser]
 sidebar_position: 1
 ---
 
+import { NavCardGroup } from "@site/src/components/DocsNavGrid";
+import { ListChecks, Palette, Search, Tv, Wand2 } from "lucide-react";
+
 # Zaparoo Frontend
 
-Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your [Zaparoo Core](../core/index.md) media library on [MiSTer FPGA](../platforms/mister/index.md). It runs on the MiSTer display and uses Core as its backend, so media scanning, launching, metadata, favorites, and token writing stay in Zaparoo Core.
-
-Frontend does not replace physical tokens, the [Zaparoo App](../app/index.md), the [Web UI](../app/web.md), or the [TUI](../core/tui.md). It gives Zaparoo an on-screen browser for users who want to browse artwork or launch games from the TV.
-
-<img src="/img/showcase/BigBlue709_crt_setup.webp" alt="Zaparoo Frontend displaying a Genesis library on a CRT television" width="100%" loading="lazy" />
+<img className="docHeroImage" src="/img/showcase/BigBlue709_crt_setup.webp" alt="Zaparoo Frontend displaying a Genesis library on a CRT television" width="100%" loading="lazy" />
 
 *Zaparoo Frontend running as part of BigBlue709's CRT setup in [Community Showcase #6](/blog/community-showcase-6).*
+
+Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your [Zaparoo Core](../core/index.md) media library on [MiSTer FPGA](../platforms/mister/index.md).
+
+Frontend is optional. It runs on the MiSTer display and uses Core for media scanning, launching, metadata, favorites, and token writing. You can continue using physical tokens, the [Zaparoo App](../app/index.md), the [Web UI](../app/web.md), or the [TUI](../core/tui.md) with or without Frontend.
+
+<NavCardGroup
+  title="Choose a task"
+  cards={[
+    {
+      icon: ListChecks,
+      title: "Install and set up Frontend",
+      description: "Install Frontend, update it, scan your library, and configure the display.",
+      link: "./setup/",
+      umamiEvent: "frontend-card-setup",
+    },
+    {
+      icon: Palette,
+      title: "Add artwork and metadata",
+      description: "Choose an artwork source, import it with Core, and refresh existing artwork.",
+      link: "./scraping/",
+      umamiEvent: "frontend-card-artwork",
+    },
+    {
+      icon: Tv,
+      title: "Browse and launch games",
+      description: "Navigate your library, use menus and controls, and choose alternate launchers.",
+      link: "./browsing/",
+      umamiEvent: "frontend-card-browsing",
+    },
+    {
+      icon: Search,
+      title: "Troubleshoot Frontend",
+      description: "Fix missing games, unavailable scrape actions, missing artwork, and setup problems.",
+      link: "./troubleshooting/",
+      umamiEvent: "frontend-card-troubleshooting",
+    },
+    {
+      icon: Wand2,
+      title: "Customize Frontend",
+      description: "Change system artwork, Hub icons, system names, and regional logo styles.",
+      link: "./customization/",
+      umamiEvent: "frontend-card-customization",
+    },
+  ]}
+/>
+
+## How Frontend works
+
+Frontend displays the library managed by Core. Core finds games during a media database update, imports local artwork and metadata during a scrape, and launches the selected game. Frontend provides the on-screen library, menus, and controller interface for those actions.
+
+Frontend does not download artwork from the internet. Start with [Add Artwork and Metadata](./scraping.mdx) if you want covers, screenshots, descriptions, or other game information in the browser.
 
 ## Quick start
 
 1. [Install or update Frontend](./setup.mdx) on MiSTer.
-2. Start Frontend. It connects to the local Core service.
-3. If your media database is empty, run the first-time media scan.
-4. Optional: [add artwork and metadata](./scraping.mdx) for game covers, descriptions, and variant names.
-5. Optional: [customize artwork, Hub icons, and system names](./customization.mdx).
+2. Start Frontend and run the first media database update when prompted.
+3. [Add artwork and metadata](./scraping.mdx) if you want game covers and descriptions.
+4. [Browse and launch games](./browsing.mdx) from the library hub.
 
-On MiSTer, Frontend launches through Core. For platform-specific launcher details, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
-
-## Using Frontend
-
-Frontend starts at your library hub. From there you can browse categories, systems, games, favorites, recents, and folders. Games launch through Core, so launcher configuration and media paths follow your normal Zaparoo setup.
-
-Use the options menu to manage the item you are viewing. Depending on context, it can launch a system core, change a system launcher, update the media database, scrape metadata, hide or unhide a category or system, write an NFC token, or discover alternate Arcade versions.
-
-While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through long lists.
-
-The **Other** category holds [launchable items](../features/launchers.md#launchables) that have no normal game file behind them, such as ROM-less MiSTer cores. You can launch them like any other game or write them to a token.
-
-The Settings screen is split into **Display**, **Browsing**, **Language**, **Controls**, **Library**, and **Support** pages. Common browsing preferences include grid or list layout, preferred artwork type, system logo style, hidden item visibility, original filename display, regional system names, clock format, mouse support, and reduced motion.
-
-## Controls
-
-The default keyboard controls are:
-
-| Action | Default keys |
-| ------ | ------------ |
-| Move | Arrow keys |
-| Select | `Enter` |
-| Back | `Escape` |
-| Options menu | `Tab` |
-| View menu | `Space` |
-| Previous page | `PageUp` |
-| Next page | `PageDown` |
-
-MiSTer will automatically map your controller buttons to these keys.
-
-## Support logs
-
-If you need help troubleshooting Frontend, open **Settings**, then **Support**, then **Upload log file**. Frontend uploads a support bundle and shows a link you can share in Discord or a GitHub issue.
-
-The upload includes a support summary, the Frontend log tail, and the Core log tail when Core is reachable.
+For platform-specific launcher behavior, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
 
 ## Credits
 

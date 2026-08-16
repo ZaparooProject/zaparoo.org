@@ -8,7 +8,13 @@ keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparo
 
 Core's media database is a rebuildable index of games, apps, videos, music, and other launchable media on your device. A media database update finds those items and makes them searchable. Scraping then enriches the indexed records with local metadata and artwork such as cover images, descriptions, developers, and genres.
 
+If you use Zaparoo Frontend on MiSTer, start with [Add Artwork and Metadata](../frontend/scraping.mdx) for a task-oriented setup guide. This page is the detailed Core reference for database updates, scraper behavior, paths, and supported files.
+
 Database updates and scrapes never move, modify, or delete your games. Scrapers only update media that already exists in the database.
+
+:::info Archive support depends on the platform
+On MiSTer, Zaparoo can browse ZIP archives like folders and index supported files inside them. Other platforms cannot browse or launch a file inside a ZIP archive. A launcher may still support the ZIP file itself as media when `.zip` is one of its declared formats. Check the relevant [platform launcher documentation](../platforms/index.mdx) rather than assuming one system's archive behavior applies everywhere.
+:::
 
 ## Updating the media database
 

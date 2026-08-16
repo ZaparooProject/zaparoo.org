@@ -7,6 +7,20 @@ keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, 
 
 Detailed launcher configuration for Windows.
 
+## Windows paths in TOML
+
+Backslashes must be escaped inside double-quoted TOML strings. You can instead use a single-quoted literal string when you want to paste a Windows path unchanged:
+
+```toml
+# Double-quoted string
+install_dir = "C:\\Games\\LaunchBox"
+
+# Literal string
+install_dir = 'C:\Games\LaunchBox'
+```
+
+An invalid TOML file can prevent Core from loading any configuration, not just the launcher with the incorrect path. See the [config file reference](../../core/config.md) for general syntax and reload behavior.
+
 ## Window focus
 
 Core brings tracked applications to the foreground after launching them, including minimized windows. It waits up to five seconds for a window owned by the launched process or one of its descendants. This applies to built-in and [custom launchers](../../features/launchers.md#custom-launchers) that start a tracked process.

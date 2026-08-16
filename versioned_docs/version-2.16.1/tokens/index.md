@@ -32,6 +32,17 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 | [QR codes](./qr-codes) | Text or URL | Printable | App, camera, or scanner | Free to create, no special hardware |
 | [Barcodes](./barcodes) | Barcode value | Printable | App or barcode scanner | Works with existing product barcodes |
 
+## Using tokens on multiple devices
+
+The token's contents determine how portable it is:
+
+- `@System/Title` is the preferred cross-device format. Each device resolves the title against its own indexed library, so filenames and folder layouts can differ.
+- A relative system/path token can work on another device when both devices use compatible internal folder structures.
+- An absolute filesystem path is generally specific to one device and platform.
+- Mappings live on Core rather than the physical token. The same mapping must exist on each destination device or be transferred through a [backup](../features/backups.md).
+
+The destination device still needs compatible media and a launcher for the requested system. See [ZapScript path formats](../zapscript/launch.md#path-formats) for examples and matching behavior.
+
 ## Storage
 
 We have recommendations for [storing tokens](./storage/) in fun and convenient ways, like [cassette cases](./storage/cassette-cases) and Nintendo Switch replacement cases.

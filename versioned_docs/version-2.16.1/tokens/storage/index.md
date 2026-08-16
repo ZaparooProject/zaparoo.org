@@ -31,7 +31,7 @@ Top-loading pockets are usually better than side-loading pockets because cards a
 
 ## Nintendo Switch cases
 
-Empty retail-style Nintendo Switch replacement cases are another shelf-friendly option for credit card size NFC cards. They are widely sold through marketplace sellers, including AliExpress, and leave enough room inside for a card and printed cover art.
+Empty retail-style Nintendo Switch replacement cases are another shelf-friendly option for credit card size NFC cards, with enough room inside for a card and printed cover art.
 
 Search for `empty Nintendo Switch game case` or `Nintendo Switch replacement case`. Avoid compact Switch cartridge wallets or game card holders; those slots are made for small Switch game cards, not full-size NFC cards.
 
@@ -39,6 +39,8 @@ Search for `empty Nintendo Switch game case` or `Nintendo Switch replacement cas
 
 Long card boxes, the kind used for bulk Magic: The Gathering or sports card storage, work well for larger collections where you want to flip through cards quickly instead of displaying them in pages.
 
+The [community storage projects](../../community-projects/index.mdx#storage) directory includes printable boxes, dividers, cassette inserts, cases, and card stands.
+
 ## Cases and holders
 
-The community has designed a range of 3D printed cases and card holders. See the [community projects](../../community-projects/) page for a full list of cases, card trays, and reader enclosures.
+The community has designed a range of 3D printed storage cases and card holders. Browse the [community storage projects](../../community-projects/index.mdx#storage) for downloadable designs.

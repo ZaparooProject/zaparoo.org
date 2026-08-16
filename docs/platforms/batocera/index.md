@@ -43,6 +43,10 @@ This installs Zaparoo via the pacman package manager, sets up the startup servic
 
 For manual installation methods (Network Share, USB, or SSH), see [Manual Install](./install.md).
 
+## Card-only cabinets
+
+For a child-friendly or arcade-style setup with no visible game library, see the [Card-Only Batocera Cabinet](../../community-projects/batocera-card-only.md) community recipe. It shows a single **Insert Game Card** system while Zaparoo continues launching hidden games from physical tokens.
+
 ## Readers
 
 <ReaderSupport
