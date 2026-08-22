@@ -1,0 +1,116 @@
+---
+slug: app-v1.13.0
+title: "Zaparoo App v1.13.0 Released on Android"
+description: "Zaparoo App v1.13.0 adds Library browsing and device profile controls, with polished navigation, modal interactions, haptics, and accessibility on Android."
+tags: [software]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo App v1.13.0 is rolling out now on [Google Play](https://play.google.com/store/apps/details?id=dev.wizzo.tapto) outside France. This release is Android-only for now.
+
+v1.13.0 adds a full Library browser and profile controls in the App. It also polishes swipe-back feedback, modal gestures, haptic feedback, and accessibility across the App.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **[Library browser](#browse-your-library)**: browse, search, favorite, launch, and write media from your Core library
+- **[Device profiles](#device-profiles)**: create and manage profiles, limits, roles, PINs, and profile cards
+- **[Interaction and accessibility](#interaction-and-accessibility)**: clearer swipe-back feedback, smoother modal gestures, haptics, and better screen reader behavior
+- **[Background media controls](#background-media-controls)**: control foreground and background media separately
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Get Android v1.13.0"
+  link="https://play.google.com/store/apps/details?id=dev.wizzo.tapto"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app/"
+  variant="primary"
+/>
+
+## Before you update
+
+- **Availability:** v1.13.0 is currently limited to Google Play users outside France.
+- **iOS and France:** The App Store and Google Play in France remain on v1.11.2 until the full release in about three weeks.
+- **Core version:** Library needs Core v2.15.0 or newer. Device profiles and Online device linking need Core v2.16.0 or newer.
+
+## Browse your library
+
+The new [**Library** tab](/docs/app/#library) lets you browse systems and folders.
+
+- Filter systems by category, manufacturer, and release period.
+- Browse folders, sort media, or jump directly to a letter.
+- View artwork, descriptions, release details, tags, and file information.
+- Search the full library or keep a separate Favorites collection.
+- Launch a title or write it to NFC using your phone or a compatible reader attached to Core.
+
+**Requires:** Core v2.15.0 or newer and a generated media database.
+
+## Device profiles
+
+[Device profiles](/docs/features/profiles/) can now be managed under **Settings > Play Controls**.
+
+- Create and edit profiles with admin or member roles.
+- Set PINs and individual daily or session playtime limits.
+- Switch the active profile or require one before launching.
+- Write profile cards and reset old cards when needed.
+
+**Requires:** Core v2.16.0 or newer and an admin connection for protected profile actions.
+
+## Background media controls
+
+The Zap screen now shows foreground and background media separately. Each has its own stop action, and playlists include previous, play/pause, and next controls.
+
+**Requires:** Core v2.15.0 or newer.
+
+## Interaction and accessibility
+
+- Slide-up modals now follow drag gestures and use consistent action layouts.
+- Swipe-back navigation now shows progress before completing.
+- Buttons and other controls now give consistent haptic feedback where supported.
+- Bottom tabs preserve their previous page and scroll position. Tapping the active tab again returns to its root or scrolls to the top.
+- Inbox and Settings show unread counts, which can also appear on the App icon where supported.
+- Focus handling, screen reader support, list navigation, modal accessibility, and safe-area handling are more consistent across the App.
+- Supported translations have been updated.
+
+## Zaparoo Online and Warp
+
+**Settings > Online** now includes options to subscribe to [Zaparoo Warp](/docs/online/#cloud-backup-with-warp), restore a purchase, and open subscription management. An active Warp subscription also includes Zaparoo App Pro.
+
+The App also supports two-factor authentication and can link a compatible Core device to Zaparoo Online. Once linked, play history sync and automatic cloud backup can be enabled from the App. Device linking requires Core v2.16.0 or newer; automatic cloud backup requires Warp.
+
+## Connection fixes
+
+- Pairing is preserved when a discovered device moves between an mDNS hostname and IP address.
+- Stale token errors no longer appear after a successful reconnect, and Library artwork reloads when the connection returns.
+- Connection messages distinguish connecting, reconnecting, Core unavailable, and no network.
+
+## Other changes
+
+- NFC writes to Type 2 NDEF tags are read back before the App reports success, with retry and cancel options if the check fails.
+- Scan history entries can be replayed while connected to Core.
+- Media search supports selecting title tags for ZapScript and can show Core-provided disambiguating tags on Core v2.15.0 or newer.
+- File-based Core mappings appear with a read-only badge on Core v2.15.0 or newer.
+- Deep-link launches ask for confirmation, and the App accepts `zaparoo://run` links.
+- Queued launches and writes no longer stall indefinitely during reconnects. Expired requests report that they were not delivered.
+- Media indexing no longer offers a cancel action that could leave a partial database. Paused indexing can still be resumed.
+- Indexing, optimization, and scraping controls now reflect Core's current state more accurately.
+- Pairing can be opened manually from the device connection card. Settings that write to Core are disabled when the connected client lacks permission.
+- Duplicate saved entries for the same Core device can be combined while keeping their addresses and pairing.
+- Log uploads have clearer progress and a copyable result link. Sensitive values are redacted from App logs.
+- Camera permission failures now explain that access must be enabled in system settings.
+- Third-party software licenses can be searched and browsed from **Settings > About**.
+
+---
+
+As always, feedback and bug reports are welcome on [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-app/).
+
+<SponsorCallout variant="combined" />

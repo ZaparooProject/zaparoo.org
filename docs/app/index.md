@@ -1,56 +1,97 @@
 ---
-description: "The Zaparoo App for iOS and Android: connect to Zaparoo Core, scan tokens, write NFC tags, search your media library, and use your phone as a wireless reader with Pro."
+description: "The Zaparoo App for iOS and Android: connect to Zaparoo Core, browse and launch your media library, create tokens, and use your phone as a wireless reader with Pro."
 keywords: [zaparoo app, zaparoo ios, zaparoo android, nfc app game launcher, zaparoo mobile, zaparoo pro]
 ---
 
 # Zaparoo App
 
-The Zaparoo App is the main way to interact with [Zaparoo Core](../core/index.md) from your phone. Install it on iOS or Android and it connects to your Core service over the local network. The app can search for nearby Zaparoo devices, or you can enter your device's IP address manually.
+Use the Zaparoo App to manage [Zaparoo Core](../core/index.md) from an iPhone or Android phone. It can find Core devices on your local network, or you can enter a device's IP address manually.
 
-If you'd rather not use a phone at all, there's a browser-based version of the app bundled with every Core release. See the [Web UI](./web.md) page for that.
+:::note Current v1.13.0 rollout
+
+The initial v1.13.0 rollout is for Google Play users outside France. iOS and Google Play in France will join the normal worldwide release after the current approvals are complete.
+
+:::
+
+Every Core release also includes the browser-based [Web UI](./web.md) for setups that do not use a phone.
 
 ## What the app does
 
-The app has three main sections:
+The app has four main sections.
 
-**Zap** is the home screen. You can scan [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [barcodes](../tokens/barcodes.md), see what's currently playing on the connected device, stop playback, and check what was last scanned. Tapping the scan button puts the phone into active scanning mode; once you're done you can review your scan history too. On supported Core versions, the Controls button opens remote-style controls, screenshot capture, and a full keyboard input view.
+### Zap
 
-**Create** is where you make tokens. Search your connected device's media library and write results directly to an NFC tag, or write the currently playing media to a new tag. There's also a custom [ZapScript](../zapscript/index.md) editor for arbitrary commands, a set of NFC utilities for reading raw tag data, formatting, erasing, and making tags read-only, and a [mappings](../features/mappings.md) manager for assigning [NFC toys](../tokens/nfc-toys/index.md) and barcodes to media without writing to the tag itself.
+Scan [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [barcodes](../tokens/barcodes.md) from the home screen. You can also:
 
-**Settings** covers everything else: entering your device address or searching for nearby Zaparoo devices automatically, managing saved devices and pairing credentials, updating and scraping the media database, configuring [play controls](../features/play-controls.md), configuring reader behavior (scan mode, audio feedback, auto-detecting [external readers](../readers/index.md)), viewing inbox notifications, accessibility options, language, and your [Zaparoo Online](../online/index.md) account for managing purchases and subscriptions. Pro features and purchase restoration are also in here.
+- See and stop media playing on the connected device, including separate foreground and background playback.
+- Run a previous token again from your scan history.
+- Control the connected device with remote buttons, screenshots, or keyboard input on supported Core versions.
 
-If a Core device requires encrypted connections, the app prompts for the pairing PIN shown by Core and remembers the paired device for future reconnects.
+### Create
+
+Search the connected device's media library and write a result to an NFC tag. Create also includes:
+
+- A [ZapScript](../zapscript/index.md) editor for custom commands, plus options for choosing title tags such as region or disc number.
+- Options for writing the media currently playing on Core.
+- NFC tools for reading, formatting, erasing, and making compatible tags permanently read-only.
+- A [mappings](../features/mappings.md) manager for assigning [NFC toys](../tokens/nfc-toys/index.md) and barcodes without changing them. You can view mappings loaded from Core's mapping files, but only edit mappings managed by the app.
+
+### Library
+
+Browse systems and folders from Core's media library, then:
+
+- Search across every system or keep a Favorites collection.
+- View artwork, descriptions, release details, and tags.
+- Launch a title or write it to an NFC tag.
+
+Library and Favorites require Core v2.15.0 or newer and a media database. Create one from Settings if the app prompts you.
+
+### Settings
+
+Settings includes:
+
+- Finding Core devices, switching between saved devices, and managing pairing.
+- Updating the media library and downloading artwork and metadata.
+- Configuring scan behavior and connected [external readers](../readers/index.md).
+- Inbox notifications, app icon badges on supported devices, accessibility, and language.
+- Signing in to [Zaparoo Online](../online/index.md), linking a Core device, managing Warp, and restoring purchases.
+- [Play Controls](../features/play-controls.md) for playtime limits, Launch Guard, and [device profiles](../features/profiles.md). Profile management requires Core v2.16.0 or newer.
+
+If Core requires an encrypted connection, the app asks for the pairing PIN shown by Core. If Core's network address changes later, the app can reconnect without asking you to pair it again.
 
 The app is available in English, Chinese (Simplified), Dutch, French, German, Japanese, Korean, and Spanish.
 
 ## Zaparoo Pro
 
-Pro is defined by a single rule: any feature that lets the app act as a reader using the phone's own hardware sensors. Everything else is free.
+Pro covers features that use the phone itself as a wireless reader. Managing Core, browsing your library, and creating tokens remain free.
 
-There are two current Pro features. Launch on scan forwards in-app scans to the connected device so the phone works as a wireless Zaparoo reader over Wi-Fi, the same as any physical reader would. Shake to launch uses the accelerometer: shake the phone to play something random from a chosen system, or trigger a custom [ZapScript](../zapscript/index.md).
+There are two current Pro features:
 
-Pro is a one-time purchase through the App Store or Play Store. All future Pro features are included at no extra cost. If you'd rather support Zaparoo development another way, there are [other ways to help](/sponsor/).
+- **Launch on scan:** Scan NFC tags, QR codes, or barcodes with your phone to launch them on the connected Core device.
+- **Shake to launch:** Shake your phone to play something random from a chosen system or run custom [ZapScript](../zapscript/index.md).
+
+Pro is available as a one-time purchase through the App Store or Play Store, with future Pro features included. Pro is also included while your [Warp subscription](../online/index.md#cloud-backup-with-warp) is active. If you'd rather support Zaparoo development another way, there are [other ways to help](/sponsor/).
 
 ## Getting the app
 
-The Zaparoo App is on the iOS App Store and Google Play. See the [Downloads](/downloads/) page for current links and version information.
+The Zaparoo App is on the iOS App Store and Google Play. See the [Downloads](/downloads/) page for store links.
 
-There's also the [Web UI](./web.md), a version of the app embedded in Zaparoo Core and accessible from any browser on your local network. NFC, camera scanning, network device discovery, and Pro aren't available in the browser.
+The [Web UI](./web.md) is built into Core and opens in any browser on your local network. Phone features such as NFC, camera scanning, device discovery, and Pro are not available there.
 
 ## Open source
 
-The [app source code](https://github.com/ZaparooProject/zaparoo-app) is open source under the [Apache 2.0 license](https://github.com/ZaparooProject/zaparoo-app/blob/main/LICENSE), including the Pro features. You're free to build and modify it under the license terms. The project just asks in good faith that you don't redistribute compiled builds with Pro features enabled, since those purchases fund ongoing development.
+The [app source code](https://github.com/ZaparooProject/zaparoo-app), including Pro features, uses the [Apache 2.0 license](https://github.com/ZaparooProject/zaparoo-app/blob/main/LICENSE). You can inspect, build, and modify it under those terms. Please do not redistribute prebuilt copies with Pro unlocked, since Pro purchases fund ongoing development.
 
 ## FAQ
 
 **Do I need the app to use Zaparoo?**
 
-No. The app is the most convenient way to manage things and write tags, but you can also use the built-in [Web UI](./web.md) from any browser, the [TUI](../core/tui.md), or the [CLI](../core/cli.md) without installing anything on your phone.
+No. You can also manage Core with the built-in [Web UI](./web.md), [terminal UI](../core/tui.md), or [CLI](../core/cli.md) without installing anything on your phone.
 
 **Does my phone need to be near my MiSTer or other device?**
 
-No. The app communicates with Zaparoo Core over Wi-Fi. As long as both are on the same network, distance doesn't matter.
+No. Your phone and Core device do not need to be next to each other, but both must be reachable on the same local network.
 
 **Does the app work on iPhone?**
 
-Yes. The Zaparoo App is on iOS and iPhones can scan and write NFC tags. The one limitation is that iPhone NFC only supports [NTAG](../tokens/nfc/ntag.md) format tags, not [MIFARE Classic](../tokens/nfc/mifare.md), but NTAG is the tag type Zaparoo recommends anyway so this usually isn't an issue.
+Yes. iPhones can scan and write [NTAG](../tokens/nfc/ntag.md) tags, but they do not support [MIFARE Classic](../tokens/nfc/mifare.md). Use NTAG tags for phone-based scanning and writing.

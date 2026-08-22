@@ -107,6 +107,38 @@ Current media takes priority over the Steam game shown in the Steam interface. *
 
 Core Inbox messages remain pending under **Notifications** until you dismiss them. Closing the notification viewer leaves them in the Inbox.
 
+### Install the plugin
+
+Install Decky Loader first. The plugin needs Core v2.17.0 or newer. It is not listed in the Decky Loader store, so use one of the two methods below.
+
+The Core installer offers the plugin when it finds Decky Loader already installed. Rerun the standard install command and answer yes when it asks:
+
+```bash
+curl -fsSL https://zaparoo.org/install.sh | bash
+```
+
+The prompt defaults to no. Accepting it requires admin access and briefly restarts Decky Loader. The installer:
+
+- Verifies the latest stable plugin before installing it to `~/homebrew/plugins/Zaparoo`.
+- Restores the previous plugin if Decky Loader does not restart.
+- Skips the plugin without failing when Decky Loader is absent or the installed Core version is older than v2.17.0.
+
+To install it from Decky Loader instead:
+
+1. Open **Settings > General** in Decky Loader and turn on **Developer mode**.
+2. Open **Settings > Developer**.
+3. Under **Third-Party Plugins**, enter `https://zaparoo.org/decky` in the **URL** field and select **Install**.
+
+This path works before Core is installed. Open Zaparoo in the Quick Access Menu afterwards and select **Install Core**.
+
+### Update and remove the plugin
+
+Rerunning the Core installer updates the plugin to the latest stable release, or reports that it is already current. It will not replace a newer installed plugin with an older stable one. Repair mode leaves the plugin alone.
+
+Decky Loader does not remember a manually installed URL and cannot update plugins that are absent from its store, so repeat the URL installation above to update a manual install.
+
+Removing the plugin leaves Core, its service, configuration, and databases installed. Removing Core leaves the plugin installed in a disconnected state.
+
 ## Client security
 
 Fresh SteamOS configurations require encrypted remote client connections by default. Existing and migrated configurations keep their current encryption setting.

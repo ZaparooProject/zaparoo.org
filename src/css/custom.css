@@ -166,6 +166,11 @@ details.alert,
     padding: 1.25rem;
 }
 
+/* Infima's secondary gray is too faint for note icons on light backgrounds. */
+.theme-admonition-note {
+    --z-notice-accent: var(--ifm-color-primary);
+}
+
 .z-notice[data-tone="brand"] {
     --z-notice-accent: var(--ifm-color-primary);
 }

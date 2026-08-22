@@ -347,7 +347,16 @@ RetroAchievements cores from [Odelot's MiSTer FPGA RetroAchievements Cores](http
 
 These launchers automatically use a dedicated `RA_*` set name so RetroAchievements cores keep independent MiSTer configuration. Core selects the appropriate `same_dir` behavior for each launcher, including systems that share another system's RBF. Games continue loading from their normal system folders; you do not need to move them into `RA_*` folders.
 
-All built-in RetroAchievements launchers belong to the stable `RetroAchievements` launcher group. To prefer an installed RetroAchievements core automatically and fall back to the regular launcher when one is unavailable:
+To use a RetroAchievements core by default for one system in [Zaparoo Frontend](../../frontend/browsing.mdx):
+
+1. Highlight the system.
+2. Open **Options**.
+3. Select **Change launcher**.
+4. Select the installed RetroAchievements launcher.
+
+Frontend saves the selection as that system's default launcher. Select **Default** from the same menu to remove the override. Only launchers currently available from Core appear in the list.
+
+All built-in RetroAchievements launchers belong to the stable `RetroAchievements` launcher group. To prefer installed RetroAchievements cores across every supported system and fall back to regular launchers when one is unavailable:
 
 ```toml title="config.toml"
 [launchers]
