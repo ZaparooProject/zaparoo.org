@@ -484,6 +484,12 @@ const config: Config = {
           "media-titles.md",
           "scraper.md",
         ],
+        modifyContent(filename: string, content: string) {
+          if (filename !== "index.md") return undefined;
+          return {
+            content: content.replace(/\n## Releasing updates\n[\s\S]*$/, ""),
+          };
+        },
       },
     ],
     [
