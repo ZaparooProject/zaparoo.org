@@ -142,6 +142,7 @@ These are the tag types most likely to matter when writing title IDs by hand.
 | `unfinished` | Pre-release or incomplete builds | `unfinished:alpha`, `unfinished:beta`, `unfinished:demo`, `unfinished:proto` |
 | `dump` | Dump quality or dump status | `dump:verified`, `dump:bad`, `dump:overdump`, `dump:underdump` |
 | `unlicensed` | Unofficial releases and modifications | `unlicensed:bootleg`, `unlicensed:hack`, `unlicensed:translation` |
+| `patch` | ROM hacks and patches | `patch:fastrom:1-1`, `patch:uncensored`, `patch:font:us` |
 | `rerelease` | Digital re-releases and collections | `rerelease:virtualconsole:wii`, `rerelease:mdmini:1` |
 | `reboxed` | Re-releases and packaging variants | `reboxed:playerschoice`, `reboxed:satakore` |
 | `disc` and `disctotal` | Multi-disc sets | `disc:1`, `disc:2`, `disctotal:3` |
@@ -150,6 +151,8 @@ These are the tag types most likely to matter when writing title IDs by hand.
 | `video` | Video standard | `video:ntsc`, `video:pal`, `video:pal-60` |
 
 Core defines many more tag types than this, including hardware add-ons, embedded cartridge chips, compatibility tags, publishers, developers, genres, and player counts. Most users do not need to write those by hand.
+
+`patch` tags come from bracketed patch notes in filenames, such as `[FastROM hack by Author v1.1]`, and let a title ID pick that patched variant of a game.
 
 ## Scraped tags and labels
 

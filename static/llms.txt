@@ -29,7 +29,7 @@ Important notes:
 - [PN532 Module](https://zaparoo.org/docs/readers/nfc/pn532-module/): Wiring and config for the PN532 breakout board.
 - [ACR122U](https://zaparoo.org/docs/readers/nfc/acr122u/): Setup for the popular ACR122U USB NFC reader.
 - [RC522](https://zaparoo.org/docs/readers/nfc/rc522/): SPI wiring guide for the RC522 NFC module.
-- [Optical Drive](https://zaparoo.org/docs/readers/optical-drive/): Use a disc drive as a Zaparoo token reader.
+- [Optical Drive](https://zaparoo.org/docs/readers/optical-drive/): Use a disc drive as a Zaparoo token reader, launch indexed games from real discs, or burn a zaparoo.txt token file onto a disc.
 - [Barcode Readers](https://zaparoo.org/docs/readers/barcode/): Use USB barcode scanners as token readers.
 - [MQTT Reader](https://zaparoo.org/docs/readers/mqtt/): Receive token scans over MQTT from any device.
 - [External Drive](https://zaparoo.org/docs/readers/external-drive/): Use USB drives or SD cards as token readers.
@@ -64,7 +64,7 @@ Important notes:
 - [Bazzite](https://zaparoo.org/docs/platforms/bazzite/): Install Zaparoo on Bazzite Linux.
 - [ChimeraOS](https://zaparoo.org/docs/platforms/chimeraos/): Install Zaparoo on ChimeraOS.
 - [Linux](https://zaparoo.org/docs/platforms/linux/): Install Zaparoo on generic Linux systems.
-- [Linux Launchers](https://zaparoo.org/docs/platforms/linux/launchers/): Launch games through Steam, Lutris, Heroic, RetroArch, Kodi, and custom launchers on Linux.
+- [Linux Launchers](https://zaparoo.org/docs/platforms/linux/launchers/): Launch games through Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, and custom launchers on Linux.
 - [LibreELEC](https://zaparoo.org/docs/platforms/libreelec/): Install Zaparoo on LibreELEC media systems.
 - [MiSTeX](https://zaparoo.org/docs/platforms/mistex/): Install Zaparoo on the MiSTeX FPGA board.
 - [RePlayOS](https://zaparoo.org/docs/platforms/replayos/): Install Zaparoo on RePlayOS.
@@ -73,7 +73,7 @@ Important notes:
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
-- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, metadata scraping, support log uploads, and library tools.
+- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, Hub arrangement, color schemes, Get metadata, support log uploads, and library tools.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for play history sync, virtual cards and decks, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).
 
@@ -83,6 +83,7 @@ Important notes:
 - [Configuration](https://zaparoo.org/docs/core/config/): Full config.toml reference for Zaparoo Core.
 - [CLI Reference](https://zaparoo.org/docs/core/cli/): Command-line interface for interacting with Core.
 - [Terminal UI (TUI)](https://zaparoo.org/docs/core/tui/): Local terminal menu for Core status, token writing, media updates, settings, and logs.
+- [Core Updates](https://zaparoo.org/docs/core/updates/): How Core checks for new releases, opt-in automatic installs with rollback, what blocks an update, and which platforms update in place.
 - [Contributing / Developer Guide](https://zaparoo.org/docs/core/contributing/): Guide for developers building on or contributing to Core.
 
 ## Features

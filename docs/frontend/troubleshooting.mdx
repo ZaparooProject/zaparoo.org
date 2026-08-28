@@ -20,7 +20,7 @@ The start screen shows **Can't reach Zaparoo Core. Check your connection.** when
 
 ## Games do not appear
 
-Run **Update media database** from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own. On a brand-new library, Frontend starts this scan itself and the Hub shows **No games found yet** until it finishes.
+Run **Update media database** from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own. On a brand-new library, Frontend starts this scan itself: the Hub shows **Updating the media database** while it runs and **No games found yet** if nothing was found.
 
 A media database update finds game files and makes them available to Frontend. Getting metadata does not add missing games to the database.
 
@@ -39,7 +39,7 @@ See [Add Artwork and Metadata](./scraping.mdx) for supported sources and the com
 
 Getting metadata cannot start while a media database update is running. Wait for the update to finish, then try again.
 
-Only one import can run at a time. If one is already running, wait for it to finish before starting another.
+Only one import can run at a time. If one is already running, wait for it to finish before starting another. The **Get metadata** and **Update media database** entries in options menus are hidden while an update, optimization, or import is running.
 
 ## Updated artwork does not appear
 
@@ -60,6 +60,10 @@ To keep metadata separate from your games, configure a [`custom_path`](../featur
 ## The Update tile is greyed out
 
 The built-in updater needs an internet connection. The tile shows **No internet connection** until the MiSTer is online.
+
+## An action failed
+
+When something goes wrong, Frontend opens a dialog that names the action, such as **Launch failed**, **Favorite update failed**, **Media update failed**, **Get metadata failed**, **Token write failed**, or **Setting not saved**, with **Retry** and **OK**. Retry repeats the action once Core is reachable again. If it keeps failing, check that Core is running and connected, then read the Core log for the reason.
 
 ## Upload support logs
 

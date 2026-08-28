@@ -34,7 +34,7 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 | [QR codes](./qr-codes.md) | Text or URL | Printable | App, camera, or scanner | Free to create, no special hardware |
 | [Barcodes](./barcodes.md) | Barcode value | Printable | App or barcode scanner | Works with existing product barcodes |
 | [Online cards and decks](../online/index.md#cards-and-decks) | Short URL on an NFC tag | Yes, and editable online | NFC reader | Change what a card does without rewriting it |
-| [Discs](../readers/optical-drive.md) | Disc ID | No (mapped) | Optical drive | Launch from real CDs, DVDs, and Blu-rays |
+| [Discs](../readers/optical-drive.md) | Disc ID | Burned discs only, as a `zaparoo.txt` file | Optical drive | Launch from real CDs, DVDs, and Blu-rays |
 | [USB sticks and SD cards](../readers/external-drive.md) | Text file on the drive | Yes | External drive reader | Removable media as tokens |
 
 ## Using tokens on multiple devices

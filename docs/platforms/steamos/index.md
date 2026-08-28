@@ -42,8 +42,11 @@ The installer selects the latest stable SteamOS release, verifies its signed che
 - Adds the permanent **Zaparoo Runtime** shortcut to Steam
 - Offers to add a Desktop Mode shortcut
 - Offers to install NFC reader support with `sudo`
+- Offers to install the [Decky Loader plugin](./decky.md) when Decky Loader is present
 - Verifies Core's API, platform, and installed version before reporting success
 - Removes a failed fresh installation if setup or health verification fails
+
+If your Steam Deck has no administrator (sudo) password, the installer offers to set the temporary password `Zaparoo!` for the steps that need it and removes it when it finishes. It warns you if it could not remove it.
 
 SteamOS has an immutable system partition, so application, configuration, and data files remain under `/home/deck`. If the installer adds the Zaparoo Runtime shortcut for the first time, restart Steam or reboot the Steam Deck once so it appears.
 
@@ -65,7 +68,14 @@ curl -fsSL https://zaparoo.org/install.sh | bash -s -- repair
 
 # Remove Core while preserving user data
 curl -fsSL https://zaparoo.org/install.sh | bash -s -- uninstall
+
+# Install beta builds, accept defaults without prompts, or preview changes
+curl -fsSL https://zaparoo.org/install.sh | bash -s -- --channel beta
+curl -fsSL https://zaparoo.org/install.sh | bash -s -- -y
+curl -fsSL https://zaparoo.org/install.sh | bash -s -- --dry-run
 ```
+
+Once installed, Core also checks for new releases on its own and can update itself in place; see [Core updates](../../core/updates.md).
 
 ### Service commands
 
@@ -90,7 +100,7 @@ The uninstaller removes Core, its user service, desktop integration, and Zaparoo
 
 ## Client security
 
-Fresh SteamOS configurations require encrypted remote client connections by default. Existing and migrated configurations keep their current encryption setting.
+SteamOS requires encrypted remote client connections.
 
 Pair a phone, browser, or other Core client with a temporary six-digit PIN. You can start pairing in any of these ways:
 
@@ -137,6 +147,9 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | RetroArch        | Multiple | Flatpak cores with built-in controls       |
 | EmuDeck          | Multiple | RetroArch and standalone emulators         |
 | RetroDECK        | Multiple | Unified emulator frontend                  |
+| Bottles          | PC       | Programs from Bottles                      |
+| Faugus           | PC       | Games from Faugus Launcher                 |
+| Moonlight        | PC       | Streamed apps through Moonlight            |
 | Kodi             | Media    | Videos, movies, TV shows, music            |
 | Shell Scripts    | Any      | Custom `.sh` file execution                |
 

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-description: "Use a CD, DVD, or Blu-ray disc to launch matching indexed media or trigger a Zaparoo command on Linux."
-keywords: [zaparoo optical drive, cd token, dvd token, physical disc launcher, disc game ID]
+description: "Use a CD, DVD, or Blu-ray disc to launch matching indexed media or trigger a Zaparoo command on Linux, including ZapScript burned into a zaparoo.txt file on the disc."
+keywords: [zaparoo optical drive, cd token, dvd token, physical disc launcher, disc game ID, zaparoo.txt disc]
 ---
 
 # Optical Drive Reader
@@ -109,7 +109,23 @@ zapscript = "**launch.random:SNES"
 
 Restart Core after changing mapping files. If you are using an existing disc, check the Core logs to see the exact ID Zaparoo scanned before writing the mapping.
 
-Core does not write anything to the disc. Blank discs do not work because they contain no volume UUID or label to read.
+Core does not write anything to the disc. Blank discs do not work because they contain nothing to read. If you are burning a disc anyway, a [token file on the disc](#use-a-token-file-on-a-disc) avoids the mapping step.
+
+## Use a token file on a disc
+
+A burned data disc can carry its own ZapScript, the same way a [USB drive token](./external-drive.md#make-a-drive-token) does:
+
+1. Create a plain text file named `zaparoo.txt` with the [ZapScript](../zapscript/index.md) you want to run.
+2. Burn it into the root folder of a data disc using the standard ISO 9660 filesystem.
+3. Insert the disc into the drive Core is watching.
+
+Example `zaparoo.txt`:
+
+```zapscript
+**launch.random:SNES
+```
+
+The filename is matched case-insensitively and the file can be up to 1 MiB; surrounding whitespace is ignored. The disc's UUID and label still form the token ID, so an existing mapping for that disc keeps working and takes priority over the file. A disc with no readable UUID or label but a valid `zaparoo.txt` is scanned too, and Core reads the disc again when only the file changed between burns.
 
 ## Drive requirements
 
@@ -140,7 +156,7 @@ Core only launches automatically when the physical disc matches exactly one inde
 
 Enable `debug_logging = true` in `config.toml`, insert the disc again, and find the `optical media identification probe changed` message in the Core logs. It reports whether Core found a UUID, label, or game ID property.
 
-If the UUID and label are empty, the disc may not contain readable ISO 9660 volume information. Supported game discs may still work through game ID matching. Other discs need the UUID or label required by your configured `id_source`. Try a different disc, or burn a data disc with a label if you want a custom token.
+If the UUID and label are empty, the disc may not contain readable ISO 9660 volume information. Supported game discs may still work through game ID matching, and a disc with a `zaparoo.txt` file runs that file. Other discs need the UUID or label required by your configured `id_source`. Try a different disc, or burn a data disc with a label or a [token file](#use-a-token-file-on-a-disc) if you want a custom token.
 
 ### Wrong command launches
 

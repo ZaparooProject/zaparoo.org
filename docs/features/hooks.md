@@ -36,6 +36,8 @@ on_remove = "**echo:card was removed"
 
 `on_remove` only runs in hold mode. If the hook fails, remove processing is blocked, so media keeps running.
 
+When ZapScript execution is turned off, for example while the command line or a client is waiting to read or write a token, a scanned token is ignored quietly: no failure sound plays, no failed scan is recorded in history, and reader hooks are not treated as blocked.
+
 ## Media launch hooks
 
 Media launch hooks live under `[launchers]`.

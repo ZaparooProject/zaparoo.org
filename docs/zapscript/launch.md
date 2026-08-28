@@ -65,7 +65,7 @@ Set a launcher override for the next game scanned from a reader:
 **launch?launcher=LLAPIMegaDrive
 ```
 
-Use this on a setup token when you want the next scanned game token to use a specific launcher. The override applies once, then clears.
+Use this on a setup token when you want the next scanned game token to use a specific launcher. The override applies once, expires after five minutes, and fails immediately if the launcher ID does not exist.
 
 If a media row has a stored launcher override from [`media.meta.update`](../core/api/methods.md#mediametaupdate), Core uses it automatically for title, search, path, random, and history launches. A `?launcher=` argument on the token is still an explicit one-off override and takes priority.
 
@@ -286,7 +286,7 @@ The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis
 Launches a system/emulator without loading specific media.
 
 :::note Platform Support
-Launching a system by ID is supported on [MiSTer](../platforms/mister/index.md) and [MiSTeX](../platforms/mistex.md). The `menu` argument returns to the platform's menu or frontend where supported, including [Batocera](../platforms/batocera/index.md).
+Launching a system by ID is supported on [MiSTer](../platforms/mister/index.md) and [MiSTeX](../platforms/mistex.md). The `menu` argument returns to the platform's menu or frontend where supported, including [Batocera](../platforms/batocera/index.md). The `launcher` argument is MiSTer only.
 :::
 
 ### Syntax
@@ -302,9 +302,12 @@ The [system ID](../features/systems.md) to launch. Use `menu` to return to the m
 
 ### Advanced Arguments
 
-| Argument | Type       | Default | Description           |
-| -------- | ---------- | ------- | --------------------- |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+| Argument   | Type       | Default | Description           |
+| ---------- | ---------- | ------- | --------------------- |
+| `launcher` | string     | -       | Boot this launcher's core for the system without loading media. MiSTer only. Launcher IDs are matched case-insensitively. |
+| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
+
+With `launcher`, Core reports an error if the launcher does not exist, belongs to a different system, has no selectable core, or its core file is not installed. See [alternate launchers](../platforms/mister/launchers.md#alternate-launchers) for the available IDs.
 
 ### Examples
 
@@ -318,6 +321,12 @@ Launch WonderSwan Color, useful for meta-systems without their own core:
 
 ```zapscript
 **launch.system:WonderSwanColor
+```
+
+Boot an alternate core for a system with no game loaded:
+
+```zapscript
+**launch.system:Nintendo64?launcher=80MHzNintendo64
 ```
 
 Return to the main menu:
@@ -352,6 +361,8 @@ One of the following formats:
 | `<system>/*pattern*`      | Random indexed media matching a search query |
 
 When the selected [system has fallbacks](../features/systems.md#usage-notes), Core tries the requested system first and only moves to the next fallback tier when no matching media exists.
+
+If the picked game cannot be launched, Core tries another candidate, up to 16 in total. Launchable virtual entries, such as `steam://` games, are drawn from the media database like file paths, so `tags` filters apply to them too.
 
 ### Advanced Arguments
 

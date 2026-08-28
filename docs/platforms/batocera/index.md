@@ -47,6 +47,10 @@ For manual installation methods (Network Share, USB, or SSH), see [Manual Instal
 
 Uninstall Zaparoo Core from Batocera's Content Downloader, the same place it was installed. Batocera stops and disables the `zaparoo_service` service and removes the package files. Your configuration and data are left in place; see the file paths above if you want to delete them too.
 
+## Updates
+
+Core installed from the Content Downloader or the terminal install command is a Batocera package, so Batocera's package manager updates it and Core only shows a notice when a new release exists. A Core copied into place by hand updates itself. See [Core updates](../../core/updates.md).
+
 ## Card-only cabinets
 
 For a child-friendly or arcade-style setup with no visible game library, see the [Card-Only Batocera Cabinet](../../community-projects/batocera-card-only.md) community recipe. It shows a single **Insert Game Card** system while Zaparoo continues launching hidden games from physical tokens.

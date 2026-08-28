@@ -42,7 +42,7 @@ By default a scrape skips media that has already been scraped, so repeat runs ar
 
 ## Scrapers
 
-Core currently includes two scrapers, both based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie. Both run on all [platforms](../platforms/index.mdx) wherever the matching files are present.
+Core currently includes three scrapers. The first two are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. The third reads the artwork and manual packs that MiSTer's Update All installs.
 
 ### gamelist.xml
 
@@ -111,8 +111,21 @@ When a system exists in more than one indexed root, such as the normal games fol
 
 A force re-scrape also removes image references that follow this naming convention when their file is no longer on disk.
 
+### mister-docs
+
+The `mister-docs` scraper is MiSTer only. It imports artwork, game information, English synopses, and manuals from the packs that [Update All](https://github.com/theypsilon/Update_All_MiSTer) installs under `docs/<system>/` on any MiSTer storage root, including the SD card, USB drives, network storage, and custom index roots. It never downloads anything itself.
+
+In each system's `docs` folder it reads:
+
+- `Artwork/index.tsv` and the images it lists, which become box art.
+- `gameinfo.tsv`, if present, which becomes `year`, `genre`, `developer`, and `players` [tags](./tags.md).
+- `synopsis_en.tsv`, if present, which becomes the game's description.
+- PDF files in a child folder whose name contains `manual`, which become the game's manual.
+
+Games are matched by their ROM or MRA file name first, then by a unique title. Update All's **Game Manuals (EN)** database provides the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.
+
 ## What scraping produces
 
-Scraped text values become [tags](./tags.md), which Core uses to choose between similar media and which you can filter on when launching by title. Scraped artwork is shown in the Zaparoo App when you browse your library.
+Scraped text values become [tags](./tags.md), which Core uses to choose between similar media and which you can filter on when launching by title. Scraped artwork is shown in the Zaparoo App when you browse your library, and descriptions and manuals appear in clients that display them, such as [Zaparoo Frontend](../frontend/index.mdx).
 
 For the full metadata field mapping and the API methods used to start scrapes and read scraped data, see the [scraper subsystem reference](../core/contributing/scraper.md), a developer page maintained in the Core repository.

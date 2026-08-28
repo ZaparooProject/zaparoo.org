@@ -22,9 +22,10 @@ Use your platform guide for exact setup, supported systems, and launcher limitat
 | -------- | --------------------- |
 | [MiSTer FPGA](../platforms/mister/launchers.md) | MiSTer cores, AO486, ScummVM, video, and scripts |
 | [Windows](../platforms/windows/launchers.md) | Steam, LaunchBox/Big Box, RetroBat, Flashpoint, Kodi, executables, and scripts |
-| [Linux](../platforms/linux/launchers.md) | Steam, Lutris, Heroic, RetroArch, Kodi, browser URLs, and scripts |
-| [SteamOS](../platforms/steamos/launchers.md) | Steam, native emulators, RetroArch, EmuDeck, RetroDECK, Kodi, and scripts |
-| [Bazzite](../platforms/bazzite.mdx#launchers) | Steam, Lutris, Heroic, Kodi, browser URLs, and scripts |
+| [Linux](../platforms/linux/launchers.md) | Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, browser URLs, and scripts |
+| [SteamOS](../platforms/steamos/launchers.md) | Steam, native emulators, RetroArch, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, and scripts |
+| [Bazzite](../platforms/bazzite.mdx#launchers) | Steam, Lutris, Heroic, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, browser URLs, and scripts |
+| [ChimeraOS](../platforms/chimeraos.mdx#launchers) | Steam, ChimeraGOG, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, and scripts |
 | [Batocera](../platforms/batocera/launchers.md) | EmulationStation, Kodi, and scripts |
 
 For an emulator or media app without a built-in integration, write a [custom launcher](./custom-launchers.md).
@@ -132,7 +133,7 @@ Apps and integrations can use the [`media.control`](../core/api/methods.md#media
 
 ## Launcher availability
 
-Core checks whether each launcher's runtime dependencies are present. Unavailable launchers are excluded from automatic selection, but remain in the [`launchers`](../core/api/methods.md#launchers) API response with `available: false` and an `availabilityReason` explaining what is missing.
+Core checks whether each launcher's runtime dependencies are present. Unavailable launchers are excluded from automatic selection, but remain in the [`launchers`](../core/api/methods.md#launchers) API response with `available: false` and an `availabilityReason` explaining what is missing. On Linux desktop platforms, standalone emulator launchers are only registered for emulators Core finds installed, so a missing emulator is not listed at all.
 
 After installing a missing dependency, restart Core or use **Settings > Advanced > Reload Core** in the terminal UI. You can also run [`-reload`](../core/cli.md#reload-core). Reloading asks supported platforms to rediscover launcher data such as MiSTer RBF files and Batocera's EmulationStation system configuration.
 
@@ -148,11 +149,11 @@ Core resolves launcher choices in this order:
 
 Use a system default when every game in one system should use the same launcher. Core applies it to title/search launches and direct path launches when it can infer the system from the path. System defaults remain authoritative even when their selected launcher is unavailable, so Core reports the missing dependency instead of choosing another launcher.
 
-API clients can save a per-media launcher override through [`media.meta.update`](../core/api/methods.md#mediametaupdate). Use this when one game should always use a different launcher from the rest of its system.
+API clients can save a per-media launcher override through [`media.meta.update`](../core/api/methods.md#mediametaupdate). Use this when one game should always use a different launcher from the rest of its system. A one-shot `**launch?launcher=` override from a setup token lasts five minutes and is rejected immediately when the launcher ID does not exist, so a typo shows up on the setup token rather than on the next game.
 
 Per-media overrides are stored alongside favorites in Core's user database, separate from the rebuildable media database, so they are kept even if Core has to rebuild the media database after corruption. This user data is included in Core's [device backups](./backups.md).
 
-Use `launchers.preference` when you want an ordered fallback across launcher groups or IDs. Unavailable preference entries are skipped. SteamOS supports the `Native`, `EmuDeck`, and `RetroDECK` groups, for example:
+Use `launchers.preference` when you want an ordered fallback across launcher groups or IDs. Unavailable preference entries are skipped. SteamOS, Linux, Bazzite, and ChimeraOS support the `Native`, `EmuDeck`, and `RetroDECK` groups, for example:
 
 ```toml
 [launchers]

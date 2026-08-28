@@ -50,7 +50,7 @@ Example `zaparoo.txt`:
 **launch.random:SNES
 ```
 
-The filename is matched case-insensitively, so `zaparoo.txt`, `ZAPAROO.TXT`, and similar casing work.
+The filename is matched case-insensitively, so `zaparoo.txt`, `ZAPAROO.TXT`, and similar casing work. A burned data disc accepts the same file; see [optical drive token files](./optical-drive.md#use-a-token-file-on-a-disc).
 
 ## Launch media from the drive
 

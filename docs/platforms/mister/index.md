@@ -26,6 +26,8 @@ Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt w
 
 For manual Core installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
+When Update All installed Core, it also updates it; a `zaparoo.sh` you copied by hand can update itself. See [Core updates](../../core/updates.md). Update All can also install artwork and game manual packs that Core imports with the [mister-docs scraper](../../features/scraping.md#mister-docs).
+
 :::info Upgrading from TapTo?
 If you previously had TapTo installed, make sure the old `tapto.sh` is removed from your Scripts folder and that `linux/user-startup.sh` no longer references it. Having both services running simultaneously can cause double-launches and detection conflicts. Zaparoo is a direct replacement. Your existing NFC cards will continue to work.
 :::
@@ -57,7 +59,7 @@ There is no uninstall command on MiSTer. To remove Zaparoo:
 
 ## Device backups
 
-MiSTer supports portable [device backups](../../features/backups.md) containing Zaparoo data, MiSTer settings, input mappings, saves, save states, and profile-specific save directories. Create local backups from the Core terminal UI, or link Zaparoo Online for cloud snapshots and scheduling.
+MiSTer supports portable [device backups](../../features/backups.md) containing Zaparoo data, MiSTer settings, input mappings, saves, save states, profile-specific save directories, shared-profile saves and settings, `names.txt`, the legacy mappings file, and the profile name file. Create local backups from the Core terminal UI, or link Zaparoo Online for cloud snapshots and scheduling.
 
 ## Readers
 

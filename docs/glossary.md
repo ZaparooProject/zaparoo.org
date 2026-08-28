@@ -21,6 +21,8 @@ Short definitions of the words used across these docs, with a link to the page t
 - **Zaparoo Designer**: the web app for designing printable card labels. See [Zaparoo Designer](./designer/index.md).
 - **ZapESP32**: open-source firmware that turns an ESP32 board into a wireless NFC reader. See [ZapESP32](./zapesp32/index.md).
 - **Zaparoo Shop**: official readers, cards, and starter kits, tested with Zaparoo. Purchases fund development.
+- **Zaparoo Runtime**: the permanent Steam shortcut Core adds on SteamOS so emulators run as Steam-owned sessions in Gaming Mode. See [SteamOS launchers](./platforms/steamos/launchers.md#zaparoo-runtime-and-gaming-mode).
+- **Pairing**: approving a client such as the App, a browser, or a tool with a six-digit PIN so it can talk to Core over an encrypted connection. See [encryption](./core/config.md#encryption).
 
 ## Tokens and readers
 

@@ -17,6 +17,8 @@ Not sure which page you need? Find what you want to do below. Each link goes to 
 - **Use the barcode on a game box or a printed QR code.** See [barcodes](./tokens/barcodes.md) and [QR codes](./tokens/qr-codes.md).
 - **Launch from your phone without a reader.** [Zaparoo App Pro](./app/index.md#zaparoo-app-pro) turns your phone into the reader.
 - **Browse and launch from the TV on MiSTer.** Install [Zaparoo Frontend](./frontend/index.mdx).
+- **Boot an alternate MiSTer core without a game.** Use [`launch.system` with `?launcher=`](./zapscript/launch.md#launchsystem).
+- **Launch emulators on a Linux desktop or handheld.** Core registers the [standalone emulators](./platforms/linux/launchers.md#standalone-emulators) it finds installed, plus EmuDeck and RetroDECK.
 
 ## Households and arcades
 
@@ -30,6 +32,7 @@ Not sure which page you need? Find what you want to do below. Each link goes to 
 - **Back up saves and settings.** Create a local backup or turn on cloud backup with Warp in [device backups](./features/backups.md).
 - **Make one card work on two devices.** Write a portable title on the card; see [using tokens on multiple devices](./tokens/index.md#using-tokens-on-multiple-devices).
 - **Restore a setup onto a replacement device.** Follow [restore a backup](./features/backups.md#restore-a-backup).
+- **Keep Core up to date.** Core checks on its own; turn on automatic installs or install by hand with [Core updates](./core/updates.md).
 
 ## Automation
 
@@ -42,6 +45,7 @@ Not sure which page you need? Find what you want to do below. Each link goes to 
 - **Design and print card labels.** Start with the [labels guide](./labels/index.md), which covers Zaparoo Designer, printing, and cutting.
 - **Choose which NFC cards to buy.** Read [NFC cards and tags](./tokens/nfc/index.md).
 - **Store and display a collection.** See [token storage](./tokens/storage/index.md).
+- **Burn a disc that runs a command.** Put the ZapScript in a [`zaparoo.txt` file on the disc](./readers/optical-drive.md#use-a-token-file-on-a-disc).
 
 ## When something is wrong
 

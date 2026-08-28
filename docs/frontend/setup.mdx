@@ -10,7 +10,7 @@ Zaparoo Frontend runs on MiSTer FPGA and connects to the local [Zaparoo Core](..
 
 ## Requirements
 
-Frontend is built for Zaparoo Core v2.17.0 or newer. Older Core builds still connect, but Frontend shows an **Update Zaparoo Core** warning at startup and some features may not work until you update.
+Frontend is built for Zaparoo Core v2.17.0 or newer. Update All installs matching versions of both. If you install by hand and Core is older, Frontend still connects but shows an **Update Zaparoo Core** warning at startup and some features may not work until you update.
 
 On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
 
@@ -55,7 +55,7 @@ You can still update manually by downloading a new release ZIP and replacing the
 
 ## First run
 
-The first start shows a welcome notice explaining the non-commercial licence; select **I understand** to continue. Frontend then connects to Core locally. If your media database is empty, Frontend starts the first media database update in the background and the Hub shows **No games found yet** until it finishes.
+The first start shows a welcome notice explaining the non-commercial licence; select **I understand** to continue. Frontend then connects to Core locally. If your media database is empty, Frontend starts the first media database update in the background. While it runs, the Hub shows **Updating the media database** with the note that your games appear as Core finds them; if nothing is found, it shows **No games found yet** with a pointer to **Settings > Library**.
 
 You can update the media database later from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own.
 
@@ -89,10 +89,11 @@ Open **Settings > Display**, then set **Orientation** to **Rotated CW** or **Rot
 
 ### Change the interface resolution {#change-mister-resolution}
 
-Open **Settings > Display**, then **Interface resolution**. **Automatic (Recommended)** picks the best fit; the other options are exact divisors of your current output, up to 1080 lines high. Changing it restarts Frontend.
+Open **Settings > Display**, then **Interface resolution**. **Automatic (Recommended)** picks an integer division of your output up to 720 lines high, so a 1080p display runs at 960 by 540 and a 1440p display at 1280 by 720. The other options are exact divisors of your output up to 1080 lines high; the full 1080p option runs with animations off. Changing it restarts Frontend. A mode your display refuses is reset to Automatic.
 
 ## Language, region, and controls
 
 - **Settings > Language** sets the interface language (18 languages plus **Automatic**, applied after a restart), the **Region** used for system and game names (Automatic, Americas, Europe, or Japan), and the **Clock format**.
 - **Settings > Controls** sets the **Button style** shown in on-screen prompts (automatic or styles A to E), lets you swap the controller buttons for confirm and cancel or for Options and View, and turns **Mouse support** on.
 - **Settings > Appearance** holds the [color scheme](./customization.mdx#color-scheme), system logo style, **Reduce motion**, and the **Screensaver** timeout (off, or 1 to 30 minutes).
+- **Settings > About** shows the version and licence, a **Documentation** code you can scan to open this guide on your phone, the **Debug logging** switch (restarts Frontend), and **Upload log file** for [support](./troubleshooting.mdx#upload-support-logs).

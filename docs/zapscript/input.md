@@ -255,7 +255,7 @@ Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/miste
 ### Arguments
 
 **`amount`** (optional, default: `1`)
-The number of coins to insert.
+The number of coins to insert, from 0 to 99.
 
 Omit the amount to insert one coin.
 

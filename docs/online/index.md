@@ -16,13 +16,14 @@ keywords:
 
 [Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up Zaparoo data from every Core platform, include supported [MiSTer](../platforms/mister/index.md) settings and saves, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
-Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, the User API, and virtual cards and decks are free.
+Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, the User API, and virtual cards and decks are free. Remote control through the User API is free for one device at a time and unlimited with Warp.
 
 Online currently provides:
 
 - **Cloud backup with Warp:** keep off-site snapshots of Zaparoo data, plus supported MiSTer saves and settings
 - **Play history sync:** optionally upload play sessions to your account
-- **User API:** give apps scoped, read-only access to data from your account
+- **User API:** give apps scoped access to data from your account
+- **Remote control:** let apps you authorise send approved commands to a device that has opted in
 - **Virtual cards and decks:** create cards and collections online, then write them to physical NFC tags
 
 :::info Optional Online Service
@@ -36,7 +37,7 @@ Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizz
 3. Claim a username when prompted.
 4. Link a device: on the device, open **Settings > Online** in the terminal UI (or the Decky plugin on SteamOS) to get a URL and one-time code, then approve it from the **Link device** button on your Online dashboard.
 
-Linking a device does not turn on cloud backup or play history sync. Each is enabled separately.
+Linking a device does not turn on cloud backup, play history sync, or remote control. Each is enabled separately.
 
 ## Cloud backup with Warp
 
@@ -81,9 +82,15 @@ Core checks the setting again before each batch. Disabling it stops later upload
 
 While sync is enabled and the device is linked, local retention cleanup preserves sessions that have not reached the server yet. After a session is acknowledged, the normal [`playtime.retention`](../core/config.md#retention) period still applies to the local copy.
 
+## Remote control
+
+Apps you authorise through the [User API](#user-api) can send commands to a device once that device opts in: turn on **Remote control** under **Settings > Online** in the terminal UI. A remote command can launch a game or a system, stop what is playing, search and browse the library, or run a MiSTer script, and each one is recorded on the device under **Remote control activity**. Unlinking the device turns it off again.
+
+Free accounts can remote-control one device at a time. Warp subscribers are not limited.
+
 ## User API
 
-The [Zaparoo Online User API](https://developers.zaparoo.com/) gives apps read-only access to data from your account. It is free to use and does not require Warp.
+The [Zaparoo Online User API](https://developers.zaparoo.com/) gives apps scoped access to data from your account and, for devices that opt in, remote control. It is free to use and does not require Warp.
 
 Version 1 can read:
 
@@ -108,7 +115,7 @@ Authorization: Bearer zpk1_...
 
 Keys use separate scopes for profile, play history, cards, decks, devices, and backups, and can be revoked at any time. The `read:backups` scope can download files from your snapshots, so only give it to apps you trust.
 
-Keys currently give read access only. Apps cannot change your account data or control linked devices through them. See the [complete User API reference](https://developers.zaparoo.com/) for endpoints, pagination, rate limits, and response schemas.
+The `devices:launch` and `devices:scripts` scopes let an app use [remote control](#remote-control) on devices that have it turned on; only grant them to apps you trust. Keys cannot change your account data. See the [complete User API reference](https://developers.zaparoo.com/) for endpoints, device operations, pagination, rate limits, and response schemas.
 
 ## Virtual cards and decks {#cards-and-decks}
 

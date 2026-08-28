@@ -37,6 +37,10 @@ Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in we
 
 Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application but leaves your Core configuration and user data under `%localappdata%\zaparoo`.
 
+## Updates
+
+Core checks for new releases on its own and can install them in place when it is able to write to its install folder; when it cannot, the notice says to run the Windows installer again. See [Core updates](../../core/updates.md).
+
 ## System tray
 
 Right-click the Zaparoo icon in the system tray to access the following options:

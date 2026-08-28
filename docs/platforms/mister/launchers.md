@@ -11,7 +11,7 @@ Zaparoo also indexes `.mgl` files placed directly in your games folders. Drop a 
 
 MiSTer unstable nightly cores using the standard `<core>_unstable_YYYYMMDD_<hash>.rbf` filename can provide a system's launcher when the regular core is not installed. If several matching nightlies exist, Core uses the newest dated filename. A regular core with the exact expected name still takes priority.
 
-After adding or replacing an RBF file, select **Settings > Advanced > Reload Core** in the terminal UI or run [`-reload`](../../core/cli.md#reload-core) to force a filesystem rescan. Then update the media database if the system or its games still need to be indexed.
+After adding or replacing an RBF file, select **Settings > Advanced > Reload Core** in the terminal UI or run [`-reload`](../../core/cli.md#reload-core) to force a filesystem rescan. Core refreshes its launcher list after the rescan. Then update the media database if the system or its games still need to be indexed.
 
 ## ZIP archives
 
@@ -144,6 +144,8 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `ZXNext` | ZXNext | `.vhd`, `.tzx`, `.csw` |
 
 ### Arcade Systems
+
+Core skips the `_Arcade/_Organized` folders created by Arcade Organizer, so each arcade game is indexed once from its `.mra` file.
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
@@ -324,6 +326,12 @@ MiSTer supports `render_scale` values of `25`, `33`, `50`, and `100`. `render_re
 Some alternate or unofficial versions of cores are supported and can be used by explicitly setting a launcher in the ZapScript on a token. Zaparoo assumes they're installed in either the default location from Update All or in the appropriate menu folder.
 
 To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `N64/some/game.n64?launcher=80MHzNintendo64`
+
+To boot an alternate core without loading a game, give [`launch.system`](../../zapscript/launch.md#launchsystem) the same argument. Launcher IDs are matched case-insensitively:
+
+```zapscript
+**launch.system:Nintendo64?launcher=80MHzNintendo64
+```
 
 MiSTer launch commands also support `set_name` and `set_name_same_dir` advanced arguments. These map to MiSTer's MGL `<setname>` tag and `same_dir` attribute. Use `set_name_same_dir=1` when you want a separate config name while keeping the normal games folder. Without `set_name_same_dir=1`, MiSTer also uses the set name as the games folder.
 

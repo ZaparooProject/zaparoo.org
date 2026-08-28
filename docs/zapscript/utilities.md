@@ -220,7 +220,7 @@ Write a specific launch command to the next scanned card:
 **write:Genesis/Sonic the Hedgehog.md
 ```
 
-After scanning a token with `**write:...`, scan the card you want to write within one minute. The source token is ignored, so scanning the setup token again will not overwrite it.
+After scanning a token with `**write:...`, scan the card you want to write within one minute. The source token is ignored, so scanning the setup token again will not overwrite it. The card is not scanned as a token while the write is pending; take it off the reader once the write finishes before scanning it again.
 
 :::info Reader support
 This command requires a writable reader that supports targeted writes, such as PN532 or supported libnfc readers.

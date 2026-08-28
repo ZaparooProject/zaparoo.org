@@ -47,11 +47,16 @@ Core can launch games directly through supported emulator Flatpaks and executabl
 | ScummVM | ScummVM | `org.scummvm.ScummVM` Flatpak |
 | Supermodel | Sega Model 3 | `com.supermodel3.Supermodel` Flatpak |
 | xemu | Xbox | `app.xemu.xemu` Flatpak |
+| MAME | Arcade | `org.mamedev.MAME` Flatpak |
+| Flycast | Dreamcast, NAOMI, and Atomiswave | `org.flycast.Flycast` Flatpak |
+| RMG | Nintendo 64 | `com.github.Rosalie241.RMG` Flatpak |
+| mGBA | Game Boy, Game Boy Color, and GBA | `io.mgba.mGBA` Flatpak |
+| Ruffle | Flash (`.swf`) | `rs.ruffle.Ruffle` Flatpak |
 | PrimeHack | GameCube and Wii | `io.github.shiiion.primehack` Flatpak |
 
-Executable launchers are detected through `PATH` and `~/.local/bin`. Native filesystem scanning uses ES-DE-style system folders under the configured media roots, with `~/ROMs` as the SteamOS default. Some launchers reuse compatible media indexed by another launcher instead of scanning the same files again.
+Each emulator is detected as a native executable on `PATH` or in `~/.local/bin`, as an AppImage in `~/Applications`, or as a Flatpak. Native filesystem scanning uses ES-DE-style system folders under the configured media roots, with `~/ROMs` as the SteamOS default. Some launchers reuse compatible media indexed by another launcher instead of scanning the same files again.
 
-shadPS4, Vita3K, and RPCS3 use `.ps4`, `.psvita`, and `.ps3` marker files respectively when scanning. Each marker must contain one non-empty launch target on a single line. ScummVM uses `.scummvm` target files.
+shadPS4, Vita3K, and RPCS3 use `.ps4`, `.psvita`, and `.ps3` pointer files respectively when scanning. Each file holds one launch target, up to 4096 bytes. ScummVM uses `.scummvm` target files. The launcher IDs, file types, and scanned folder for every emulator are listed under [standalone emulators](../linux/launchers.md#standalone-emulators) on the Linux launchers page; SteamOS uses the same detection.
 
 Use [`launchers.preference`](../../core/config.md#preference) to choose an ordered fallback between native emulators, EmuDeck, and RetroDECK:
 
@@ -76,7 +81,7 @@ In Gaming Mode, RetroArch launches use Zaparoo Runtime when it is available. Dir
 
 Zaparoo detects [EmuDeck](https://www.emudeck.com/) installations and creates launchers for supported system folders present in the EmuDeck ROM directory. RetroArch-based systems use Core's built-in RetroArch launchers, while other systems launch through standalone Flatpak emulators such as Dolphin and PCSX2. Missing emulators are reported as unavailable instead of being selected for a launch.
 
-EmuDeck is detected when `~/Emulation/roms/` exists.
+EmuDeck systems are available when the EmuDeck launcher wrapper for the emulator exists under `tools/launchers` next to the ROM directory, or when the matching emulator Flatpak is installed. If you moved the ROM directory, Core reads the new location from `romsPath` in `~/.config/EmuDeck/settings.sh`.
 
 **Default paths:**
 - ROMs: `~/Emulation/roms/`
@@ -90,13 +95,17 @@ Games are discovered using ES-DE's `gamelist.xml` files for proper display names
 
 Zaparoo detects [RetroDECK](https://retrodeck.net/) and creates launchers for recognized system folders in its ROM directory. Games launch through RetroDECK's unified CLI, which handles emulator selection internally.
 
-RetroDECK is detected when the `net.retrodeck.retrodeck` Flatpak is installed and `~/retrodeck/roms/` exists.
+RetroDECK is detected when the `net.retrodeck.retrodeck` Flatpak is installed and `~/retrodeck/roms/` exists. If you moved RetroDECK, Core reads the new locations from `paths.rd_home_path` and `paths.roms_path` in `~/.var/app/net.retrodeck.retrodeck/config/retrodeck/retrodeck.json`.
 
 **Default paths:**
 - ROMs: `~/retrodeck/roms/`
 - Gamelists: `~/retrodeck/ES-DE/gamelists/`
 
 RetroDECK supports any system folder that matches an ES-DE system definition.
+
+## Bottles, Faugus, and Moonlight
+
+Programs from [Bottles](../linux/launchers.md#bottles), games from [Faugus Launcher](../linux/launchers.md#faugus), and streamed apps through [Moonlight](../linux/launchers.md#moonlight) are indexed and launched the same way as on desktop Linux. In Gaming Mode they use gamescope focus handling like other non-Steam launchers.
 
 ## Kodi
 

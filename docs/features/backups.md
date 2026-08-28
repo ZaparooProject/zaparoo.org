@@ -35,13 +35,15 @@ Every backup includes:
 - Favorites, history, token mappings, profiles, and per-game launcher choices from the user database
 - Zaparoo Frontend and terminal UI configuration
 - Custom launcher and mapping TOML files
+- Custom audio files from Core's `assets` folder: the success, fail, limit, pending, and ready sounds, plus any other `.ogg`, `.wav`, `.mp3`, or `.flac` files there
 
 MiSTer backups also include supported platform data:
 
 - `MiSTer.ini`, alternate MiSTer INI files, and Downloader configuration
 - MiSTer core configuration files and input mappings
-- Shared saves and save states
+- Shared saves and save states, captured even while a personal profile is active
 - Separate save and save-state directories created by [device profiles](./profiles.md)
+- `names.txt`, the legacy mappings file, and the profile name file
 
 Unless listed above, backups do not include platform settings, emulator configuration, saves, save states, or game library data. Support for more platform data is planned.
 
@@ -57,7 +59,7 @@ From the Core terminal UI:
 2. Under **Local**, select **Back up now**.
 3. Wait for the backup to finish.
 
-Local backups are stored in the `backups/files` folder inside the platform's Core data directory. Manual backups remain there until you delete them.
+Local backups are stored in the `backups/files` folder inside the platform's Core data directory. Manual backups remain there until you delete them. Core verifies every finished ZIP and deletes it if verification fails, so a listed backup is one that opened cleanly.
 
 Open **Settings > Backup > Local > View backups** to inspect, restore, or delete a backup.
 

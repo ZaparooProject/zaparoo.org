@@ -254,6 +254,8 @@ The payload itself is plaintext ZapScript, with no extra formatting. The respons
 
 Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result is cached and later URLs on the same domain are treated as Zap Links immediately. If the domain responds but does not support Zap Links, Core caches that result and prunes non-supporting hosts after 30 days so they can be checked again. Temporary network and server errors are not cached.
 
+Zap Link URLs must use HTTPS. Plain `http://` is only accepted for `localhost` and for private or link-local IP addresses, which covers a server on your own network while you test it. URLs that include a username or password are rejected, redirects are followed up to 10 times with every hop checked against the same rules, and the `.well-known/zaparoo` check is a plain request without Zaparoo headers.
+
 :::warning
 ZapScript received via a Zap Link is treated as a remote source. For security, remote sources cannot run `input.keyboard`, `input.gamepad`, or `execute`. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
 :::
@@ -272,7 +274,7 @@ Servers can use these headers to serve different scripts for different devices f
 
 ### Self-Hosting
 
-You can host your own Zap Link server as long as it follows the conventions above.
+You can host your own Zap Link server as long as it follows the conventions above. A server reachable from the internet needs a valid HTTPS certificate; only local and private addresses may use plain HTTP.
 
 Here's an example in Python which would serve a directory of text files as Zap Links:
 

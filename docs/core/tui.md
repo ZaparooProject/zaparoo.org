@@ -69,7 +69,7 @@ Custom writes parse the ZapScript before writing and show an error for unknown c
 
 Open **Settings > Backup** to create, inspect, restore, or delete [device backups](../features/backups.md). Supported devices can also link a Zaparoo Online account, upload cloud snapshots, choose an automatic schedule, and restore compatible snapshots from other devices on the account.
 
-**Settings > Online** shows account-link status and available online services. Linking displays a URL and one-time code to approve from another device. The **Play history sync** toggle separately controls whether retained and future play sessions are uploaded; account linking alone leaves history local.
+**Settings > Online** shows account-link status and available online services. Linking displays a URL and one-time code to approve from another device. The **Play history sync** toggle separately controls whether retained and future play sessions are uploaded; account linking alone leaves history local. The **Remote control** toggle works the same way; see [remote control](../online/index.md#remote-control).
 
 ## Reload Core
 

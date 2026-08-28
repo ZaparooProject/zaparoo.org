@@ -1,6 +1,6 @@
 ---
 sidebar_position: 8
-description: "Install Zaparoo on ChimeraOS: launch Steam games, GOG games, and scripts from NFC cards on ChimeraOS gaming devices."
+description: "Install Zaparoo on ChimeraOS: launch Steam games, GOG games, emulators, EmuDeck, RetroDECK, and scripts from NFC cards on ChimeraOS gaming devices."
 keywords: [zaparoo chimeraos, chimeraos nfc, chimera game launcher nfc, zaparoo chimera]
 ---
 
@@ -10,7 +10,7 @@ keywords: [zaparoo chimeraos, chimeraos nfc, chimera game launcher nfc, zaparoo 
 ChimeraOS support is currently in beta. Some features may not work as expected.
 :::
 
-Zaparoo Core on [ChimeraOS](https://chimeraos.org/) supports launching Steam games, GOG games via the Chimera web app, and shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
+Zaparoo Core on [ChimeraOS](https://chimeraos.org/) supports launching Steam games, GOG games via the Chimera web app, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, and shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
 
 ## File paths
 
@@ -31,7 +31,7 @@ Access the terminal with `Ctrl+Alt+F2` (default credentials: `gamer` / `gamer`) 
 curl -fsSL https://zaparoo.org/install.sh | bash
 ```
 
-This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`).
+This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`). After installation, Core checks for new releases and can update itself in place; see [Core updates](../core/updates.md).
 
 ## Uninstall
 
@@ -54,6 +54,12 @@ sudo ~/.local/bin/zaparoo -uninstall hardware
 | ------------- | ------- | ----------------------------------- |
 | Steam         | PC      | Games and non-Steam shortcuts       |
 | ChimeraGOG    | PC      | GOG games from Chimera web app      |
+| Standalone emulators | Multiple | Installed native, AppImage, or Flatpak emulators |
+| EmuDeck       | Multiple | Systems from an EmuDeck installation |
+| RetroDECK     | Multiple | Systems from a RetroDECK installation |
+| Bottles       | PC      | Programs from Bottles               |
+| Faugus        | PC      | Games from Faugus Launcher          |
+| Moonlight     | PC      | Streamed apps through Moonlight     |
 | Kodi          | Media   | Videos, movies, TV shows, music     |
 | Shell Scripts | Any     | Custom `.sh` file execution         |
 
@@ -66,6 +72,14 @@ Games are indexed from:
 - `~/.local/share/Steam/`
 
 To manually launch a Steam game, write `steam://<app_id>` to a token.
+
+### Emulators
+
+Core registers launchers for emulators it finds installed, whether native, AppImage, or Flatpak, and adds EmuDeck and RetroDECK systems when either is installed. Detection rules, supported systems, file types, and pointer files are listed under [standalone emulators](./linux/launchers.md#standalone-emulators), [EmuDeck](./linux/launchers.md#emudeck), and [RetroDECK](./linux/launchers.md#retrodeck) on the Linux launchers page. Use [`launchers.preference`](../core/config.md#preference) to choose between the `Native`, `EmuDeck`, and `RetroDECK` groups.
+
+### Bottles, Faugus, and Moonlight
+
+Programs from [Bottles](./linux/launchers.md#bottles), games from [Faugus Launcher](./linux/launchers.md#faugus), and streamed apps through [Moonlight](./linux/launchers.md#moonlight) are indexed and launched the same way as on desktop Linux.
 
 ### Gaming Mode
 

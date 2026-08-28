@@ -1,11 +1,11 @@
 ---
-description: "Install Zaparoo on Linux with Steam, Lutris, Heroic, RetroArch, media, and desktop launcher support."
-keywords: [zaparoo linux, linux nfc game launcher, zaparoo lutris, zaparoo heroic, zaparoo retroarch, linux nfc reader]
+description: "Install Zaparoo on Linux with Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, media, and desktop launcher support."
+keywords: [zaparoo linux, linux nfc game launcher, zaparoo lutris, zaparoo heroic, zaparoo retroarch, linux emulator launcher, zaparoo emudeck, linux nfc reader]
 ---
 
 # Linux
 
-Zaparoo Core on Linux provides desktop integration with support for Steam, Lutris, Heroic, and RetroArch game launching. This platform serves as the foundation for other Linux-based platforms.
+Zaparoo Core on Linux provides desktop integration with support for Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, and Moonlight launching. This platform serves as the foundation for other Linux-based platforms.
 
 ## File paths
 
@@ -28,6 +28,21 @@ curl -fsSL https://zaparoo.org/install.sh | bash
 
 This installs all necessary components and sets up the service to run on startup. Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in web UI to manage your setup and write tokens.
 
+The same script has a few more modes:
+
+```bash
+# Show the installed version and service health
+curl -fsSL https://zaparoo.org/install.sh | bash -s -- status
+
+# Remove Core while keeping your configuration and data
+curl -fsSL https://zaparoo.org/install.sh | bash -s -- uninstall
+
+# Install beta builds instead of stable releases
+curl -fsSL https://zaparoo.org/install.sh | bash -s -- --channel beta
+```
+
+After installation, Core checks for new releases and can update itself in place. See [Core updates](../../core/updates.md).
+
 For manual component-based installation, see [Manual Install](./install.md).
 
 ## Service controls
@@ -44,6 +59,10 @@ systemctl --user start zaparoo.service
 ## Uninstall
 
 See [Uninstalling](./install.md#uninstalling) for the component removal commands and required permissions.
+
+## Client security
+
+Linux requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Settings > Clients > Pair** in the terminal UI, or run `zaparoo -pair`. The PIN expires after five minutes. See [encryption](../../core/config.md#encryption) for how paired clients and their permissions work.
 
 ## Readers
 
@@ -72,6 +91,12 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Lutris | Installed Lutris games from native or Flatpak library data |
 | Heroic | Installed Epic Games and GOG titles managed by Heroic |
 | RetroArch | Games through the RetroArch Flatpak, with built-in core mappings and controls |
+| Standalone emulators | Installed emulators found on `PATH`, in `~/.local/bin`, as AppImages in `~/Applications`, or as Flatpaks |
+| EmuDeck | Systems from an EmuDeck installation |
+| RetroDECK | Systems from a RetroDECK installation |
+| Bottles | Programs from Bottles |
+| Faugus | Games from Faugus Launcher |
+| Moonlight | Streamed apps through Moonlight |
 | Kodi | Movies, TV, Music (requires Kodi API) |
 | Web Browser | Opens URLs in default browser |
 | Shell Scripts | Custom `.sh` execution (allowlist required) |
@@ -85,3 +110,5 @@ See [Launchers](./launchers.md) for full details and configuration.
 **Permission denied opening the reader's serial port.** Add your user to the `dialout` group (`sudo usermod -a -G dialout $USER`), then log out and back in.
 
 **A reader is not detected.** Check the reader's page under [readers](../../readers/index.md) for the driver and any manual configuration, and turn on `debug_logging` in `config.toml` to see what Core finds.
+
+**An emulator launcher is missing.** Core only registers emulators it finds installed. Install the emulator, natively or as a Flatpak, then reload Core and update the media database.

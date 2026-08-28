@@ -12,13 +12,13 @@ If covers, screenshots, or descriptions are missing, follow [Add Artwork and Met
 
 ## Browse the library
 
-Open a category to browse its systems, then select a system to browse its games. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through a long list, **Random game** to pick one for you, or **Show** to switch between **All** and **Favorites**.
+Open a category to browse its systems, then select a system to browse its games. Selecting a system opens its games straight away. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through a long list, **Random game** to pick one for you, or **Show** to switch between **All** and **Favorites**. In list layout, Left and Right move a whole page.
 
 The **Other** category holds [launchable items](../features/launchers.md#launchables) that have no normal game file behind them, such as ROM-less MiSTer cores. You can launch them like any other game or write them to a token.
 
 ## Arrange the Hub
 
-The Hub shows categories, **Favorites**, **Recently played**, **Resume**, **Update**, and **Settings**. You can add your own tiles: choose **Add to Hub** from the options menu of any system, folder, or game, or use **Add item...** in the Hub's **View** menu. Tiles can be moved, hidden, or deleted from their options menu, and **Reset layout** in the View menu restores the default arrangement.
+The Hub is a grid you arrange yourself. Tiles can be categories, the built-in **Resume**, **Favorites**, **Recently played**, **Update**, and **Settings** actions, systems, folders, or games. To add a tile, choose **Add to Hub** from the options menu of any system, folder, or game, or use **Add item...** in the Hub's **View** menu. A tile's options menu offers **Move**, plus **Hide** for categories and actions or **Delete** for tiles you added, and **Reset layout** in the View menu restores the default arrangement. The layout is stored under `[[hub.items]]` in `frontend.toml`; see [configuration file](./customization.mdx#configuration-file).
 
 ## Use the options menu
 
@@ -26,6 +26,7 @@ Open the options menu to manage the item you are viewing. Depending on whether y
 
 - Launch a system or game, or pick a **Random game**.
 - **Change launcher** for a system, or override the launcher for one game.
+- **Launch system** to boot a system's core with no game loaded.
 - **Update media database** or **Get metadata** for that system or game.
 - **Hide** a category or system (turn on **Show hidden items** in Settings to unhide it).
 - **Add to Hub**.

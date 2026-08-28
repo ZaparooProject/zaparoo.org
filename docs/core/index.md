@@ -34,6 +34,8 @@ After Core is installed, you can control it through:
 
 Most Core settings live in `config.toml`. See the [configuration reference](./config.md) for file locations, option names, and examples.
 
+Core checks for new releases on its own and can install them in place when you opt in. See [Core updates](./updates.md) for how checks, automatic installs, and rollback work on each platform.
+
 ## Media database and scraping
 
 Core keeps a rebuildable media database so the app, Web UI, TUI, and ZapScript can search for games and other launchable media. Update it after adding files, installing games in a supported launcher, or changing launcher paths. Scraping is a separate step that imports local metadata and artwork into those indexed records.
@@ -53,7 +55,8 @@ Use these starting points for Core maintenance tasks:
 | Back up before making changes | [Device backups](../features/backups.md), local for free or automatic with Warp |
 | Edit `config.toml` | [Configuration reference](./config.md) |
 | Recover a corrupt media database | [Database recovery](./cli.md#database-recovery) |
-| Update or uninstall Core | Your [platform guide](../platforms/index.mdx); uninstall steps are platform-specific |
+| Update Core | [Core updates](./updates.md); Update All on MiSTer and the package manager on Batocera when they installed Core |
+| Uninstall Core | Your [platform guide](../platforms/index.mdx); uninstall steps are platform-specific |
 
 Direct uninstall instructions are available for [MiSTer](../platforms/mister/index.md#uninstall), [Batocera](../platforms/batocera/index.md#uninstall), [LibreELEC](../platforms/libreelec.md#uninstall), [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos/index.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
 
@@ -66,6 +69,8 @@ If you are setting up hardware, start with the [readers](../readers/index.md) an
 ## For developers
 
 The [Core API](./api/index.md) reference and the [Developer Guide](./contributing/index.md) are maintained in the Core repository and published here automatically, so they read differently from the rest of these docs. The [Zaparoo CLI](https://github.com/ZaparooProject/zaparoo-cli) is the maintained command-line client for scripts, tests, and AI agents.
+
+A client on another device must [pair with Core](./config.md#encryption) or send an [API key](./config.md#api-keys) on most platforms; the [permissions](./api/index.md#permissions) section of the API reference lists what each kind of client can call.
 
 ## Source and license
 

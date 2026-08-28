@@ -78,6 +78,15 @@ Save the file, restart Zaparoo Core, and run a media database update. Core shoul
 
 ## Advanced options
 
+### kind and backend
+
+Every custom launcher has a `kind` and a `backend`, both optional in most files:
+
+- `kind` is `launcher` (the default) for an entry that launches media, or `virtual_system` for an entry that adds a [launchable](./launchers.md#launchables) system. Virtual systems can set `category` to `Other` (the default), `Console`, `Computer`, `Handheld`, or `Arcade`.
+- `backend` is `command` for an entry that runs an `execute` line, or `mister_core` for a MiSTer core defined by `load_path`. When `execute` is set and `backend` is omitted, Core assumes `command`. A `command` launcher cannot also set `load_path`.
+
+See [ROM-less MiSTer cores](../platforms/mister/launchers.md#other-cores) for `mister_core` examples.
+
 ### groups
 
 Associate the launcher with one or more groups. Groups let you set defaults for multiple launchers at once using `[[launchers.default]]` in `config.toml`.
@@ -148,7 +157,7 @@ Available control actions are reported in the `launcherControls` field of the ac
 
 ### restricted
 
-When set to `true`, only files matching the [`allow_file`](../core/config.md#allow_file) patterns in `config.toml` can be launched. Use this for security-sensitive launchers.
+When set to `true`, only files matching the [`allow_file`](../core/config.md#allow_file) patterns in `config.toml` can be launched. Use this for security-sensitive launchers. An `allow_file` entry that is not a valid regular expression is skipped and logged with the reason.
 
 ```toml
 [[launchers.custom]]

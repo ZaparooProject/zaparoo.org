@@ -18,6 +18,8 @@ For example, if your IP is `192.168.1.100`, go to `http://192.168.1.100:7497/app
 
 When the Web UI is hosted by a Core instance, it automatically connects back to that same host. You don't need to enter the IP address again inside the app.
 
+If Core requires encrypted client connections, a browser on another device is asked for the pairing PIN the first time it connects; a browser on the Core device itself is not. See [encryption](../core/config.md#encryption) for the pairing steps and the platform defaults.
+
 [Zaparoo Online](../online/index.md) sign-in on the embedded Web UI is email and password only. Google and Apple sign-in are hidden there; use the native apps if you need social sign-in.
 
 ## Configuration

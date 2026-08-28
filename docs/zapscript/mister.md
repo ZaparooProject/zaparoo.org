@@ -6,7 +6,7 @@ keywords: [zapscript mister, mister fpga zaparoo, zapscript core load, mister os
 
 # MiSTer
 
-These commands target [MiSTer](../platforms/mister/index.md), with some support on [MiSTeX](../platforms/mistex.md). `mister.ini`, `mister.core`, `mister.mgl`, and `mister.wallpaper` work on both platforms. `mister.script` is MiSTer only. On unsupported platforms, the command returns an error and the rest of the script stops.
+These commands target [MiSTer](../platforms/mister/index.md), with some support on [MiSTeX](../platforms/mistex.md). `mister.ini`, `mister.core`, `mister.mgl`, and `mister.wallpaper` work on both platforms. `mister.script` is MiSTer only. On unsupported platforms, the command returns an error and the rest of the script stops. To boot an alternate core without loading a game, use [`launch.system` with `?launcher=`](./launch.md#launchsystem).
 
 ## mister.ini
 
@@ -109,7 +109,7 @@ This command is supported on [MiSTer](../platforms/mister/index.md) only.
 ### Arguments
 
 **`script`** (required)
-The script filename (must exist in `/media/fat/Scripts`). Arguments can be included after the filename.
+The script filename (must exist directly in `/media/fat/Scripts`; names containing path separators are rejected). Arguments can be included after the filename.
 
 ### Advanced Arguments
 

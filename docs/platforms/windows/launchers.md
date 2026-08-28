@@ -58,7 +58,7 @@ LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox I
 
 To verify the plugin loaded correctly, right-click any game in the desktop LaunchBox interface. You should see **Write to tag** in the context menu.
 
-Once installed, Zaparoo automatically detects the LaunchBox library and adds its games to the media database. When Big Box is running, the plugin launches the selected game through the Big Box interface.
+Once installed, Zaparoo automatically detects the LaunchBox library and adds its games to the media database. When Big Box is running, the plugin launches the selected game through the Big Box interface. The plugin shows the game in Big Box before starting it, so marquee and lighting tools such as LEDBlinky react to the right game, and it returns Big Box to its previous view and brings it back to the foreground when the game exits.
 
 To manually create a LaunchBox or Big Box game token, write `launchbox://<game_id>` to a token.
 

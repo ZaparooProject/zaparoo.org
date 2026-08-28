@@ -66,8 +66,6 @@ The global settings section does not start with a section header and is the only
 ```toml
 config_schema = 1
 debug_logging = true
-auto_update = false
-update_channel = "stable"
 ```
 
 #### config_schema
@@ -100,38 +98,42 @@ This option should be enabled when attempting to reproduce issues for reporting.
 
 See the [Privacy Policy](/privacy) for details on what data is collected.
 
-#### auto_update
-
-| Key         | Type    | Default              |
-| ----------- | ------- | -------------------- |
-| auto_update | boolean | _varies by platform_ |
-
-`auto_update` controls whether Zaparoo checks for and notifies about available updates.
+### Updates
 
 ```toml
-auto_update = false
+[updates]
+check = true
+install = false
+channel = "stable"
 ```
 
-Platform defaults:
-- **Most platforms**: Enabled by default
-- **MiSTer (Downloader)**: Disabled by default (updates managed by MiSTer Downloader)
-- **Batocera (pacman)**: Disabled by default (updates managed by Batocera's package manager)
+The `[updates]` section controls how Core checks for and installs new releases. See [Core updates](./updates.md) for how checks, automatic installs, and rollback work.
 
-When disabled, Zaparoo will not check for new versions or display update notifications.
+Checking is on by default on every platform. On installs owned by a package manager, such as MiSTer installs from Update All and Batocera installs from the Content Downloader, Core still checks but never installs itself.
 
-#### update_channel
+#### check {#updates-check}
 
-| Key            | Type                         | Default    |
-| -------------- | ---------------------------- | ---------- |
-| update_channel | string (`"stable"`, `"beta"`) | `"stable"` |
+| Key   | Type    | Default |
+| ----- | ------- | ------- |
+| check | boolean | true    |
 
-`update_channel` controls which release channel Core uses when checking for updates.
+`check` enables update checks and the Inbox message that announces a new release.
 
-```toml
-update_channel = "stable"
-```
+#### install {#updates-install}
 
-Use `"stable"` for normal releases. Use `"beta"` only if you want Core to check for beta releases.
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| install | boolean | false   |
+
+`install` lets Core install new releases automatically. It is treated as `false` while `check` is off, and Core refuses to install itself on package-managed installs.
+
+#### channel {#updates-channel}
+
+| Key     | Type                          | Default    |
+| ------- | ----------------------------- | ---------- |
+| channel | string (`"stable"`, `"beta"`) | `"stable"` |
+
+`channel` selects which releases Core considers. Use `"beta"` to include beta and release candidate builds.
 
 ### Backup
 
@@ -776,7 +778,7 @@ To exclude specific directories from being scanned, create an empty file named `
 
 `preference` sets an ordered list of launcher IDs or launcher groups for systems that do not have an explicit launcher choice. Core uses the first matching launcher whose runtime dependencies are available, then continues through the list when an emulator or other dependency is missing.
 
-SteamOS provides the `Native`, `EmuDeck`, and `RetroDECK` groups:
+SteamOS, Linux, Bazzite, and ChimeraOS provide the `Native` group for built-in RetroArch and standalone emulator launchers, plus the `EmuDeck` and `RetroDECK` groups:
 
 ```toml
 [launchers]
@@ -807,6 +809,8 @@ Each entry in this option is a [Regular Expression](https://github.com/google/re
 - Patterns are automatically anchored and must match the full file path. Use `.*pattern.*` for substring matching.
 - On Windows, file path separators must be escaped: `C:\\Test\\Thing.exe`
 - On Windows, patterns are automatically made case-insensitive. On other platforms, add `(?i)` at the beginning of a pattern for case-insensitive matching.
+
+An entry that is not a valid regular expression is skipped, and the log records which pattern failed and why. The same applies to `allow_execute`, `allow_http`, and `allow_run`.
 
 #### media_dir
 
@@ -1089,6 +1093,9 @@ allow_run = [
     '\*\*launch\.random:.+'
 ]
 
+[service.remote_control]
+enabled = false
+
 [[service.publishers.mqtt]]
 enabled = true
 broker = "mqtt://localhost:1883"
@@ -1211,18 +1218,20 @@ It's currently reserved for future use when devices can communicate with each ot
 
 #### encryption
 
-| Key        | Type    | Default |
-| ---------- | ------- | ------- |
-| encryption | boolean | false   |
+| Key        | Type    | Default              |
+| ---------- | ------- | -------------------- |
+| encryption | boolean | _varies by platform_ |
 
 `encryption` requires remote WebSocket API clients to use the [paired-client encryption flow](./api/encryption.md). Localhost connections are always allowed without encryption.
+
+When the key is not set, Core uses the platform default: `true` on Linux and SteamOS, `false` everywhere else. A value you set yourself is kept, including through a backup restore.
 
 ```toml
 [service]
 encryption = true
 ```
 
-Paired clients can have admin or member permissions. Requiring encryption makes these restrictions enforceable because every remote client must identify itself through pairing. When encryption is disabled, unpaired remote clients retain full API permissions for compatibility with older clients. Manage pairing, roles, and this setting under **Settings > Clients** in the [terminal UI](./tui.md#managing-profiles).
+Paired clients can have admin or member permissions. Requiring encryption makes these restrictions enforceable because every remote client must identify itself through pairing. When encryption is off, MiSTer, MiSTeX, Batocera, LibreELEC, and RePlayOS still let unpaired remote clients use the API; every other platform requires remote clients to pair or send an [API key](#api-keys) regardless. Manage pairing, roles, and this setting under **Settings > Clients** in the [terminal UI](./tui.md#managing-profiles).
 
 #### allow_run
 
@@ -1266,6 +1275,31 @@ When enabled, Zaparoo advertises itself on your local network using mDNS/DNS-SD.
 | instance_name | string | _system hostname_    |
 
 `instance_name` specifies a custom display name for this Zaparoo instance on the network. If not set, defaults to the system hostname.
+
+#### service.remote_control
+
+`service.remote_control` is a sub-section of `service` that lets apps you authorise through the [Zaparoo Online User API](../online/index.md#remote-control) send approved commands to this device. It is off by default, and linking a Zaparoo Online account does not turn it on.
+
+```toml
+[service.remote_control]
+enabled = true
+```
+
+##### enabled {#service-remote-control-enabled}
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean | false   |
+
+`enabled` turns remote control on. Unlinking the device turns it off again. You can also change it under **Settings > Online** in the [terminal UI](./tui.md#backups-and-zaparoo-online).
+
+##### base_url {#service-remote-control-base-url}
+
+| Key      | Type   | Default                   |
+| -------- | ------ | ------------------------- |
+| base_url | string | `https://api.zaparoo.com` |
+
+`base_url` is the Zaparoo Online endpoint Core polls for remote commands. Leave it at the default unless you run your own compatible server.
 
 #### service.publishers
 
@@ -1763,8 +1797,11 @@ An example `config.toml` file with all fields filled, using the example sections
 config_schema = 1
 debug_logging = true
 error_reporting = false
-auto_update = false
-update_channel = "stable"
+
+[updates]
+check = true
+install = false
+channel = "stable"
 
 [backup]
 local_dir = "/path/to/backups"
@@ -1897,6 +1934,9 @@ allow_run = [
 [service.discovery]
 enabled = true
 instance_name = "Living Room MiSTer"
+
+[service.remote_control]
+enabled = false
 
 [[service.publishers.mqtt]]
 enabled = true

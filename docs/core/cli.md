@@ -61,6 +61,12 @@ Use `-api` to send one raw API call to the local Core service. The format is the
 
 If the method does not need parameters, omit the colon and JSON body. The CLI prints the response body returned by Core.
 
+This is also how you install a reported [Core update](./updates.md#installing-an-update-yourself) from the device:
+
+```bash
+./zaparoo -api 'update.apply'
+```
+
 For method names and parameter shapes, see the [API methods reference](./api/methods.md).
 
 ## Read or write tokens
@@ -78,7 +84,7 @@ Use `-write` to write text to the next token detected by a write-capable reader.
 ./zaparoo -write "**launch.system:menu"
 ```
 
-While reading or writing, Core temporarily disables normal ZapScript execution so the scanned token is handled by the CLI action instead of launching media.
+While reading or writing, Core temporarily disables normal ZapScript execution so the scanned token is handled by the CLI action instead of launching media. A tag is not scanned as a token while a write is pending; take it off the reader once the write finishes before scanning it again.
 
 ## Reload Core
 
@@ -164,6 +170,7 @@ These Linux desktop-style builds share the same extra flags.
 | ---- | -------- | ----------- |
 | `-install` | `application`, `desktop`, `service`, or `hardware` | Installs one component. |
 | `-uninstall` | `application`, `desktop`, `service`, or `hardware` | Uninstalls one component. |
+| `-steam-runtime-status` | None | SteamOS only. Reports whether the Zaparoo Runtime Steam shortcut is installed and current. |
 | `-daemon` | None | Runs the service in the foreground with no TUI. |
 | `-start` | None | Starts the user service if needed and opens the Web UI in the browser. |
 
@@ -172,6 +179,8 @@ Examples:
 ```bash
 ./zaparoo -install service
 ./zaparoo -install hardware
+./zaparoo -install steam-runtime   # SteamOS only
+./zaparoo -steam-runtime-status    # SteamOS only
 ./zaparoo -start
 ```
 

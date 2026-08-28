@@ -21,6 +21,8 @@ The selection is stored in `/media/fat/zaparoo/frontend.toml`:
 color_scheme = "nord"
 ```
 
+The picker shows a three-color swatch for each preset. In the file, the value is the preset name in lowercase with hyphens, such as `nord`, `dracula`, or `amber-phosphor`; an unknown value falls back to `zaparoo-dark`.
+
 Presets recolor Frontend's built-in tinted artwork. Your own images and full-color logos are not changed.
 
 ## Custom folder
@@ -113,3 +115,24 @@ Use custom system names when you want a specific name regardless of the regional
 ## System logo style
 
 Frontend ships its built-in system logos in two styles. **Settings > Appearance > System logos** switches between **Tinted**, which follows the active color scheme, and **Full color**. Tinted is the default. This setting only affects the built-in logos, not your own [system artwork](#system-artwork).
+
+## Configuration file
+
+Frontend stores its settings in `/media/fat/zaparoo/frontend.toml` and edits that file in place, so comments you add by hand survive. The Hub layout is a list of `[[hub.items]]` entries, one per tile, with a `type` of `category`, `action`, `system`, `folder`, `zapscript`, or `blank` and an `id`, `path`, or `script` to match:
+
+```toml title="frontend.toml"
+[[hub.items]]
+type = "category"
+id = "Arcade"
+
+[[hub.items]]
+type = "action"
+id = "favorites"
+
+[[hub.items]]
+type = "zapscript"
+script = "**launch.random:SNES"
+name = "Random SNES"
+```
+
+Arranging tiles from the Hub writes this for you. Leave the `[hub] known` list alone; Frontend uses it to remember tiles you removed.
