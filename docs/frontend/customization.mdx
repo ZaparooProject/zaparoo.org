@@ -1,14 +1,27 @@
 ---
-description: "Customize Zaparoo Frontend system artwork, Hub icons, and system display names on MiSTer FPGA."
-keywords: [zaparoo frontend customization, zaparoo system artwork, mister frontend icons, zaparoo system names]
+description: "Customize Zaparoo Frontend's color scheme, system artwork, Hub icons, and system display names on MiSTer FPGA."
+keywords: [zaparoo frontend customization, zaparoo frontend color scheme, zaparoo system artwork, mister frontend icons, zaparoo system names]
 sidebar_position: 6
 ---
 
 # Customize Frontend
 
-Zaparoo Frontend can load your own system artwork, Hub icons, and system display names without rebuilding Frontend.
+Zaparoo Frontend can switch color schemes, and load your own system artwork, Hub icons, and system display names without rebuilding Frontend.
 
-Customization is read at startup. Restart Frontend after adding, changing, or removing custom files.
+Image and name customization is read at startup. Restart Frontend after adding, changing, or removing custom files.
+
+## Color scheme
+
+Open **Settings > Appearance > Color scheme** to change the colors used across every screen. There are 19 presets: Zaparoo Dark, Zaparoo Light, and Classic Purple; editor and terminal palettes such as Nord, Dracula, Synthwave '84, Gruvbox, Everforest, Solarized Dark, Rosé Pine, and Oxocarbon; the light Flexoki Paper and Solarized Light; and retro sets like Amber Phosphor, Green Phosphor, Neo Geo, NES, Virtual Boy, and Game Boy. The change applies immediately.
+
+The selection is stored in `/media/fat/zaparoo/frontend.toml`:
+
+```toml title="frontend.toml"
+[settings]
+color_scheme = "nord"
+```
+
+Presets recolor Frontend's built-in tinted artwork. Your own images and full-color logos are not changed.
 
 ## Custom folder
 
@@ -60,10 +73,11 @@ Hub icons in `hub/` use category or action IDs:
 | `console` | Console category |
 | `handheld` | Handheld category |
 | `other` | Other category |
-| `resume` | Resume Game |
+| `resume` | Resume |
 | `favorites` | Favorites |
-| `recents` | Recently Played |
-| `settings` | Settings & Utilities |
+| `recents` | Recently played |
+| `update` | Update |
+| `settings` | Settings |
 
 ```text
 hub/arcade.png
@@ -71,7 +85,9 @@ hub/favorites.svg
 hub/settings.svg
 ```
 
-Custom images are shown as-is. Built-in icons can be tinted by Frontend's theme, but your override images are not recolored.
+A tile you added to the Hub yourself can use its own icon too: give the `[[hub.items]]` entry in `frontend.toml` an `icon = "name"` value and drop a matching `hub/name.png` in the folder.
+
+Custom images are shown as-is. Built-in icons are tinted to match the color scheme, but your override images are not recolored.
 
 ## System names
 
@@ -90,10 +106,10 @@ Custom names take priority over Frontend's built-in regional names and names rep
 
 ## Regional system names
 
-Frontend also includes built-in regional system names and logo variants. Open **Settings**, then **Language**, then **System names** to choose **Automatic**, **Americas**, **Europe**, or **Japan**.
+Frontend also includes built-in regional system names and logo variants. Open **Settings > Language**, then set **Region** to **Automatic**, **Americas**, **Europe**, or **Japan**.
 
 Use custom system names when you want a specific name regardless of the regional setting.
 
 ## System logo style
 
-Frontend ships its built-in system logos in two styles. The **System logos** setting switches between tintable logos, which follow the active theme, and full-color logos. Tintable is the default. This setting only affects the built-in logos, not your own [system artwork](#system-artwork).
+Frontend ships its built-in system logos in two styles. **Settings > Appearance > System logos** switches between **Tinted**, which follows the active color scheme, and **Full color**. Tinted is the default. This setting only affects the built-in logos, not your own [system artwork](#system-artwork).

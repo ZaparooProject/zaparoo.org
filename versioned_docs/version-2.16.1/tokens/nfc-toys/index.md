@@ -36,11 +36,10 @@ LEGO Dimensions character and vehicle tags use [NTAG213](../nfc/ntag.md) chips. 
 
 ## Map a toy in the Zaparoo App
 
-1. Go to **Create > Add a Mapping**.
-2. Tap the **NFC** button and hold the figure to your phone.
-3. The UID fills in the token ID field.
-4. Enter ZapScript, or use the command palette to pick a game.
-5. Tap **Save mapping**.
+1. Go to **Create > Mappings** and tap **New mapping**.
+2. Leave **Token field** set to **ID**, tap **NFC**, and hold the figure to your phone. Its UID fills the **Pattern** field.
+3. Enter ZapScript, or tap **Command** to pick a game.
+4. Tap **Save**.
 
 The mapping syncs to your connected Zaparoo device. The next time that figure is scanned on your reader, it runs the assigned script.
 
@@ -53,11 +52,11 @@ You can also create mappings manually by adding a `.toml` file to Zaparoo Core's
 ```toml
 [[mappings.entry]]
 token_key = 'id'
-match_pattern = '04:a2:3b:c1:d4:5e:80'
+match_pattern = '04a23bc1d45e80'
 zapscript = '**launch.search:Mario Kart'
 ```
 
-Replace the UID with the one Core reports for your figure, from its logs or the App's scan history.
+Replace the UID with the one Core reports for your figure, from its logs or the App's scan history. UIDs are lowercase hex with no separators.
 
 ## Troubleshooting
 

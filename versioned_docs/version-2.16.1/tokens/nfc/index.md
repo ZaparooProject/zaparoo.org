@@ -23,8 +23,8 @@ The Zaparoo App's tag writing feature is free. Pro is only needed when the app a
 
 ## Where to buy
 
-:::tip Official Support
-Looking for pre-printed NFC cards? Get them from the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> which directly supports the project!
+:::tip
+The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks NTAG215 cards, blank and pre-printed. Purchases fund development.
 :::
 
 NFC tags are available from Amazon, eBay, AliExpress, and specialist NFC suppliers. Search for the standard and form factor, such as `NTAG215 NFC card` or `NTAG213 NFC sticker`. If you're buying new tags for Zaparoo, search for `NTAG215` specifically so you don't accidentally buy [MIFARE Classic](./mifare.md) tags.

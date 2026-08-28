@@ -7,7 +7,7 @@ keywords: [zaparoo batocera, batocera nfc, batocera nfc game launcher, nfc card 
 
 [Batocera](https://batocera.org/) is a software emulation distribution based around EmulationStation, with support for a huge number of systems and devices.
 
-## File Paths
+## File paths
 
 | Item               | Path                                                  |
 | ------------------ | ----------------------------------------------------- |
@@ -43,6 +43,10 @@ This installs Zaparoo via the pacman package manager, sets up the startup servic
 
 For manual installation methods (Network Share, USB, or SSH), see [Manual Install](./install.md).
 
+## Uninstall
+
+Uninstall Zaparoo Core from Batocera's Content Downloader, the same place it was installed. Batocera stops and disables the `zaparoo_service` service and removes the package files. Your configuration and data are left in place; see the file paths above if you want to delete them too.
+
 ## Card-only cabinets
 
 For a child-friendly or arcade-style setup with no visible game library, see the [Card-Only Batocera Cabinet](../../community-projects/batocera-card-only.md) community recipe. It shows a single **Insert Game Card** system while Zaparoo continues launching hidden games from physical tokens.
@@ -55,8 +59,8 @@ For a child-friendly or arcade-style setup with no visible game library, see the
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
 | NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Auto-detected | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
-| Barcode and QR | [App/Camera Scanner](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS232 Scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
@@ -66,7 +70,7 @@ For a child-friendly or arcade-style setup with no visible game library, see the
 
 Each reader's page has setup steps and troubleshooting. See [readers](../../readers/index.md) to compare them, or the [setup guide](/start/) to pick one for your setup.
 
-## Supported Launchers
+## Launchers
 
 | Launcher         | Notes                                 |
 | ---------------- | ------------------------------------- |
@@ -77,3 +81,11 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 Kodi integration only works when Batocera is in Kodi mode with the API enabled. See [LibreELEC](../libreelec.md) for API configuration details.
 
 See [Launchers](./launchers.md) for the full list of supported systems and launcher details.
+
+## Troubleshooting
+
+**Zaparoo is not running.** Check the service from a terminal (`F1`, then `F4`): `batocera-services status zaparoo_service`, and start it with `batocera-services start zaparoo_service`.
+
+**Zaparoo is missing from Ports.** The Ports entry comes with the package. Reinstall Zaparoo Core from the Content Downloader.
+
+**A reader is not detected.** Check the reader's page under [readers](../../readers/index.md) for the exact driver and any manual configuration.

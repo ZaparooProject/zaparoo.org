@@ -5,9 +5,13 @@ keywords: [zaparoo linux, linux nfc game launcher, zaparoo lutris, zaparoo heroi
 
 # Linux
 
+:::warning[Beta]
+Linux support is currently in beta. Some features may not work as expected.
+:::
+
 Zaparoo Core on Linux provides desktop integration with support for Steam, Lutris, Heroic, and RetroArch game launching. This platform serves as the foundation for other Linux-based platforms.
 
-## File Paths
+## File paths
 
 | Item               | Path                                   |
 | ------------------ | -------------------------------------- |
@@ -53,8 +57,8 @@ See [Uninstalling](./install.md#uninstalling) for the component removal commands
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
 | NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Auto-detected | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
-| Barcode and QR | [App/Camera Scanner](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS232 Scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
@@ -77,3 +81,11 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Shell Scripts | Custom `.sh` execution (allowlist required) |
 
 See [Launchers](./launchers.md) for full details and configuration.
+
+## Troubleshooting
+
+**`systemctl` says the unit is not found.** Zaparoo runs as a user service, so use `systemctl --user`, not `sudo systemctl`. If it is still missing, run the install command again.
+
+**Permission denied opening the reader's serial port.** Add your user to the `dialout` group (`sudo usermod -a -G dialout $USER`), then log out and back in.
+
+**A reader is not detected.** Check the reader's page under [readers](../../readers/index.md) for the driver and any manual configuration, and turn on `debug_logging` in `config.toml` to see what Core finds.

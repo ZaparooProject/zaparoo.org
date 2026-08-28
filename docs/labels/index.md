@@ -5,14 +5,23 @@ keywords: [zaparoo labels, nfc card labels, game card artwork, zaparoo card prin
 
 # Labels
 
-<img src="/img/docs/labels/Labels_header.jpg" alt="Getting messy with labels" width="100%" />
+<img src="/img/docs/labels/Labels_header.jpg" alt="Printed card labels, a corner rounder, and NFC cards spread across a desk" width="100%" />
 
-Create custom artwork for your Zaparoo NFC cards, then print it at home or through a print shop.
+Create custom artwork for your Zaparoo NFC cards, then print it at home or through a print shop. The whole process:
 
-:::danger[Important legal restrictions]
+1. Design the labels in [Zaparoo Designer](../designer/index.md) or your own graphics program.
+2. Export a PDF or PNG.
+3. Print on sticker paper, at home or at a print shop.
+4. Protect the print with cold lamination or a clear coat.
+5. Cut the labels out and round the corners.
+6. Apply them to the cards.
+
+Steps 3 to 6 are covered in the [printing guide](./printing-guide.md). If you'd rather skip all of this, the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> sells cards with licensed, pre-printed designs.
+
+:::danger[Legal restrictions]
 - You are responsible for making sure you have the legal right to print any artwork you use, including game art, movie posters, album covers, and other copyrighted images.
 - Zaparoo trademarks, including the Zaparoo logo, must not appear on printed labels without permission. See the [Terms of Use](/terms) for details.
-- The Zaparoo project cannot offer pre-printed labels due to intellectual property concerns.
+- The project cannot print third-party artwork for you. Pre-printed cards in the Shop use licensed designs only.
 
 See the [Zaparoo Media](/projects/#media) project for marks that are free to use for displaying token compatibility.
 :::
@@ -37,7 +46,9 @@ See the **[Printing Guide](./printing-guide.md)** for materials, printers, cutti
 
 Labels include a 1/32" (0.79mm) margin from the card edge. This gives you tolerance for alignment errors and prevents edge peeling.
 
-### Artwork margins (from label edge)
+### Artwork margins
+
+Measured from the label edge. The large margin on one side leaves room for the NFC chip and antenna area of the card, so keep important artwork out of it.
 
 - **Horizontal layout:** 3.1mm margin on top/right/bottom, 26.2mm margin on left
 - **Vertical layout:** 3.1mm margin on top/right/left, 12.2mm margin on bottom

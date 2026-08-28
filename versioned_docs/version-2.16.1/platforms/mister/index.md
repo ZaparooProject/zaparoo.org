@@ -7,7 +7,7 @@ keywords: [zaparoo mister fpga, mister nfc, mister fpga nfc reader, zaparoo mist
 
 MiSTer is fully supported by Zaparoo and is where the project originally started. Zaparoo has several MiSTer-exclusive features because of this, including [MiSTer-specific ZapScript commands](../../zapscript/mister.md).
 
-## File Paths
+## File paths
 
 | Item               | Path                             |
 | ------------------ | -------------------------------- |
@@ -30,7 +30,7 @@ For manual Core installation, download from the [Downloads page](/downloads/) an
 If you previously had TapTo installed, make sure the old `tapto.sh` is removed from your Scripts folder and that `linux/user-startup.sh` no longer references it. Having both services running simultaneously can cause double-launches and detection conflicts. Zaparoo is a direct replacement. Your existing NFC cards will continue to work.
 :::
 
-### Game Tracking
+### Game tracking
 
 Zaparoo can detect games launched outside of Zaparoo, like games started directly from the MiSTer menu. This is needed for [playtime tracking](../../features/play-controls.md#playtime-limits) to work correctly. It requires the `recents` setting in MiSTer's configuration.
 
@@ -41,6 +41,14 @@ To enable it:
 3. Save the file and reboot MiSTer
 
 This setting makes MiSTer write recent game data to the SD card each time a game is loaded. MiSTer.ini warns about the extra SD card writes, but it's not a real concern with modern SD cards.
+
+## Uninstall
+
+There is no uninstall command on MiSTer. To remove Zaparoo:
+
+1. Delete `/media/fat/Scripts/zaparoo.sh`.
+2. Remove the `mrext/zaparoo` line from `/media/fat/linux/user-startup.sh`.
+3. Delete `/media/fat/zaparoo` if you also want to remove your configuration, mappings, and data.
 
 ## Device profile data
 
@@ -58,8 +66,8 @@ MiSTer supports portable [device backups](../../features/backups.md) containing 
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
 | NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Auto-detected | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
-| Barcode and QR | [App/Camera Scanner](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS232 Scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
@@ -75,7 +83,7 @@ MiSTer supports 100+ systems including consoles, computers, and arcade games. Ga
 
 See [Launchers](./launchers.md) for the full list of supported systems, file extensions, special features, and alternate cores.
 
-## Main Forks
+## Main forks
 
 Some MiSTer Main forks are available with Zaparoo integration or features that work well with Zaparoo.
 
@@ -94,9 +102,15 @@ See [spark2k06's repository](https://github.com/spark2k06/Main_MiSTer) for more 
 
 An alternative version of MiSTer Main by [funkycochise](https://github.com/funkycochise) as part of the [Insert-Coin project](https://github.com/funkycochise/Insert-Coin). This version hides the loading screen before cores start games, which works great with Zaparoo.
 
-## Known Issues
+## Troubleshooting
 
-- Zaparoo can have conflicts with other devices that use serial USB connections such as the tty2oled project and anything else using an Arduino board. The workaround is to disable auto_detect in the config.toml file and manually set the reader path.
+**Zaparoo does not start at boot.** Run `zaparoo` from the MiSTer **Scripts** menu and accept the prompt to enable it as a startup service, or check that `/media/fat/linux/user-startup.sh` contains the `mrext/zaparoo` line.
+
+**Games started from the MiSTer menu are not tracked.** Playtime tracking needs `recents=1` in `MiSTer.ini`. See [game tracking](#game-tracking).
+
+**A reader is detected by the wrong driver, or conflicts with another serial device.** Other USB serial devices, such as tty2oled or an Arduino, can confuse auto-detection. Disable `auto_detect` in `config.toml` and set the reader path manually; see [reader drivers](../../readers/drivers.md).
+
+**Logs are empty after a reboot.** MiSTer keeps the log in `/tmp`, which is cleared at shutdown. Collect logs right after the problem happens; see the [help page](/support/).
 
 ## FAQ
 

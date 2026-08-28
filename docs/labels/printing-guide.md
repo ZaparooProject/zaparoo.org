@@ -5,11 +5,7 @@ keywords: [zaparoo print labels, nfc card printing, game card labels print, zapa
 
 # Printing Guide
 
-This guide covers materials, tools, and techniques used by the Zaparoo community for printing labels at home.
-
-:::danger[Copyright notice]
-You are responsible for making sure you have the legal right to print any artwork you use, including game artwork, movie posters, music album covers, and other copyrighted images. The Zaparoo project cannot offer pre-printed labels due to intellectual property concerns.
-:::
+This guide covers materials, tools, and techniques used by the Zaparoo community for printing labels at home. Make sure you have the right to print the artwork you use; see the [legal restrictions](./index.md) on the labels page.
 
 ## Materials
 
@@ -19,7 +15,11 @@ You are responsible for making sure you have the legal right to print any artwor
 
 **Glossy vinyl** looks sharper but can bleed or fade within days without a lamination layer on top. If you go glossy, plan to laminate.
 
-**Holographic rainbow vinyl** is a popular option for special or favorite cards. It gives a foil/shimmer effect, but the metallic layer can slightly weaken the NFC signal when applied to a card. Search for "holographic vinyl sticker paper A4" on Amazon.
+**Holographic rainbow vinyl** is a popular option for special or favorite cards. It gives a foil/shimmer effect. Search for "holographic vinyl sticker paper A4" on Amazon.
+
+:::warning
+The metallic layer in holographic vinyl can weaken the NFC signal. Test one card before doing a batch.
+:::
 
 <img src="/img/showcase/whtafckremix_cards.webp" alt="Game card labels printed on holographic vinyl" width="500" loading="lazy" />
 
@@ -51,16 +51,18 @@ Avoid heat lamination. The heat can damage the NFC chip in your cards. Always us
 
 ## Printers
 
-Most consumer inkjet printers can work for sticker sheets, but print quality and paper handling vary a lot. Some models the community has had good results with:
+Most consumer inkjet printers can work for sticker sheets, but print quality and paper handling vary a lot. Models the community has had good results with, as of August 2026:
 
-- **Epson EcoTank L8050** and **ET-4800**: Popular for high volume. EcoTanks use refillable ink bottles instead of cartridges, which keeps costs down.
-- **Canon TS702a**: Budget option that supports PVC card trays for direct-to-card printing.
-- **HP Envy 2820e**: Decent results on matte sticker paper using the "glossy photo" print setting.
-- **Brother J4335-DW**: Good print quality, but it can struggle to pick up heavier sticker paper because it has no manual feed.
+| Printer | Why | Watch out for |
+| ------- | --- | ------------- |
+| Epson EcoTank L8050 and ET-4800 | Refillable ink bottles keep high-volume printing cheap | Larger and pricier up front |
+| Canon TS702a | Budget option that also takes a PVC card tray for direct-to-card printing | |
+| HP Envy 2820e | Decent results on matte sticker paper using the "glossy photo" setting | |
+| Brother J4335-DW | Good print quality | No manual feed, so it can struggle to pick up heavier sticker paper |
 
 **Laser printers** can work with compatible paper, but they usually produce less vibrant colors than inkjet. Be careful with vinyl sticker paper in a laser printer because the heat can melt it. Laser is better suited to regular paper or paper-based sticker sheets.
 
-**Local print shops** are a solid option if you don't want to buy a printer. Design your labels at home, export as PDF, and send them to a shop. You probably won't be able to use specialty vinyl paper this way, but it avoids printer setup and maintenance.
+**Local print shops** are a solid option if you don't want to buy a printer. Design your labels at home, export as PDF, and send them to a shop. You probably won't be able to use specialty vinyl paper this way, but it avoids printer setup and maintenance. If you don't want to print at all, the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> sells cards with licensed designs already printed.
 
 **Dedicated card printers** like the Badgy line print directly onto PVC cards with full bleed. They can produce excellent results, but expect a much higher cost per card once consumables are included.
 
@@ -82,11 +84,13 @@ A **paper trimmer/guillotine** speeds up straight cuts significantly compared to
 
 For precision and batch work, a plotter cutter with print-and-cut capability can save a lot of time.
 
-**Silhouette Portrait 4** is the current community recommendation. It uses Silhouette Studio, has no subscription requirement, and handles the credit card label size well. Multiple community members use this with good results.
+Community experience as of August 2026:
 
-**Siser cutters** are another option with good cut consistency and third-party software support.
-
-**Cricut** has not been a good fit for this workflow. Multiple community members, including the Zaparoo creator, have had problems with the hardware or software workflow. Community testing has not produced a reliable auto-cut workflow with Zaparoo Designer.
+| Cutter | Verdict | Notes |
+| ------ | ------- | ----- |
+| Silhouette Portrait 4 | Recommended | Silhouette Studio has no subscription and handles the credit card label size well. Several members use it. |
+| Siser cutters | Works | Good cut consistency and third-party software support. |
+| Cricut | Not recommended | Several members, including the Zaparoo creator, hit problems with the hardware or software, and no reliable auto-cut workflow with Zaparoo Designer has been found. |
 
 ### Die cutting
 
@@ -98,7 +102,7 @@ Alignment is the hardest part of the whole process. Here are techniques that wor
 
 **Manual application:** Cut the label from the sheet first. Align the top edge of the label with the top edge of the card. Using a credit card or similar flat edge, slowly press the label down from top to bottom, pushing air out as you go. Vinyl sticker paper is slightly elastic, so you can steer it a little if it starts going off-center.
 
-**3D-printed alignment jigs** can hold cards in place during label application. One example is the [TapTo Sticker Applicator](https://www.printables.com/model/1022980-tapto-sticker-applicator) on Printables.
+**3D-printed alignment jigs** can hold cards in place during label application. One example is this [sticker applicator](https://www.printables.com/model/1022980-tapto-sticker-applicator) on Printables.
 
 **Double-sided approach:** If your binder pages or sleeves are double-sided, consider only labeling the front of the card. Getting both sides aligned cleanly is significantly harder.
 
@@ -112,6 +116,18 @@ Alignment is the hardest part of the whole process. Here are techniques that wor
 - Let ink dry completely before handling or laminating
 
 If a print shop is handling the PDF, explicitly ask them to print it without scaling.
+
+## Troubleshooting
+
+**The print smeared when I touched it.** Inkjet ink on sticker paper needs protection. Let it dry fully, then laminate with cold self-adhesive sheets or apply a clear coat before cutting.
+
+**The card stopped scanning after I applied the label.** Holographic and metallic vinyl can weaken the NFC signal, and heat lamination can damage the chip. Use plain vinyl or matte paper on that card and only ever cold-laminate.
+
+**The printed label is the wrong size.** The PDF was scaled. Print at 100% or Actual size, turn off Fit to page and Shrink oversized pages, and test on plain paper against a card first.
+
+**My labels come out off-centre.** Cut the label out first, align its top edge with the top edge of the card, and press down slowly from top to bottom. A 3D-printed jig helps with batches.
+
+**The corner rounder jams or tears.** Adhesive builds up in the punch. Clean it out every few cuts.
 
 ## Commercial printing
 

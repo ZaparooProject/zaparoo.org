@@ -44,13 +44,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -146,13 +146,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -248,13 +248,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -350,13 +350,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -452,13 +452,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -554,13 +554,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -656,13 +656,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -757,13 +757,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -859,13 +859,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -961,13 +961,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -1063,13 +1063,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"
@@ -1165,13 +1165,13 @@ export const readerSupportByPlatform = {
       "name": "Barcode and QR",
       "readers": [
         {
-          "name": "App/Camera Scanner",
+          "name": "Zaparoo App camera",
           "href": "app/",
           "support": "supported",
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS232 Scanner",
+          "name": "RS-232 scanner",
           "href": "readers/barcode/rs232",
           "support": "supported",
           "setup": "Manual config"

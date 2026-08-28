@@ -7,9 +7,9 @@ keywords: [zaparoo press, zaparoo coverage, zaparoo reviews, zaparoo media artic
 
 Coverage of the Zaparoo project online.
 
-## Press & Articles
+## Press and articles
 
-### Major Tech Publications
+### Major tech publications
 
 - **[How to modernize your retro game collection in a few convoluted steps](https://www.theverge.com/24072166/retro-classic-game-roms-nfc-mister-how-to-modern)** - *The Verge* (February 29, 2024)
   Comprehensive feature article on TapTo/NFC system for MiSTer FPGA
@@ -35,7 +35,7 @@ Coverage of the Zaparoo project online.
 - **[SuperStation ONE: PlayStation-inspired FPGA retro console](https://www.electronics-lab.com/superstation-one-playstation-inspired-fpga-retro-console/)** - *electronics-lab.com* (February 24, 2025)
   Electronics-focused coverage of the SuperStation ONE with Zaparoo integration
 
-### Retro Gaming News
+### Retro gaming news
 
 - **[Using NFC Tags to Run Games on the MiSTer FPGA](https://www.retrorgb.com/using-nfc-tags-to-run-games-on-the-mister-fpga.html)** - *RetroRGB* (September 8, 2023)
   Early coverage of the NFC system
@@ -101,7 +101,7 @@ Coverage of the Zaparoo project online.
   Article covering Wolfgang's NFC card creation tutorial
 
 - **[Wizzo Teases Zaparoo Graphical Front-End For MiSTerFPGA](https://metalgamesolid.com/fpga/mister-fpga/wizzo-teases-zaparoo-graphical-front-end-for-misterfpga/)** - *MetalGameSolid* (December 2025)
-  Early look at the Zaparoo graphical front-end for MiSTer
+  Early look at Zaparoo Frontend for MiSTer
 
 - **[MiSTer SuperStation One Review](https://retrorgb.com/mister-superstation-one-review.html)** - *RetroRGB* (March 5, 2026)
   Hardware review of the SuperStation ONE featuring the built-in NFC reader used by Zaparoo
@@ -121,7 +121,7 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo Frontend: Upgraded MiSTer GUI](https://retrorgb.com/zaparoo-frontend-upgraded-mister-gui.html)** - *RetroRGB* (June 29, 2026)
   Dedicated look at Zaparoo Frontend v1.2.0, including CRT support and the built-in MiSTer updater
 
-### Developer Articles & Community
+### Developer articles and community
 
 - **[Creating TapTo](https://timwilsie.com/creating-tapto)** - *Tim Wilsie* (March 26, 2024)
   Behind-the-scenes on creating TapTo by a developer
@@ -141,9 +141,9 @@ Coverage of the Zaparoo project online.
 - **[TapTo NFC Reader Enclosure](https://theschlock.com/tapto-nfc-reader-enclosure)** - *Jim Hendricks* (October 19, 2025)
   Build log covering Zaparoo's random-launch features and a custom NFC reader enclosure with a downloadable bracket
 
-## Video Content
+## Video content
 
-### Tutorials & Demos
+### Tutorials and demos
 
 - **[MiSTer FPGA - Running Games with a Physical Tap (NFC)](https://www.youtube.com/watch?v=YwQviLwWHYM)** - *RetroRGB* (September 8, 2023)
   Early video companion to the RetroRGB NFC tutorial article
@@ -244,7 +244,7 @@ Coverage of the Zaparoo project online.
 - **[Zaparoo Frontend | Is It For You? | Let's Check It Out | MiSTer FPGA](https://www.youtube.com/watch?v=4tsXWUWIQw0)** - *Pixel Cherry Ninja* (July 6, 2026)
   Full Frontend tour covering artwork browsing, CRT and TATE modes, favorites, and the built-in updater
 
-### News & Updates
+### News and updates
 
 - **[MiSTer, Analogue Pocket, FPGA, Random & Retro Gaming News (ep129)](https://www.youtube.com/watch?v=ZNOjMzGHwHY)** - *Pixel Cherry Ninja* (December 14, 2024)
   News roundup including Zaparoo coverage
@@ -262,7 +262,7 @@ Coverage of the Zaparoo project online.
   Weekly news roundup leading with Zaparoo coverage
 
 - **[New Frontend for MiSTer FPGA in the Works... and it Looks Awesome!](https://www.youtube.com/watch?v=5896iuzbrck)** - *Pixel Cherry Ninja* (December 19, 2025)
-  First-look video on the upcoming Zaparoo graphical front-end
+  First-look video on Zaparoo Frontend
 
 - **[Zaparoo Frontend Announced for MiSTer FPGA | Next-Level UI](https://www.youtube.com/watch?v=q-kboBTl23A)** - *Pixel Cherry Ninja* (May 3, 2026)
   Preview of the initial Zaparoo Frontend release and its artwork-based library browser
@@ -270,7 +270,7 @@ Coverage of the Zaparoo project online.
 - **[MiSTer FPGA News Bytes - Nintendo DS, Zaparoo, PSX & MiSTer Organize](https://www.youtube.com/watch?v=qQQ2nhlZ8tU)** - *Lu's Retro Extras* (August 11, 2026)
   News update covering Zaparoo Core v2.16.1 reliability and media library improvements
 
-## Official Resources
+## Official resources
 
 - **[Zaparoo YouTube Channel](https://www.youtube.com/@HeyZaparoo)** - Official project channel with tutorials and updates
 - **[Zaparoo Blog](/blog)** - Official project blog with announcements and technical articles

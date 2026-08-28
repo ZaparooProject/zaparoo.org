@@ -30,14 +30,14 @@ Frontend is optional. It runs on the MiSTer display and uses Core for media scan
     {
       icon: Palette,
       title: "Add artwork and metadata",
-      description: "Choose an artwork source, import it with Core, and refresh existing artwork.",
+      description: "Choose an artwork source, import it with Get metadata, and replace existing artwork.",
       link: "./scraping/",
       umamiEvent: "frontend-card-artwork",
     },
     {
       icon: Tv,
       title: "Browse and launch games",
-      description: "Navigate your library, use menus and controls, and choose alternate launchers.",
+      description: "Navigate your library, arrange the Hub, use menus and controls, and choose alternate launchers.",
       link: "./browsing/",
       umamiEvent: "frontend-card-browsing",
     },
@@ -51,7 +51,7 @@ Frontend is optional. It runs on the MiSTer display and uses Core for media scan
     {
       icon: Wand2,
       title: "Customize Frontend",
-      description: "Change system artwork, Hub icons, system names, and regional logo styles.",
+      description: "Change the color scheme, system artwork, Hub icons, and system names.",
       link: "./customization/",
       umamiEvent: "frontend-card-customization",
     },
@@ -60,14 +60,14 @@ Frontend is optional. It runs on the MiSTer display and uses Core for media scan
 
 ## How Frontend works
 
-Frontend displays the library managed by Core. Core finds games during a media database update, imports local artwork and metadata during a scrape, and launches the selected game. Frontend provides the on-screen library, menus, and controller interface for those actions.
+Frontend displays the library managed by Core. Core finds games during a media database update, imports local artwork and metadata when you choose **Get metadata**, and launches the selected game. Frontend provides the on-screen library, menus, and controller interface for those actions.
 
 Frontend does not download artwork from the internet. Start with [Add Artwork and Metadata](./scraping.mdx) if you want covers, screenshots, descriptions, or other game information in the browser.
 
 ## Quick start
 
 1. [Install or update Frontend](./setup.mdx) on MiSTer.
-2. Start Frontend and run the first media database update when prompted.
+2. Start Frontend. On an empty library it starts the first media database update in the background.
 3. [Add artwork and metadata](./scraping.mdx) if you want game covers and descriptions.
 4. [Browse and launch games](./browsing.mdx) from the library hub.
 
@@ -75,8 +75,8 @@ For platform-specific launcher behavior, see the [MiSTer launcher documentation]
 
 ## Credits
 
-A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) for creating Zaparoo Frontend with [Wizzo](https://github.com/wizzomafizzo).
+A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) for creating Zaparoo Frontend with [Wizzo](https://github.com/wizzomafizzo). If Frontend has become part of your setup, [supporting Zaparoo](/sponsor/) keeps work like this going.
 
 ## Source and license
 
-The [Frontend source code](https://github.com/ZaparooProject/zaparoo-frontend) is available under the [PolyForm Noncommercial License 1.0.0](https://github.com/ZaparooProject/zaparoo-frontend/blob/main/COPYING). Non-commercial use is allowed under that license. For commercial licensing, contact [legal@zaparoo.com](mailto:legal@zaparoo.com).
+The [Frontend source code](https://github.com/ZaparooProject/zaparoo-frontend) is available under the [PolyForm Noncommercial License 1.0.0](https://github.com/ZaparooProject/zaparoo-frontend/blob/main/COPYING). Non-commercial use is allowed under that license. For commercial licensing, contact [legal@zaparoo.com](mailto:legal@zaparoo.com). The bundled updater (zaparoo-update) is licensed separately by its author, and a Frontend commercial licence does not cover it.

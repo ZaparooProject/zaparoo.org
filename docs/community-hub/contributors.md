@@ -5,7 +5,9 @@ keywords: [zaparoo contributors, zaparoo credits, open source contributors zapar
 
 # Contributors
 
-Zaparoo has been a community effort from day one. Everyone's contributions are appreciated and encouraged!
+Zaparoo has been a community effort from day one. Everyone's contributions are appreciated and encouraged.
+
+Want to join this list? Code, docs, translations, templates, and hardware designs all count. Open an issue or pull request in the relevant [GitHub repository](https://github.com/ZaparooProject), or say hello in the [Discord](https://zaparoo.org/discord). If you'd rather support the project financially, see [Support Zaparoo](/sponsor/).
 
 - [Aitor Gomez Garcia](https://github.com/spark2k06)
 - [Andrea Bogazzi](https://github.com/asturur)
@@ -42,3 +44,7 @@ Zaparoo has been a community effort from day one. Everyone's contributions are a
 - [Ziggurat](https://github.com/sigboe)
 
 Special thanks to **Gaz** for starting the project originally, and to **[javiwwweb](https://github.com/javiwwweb/MisTerRFID)** and **[Conner](https://github.com/ElRojo/MiSTerRFID)** for their existing MiSTerRFID projects.
+
+---
+
+<SponsorCallout variant="sponsor" />

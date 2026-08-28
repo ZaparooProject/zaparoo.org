@@ -5,7 +5,7 @@ keywords: [zaparoo diy reader, diy nfc reader mister, zaparoo reader build, chea
 
 # DIY Reader
 
-This guide explains how to create a low-cost NFC reader using easily available parts. The design is compatible with Zaparoo on MiSTer, and the total cost of a single reader is approximately $10 USD in a small batch of 5.
+This guide explains how to create a low-cost NFC reader using easily available parts. The design is compatible with Zaparoo on MiSTer, and the total cost of a single reader is approximately $10 USD in a small batch of 5 (as of 2024). If you would rather not build one, the ready-made [PN532 USB](../readers/nfc/pn532-usb.md) reader in the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> is the same reader with a case.
 
 <img src="/img/docs/community-projects/diy-reader/DIY_Reader_Complete.jpg" alt="A complete DIY Reader build" width="300"/>
 
@@ -28,7 +28,7 @@ Feel free to shop around for components.
 
 - [PN532 NFC module](../readers/nfc/pn532-module.md) - any supplier will do but must be a "PN532" module.
 - <ProductLink href="https://www.aliexpress.com/item/32980998451.html" store="aliexpress">2.54mm right angle female 4-pin header</ProductLink> - attaches to the serial board.
-- <ProductLink href="https://www.aliexpress.com/item/32908642552.html" store="aliexpress">2.54mm right angle male 4-pin header</ProductLink> - LIKELY OPTIONAL - attaches to the PN532 module but most modules come with one.
+- <ProductLink href="https://www.aliexpress.com/item/32908642552.html" store="aliexpress">2.54mm right angle male 4-pin header</ProductLink> - optional; attaches to the PN532 module but most modules come with one.
 - 3D printing filament - if printing yourself, PLA or PETG is fine. A single case uses approximately 20g of filament.
 
 ## Serial PCB

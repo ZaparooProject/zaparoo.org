@@ -73,7 +73,7 @@ For `value` and `data` matches, exact and partial matching use the text exactly 
 ```toml
 [[mappings.entry]]
 token_key = 'id'
-match_pattern = '04:4E:D8:DA:ED:72:81'
+match_pattern = '044ed8daed7281'
 zapscript = '**launch.random:snes'
 ```
 

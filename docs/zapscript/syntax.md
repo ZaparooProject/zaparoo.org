@@ -200,7 +200,7 @@ Make sure to check the [expr documentation](https://expr-lang.org/docs/language-
 Expressions have access to a set of environment variables:
 
 - `platform`: the platform which Core is currently running on. E.g. `batocera`
-- `version`: the current running version of Core. E.g. `2.4.0`
+- `version`: the current running version of Core, for example `2.16.1`
 - `scan_mode`: current reader scan mode set. E.g. `tap` or `hold`
 - `device`: object with information about the device running Core.
   - `hostname`: hostname of the host device. E.g. `mister`
@@ -245,6 +245,8 @@ If an argument starts with a `{` character, it will be specially parsed and vali
 Zap Links is a feature that allows querying and running remote ZapScript scripts on the fly from a remote HTTP/S URL.
 
 For example, the following URL is written to a token: `https://zpr.au/c$abcd1234`
+
+Virtual cards and decks in [Zaparoo Online](../online/index.md#cards-and-decks) are a hosted way to use Zap Links without running a server of your own.
 
 Every time the token is scanned, Core will make a request to this URL checking for a ZapScript payload. If it successfully receives one, it will run that ZapScript instead. Core also stores the last successful payload for offline fallback, but normal online scans fetch the current response so the payload can still be dynamic.
 

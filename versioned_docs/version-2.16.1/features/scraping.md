@@ -115,4 +115,4 @@ A force re-scrape also removes image references that follow this naming conventi
 
 Scraped text values become [tags](./tags.md), which Core uses to choose between similar media and which you can filter on when launching by title. Scraped artwork is shown in the Zaparoo App when you browse your library.
 
-For the full metadata field mapping and the API methods used to start scrapes and read scraped data, see the [scraper subsystem reference](../core/contributing/scraper.md).
+For the full metadata field mapping and the API methods used to start scrapes and read scraped data, see the [scraper subsystem reference](../core/contributing/scraper.md), a developer page maintained in the Core repository.

@@ -129,7 +129,7 @@ Run the Update All script on screen:
 Run the script in the background:
 
 ```zapscript
-**mister.script:update_all.sh?hidden=yes
+**mister.script:update_all.sh?hidden=true
 ```
 
 Run a script with arguments:

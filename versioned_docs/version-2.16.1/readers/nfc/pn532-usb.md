@@ -109,4 +109,5 @@ Other modules are usually listed as `PN532 Type C` or `PCR532`:
 
 - <ProductLink href="https://www.aliexpress.us/item/1005006326438326.html" store="aliexpress">AliExpress (China) - Allinbest Store</ProductLink>
 - <ProductLink href="https://www.aliexpress.com/item/1005005262748046.html" store="aliexpress">AliExpress (China) - MI YU KOUNG Official Store</ProductLink>
+
 <SponsorCallout variant="sponsor" />

@@ -7,13 +7,15 @@ keywords: [zaparoo app, zaparoo ios, zaparoo android, nfc app game launcher, zap
 
 Use the Zaparoo App to manage [Zaparoo Core](../core/index.md) from an iPhone or Android phone. It can find Core devices on your local network, or you can enter a device's IP address manually.
 
-:::note Current v1.13.0 rollout
-
-The initial v1.13.0 rollout is for Google Play users outside France. iOS and Google Play in France will join the normal worldwide release after the current approvals are complete.
-
-:::
-
 Every Core release also includes the browser-based [Web UI](./web.md) for setups that do not use a phone.
+
+## First run
+
+1. Install the app from the App Store or Google Play. Links are on the [Downloads](/downloads/) page.
+2. On the device card, tap the search icon to find Zaparoo devices on your network, or type the device's IP address into **Device address**.
+3. If the status shows **Pairing required**, tap the key icon and enter the six-digit PIN that Core displays (in the terminal UI under **Settings > Clients > Pair**).
+4. Open **Create**, search for a game, and hold a blank NFC card to your phone to write it.
+5. Tap the card on your reader.
 
 ## What the app does
 
@@ -25,11 +27,11 @@ Scan [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [
 
 - See and stop media playing on the connected device, including separate foreground and background playback.
 - Run a previous token again from your scan history.
-- Control the connected device with remote buttons, screenshots, or keyboard input on supported Core versions.
+- Open **Controls** for remote buttons and keyboard input (Core v2.10.0 or newer), plus screenshots on Core versions that support them.
 
 ### Create
 
-Search the connected device's media library and write a result to an NFC tag. Create also includes:
+Search the connected device's media library and write a result to an NFC tag. Blank NTAG215 cards are stocked in the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink>. Create also includes:
 
 - A [ZapScript](../zapscript/index.md) editor for custom commands, plus options for choosing title tags such as region or disc number.
 - Options for writing the media currently playing on Core.
@@ -54,7 +56,7 @@ Settings includes:
 - Updating the media library and downloading artwork and metadata.
 - Configuring scan behavior and connected [external readers](../readers/index.md).
 - Inbox notifications, app icon badges on supported devices, accessibility, and language.
-- Signing in to [Zaparoo Online](../online/index.md), linking a Core device, managing Warp, and restoring purchases.
+- **Zaparoo Online**: signing in, linking a Core device, subscribing to or managing Warp, and restoring purchases.
 - [Play Controls](../features/play-controls.md) for playtime limits, Launch Guard, and [device profiles](../features/profiles.md). Profile management requires Core v2.16.0 or newer.
 
 If Core requires an encrypted connection, the app asks for the pairing PIN shown by Core. If Core's network address changes later, the app can reconnect without asking you to pair it again.
@@ -63,7 +65,7 @@ The app is available in English, Chinese (Simplified), Dutch, French, German, Ja
 
 ## Zaparoo App Pro {#zaparoo-app-pro}
 
-Pro covers features that use the phone itself as a wireless reader. Managing Core, browsing your library, and creating tokens remain free.
+Pro (shown as Zaparoo Pro inside the app) covers features that use the phone itself as a wireless reader. Managing Core, browsing your library, and creating tokens remain free.
 
 There are two current Pro features:
 
@@ -81,6 +83,16 @@ The [Web UI](./web.md) is built into Core and opens in any browser on your local
 ## Open source
 
 The [app source code](https://github.com/ZaparooProject/zaparoo-app), including Pro features, uses the [Apache 2.0 license](https://github.com/ZaparooProject/zaparoo-app/blob/main/LICENSE). You can inspect, build, and modify it under those terms. Please do not redistribute prebuilt copies with Pro unlocked, since Pro purchases fund ongoing development.
+
+## Troubleshooting
+
+**The app can't find my device.** Device search works only in the phone app, not the Web UI, and the phone and the device must be on the same network. If search finds nothing, type the device's IP address into **Device address**.
+
+**It says pairing required.** Core is set to require encrypted connections. Get a PIN from Core (terminal UI: **Settings > Clients > Pair**, or run `zaparoo -pair` on the device), then enter it under **Pair with Device**. The PIN expires after five minutes.
+
+**Library says to create a media database.** In **Settings**, run a media database update, then open Library again. Library also needs Core v2.15.0 or newer.
+
+**Writing a tag fails.** The tag is probably full or read-only. See [NTAG troubleshooting](../tokens/nfc/ntag.md#troubleshooting).
 
 ## FAQ
 

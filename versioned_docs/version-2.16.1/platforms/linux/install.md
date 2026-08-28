@@ -9,7 +9,7 @@ Component-based manual installation for Linux.
 
 Download Zaparoo Core for Linux from the [Downloads page](/downloads/), unzip it and copy the `zaparoo` file somewhere like your home directory or `/usr/local/bin`.
 
-## Component Installation
+## Component installation
 
 Zaparoo supports installing individual components:
 

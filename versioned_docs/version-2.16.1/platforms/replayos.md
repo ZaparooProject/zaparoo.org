@@ -8,7 +8,7 @@ keywords: [zaparoo replayos, replayos nfc, replayos game launcher zaparoo]
 
 Zaparoo Core on [RePlayOS](https://www.replayos.com/) launches games and media through the RePlayOS libretro frontend.
 
-## File Paths
+## File paths
 
 | Item               | Path                                  |
 | ------------------ | ------------------------------------- |
@@ -43,8 +43,8 @@ This installs and enables the `zaparoo.service` systemd unit to run on startup. 
 | NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
 | NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Auto-detected | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
-| Barcode and QR | [App/Camera Scanner](../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS232 Scanner](../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS-232 scanner](../readers/barcode/rs232.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../readers/mqtt.md) | Supported | Manual config |  |
@@ -102,6 +102,6 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 | `Amstrad`                 | `amstrad_cpc`        | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.cpr`, `.zip`, `.7z`                                    |
 | `Video`                   | `alpha_player`       | `.mkv`, `.avi`, `.mp4`, `.flac`, `.ogg`, `.nsf`, `.vgm`                                          |
 
-### Shell Scripts
+### Shell scripts
 
 Run `.sh` scripts. Scripts must be allow-listed via the [`allow_file`](../core/config.md#allow_file) setting in `config.toml`.

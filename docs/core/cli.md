@@ -39,8 +39,6 @@ These flags are defined by the shared Core CLI and are available in current comm
 | `-profile-reset-pin` | Profile ID | Replaces a profile PIN with a generated eight-digit PIN. |
 | `-profile-reset-switch-id` | Profile ID | Generates a new profile switch ID and invalidates existing switch cards. |
 
-The `-config` flag may appear in `-help` output because it is still defined by the shared parser. In current Core source it does not run a separate action; start the [TUI](tui.md) or use the [Web UI](../app/web.md) for configuration instead.
-
 ## Run ZapScript
 
 Use `-run` when you want the CLI to behave like a scanned token. The argument is ZapScript, so it can be a media path, launcher command, input command, or several commands joined with `||`.

@@ -1,32 +1,34 @@
 ---
 description: "Add game artwork and metadata to Zaparoo Frontend on MiSTer FPGA using metadata packs, ZapScraper, Skraper, or existing gamelist.xml files."
-keywords: [zaparoo frontend artwork, mister box art, mister cover art, zaparoo scraping, scrape metadata, missing artwork, gamelist.xml]
+keywords: [zaparoo frontend artwork, mister box art, mister cover art, zaparoo scraping, get metadata, missing artwork, gamelist.xml]
 sidebar_label: Add Artwork and Metadata
 sidebar_position: 3
 ---
 
 # Add Artwork and Metadata
 
-Frontend displays artwork and game information after [Zaparoo Core](../core/index.md) imports compatible local files. Frontend and Core do not download artwork from the internet. Start with a metadata pack or an external scraper, then import the results into Core.
+Frontend displays artwork and game information after [Zaparoo Core](../core/index.md) imports compatible local files. Frontend and Core do not download artwork from the internet. Start with a metadata pack or an external scraper, then import the results into Core with **Get metadata**.
 
 ## How artwork reaches Frontend
 
 1. **Update the media database.** Core finds your games and makes them available to Frontend.
 2. **Obtain artwork and metadata.** Use a metadata pack, ZapScraper, Skraper, or compatible EmulationStation files you already have.
-3. **Scrape metadata.** Core imports the local artwork and game information and matches it to indexed games.
+3. **Get metadata.** Core imports the local artwork and game information and matches it to indexed games.
 4. **Browse the results.** Frontend displays the imported covers, screenshots, descriptions, and other metadata.
 
 Artwork can be stored on the MiSTer SD card, USB storage, or a NAS that Core can read.
 
 ## Understand the library actions
 
+Both actions are under **Settings > Library > Maintenance**.
+
 | Action | What it does | When to use it |
 | ------ | ------------ | -------------- |
-| **Update media database** | Finds added or removed games and updates Core's library index. | After changing your game library or launcher paths. |
-| **Scrape metadata** | Imports local metadata and artwork for entries that have not already been scraped. | After adding a pack, `gamelist.xml`, or compatible media folders. |
-| **Re-scrape existing** | Refreshes previously imported metadata and cleans up artwork references that no longer exist. | After replacing artwork, correcting paths, or changing imported metadata. |
+| **Update media database** | Rescans your game folders to pick up added or removed files. You choose which systems to scan. | After changing your game library or launcher paths. |
+| **Get metadata** | Imports artwork and details from files you already have, for entries that have not been imported yet. | After adding a pack, `gamelist.xml`, or compatible media folders. |
+| **Get metadata** with **Replace existing** | Refreshes previously imported metadata and cleans up artwork references that no longer exist. | After replacing artwork, correcting paths, or changing imported metadata. |
 
-Scraping cannot start while a media database update is running, and only one scrape can run at a time. Core pauses metadata scraping while media is running and resumes when playback stops.
+Getting metadata cannot start while a media database update is running, and only one import can run at a time. Core pauses the import while media is running and resumes when playback stops.
 
 ## Choose an artwork source
 
@@ -76,13 +78,13 @@ Skraper supports the game folder names MiSTer uses, so you can point it directly
 
 After adding compatible files:
 
-1. Open **Settings**, then **Library**.
+1. Open **Settings > Library > Maintenance**.
 2. Run **Update media database** if you added games or have not indexed the library yet.
-3. Run **Scrape metadata**.
+3. Select **Get metadata**. Choose the **Source**, pick the **Systems** to cover (or all of them), turn on **Replace existing** if you are refreshing artwork you imported before, then select **Start import**.
 
-Frontend shows scrape progress by system when Core provides it. When the import finishes, artwork appears in the game browser.
+Frontend shows import progress by system when Core provides it. When the import finishes, artwork appears in the game browser.
 
-To update or scrape one system at a time, open that system's options menu and choose its media database or metadata scrape action.
+To update or import one system, or one game, at a time, open its options menu and choose **Update media database** or **Get metadata** there.
 
 ## Add Arcade artwork
 
@@ -90,12 +92,12 @@ MiSTer Arcade games use `.mra` files under `/media/fat/_Arcade`. Use a pack that
 
 ## Change the displayed artwork
 
-Open **Settings**, then **Browsing**, then change **Preferred artwork** to choose which imported image type Frontend asks Core for first. See [Browse and Launch Games](./browsing.mdx#change-browsing-options) for the other library display settings.
+Open **Settings > Library > Browsing**, then change **Preferred artwork** to choose which imported image type Frontend asks Core for first (box art, 3D box art, screenshot, title screen, wheel, marquee, and more). See [Browse and Launch Games](./browsing.mdx#change-browsing-options) for the other library display settings.
 
 For your own system artwork, Hub icons, and system names, see [Customize Frontend](./customization.mdx).
 
 ## Fix artwork problems
 
-Follow [Troubleshoot Frontend](./troubleshooting.mdx) if games are missing, scrape actions are unavailable, new artwork does not replace old artwork, or files on USB storage or a NAS are not found.
+Follow [Troubleshoot Frontend](./troubleshooting.mdx) if games are missing, Get metadata is unavailable, new artwork does not replace old artwork, or files on USB storage or a NAS are not found.
 
 For detailed scraper behavior, supported file layouts, custom bundles, and recovery options, see the [Core media database and scraper guide](../features/scraping.md).

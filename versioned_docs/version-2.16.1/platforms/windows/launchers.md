@@ -92,7 +92,7 @@ Second, make sure `localhost` resolves to `127.0.0.1`. Core connects to `localho
 127.0.0.1 localhost
 ```
 
-### Supported Systems
+### Supported systems
 
 | System ID | RetroBat Folder |
 |-----------|-----------------|

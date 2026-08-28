@@ -55,7 +55,7 @@ Use these starting points for Core maintenance tasks:
 | Recover a corrupt media database | [Database recovery](./cli.md#database-recovery) |
 | Update or uninstall Core | Your [platform guide](../platforms/index.mdx); uninstall steps are platform-specific |
 
-Direct uninstall instructions are available for [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos/index.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
+Direct uninstall instructions are available for [MiSTer](../platforms/mister/index.md#uninstall), [Batocera](../platforms/batocera/index.md#uninstall), [LibreELEC](../platforms/libreelec.md#uninstall), [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos/index.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
 
 ## Features and customization
 

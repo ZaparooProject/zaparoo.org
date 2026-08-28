@@ -123,7 +123,7 @@ Core continues to show and track the requested game, not Zaparoo Runtime. Play h
 
 Zaparoo Runtime does not create per-game Steam shortcuts or modify Steam game pages. The installer adds default artwork for the permanent shortcut without replacing artwork you have customized. In Desktop Mode, or when Runtime is unavailable, Core falls back to direct launching.
 
-## Shell Scripts
+## Shell scripts
 
 Execute allow-listed `.sh` files directly. Each file must be executable and use a valid shebang, such as `#!/bin/bash`.
 

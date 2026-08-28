@@ -1,6 +1,6 @@
 ---
-description: "Browse and launch games in Zaparoo Frontend, use library menus and controls, and choose alternate MiSTer launchers."
-keywords: [zaparoo frontend browsing, launch games from frontend, mister game browser, frontend controls, alternate mister launchers]
+description: "Browse and launch games in Zaparoo Frontend, arrange the Hub, use library menus and controls, and choose alternate MiSTer launchers."
+keywords: [zaparoo frontend browsing, launch games from frontend, mister game browser, frontend controls, alternate mister launchers, frontend hub]
 sidebar_position: 4
 ---
 
@@ -12,26 +12,36 @@ If covers, screenshots, or descriptions are missing, follow [Add Artwork and Met
 
 ## Browse the library
 
-Open a category to browse its systems, then select a system to browse its games. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through a long list.
+Open a category to browse its systems, then select a system to browse its games. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through a long list, **Random game** to pick one for you, or **Show** to switch between **All** and **Favorites**.
 
 The **Other** category holds [launchable items](../features/launchers.md#launchables) that have no normal game file behind them, such as ROM-less MiSTer cores. You can launch them like any other game or write them to a token.
 
+## Arrange the Hub
+
+The Hub shows categories, **Favorites**, **Recently played**, **Resume**, **Update**, and **Settings**. You can add your own tiles: choose **Add to Hub** from the options menu of any system, folder, or game, or use **Add item...** in the Hub's **View** menu. Tiles can be moved, hidden, or deleted from their options menu, and **Reset layout** in the View menu restores the default arrangement.
+
 ## Use the options menu
 
-Open the options menu to manage the item you are viewing. Depending on the current category, system, or game, the menu can:
+Open the options menu to manage the item you are viewing. Depending on whether you are on a category, a system, or a game, the menu can:
 
-- Launch a system core.
-- Change the launcher for a system.
-- Update the media database or scrape metadata.
-- Hide or unhide a category or system.
-- Write an NFC token.
-- Discover alternate Arcade versions.
+- Launch a system or game, or pick a **Random game**.
+- **Change launcher** for a system, or override the launcher for one game.
+- **Update media database** or **Get metadata** for that system or game.
+- **Hide** a category or system (turn on **Show hidden items** in Settings to unhide it).
+- **Add to Hub**.
+- Show **Details**, or add a game to favorites.
+- **Write to NFC token** on a connected reader, or **Write with App**, which shows a code to scan with the Zaparoo App.
+- **Discover alt. versions** for Arcade games.
 
-See [Add Artwork and Metadata](./scraping.mdx#understand-the-library-actions) for the difference between updating the media database, scraping metadata, and re-scraping existing entries.
+See [Add Artwork and Metadata](./scraping.mdx#understand-the-library-actions) for the difference between updating the media database and getting metadata.
+
+## Favorites
+
+Favorites live on the Hub and in **Show > Favorites** while browsing. In the favorites view, the **View** menu can **Sort** by default order or A-Z, **Group by** system, or pick a **Random favorite**. Favorite systems have their own screen as well.
 
 ## Choose alternate MiSTer launchers
 
-Open a system's options menu to choose any installed launcher that Core supports for that system. Alternate launchers include RetroAchievements, DB9, LLAPI, PWM, overclocked, DualRAM, and Sinden variants. Depending on the system, you might see options such as `DualRAMPSX`, `DB9SNES`, `LLAPINintendo64`, `SindenPSX`, or `RASNES`. Use this for an alternate launcher on one system or an exception to your general preference.
+Open a system's options menu to choose any installed launcher that Core supports for that system. Alternate launchers include RetroAchievements, DB9, LLAPI, PWM, 80 MHz overclock, DualRAM, and Sinden variants. Depending on the system, you might see options such as `DualRAMPSX`, `DB9SNES`, `LLAPINintendo64`, `SindenPSX`, or `RASNES`. A game's options menu can also override the launcher for that one game.
 
 RetroAchievements launchers also support a group preference. If you generally want a RetroAchievements core whenever one is installed, set this preference in Core's `config.toml`:
 
@@ -44,19 +54,14 @@ Core then prefers an available RetroAchievements launcher and falls back to the 
 
 ## Change browsing options
 
-Open **Settings**, then **Browsing** to change how the library appears. Available preferences include:
+Open **Settings > Library > Browsing** to change how the library appears:
 
-- Grid or list layout.
-- Preferred artwork type.
-- System logo style.
-- Hidden item visibility.
-- Original filename display.
-- Regional system names.
-- Clock format.
-- Mouse support.
-- Reduced motion.
+- **Systems layout** and **Games layout**: a grid of covers or a detailed list. The games layout also covers Favorites and Recents.
+- **Preferred artwork**: which imported image type Frontend asks Core for first.
+- **Show hidden items**: shows hidden systems and categories so you can unhide them.
+- **Show original filenames**: each file's real name, without the extension, instead of Core's cleaned-up title.
 
-**Preferred artwork** chooses which imported image type Frontend asks Core for first. **Show original filenames** uses each game's original filename without the extension instead of Core's cleaned title.
+Related settings live elsewhere: system logo style and **Reduce motion** under **Settings > Appearance**, regional system names (**Region**) and **Clock format** under **Settings > Language**, and **Mouse support** under **Settings > Controls**.
 
 When multiple games have the same display name, Frontend can show variant tags inline to help distinguish regions, versions, and other variants.
 
@@ -70,10 +75,12 @@ The default keyboard controls are:
 | ------ | ------------ |
 | Move | Arrow keys |
 | Select | `Enter` |
-| Back | `Escape` |
+| Back | `Escape` or `Backspace` |
 | Options menu | `Tab` |
 | View menu | `Space` |
 | Previous page | `PageUp` |
 | Next page | `PageDown` |
 
-MiSTer automatically maps your controller buttons to these keys.
+MiSTer automatically maps your controller buttons to these keys: A selects, B goes back, X opens the options menu, Y opens the View menu, L and R change page, Select goes back, and Start opens help. You can swap the confirm and cancel buttons, or the options and view buttons, under **Settings > Controls**, and change the on-screen button icons with **Button style**.
+
+Keyboard bindings can be changed in `/media/fat/zaparoo/frontend.toml` under `[input.keyboard]`; a list you provide replaces the default for that action.

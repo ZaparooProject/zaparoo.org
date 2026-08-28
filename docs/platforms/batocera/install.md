@@ -12,7 +12,7 @@ Download Zaparoo Core for Batocera from the [Downloads page](/downloads/) and un
 - `zaparoo` - The main Zaparoo Core executable
 - `zaparoo_service` - A service script that runs Zaparoo Core on startup
 
-## Network Share
+## Network share
 
 1. Copy the `zaparoo` file into the `system` directory of your Batocera share (`\\BATOCERA\share\system` on Windows)
 2. Create a `services` directory inside the `system` directory if it doesn't exist

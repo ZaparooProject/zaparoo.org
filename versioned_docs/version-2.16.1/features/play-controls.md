@@ -88,7 +88,7 @@ If less than 1 minute remains, the launch is blocked entirely.
 
 ## Online play history
 
-Play history stays local unless you explicitly enable sync under **Settings > Online**. The first sync uploads retained history to your linked Zaparoo Online account, then checks for new or updated sessions about once an hour. Linking an account by itself does not grant consent.
+Play history stays local unless you explicitly enable sync under **Settings > Online**. The first sync uploads retained history to your linked Zaparoo Online account. After that, Core syncs when a session starts or ends, refreshes an active session about every five minutes, and runs a catch-up pass about once an hour. Linking an account by itself does not grant consent. Play history sync is free and does not need Warp.
 
 See [Zaparoo Online play history sync](../online/index.md#play-history-sync) for setup, uploaded fields, retention behavior, and how to stop syncing.
 

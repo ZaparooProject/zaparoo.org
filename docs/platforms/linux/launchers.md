@@ -135,7 +135,7 @@ Opens URLs in the default system browser using `xdg-open`.
 | `http://` | HTTP URLs |
 | `https://` | HTTPS URLs |
 
-## Shell Scripts
+## Shell scripts
 
 Custom shell scripts (`.sh` files) can be launched directly. Scripts must be added to the `allow_file` list in `config.toml`.
 

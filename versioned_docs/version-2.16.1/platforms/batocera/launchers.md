@@ -11,7 +11,7 @@ Batocera uses EmulationStation as its primary launcher. Games are stored in `/us
 
 The built-in EmulationStation launcher supports all systems listed below. Each system maps to one or more folders in `/userdata/roms/`.
 
-### Supported Systems
+### Supported systems
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
@@ -229,7 +229,7 @@ password = "your_password"
 
 See [LibreELEC](../libreelec.md) for detailed Kodi API setup instructions.
 
-## Shell Scripts
+## Shell scripts
 
 Custom shell scripts (`.sh` files) can be launched directly. Scripts must be added to the `allow_file` list in `config.toml`.
 

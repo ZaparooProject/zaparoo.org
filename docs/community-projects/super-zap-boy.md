@@ -71,7 +71,7 @@ Additionally, you will need some cables and other items. Keep in mind that we ha
 **Optional:**
 
 - A 90 degrees angled USB-C to USB-A cable would be better for positioning
-- A sticker to apply on the front of the case. The logo on the top of this wiki can be used for this as it's made to scale.
+- A sticker to apply on the front of the case. The logo at the top of this page can be used for this as it's made to scale.
 
 ## Readying the Super Zap Boy
 
@@ -164,10 +164,10 @@ The sky's the limit when it comes to **customization** and **presentation!**
 
 If you've made it this far, **congratulations** on building your own **Super Zap Boy**! Now, let's take it to the next level by integrating it with the **Super MiSTer** and completing the project.
 
-In this final section, we will house a Single-Board Computer (SBC), such as the **Raspyberry Pi,** the **DE-10 Nano** or one of its clones, inside the **SMES** case.
+In this final section, we will house a Single-Board Computer (SBC), such as the **Raspberry Pi,** the **DE-10 Nano** or one of its clones, inside the **SMES** case.
 
 :::note
-As of writing this tutorial, Zaparoo is **not yet officially supported** on the Raspberry Pi. Support will be added in the future. For now, you'll need to use a **Terasic DE-10 Nano** or a clone board like the **QMTECH** or **MiSTer Pi.**
+A Raspberry Pi runs Zaparoo through [Batocera](../platforms/batocera/index.md) rather than MiSTer, so the MiSTer-specific steps below apply to a **Terasic DE-10 Nano** or a clone board like the **QMTECH** or **MiSTer Pi**.
 :::
 
 ### Step 1: Disassembly
@@ -305,7 +305,7 @@ If you'd like, you can **remove the original logo** on the top front of the SNES
    - Wet the **Magic Eraser sponge**. It will be used to gently remove the original logo.
 2. **Wet Sanding Process:**
    - Begin rubbing the sponge on the logo in a **circular motion**.
-   - Apply some pressure—the sponge is soft enough to not damage the shell.
+   - Apply some pressure; the sponge is soft enough to not damage the shell.
 3. **Be Patient:**
    - The wet sanding process can take about **15-20 minutes**.
    - Gradually, the original logo will **fade away**. Keep sanding until you're satisfied with the result.
@@ -388,7 +388,7 @@ To set this up, you'll need the following components:
 This guide assumes you want to use **both controller ports** since the same board supports both.
 
 1. **Remove the front controller ports** carefully.
-2. **Detach the ribbon cable**—you won't need it for this mod.
+2. **Detach the ribbon cable**. You won't need it for this mod.
 
 ### Soldering Guide
 
@@ -443,7 +443,7 @@ This is it guys, the finish line! If you did everything correctly so far it shou
 
 Now if you don't have it exactly like this, that's completely okay! You can mix and match different items, it doesn't really matter. The important part is that you have a functional Super Zap Boy and a SMES. As long as that's working and you can enjoy games with it, that's all that matters!
 
-If somehow this wiki was not clear enough on a certain subject and you have questions still, then hit me up @Phoenix on the Zaparoo discord ([wizzo.dev](https://wizzo.dev/)).
+If this guide was not clear on something and you still have questions, find me as @Phoenix on the [Zaparoo Discord](https://zaparoo.org/discord).
 
 <Gallery photos={[
   {
@@ -493,7 +493,7 @@ _ArielAces: Made cartridge label templates, printed labels_
 
 _Tim Wilsie: Created design of the Super Zap Boy logo_
 
-_Wizzo: Supported and sent positive vibes :D_
+_Wizzo: Supported and sent positive vibes_
 
 _MickGyver: Created software for the Daemonbite Retro USB adapter which we used for the controller port_
 

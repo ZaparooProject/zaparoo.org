@@ -19,7 +19,7 @@ On MiSTer, Zaparoo treats ZIP archives like folders. It can index, browse, and l
 
 For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folder and launch the ROM inside through the SNES launcher. This behavior is specific to MiSTer. On other platforms, Zaparoo cannot browse or launch a file inside a ZIP archive, although an individual launcher may support the ZIP file itself as media.
 
-## Supported Systems
+## Supported systems
 
 ### Console Systems
 
@@ -339,7 +339,7 @@ launcher = "Nintendo64"
 load_path = "_LLAPI/N64_LLAPI"
 ```
 
-`load_path` is an MGL-form RBF path relative to `/media/fat`, without extension. A config reload is sufficient after changing this — no service restart required.
+`load_path` is an MGL-form RBF path relative to `/media/fat`, without extension. A config reload is sufficient after changing this. No service restart is required.
 
 ### RetroAchievements
 

@@ -26,7 +26,7 @@ Zaparoo supports a wide range of barcode formats:
 
 There are two ways to scan barcodes with Zaparoo:
 
-**Phone camera** using the [Zaparoo App](../app/index.md). You can scan a barcode while creating a mapping, or use the Zap screen as a camera reader if the Pro Launch on scan feature is enabled.
+**Phone camera** using the [Zaparoo App](../app/index.md). You can scan a barcode while creating a mapping, or use the Zap screen as a camera reader if the Launch on scan (Pro) feature is enabled.
 
 **Hardware scanner** using an [RS-232 barcode scanner](../readers/barcode/rs232.md) connected through a serial port or USB-to-serial adapter. Core receives whatever text the scanner sends, so supported formats depend on the scanner.
 
@@ -34,11 +34,10 @@ There are two ways to scan barcodes with Zaparoo:
 
 The Zaparoo App can scan the barcode and save the mapping for you:
 
-1. Go to **Create > Add a mapping**.
-2. Tap **Camera** and point at the barcode.
-3. Check that the scanned value appears in **Token ID**.
-4. Enter ZapScript, or use the command palette to pick media.
-5. Tap **Save mapping**.
+1. Go to **Create > Mappings** and tap **New mapping**.
+2. Leave **Token field** set to **ID**, tap **Camera**, and point at the barcode. The scanned value fills the **Pattern** field.
+3. Enter ZapScript, or tap **Command** to pick media.
+4. Tap **Save**.
 
 ## Setting up with mapping files
 

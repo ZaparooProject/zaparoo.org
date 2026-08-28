@@ -1,6 +1,6 @@
 ---
-description: "Troubleshoot Zaparoo Frontend setup, missing games, unavailable scrape actions, and missing artwork on MiSTer FPGA."
-keywords: [zaparoo frontend troubleshooting, missing frontend games, missing mister artwork, scrape metadata unavailable, gamelist.xml not working]
+description: "Troubleshoot Zaparoo Frontend setup, missing games, unavailable metadata imports, and missing artwork on MiSTer FPGA."
+keywords: [zaparoo frontend troubleshooting, missing frontend games, missing mister artwork, get metadata unavailable, gamelist.xml not working]
 sidebar_position: 5
 ---
 
@@ -8,38 +8,42 @@ sidebar_position: 5
 
 Start with the symptom you see. Frontend displays the library managed by [Zaparoo Core](../core/index.md), so game discovery and artwork problems can involve either the Frontend screen or Core's media database.
 
-## First-time setup stays on Preparing
+## Frontend warns that Core needs updating
 
-Frontend requires Zaparoo Core v2.17.0 or newer. Some MiSTer images include an older Core build that does not support Frontend.
+Frontend is built for Zaparoo Core v2.17.0 or newer. Older Core builds still connect, but Frontend shows an **Update Zaparoo Core** warning and some features may not work. Some MiSTer images include an old Core build.
 
 Update Core through [Update All](../platforms/mister/index.md#install), then reboot MiSTer or restart Frontend. See [Install and Set Up Frontend](./setup.mdx) for the supported installation methods.
 
+## Frontend cannot reach Core
+
+The start screen shows **Can't reach Zaparoo Core. Check your connection.** when Core is not running. Make sure Core is installed and enabled as a startup service on the MiSTer; see [MiSTer troubleshooting](../platforms/mister/index.md#troubleshooting).
+
 ## Games do not appear
 
-Run **Update media database** from **Settings**, then **Library**. You can also open a system's options menu and update that system on its own.
+Run **Update media database** from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own. On a brand-new library, Frontend starts this scan itself and the Hub shows **No games found yet** until it finishes.
 
-A media database update finds game files and makes them available to Frontend. Scraping metadata does not add missing games to the database.
+A media database update finds game files and makes them available to Frontend. Getting metadata does not add missing games to the database.
 
 ## Games appear without artwork
 
 Work through these checks in order:
 
-1. Confirm the game appears after running **Update media database**. Scrapers only enrich games already present in Core's database.
+1. Confirm the game appears after running **Update media database**. Metadata imports only enrich games already present in Core's database.
 2. Confirm compatible metadata and artwork files exist on the SD card, USB drive, or NAS. Core does not download artwork from the internet.
-3. Run **Scrape metadata** from **Settings**, then **Library**.
+3. Run **Get metadata** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
 4. Check that each `gamelist.xml` game path resolves to an indexed game and that its image paths resolve to files Core can read.
 
 See [Add Artwork and Metadata](./scraping.mdx) for supported sources and the complete import workflow.
 
-## Scrape actions are unavailable
+## Get metadata is unavailable
 
-Scraping cannot start while a media database update is running. Wait for the update to finish, then run **Scrape metadata**.
+Getting metadata cannot start while a media database update is running. Wait for the update to finish, then try again.
 
-Only one scrape can run at a time. If metadata is already being scraped, wait for it to finish before starting another one.
+Only one import can run at a time. If one is already running, wait for it to finish before starting another.
 
 ## Updated artwork does not appear
 
-A normal scrape skips games that already have imported scraper metadata. Enable **Re-scrape existing**, then run the scrape again after replacing artwork, correcting paths, or changing metadata that was previously imported.
+A normal import skips games that already have imported metadata. Turn on **Replace existing** in the **Get metadata** dialog, then run the import again after replacing artwork, correcting paths, or changing metadata that was previously imported.
 
 ## Arcade artwork is missing
 
@@ -51,10 +55,14 @@ See the [artwork source guide](./scraping.mdx#choose-an-artwork-source) for the 
 
 Metadata can sit beside games on an SD card, USB drive, or NAS share. Check that `gamelist.xml` game and image paths resolve to locations Core can read.
 
-To keep metadata separate from your games, configure a [`custom_path`](../features/scraping.md#custom-gamelist-bundles) and create one folder per exact system ID. Custom bundles enrich games already in the media database, so update the database before scraping.
+To keep metadata separate from your games, configure a [`custom_path`](../features/scraping.md#custom-gamelist-bundles) and create one folder per exact system ID. Custom bundles enrich games already in the media database, so update the database before importing.
+
+## The Update tile is greyed out
+
+The built-in updater needs an internet connection. The tile shows **No internet connection** until the MiSTer is online.
 
 ## Upload support logs
 
-Open **Settings**, then **Support**, then **Upload log file**. Frontend uploads a support bundle and shows a link you can share in Discord or a GitHub issue.
+Open **Settings > About**, then **Upload log file**. Frontend uploads a support bundle to `logs.zaparoo.org` and shows a link, and a code you can scan, to share in Discord or a GitHub issue. Turn on **Debug logging** on the same page first if you have been asked for more detail; it restarts Frontend.
 
 The upload includes a support summary, the Frontend log tail, and the Core log tail when Core is reachable. Include what you were trying to do, the steps that reproduce the problem, and the uploaded support link when asking for help.

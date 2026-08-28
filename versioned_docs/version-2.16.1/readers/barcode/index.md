@@ -11,7 +11,7 @@ Zaparoo supports reading [barcodes](../../tokens/barcodes.md) and [QR codes](../
 
 <PlatformSupport readerId="barcode" />
 
-## App-Based Scanning
+## Scanning with the Zaparoo App
 
 Use your phone's camera to scan barcodes and QR codes with the native [Zaparoo App](../../app/index.md). Scans are sent to Zaparoo Core through the app, so you don't need a reader driver on the device running Core.
 
@@ -20,7 +20,7 @@ Use your phone's camera to scan barcodes and QR codes with the native [Zaparoo A
 
 See the [barcodes token page](../../tokens/barcodes.md) for supported formats and how to set up mappings.
 
-## Hardware Scanners
+## Hardware scanners
 
 Connect a physical barcode scanner through an RS-232 serial port or USB-COM adapter for a dedicated scanner setup. The scanner must output serial data, not keyboard-emulation keystrokes.
 
@@ -28,4 +28,10 @@ Connect a physical barcode scanner through an RS-232 serial port or USB-COM adap
 - Hands-free operation
 - Works with barcodes and QR codes supported by your scanner
 
-See [RS-232 Scanner](./rs232.md) for setup and usage.
+See [RS-232 scanner](./rs232.md) for setup and usage.
+
+## Troubleshooting
+
+**Scanning a barcode types digits into a text field instead of reaching Core.** The scanner is in keyboard-emulation mode. Switch it to RS-232 or USB-COM mode using its manual or programming barcodes; see [keyboard emulation mode](./rs232.md#troubleshooting).
+
+**The App scans the code but nothing launches.** Barcodes need a [mapping](../../tokens/barcodes.md) that tells Core what to run, and launching from the phone's scan needs [Launch on scan (Pro)](../../app/index.md#zaparoo-app-pro).

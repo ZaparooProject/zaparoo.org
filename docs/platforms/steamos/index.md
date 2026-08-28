@@ -6,7 +6,7 @@ keywords: [zaparoo steamos, zaparoo steam deck, steam deck nfc, nfc steam deck g
 
 Zaparoo Core runs in the background on SteamOS and launches Steam games, native emulators, RetroArch, EmuDeck, and RetroDECK from physical tokens. In Gaming Mode, emulator launches run through Zaparoo Runtime, a permanent Steam shortcut the installer adds so emulators can start as Steam-owned sessions. Steam games launch directly through Steam. This page covers install, security, backups, and readers; launcher setup is on [SteamOS launchers](./launchers.md) and the Quick Access Menu plugin on [Decky Loader plugin](./decky.md).
 
-## File Paths
+## File paths
 
 | Item               | Path                                             |
 | ------------------ | ------------------------------------------------ |
@@ -117,8 +117,8 @@ Like every Core platform, SteamOS cloud backups contain Zaparoo configuration, m
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
 | NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Auto-detected | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
-| Barcode and QR | [App/Camera Scanner](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS232 Scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |

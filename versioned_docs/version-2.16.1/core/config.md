@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-toc_max_heading_level: 4
+toc_max_heading_level: 6
 description: "Complete configuration reference for Zaparoo Core: every setting, option, and value in config.toml explained with examples."
 keywords: [zaparoo config, zaparoo core config, config.toml zaparoo, zaparoo configuration reference]
 ---
@@ -38,6 +38,22 @@ Any changes made to the config file while the Core service is running require th
 :::tip Portable Mode
 Optionally, Zaparoo Core can run in portable mode, where the config and all other data are stored in a single folder alongside the executable. To enable this, create an empty folder called `user` in the same folder as the Core executable, then start Core normally.
 :::
+
+## A minimal config
+
+Most setups never need more than a few lines. This is a complete, working `config.toml` that turns on debug logging and adds one custom launcher for shell scripts:
+
+```toml
+config_schema = 1
+debug_logging = true
+
+[launchers]
+allow_file = [
+    "^/home/pi/scripts/.*\\.sh$"
+]
+```
+
+Everything else falls back to its default. The [complete example](#complete-example) at the bottom of this page shows every section together.
 
 ## Options
 
@@ -536,7 +552,7 @@ enabled = true
 
 `timeout` sets how long, in seconds, a staged token waits for confirmation before being silently dropped.
 
-Setting `timeout` to `0` uses the default of 15 seconds. Setting it to a negative value (e.g., `-1`) disables the timeout entirely — the staged token persists until it's confirmed, replaced by another scan, or cleared when media stops.
+Setting `timeout` to `0` uses the default of 15 seconds. Setting it to a negative value (e.g., `-1`) disables the timeout entirely. The staged token persists until it's confirmed, replaced by another scan, or cleared when media stops.
 
 ```toml
 [readers.scan.launch_guard]
@@ -550,7 +566,7 @@ timeout = -1     # wait indefinitely
 | ----- | ------------ | ------- |
 | delay | float (≥0.0) | 0.0     |
 
-`delay` sets a mandatory cool-down period, in seconds, before re-tap confirmation is accepted. During this window, re-tapping the same card resets both the delay and the timeout — confirmation is not accepted until the full delay has elapsed.
+`delay` sets a mandatory cool-down period, in seconds, before re-tap confirmation is accepted. During this window, re-tapping the same card resets both the delay and the timeout. Confirmation is not accepted until the full delay has elapsed.
 
 When the delay expires, a ready sound plays and a `tokens.staged.ready` notification is sent.
 
@@ -570,7 +586,7 @@ Setting `delay` to `0` (the default) disables the cool-down and re-tap confirmat
 | --------------- | ------- | ------- |
 | require_confirm | boolean | false   |
 
-`require_confirm` disables re-tap confirmation. When set to `true`, re-tapping the staged card does nothing — the only way to launch a staged token is via the `confirm` API method.
+`require_confirm` disables re-tap confirmation. When set to `true`, re-tapping the staged card does nothing. The only way to launch a staged token is via the `confirm` API method.
 
 ```toml
 [readers.scan.launch_guard]
@@ -1015,8 +1031,8 @@ block = ['{alt+f4}']
 
 Controls how input keys are filtered when no `allow` list is configured.
 
-- `combos` — only key combos and named special keys (e.g., `{f1}`, `{ctrl+q}`) are allowed. Single characters (e.g., `a`, `5`) are blocked. This is the default on desktop platforms.
-- `unrestricted` — all keys are allowed (subject to the `block` list). This is the default on embedded platforms like MiSTer.
+- `combos`: only key combos and named special keys (e.g., `{f1}`, `{ctrl+q}`) are allowed. Single characters (e.g., `a`, `5`) are blocked. This is the default on desktop platforms.
+- `unrestricted`: all keys are allowed (subject to the `block` list). This is the default on embedded platforms like MiSTer.
 
 Platform defaults:
 - **Desktop** (Linux, Windows, macOS, SteamOS, ChimeraOS, Bazzite): `combos`
@@ -1397,8 +1413,8 @@ host = "192.168.1.50"
 
 `mode` controls which PixelCade arcade endpoint is used when displaying marquee art on `media.started`. Accepted values:
 
-- `"stream"` — uses the streaming endpoint (default)
-- `"write"` — uses the write endpoint
+- `"stream"`: uses the streaming endpoint (default)
+- `"write"`: uses the write endpoint
 
 ###### filter {#pixelcade-publisher-filter}
 
@@ -1735,6 +1751,8 @@ Fixed 75x15 window size for better display on CRT monitors. Requires a restart t
 Show a virtual keyboard when pressing Enter on text fields, for controller/gamepad input. Defaults to `false`, but `true` on MiSTer and MiSTeX.
 
 ## Example File
+
+## Complete example {#complete-example}
 
 <details>
   <summary>Click to view a complete example config.toml file</summary>

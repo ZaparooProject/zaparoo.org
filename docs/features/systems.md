@@ -12,7 +12,9 @@ Most systems refer to a console, handheld, computer, or arcade platform, but sys
 
 System IDs are case-insensitive in [configuration files](../core/config.md) and ZapScript commands. This page lists the user-facing system IDs, explicit aliases, and fallback systems built into Core.
 
-## Game Consoles
+Not every system here can be launched. Some, such as mobile phones or VR headsets, exist so media can be classified and tagged correctly. Whether a system launches depends on the [launchers](./launchers.md) your platform provides.
+
+## Game consoles
 
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
@@ -108,7 +110,7 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `XboxOne` | Xbox One | | |
 | `Zeebo` | Zeebo | | |
 
-## Handheld Systems
+## Handheld systems
 
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
@@ -132,12 +134,12 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `MegaDuck` | Mega Duck | | |
 | `Microvision` | Microvision | `Milton Bradley Microvision` | |
 | `NDS` | Nintendo DS | `NintendoDS` | |
-| `NintendoEReader` | e-Reader / Card-e Reader | `e-Reader / Card-e Reader`, `Nintendo e-Reader`, `Card-e Reader` | |
-| `PanasonicJungle` | Panasonic Jungle | `Panasonic Jungle` | |
 | `NeoGeoPocket` | Neo Geo Pocket | | |
 | `NeoGeoPocketColor` | Neo Geo Pocket Color | | `NeoGeoPocket` |
-| `PocketChallengeV2` | WonderSwan Pocket Challenge V2 | | |
+| `NintendoEReader` | e-Reader / Card-e Reader | `e-Reader / Card-e Reader`, `Nintendo e-Reader`, `Card-e Reader` | |
+| `PanasonicJungle` | Panasonic Jungle | `Panasonic Jungle` | |
 | `Playdate` | Playdate | | |
+| `PocketChallengeV2` | WonderSwan Pocket Challenge V2 | | |
 | `PocketStation` | PocketStation | `Sony PocketStation` | |
 | `PokemonMini` | Pokémon Mini | | |
 | `PSP` | PlayStation Portable | `PlaystationPortable` | |
@@ -151,7 +153,7 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `WonderSwan` | WonderSwan | | |
 | `WonderSwanColor` | WonderSwan Color | | `WonderSwan` |
 
-## Computer Systems
+## Computer systems
 
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
@@ -240,7 +242,7 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `ZXNext` | ZX Spectrum Next | | |
 | `ZXSpectrum` | ZX Spectrum | `Spectrum` | |
 
-## Arcade Systems
+## Arcade systems
 
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
@@ -280,7 +282,7 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `TaitoF2` | Taito F2 System | | `Arcade` |
 | `Triforce` | Triforce | | |
 
-## Other Systems
+## Other systems
 
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
@@ -328,7 +330,7 @@ System IDs are case-insensitive in [configuration files](../core/config.md) and 
 | `WindowsMobile` | Windows Mobile | `Windows Mobile`, `WinMo` | |
 | `WindowsPhone` | Windows Phone | `Windows Phone`, `Windows Phone OS` | |
 
-## Usage Notes
+## Usage notes
 
 - **System IDs are case-insensitive** when used in configuration files and ZapScript commands
 - **Aliases** are explicit alternative names that Core treats as the same system, such as `MegaDrive` for `Genesis`, `GB` for `Gameboy`, or `N64` for `Nintendo64`

@@ -4,9 +4,13 @@ keywords: [zaparoo steamos, zaparoo steam deck, steam deck nfc, nfc steam deck g
 ---
 # SteamOS
 
+:::warning[Beta]
+SteamOS support is currently in beta. Some features may not work as expected.
+:::
+
 Zaparoo Core on SteamOS supports launching Steam, native emulator, RetroArch, EmuDeck, and RetroDECK games from your Steam Deck. This page covers install and readers; launcher setup is on [SteamOS launchers](./launchers.md).
 
-## File Paths
+## File paths
 
 | Item               | Path                                       |
 | ------------------ | ------------------------------------------ |
@@ -46,8 +50,8 @@ sudo ~/.local/bin/zaparoo -uninstall hardware
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
 | NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Auto-detected | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
-| Barcode and QR | [App/Camera Scanner](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS232 Scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
@@ -64,14 +68,14 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Steam            | PC       | Games and non-Steam shortcuts              |
 | Native emulators | Multiple | Direct Flatpak and executable launchers    |
 | RetroArch        | Multiple | Flatpak cores with built-in controls       |
-| EmuDeck          | 56+      | RetroArch and standalone emulators         |
-| RetroDECK        | 200+     | Unified emulator frontend                  |
+| EmuDeck          | Multiple | RetroArch and standalone emulators         |
+| RetroDECK        | Multiple | Unified emulator frontend                  |
 | Kodi             | Media    | Videos, movies, TV shows, music            |
 | Shell Scripts    | Any      | Custom `.sh` file execution                |
 
 Each launcher's detection rules, paths, and configuration are on [SteamOS launchers](./launchers.md).
 
-## Known Issues
+## Known issues
 
 - Updates require stopping the service first: `sudo systemctl stop zaparoo.service`
 

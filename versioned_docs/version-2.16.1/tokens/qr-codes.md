@@ -18,11 +18,13 @@ Use the generator below to create QR codes with your ZapScript:
 
 <QRCodeGenerator />
 
-You can also use a standard [QR code generator](https://httpbin.dmuth.org/qrcode/). Paste the ZapScript into the generator's text field and disable link tracking if the generator offers it.
+Any standard QR code generator also works. Paste the ZapScript into its text field and turn off link tracking if the generator offers it.
+
+QR codes cost nothing to print. If you'd rather have durable cards, the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks pre-printed NFC cards.
 
 ## Zaparoo App
 
-The [Zaparoo App](../app/index.md) can scan QR codes with your phone's camera. If Pro Launch on scan is enabled, the app sends the scanned ZapScript to Zaparoo Core over WiFi. This avoids hard-coding your Core device's IP address into every QR code.
+The [Zaparoo App](../app/index.md) can scan QR codes with your phone's camera. If Launch on scan (Pro) is enabled, the app sends the scanned ZapScript to Zaparoo Core over WiFi. This avoids hard-coding your Core device's IP address into every QR code.
 
 ### Examples
 
@@ -57,7 +59,7 @@ Replace `<IP ADDRESS>` with your Core device's IP address and `<ZAPSCRIPT>` with
 :::warning
 Phone-camera URLs depend on your Core device's IP address. If the IP address changes, you need to update the QR codes.
 
-Remote launch requests also need to be allowed by Core's `allow_launch` config setting. If you do not want to enable remote launch URLs, use the Zaparoo App scanning option instead.
+Remote launch requests also have to match a pattern in Core's [`allow_run`](../core/config.md#allow_run) setting in the `[service]` section of the config file. With no patterns set, every remote launch is refused. If you do not want to enable remote launch URLs, use the Zaparoo App scanning option instead.
 :::
 
 ### Examples

@@ -112,7 +112,7 @@ Keep the tag still on the reader while writing. If writing [MIFARE Classic](../.
 
 ## Where to buy
 
-For a ready-to-use reader, use the PN532 USB page instead.
+For a ready-to-use reader, the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks the PN532 USB with a case, or see the [PN532 USB](./pn532-usb.md) page for other suppliers.
 
 Original hardware:
 

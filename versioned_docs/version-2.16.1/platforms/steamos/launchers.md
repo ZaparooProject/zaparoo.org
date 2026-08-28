@@ -125,7 +125,7 @@ Native emulators, EmuDeck, and RetroDECK work in Steam's Gaming Mode. Zaparoo pr
 
 When a launched window closes, Core restores the previous gamescope focus state. Return to Menu stops the active launcher; Steam's Game Mode shell remains responsible for displaying its menu.
 
-## Shell Scripts
+## Shell scripts
 
 Execute arbitrary shell scripts. Requires explicit allow list configuration for security.
 
