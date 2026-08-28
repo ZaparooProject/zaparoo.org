@@ -1,11 +1,12 @@
 ---
+sidebar_position: 6
 description: Map NFC card UIDs, barcodes, or token text to custom ZapScript commands using Zaparoo mapping files or the Core API.
 keywords: [zaparoo mappings, nfc uid mapping, amiibo mapping, barcode mapping zaparoo, zapscript mapping]
 ---
 
 # Mappings
 
-Mappings let Zaparoo Core run custom [ZapScript](../zapscript/index.md) when a scanned token matches a UID, barcode, stored text, or raw data pattern. They are useful for read-only tokens, including [barcodes](../tokens/qr-codes.md) and NFC toys like [Amiibos](../tokens/nfc-toys/amiibo.md), where you cannot write ZapScript directly to the token.
+Mappings let Zaparoo Core run custom [ZapScript](../zapscript/index.md) when a scanned token matches a UID, barcode, stored text, or raw data pattern. They are useful for read-only tokens, including [barcodes](../tokens/qr-codes.md) and NFC toys like [Amiibo](../tokens/nfc-toys/index.md#amiibo), where you cannot write ZapScript directly to the token.
 
 Core can load mappings from local TOML files or from mappings stored in its database through the API. Database mappings are checked first. If a database mapping matches, Core uses that ZapScript and does not check file mappings or legacy platform mappings.
 

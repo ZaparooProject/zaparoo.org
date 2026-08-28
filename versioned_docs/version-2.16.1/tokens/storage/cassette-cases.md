@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: "Store Zaparoo NFC cards in cassette tape cases with printable covers and optional 3D printed card inserts."
 keywords: [zaparoo cassette cases, nfc card storage, retro game card case, zaparoo collection]
 ---

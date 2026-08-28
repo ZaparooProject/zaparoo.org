@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 1
 description: "ZapScript syntax reference: the format, structure, and rules for writing ZapScript commands on Zaparoo tokens."
 keywords: [zapscript syntax, zapscript format, zaparoo token syntax, zapscript reference]
 ---
@@ -238,7 +238,7 @@ There is no guarantee that a command will update environment variables before th
 
 ## JSON Arguments
 
-If an argument starts with a `{` character, it will be specially parsed and validated as a JSON object until the matching `}` end character. This is used by [playlist commands](./playlist.md#inline-json) for inline playlist definitions.
+If an argument starts with a `{` character, it will be specially parsed and validated as a JSON object until the matching `}` end character. This is used by [playlist commands](../features/playlists.md#inline-json) for inline playlist definitions.
 
 ## Zap Links
 

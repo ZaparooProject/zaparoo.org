@@ -1,4 +1,5 @@
 ---
+sidebar_position: 9
 description: Show active Zaparoo media on a TTY2OLED serial display.
 keywords: [tty2oled zaparoo, mister oled display, zaparoo game display, tty2oled integration]
 ---
@@ -11,46 +12,7 @@ Use this if you already have [TTY2OLED](https://github.com/venice1200/MiSTer_tty
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../platforms/windows/", support: "supported" },
-        { name: "macOS", href: "../platforms/mac", support: "supported" },
-        { name: "Linux", href: "../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="tty2oled" />
 
 ## Enable the reader
 

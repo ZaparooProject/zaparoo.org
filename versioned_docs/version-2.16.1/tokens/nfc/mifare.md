@@ -1,4 +1,5 @@
 ---
+sidebar_position: 2
 description: "Using MIFARE Classic 1K NFC tags with Zaparoo: NDEF formatting, compatibility notes, and ACR122U write limitations."
 keywords: [mifare classic zaparoo, mifare 1k nfc, zaparoo nfc tags, acr122u mifare]
 ---
@@ -29,5 +30,5 @@ MIFARE Classic has limited compatibility compared to NTAG tags. Most notably, iP
 
 Several NFC toy lines use MIFARE chips internally. See [NFC Toys](../nfc-toys/index.md) for details on using them with Zaparoo:
 
-- [Skylanders](../nfc-toys/skylanders.md) (MIFARE Classic 1K)
-- [Disney Infinity](../nfc-toys/disney-infinity.md) (MIFARE)
+- [Skylanders](../nfc-toys/index.md#skylanders) (MIFARE Classic 1K)
+- [Disney Infinity](../nfc-toys/index.md#disney-infinity) (MIFARE)

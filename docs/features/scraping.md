@@ -1,4 +1,5 @@
 ---
+sidebar_position: 8
 sidebar_label: Scraping
 description: "Update the Zaparoo Core media database and import local metadata and artwork with the gamelist.xml and media-folder scrapers."
 keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder]

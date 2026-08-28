@@ -8,7 +8,9 @@ keywords: [zaparoo tokens, nfc cards games, zaparoo nfc, qr code game launcher, 
 
 Tokens are physical objects that trigger actions in Zaparoo. Writable tokens hold a small piece of text, like a game title or [ZapScript](../zapscript/index.md) command, not the game itself. Read-only tokens, such as some NFC toys or product barcodes, can be matched to ZapScript with [mappings](../features/mappings.md). When you scan a token on a [reader](../readers/index.md), Zaparoo reads the token data and runs the matching action.
 
-The most common tokens are NFC cards, but Zaparoo also supports QR codes, barcodes, and NFC toys like Amiibo figures.
+Tokens are the things you scan; [readers](../readers/index.md) are the hardware that scans them. The most common tokens are NFC cards, but Zaparoo also supports QR codes, barcodes, NFC toys like Amiibo figures, discs, and USB drives.
+
+Most people start with [NTAG215 cards](./nfc/ntag.md): they hold enough for any normal ZapScript, work with every NFC reader, and are cheap in bulk.
 
 <Gallery media={[
   { src: "/img/showcase/KarlFayeton_printed_cards.webp", width: 1200, height: 900, alt: "Sleeved NFC cards with front and back artwork" },
@@ -26,11 +28,14 @@ The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</Pro
 
 | Token | Storage | Writable | Reader needed | Notes |
 | ----- | ------- | -------- | ------------- | ----- |
-| [NFC tags](./nfc/) | 48–888 bytes | Yes | NFC reader | Cards, stickers, key fobs |
-| [PCB cards](./pcb-cards) | NFC sticker | Yes | NFC reader | Custom PCBs with NFC stickers |
-| [NFC toys](./nfc-toys/) | UID | No (mapped) | NFC reader | Amiibo, Skylanders, and similar |
-| [QR codes](./qr-codes) | Text or URL | Printable | App, camera, or scanner | Free to create, no special hardware |
-| [Barcodes](./barcodes) | Barcode value | Printable | App or barcode scanner | Works with existing product barcodes |
+| [NFC cards and tags](./nfc/index.md) | Varies by chip (NTAG215: 504 bytes) | Yes | NFC reader | Cards, stickers, key fobs |
+| [PCB cards](./pcb-cards.md) | NFC sticker | Yes | NFC reader | Custom PCBs with NFC stickers |
+| [NFC toys](./nfc-toys/index.md) | UID | No (mapped) | NFC reader | Amiibo, Skylanders, and similar |
+| [QR codes](./qr-codes.md) | Text or URL | Printable | App, camera, or scanner | Free to create, no special hardware |
+| [Barcodes](./barcodes.md) | Barcode value | Printable | App or barcode scanner | Works with existing product barcodes |
+| [Online cards and decks](../online/index.md#cards-and-decks) | Short URL on an NFC tag | Yes, and editable online | NFC reader | Change what a card does without rewriting it |
+| [Discs](../readers/optical-drive.md) | Disc ID | No (mapped) | Optical drive | Launch from real CDs, DVDs, and Blu-rays |
+| [USB sticks and SD cards](../readers/external-drive.md) | Text file on the drive | Yes | External drive reader | Removable media as tokens |
 
 ## Using tokens on multiple devices
 
@@ -39,13 +44,13 @@ The token's contents determine how portable it is:
 - `@System/Title` is the preferred cross-device format. Each device resolves the title against its own indexed library, so filenames and folder layouts can differ.
 - A relative system/path token can work on another device when both devices use compatible internal folder structures.
 - An absolute filesystem path is generally specific to one device and platform.
-- Mappings live on Core rather than the physical token. The same mapping must exist on each destination device or be transferred through a [backup](../features/backups.md).
+- Mappings live on Core rather than the physical token, so create the mapping on each destination device as well.
 
 The destination device still needs compatible media and a launcher for the requested system. See [ZapScript path formats](../zapscript/launch.md#path-formats) for examples and matching behavior.
 
 ## Storage
 
-We have recommendations for [storing tokens](./storage/) in fun and convenient ways, like [cassette cases](./storage/cassette-cases) and Nintendo Switch replacement cases.
+See [token storage](./storage/index.md) for binders, [cassette cases](./storage/cassette-cases.md), Nintendo Switch replacement cases, and other ways to keep a collection on the shelf.
 
 ---
 

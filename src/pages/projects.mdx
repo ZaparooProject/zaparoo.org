@@ -1,30 +1,19 @@
 ---
 title: Projects
-description: "Official projects from the Zaparoo Project: Core, App, CLI, Frontend, Designer, hardware repositories, and more on GitHub."
+description: "Official open-source projects from the Zaparoo Project: Core, App, Frontend, Designer, CLI, hardware, and media repositories on GitHub."
 ---
 
 # Official Projects
 
-All official projects associated with the main Zaparoo project.
+The open-source projects that make up Zaparoo. Zaparoo Online and Warp are hosted services rather than repositories; they are documented in the [Online docs](/docs/online/).
 
-## App
+## Software
 
-The official Zaparoo app for Android and iOS.
+### Zaparoo Core {#core}
 
-<Button
-  icon={<FAIcon icon="fa-brands fa-github" />}
-  label="GitHub"
-  link="https://github.com/ZaparooProject/zaparoo-app"
-  variant="primary"
-  dataUmamiEvent="project-github-app"
-/>
-<br />
-<br />
+The service that runs on your gaming device, watches readers, and launches what a token asks for. [Docs](/docs/core/)
 
-## Core
-
-The core software service that runs on your platform device and coordinates all hardware and software to make Zaparoo work.
-
+<div className="margin-bottom--lg">
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
   label="GitHub"
@@ -32,13 +21,41 @@ The core software service that runs on your platform device and coordinates all 
   variant="primary"
   dataUmamiEvent="project-github-core"
 />
-<br />
-<br />
+</div>
 
-## Designer
+### Zaparoo App {#app}
 
-A rich web-based designer for creating card labels using template designs contributed by the Zaparoo community.
+The official app for iOS and Android: connect to Core, browse your library, and write tokens. [Docs](/docs/app/)
 
+<div className="margin-bottom--lg">
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-app"
+  variant="primary"
+  dataUmamiEvent="project-github-app"
+/>
+</div>
+
+### Zaparoo Frontend {#frontend}
+
+A TV-friendly interface for browsing and launching your Core media library, currently for MiSTer FPGA. [Docs](/docs/frontend/)
+
+<div className="margin-bottom--lg">
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-frontend"
+  variant="primary"
+  dataUmamiEvent="project-github-frontend"
+/>
+</div>
+
+### Zaparoo Designer {#designer}
+
+A web app for designing card labels from templates contributed by the community. [Docs](/docs/designer/)
+
+<div className="margin-bottom--lg">
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
   label="GitHub"
@@ -46,27 +63,13 @@ A rich web-based designer for creating card labels using template designs contri
   variant="primary"
   dataUmamiEvent="project-github-designer"
 />
-<br />
-<br />
+</div>
 
-## Frontend
+### Zaparoo CLI and Agent Skills {#cli-and-agent-skills}
 
-A TV-friendly frontend for browsing and launching your Zaparoo Core media library, currently targeted at MiSTer FPGA.
+A command-line client and task-focused Agent Skills for building integrations, testing changes, and working with Core devices and the Online User API.
 
-<Button
-  icon={<FAIcon icon="fa-brands fa-github" />}
-  label="GitHub"
-  link="https://github.com/ZaparooProject/zaparoo-frontend"
-  variant="primary"
-  dataUmamiEvent="project-github-launcher"
-/>
-<br />
-<br />
-
-## CLI and Agent Skills
-
-A command-line client and task-focused Agent Skills for developing integrations, testing changes, and working with Zaparoo Core devices and the Online User API.
-
+<div className="margin-bottom--lg">
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
   label="GitHub"
@@ -74,54 +77,50 @@ A command-line client and task-focused Agent Skills for developing integrations,
   variant="primary"
   dataUmamiEvent="project-github-cli"
 />
-<br />
-<br />
+</div>
 
-## Hardware
+## Hardware {#hardware}
 
-Community contributed open source hardware for creating your own Zaparoo projects including 3D models and PCB designs.
+Community-contributed open-source hardware for building your own Zaparoo projects, including 3D models, PCB designs, and firmware. See [ZapESP32](/docs/zapesp32/) and [community projects](/docs/community-projects/) for build guides.
 
+<div className="margin-bottom--lg" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
-  label="zaparoo-hardware GitHub"
+  label="zaparoo-hardware"
   link="https://github.com/ZaparooProject/zaparoo-hardware"
   variant="primary"
   dataUmamiEvent="project-github-hardware"
 />
-<br />
-<br />
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
-  label="zaparoo-esp32 GitHub"
+  label="zaparoo-esp32"
   link="https://github.com/ZaparooProject/zaparoo-esp32"
   variant="primary"
   dataUmamiEvent="project-github-esp32"
 />
-<br />
-<br />
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
-  label="zaparoo-floppy GitHub"
+  label="zaparoo-floppy"
   link="https://github.com/ZaparooProject/zaparoo-floppy"
   variant="primary"
   dataUmamiEvent="project-github-floppy"
 />
-<br />
-<br />
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
-  label="zaparoo-esp32-launch-api GitHub"
+  label="zaparoo-esp32-launch-api"
   link="https://github.com/ZaparooProject/zaparoo-esp32-launch-api"
   variant="primary"
   dataUmamiEvent="project-github-esp32-launch-api"
 />
-<br />
-<br />
+</div>
 
-## Media
+## Media and website
 
-Community contributed media files for use with Zaparoo projects.
+### Zaparoo Media {#media}
 
+Community-contributed media files, logos, and compatibility marks for use with Zaparoo projects. See the [Terms of Use](/terms/) for which marks are free to use.
+
+<div className="margin-bottom--lg">
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
   label="GitHub"
@@ -129,13 +128,13 @@ Community contributed media files for use with Zaparoo projects.
   variant="primary"
   dataUmamiEvent="project-github-media"
 />
-<br />
-<br />
+</div>
 
-## Zaparoo.org
+### Zaparoo.org {#zaparooorg}
 
-This website! Zaparoo.org is a static site generated using [Docusaurus](https://docusaurus.io/).
+This website, built with [Docusaurus](https://docusaurus.io/). Found something wrong in the docs? Every page has a "Report a docs issue" link at the bottom.
 
+<div className="margin-bottom--lg">
 <Button
   icon={<FAIcon icon="fa-brands fa-github" />}
   label="GitHub"
@@ -143,5 +142,4 @@ This website! Zaparoo.org is a static site generated using [Docusaurus](https://
   variant="primary"
   dataUmamiEvent="project-github-website"
 />
-<br />
-<br />
+</div>

@@ -27,3 +27,18 @@ online:
   label: Online
   permalink: /online
   description: Zaparoo Online updates
+
+frontend:
+  label: Frontend
+  permalink: /frontend
+  description: Zaparoo Frontend updates
+
+app:
+  label: App
+  permalink: /app
+  description: Zaparoo App updates
+
+developer:
+  label: Developer
+  permalink: /developer
+  description: APIs, CLI, and developer tools

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 7
 description: "ZapScript HTTP commands: trigger web requests and REST API calls from Zaparoo token scans."
 keywords: [zapscript http, zaparoo http command, rest api zapscript, webhook zaparoo token]
 ---

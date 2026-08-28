@@ -5,11 +5,8 @@
 
 .sponsor {
   margin-top: 1.5rem;
-  font-size: 0.95rem;
-  color: var(--ifm-color-emphasis-700);
 }
 
-[data-theme="dark"] .combined,
-[data-theme="dark"] .sponsor {
-  color: var(--ifm-color-emphasis-600);
+.sponsor p {
+  margin: 0;
 }

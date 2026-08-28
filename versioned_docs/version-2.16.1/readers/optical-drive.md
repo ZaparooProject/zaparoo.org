@@ -1,4 +1,5 @@
 ---
+sidebar_position: 3
 description: "Use a CD, DVD, or Blu-ray disc to launch matching indexed media or trigger a Zaparoo command on Linux."
 keywords: [zaparoo optical drive, cd token, dvd token, physical disc launcher, disc game ID]
 ---
@@ -11,46 +12,7 @@ Core does not run games or media directly from the physical disc. The disc acts 
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../platforms/windows/", support: "unsupported", note: "Linux only." },
-        { name: "macOS", href: "../platforms/mac", support: "unsupported", note: "Linux only." },
-        { name: "Linux", href: "../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../platforms/mistex", support: "unsupported", note: "Not included in the current MiSTeX Core reader set." },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="optical-drive" />
 
 ## Enable the reader
 

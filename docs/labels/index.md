@@ -14,7 +14,7 @@ Create custom artwork for your Zaparoo NFC cards, then print it at home or throu
 - Zaparoo trademarks, including the Zaparoo logo, must not appear on printed labels without permission. See the [Terms of Use](/terms) for details.
 - The Zaparoo project cannot offer pre-printed labels due to intellectual property concerns.
 
-See the [Zaparoo Media](/projects/) project for marks that are free to use for displaying token compatibility.
+See the [Zaparoo Media](/projects/#media) project for marks that are free to use for displaying token compatibility.
 :::
 
 ## Design your labels

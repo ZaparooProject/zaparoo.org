@@ -353,3 +353,28 @@ ol.gettingStartedList {
     grid-template-columns: 1fr;
   }
 }
+
+.tierLegend {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+}
+
+.summaryHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.summaryHeading .stepTitle {
+  margin-bottom: 0;
+}
+
+.shopNote {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}

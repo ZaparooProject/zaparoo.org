@@ -1,4 +1,5 @@
 ---
+sidebar_position: 9
 description: "Zaparoo system identifiers: how platforms, emulators, and media types are categorized to match tokens to the right launcher."
 keywords: [zaparoo systems, zaparoo emulator systems, system identifier zaparoo, launcher systems]
 ---

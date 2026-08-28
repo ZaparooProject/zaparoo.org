@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 description: Use a text file as a virtual Zaparoo reader for scripts and automation.
 keywords: [zaparoo file reader, virtual reader zaparoo, automation zaparoo, script token zaparoo]
 ---
@@ -11,46 +12,7 @@ This is useful for scripts, local tools, and automation that need to trigger Zap
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../platforms/windows/", support: "supported" },
-        { name: "macOS", href: "../platforms/mac", support: "supported" },
-        { name: "Linux", href: "../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="file" />
 
 ## Configure the reader
 

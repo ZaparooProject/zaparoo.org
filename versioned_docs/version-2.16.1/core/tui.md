@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: "Use the Zaparoo Core terminal UI to check Core status, write tokens, manage media, change settings, and export logs."
 keywords: [zaparoo tui, zaparoo terminal ui, zaparoo core settings, zaparoo logs]
 ---

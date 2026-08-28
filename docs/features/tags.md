@@ -1,4 +1,5 @@
 ---
+sidebar_position: 7
 description: "Use Zaparoo tags to choose specific regions, languages, revisions, and other media variants when launching by title ID."
 keywords: [zaparoo tags, title id tags, media tags zaparoo, region tags zaparoo]
 ---

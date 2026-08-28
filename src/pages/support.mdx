@@ -1,86 +1,85 @@
 ---
-title: Help & Troubleshooting
-description: Get help with Zaparoo. Collect logs, report bugs, and connect with the community on Discord, Reddit, and GitHub Issues.
+title: Help and Troubleshooting
+description: Get help with Zaparoo. Ask on Discord, collect logs, report bugs, and find billing support for Warp and Zaparoo Online.
 ---
 
 import { Download, Upload } from 'lucide-react';
 
-# Support
+# Help
 
-Need help with Zaparoo? Here's how to report issues and get the info we need to help.
+Stuck? The fastest way to get help is the [Discord](https://zaparoo.org/discord). Search the docs first if you can, and include a [log file](#collect-a-log-file) when reporting a bug.
 
-## Getting Help
+## Where to ask
 
-Try searching the docs first. When reporting a bug, please include a [log file](#collecting-logs) to help troubleshoot.
+- **[Discord](https://zaparoo.org/discord)**: quickest way to get help from the community and the developers
+- **[Subreddit](https://reddit.com/r/Zaparoo)**: if you prefer Reddit
+- **[GitHub Issues](https://github.com/ZaparooProject/zaparoo-core/issues)**: bug reports and feature requests
+- **[Documentation](/docs/)**: guides and reference
+  - [Common tasks](/docs/common-tasks/) for the page that answers what you want to do
+  - [Platforms](/docs/platforms/) for installation guides
+  - [Readers](/docs/readers/) for hardware setup and troubleshooting
+  - [ZapScript](/docs/zapscript/) for commands and syntax
+  - [Config](/docs/core/config/) for every configuration option
 
-- **[Discord](https://zaparoo.org/discord)** - Quickest way to get help
-- **[Subreddit](https://reddit.com/r/Zaparoo)** - If you prefer Reddit
-- **[GitHub Issues](https://github.com/ZaparooProject/zaparoo-core/issues)** - For bug reports and feature requests
-- **[Documentation](/docs)** - Guides and reference
-  - [Platforms](/docs/platforms) - Installation guides for each platform
-  - [Readers](/docs/readers) - Hardware setup and troubleshooting
-  - [ZapScript](/docs/zapscript) - Commands and syntax for tokens
-  - [Config](/docs/core/config) - All configuration options
+## Collect a log file
 
-## What to include
-
-Include enough context for someone else to reproduce and diagnose the problem:
-
-1. Your platform and device model
-2. Relevant Zaparoo Core, App, or Frontend versions
-3. Your reader model or a link to its product listing
-4. The exact token contents, including any ZapScript, when relevant
-5. Steps to reproduce the problem
-6. What you expected to happen and what actually happened
-7. A log captured immediately after reproducing the problem
-
-On MiSTer, collect the log before rebooting or powering off because its log file is stored in `/tmp` and is deleted at shutdown.
-
-## Error Reporting
-
-Zaparoo has built-in error reporting powered by [Sentry](https://sentry.io). Error reports are anonymized and contain no personal information, but this is off by default for privacy. Turning it on helps us find and fix bugs faster.
-
-To enable error reporting:
-1. Open the Zaparoo App or TUI
-2. Go to **Settings > Advanced**
-3. Enable **Error Reporting**
-
-## Collecting Logs
-
-Here's how to get your log file:
-
-### Via Zaparoo App
+### Zaparoo App
 
 1. Go to **Settings > Advanced > View logs**
 2. Tap one of:
    - **Download** (<Download size={16} />) to save the log file
    - **Upload** (<Upload size={16} />) to send it to *logs.zaparoo.org* and get a shareable link
 
-### Via TUI
+### Terminal UI
 
 1. Go to **Settings > Logs**
 2. Select one of:
    - **Copy** to save the log file
    - **Upload** to send it to *logs.zaparoo.org* and get a shareable link
 
-:::warning[MiSTer Only]
-The Zaparoo log file on MiSTer is deleted every time the system is powered off. Make sure to collect logs after encountering an issue and before turning off the MiSTer.
+:::warning MiSTer only
+The Zaparoo log file on MiSTer is deleted every time the system is powered off. Collect logs after the problem happens and before turning off the MiSTer.
 :::
 
-## Debug Logging
+## What to include in a report
 
-Debug logging captures more detailed information than standard logs. It's disabled by default because it can make logs noisy.
+Include enough context for someone else to reproduce and diagnose the problem:
 
-To enable debug logging:
-1. Open the Zaparoo App or TUI
+1. Your platform and device model
+2. Zaparoo Core, App, or Frontend versions
+3. Your reader model or a link to its product listing
+4. The exact token contents, including any ZapScript, when relevant
+5. Steps to reproduce the problem
+6. What you expected to happen and what actually happened
+7. A log captured immediately after reproducing the problem
+
+## Error reporting
+
+Zaparoo Core has built-in error reporting powered by [Sentry](https://sentry.io), and the Zaparoo App uses [Rollbar](https://rollbar.com). Reports are anonymized and contain no personal information. Core's reporting is off by default for privacy; turning it on helps find and fix bugs faster.
+
+To enable error reporting in Core:
+
+1. Open the Zaparoo App or terminal UI
+2. Go to **Settings > Advanced**
+3. Enable **Error Reporting**
+
+## Debug logging
+
+Debug logging captures more detail than standard logs. It is off by default because it makes logs noisy.
+
+1. Open the Zaparoo App or terminal UI
 2. Go to **Settings > Advanced**
 3. Enable **Debug Logging**
-4. Reproduce the issue you're troubleshooting
+4. Reproduce the problem
 5. Collect the logs as described above
 
 :::tip
-All these settings can also be configured directly in the [config file](/docs/core/config).
+All of these settings can also be set directly in the [config file](/docs/core/config/).
 :::
+
+## Warp, Online, and billing
+
+Questions about a Warp subscription, your Zaparoo Online account, or a Shop order go to [zaparoo.com/support](https://zaparoo.com/support).
 
 ---
 

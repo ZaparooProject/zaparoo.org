@@ -1,4 +1,5 @@
 ---
+sidebar_position: 13
 description: "Configure Zaparoo publishers to send Core events to MQTT brokers and PixelCade LED displays."
 keywords: [zaparoo publishers, zaparoo events, mqtt events zaparoo, pixelcade zaparoo, event publisher]
 ---

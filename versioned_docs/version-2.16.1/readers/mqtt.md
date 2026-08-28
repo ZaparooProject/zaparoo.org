@@ -1,4 +1,5 @@
 ---
+sidebar_position: 7
 description: Use MQTT with Zaparoo to trigger game and media launches from Home Assistant, smart home systems, or custom MQTT devices.
 keywords: [zaparoo mqtt, home assistant game launcher, mqtt reader zaparoo, smart home game launch]
 ---
@@ -11,46 +12,7 @@ Use it when another system already speaks MQTT, such as [Home Assistant](https:/
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../platforms/windows/", support: "supported" },
-        { name: "macOS", href: "../platforms/mac", support: "supported" },
-        { name: "Linux", href: "../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="mqtt" />
 
 ## Configure the reader
 

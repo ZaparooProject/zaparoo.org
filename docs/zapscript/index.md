@@ -5,7 +5,7 @@ keywords: [zapscript, zaparoo scripting language, zapscript commands, nfc script
 
 # ZapScript
 
-ZapScript is a small scripting language written to the storage of Zaparoo tokens. It tells Zaparoo what to do when a token is scanned. Through regular use you won't need to write much yourself, but you can use it to customize launching or add scripted actions. The [Zaparoo App](/docs/app/) is the easiest way to write ZapScript to tokens.
+ZapScript is a small scripting language written to the storage of Zaparoo tokens. It tells Zaparoo what to do when a token is scanned. Through regular use you won't need to write much yourself, but you can use it to customize launching or add scripted actions. The [Zaparoo App](../app/index.md) is the easiest way to write ZapScript to tokens. If you write ZapScript by hand, read [Syntax](./syntax.md) first.
 
 ## Quick Reference
 
@@ -42,6 +42,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`delay`](./utilities.md#delay) | Pause script execution |
 | [`control`](./utilities.md#control) | Send a control action to the active media's launcher |
 | [`screenshot`](./utilities.md#screenshot) | Capture the current platform display |
+| [`write`](./utilities.md#write) | Write ZapScript to the next token scanned |
 | [`mister.ini`](./mister.md#misterini) | Load MiSTer ini file |
 | [`mister.core`](./mister.md#mistercore) | Launch MiSTer core |
 | [`mister.script`](./mister.md#misterscript) | Run MiSTer script |

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 5
 description: "Use an Epilogue GB, SN, or 64 Operator to launch original cartridges on MiSTer through Zaparoo."
 keywords: [epilogue operator mister, gb operator mister, sn operator mister, 64 operator mister]
 ---
@@ -7,46 +8,7 @@ keywords: [epilogue operator mister, gb operator mister, sn operator mister, 64 
 
 [Epilogue](https://www.epilogue.co/) Operator cartridge readers can launch original cartridges through Zaparoo on MiSTer.
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../platforms/windows/", support: "unsupported" },
-        { name: "macOS", href: "../platforms/mac", support: "unsupported" },
-        { name: "Linux", href: "../platforms/linux/", support: "unsupported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../platforms/mistex", support: "unsupported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../platforms/batocera/", support: "unsupported" },
-        { name: "RePlayOS", href: "../platforms/replayos", support: "unsupported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../platforms/steamos", support: "unsupported" },
-        { name: "Bazzite", href: "../platforms/bazzite", support: "unsupported" },
-        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "unsupported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../platforms/libreelec", support: "unsupported" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="epilogue-operator" />
 
 ## Supported readers
 

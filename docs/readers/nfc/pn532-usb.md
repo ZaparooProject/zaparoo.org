@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: Set up the PN532 USB NFC reader with Zaparoo. Covers auto-detection, manual config, serial ports, and troubleshooting.
 keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga]
 ---
@@ -15,52 +16,7 @@ This is the reader stocked in the <ProductLink href="https://shop.zaparoo.com/" 
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../../platforms/windows/", support: "supported" },
-        { name: "macOS", href: "../../platforms/mac", support: "supported" },
-        { name: "Linux", href: "../../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../../platforms/mistex", support: "supported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../../platforms/libreelec", support: "supported" },
-      ],
-    },
-    {
-      name: "Other Hardware",
-      platforms: [
-        { name: "Commodore 64", href: "../../platforms/commodore64", support: "limited", note: "Via TeensyROM, not Zaparoo Core." },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="pn532-usb" />
 
 ## Configure the reader
 

@@ -5,17 +5,16 @@ import { listedPlatforms } from "@site/src/data/platforms";
 import styles from "./Homepage.module.css";
 
 const tokens = [
-  { name: "NFC Cards", link: "/docs/tokens/nfc/" },
-  { name: "NFC Tags", link: "/docs/tokens/nfc/" },
+  { name: "NFC Cards and Tags", link: "/docs/tokens/nfc/" },
   { name: "QR Codes", link: "/docs/tokens/qr-codes" },
   { name: "Barcodes", link: "/docs/tokens/barcodes" },
   { name: "CDs", link: "/docs/readers/optical-drive" },
   { name: "DVDs", link: "/docs/readers/optical-drive" },
   { name: "Blu-rays", link: "/docs/readers/optical-drive" },
-  { name: "Amiibo", link: "/docs/tokens/nfc-toys/amiibo" },
-  { name: "Skylanders", link: "/docs/tokens/nfc-toys/skylanders" },
-  { name: "Disney Infinity", link: "/docs/tokens/nfc-toys/disney-infinity" },
-  { name: "LEGO Dimensions", link: "/docs/tokens/nfc-toys/lego-dimensions" },
+  { name: "Amiibo", link: "/docs/tokens/nfc-toys/#amiibo" },
+  { name: "Skylanders", link: "/docs/tokens/nfc-toys/#skylanders" },
+  { name: "Disney Infinity", link: "/docs/tokens/nfc-toys/#disney-infinity" },
+  { name: "LEGO Dimensions", link: "/docs/tokens/nfc-toys/#lego-dimensions" },
   { name: "PCB Cards", link: "/docs/tokens/pcb-cards" },
   { name: "USB Sticks", link: "/docs/readers/external-drive" },
   { name: "SD Cards", link: "/docs/readers/external-drive" },
@@ -26,7 +25,7 @@ export default function PlatformShowcase(): ReactNode {
     <section className={`${styles.section} ${styles.sectionGray}`}>
       <div className="container">
         <div className="text--center padding-horiz--md">
-          <h2 className={styles.sectionTitle}>Works with Your Setup</h2>
+          <h2 className={styles.sectionTitle}>Works with your setup</h2>
           <p className={styles.sectionSubtitle}>
             Use Zaparoo across supported gaming platforms, readers, and token
             types.

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 12
 description: "Use Zaparoo hooks to run ZapScript when tokens are scanned, media starts, media exits, or Core becomes ready."
 keywords: [zaparoo hooks, zapscript hooks, zaparoo on_scan, zaparoo on_ready, zaparoo automation]
 ---

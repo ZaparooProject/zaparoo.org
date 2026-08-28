@@ -50,47 +50,22 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 
 ## Readers
 
-<ReaderSupport
-  groups={[
-    {
-      name: "NFC/RFID",
-      readers: [
-        { name: "PN532 USB", href: "../../readers/nfc/pn532-usb", support: "supported", setup: "Auto-detected" },
-        { name: "PN532 Module", href: "../../readers/nfc/pn532-module", support: "supported", setup: "Depends on wiring", note: "UART can auto-detect. I2C is supported." },
-        { name: "ACR122U", href: "../../readers/nfc/acr122u", support: "limited", setup: "Auto-detected", note: "Can scan tags, but cannot write them through PCSC." },
-        { name: "RC522", href: "../../readers/nfc/rc522", support: "limited", setup: "Via Simple Serial", note: "Requires a microcontroller; not a direct USB reader." },
-      ],
-    },
-    {
-      name: "Barcode and QR",
-      readers: [
-        { name: "App/Camera Scanner", href: "../../app/", support: "supported", setup: "Via Zaparoo App" },
-        { name: "RS232 Scanner", href: "../../readers/barcode/rs232", support: "supported", setup: "Manual config" },
-      ],
-    },
-    {
-      name: "Optical and Media",
-      readers: [
-        { name: "Optical Drive", href: "../../readers/optical-drive", support: "unsupported", note: "Linux only" },
-        { name: "External Drive", href: "../../readers/external-drive", support: "supported", setup: "Manual enable" },
-      ],
-    },
-    {
-      name: "Custom and Virtual",
-      readers: [
-        { name: "MQTT Reader", href: "../../readers/mqtt", support: "supported", setup: "Manual config" },
-        { name: "Simple Serial", href: "../../readers/simple-serial", support: "supported", setup: "Manual config" },
-        { name: "File Reader", href: "../../readers/file", support: "supported", setup: "Manual config" },
-      ],
-    },
-    {
-      name: "Displays and Integrations",
-      readers: [
-        { name: "TTY2OLED", href: "../../readers/tty2oled", support: "supported", setup: "Manual enable" },
-      ],
-    },
-  ]}
-/>
+| Type | Reader | Support | Setup | Notes |
+| ---- | ------ | ------- | ----- | ----- |
+| NFC/RFID | [PN532 USB](../../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
+| NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
+| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Auto-detected | Can scan tags, but cannot write them through PCSC. |
+| NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
+| Barcode and QR | [App/Camera Scanner](../../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [RS232 Scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Not supported |  | Linux only |
+| Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
+| Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
+| Custom and Virtual | [Simple Serial](../../readers/simple-serial.md) | Supported | Manual config |  |
+| Custom and Virtual | [File Reader](../../readers/file.md) | Supported | Manual config |  |
+| Displays and Integrations | [TTY2OLED](../../readers/tty2oled.md) | Supported | Manual enable |  |
+
+Each reader's page has setup steps and troubleshooting. See [readers](../../readers/index.md) to compare them, or the [setup guide](/start/) to pick one for your setup.
 
 ## Launchers
 

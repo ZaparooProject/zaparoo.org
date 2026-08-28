@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: "ZapScript input commands: send keyboard shortcuts and controller button inputs from a Zaparoo token scan."
 keywords: [zapscript input, zaparoo keyboard shortcut, zapscript button press, input automation zaparoo]
 ---

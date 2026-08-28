@@ -4,13 +4,22 @@ import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 import { getStatusLabel, getStatusSymbol, resolveSupportHref, type ReaderSupportGroup } from "./types";
 import styles from "./styles.module.css";
+import {
+  readerSupportByPlatform,
+  type ReaderSupportPlatformId,
+} from "@site/src/data/readerSupport";
 
 interface ReaderSupportProps {
-  groups: ReaderSupportGroup[];
+  /** Platform id from src/data/readerSupport.ts. */
+  platformId?: ReaderSupportPlatformId;
+  /** Explicit groups, for one-off matrices. */
+  groups?: ReaderSupportGroup[];
 }
 
-export default function ReaderSupport({ groups }: ReaderSupportProps): ReactNode {
+export default function ReaderSupport({ platformId, groups: explicitGroups }: ReaderSupportProps): ReactNode {
   const { pathname } = useLocation();
+  const groups: ReaderSupportGroup[] =
+    explicitGroups ?? (platformId ? readerSupportByPlatform[platformId] : []);
 
   return (
     <div className={styles.supportSection}>

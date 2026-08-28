@@ -8,56 +8,13 @@ keywords: [zapscript playlist, zaparoo playlist, multi-action token zaparoo, seq
 
 Zaparoo supports keeping a [playlist](../features/playlists.md) of media in memory and tracking the current position. You can load playlists from files, folders, or define them inline.
 
-## Playlist Formats
+## Playlist sources
 
-### Folder
-
-Load all files from a folder as a playlist:
+The `playlist.play`, `playlist.load`, and `playlist.open` commands take a source: a folder path, a `.pls` file path, or an inline JSON playlist. The [playlists feature page](../features/playlists.md#playlist-source-formats) documents each format, including how `.pls` entries are treated as ZapScript and which fields inline JSON uses.
 
 ```zapscript
 **playlist.play:/media/fat/games/Genesis
 ```
-
-Only immediate contents are loaded (no subfolders). Zip file contents are not supported with this method.
-
-### .pls File
-
-A `.pls` file lists media files, one per line:
-
-```
-[playlist]
-File1=/media/fat/games/Genesis/Some Game (USA).md
-Title1=Some Game
-File2=/media/fat/games/Genesis/Another Game (USA).md
-Title2=Another Game
-```
-
-The `Title` line is optional. Items are sorted by the ID numbers (`File1`, `File2`, etc.), not by order in the file.
-
-File paths are ZapScript commands, they can either be literal paths or use any supported command(s).
-
-```
-[playlist]
-File1=Some Game (USA).md
-Title1=A different name
-File2=Another Game (USA).md?launcher=LLAPIMegaDrive
-```
-
-### Inline JSON
-
-Define a playlist directly in the command using JSON:
-
-```zapscript
-**playlist.play:{"id":"my-list","name":"My Playlist","items":[{"name":"Game 1","zapscript":"Genesis/Game.md"},{"name":"Game 2","zapscript":"SNES/Game.sfc"}]}
-```
-
-Fields:
-
-- `id` - Unique identifier (used to detect if the same playlist is reloaded)
-- `name` - Display name for the playlist (optional)
-- `items` - Array of playlist items:
-  - `name` - Display name for the item (optional, auto-generated if missing)
-  - `zapscript` - The ZapScript to run (can be any command, not just paths)
 
 ## Media slots
 

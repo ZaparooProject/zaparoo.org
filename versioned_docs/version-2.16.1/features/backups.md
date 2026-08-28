@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: "Back up and restore Zaparoo Core settings and user data, plus MiSTer configuration, saves, and save states, locally or through Zaparoo Online."
 keywords:
   [

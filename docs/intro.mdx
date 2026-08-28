@@ -12,36 +12,48 @@ import {
   NavCardGroup,
 } from "@site/src/components/DocsNavGrid";
 import {
+  BookOpen,
   CircuitBoard,
   Cloud,
   Code2,
   Cpu,
   CreditCard,
   Hammer,
+  LifeBuoy,
   ListChecks,
   Monitor,
   Palette,
   Puzzle,
   ScanLine,
   Search,
+  ShoppingCart,
   Smartphone,
   Tv,
   Users,
   Wand2,
+  Zap,
 } from "lucide-react";
 
 # Zaparoo Documentation
 
-Zaparoo connects a token, a reader, and Zaparoo Core running on your gaming device. Start with guided setup, search for a specific answer, or browse the documentation below.
+Zaparoo launches games and media when you scan a [token](./tokens/index.md) (an NFC card, a toy, a QR code, a disc) on a [reader](./readers/index.md) connected to a device running [Zaparoo Core](./core/index.md). The free [Zaparoo App](./app/index.md) writes tokens and manages settings from your phone. Terms you don't recognise are in the [glossary](./glossary.md).
+
+New here? Use the setup guide. Know what you want to do? Try common tasks. Otherwise, browse the sections below.
 
 <DocsActionGroup
   actions={[
     {
-      icon: ListChecks,
-      title: "Guided setup",
+      icon: Zap,
+      title: "Setup guide",
       link: "/start/",
       primary: true,
       umamiEvent: "docs-home-setup-guide",
+    },
+    {
+      icon: ListChecks,
+      title: "Common tasks",
+      link: "./common-tasks/",
+      umamiEvent: "docs-home-common-tasks",
     },
     {
       icon: Search,
@@ -83,6 +95,13 @@ Zaparoo connects a token, a reader, and Zaparoo Core running on your gaming devi
       link: "./zapesp32/",
       umamiEvent: "docs-home-card-zapesp32",
     },
+    {
+      icon: ShoppingCart,
+      title: "Zaparoo Shop",
+      description: "Tested readers, cards, and starter kits. Purchases fund development.",
+      link: "https://shop.zaparoo.com",
+      umamiEvent: "docs-home-card-shop",
+    },
   ]}
 />
 
@@ -106,7 +125,7 @@ Zaparoo connects a token, a reader, and Zaparoo Core running on your gaming devi
     {
       icon: Cloud,
       title: "Zaparoo Online",
-      description: "Back up supported devices, sync play history, connect your data to apps, and manage virtual cards and decks.",
+      description: "Free play history sync, virtual cards and decks, and the User API. Warp adds paid cloud backup.",
       link: "./online/",
       umamiEvent: "docs-home-card-online",
     },
@@ -166,10 +185,32 @@ Zaparoo connects a token, a reader, and Zaparoo Core running on your gaming devi
     },
     {
       icon: Users,
-      title: "Community Hub",
-      description: "Find Discord, Reddit, vendors, contributors, and other community resources.",
+      title: "Community",
+      description: "Discord, Reddit, YouTube, vendors, contributors, and press coverage.",
       link: "./community-hub/",
       umamiEvent: "docs-home-card-community",
     },
   ]}
 />
+
+<NavCardGroup
+  title="Help"
+  cards={[
+    {
+      icon: LifeBuoy,
+      title: "Something not working?",
+      description: "Where to ask, how to collect logs, and what to include in a report.",
+      link: "/support/",
+      umamiEvent: "docs-home-card-help",
+    },
+    {
+      icon: BookOpen,
+      title: "Glossary",
+      description: "Token, reader, Core, mapping, UID, NDEF, and the other terms used in these docs.",
+      link: "./glossary/",
+      umamiEvent: "docs-home-card-glossary",
+    },
+  ]}
+/>
+
+<SponsorCallout variant="sponsor" />

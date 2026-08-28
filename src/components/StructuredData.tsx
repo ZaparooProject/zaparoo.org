@@ -79,17 +79,17 @@ export default function StructuredData({
           {
             "@type": "HowToStep",
             name: "Install Zaparoo",
-            text: "Install Zaparoo Core on a supported gaming platform.",
+            text: "Install Zaparoo Core on the device that plays your games.",
           },
           {
             "@type": "HowToStep",
             name: "Link a card",
-            text: "Choose a game in the Zaparoo App and save it to an NFC card.",
+            text: "Choose a game in the Zaparoo App and save it to a card.",
           },
           {
             "@type": "HowToStep",
             name: "Tap and play",
-            text: "Tap the card on a compatible reader to launch the game.",
+            text: "Tap the card on your reader and the game launches.",
           },
         ],
       },

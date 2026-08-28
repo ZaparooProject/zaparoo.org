@@ -1,28 +1,47 @@
 import React from "react";
 import { CloudUpload } from "lucide-react";
 import Notice from "@site/src/components/Notice";
+import products from "@site/src/data/products";
 import styles from "./styles.module.css";
 
-const warpUrl =
-  "https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=backup_post";
+interface Props {
+  /** MiSTer adds the saves and settings line. Generic is platform-neutral. */
+  platform?: "mister" | "generic";
+  /** utm_content value for the pricing link, also used for the umami event. */
+  utmContent?: string;
+}
 
-export default function WarpCallout() {
+export default function WarpCallout({
+  platform = "generic",
+  utmContent = "docs_callout",
+}: Props) {
+  const { warp } = products;
+  const isMister = platform === "mister";
+  const title = isMister
+    ? "Want automatic off-site backups on your MiSTer?"
+    : "Want automatic off-site backups?";
+
   return (
     <Notice
       as="aside"
-      title="Want automatic off-site backups on your MiSTer?"
+      title={title}
       icon={<CloudUpload size={20} />}
       tone="brand"
       className={styles.callout}
       ariaLabel="Zaparoo Warp"
     >
       <p>
-        Warp keeps up to 30 changed snapshots per device and can restore them to
-        this MiSTer or a replacement. It costs US$29.99/year or US$3.99/month.
-        Local backups remain free.
+        {warp.summary} {warp.snapshots}{" "}
+        {isMister
+          ? "MiSTer snapshots also cover saves, save states, settings, and input mappings. "
+          : ""}
+        {warp.priceLine} {warp.freeLine}
       </p>
-      <a href={warpUrl} data-umami-event="backup-post-warp">
-        See Warp backup plans
+      <a
+        href={warp.pricingUrl(utmContent)}
+        data-umami-event={`${utmContent.replace(/_/g, "-")}-warp`}
+      >
+        {warp.cta}
       </a>
     </Notice>
   );

@@ -6,14 +6,15 @@ keywords: [zaparoo download, zaparoo core, mister fpga, steamos, batocera, repla
 
 import CoreDownloads from "@site/src/components/CoreDownloads";
 import CoreReleaseBar from "@site/src/components/CoreReleaseBar";
+import products from "@site/src/data/products";
 
 # Downloads
 
-Download Zaparoo App to manage your setup, then install Zaparoo Core on your gaming device. New here? [Build your setup with the Getting Started guide](/start/).
+Install Zaparoo Core on the device that plays your games, then use the free Zaparoo App to write tokens and manage settings. New here? Follow the [setup guide](/start/).
 
 ## Zaparoo App
 
-Use the free [Zaparoo App](/docs/app) to manage Core, create tokens, and browse your media library.
+Use the free [Zaparoo App](/docs/app/) to connect to Core, browse your library, and write tokens.
 
 <div
   style={{
@@ -25,7 +26,7 @@ Use the free [Zaparoo App](/docs/app) to manage Core, create tokens, and browse 
   }}
 >
   <a
-    href="https://apps.apple.com/us/app/tapto-life/id6480331015?itsct=apps_box_badge&amp;itscg=30200"
+    href={products.app.iosUrl}
     style={{
       display: "inline-block",
       overflow: "hidden",
@@ -40,7 +41,7 @@ Use the free [Zaparoo App](/docs/app) to manage Core, create tokens, and browse 
     />
   </a>
   <a
-    href="https://play.google.com/store/apps/details?id=dev.wizzo.tapto&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+    href={products.app.androidUrl}
     data-umami-event="app-download-android"
   >
     <img
@@ -51,15 +52,17 @@ Use the free [Zaparoo App](/docs/app) to manage Core, create tokens, and browse 
   </a>
 </div>
 
-Prefer another interface? Use the [web UI](/docs/app/web/), terminal UI, [CLI](/docs/core/cli), or [API](/docs/core/api/). The optional [App Pro upgrade](/docs/app/) also turns your phone into a wireless reader.
+The app is free, and inside it you can add [Pro](/docs/app/#zaparoo-app-pro), which turns your phone into a wireless reader. If you'd rather not use a phone, Core includes a [Web UI](/docs/app/web/) and a [terminal UI](/docs/core/tui/), plus a [CLI](/docs/core/cli/) and [API](/docs/core/api/) for scripts.
 
 ## Zaparoo Core
 
-Install [Zaparoo Core](/docs/core) on the device that launches your games and media.
+Install [Zaparoo Core](/docs/core/) on the device that launches your games and media.
 
 <CoreReleaseBar />
 
 <CoreDownloads />
+
+Need a reader or cards? The <ProductLink href="https://shop.zaparoo.com" store="shop" umamiEvent="downloads-shop">Zaparoo Shop</ProductLink> stocks tested readers, cards, and starter kits, and every purchase funds development. Using your own hardware? Check the [compatible readers](/docs/readers/) list first.
 
 <details id="arch-help">
   <summary>Which architecture do I need?</summary>
@@ -74,4 +77,4 @@ Install [Zaparoo Core](/docs/core) on the device that launches your games and me
   Choosing the wrong architecture will not damage your device. The download will not run.
 </details>
 
-_Trademarks shown on this page are property of their respective owners. The Zaparoo project uses these logos in good faith and/or under published usage guidelines to show compatibility with the operating systems they represent. The project is not affiliated with or endorsed by any of the projects or companies shown above._
+_Trademarks shown on this page are property of their respective owners. The Zaparoo project uses these logos in good faith and/or under published usage guidelines to show compatibility with the operating systems they represent. The project is not affiliated with or endorsed by any of the projects or companies shown on this page._

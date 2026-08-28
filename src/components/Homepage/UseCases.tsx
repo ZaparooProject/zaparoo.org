@@ -91,7 +91,7 @@ export default function UseCases(): ReactNode {
             to="/showcase/"
             data-umami-event="use-cases-showcase"
           >
-            Browse Community Builds
+            Browse community builds
           </Link>
           <Link
             className="button button--secondary button--lg"
@@ -110,7 +110,7 @@ export default function UseCases(): ReactNode {
               width="16px"
               style={{ marginRight: "8px" }}
             />
-            Share Your Ideas
+            Share your ideas
           </Link>
         </div>
       </div>

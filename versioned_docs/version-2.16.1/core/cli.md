@@ -1,4 +1,5 @@
 ---
+sidebar_position: 2
 description: "Zaparoo Core command line reference for running ZapScript, calling the Core API, writing tokens, reloading settings, and managing platform services."
 keywords: [zaparoo cli, zaparoo command line, zaparoo core cli, zaparoo scripting cli]
 ---
@@ -83,7 +84,7 @@ While reading or writing, Core temporarily disables normal ZapScript execution s
 
 ## Reload Core
 
-Use `-reload` after editing the [config file](config.md), [mapping files](../features/mappings.md), or [custom launcher files](../features/launchers.md#custom-launchers) while Core is running. It also refreshes supported platform launcher dependencies, including MiSTer RBF files and Batocera's EmulationStation system configuration.
+Use `-reload` after editing the [config file](config.md), [mapping files](../features/mappings.md), or [custom launcher files](../features/custom-launchers.md) while Core is running. It also refreshes supported platform launcher dependencies, including MiSTer RBF files and Batocera's EmulationStation system configuration.
 
 ```bash
 ./zaparoo -reload

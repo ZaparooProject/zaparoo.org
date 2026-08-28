@@ -1,4 +1,5 @@
 ---
+sidebar_position: 2
 description: "Use Zaparoo playlists to group media, write playlist sources, play items in order or shuffled, and move between entries from ZapScript."
 keywords: [zaparoo playlists, zapscript playlist, playlist picker, shuffled playlist]
 ---
@@ -84,7 +85,7 @@ Use these top-level fields:
 | Field | Description |
 | ----- | ----------- |
 | `id` | Playlist ID. Core uses this to recognize the same playlist when opening a source that is already active. |
-| `name` | Display name for the playlist. The picker uses this as its title. |
+| `name` | Optional display name for the playlist. The picker uses this as its title. |
 | `items` | Array of playlist items. Without items, there is nothing useful to play. |
 
 Each item uses these fields:

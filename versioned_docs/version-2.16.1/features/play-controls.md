@@ -1,4 +1,5 @@
 ---
+sidebar_position: 4
 description: "Use Zaparoo play controls to protect active sessions, stage disruptive scans, and enforce playtime limits."
 keywords: [zaparoo play controls, zaparoo launch guard, zaparoo playtime limits, game time limit, staged token]
 ---

@@ -11,7 +11,7 @@ import {
   DocsActionGroup,
   NavCardGroup,
 } from "@site/src/components/DocsNavGrid";
-import { Images, MessageCircle, Newspaper } from "lucide-react";
+import { Images, MessageCircle, Newspaper, Palette, ShoppingCart, Zap } from "lucide-react";
 import styles from "./showcase.module.css";
 
 # Showcase
@@ -51,6 +51,34 @@ Browse the latest additions first, or narrow the gallery to photos or videos.
 <div className="margin-bottom--xl">
   <Showcase excludeFeatured browsable showCaptions initialLimit={24} />
 </div>
+
+## Make one of these
+
+<NavCardGroup
+  cards={[
+    {
+      icon: Zap,
+      title: "Set up Zaparoo",
+      description: "Three questions, then a setup guide for your platform, tokens, and reader.",
+      link: "/start/",
+      umamiEvent: "showcase-start",
+    },
+    {
+      icon: Palette,
+      title: "Design and print card art",
+      description: "Zaparoo Designer templates and the printing guide.",
+      link: "/docs/labels/",
+      umamiEvent: "showcase-labels",
+    },
+    {
+      icon: ShoppingCart,
+      title: "Get cards and readers",
+      description: "Tested hardware and starter kits from the Zaparoo Shop.",
+      link: "https://shop.zaparoo.com",
+      umamiEvent: "showcase-shop",
+    },
+  ]}
+/>
 
 ## Community Showcase archive
 

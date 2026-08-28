@@ -1,4 +1,5 @@
 ---
+sidebar_position: 5
 description: "Create Zaparoo device profiles with switch cards, separate playtime limits, and MiSTer save data for each person."
 keywords: [zaparoo profiles, zaparoo profile card, zaparoo parental controls, mister separate saves, zaparoo playtime profiles]
 ---

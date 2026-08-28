@@ -1,4 +1,5 @@
 ---
+sidebar_position: 2
 description: Use a raw PN532 NFC module with Zaparoo over USB UART or I2C. Covers wiring, config, and troubleshooting for DIY builds.
 keywords: [pn532 module, pn532 uart, pn532 i2c, diy nfc reader zaparoo, pn532 wiring]
 ---
@@ -13,52 +14,7 @@ If you only want a reader you can plug in and use, choose the [PN532 USB](./pn53
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../../platforms/windows/", support: "supported" },
-        { name: "macOS", href: "../../platforms/mac", support: "supported" },
-        { name: "Linux", href: "../../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../../platforms/mistex", support: "supported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../../platforms/libreelec", support: "supported" },
-      ],
-    },
-    {
-      name: "Other Hardware",
-      platforms: [
-        { name: "Commodore 64", href: "../../platforms/commodore64", support: "limited", note: "Via TeensyROM, not Zaparoo Core." },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="pn532-module" />
 
 :::warning DIY hardware
 This is not a finished USB reader. Expect wiring, soldering, and some troubleshooting.

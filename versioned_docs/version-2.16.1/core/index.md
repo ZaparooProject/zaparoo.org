@@ -50,17 +50,22 @@ Use these starting points for Core maintenance tasks:
 | Restart or manage the Core service | [Platform command-line flags](./cli.md#platform-flags) and your [platform guide](../platforms/index.mdx) |
 | Find, view, or export logs | [TUI logs](./tui.md#logs) and the log path in your [platform guide](../platforms/index.mdx) |
 | Update the media database or run a scraper | [Media database and scraper guide](../features/scraping.md) |
+| Back up before making changes | [Device backups](../features/backups.md), local for free or automatic with Warp |
 | Edit `config.toml` | [Configuration reference](./config.md) |
 | Recover a corrupt media database | [Database recovery](./cli.md#database-recovery) |
 | Update or uninstall Core | Your [platform guide](../platforms/index.mdx); uninstall steps are platform-specific |
 
-Direct uninstall instructions are available for [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
+Direct uninstall instructions are available for [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos/index.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
 
 ## Features and customization
 
-Core includes user-configurable features for larger setups and custom workflows. The [features section](../features/index.md) covers mappings, playlists, play controls, hooks, publishers, launcher controls, custom launchers, systems, and tags.
+Core includes optional features for larger setups and custom workflows. The [features section](../features/index.md) covers device backups, profiles, playlists, audio playback, play controls, mappings, tags, scraping, systems, hooks, launchers, and publishers.
 
 If you are setting up hardware, start with the [readers](../readers/index.md) and [tokens](../tokens/index.md) sections first. If you already have a reader working and want to control what a scan does, start with [ZapScript](../zapscript/index.md).
+
+## For developers
+
+The [Core API](./api/index.md) reference and the [Developer Guide](./contributing/index.md) are maintained in the Core repository and published here automatically, so they read differently from the rest of these docs. The [Zaparoo CLI](https://github.com/ZaparooProject/zaparoo-cli) is the maintained command-line client for scripts, tests, and AI agents.
 
 ## Source and license
 

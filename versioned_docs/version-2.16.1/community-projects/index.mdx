@@ -11,15 +11,18 @@ import {
   Archive,
   Box,
   Code2,
+  Cpu,
+  Gamepad2,
   Images,
   MessageCircle,
+  Monitor,
   Nfc,
 } from "lucide-react";
 import styles from "./styles.module.css";
 
 # Community Projects
 
-Find downloadable cases, software tools, token designs, and other resources built by the Zaparoo community. To add a project, open a pull request or share it through [Discord](https://zaparoo.org/discord) or [Reddit](https://www.reddit.com/r/zaparoo/).
+Find downloadable cases, software tools, token designs, and other resources built by the Zaparoo community. To add a project, open a pull request or share it through [Discord](https://zaparoo.org/discord) or [Reddit](https://www.reddit.com/r/zaparoo/). Looking for the community itself? See [Community](../community-hub/index.md).
 
 <DocsActionGroup
   actions={[
@@ -48,6 +51,34 @@ These community builds show how custom readers and physical collections can make
 ]} />
 
 *From left: SHELFMODE by Pullle from [Community Showcase #3](/blog/community-showcase-3), SunieFairbreeze's Retro NFC reader from the [Showcase gallery](/showcase/), and Super Zap Boy by Phoenix from Community Showcase #3.*
+
+## Guides in this section
+
+<NavCardGroup
+  cards={[
+    {
+      icon: Cpu,
+      title: "DIY Reader",
+      description: "Build a PN532 USB reader from a custom PCB for about $10.",
+      link: "./diy-reader/",
+      umamiEvent: "community-projects-diy-reader",
+    },
+    {
+      icon: Gamepad2,
+      title: "Super Zap Boy",
+      description: "A MiSTer build inside an original Super Nintendo shell with an NFC cartridge reader.",
+      link: "./super-zap-boy/",
+      umamiEvent: "community-projects-super-zap-boy",
+    },
+    {
+      icon: Monitor,
+      title: "Card-Only Batocera Cabinet",
+      description: "Hide Batocera's menus behind an insert-a-card screen for arcade cabinets.",
+      link: "./batocera-card-only/",
+      umamiEvent: "community-projects-batocera-card-only",
+    },
+  ]}
+/>
 
 ## Browse by category
 

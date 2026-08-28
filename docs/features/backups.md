@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: "Back up and restore Zaparoo Core data on every platform, plus supported MiSTer settings, saves, and save states."
 keywords:
   [

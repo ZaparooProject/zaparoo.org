@@ -6,4 +6,14 @@ const coreRelease = {
     "https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.16.1",
 } as const;
 
+/** Formats an ISO date (YYYY-MM-DD) as "August 6, 2026" for display. */
+export function formatReleaseDate(isoDate: string): string {
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${isoDate}T00:00:00Z`));
+}
+
 export default coreRelease;

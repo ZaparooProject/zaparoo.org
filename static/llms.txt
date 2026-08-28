@@ -4,10 +4,11 @@
 
 Important notes:
 
-- Zaparoo does not provide ROMs, game files, or any copyrighted media — it is purely a launcher and reader system.
-- Zaparoo Core is the background service (daemon) that runs on the target device. The Zaparoo App is the mobile and desktop companion used to write tokens and manage settings.
+- Zaparoo does not provide ROMs, game files, or any copyrighted media. It is purely a launcher and reader system.
+- Zaparoo Core is the background service (daemon) that runs on the target device. The Zaparoo App is the free iOS and Android companion used to write tokens and manage settings; Zaparoo App Pro (US$6.99 one-time purchase, included with Warp) turns the phone into a wireless reader.
+- Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching the Core media library on MiSTer. Zaparoo Online is a free optional account (play history sync, virtual cards and decks, User API); Zaparoo Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro). Local backups are always free.
 - ZapScript is the scripting language embedded into NFC tags, QR codes, and other tokens to control what Zaparoo does when they are scanned.
-- Zaparoo was previously known as TapTo — historical references to TapTo refer to the same project.
+- Zaparoo was previously known as TapTo. Historical references to TapTo refer to the same project.
 - The project is community-driven and open-source; the Zaparoo name and shop are operated by Wizzo Pty Ltd.
 - The old Zaparoo MCP server and `zaparoo-mcp` npm package are deprecated. New command-line and AI-assisted work should use `@zaparoo/cli` and its Agent Skills.
 - mrext is maintained for legacy MiSTer users. Before starting or extending MiSTer work with mrext, consult its migration guide for current Zaparoo replacements and documented gaps.
@@ -17,6 +18,8 @@ Important notes:
 - [Getting Started Guide](https://zaparoo.org/start/): Step-by-step setup guide for new users.
 - [Downloads](https://zaparoo.org/downloads/): Download Zaparoo Core, App, and related tools.
 - [Documentation Overview](https://zaparoo.org/docs/): Full documentation index for all Zaparoo components.
+- [Common Tasks](https://zaparoo.org/docs/common-tasks/): Task-oriented index linking to the page that answers each common question.
+- [Glossary](https://zaparoo.org/docs/glossary/): Definitions of token, reader, Core, Pro, Warp, mapping, UID, NDEF, and other terms.
 
 ## Readers (Hardware)
 
@@ -40,11 +43,7 @@ Important notes:
 - [NFC Tags](https://zaparoo.org/docs/tokens/nfc/): Overview of NFC tag compatibility and usage.
 - [NTAG Tags](https://zaparoo.org/docs/tokens/nfc/ntag/): Common NTAG NFC tags supported by Zaparoo.
 - [MIFARE Tags](https://zaparoo.org/docs/tokens/nfc/mifare/): MIFARE Classic NFC tag support and limitations.
-- [NFC Toys](https://zaparoo.org/docs/tokens/nfc-toys/): Use existing NFC toys as Zaparoo tokens.
-- [Amiibo](https://zaparoo.org/docs/tokens/nfc-toys/amiibo/): Launch content using Nintendo Amiibo figures.
-- [Skylanders](https://zaparoo.org/docs/tokens/nfc-toys/skylanders/): Use Skylanders figures as Zaparoo tokens.
-- [Disney Infinity](https://zaparoo.org/docs/tokens/nfc-toys/disney-infinity/): Use Disney Infinity figures as tokens.
-- [LEGO Dimensions](https://zaparoo.org/docs/tokens/nfc-toys/lego-dimensions/): Use LEGO Dimensions figures as tokens.
+- [NFC Toys](https://zaparoo.org/docs/tokens/nfc-toys/): Map Amiibo, Skylanders, Disney Infinity, and LEGO Dimensions figures to games by UID.
 - [PCB Cards](https://zaparoo.org/docs/tokens/pcb-cards/): Custom PCB-format NFC cards for Zaparoo.
 - [QR Codes](https://zaparoo.org/docs/tokens/qr-codes/): Generate and scan QR code tokens.
 - [Barcodes](https://zaparoo.org/docs/tokens/barcodes/): Use standard barcodes as Zaparoo tokens.
@@ -76,14 +75,14 @@ Important notes:
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
 - [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, metadata scraping, support log uploads, and library tools.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
-- [Zaparoo Online](https://zaparoo.org/docs/online/): Cloud service for virtual card decks and remote ZapScript sync.
+- [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for play history sync, virtual cards and decks, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).
 
 ## Core
 
 - [Core Overview](https://zaparoo.org/docs/core/): Zaparoo Core daemon reference and architecture.
 - [Configuration](https://zaparoo.org/docs/core/config/): Full config.toml reference for Zaparoo Core.
 - [CLI Reference](https://zaparoo.org/docs/core/cli/): Command-line interface for interacting with Core.
-- [Terminal UI](https://zaparoo.org/docs/core/tui/): Local terminal menu for Core status, token writing, media updates, settings, and logs.
+- [Terminal UI (TUI)](https://zaparoo.org/docs/core/tui/): Local terminal menu for Core status, token writing, media updates, settings, and logs.
 - [Contributing / Developer Guide](https://zaparoo.org/docs/core/contributing/): Guide for developers building on or contributing to Core.
 
 ## Features
@@ -130,11 +129,11 @@ Important notes:
 - [Community Hub](https://zaparoo.org/docs/community-hub/): Vendor list, media kit, and community resources.
 - [Contributors](https://zaparoo.org/docs/community-hub/contributors/): People who have contributed to the Zaparoo project.
 - [Community Projects](https://zaparoo.org/docs/community-projects/): Third-party projects and integrations built on Zaparoo.
-- [Support](https://zaparoo.org/support/): Get help with Zaparoo via Discord, Reddit, and other channels.
+- [Help](https://zaparoo.org/support/): Get help with Zaparoo via Discord, Reddit, and other channels.
 
 ## Optional
 
 - [Blog](https://zaparoo.org/blog/): Release announcements, tutorials, and project updates.
 - [Showcase](https://zaparoo.org/showcase/): Community photos and videos of Zaparoo in use.
-- [Sponsor](https://zaparoo.org/sponsor/): Ways to financially support the Zaparoo project.
+- [Support Zaparoo](https://zaparoo.org/sponsor/): Warp, App Pro, the Zaparoo Shop, Patreon, and GitHub Sponsors fund development.
 - [Contact](https://zaparoo.org/contact/): Contact information for the Zaparoo project team.

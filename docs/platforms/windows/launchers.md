@@ -23,7 +23,7 @@ An invalid TOML file can prevent Core from loading any configuration, not just t
 
 ## Window focus
 
-Core brings tracked applications to the foreground after launching them, including minimized windows. It waits up to five seconds for a window owned by the launched process or one of its descendants. This applies to built-in and [custom launchers](../../features/launchers.md#custom-launchers) that start a tracked process.
+Core brings tracked applications to the foreground after launching them, including minimized windows. It waits up to five seconds for a window owned by the launched process or one of its descendants. This applies to built-in and [custom launchers](../../features/custom-launchers.md) that start a tracked process.
 
 If an application still opens behind another window, check whether its launcher starts a detached process more than five seconds later. Core cannot focus a window it can no longer associate with the launched process tree.
 
@@ -292,7 +292,7 @@ execute = "\"D:\\Emulation\\Emulators\\PCSX2-Nightly\\pcsx2-qt.exe\" \"[[media_p
 
 Core runs the `execute` command directly, without a shell. It splits the string into a program and arguments itself (respecting single and double quotes), then starts the program. This stops characters in a ROM path from being treated as shell commands.
 
-Launch the emulator executable directly whenever you can, as in the example above. Quote the program path and `[[media_path]]` separately so paths with spaces (like `D:\Roms\Sony - PlayStation 2\`) stay intact. Running the executable directly also lets Core track the process for [media tracking](../../features/launchers.md#custom-launchers).
+Launch the emulator executable directly whenever you can, as in the example above. Quote the program path and `[[media_path]]` separately so paths with spaces (like `D:\Roms\Sony - PlayStation 2\`) stay intact. Running the executable directly also lets Core track the process for [media tracking](../../features/custom-launchers.md).
 
 :::warning Avoid wrapping the command in PowerShell
 Wrapping the launch in PowerShell with `Start-Process -ArgumentList '"[[media_path]]"'` makes PowerShell parse the arguments a second time. It can strip your quotes and split the path on its spaces. A folder name with a space or hyphen like `Sony - PlayStation 2` then breaks, giving errors such as `Unknown parameter: '-'` and launching the emulator with no game. Use a PowerShell wrapper only when you need PowerShell-specific behavior.

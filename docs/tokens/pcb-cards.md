@@ -1,4 +1,5 @@
 ---
+sidebar_position: 5
 description: "Custom PCB game cards for Zaparoo: order PCB blanks, add NFC stickers, and print labels for a unique physical game collection."
 keywords: [zaparoo pcb cards, custom nfc game cards, pcb nfc zaparoo, diy game cards]
 ---

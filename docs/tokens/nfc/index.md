@@ -3,7 +3,7 @@ description: "NFC tag types for Zaparoo: NTAG215, NTAG213, MIFARE Classic, and w
 keywords: [zaparoo nfc tags, ntag215 games, nfc cards zaparoo, rfid tags zaparoo]
 ---
 
-# NFC Tags
+# NFC Cards and Tags
 
 NFC tags tell the reader and software what action to take. They **do not** contain games. They store a small piece of [ZapScript](../../zapscript/index.md), such as a game launch command.
 

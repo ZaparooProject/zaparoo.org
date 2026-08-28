@@ -39,7 +39,7 @@ const accessibleLightCodeTheme = {
 
 const config: Config = {
   title: "Zaparoo",
-  tagline: "Make Your Digital Game Library Physical",
+  tagline: "Make your digital game library physical.",
   favicon: "img/favicon.ico",
 
   url: "https://zaparoo.org",
@@ -214,10 +214,10 @@ const config: Config = {
           "data-umami-event": "navbar-downloads",
         },
         {
-          href: "https://design.zaparoo.org/",
-          label: "Designer",
+          href: "https://shop.zaparoo.com",
+          label: "Shop",
           position: "left",
-          "data-umami-event": "navbar-designer",
+          "data-umami-event": "navbar-shop",
           className: "navbar__item--no-icon",
         },
         {
@@ -263,7 +263,7 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Commercial",
+          title: "Shop and services",
           items: [
             {
               label: "Zaparoo Shop",
@@ -281,14 +281,19 @@ const config: Config = {
               "data-umami-event": "footer-online",
             },
             {
-              label: "Commercial Use",
-              href: "/contact#commercial-and-trademark-use",
-              "data-umami-event": "footer-nav-commercial-use",
+              label: "Partner with Zaparoo",
+              href: "https://zaparoo.com/integrate?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=partners",
+              "data-umami-event": "footer-partner",
             },
             {
-              label: "Support",
+              label: "Billing and account support",
               href: "https://zaparoo.com/support",
               "data-umami-event": "footer-zaparoo-com-support",
+            },
+            {
+              label: "Commercial use",
+              to: "/contact/#commercial-and-trademark-use",
+              "data-umami-event": "footer-nav-commercial-use",
             },
           ],
         },
@@ -296,14 +301,19 @@ const config: Config = {
           title: "Learn",
           items: [
             {
+              label: "Setup guide",
+              href: "/start/",
+              "data-umami-event": "footer-nav-getting-started",
+            },
+            {
+              label: "Downloads",
+              href: "/downloads/",
+              "data-umami-event": "footer-nav-downloads",
+            },
+            {
               label: "Docs",
               href: "/docs/",
               "data-umami-event": "footer-nav-docs",
-            },
-            {
-              label: "Getting Started",
-              href: "/start/",
-              "data-umami-event": "footer-nav-getting-started",
             },
             {
               label: "ZapScript",
@@ -347,7 +357,7 @@ const config: Config = {
             },
             {
               label: "ZapESP32",
-              href: "https://github.com/ZaparooProject/zaparoo-esp32",
+              href: "/docs/zapesp32/",
               "data-umami-event": "footer-zapesp32",
             },
             {
@@ -568,8 +578,11 @@ const config: Config = {
           const title =
             baseName === "Home" ? "ZapESP32" : baseName.replace(/[-‐]/g, " ");
 
-          // Add frontmatter with title
-          const frontmatter = `---\ntitle: "${title}"\n---\n\n`;
+          // Add frontmatter with title, plus description and keywords for the landing page
+          const frontmatter =
+            filename === "Home.md"
+              ? `---\ntitle: "${title}"\ndescription: "Build and configure ZapESP32, open-source firmware that turns an ESP32 board into a wireless NFC reader for Zaparoo."\nkeywords: [zapesp32, esp32 nfc reader, diy zaparoo reader, wireless nfc reader, zaparoo esp32]\n---\n\n`
+              : `---\ntitle: "${title}"\n---\n\n`;
           modifiedContent = frontmatter + modifiedContent;
 
           if (filename === "Home.md") {
@@ -695,6 +708,23 @@ const config: Config = {
           {
             to: "/docs/community-hub/contributors",
             from: "/docs/community/contributors",
+          },
+          // NFC toy pages merged into one page (2026-08)
+          {
+            to: "/docs/tokens/nfc-toys/#amiibo",
+            from: "/docs/tokens/nfc-toys/amiibo/",
+          },
+          {
+            to: "/docs/tokens/nfc-toys/#skylanders",
+            from: "/docs/tokens/nfc-toys/skylanders/",
+          },
+          {
+            to: "/docs/tokens/nfc-toys/#disney-infinity",
+            from: "/docs/tokens/nfc-toys/disney-infinity/",
+          },
+          {
+            to: "/docs/tokens/nfc-toys/#lego-dimensions",
+            from: "/docs/tokens/nfc-toys/lego-dimensions/",
           },
           // Systems page moved to features/
           {

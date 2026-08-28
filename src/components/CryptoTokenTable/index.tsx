@@ -2,7 +2,7 @@ import React from "react";
 import { ChevronRight } from "lucide-react";
 import styles from "./styles.module.css";
 
-interface TokenTableProps {
+interface CryptoTokenTableProps {
   name: string;
   symbol: string;
   address: string;
@@ -17,7 +17,7 @@ interface TokenTableProps {
   status?: string;
 }
 
-export default function TokenTable({
+export default function CryptoTokenTable({
   name,
   symbol,
   address,
@@ -30,7 +30,7 @@ export default function TokenTable({
   domain,
   domainUrl,
   status = "Supply frozen, not tradeable",
-}: TokenTableProps) {
+}: CryptoTokenTableProps) {
   return (
     <div className={styles.tokenTableContainer}>
       <table className={styles.tokenTable}>

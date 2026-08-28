@@ -32,7 +32,17 @@ export default function DocItemFooter(): ReactNode {
       <aside className={styles.feedback} aria-label="Documentation feedback">
         <div>
           <strong>Found outdated or unclear information?</strong>
-          <p>Open a prefilled issue for this page and documentation version.</p>
+          <p>
+            Open a prefilled issue for this page and documentation version, or
+            ask in{" "}
+            <a
+              href="https://zaparoo.org/discord"
+              data-umami-event="docs-feedback-discord"
+            >
+              Discord
+            </a>
+            .
+          </p>
         </div>
         <a
           className="button button--secondary button--outline"
@@ -43,7 +53,7 @@ export default function DocItemFooter(): ReactNode {
           data-umami-event-doc={pathname}
           data-umami-event-version={version}
         >
-          Report Documentation Issue
+          Report a docs issue
         </a>
       </aside>
     </>

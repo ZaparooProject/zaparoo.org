@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: "NTAG215 and NTAG213 NFC tags for Zaparoo: the recommended token standard for game collections, Amiibo compatibility, and cross-platform reads."
 keywords: [ntag215 zaparoo, ntag213 zaparoo, nfc game cards, amiibo ntag215, nfc tags zaparoo]
 ---
@@ -41,8 +42,8 @@ NTAG cards are available from Amazon, eBay, and AliExpress by searching for the 
 
 Some NFC toy lines use NTAG chips internally. See [NFC Toys](../nfc-toys/index.md) for details on using them with Zaparoo:
 
-- [Amiibo](../nfc-toys/amiibo.md) (NTAG215)
-- [Lego Dimensions](../nfc-toys/lego-dimensions.md) (NTAG213)
+- [Amiibo](../nfc-toys/index.md#amiibo) (NTAG215)
+- [Lego Dimensions](../nfc-toys/index.md#lego-dimensions) (NTAG213)
 
 ## FAQ
 

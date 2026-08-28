@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 slug: acr122u
 description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, Windows PC/SC, Linux libnfc, and troubleshooting.
 keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
@@ -27,46 +27,7 @@ The ACR122U is no longer produced by its original designer [ACS](https://www.acs
 Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. [NTAG](../../tokens/nfc/ntag.md) read/write support works, but [MIFARE Classic](../../tokens/nfc/mifare.md) write support is limited and some MIFARE cards may need manual formatting or may not work. The reader LED and beeper also do not work with this driver, and some clone variants are incompatible.
 :::
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../../platforms/windows/", support: "limited", note: "Scanning works through PC/SC. Writing tags through Zaparoo is not supported." },
-        { name: "macOS", href: "../../platforms/mac", support: "unsupported", note: "Not included in the current macOS Core reader set." },
-        { name: "Linux", href: "../../platforms/linux/", support: "limited" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../../platforms/mister/", support: "limited" },
-        { name: "MiSTeX", href: "../../platforms/mistex", support: "limited" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../../platforms/batocera/", support: "limited" },
-        { name: "RePlayOS", href: "../../platforms/replayos", support: "limited" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../../platforms/steamos", support: "limited" },
-        { name: "Bazzite", href: "../../platforms/bazzite", support: "limited" },
-        { name: "ChimeraOS", href: "../../platforms/chimeraos", support: "limited" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../../platforms/libreelec", support: "limited" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="acr122u" />
 
 ## Configure the reader
 

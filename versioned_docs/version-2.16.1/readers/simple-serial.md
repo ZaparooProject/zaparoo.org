@@ -1,4 +1,5 @@
 ---
+sidebar_position: 8
 description: Connect a custom serial reader to Zaparoo Core using the Simple Serial protocol.
 keywords: [zaparoo simple serial, custom reader zaparoo, diy reader serial, microcontroller nfc zaparoo]
 ---
@@ -11,46 +12,7 @@ Use this for custom readers, barcode or QR scanners, button panels, or hardware 
 
 ## Platforms
 
-<PlatformSupport
-  groups={[
-    {
-      name: "Base OS",
-      platforms: [
-        { name: "Windows", href: "../platforms/windows/", support: "supported" },
-        { name: "macOS", href: "../platforms/mac", support: "supported" },
-        { name: "Linux", href: "../platforms/linux/", support: "supported" },
-      ],
-    },
-    {
-      name: "FPGA",
-      platforms: [
-        { name: "MiSTer", href: "../platforms/mister/", support: "supported" },
-        { name: "MiSTeX", href: "../platforms/mistex", support: "supported" },
-      ],
-    },
-    {
-      name: "Retro Gaming OS",
-      platforms: [
-        { name: "Batocera", href: "../platforms/batocera/", support: "supported" },
-        { name: "RePlayOS", href: "../platforms/replayos", support: "supported" },
-      ],
-    },
-    {
-      name: "Handheld and Gaming Linux",
-      platforms: [
-        { name: "SteamOS", href: "../platforms/steamos", support: "supported" },
-        { name: "Bazzite", href: "../platforms/bazzite", support: "supported" },
-        { name: "ChimeraOS", href: "../platforms/chimeraos", support: "supported" },
-      ],
-    },
-    {
-      name: "Media Center",
-      platforms: [
-        { name: "LibreELEC", href: "../platforms/libreelec", support: "supported" },
-      ],
-    },
-  ]}
-/>
+<PlatformSupport readerId="simple-serial" />
 
 ## Configure the reader
 

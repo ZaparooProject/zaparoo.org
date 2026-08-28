@@ -1,33 +1,37 @@
 ---
-description: "Zaparoo community: join Discord, Reddit, and other spaces to share your setup, get help, and connect with other Zaparoo users."
-keywords: [zaparoo community, zaparoo discord, zaparoo reddit, zaparoo help, zaparoo forum]
+description: "The Zaparoo community: Discord, Reddit, Lemmy, YouTube, and the blog, plus press coverage, contributors, vendors, and the project's TapTo history."
+keywords: [zaparoo community, zaparoo discord, zaparoo reddit, zaparoo youtube, zaparoo help, zaparoo forum]
 ---
 
 # Community
 
-The Zaparoo community is active on several platforms.
+Zaparoo is built and supported by its community. This section is where to find people, along with [press coverage](./media.md), the [contributors](./contributors.md) who make the project possible, [where to buy hardware](./vendors.md), and the story of the project's earlier name, [TapTo](./tapto.md). Looking for cases, tools, and builds people have shared? Those are in [Community Projects](../community-projects/index.mdx).
 
 ## Discord
 
-[Discord](https://zaparoo.org/discord) is our main community hub for real-time discussion and support. It's the best place to:
+[Discord](https://zaparoo.org/discord) is the main community hub for real-time discussion and support. It's the best place to:
 
 - Get quick help with technical issues
 - Chat with other community members
 - Share your projects and get feedback
-- Participate in community events
-- Stay up to date with the latest developments
+- Stay up to date with development
 
 ## Reddit
 
-Our [Reddit community](https://www.reddit.com/r/zaparoo) is great for:
-
-- Announcements and updates
-- Sharing project showcases
+The [Zaparoo subreddit](https://www.reddit.com/r/zaparoo) is good for announcements, updates, and sharing showcases.
 
 ## Lemmy
 
-For those who prefer federated services, we also have a presence on [Lemmy](https://lemmy.world/c/zaparoo).
+For federated services, there is also a [Lemmy community](https://lemmy.world/c/zaparoo).
+
+## YouTube and the blog
+
+The [Zaparoo YouTube channel](https://www.youtube.com/@HeyZaparoo) has setup videos and showcases. The [blog](/blog/) carries release notes, project updates, and the community showcase series.
 
 ## Code of Conduct
 
-Our [Code of Conduct](/conduct/) applies to all community platforms.
+The [Code of Conduct](/conduct/) applies to all community spaces.
+
+---
+
+<SponsorCallout variant="sponsor" />

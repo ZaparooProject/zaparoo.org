@@ -288,6 +288,12 @@
   font-size: 1.2rem;
 }
 
+.partnersLinks {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
 .partnersLogos {
   display: flex;
   justify-content: center;
@@ -374,42 +380,24 @@
 }
 
 /* Support strip tiles */
-.supportTile {
-  height: 100%;
-  padding: 1.75rem 1.5rem;
-  border-radius: var(--z-card-radius);
-  background-color: var(--z-card-background);
-  border: 1px solid var(--z-card-border-strong);
-  box-shadow: var(--z-card-shadow);
-  transition: var(--z-card-transition);
-  display: flex;
-  flex-direction: column;
-}
-
-.supportTile:hover {
-  border-color: var(--ifm-color-primary);
-  box-shadow: var(--z-card-shadow-hover);
-}
-
-[data-theme="dark"] .supportTile:hover {
-  border-color: var(--ifm-color-primary-light);
-}
-
-.supportTileTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: var(--ifm-heading-color);
-}
-
-.supportTileDesc {
-  flex: 1;
+.whatYouNeed {
+  margin: 1.5rem auto 0;
+  max-width: 40rem;
+  text-align: center;
   color: var(--ifm-color-emphasis-700);
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
-  font-size: 0.95rem;
 }
 
-[data-theme="dark"] .supportTileDesc {
-  color: var(--ifm-color-emphasis-600);
+.supportOther {
+  max-width: 40rem;
+  margin: 1.25rem auto 0;
+  text-align: center;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media (max-width: 768px) {
+  }
+
+.featureSvg {
+  height: 100px;
+  width: 100px;
 }

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 description: "ZapScript launch commands: launch games and media by file path, system identifier, or title ID using Zaparoo tokens."
 keywords: [zapscript launch, zaparoo launch command, launch game zapscript, title id zaparoo]
 ---

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 4
 description: "Use product barcodes as Zaparoo tokens: scan the UPC on a physical game case to launch that game using mappings."
 keywords: [zaparoo barcodes, barcode game launcher, upc game launch zaparoo, barcode token]
 ---

@@ -42,3 +42,5 @@ This command generates static content into the `build` directory and can be serv
 7. Update `static/llms.txt` manually with new important docs pages or platform changes
 8. Write blog post in `blog/YYYY-MM-DD-core-vX.X.X/index.mdx`
 9. Build and verify: `pnpm build && pnpm serve`
+10. Do not leave HTML comments (`<!-- -->`) in MDX posts. They compile into public JS chunks.
+11. Product names, prices, and links live in `src/data/products.ts`; update Warp `platformNote` when cloud backup platform support changes.

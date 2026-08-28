@@ -1,4 +1,5 @@
 ---
+sidebar_position: 3
 description: "Play music and audio files directly through Zaparoo Core, including background music that keeps playing while you launch games."
 keywords: [zaparoo audio, zaparoo background music, zaparoo media slots, native audio launcher, zaparoo music playback]
 ---

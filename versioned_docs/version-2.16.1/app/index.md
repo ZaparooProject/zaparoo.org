@@ -61,7 +61,7 @@ If Core requires an encrypted connection, the app asks for the pairing PIN shown
 
 The app is available in English, Chinese (Simplified), Dutch, French, German, Japanese, Korean, and Spanish.
 
-## Zaparoo Pro
+## Zaparoo App Pro {#zaparoo-app-pro}
 
 Pro covers features that use the phone itself as a wireless reader. Managing Core, browsing your library, and creating tokens remain free.
 

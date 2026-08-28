@@ -13,8 +13,9 @@ import Showcase from "../components/Showcase";
 import Gallery from "@site/src/components/Gallery";
 import ProductLink from "@site/src/components/ProductLink";
 import QRCodeGenerator from "@site/src/components/QRCodeGenerator";
-import TokenTable from "@site/src/components/TokenTable";
+import CryptoTokenTable from "@site/src/components/CryptoTokenTable";
 import SponsorCallout from "@site/src/components/SponsorCallout";
+import WarpCallout from "@site/src/components/WarpCallout";
 import AccessibleListItem from "@site/src/components/AccessibleListItem";
 import AccessibleTable from "@site/src/components/AccessibleTable";
 import {
@@ -34,8 +35,9 @@ export default {
   Gallery,
   ProductLink,
   QRCodeGenerator,
-  TokenTable,
+  CryptoTokenTable,
   SponsorCallout,
+  WarpCallout,
   PlatformSupport,
   ReaderSupport,
   li: AccessibleListItem,

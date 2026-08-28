@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SponsorCallout from "@site/src/components/SponsorCallout";
+import products from "@site/src/data/products";
 import {
   supportTierDetails,
   wizardPlatforms,
@@ -25,6 +26,8 @@ import {
   MemoryStick,
   Workflow,
   Braces,
+  Link2,
+  Check,
 } from "lucide-react";
 import styles from "./StartWizard.module.css";
 import {
@@ -121,17 +124,17 @@ const platforms: PlatformConfig[] = wizardPlatforms.map((platform) => ({
 const tokens: TokenConfig[] = [
   {
     id: "nfc-cards",
-    name: "NFC Tags",
+    name: "NFC cards and tags",
     icon: SmartphoneNfc,
-    description: "NFC cards, stickers, etc.",
+    description: "Cards, stickers, and keyfobs",
     requires: [], // Works on all platforms
     provides: [CAPABILITIES.NFC_TAG],
   },
   {
     id: "qr-codes",
-    name: "QR Codes",
+    name: "QR codes",
     icon: QrCode,
-    description: "Generate and print",
+    description: "Print your own for free",
     requires: [], // Works on all platforms
     provides: [CAPABILITIES.QR_CODE],
   },
@@ -139,21 +142,21 @@ const tokens: TokenConfig[] = [
     id: "barcode",
     name: "Barcodes",
     icon: ScanBarcode,
-    description: "Use real barcodes",
+    description: "Barcodes on boxes you own",
     requires: [], // Works on all platforms
     provides: [CAPABILITIES.BARCODE],
   },
   {
     id: "amiibo",
-    name: "NFC Toys",
+    name: "NFC toys",
     icon: PersonStanding,
-    description: "Reuse your figurines",
+    description: "Amiibo, Skylanders, and more",
     requires: [], // Works on all platforms
     provides: [CAPABILITIES.NFC_TAG],
   },
   {
     id: "optical",
-    name: "Optical Discs",
+    name: "Optical discs",
     icon: Disc,
     description: "CDs, DVDs or Blu-rays",
     requires: [CAPABILITIES.OPTICAL_DRIVE], // Only platforms with optical drives
@@ -161,7 +164,7 @@ const tokens: TokenConfig[] = [
   },
   {
     id: "removable-media",
-    name: "Removable Media",
+    name: "Removable media",
     icon: MemoryStick,
     description: "USB sticks and SD cards",
     requires: [], // Works on all platforms
@@ -169,9 +172,9 @@ const tokens: TokenConfig[] = [
   },
   {
     id: "digital-triggers",
-    name: "Digital Triggers",
+    name: "Software triggers",
     icon: Workflow,
-    description: "Scripts, automation, and APIs",
+    description: "Automations, scripts, and apps",
     requires: [CAPABILITIES.NETWORK],
     provides: [CAPABILITIES.DIGITAL_TRIGGER],
   },
@@ -180,7 +183,7 @@ const tokens: TokenConfig[] = [
 const readers: ReaderConfig[] = [
   {
     id: "usb-nfc-reader",
-    name: "USB NFC Reader",
+    name: "USB NFC reader",
     icon: Usb,
     description: "Plug-and-play hardware",
     requires: [CAPABILITIES.NFC_TAG],
@@ -198,14 +201,14 @@ const readers: ReaderConfig[] = [
   },
   {
     id: "phone-camera",
-    name: "Phone Camera",
+    name: "Phone camera",
     icon: Camera,
-    description: "Free URL-based QR codes",
+    description: "Any camera app, no Zaparoo App needed",
     requires: [CAPABILITIES.QR_CODE],
   },
   {
     id: "optical-drive",
-    name: "Optical Drive",
+    name: "Optical drive",
     icon: Disc,
     description: "USB or internal drive",
     requires: [CAPABILITIES.PHYSICAL_MEDIA],
@@ -214,19 +217,19 @@ const readers: ReaderConfig[] = [
     id: "zapesp32",
     name: "ZapESP32",
     icon: Cpu,
-    description: "Custom DIY reader",
+    description: "DIY wireless NFC reader",
     requires: [CAPABILITIES.NFC_TAG],
   },
   {
     id: "rs232-scanner",
-    name: "RS232 Scanner",
+    name: "Serial barcode scanner",
     icon: ScanBarcode,
-    description: "Serial barcode scanner",
+    description: "RS-232 or USB-COM mode",
     requires: [CAPABILITIES.BARCODE, CAPABILITIES.QR_CODE],
   },
   {
     id: "external-drive",
-    name: "External Drive",
+    name: "External drive",
     icon: HardDrive,
     description: "USB or SD card reader",
     requires: [CAPABILITIES.REMOVABLE_MEDIA],
@@ -247,9 +250,9 @@ const readers: ReaderConfig[] = [
   },
   {
     id: "api",
-    name: "Zaparoo API",
+    name: "Core API",
     icon: Braces,
-    description: "Use Core API direct",
+    description: "Call the Core API directly",
     requires: [CAPABILITIES.DIGITAL_TRIGGER],
   },
 ];
@@ -443,6 +446,13 @@ export const StartWizard: React.FC = () => {
             </button>
           ))}
         </div>
+        <p className={styles.tierLegend}>
+          <strong>{supportTierDetails.stable.label}:</strong>{" "}
+          {supportTierDetails.stable.description}{" "}
+          <strong>{supportTierDetails.beta.label}:</strong>{" "}
+          {supportTierDetails.beta.description} Platform not listed? See{" "}
+          <a href="/docs/platforms/">all platforms</a>.
+        </p>
       </section>
 
       {/* Step 2: Token */}
@@ -466,9 +476,14 @@ export const StartWizard: React.FC = () => {
                   className={`${styles.card} ${
                     choice.token === token.id ? styles.active : ""
                   }`}
-                  onClick={() =>
-                    updateChoice({ token: token.id, reader: null })
-                  }
+                  onClick={() => {
+                    const validReaders = getValidReaders(token);
+                    updateChoice({
+                      token: token.id,
+                      reader:
+                        validReaders.length === 1 ? validReaders[0].id : null,
+                    });
+                  }}
                 >
                   <div className={styles.icon}>
                     <IconComponent size={56} />
@@ -490,7 +505,11 @@ export const StartWizard: React.FC = () => {
           }`}
           ref={readerSectionRef}
         >
-          <h2 className={styles.stepTitle}>Pick a reader</h2>
+          <h2 className={styles.stepTitle}>
+            {getValidReaders(selectedToken).length === 1
+              ? "Your reader"
+              : "Pick a reader"}
+          </h2>
           <div className={styles.grid}>
             {getValidReaders(selectedToken).map((reader) => {
               const IconComponent = reader.icon;
@@ -526,13 +545,41 @@ export const StartWizard: React.FC = () => {
           }`}
           ref={summarySectionRef}
         >
-          <h2 className={styles.stepTitle}>Your Zaparoo setup</h2>
+          <div className={styles.summaryHeading}>
+            <h2 className={styles.stepTitle}>Your Zaparoo setup</h2>
+            <CopySetupLink />
+          </div>
           <div className={styles.summaryCard}>
             <SummaryContent choice={choice} />
           </div>
         </section>
       )}
     </div>
+  );
+};
+
+const CopySetupLink: React.FC = () => {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable; the URL already contains the setup.
+    }
+  };
+  return (
+    <button
+      type="button"
+      className="button button--secondary button--outline button--sm"
+      onClick={copy}
+      data-umami-event="start-summary-copy-link"
+      aria-live="polite"
+    >
+      {copied ? <Check size={14} /> : <Link2 size={14} />}{" "}
+      {copied ? "Link copied" : "Copy link to this setup"}
+    </button>
   );
 };
 
@@ -552,6 +599,8 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
   const needsMQTT = choice.reader === "mqtt";
   const needsFileReader = choice.reader === "file-reader";
   const needsAPI = choice.reader === "api";
+  const isSoftwareTrigger = choice.token === "digital-triggers";
+  const isMister = choice.platform === "mister";
 
   return (
     <div className={styles.summaryContainer}>
@@ -600,7 +649,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             )}
             {needsRS232 && (
               <li>
-                <a href="/docs/readers/barcode/rs232">RS232 barcode scanner</a>
+                <a href="/docs/readers/barcode/rs232/">RS-232 barcode scanner</a>
               </li>
             )}
             {needsMQTT && (
@@ -619,12 +668,24 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             {choice.token === "qr-codes" && <li>Printer for QR codes</li>}
             {choice.token === "amiibo" && (
               <li>
-                <a href="/docs/tokens/nfc-toys/amiibo">Amiibo</a> or{" "}
-                <a href="/docs/tokens/nfc-toys/lego-dimensions">
+                <a href="/docs/tokens/nfc-toys/#amiibo">Amiibo</a>,{" "}
+                <a href="/docs/tokens/nfc-toys/#skylanders">Skylanders</a>,{" "}
+                <a href="/docs/tokens/nfc-toys/#disney-infinity">
+                  Disney Infinity
+                </a>
+                , or{" "}
+                <a href="/docs/tokens/nfc-toys/#lego-dimensions">
                   LEGO Dimensions
                 </a>{" "}
-                figurines
+                figures (read-only, so you map each figure to a game)
               </li>
+            )}
+            {choice.token === "barcode" && (
+              <li>Boxes or products with a barcode</li>
+            )}
+            {needsFileReader && <li>A text file Core can watch</li>}
+            {needsAPI && (
+              <li>Your own script or app that calls the Core API</li>
             )}
             {choice.token === "optical" && <li>Discs with data</li>}
             {choice.token === "removable-media" && (
@@ -650,7 +711,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             >
               Zaparoo Core
             </StyledButton>
-            {!usesPhoneCamera && (
+            {!usesPhoneCamera && !isSoftwareTrigger && (
               <StyledButton
                 to="/downloads/#zaparoo-app"
                 variant="primary"
@@ -690,11 +751,16 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           </div>
 
           {/* Shop Links */}
-          {(needsUSBReader || choice.token === "nfc-cards") && (
+          {(needsUSBReader ||
+            choice.token === "nfc-cards" ||
+            choice.token === "amiibo") && (
             <>
               <h4 style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
                 Get hardware
               </h4>
+              <p className={styles.shopNote}>
+                Official readers are tested with Zaparoo and include a case.
+              </p>
               <div className={styles.shopLinks}>
                 <StyledButton
                   to="https://shop.zaparoo.com"
@@ -717,7 +783,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                     block
                     icon={<Book size={16} />}
                   >
-                    Generic NFC Readers
+                    Compatible NFC readers
                   </StyledButton>
                 )}
                 {choice.token === "nfc-cards" && (
@@ -728,7 +794,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                     block
                     icon={<Book size={16} />}
                   >
-                    Generic NFC Tags
+                    Compatible NFC tags
                   </StyledButton>
                 )}
               </div>
@@ -769,13 +835,18 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               </li>
             ) : needsAppPro ? (
               <li>
-                Install <a href="/docs/app/">Zaparoo App</a>, connect to your
-                device, and enable Pro Launch on scan
+                Install the <a href="/docs/app/">Zaparoo App</a>, connect to
+                your device, and turn on Launch on scan (Pro)
+              </li>
+            ) : isSoftwareTrigger ? (
+              <li>
+                Send <a href="/docs/zapscript/">ZapScript</a> from your
+                automation; no phone app needed
               </li>
             ) : (
               <li>
-                Install <a href="/docs/app/">Zaparoo App</a> on your phone to
-                connect, manage setup, and create tokens
+                Install the <a href="/docs/app/">Zaparoo App</a> on your phone
+                to connect, manage setup, and write tokens
               </li>
             )}
 
@@ -888,14 +959,17 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 <a href="/docs/zapscript">ZapScript</a> on your drives
               </li>
             )}
-            {choice.token === "digital-triggers" && (
+            {isMister && (
               <li>
-                Create automations that send{" "}
-                <a href="/docs/zapscript">ZapScript</a> commands
+                Optional:{" "}
+                <a href="/docs/features/backups/">
+                  back up your saves and settings
+                </a>
+                . Local backups are free; Warp adds automatic off-site copies.
               </li>
             )}
 
-            <li>Start zapping!</li>
+            <li>Tap a token and play.</li>
           </ol>
         </div>
       </div>
@@ -903,12 +977,12 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
       {needsUSBReader && (
         <Admonition
           type="warning"
-          title="Buying Generic NFC Readers"
+          title="Using your own NFC reader?"
           className={styles.appProCallout}
         >
-          Not all generic NFC readers are compatible with Zaparoo. Check{" "}
-          <a href="/docs/readers/nfc/">the NFC reader documentation</a> for
-          models with verified compatibility and setup notes.
+          Not every generic reader works. Check the{" "}
+          <a href="/docs/readers/nfc/">compatible models</a> before you buy.
+          Readers from the Zaparoo Shop are tested and include a case.
         </Admonition>
       )}
 
@@ -918,16 +992,16 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
           title="Zaparoo App Pro"
           className={styles.appProCallout}
         >
-          Using your phone as a reader requires the{" "}
-          <a href="/docs/app/">Pro upgrade</a> (a one-time purchase that funds
-          development).{" "}
-          <strong>
-            Configuring Zaparoo and creating tokens is always free.
-          </strong>
+          Using your phone as a reader needs{" "}
+          <a href="/docs/app/#zaparoo-app-pro">{products.appPro.name}</a>, a{" "}
+          {products.appPro.price} that funds development (included with Warp).{" "}
+          <strong>{products.appPro.freeLine}</strong>
         </Admonition>
       )}
 
-      {choice.reader !== "zaparoo-app" && !usesPhoneCamera && (
+      {choice.reader !== "zaparoo-app" &&
+        !usesPhoneCamera &&
+        !isSoftwareTrigger && (
         <Admonition
           type="tip"
           title="Don't want an app?"

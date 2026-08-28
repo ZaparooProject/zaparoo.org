@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 description: "Configure Zaparoo reader drivers for NFC, cartridge bridges, barcode scanners, optical drives, MQTT, and other reader hardware."
 keywords: [zaparoo drivers, cartridge reader driver, pn532 driver, acr122u driver, nfc reader driver]
 ---

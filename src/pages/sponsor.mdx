@@ -1,88 +1,87 @@
 ---
 title: Support Zaparoo
-description: Help keep Zaparoo sustainable by supporting development
+description: "Fund Zaparoo's open-source development with Warp cloud backup, App Pro, the Zaparoo Shop, Patreon, or GitHub Sponsors."
 ---
 
-import SponsorCard from "@site/src/components/SponsorCard";
+import ProductRow from "@site/src/components/ProductRow";
+import products from "@site/src/data/products";
+import { CloudUpload, Smartphone, ShoppingCart, Heart } from "lucide-react";
 
-# Support Zaparoo's Development
+# Support Zaparoo
 
-Zaparoo is free and open-source software. Purchases, subscriptions, and direct sponsorship pay for development time, server infrastructure, testing hardware, and the community resources that keep the project running. Choose something useful to you, or sponsor the work directly if you prefer.
+Zaparoo is free and open source, and these are the things that pay for it. Pick something useful to you, or sponsor the work directly.
 
-## Use something that supports Zaparoo
+## Get something useful
 
-<div className="row" style={{marginTop: '2rem', marginBottom: '1rem'}}>
-  <SponsorCard
-    title="Zaparoo Warp"
-    description="Keep off-site copies of Zaparoo data from every platform, plus supported MiSTer saves, save states, settings, and input mappings. Warp includes App Pro while active."
-    link="https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp&utm_content=sponsor_page"
-    linkText="See Warp backup plans"
-    umami="sponsor-page-warp"
-    columns={4}
-  />
+<ProductRow
+  icon={<CloudUpload size={40} />}
+  title={products.warp.tagline}
+  description={products.warp.sponsorLine}
+  price={products.warp.priceFrom}
+  link={products.warp.pricingUrl("sponsor_page")}
+  linkText={products.warp.cta}
+  umamiEvent="sponsor-page-warp"
+  variant="primary"
+/>
 
-  <SponsorCard
-    title="Zaparoo App"
-    description="Manage Zaparoo from your phone and unlock Pro with a one-time purchase. Available for iOS and Android."
-    link="https://zaparoo.app"
-    linkText="Get the App"
-    umami="sponsor-app"
-    columns={4}
-  />
+<ProductRow
+  icon={<Smartphone size={40} />}
+  title={products.appPro.tagline}
+  description={products.appPro.sponsorLine}
+  price={products.appPro.priceShort}
+  note={products.appPro.includedNote}
+  link="/docs/app/#zaparoo-app-pro"
+  linkText="How Pro works"
+  umamiEvent="sponsor-app"
+/>
 
-  <SponsorCard
-    title="Zaparoo Shop"
-    description="Purchase official Zaparoo hardware, readers, and accessories. Every purchase supports the project."
-    link="https://shop.zaparoo.com"
-    linkText="Visit the Shop"
-    umami="sponsor-shop"
-    columns={4}
-  />
-</div>
+<ProductRow
+  icon={<ShoppingCart size={40} />}
+  title={products.shop.tagline}
+  description={products.shop.sponsorLine}
+  link={products.shop.url}
+  linkText="Visit the Shop"
+  umamiEvent="sponsor-shop"
+/>
 
-Already supporting through a Patreon Supporter or Sponsor membership? Warp is included. Link Patreon from your account in [Zaparoo Online](https://online.zaparoo.com) instead of subscribing again.
+## Sponsor the work directly
 
-## Sponsor development directly
+<ProductRow
+  icon={<Heart size={40} />}
+  title="Patreon"
+  description={products.patreon.tiersNote}
+  price={products.patreon.from}
+  link={products.patreon.url}
+  linkText="Become a patron"
+  umamiEvent="sponsor-patreon"
+/>
 
-<div className="row" style={{marginTop: '2rem', marginBottom: '2rem'}}>
-  <SponsorCard
-    title="Patreon"
-    description="Support ongoing development with a monthly contribution. This is for people who prefer to fund the work directly."
-    link="https://patreon.com/wizzo"
-    linkText="Become a patron"
-    umami="sponsor-patreon"
-  />
+<ProductRow
+  icon={<FAIcon icon="fa-brands fa-github" style={{ fontSize: "2rem" }} />}
+  title="GitHub Sponsors"
+  description={products.githubSponsors.summary}
+  link={products.githubSponsors.url}
+  linkText="Sponsor on GitHub"
+  umamiEvent="sponsor-github"
+/>
 
-  <SponsorCard
-    title="GitHub Sponsors"
-    description="Sponsor the Zaparoo organization through GitHub. This suits companies and teams that rely on Zaparoo."
-    link="https://github.com/sponsors/ZaparooProject"
-    linkText="Sponsor on GitHub"
-    umami="sponsor-github"
-  />
-</div>
+## Why some of this costs money
+
+I want to be direct about why this is paid. There are storage and infrastructure bills involved, but the bigger reason is that recurring income lets me spend more time working on Zaparoo. I'm charging for the maintained online convenience here, not taking local Core features away and selling them back.
+
+More on that in the [Warp launch post](/blog/zaparoo-online-cloud-backups-user-api/).
 
 ## What your support funds
 
-- **Development time**: new features, bug fixes, and expanding platform support
-- **Server infrastructure**: hosting for the website, Zaparoo Online, and community resources
-- **Hardware for testing**: new readers, platforms, and NFC toys to verify compatibility
-- **Community support**: maintaining the Discord, documentation, and helping users
+- **Development time**: new features, bug fixes, and platform support
+- **Servers**: zaparoo.org, Zaparoo Online, update hosting, and community services
+- **Test hardware**: readers, platforms, and NFC toys to verify compatibility
+- **Community**: Discord, documentation, and helping people get set up
 
-## Why support matters
+## Businesses and venues
 
-Zaparoo supports an unusually wide range of hardware and platforms (MiSTer, Windows, SteamOS, Batocera, RePlayOS, LibreELEC, and more) and keeping all of that working takes real, ongoing effort. Every purchase, sponsorship, or subscription means more time can go into making it better.
-
-## For businesses
-
-If your business or venue uses Zaparoo commercially, please consider sponsoring the project. Sponsoring the project helps keep the software maintained and signals your support for open-source development.
-
-For commercial licensing and trademark inquiries, please see our [commercial use information](/contact#commercial-and-trademark-use).
-
-## Thank you
-
-A huge thank you to everyone who has supported Zaparoo through purchases, sponsorships, contributions, and community participation. This project exists because of you.
+If your business or venue uses Zaparoo, sponsoring keeps the software you rely on maintained. For commercial licensing and trademark questions, see [commercial use](/contact/#commercial-and-trademark-use).
 
 ---
 
-Have questions about supporting Zaparoo? Feel free to reach out on [Discord](https://zaparoo.org/discord) or [contact us](/contact/).
+Thank you to everyone who already supports Zaparoo. Ready to help? <a href={products.warp.pricingUrl("sponsor_page_footer")} data-umami-event="sponsor-footer-warp">See Warp plans</a> or <a href={products.shop.url} data-umami-event="sponsor-footer-shop">visit the Shop</a>.
