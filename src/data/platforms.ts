@@ -159,6 +159,59 @@ export const platforms: readonly PlatformDefinition[] = [
     },
   },
   {
+    id: "steamos",
+    name: "SteamOS",
+    icon: "/img/logos/steamos.svg",
+    iconStyle: {
+      width: "125px",
+      height: "33.33px",
+      backgroundColor: "white",
+      borderRadius: "5px",
+    },
+    docsPath: "/docs/platforms/steamos/",
+    projectUrl: "https://store.steampowered.com/steamos/",
+    supportTier: "stable",
+    description: "Guided Desktop Mode installer for Steam Deck.",
+    wizard: {
+      provides: [
+        CAPABILITIES.OPTICAL_DRIVE,
+        CAPABILITIES.USB_PORT,
+        CAPABILITIES.NETWORK,
+      ],
+      setup: "Desktop installer",
+    },
+    download: {
+      architectures: ["amd64"],
+      nativeInstall: {
+        label: "Installer",
+        link: "https://zaparoo.org/install-zaparoo.desktop",
+        icon: "package",
+      },
+    },
+  },
+  {
+    id: "linux",
+    name: "Linux",
+    icon: "/img/logos/linux.webp",
+    iconStyle: { width: "63.28px", height: "75px" },
+    docsPath: "/docs/platforms/linux/",
+    projectUrl: "https://www.linux.org/",
+    supportTier: "stable",
+    description: "Install script for Linux desktops with Steam, RetroArch, and standalone emulator launchers.",
+    wizard: {
+      provides: [
+        CAPABILITIES.OPTICAL_DRIVE,
+        CAPABILITIES.USB_PORT,
+        CAPABILITIES.NETWORK,
+      ],
+      setup: "Install script",
+    },
+    download: {
+      architectures: ["amd64", "arm64"],
+      nativeInstall: installScript("/docs/platforms/linux/#install"),
+    },
+  },
+  {
     id: "replayos",
     name: "RePlayOS",
     icon: "/img/logos/replayos.webp",
@@ -191,59 +244,6 @@ export const platforms: readonly PlatformDefinition[] = [
     },
     download: {
       architectures: ["amd64", "arm64", "386"],
-    },
-  },
-  {
-    id: "linux",
-    name: "Linux",
-    icon: "/img/logos/linux.webp",
-    iconStyle: { width: "63.28px", height: "75px" },
-    docsPath: "/docs/platforms/linux/",
-    projectUrl: "https://www.linux.org/",
-    supportTier: "stable",
-    description: "Install script for Linux desktops with Steam, RetroArch, and standalone emulator launchers.",
-    wizard: {
-      provides: [
-        CAPABILITIES.OPTICAL_DRIVE,
-        CAPABILITIES.USB_PORT,
-        CAPABILITIES.NETWORK,
-      ],
-      setup: "Install script",
-    },
-    download: {
-      architectures: ["amd64", "arm64"],
-      nativeInstall: installScript("/docs/platforms/linux/#install"),
-    },
-  },
-  {
-    id: "steamos",
-    name: "SteamOS",
-    icon: "/img/logos/steamos.svg",
-    iconStyle: {
-      width: "125px",
-      height: "33.33px",
-      backgroundColor: "white",
-      borderRadius: "5px",
-    },
-    docsPath: "/docs/platforms/steamos/",
-    projectUrl: "https://store.steampowered.com/steamos/",
-    supportTier: "stable",
-    description: "Guided Desktop Mode installer for Steam Deck.",
-    wizard: {
-      provides: [
-        CAPABILITIES.OPTICAL_DRIVE,
-        CAPABILITIES.USB_PORT,
-        CAPABILITIES.NETWORK,
-      ],
-      setup: "Desktop installer",
-    },
-    download: {
-      architectures: ["amd64"],
-      nativeInstall: {
-        label: "Installer",
-        link: "https://zaparoo.org/install-zaparoo.desktop",
-        icon: "package",
-      },
     },
   },
   {
