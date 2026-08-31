@@ -30,6 +30,7 @@ ZAPAROO_GUI="${ZAPAROO_GUI:-}"
 TMP_DIR=""
 APP_PATH="${HOME}/.local/bin/zaparoo"
 STEAMOS_ADMIN_DECLINED=false
+STEAMOS_ADMIN_ACCESSED=false
 STEAMOS_TEMP_PASSWORD_SET=false
 STEAMOS_ADMIN_USER=""
 STEAMOS_ADMIN_PASSWORD=""
@@ -46,7 +47,6 @@ DECKY_PLUGIN_PATH="${DECKY_HOME}/plugins/Zaparoo"
 DECKY_SERVICE="plugin_loader.service"
 DECKY_MAX_ARCHIVE_BYTES=20971520
 DECKY_MINIMUM_CORE_VERSION="2.17.0"
-STEAMOS_RUNTIME_MINIMUM_VERSION="2.17.0"
 
 # ============================================================================
 # Color and Output Functions
@@ -107,7 +107,7 @@ start_gui_progress() {
         --title="Zaparoo Installer" --text="${text}" \
         < "${GUI_PROGRESS_PATH}" 2>/dev/null &
     GUI_PROGRESS_PID=$!
-    exec {GUI_PROGRESS_FD}>"${GUI_PROGRESS_PATH}"
+    exec {GUI_PROGRESS_FD}<>"${GUI_PROGRESS_PATH}"
 }
 
 update_gui_progress() {
@@ -239,13 +239,17 @@ ensure_steamos_admin() {
     fi
     require_command sudo
     if sudo -n true >/dev/null 2>&1; then
+        STEAMOS_ADMIN_ACCESSED=true
         return 0
     fi
     if [ "${STEAMOS_TEMP_PASSWORD_SET}" = true ]; then
         STEAMOS_ADMIN_PASSWORD="${STEAMOS_TEMP_ADMIN_PASSWORD}"
-        printf '%s\n' "${STEAMOS_ADMIN_PASSWORD}" | \
-            sudo -S -p '' -v >/dev/null 2>&1
-        return
+        if printf '%s\n' "${STEAMOS_ADMIN_PASSWORD}" | \
+            sudo -S -p '' -v >/dev/null 2>&1; then
+            STEAMOS_ADMIN_ACCESSED=true
+            return 0
+        fi
+        return 1
     fi
 
     STEAMOS_ADMIN_USER="$(id -un)"
@@ -270,6 +274,7 @@ ensure_steamos_admin() {
             warn "Could not obtain temporary SteamOS admin access"
             return 1
         fi
+        STEAMOS_ADMIN_ACCESSED=true
         return 0
     fi
 
@@ -283,6 +288,7 @@ ensure_steamos_admin() {
         STEAMOS_ADMIN_DECLINED=true
         return 1
     fi
+    STEAMOS_ADMIN_ACCESSED=true
 }
 
 run_privileged() {
@@ -292,10 +298,12 @@ run_privileged() {
         return
     fi
     if [ -n "${STEAMOS_ADMIN_PASSWORD}" ]; then
+        STEAMOS_ADMIN_ACCESSED=true
         printf '%s\n' "${STEAMOS_ADMIN_PASSWORD}" | sudo -S -p '' "$@"
         return
     fi
     if sudo -n true >/dev/null 2>&1; then
+        STEAMOS_ADMIN_ACCESSED=true
         sudo -n "$@"
         return
     fi
@@ -318,7 +326,10 @@ cleanup_steamos_admin() {
         fi
     fi
     STEAMOS_ADMIN_PASSWORD=""
-    sudo -k >/dev/null 2>&1 || true
+    if [ "${STEAMOS_ADMIN_ACCESSED}" = true ]; then
+        sudo -k >/dev/null 2>&1 || true
+        STEAMOS_ADMIN_ACCESSED=false
+    fi
 }
 
 # ============================================================================
@@ -330,6 +341,16 @@ require_command() {
     if ! command -v "${command_name}" >/dev/null 2>&1; then
         abort "${command_name} is required but not installed. Please install it and try again."
     fi
+}
+
+openssl_version_supported() {
+    local product version major
+    read -r product version _ <<< "$(openssl version 2>/dev/null)"
+    if [ "${product}" != "OpenSSL" ]; then
+        return 1
+    fi
+    major="${version%%.*}"
+    [[ "${major}" =~ ^[0-9]+$ ]] && [ "${major}" -ge 3 ]
 }
 
 check_requirements() {
@@ -344,6 +365,9 @@ check_requirements() {
 
     if [ "${MODE}" = "install" ]; then
         require_command openssl
+        if ! openssl_version_supported; then
+            abort "OpenSSL 3.0 or newer is required for signed release verification. Please upgrade OpenSSL and try again."
+        fi
         require_command sha256sum
     fi
 
@@ -587,14 +611,6 @@ upgrade_relation() {
     semver_compare "${installed}" "${selected}"
 }
 
-steamos_runtime_supported() {
-    local version="$1"
-    if ! is_semver "${version}"; then
-        return 0
-    fi
-    [ "$(semver_compare "${version}" "${STEAMOS_RUNTIME_MINIMUM_VERSION}")" -ge 0 ]
-}
-
 core_api_available() {
     curl --fail --silent --show-error "http://127.0.0.1:7497/health" 2>/dev/null | \
         grep -Eq '"status"[[:space:]]*:[[:space:]]*"ok"'
@@ -645,19 +661,6 @@ verify_core_api() {
     return 1
 }
 
-install_steamos_integration_files() {
-    local version="$1"
-    local application_installer="$2"
-
-    "${application_installer}" -install application || return 1
-    "${APP_PATH}" -install service || return 1
-    if steamos_runtime_supported "${version}"; then
-        "${APP_PATH}" -install steam-runtime || return 1
-    else
-        info "Steam Runtime requires Core ${STEAMOS_RUNTIME_MINIMUM_VERSION} or newer; skipping it for ${version}"
-    fi
-}
-
 rollback_steamos_transaction() {
     local previous_version="$1"
     local backup_path="$2"
@@ -667,19 +670,15 @@ rollback_steamos_transaction() {
     if [ -n "${previous_version}" ] && [ -f "${backup_path}" ]; then
         rm -f "${APP_PATH}" "${APP_PATH}.new"
         mv -f "${backup_path}" "${APP_PATH}" || return 1
-        if steamos_runtime_supported "${previous_version}"; then
-            "${APP_PATH}" -install application >/dev/null 2>&1 || true
-            "${APP_PATH}" -install steam-runtime >/dev/null 2>&1 || true
-        fi
+        "${APP_PATH}" -install application >/dev/null 2>&1 || true
         "${APP_PATH}" -install service >/dev/null 2>&1 || true
+        "${APP_PATH}" -install steam-runtime >/dev/null 2>&1 || true
         systemctl --user daemon-reload >/dev/null 2>&1 || true
         systemctl --user enable --now zaparoo.service >/dev/null 2>&1 || true
     else
         if [ -x "${APP_PATH}" ]; then
             "${APP_PATH}" -uninstall service >/dev/null 2>&1 || true
-            if steamos_runtime_supported "${VERSION}"; then
-                "${APP_PATH}" -uninstall steam-runtime >/dev/null 2>&1 || true
-            fi
+            "${APP_PATH}" -uninstall steam-runtime >/dev/null 2>&1 || true
             "${APP_PATH}" -uninstall desktop >/dev/null 2>&1 || true
             "${APP_PATH}" -uninstall application >/dev/null 2>&1 || true
         fi
@@ -690,8 +689,7 @@ rollback_steamos_transaction() {
 }
 
 install_steamos_transaction() {
-    local current relation response backup_path application_installer
-    local had_desktop=false service_was_active=false
+    local current relation response backup_path had_desktop=false service_was_active=false
 
     require_command systemctl
     current="$(installed_version)"
@@ -774,13 +772,8 @@ install_steamos_transaction() {
         abort "Failed to install application binary"
     fi
 
-    application_installer="${APP_PATH}"
-    if ! steamos_runtime_supported "${VERSION}"; then
-        # Core 2.16.x predates self-copy protection, so run application
-        # installation from the extracted binary instead of the canonical path.
-        application_installer="${ZAPAROO_BIN}"
-    fi
-    if ! install_steamos_integration_files "${VERSION}" "${application_installer}"; then
+    if ! "${APP_PATH}" -install application || ! "${APP_PATH}" -install service || \
+        ! "${APP_PATH}" -install steam-runtime; then
         rollback_steamos_transaction "${current}" "${backup_path}" || true
         abort "Failed to install Core integration files"
     fi
@@ -807,7 +800,7 @@ install_steamos_transaction() {
 
     rm -f "${backup_path}"
     success "Zaparoo Core ${VERSION} is healthy and running"
-    install_hardware
+    install_hardware "${APP_PATH}"
     offer_decky_plugin
 }
 
@@ -1005,7 +998,7 @@ offer_decky_plugin() {
         return 0
     fi
     core_version="$(installed_version)"
-    if [ -z "${core_version}" ] || \
+    if ! is_semver "${core_version}" || \
         [ "$(semver_compare "${core_version}" "${DECKY_MINIMUM_CORE_VERSION}")" -lt 0 ]; then
         warn "Zaparoo Decky requires Core ${DECKY_MINIMUM_CORE_VERSION} or newer; skipping plugin"
         return 0
@@ -1074,8 +1067,7 @@ offer_decky_plugin() {
 }
 
 repair_steamos() {
-    local current response application_installer
-    local service_was_active=false
+    local current response
 
     require_command systemctl
     current="$(installed_version)"
@@ -1085,34 +1077,19 @@ repair_steamos() {
     VERSION="${current}"
 
     if [ "$DRY_RUN" = true ]; then
-        info "[DRY-RUN] Would reinstall application, service, and optional desktop integration"
-        if steamos_runtime_supported "${VERSION}"; then
-            info "[DRY-RUN] Would reinstall Steam Runtime integration"
-        fi
+        info "[DRY-RUN] Would reinstall application, service, Steam Runtime, and optional desktop integration"
         info "[DRY-RUN] Would restart zaparoo.service and verify API health"
         return 0
     fi
 
-    application_installer="${APP_PATH}"
-    if ! steamos_runtime_supported "${VERSION}"; then
-        ensure_tmp_dir
-        application_installer="${TMP_DIR}/zaparoo-application-installer"
-        cp "${APP_PATH}" "${application_installer}" || abort "Failed to stage Core application repair"
-        chmod 0755 "${application_installer}"
-        if systemctl --user is-active --quiet zaparoo.service 2>/dev/null; then
-            service_was_active=true
-            systemctl --user stop zaparoo.service || abort "Failed to stop zaparoo.service for repair"
-        elif core_api_available; then
-            abort "Zaparoo Core is running outside zaparoo.service; stop it before repair"
-        fi
-        if ! wait_for_core_api_down; then
-            [ "${service_was_active}" = false ] || systemctl --user start zaparoo.service >/dev/null 2>&1 || true
-            abort "Another Zaparoo Core instance is still using 127.0.0.1:7497"
-        fi
+    if ! "${APP_PATH}" -install application; then
+        abort "Failed to repair application metadata"
     fi
-    if ! install_steamos_integration_files "${VERSION}" "${application_installer}"; then
-        [ "${service_was_active}" = false ] || systemctl --user start zaparoo.service >/dev/null 2>&1 || true
-        abort "Failed to repair Core integration files"
+    if ! "${APP_PATH}" -install service; then
+        abort "Failed to repair systemd user service"
+    fi
+    if ! "${APP_PATH}" -install steam-runtime; then
+        abort "Failed to repair Steam Runtime shortcut"
     fi
     response="$(prompt_yes_no "Install desktop shortcut?" "y")"
     if [ "${response}" = "y" ] && ! "${APP_PATH}" -install desktop; then
@@ -1148,14 +1125,9 @@ status_steamos() {
     fi
     if [ -x "${APP_PATH}" ]; then
         printf "  Steam Runtime:\n"
-        if steamos_runtime_supported "${current}"; then
-            "${APP_PATH}" -steam-runtime-status || printf "    unavailable\n"
-        else
-            printf "    requires Core %s or newer\n" "${STEAMOS_RUNTIME_MINIMUM_VERSION}"
-        fi
+        "${APP_PATH}" -steam-runtime-status || printf "    unavailable\n"
     fi
     if [ -n "${current}" ]; then
-        VERSION="${current}"
         if verify_core_api "${current}"; then
             printf "  API health: ok\n"
         else
@@ -1177,9 +1149,7 @@ uninstall_steamos() {
     fi
 
     "${APP_PATH}" -uninstall service || warn "Failed to remove service"
-    if steamos_runtime_supported "$(installed_version)"; then
-        "${APP_PATH}" -uninstall steam-runtime || warn "Failed to remove Steam Runtime files"
-    fi
+    "${APP_PATH}" -uninstall steam-runtime || warn "Failed to remove Steam Runtime files"
     "${APP_PATH}" -uninstall desktop || warn "Failed to remove desktop shortcut"
     response="$(prompt_yes_no "Remove hardware support (requires admin access)?" "n")"
     if [ "${response}" = "y" ]; then
@@ -1621,7 +1591,9 @@ install_batocera() {
         abort "Failed to download from ${download_url}"
     fi
 
-    success "Downloaded ${package_name}"
+    verify_file_checksum "${TMP_PACKAGE}" "${package_name}" || \
+        abort "Downloaded Batocera package verification failed"
+    success "Downloaded and verified ${package_name}"
 
     # Check if pacman is available
     if ! command -v pacman >/dev/null 2>&1; then
@@ -1864,6 +1836,7 @@ main() {
 
 if [[ "${BASH_SOURCE[0]:-$0}" == "$0" ]]; then
     trap cleanup EXIT
+    trap 'exit 129' HUP
     trap 'exit 130' INT
     trap 'exit 143' TERM
     main "$@"

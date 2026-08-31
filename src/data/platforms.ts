@@ -200,8 +200,8 @@ export const platforms: readonly PlatformDefinition[] = [
     iconStyle: { width: "63.28px", height: "75px" },
     docsPath: "/docs/platforms/linux/",
     projectUrl: "https://www.linux.org/",
-    supportTier: "beta",
-    description: "Manual Linux installation with beta launcher coverage.",
+    supportTier: "stable",
+    description: "Install script for Linux desktops with Steam, RetroArch, and standalone emulator launchers.",
     wizard: {
       provides: [
         CAPABILITIES.OPTICAL_DRIVE,
@@ -227,7 +227,7 @@ export const platforms: readonly PlatformDefinition[] = [
     },
     docsPath: "/docs/platforms/steamos/",
     projectUrl: "https://store.steampowered.com/steamos/",
-    supportTier: "beta",
+    supportTier: "stable",
     description: "Guided Desktop Mode installer for Steam Deck.",
     wizard: {
       provides: [

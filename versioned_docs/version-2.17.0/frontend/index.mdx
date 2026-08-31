@@ -1,0 +1,82 @@
+---
+description: "Browse, launch, and customize your MiSTer game library with Zaparoo Frontend."
+keywords: [zaparoo frontend, mister frontend, zaparoo mister frontend, mister fpga game frontend, mister game browser]
+sidebar_position: 1
+---
+
+import { NavCardGroup } from "@site/src/components/DocsNavGrid";
+import { ListChecks, Palette, Search, Tv, Wand2 } from "lucide-react";
+
+# Zaparoo Frontend
+
+<img className="docHeroImage" src="/img/showcase/BigBlue709_crt_setup.webp" alt="Zaparoo Frontend displaying a Genesis library on a CRT television" width="100%" loading="lazy" />
+
+*Zaparoo Frontend running as part of BigBlue709's CRT setup in [Community Showcase #6](/blog/community-showcase-6).*
+
+Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching your [Zaparoo Core](../core/index.md) media library on [MiSTer FPGA](../platforms/mister/index.md).
+
+Frontend is optional. It runs on the MiSTer display and uses Core for media scanning, launching, metadata, favorites, and token writing. You can continue using physical tokens, the [Zaparoo App](../app/index.md), the [Web UI](../app/web.md), or the [TUI](../core/tui.md) with or without Frontend.
+
+<NavCardGroup
+  title="Choose a task"
+  cards={[
+    {
+      icon: ListChecks,
+      title: "Install and set up Frontend",
+      description: "Install Frontend, update it, scan your library, and configure the display.",
+      link: "./setup/",
+      umamiEvent: "frontend-card-setup",
+    },
+    {
+      icon: Palette,
+      title: "Add artwork and metadata",
+      description: "Choose an artwork source, import it with Get metadata, and replace existing artwork.",
+      link: "./scraping/",
+      umamiEvent: "frontend-card-artwork",
+    },
+    {
+      icon: Tv,
+      title: "Browse and launch games",
+      description: "Navigate your library, arrange the Hub, use menus and controls, and choose alternate launchers.",
+      link: "./browsing/",
+      umamiEvent: "frontend-card-browsing",
+    },
+    {
+      icon: Search,
+      title: "Troubleshoot Frontend",
+      description: "Fix missing games, unavailable scrape actions, missing artwork, and setup problems.",
+      link: "./troubleshooting/",
+      umamiEvent: "frontend-card-troubleshooting",
+    },
+    {
+      icon: Wand2,
+      title: "Customize Frontend",
+      description: "Change the color scheme, system artwork, Hub icons, and system names.",
+      link: "./customization/",
+      umamiEvent: "frontend-card-customization",
+    },
+  ]}
+/>
+
+## How Frontend works
+
+Frontend displays the library managed by Core. Core finds games during a media database update, imports local artwork and metadata when you choose **Get metadata**, and launches the selected game. Frontend provides the on-screen library, menus, and controller interface for those actions.
+
+Frontend does not download artwork from the internet. Start with [Add Artwork and Metadata](./scraping.mdx) if you want covers, screenshots, descriptions, or other game information in the browser.
+
+## Quick start
+
+1. [Install or update Frontend](./setup.mdx) on MiSTer.
+2. Start Frontend. On an empty library it starts the first media database update in the background.
+3. [Add artwork and metadata](./scraping.mdx) if you want game covers and descriptions.
+4. [Browse and launch games](./browsing.mdx) from the library hub.
+
+For platform-specific launcher behavior, see the [MiSTer launcher documentation](../platforms/mister/launchers.md).
+
+## Credits
+
+A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) for creating Zaparoo Frontend with [Wizzo](https://github.com/wizzomafizzo), to [Giancarlo Erra](https://github.com/giancarloerra), [Peter Brittain](https://github.com/KindarConrath), and [theypsilon](https://github.com/theypsilon) for browsing, favorites, and updater contributions, and to the translators: Andrea Bogazzi (Italiano), Carlos R. (Español), devilschile2 (Euskara), and [Wilfried Jeanniard](https://github.com/willoucom) (Français). If Frontend has become part of your setup, [supporting Zaparoo](/sponsor/) keeps work like this going.
+
+## Source and license
+
+The [Frontend source code](https://github.com/ZaparooProject/zaparoo-frontend) is available under the [PolyForm Noncommercial License 1.0.0](https://github.com/ZaparooProject/zaparoo-frontend/blob/main/COPYING). Non-commercial use is allowed under that license. For commercial licensing, contact [legal@zaparoo.com](mailto:legal@zaparoo.com). The bundled updater (zaparoo-update) is licensed separately by its author, and a Frontend commercial licence does not cover it.

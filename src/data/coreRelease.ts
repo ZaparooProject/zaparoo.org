@@ -1,9 +1,9 @@
 const coreRelease = {
-  version: "2.16.1",
-  releaseDate: "2026-08-06",
-  blogPost: "/blog/core-v2.16.1",
+  version: "2.17.0",
+  releaseDate: "2026-08-31",
+  blogPost: "/blog/core-v2.17.0",
   githubUrl:
-    "https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.16.1",
+    "https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.17.0",
 } as const;
 
 /** Formats an ISO date (YYYY-MM-DD) as "August 6, 2026" for display. */

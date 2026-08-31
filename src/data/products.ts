@@ -22,7 +22,7 @@ export const products = {
       "Automatic off-site backups, restorable to a replacement device. Includes App Pro. Local backups are always free.",
     // Platform coverage line; update when more platforms gain saves and settings backup.
     platformNote:
-      "Backs up Zaparoo data on every platform. On MiSTer it also covers saves, save states, settings, and input mappings.",
+      "Backs up Zaparoo data on every platform. On MiSTer it also covers saves, save states, settings, and input mappings, and on SteamOS emulator settings, saves, and save states.",
     snapshots: "It keeps your last 30 changed snapshots per device.",
     priceMonthly: "US$3.99/month",
     priceAnnual: "US$29.99/year",

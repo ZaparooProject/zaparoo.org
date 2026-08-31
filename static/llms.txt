@@ -58,6 +58,8 @@ Important notes:
 - [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
 - [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows.
 - [SteamOS (Steam Deck)](https://zaparoo.org/docs/platforms/steamos/): Install Zaparoo on Steam Deck and SteamOS.
+- [SteamOS Launchers](https://zaparoo.org/docs/platforms/steamos/launchers/): Launching Steam games, emulators, EmuDeck, and RetroDECK on SteamOS, including Zaparoo Runtime in Gaming Mode.
+- [Decky Loader Plugin](https://zaparoo.org/docs/platforms/steamos/decky/): Install the Zaparoo plugin for Decky Loader to write tags, stop media, index, pair, and link Zaparoo Online from the Quick Access Menu.
 - [Batocera](https://zaparoo.org/docs/platforms/batocera/): Install and configure Zaparoo on Batocera.
 - [Batocera Install](https://zaparoo.org/docs/platforms/batocera/install/): Step-by-step Batocera installation guide.
 - [Batocera Launchers](https://zaparoo.org/docs/platforms/batocera/launchers/): Launching games and emulators on Batocera.
