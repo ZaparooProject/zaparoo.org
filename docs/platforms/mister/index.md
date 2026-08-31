@@ -22,7 +22,7 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 
 Zaparoo is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) as a dedicated item in **Tools & Scripts**. Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file. Frontend is optional; Core can run in the background with the standard MiSTer menu.
 
-Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
+Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service. That service starts at the end of MiSTer's boot; see [start Core earlier](#start-core-earlier) if you want it ready sooner after power on.
 
 For manual Core installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
@@ -44,6 +44,24 @@ To enable them:
 4. Save the file and reboot MiSTer
 
 The `recents` setting records recently launched games. `log_file_entry` records the filename selected in MiSTer's file browser, which lets Zaparoo match a MiSTer launch to a specific game. MiSTer.ini warns about the extra SD card writes from `recents`, but it's not a real concern with modern SD cards.
+
+### Start Core earlier
+
+Core is started by `/media/fat/linux/user-startup.sh`, which MiSTer runs last during boot, after networking, Bluetooth and Samba. The menu appears before that finishes, so for a short while after power on a scanned token does nothing. Two ways to start Core sooner:
+
+- Install [Zaparoo Frontend](../../frontend/setup.mdx). Frontend starts Core itself as soon as it launches, before the rest of the boot sequence finishes, and there is nothing extra to maintain.
+- Add an init script. Over SSH, create `/etc/init.d/S11zaparoo` with the contents below, make it executable with `chmod +x /etc/init.d/S11zaparoo`, and reboot. It runs early in the init sequence instead of at the end. The file lives inside `linux/linux.img`, so a MiSTer Linux update removes it and you need to add it again. Leave the `mrext/zaparoo` line in `user-startup.sh` alone: starting the service twice is harmless, and that line is what keeps Core starting once the script is gone.
+
+```sh
+#!/bin/sh
+# Start Zaparoo Core early in MiSTer's boot. Lives inside linux.img, so
+# add it again after a MiSTer Linux update.
+ZAPAROO=/media/fat/Scripts/zaparoo.sh
+[ -x "$ZAPAROO" ] || exit 0
+case "$1" in
+  start|stop|restart|status) "$ZAPAROO" -service "$1" ;;
+esac
+```
 
 ## Uninstall
 
@@ -108,6 +126,8 @@ An alternative version of MiSTer Main by [funkycochise](https://github.com/funky
 ## Troubleshooting
 
 **Zaparoo does not start at boot.** Run `zaparoo` from the MiSTer **Scripts** menu and accept the prompt to enable it as a startup service, or check that `/media/fat/linux/user-startup.sh` contains the `mrext/zaparoo` line.
+
+**Tokens do nothing for a while after power on.** Core is started last in MiSTer's boot sequence, so it can lag behind the menu appearing. See [start Core earlier](#start-core-earlier).
 
 **Games started from the MiSTer menu are not tracked.** Playtime tracking needs `recents=1` and `log_file_entry=1` in `MiSTer.ini`. See [game tracking](#game-tracking).
 

@@ -37,6 +37,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`stop`](./utilities.md#stop) | Stop current media |
 | [`profile`](./utilities.md#profile) | Switch to a device profile |
 | [`profile.clear`](./utilities.md#profileclear) | Return to the shared profile |
+| [`playtime.extend`](./utilities.md#playtimeextend) | Grant extra playtime with an administrator's card |
 | [`echo`](./utilities.md#echo) | Log a message |
 | [`execute`](./utilities.md#execute) | Run a host command |
 | [`delay`](./utilities.md#delay) | Pause script execution |
@@ -55,7 +56,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 - [Input](./input.md): Commands for simulating keyboard and gamepad input
 - [HTTP](./http.md): Commands for making HTTP requests
 - [Playlist](./playlist.md): Commands for managing playlists
-- [Utilities](./utilities.md): Utility commands (stop, profile switching, delay, echo, execute, control, screenshot)
+- [Utilities](./utilities.md): Utility commands (stop, profile switching, playtime extension, delay, echo, execute, control, screenshot)
 - [MiSTer](./mister.md): Commands specific to the MiSTer platform
 
 ## Syntax

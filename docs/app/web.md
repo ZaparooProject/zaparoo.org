@@ -26,9 +26,19 @@ If Core requires encrypted client connections, a browser on another device is as
 
 ### Remote access
 
-By default, the Web UI is accessible from any device on your local network. Core automatically allows `localhost`, local IP addresses on the Core API port, and configured `.local` hostnames. To allow other browser origins, add them to your [configuration file](../core/config.md):
+By default, the Web UI is accessible from any device on your local network. Core automatically allows `localhost`, the device's own IP addresses on the API port, and the device's hostname and `.local` name, so `http://mister.local:7497/app/` works without any configuration.
+
+Any other name you use to reach Core, such as a hostname from your router or DNS server, a VPN address, or a reverse proxy, has to be listed in [`allowed_origins`](../core/config.md#allowed_origins) in the [configuration file](../core/config.md):
 
 ```toml
 [service]
-allowed_origins = ["https://example.com", "http://custom-domain.local"]
+allowed_origins = [
+    'zaparoo.example.lan'
+]
 ```
+
+A bare hostname covers HTTP and HTTPS, with and without the API port. Behind a reverse proxy, the browser's origin is the proxy's address and port, so list that. See [allowed_origins](../core/config.md#allowed_origins) for the other entry formats.
+
+## Troubleshooting
+
+**The page loads but never connects.** The Web UI's files load from any address, but the connection back to Core only works from an origin Core allows. If it works at the device's IP address, such as `http://192.168.1.100:7497/app/`, but not at a name, add that name to [`allowed_origins`](../core/config.md#allowed_origins) exactly as it appears in the address bar, then run `zaparoo -reload`.

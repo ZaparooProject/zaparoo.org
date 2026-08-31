@@ -28,6 +28,8 @@ After changing settings, mappings, or custom launchers outside the app, [reload 
 
 The rebuildable media database is separate from Core's user database, which stores favorites, launcher overrides, history, and token mappings. If the media database is corrupt, Core can [rebuild it without deleting that user data](../core/cli.md#database-recovery). Scraped metadata and artwork must be imported again after a rebuild.
 
+A folder that holds one game, such as a PlayStation folder with one `.cue` and its `.bin` tracks or one `.m3u` and its discs, is shown as that game when you browse, with its artwork and tags, instead of as a plain folder. This includes a folder holding a single ROM. Folders with several games or nested folders stay ordinary folders.
+
 :::info Local sources only
 Core's built-in scrapers read metadata and artwork that already exist on your device. They do not download anything from the internet. To fetch artwork, scrape it first with a tool like MiSTer Companion or Skraper, then run a Zaparoo scrape to import the results.
 :::
@@ -55,6 +57,8 @@ It imports:
 - **Artwork and media paths**: box art (2D, 3D, side, back), screenshots, title screens, marquees, wheels and logos, fan art, maps, plus videos and PDF manuals.
 
 When a `gamelist.xml` entry does not list an image directly, the scraper falls back to looking in the system's `media/` folder, the same place the media-folder scraper reads.
+
+`<folder>` entries, and `<game>` entries whose path is a folder, apply to the game a per-game disc folder is shown as, including ES-DE's convention of naming that folder with a ROM extension.
 
 #### Custom gamelist bundles
 
@@ -106,6 +110,8 @@ SNES/media/screenshot/Super Mario World.png
 ```
 
 Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxart3d`, `screenshot`, `thumbnail`, `marquee`, `wheel` (and `logo`), `fanart`, `titleshot`, and `map`. Supported image types are PNG, JPG, JPEG, and WEBP. Games in subfolders are matched against the mirrored path first, then the flat filename.
+
+A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist.
 
 When a system exists in more than one indexed root, such as the normal games folder plus an [`index_root`](../core/config.md#index_root), Core checks each root's `media/` folder in root order and uses the first matching file. The same lookup applies when `gamelist.xml` falls back to `media/`. This lets setups with ROMs on one root and artwork on another use the same EmulationStation `media/` folder layout.
 

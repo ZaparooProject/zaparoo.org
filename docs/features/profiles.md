@@ -42,6 +42,8 @@ A switch card does not ask for the profile PIN. Anyone with the card, or a copy 
 
 If a switch card is lost, open the profile's **Switch ID** action and reset it. Existing cards for that profile stop working. Use **Write Card** to create a replacement.
 
+An administrator's switch ID also authorizes [playtime extension cards](./play-controls.md#extend-a-session).
+
 A custom card can switch profiles and then launch media:
 
 ```zapscript

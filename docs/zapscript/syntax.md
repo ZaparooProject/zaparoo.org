@@ -147,6 +147,25 @@ If you need to use a quote character at the start of an argument, you can escape
 
 Escape sequences are supported in quoted arguments as well, so you can use `^n`, `^t` and `^r` inside a quoted argument or escape the quote itself. Expressions are also supported in quoted arguments.
 
+## Traits
+
+Traits are flags about the token itself rather than commands to run. Write them as their own `||`-separated part of the script, prefixed with `#`. They can go anywhere in the script and apply to the whole token, but putting them first keeps them easy to spot:
+
+```zapscript
+#hold||SNES/Super Metroid.sfc
+```
+
+A bare trait means `true`, so `#hold` and `#hold=true` are the same, and `#hold=false` is the same as `#tap`. Keys are case-insensitive.
+
+Core currently understands two traits, which override the [scan mode](../core/config.md#scan-mode) for that token only:
+
+| Trait   | Effect                                                                              |
+| ------- | ----------------------------------------------------------------------------------- |
+| `#tap`  | Removing the token leaves the media running, even on a reader in hold mode.          |
+| `#hold` | Removing the token exits the media after `exit_delay`, even on a reader in tap mode. |
+
+A playlist keeps the mode of the token that started it for every track. A trait Core does not recognize is ignored, so a misspelled `#taap` is silently not an override.
+
 ## When Condition
 
 All commands support an advanced argument called `when` which allows for basic conditional control of running a command. See the [Expressions](#expressions) section for how to use this.
@@ -201,7 +220,7 @@ Expressions have access to a set of environment variables:
 
 - `platform`: the platform which Core is currently running on. E.g. `batocera`
 - `version`: the current running version of Core, for example `2.16.1`
-- `scan_mode`: current reader scan mode set. E.g. `tap` or `hold`
+- `scan_mode`: scan mode of the reader that scanned the token. E.g. `tap` or `hold`
 - `device`: object with information about the device running Core.
   - `hostname`: hostname of the host device. E.g. `mister`
   - `os`: OS of the host device. E.g. `linux`, `windows` or `darwin` (Mac)

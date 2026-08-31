@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Back up and restore Zaparoo Core data on every platform, plus supported MiSTer settings, saves, and save states."
+description: "Back up and restore Zaparoo Core data on every platform, plus supported MiSTer and SteamOS settings, saves, and save states."
 keywords:
   [
     zaparoo backup,
@@ -13,7 +13,7 @@ keywords:
 
 # Device Backups
 
-Device backups capture Zaparoo configuration and user data on every Core platform. MiSTer backups can also include supported settings, input mappings, saves, and save states. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
+Device backups capture Zaparoo configuration and user data on every Core platform. MiSTer and SteamOS backups can also include supported settings, saves, and save states. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
 
 Local backups are portable ZIP files and do not require an online account. Cloud backups require a linked [Zaparoo Online](../online/index.md) account and Warp for new snapshots.
 
@@ -45,9 +45,17 @@ MiSTer backups also include supported platform data:
 - Separate save and save-state directories created by [device profiles](./profiles.md)
 - `names.txt`, the legacy mappings file, and the profile name file
 
+SteamOS backups also include supported platform data:
+
+- EmuDeck and RetroDECK settings, following the paths each one is configured to use
+- ES-DE settings, gamelists, collections, and custom systems
+- Configuration, BIOS and firmware files, saves, and save states for RetroArch and the standalone emulators Core launches, such as Dolphin, PCSX2, RPCS3, Ryujinx, Cemu, DuckStation, PPSSPP, and Flycast
+- Saves and settings inside the Proton prefixes of non-Steam games, such as their Documents, Saved Games, and AppData folders
+- Bottles, Faugus Launcher, Kodi, Moonlight, and Steam ROM Manager configuration
+
 Unless listed above, backups do not include platform settings, emulator configuration, saves, save states, or game library data. Support for more platform data is planned.
 
-Backups do not include ROMs, disc images, downloaded cores, Core binaries, the rebuildable media database, scraped artwork, logs, or authentication credentials. This includes shared and per-profile `retroachievements.cfg` files used by [MiSTer profiles](./profiles.md#retroachievements-accounts), because they contain plaintext passwords. Paired clients and the destination device's identity, encryption setting, and Zaparoo Online credentials are preserved during restore rather than copied from the backup.
+Backups do not include ROMs, disc images, installed games, downloaded cores, emulator runtimes, caches, Core binaries, the rebuildable media database, scraped artwork, logs, or authentication credentials. This includes shared and per-profile `retroachievements.cfg` files used by [MiSTer profiles](./profiles.md#retroachievements-accounts), because they contain plaintext passwords. Paired clients and the destination device's identity, encryption setting, and Zaparoo Online credentials are preserved during restore rather than copied from the backup.
 
 If Core cannot include every file, it marks the backup as partial. Check the backup details for skipped categories and warnings before relying on it.
 

@@ -1,0 +1,311 @@
+---
+slug: core-v2.17.0
+title: "Zaparoo Core v2.17.0 released"
+description: "Zaparoo Core v2.17.0 adds automatic update checks with opt-in installs, 27 Linux emulator launchers, encryption by default on Linux and SteamOS, remote control through the User API, playtime extension cards, per-reader scan modes, SteamOS backups with emulator saves, a Decky Loader plugin, MiSTer launcher groups, and disc token files."
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.17.0 is now available. This release adds automatic update checks with opt-in installs, brings Linux desktop and SteamOS out of beta with launchers for 21 standalone emulators and a Zaparoo plugin for Decky Loader, and adds extension cards for playtime limits and per-reader scan modes.
+
+{/* truncate */}
+
+MiSTer gets launcher groups for alternate cores and nightlies, and a scraper for the artwork and manual packs Update All installs. SteamOS backups now include emulator saves and settings, a burned disc can carry its own ZapScript, and apps you authorize through Zaparoo Online can launch games on a device remotely.
+
+**The highlights:**
+
+- **[Automatic updates](#updates)**: Core checks for signed releases and can install them in place, with rollback
+- **[Linux and SteamOS out of beta](#linux-desktop-bazzite-and-chimeraos)**: launchers for 21 standalone emulators, EmuDeck and RetroDECK on desktop Linux, plus Bottles, Faugus, and Moonlight
+- **[Steam Deck](#steamos)**: a Decky Loader plugin, Zaparoo Runtime for Gaming Mode launches, and backups with emulator saves
+- **[Playtime extension cards](#extend-a-playtime-session)**: an admin card adds time without changing a limit
+- **[Per-reader scan modes](#scan-mode-per-reader-and-per-token)**: hold on a cartridge slot, tap on an antenna, `#tap` and `#hold` on a card
+- **[MiSTer](#mister)**: launcher groups for alternate cores and nightlies, and artwork and manuals from Update All packs
+
+## Download
+
+<Button
+  icon={<FAIcon icon="download" />}
+  label="Core v2.17.0"
+  link="https://zaparoo.org/downloads#zaparoo-core"
+  variant="primary"
+/>
+
+<Button
+  icon={<FAIcon icon="fa-brands fa-github" />}
+  label="GitHub"
+  link="https://github.com/ZaparooProject/zaparoo-core/"
+  variant="primary"
+/>
+
+## Before you update
+
+- **Encryption is on by default on Linux and SteamOS,** including existing installs unless `config.toml` sets `encryption = false`. Pair the App and any other remote client after updating.
+- **Third-party API clients must pair or use an API key** on every platform except MiSTer, MiSTeX, Batocera, LibreELEC, and RePlayOS.
+- **Public Zap Links need HTTPS.** Plain HTTP only works for localhost and private addresses.
+- **Run a media database update** if you use Arcade Organizer on MiSTer or have ROM hacks in your library.
+- **`before_exit` hooks now run on every platform** and on every deliberate exit, not only on a hold-mode card removal on MiSTer. Check any system default that sets one.
+- **API clients:** `run` now returns when the script has finished and reports failures, and `tokens` and `tokens.history` no longer return profile switch IDs.
+- **MiSTer Frontend:** the current Frontend keeps working with Core v2.17.0. A Frontend release built around the new Core API follows separately.
+
+## Find changes for your setup
+
+- **Every Core platform:** [updates](#updates), [security and remote access](#security-and-remote-access), [readers and ZapScript](#readers-and-zapscript), [library and backups](#library-and-backups), [other changes](#other-changes)
+- **MiSTer:** [MiSTer](#mister)
+- **SteamOS:** [SteamOS](#steamos), [Linux launchers](#linux-desktop-bazzite-and-chimeraos)
+- **Linux:** [Linux launchers](#linux-desktop-bazzite-and-chimeraos), [encryption by default](#encryption-on-by-default)
+- **Bazzite and ChimeraOS:** [Linux launchers](#linux-desktop-bazzite-and-chimeraos)
+- **Windows:** [Windows](#windows)
+- **Batocera:** [Batocera](#batocera)
+
+## Updates
+
+### Automatic update checks
+
+**Applies to:** All Core platforms.
+
+Core checks for new releases about every 12 hours and posts an Inbox message when one exists. Installs owned by Update All or the Batocera package manager get the notice too, pointed at that tool. See [Core updates](/docs/core/updates/).
+
+### Opt-in automatic installs
+
+**Applies to:** All Core platforms that update in place.
+
+Set `install = true` under `[updates]` and Core installs new releases by itself:
+
+- It stages the download, runs the new build once, backs up the user database, swaps the binary, and restarts, rolling back if the new build fails within 30 seconds.
+- Installs wait for a quiet minute and refuse to run during indexing, scraping, backups, tag writes, or on a low battery. A manual `update.apply` can force past a running game.
+- Windows updates in place too, as do Batocera installs that did not come from the package manager.
+
+2.17.0 itself is installed the usual way for your platform; updates after that can arrive automatically.
+
+### Seeing and installing updates
+
+**Applies to:** All Core platforms.
+
+`zaparoo -update` prints the running version and update state, checks for a release, and installs one when it is waiting. The terminal UI's **Version** line and the Windows tray entry show the same state, the tray gains a **Pair Device** dialog so a desktop can pair without a terminal, and `update.status` gives clients the last check's result without a network round-trip.
+
+An automatic install skips a release the device already rolled back, and a device moved back to an older build by hand stops with a clear reason instead of restarting in a loop. See [Core updates](/docs/core/updates/).
+
+## Security and remote access
+
+### Encryption on by default
+
+**Applies to:** Linux and SteamOS.
+
+Linux and SteamOS now require remote clients to pair, on existing installs as well as new ones, unless `config.toml` sets `encryption = false`. The App, the Web UI from another device, and any tool on another computer ask for the six-digit PIN once.
+
+### Who can use the API
+
+**Applies to:** All Core platforms.
+
+Unpaired remote clients now only get the older compatibility access on MiSTer, MiSTeX, Batocera, LibreELEC, and RePlayOS. Everywhere else a remote client must pair or send an API key, for WebSocket, HTTP, and event streams alike. Paired members can now send input and take screenshots, and installing updates needs its own capability. The [permissions](/docs/core/api/#permissions) section of the API reference has the full table.
+
+Opening the Web UI by the device's own name, such as `http://mister.local:7497/app/`, now connects without any configuration. Any other name you reach Core by, like a DNS entry on your router, a VPN address, or a reverse proxy, needs an [`allowed_origins`](/docs/core/config/#allowed_origins) entry; the [Web UI page](/docs/app/web/#troubleshooting) covers the symptom when one is missing.
+
+### Remote control through the User API
+
+**Applies to:** All Core platforms, with a linked Zaparoo Online account.
+
+Turn on **Remote control** under **Settings > Online** in the terminal UI, and apps you authorize through the [User API](/docs/online/#user-api) can launch a game or system, stop playback, search your library, or run a MiSTer script on that device. It is off by default, every command is logged on the device, and free accounts can control one device at a time (Warp subscribers are not limited). For now it is only available through the User API, for third-party apps. The Online screen also shows a **Remote status** line that says whether Online can currently reach the device. See [remote control](/docs/online/#remote-control).
+
+## Linux desktop, Bazzite, and ChimeraOS
+
+### Standalone emulator launchers
+
+**Applies to:** Linux, Bazzite, ChimeraOS, and SteamOS.
+
+Core registers launchers for 27 standalone emulators it finds installed, whether native, in `~/.local/bin`, as an AppImage in `~/Applications`, or as a Flatpak. A missing emulator is not listed; install it and reload Core to add it.
+
+<details>
+<summary>Emulators</summary>
+
+Xenia Canary (Xbox 360), Ryubing (Switch), shadPS4 (PS4), PCSX2 (PS2), Cemu (Wii U), Azahar (3DS), Vita3K (Vita), RPCS3 (PS3), DuckStation (PlayStation), PPSSPP (PSP), Dolphin (GameCube and Wii), melonDS (DS), ScummVM, Supermodel (Model 3), xemu (Xbox), MAME (Arcade), Flycast (Dreamcast, NAOMI, and Atomiswave), RMG (Nintendo 64), mGBA (Game Boy, Game Boy Color, and GBA), Ruffle (Flash), and PrimeHack (GameCube and Wii).
+
+</details>
+
+Launcher IDs, file types, and scanned folders are on the [Linux launchers](/docs/platforms/linux/launchers/#standalone-emulators) page, and `launchers.preference` accepts the `Native`, `EmuDeck`, and `RetroDECK` groups on all four platforms.
+
+### EmuDeck and RetroDECK on desktop Linux
+
+**Applies to:** Linux, Bazzite, and ChimeraOS.
+
+The EmuDeck and RetroDECK integrations from SteamOS now work on desktop Linux, Bazzite, and ChimeraOS. Both follow a moved ROM directory, EmuDeck from its `settings.sh` and RetroDECK from its `retrodeck.json`, and both read ES-DE gamelists for names.
+
+### Bottles, Faugus, and Moonlight
+
+**Applies to:** Linux, Bazzite, ChimeraOS, and SteamOS.
+
+- [Bottles](/docs/platforms/linux/launchers/#bottles) programs are listed through `bottles-cli` and launched in their bottle.
+- [Faugus Launcher](/docs/platforms/linux/launchers/#faugus) games are read from its library and launched by ID.
+- [Moonlight](/docs/platforms/linux/launchers/#moonlight) streams an app from a paired host described in a small `.moonlight` file, so a token can start a game running on another PC.
+
+### RetroArch and ES-DE
+
+**Applies to:** Linux, Bazzite, and ChimeraOS.
+
+RetroArch launchers are registered only when the Flatpak is installed, and ES-DE gamelists now provide names and metadata for games indexed from your `index_root` folders. Flatpak launches stop when Core stops them.
+
+## SteamOS
+
+### Decky Loader plugin
+
+**Applies to:** SteamOS with Decky Loader.
+
+The [Zaparoo plugin for Decky Loader](/docs/platforms/steamos/decky/) puts the controls you reach for most into Steam's Quick Access Menu, without leaving Gaming Mode: write the current game, or the Steam game you are looking at, to a tag; stop what is playing; see the last scanned token and any Inbox notifications; run, pause, or resume a media database update with live progress; pair a phone or browser; and link Zaparoo Online, with separate opt-ins for play history sync and cloud backups. It is a client of Core rather than a second copy of it, and it does not touch Steam game pages.
+
+The Core installer offers it when Decky Loader is already installed. You can also add it from Decky Loader's developer settings with the URL `https://zaparoo.org/decky`, and the plugin can then install Core for you. It needs Core v2.17.0 or newer.
+
+### Backups with emulator saves
+
+**Applies to:** SteamOS.
+
+Device backups, local and cloud, now include EmuDeck and RetroDECK settings, ES-DE settings and gamelists, and the configuration, BIOS files, saves, and save states of RetroArch and the standalone emulators Core launches, along with saves inside non-Steam Proton prefixes and Bottles, Faugus, Kodi, and Moonlight configuration. Games, ROMs, runtimes, and caches stay out. See [device backups](/docs/features/backups/).
+
+### Zaparoo Runtime and the installer
+
+**Applies to:** SteamOS.
+
+Emulator launches in Gaming Mode now run through **Zaparoo Runtime**, a permanent non-Steam shortcut the installer adds. The emulator starts as a Steam-owned process, so it keeps Steam's controller handling and focus, Core can stop it cleanly when another token arrives, and play history starts and ends with the emulator. Core still shows and tracks the game you launched, not the shortcut. Steam games launch directly through Steam as before, and Desktop Mode falls back to direct launches. See [Zaparoo Runtime and Gaming Mode](/docs/platforms/steamos/launchers/#zaparoo-runtime-and-gaming-mode).
+
+The installer is reworked around it:
+
+- It runs as a transaction: it backs up the current binary, installs, checks Core's API and version, and rolls back on failure.
+- On a Steam Deck with no admin password, it offers to set the temporary password `Zaparoo!` for the steps that need it and removes it afterwards.
+- `install.sh` gains `status`, `repair`, and `uninstall` modes, `--channel beta`, `--dry-run`, and signed checksum verification for every download.
+- Core's command line manages the Runtime shortcut with `-install steam-runtime`, `-uninstall steam-runtime`, and `-steam-runtime-status`.
+
+## MiSTer
+
+### Launcher groups and nightlies
+
+**Applies to:** MiSTer.
+
+`launchers.preference` accepts the `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable` groups alongside `RetroAchievements`, so one line prefers a whole core family and falls back to the stock core where it is missing. Nightlies from the unstable nightlies database get their own `Unstable<System>` launchers, so a nightly can be preferred over a stock core instead of only standing in for a missing one. See [launcher groups](/docs/platforms/mister/launchers/#launcher-groups).
+
+### Arcade and Neo Geo indexing
+
+**Applies to:** MiSTer and MiSTeX.
+
+Core skips the folders and symlinks Arcade Organizer creates, whether under `_Arcade/_Organized` or written straight into `_Arcade`, so every arcade game is indexed once from its `.mra`. Games started from the MiSTer menu are recorded under that same identity, and play history recorded under a bare set name by earlier versions is repaired once. Run a media database update to drop old duplicates.
+
+A new `Cave68000` system classifies CAVE boards the way `CPS1` and `PGM` already do, and standalone `.neo` files take their titles from `romsets.xml` like their `.zip` counterparts.
+
+### Artwork and manuals from Update All
+
+**Applies to:** MiSTer.
+
+A new `mister-docs` scraper imports box art, year, genre, developer, player count, descriptions, and manuals from the packs Update All installs under `docs/<system>`. The Game Manuals database is available in Update All now and the artwork databases are coming soon; Core never downloads anything itself. See [mister-docs](/docs/features/scraping/#mister-docs).
+
+### Fixes and performance
+
+**Applies to:** MiSTer.
+
+- `launch.system` ignored a `?launcher=` argument, so `**launch.system:Nintendo64?launcher=80MHzNintendo64` booted the stock core. It now boots the launcher you asked for.
+- Exiting a game to the menu no longer leaves a play session running against it.
+- Backups capture shared-profile saves and settings even while a personal profile is active, plus `names.txt`, the legacy mappings file, and the profile name file.
+- Indexing and scraping keep one CPU core free for Frontend and pace themselves so the menu stays responsive.
+- The gamelist scraper releases memory between systems, which stops the thrashing some large libraries saw.
+- Core refreshes its launcher list after an RBF rescan and handles a truncated `recents` record from an in-progress write.
+
+## Readers and ZapScript
+
+### Disc token files
+
+**Applies to:** Linux-based platforms with an optical drive.
+
+A burned data disc can carry its own ZapScript in a `zaparoo.txt` file, the same way a USB drive token does. The disc's UUID and label still form its ID, so existing mappings keep working, and a disc with no readable ID but a valid token file now scans. See [optical drive token files](/docs/readers/optical-drive/#use-a-token-file-on-a-disc).
+
+### Scan mode per reader and per token
+
+**Applies to:** All Core platforms.
+
+`scan_mode` on a `[[readers.connect]]` entry or a `[readers.drivers.<id>]` section overrides the global scan mode for that reader, so a cartridge slot or an optical drive can hold while an NFC antenna on the same device taps. A card can override its reader with a `#tap` or `#hold` trait in its script, such as `#hold||SNES/Super Metroid.sfc`, and a playlist keeps the mode of the card that started it. See [scan mode](/docs/core/config/#scan-mode) and [traits](/docs/zapscript/syntax/#traits).
+
+### Extend a playtime session
+
+**Applies to:** All Core platforms.
+
+An administrator can hand out extra time without stopping the game or editing a limit. A card holding `**playtime.extend:15m?profile=<admin switch ID>` adds 15 minutes to the session being limited, and `today` in place of a duration waives the session limit until midnight; the daily limit stays the ceiling. The card only works from a physical reader, alone on the token, with an admin profile's switch ID, and admin clients can do the same through the `playtime.extend` API method. See [extend a session](/docs/features/play-controls/#extend-a-session).
+
+### Exit hooks everywhere
+
+**Applies to:** All Core platforms.
+
+The `before_exit` hook on a system default runs whenever media for that system is about to stop or be replaced: another card, `stop`, `playlist.stop`, `media.stop`, a playtime limit, or a hold-mode removal. Before, it only ran on a hold-mode removal, and only on MiSTer. A failing script is logged and never blocks the exit. See [exit hooks](/docs/features/hooks/#exit-hooks).
+
+### Writing tags
+
+**Applies to:** All Core platforms.
+
+A tag being written is no longer scanned as a token mid-write, so a write cannot trigger a launch. Core waits for you to lift the tag before the next scan, and with several readers connected, a write on one no longer suppresses the others.
+
+### ZapScript changes
+
+**Applies to:** All Core platforms.
+
+- `input.coinp1` to `input.coinp4` honor their amount (0 to 99); earlier versions always inserted one coin.
+- `launch.random` retries up to 16 candidates if a pick cannot launch, draws virtual entries from the media database so tag filters apply to them, and waits up to five seconds for a lookup.
+- Zap Links must use HTTPS unless they point at localhost or a private address, reject embedded credentials, and re-check every redirect.
+- Held gamepad buttons in input sequences are handled by the platform like keyboard keys, and over WebSocket the API's `input.keyboard` and `input.gamepad` accept `{press:}` and `{release:}` tokens that stay held until the session releases them or disconnects.
+
+## Library and backups
+
+### Patch tags
+
+**Applies to:** All Core platforms.
+
+Bracketed patch notes in filenames, such as `[FastROM hack by Author v1.1]`, become `patch` tags like `patch:fastrom:1-1` or `patch:uncensored`. Core recognizes around 45 patch markers, patched variants are selected correctly when a title ID asks for them, and tag filters now work in `media.browse` and `systems` as well as `media.search`. See [tags](/docs/features/tags/#useful-tag-types).
+
+### Disc folders
+
+**Applies to:** All Core platforms.
+
+A folder that holds one game, whether a `.cue` with its `.bin` tracks, an `.m3u` with its discs, or a single ROM, now shows up as that game when browsing on every platform, with its artwork and tags, instead of as a bare folder. Until now only MiSTer did this. The `gamelist.xml` scraper reads `<folder>` entries and ES-DE's folder-named-as-ROM convention for those games, and the media-folder scraper matches artwork named after the folder. See [scraping](/docs/features/scraping/).
+
+### Backups
+
+**Applies to:** All Core platforms.
+
+Backups now include custom audio files from Core's `assets` folder, and every finished ZIP is verified before Core reports it; an archive that fails verification is deleted rather than listed.
+
+### Media database
+
+**Applies to:** All Core platforms.
+
+- Browse lists sort titles naturally, so `Final Fantasy 2` comes before `Final Fantasy 10`, and case and punctuation no longer split the order.
+- Moving from a beta back to stable no longer leaves a device unable to start: Core rescues favorites and launcher overrides, rebuilds the media database, and posts an Inbox message if the rescue failed. A media database too damaged to open is rebuilt at startup the same way, and the damaged files are kept together for diagnosis.
+- Freshly scraped artwork counts as a cover straight away instead of after a restart.
+- Media writes are serialized so indexing, scraping, and optimization stop tripping over each other, maintenance corruption fails loudly instead of continuing, and a redundant index is gone from the hottest indexing path.
+- Kodi TV shows are resolved by a durable identity that survives Kodi renumbering its library.
+- 48 kHz audio sources skip resampling.
+
+## Other changes
+
+### Windows
+
+- **Fixed:** the LaunchBox and Big Box plugin launches on Big Box's UI thread and shows the selected game before playing it, so marquee and lighting tools such as LEDBlinky react to the right game. Big Box returns to its previous view and comes back to the foreground after the game exits.
+- **New:** Core can update itself in place on Windows, with rollback, when it can write to its install folder.
+
+### Batocera
+
+- **New:** in-place updates on manual installs carry the EmulationStation hook, `multimedia_keys.conf`, the Ports entry, the service files, and the write-game script along with the binary. Package installs keep updating through Batocera.
+
+### Core, API, and terminal UI
+
+- **Fixed:** `mister.ini`, `mister.core`, `mister.script`, `mister.mgl`, and `mister.wallpaper` now return an error on LibreELEC, macOS, Recalbox, RetroPie, RePlayOS, and Windows instead of pretending to succeed.
+- **Fixed:** a token scanned while ZapScript execution is turned off is ignored quietly again, without the fail sound, a failed history entry, or blocked hooks.
+- **Fixed:** a one-shot `launch?launcher=` override expires after five minutes and is rejected immediately when the launcher ID does not exist.
+- **Fixed:** custom launchers with `execute` but no `backend` are no longer skipped, and an invalid `allow_file`, `allow_execute`, `allow_http`, or `allow_run` pattern is logged with the reason.
+- **Improved:** the system tray Reload also refreshes custom launchers, so edits to launcher files no longer need a restart.
+- **Changed:** `run` returns once the ZapScript has finished and reports a failure with a category such as `media_not_found`, `blocked`, or `playtime_limit`, instead of answering as soon as the token was accepted. The `-run` command-line flag does the same. Reader scans, playlists, and the HTTP launch endpoint are unchanged.
+- **New:** API additions for clients: `launchers` filters and installed-core details, `media.search` `pathPrefix`, `sort`, and `hasCover`, `media.browse` `tags` and `rootView`, `systems` `mediaCount`, `media.history` distinct media and `tags`, `media.image` local paths, `clients.current` access level, `readers` scan modes and hold ownership, `playtime.extend` with a `playtime.extended` notification, `update.status`, `remote.activity` status, and an `update.state` notification.
+- **New:** the MiSTer catalog and MGL generation live in a standalone Go module, `github.com/ZaparooProject/zaparoo-core/mister`, so other MiSTer tools can reuse them without Core's dependencies.
+- **Improved:** WebSocket rate limiting no longer drops busy clients' sessions.
+- **Improved:** the terminal UI's Online screen warns when any Zaparoo Online endpoint points at a custom server.
+- **Improved:** `install.sh` verifies signed checksums on every platform, adds `install`, `repair`, `status`, and `uninstall` modes, and accepts `--channel`, `--dry-run`, and `ZAPAROO_VERSION`.
+- **Maintenance:** dependency updates and CI workflow changes.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

@@ -25,7 +25,7 @@ Service or daemon modes skip the TUI. See the [command line reference](cli.md) f
 
 ## Main screen
 
-The main screen shows the local Core service status, device IP address, Web UI address, connected reader status, and the most recent scanned token.
+The main screen shows the local Core service status, device IP address, the running version and [update state](./updates.md#where-update-status-shows), Web UI address, connected reader status, and the most recent scanned token.
 
 If the Core service is not running, most actions are disabled and the TUI tells you to check the logs.
 
@@ -69,7 +69,7 @@ Custom writes parse the ZapScript before writing and show an error for unknown c
 
 Open **Settings > Backup** to create, inspect, restore, or delete [device backups](../features/backups.md). Supported devices can also link a Zaparoo Online account, upload cloud snapshots, choose an automatic schedule, and restore compatible snapshots from other devices on the account.
 
-**Settings > Online** shows account-link status and available online services. Linking displays a URL and one-time code to approve from another device. The **Play history sync** toggle separately controls whether retained and future play sessions are uploaded; account linking alone leaves history local. The **Remote control** toggle works the same way; see [remote control](../online/index.md#remote-control).
+**Settings > Online** shows account-link status and available online services. Linking displays a URL and one-time code to approve from another device. The **Play history sync** toggle separately controls whether retained and future play sessions are uploaded; account linking alone leaves history local. The **Remote control** toggle works the same way, and the **Remote status** line under it shows whether Zaparoo Online can currently send commands to this device; see [remote control](../online/index.md#remote-control).
 
 ## Reload Core
 

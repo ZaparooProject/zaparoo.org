@@ -54,6 +54,8 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 | Launchers | Opens the custom launchers directory in Explorer |
 | Reload | Reloads Core settings and files without restarting |
 | View Log | Opens the log file for troubleshooting |
+| Pair Device... | Shows a PIN for pairing a phone, tablet, or browser |
+| Check for Updates | Shows the update state and installs a waiting release; the label changes to **Install** with the version when one is waiting |
 | Quit | Stops the Zaparoo service and exits |
 
 ## Readers

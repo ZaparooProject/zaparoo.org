@@ -9,7 +9,7 @@ Zaparoo Core includes launcher definitions for MiSTer's standard systems. During
 
 Zaparoo also indexes `.mgl` files placed directly in your games folders. Drop a custom MGL shortcut into a games folder and it gets picked up by the media database, so it shows up in browse and search and can be launched by title like any other game.
 
-MiSTer unstable nightly cores using the standard `<core>_unstable_YYYYMMDD_<hash>.rbf` filename can provide a system's launcher when the regular core is not installed. If several matching nightlies exist, Core uses the newest dated filename. A regular core with the exact expected name still takes priority.
+MiSTer unstable nightly cores using the standard `<core>_unstable_YYYYMMDD_<hash>.rbf` filename get their own [`Unstable` launchers](#unstable-nightlies), and can also stand in for a system's regular core when that core is not installed. If several matching nightlies exist, Core uses the newest dated filename.
 
 After adding or replacing an RBF file, select **Settings > Advanced > Reload Core** in the terminal UI or run [`-reload`](../../core/cli.md#reload-core) to force a filesystem rescan. Core refreshes its launcher list after the rescan. Then update the media database if the system or its games still need to be indexed.
 
@@ -145,11 +145,12 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 
 ### Arcade Systems
 
-Core skips the `_Arcade/_Organized` folders created by Arcade Organizer, so each arcade game is indexed once from its `.mra` file.
+Core skips the folders and symlinks Arcade Organizer creates, so each arcade game is indexed once from its `.mra` file.
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
 | `Arcade` | _Arcade | `.mra` |
+| `Cave68000` | _Arcade | `.mra` |
 | `CPS1` | _Arcade | `.mra` |
 | `CPS2` | _Arcade | `.mra` |
 | `CPS3` | _Arcade | `.mra` |
@@ -165,7 +166,7 @@ Core skips the `_Arcade/_Organized` folders created by Arcade Organizer, so each
 
 #### Hardware classification
 
-Every MiSTer `.mra` file remains indexed under the general `Arcade` system. When MiSTer's Arcade Database identifies the underlying hardware, Core also indexes the same game under a more specific system such as `CPS1`, `PGM`, `SegaSTV`, or `TaitoF2`. Unclassified games remain available through `Arcade` as before.
+Every MiSTer `.mra` file remains indexed under the general `Arcade` system. When MiSTer's Arcade Database identifies the underlying hardware, Core also indexes the same game under a more specific system such as `CPS1`, `Cave68000`, `PGM`, `SegaSTV`, or `TaitoF2`. Unclassified games remain available through `Arcade` as before.
 
 You can browse, search, or launch a random game from one hardware family:
 
@@ -273,7 +274,7 @@ Two cores are supported:
 
 NeoGeo supports launching `.zip` files, ROM-set folders, and symlinked ROM-set folders directly with Zaparoo. These can sit at the top level of the NeoGeo games folder or inside subfolders, as supported by the MiSTer core itself.
 
-Keep a valid `romsets.xml` in each NeoGeo root so Zaparoo can match folder and ZIP names to their display names. If no valid definition file is found, Core falls back to basic ZIP-content filtering and records the affected roots in debug logs.
+Keep a valid `romsets.xml` in each NeoGeo root so Zaparoo can match folder, ZIP, and `.neo` file names to their display names. If no valid definition file is found, Core falls back to basic ZIP-content filtering and records the affected roots in debug logs.
 
 For example, a `.zip` file:
 
@@ -349,6 +350,27 @@ load_path = "_LLAPI/N64_LLAPI"
 
 `load_path` is an MGL-form RBF path relative to `/media/fat`, without extension. A config reload is sufficient after changing this. No service restart is required.
 
+### Launcher groups
+
+Every alternate core family is also a launcher group, so [`launchers.preference`](../../core/config.md#preference) can prefer a whole family and fall back to the regular core for systems that have no core from it installed:
+
+```toml title="config.toml"
+[launchers]
+preference = ["Unstable", "RetroAchievements"]
+```
+
+| Group | Launchers |
+|-------|-----------|
+| `RetroAchievements` | `RA*` cores from `_RA_Cores/Cores` |
+| `DB9` | `DB9*` cores |
+| `LLAPI` | `LLAPI*` cores from `_LLAPI` |
+| `DualRAM` | Dual-SDRAM cores, including `DB9DualRAMPSX`, `DB9DualRAMSaturn`, and `UnstableDualRAMSaturn` |
+| `Sinden` | Sinden Lightgun cores |
+| `PWM` | `PWM*` cores from `_ConsolePWM` |
+| `Unstable` | `Unstable*` nightly cores |
+
+A launcher is grouped by the RBF files it loads, so `DB9DualRAMPSX` belongs to both `DB9` and `DualRAM`.
+
 ### RetroAchievements
 
 RetroAchievements cores from [Odelot's MiSTer FPGA RetroAchievements Cores](https://github.com/odelot/mister-cores) are supported when installed in `_RA_Cores/Cores`.
@@ -364,14 +386,7 @@ To use a RetroAchievements core by default for one system in [Zaparoo Frontend](
 
 Frontend saves the selection as that system's default launcher. Select **Default** from the same menu to remove the override. Only launchers currently available from Core appear in the list.
 
-All built-in RetroAchievements launchers belong to the stable `RetroAchievements` launcher group. To prefer installed RetroAchievements cores across every supported system and fall back to regular launchers when one is unavailable:
-
-```toml title="config.toml"
-[launchers]
-preference = ["RetroAchievements"]
-```
-
-Explicit token launchers, per-game overrides, and system defaults still take priority over this preference.
+All built-in RetroAchievements launchers belong to the `RetroAchievements` [launcher group](#launcher-groups), so one `launchers.preference` entry prefers them across every supported system.
 
 | Launcher ID | System |
 |-------------|--------|
@@ -510,3 +525,9 @@ Zaparoo looks for Sinden cores in `Light Gun/<Core>-Sinden.rbf` first, then the 
 | `SindenNES` | NES |
 | `SindenPSX` | PlayStation |
 | `SindenSNES` | SNES |
+
+### Unstable nightlies
+
+Nightly builds from the [unstable nightlies](https://github.com/MiSTer-unstable-nightlies/Unstable_Folder_MiSTer) database, named `<core>_unstable_YYYYMMDD_<hash>.rbf`, get an `Unstable` launcher for every system their core serves, whether they sit in `_Unstable` or somewhere else. When several dated builds of one core exist, the newest is used. Select one with `?launcher=UnstableSNES`, or prefer the whole family with the `Unstable` [group](#launcher-groups).
+
+Launcher IDs are `Unstable` followed by the system ID, such as `UnstableSNES`. Core knows the nightlies for 3DO, AcornAtom, AcornElectron, AliceMC10, AmigaCD32, Amstrad, AppleII, Atari2600, Atari7800, AtariLynx, C64, CDI, Chip8, ColecoVision, FDS, Gameboy, GameboyColor, GameGear, GBA, Genesis, MacPlus, MasterSystem, MegaCD, MegaDuck, MSX, NeoGeo, NeoGeoCD, NES, NESMusic, PSX, Saturn, Sega32X, SG1000, SNES, SNESMusic, SuperGrafx, TatungEinstein, TI994A, TurboGrafx16, TurboGrafx16CD, X68000, ZXNext, and ZXSpectrum, plus `UnstableDualRAMSaturn` for the dual-SDRAM Saturn nightly. Arcade nightlies have no launcher because arcade games launch through an MRA that names its own core.

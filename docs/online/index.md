@@ -14,7 +14,7 @@ keywords:
 
 # Zaparoo Online
 
-[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up Zaparoo data from every Core platform, include supported [MiSTer](../platforms/mister/index.md) settings and saves, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
+[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up Zaparoo data from every Core platform, include supported [MiSTer](../platforms/mister/index.md) and [SteamOS](../platforms/steamos/index.md) settings and saves, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
 Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, the User API, and virtual cards and decks are free. Remote control through the User API is free for one device at a time and unlimited with Warp.
 
@@ -43,7 +43,7 @@ Linking a device does not turn on cloud backup, play history sync, or remote con
 
 Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active.
 
-Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer snapshots can also contain supported platform settings, input mappings, saves, and save states. Comparable platform-data backup support is planned for more platforms. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
+Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer and SteamOS snapshots can also contain supported platform settings, saves, and save states. Comparable platform-data backup support is planned for more platforms. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 
 Portable local backups remain free. Ending a Warp subscription stops new cloud snapshots but leaves existing snapshots available to browse, download, and restore. If you unlink a device, its backups stay under **Unlinked devices** for 60 days and are then deleted.
 
@@ -87,6 +87,8 @@ While sync is enabled and the device is linked, local retention cleanup preserve
 Apps you authorise through the [User API](#user-api) can send commands to a device once that device opts in: turn on **Remote control** under **Settings > Online** in the terminal UI. A remote command can launch a game or a system, stop what is playing, search and browse the library, or run a MiSTer script, and each one is recorded on the device under **Remote control activity**. Unlinking the device turns it off again.
 
 Free accounts can remote-control one device at a time. Warp subscribers are not limited.
+
+The **Remote status** line under the toggle shows whether Online can currently reach the device, including when a free account's remote slot is held by another device. Select it for an explanation of what to do.
 
 ## User API
 

@@ -54,7 +54,7 @@ Important notes:
 
 - [Platforms Overview](https://zaparoo.org/docs/platforms/): All supported platforms and install instructions.
 - [MiSTer FPGA](https://zaparoo.org/docs/platforms/mister/): Install and configure Zaparoo on MiSTer FPGA.
-- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer.
+- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer, including alternate core families, launcher groups, and unstable nightly launchers.
 - [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
 - [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows.
 - [SteamOS (Steam Deck)](https://zaparoo.org/docs/platforms/steamos/): Install Zaparoo on Steam Deck and SteamOS.
@@ -94,7 +94,7 @@ Important notes:
 - [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
 - [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
 - [Device Profiles](https://zaparoo.org/docs/features/profiles/): Give each person separate playtime limits and profile cards, with separate saves and save states on MiSTer.
-- [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, MiSTer configuration, saves, and save states.
+- [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, and MiSTer and SteamOS configuration, saves, and save states.
 - [Audio](https://zaparoo.org/docs/features/audio/): Play WAV, MP3, OGG, and FLAC files through Core's native audio launcher, including a background slot that keeps music playing while games launch.
 - [Scraping](https://zaparoo.org/docs/features/scraping/): Import local game artwork from gamelist.xml and EmulationStation-style media folders.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.

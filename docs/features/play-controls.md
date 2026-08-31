@@ -86,6 +86,24 @@ Daily limits reset at midnight in the local timezone. The total includes all ses
 
 If less than 1 minute remains, the launch is blocked entirely.
 
+### Extend a session
+
+An administrator can give extra time to the session currently being limited without stopping the game or changing any limit. Write a card with the [`playtime.extend`](../zapscript/utilities.md#playtimeextend) command, authorized by an administrator profile's switch ID:
+
+```zapscript
+**playtime.extend:15m?profile=<admin-switch-id>
+```
+
+`today` in place of a duration waives the session limit until the next local midnight:
+
+```zapscript
+**playtime.extend:today?profile=<admin-switch-id>
+```
+
+The card grants time to whoever is being limited when it is scanned, never to a chosen person, and the daily limit stays the hard ceiling either way. Core only accepts the command from a physical reader, on a token that carries nothing else, and only when the switch ID belongs to an [administrator profile](./profiles.md). A single grant is between 1 minute and 24 hours, and a session can accumulate up to 24 hours. Grants survive a Core restart and are cleared when the session resets.
+
+Admin clients can make the same grant through the [`playtime.extend`](../core/api/methods.md#playtimeextend) API method.
+
 ## Online play history
 
 Play history stays local unless you explicitly enable sync under **Settings > Online**. The first sync uploads retained history to your linked Zaparoo Online account. After that, Core syncs when a session starts or ends, refreshes an active session about every five minutes, and runs a catch-up pass about once an hour. Linking an account by itself does not grant consent. Play history sync is free and does not need Warp.
@@ -170,6 +188,7 @@ See the [playtime config reference](../core/config.md#playtime) for all options.
 
 - [`confirm`](../core/api/methods.md#confirm) launches the currently staged token and bypasses launch guard delay.
 - [`settings.playtime.limits.update`](../core/api/methods.md#settingsplaytimelimitsupdate) changes playtime limits at runtime.
+- [`playtime.extend`](../core/api/methods.md#playtimeextend) grants extra time to the current session, and [`playtime.extended`](../core/api/notifications.md#playtimeextended) reports a grant.
 - [`tokens.staged`](../core/api/notifications.md#tokensstaged) reports a staged token.
 - [`tokens.staged.ready`](../core/api/notifications.md#tokensstagedready) reports that re-tap confirmation is ready.
 

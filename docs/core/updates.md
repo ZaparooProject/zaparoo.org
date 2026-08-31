@@ -31,7 +31,14 @@ install = false
 channel = "stable"
 ```
 
-The same settings are `updateCheck`, `updateInstall`, and `updateChannel` on [`settings.update`](./api/methods.md#settingsupdate) in the Core API. There is no update screen in the terminal UI or the Windows system tray yet.
+The same settings are `updateCheck`, `updateInstall`, and `updateChannel` on [`settings.update`](./api/methods.md#settingsupdate) in the Core API.
+
+## Where update status shows
+
+- The **Version** line on the [terminal UI](./tui.md) main screen shows a waiting release next to the running version, and says when the last update was rolled back.
+- The Windows system tray has an update entry that shows the current state and installs a waiting release.
+- `-update` on the [command line](./cli.md#check-for-updates) prints the same status.
+- The Inbox message announces a new release, and the `update.status` [API method](./api/index.md#methods) reports the last check's result without contacting the release server.
 
 ## Automatic installs
 
@@ -46,16 +53,27 @@ An automatic install waits for a quiet minute on the API before it starts, up to
 
 Media playing, an active playlist, or a busy API only delay an automatic install. Releases can be rolled out in stages, so a device may wait until the release reaches it.
 
+A release that failed to start on this device and was rolled back is not installed automatically again. The next release is offered as normal, and you can retry the same one with `-update`.
+
 ## Installing an update yourself
 
-To install a reported update without turning automatic installs on, call the API from the device:
+Run `-update` on the device to install a release when one is waiting:
 
 ```bash
+./zaparoo -update
+```
+
+It prints the current version and update state, checks for a new release, and only installs when there is something to install. On Windows, use the tray entry instead.
+
+The API offers the same steps separately:
+
+```bash
+./zaparoo -api 'update.status'
 ./zaparoo -api 'update.check'
 ./zaparoo -api 'update.apply'
 ```
 
-[`update.check`](./api/methods.md#updatecheck) reports why an update is blocked and whether `force` can override it; [`update.apply`](./api/methods.md#updateapply) accepts `force` for playing media, playlists, and a busy API. A manual install needs at least 20 percent battery. Paired admin clients and API keys with the `update.apply` capability can call the same methods.
+`update.status` answers from the last check without contacting anything, [`update.check`](./api/methods.md#updatecheck) reports why an update is blocked and whether `force` can override it, and [`update.apply`](./api/methods.md#updateapply) accepts `force` for playing media, playlists, and a busy API. A manual install needs at least 20 percent battery. `update.apply` needs an admin client or an API key with the `update.apply` capability.
 
 ## Platform support
 
@@ -71,6 +89,8 @@ To install a reported update without turning automatic installs on, call the API
 
 ## Troubleshooting
 
-**An update is reported but nothing installs.** Automatic installs are off unless `install = true`, and managed installs update through Update All or the Batocera package manager. Run `update.check` to see what is blocking an install.
+**An update is reported but nothing installs.** Automatic installs are off unless `install = true`, and managed installs update through Update All or the Batocera package manager. Run `-update` to see what is blocking an install. A release this device already rolled back is only reinstalled by hand.
 
-**Core rolled back to the previous version.** The new build did not start within 30 seconds. Check the Inbox message and the log file, then try `update.apply` again or install the release from your platform guide.
+**Core rolled back to the previous version.** The new build did not start within 30 seconds. Check the Inbox message and the log file, then try `-update` again or install the release from your platform guide.
+
+**Core will not start after going back to an older version.** The user database was migrated by a newer build, and Core refuses to open it with an older one rather than lose history, mappings, and profiles; the log names both versions. Reinstall the newer version, or restore a user database backup from `backups/` in the data directory that predates the newer build. On Linux platforms the service stays stopped instead of restarting in a loop.

@@ -113,6 +113,45 @@ Return to the shared profile:
 
 ---
 
+## playtime.extend
+
+Grants extra time to the [playtime session](../features/play-controls.md#extend-a-session) currently being limited, authorized by an administrator profile's switch ID. The game keeps running and no configured limit changes.
+
+### Syntax
+
+```zapscript
+**playtime.extend:<amount>?profile=<switch-id>
+```
+
+### Arguments
+
+**`amount`** (required)
+A duration to add to the session, such as `15m` or `1h30m`, or `today` to waive the session limit until the next local midnight. The daily limit is never affected.
+
+### Advanced Arguments
+
+| Argument  | Type   | Default | Description                                                                                                   |
+| --------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `profile` | string | -       | Required. The switch ID of an administrator [profile](../features/profiles.md), which permits the grant. It never chooses who receives the time. |
+
+### Examples
+
+Add 15 minutes to the current session:
+
+```zapscript
+**playtime.extend:15m?profile=corn-arm-truck
+```
+
+Waive the session limit for the rest of the day:
+
+```zapscript
+**playtime.extend:today?profile=corn-arm-truck
+```
+
+The time goes to whoever is being limited when the card is scanned. Core only accepts the command from a physical reader and only as the sole command on the token. A single grant is between 1 minute and 24 hours, and a session can accumulate up to 24 hours. Like a profile card, the switch ID is a key; keep the card private.
+
+---
+
 ## echo
 
 Outputs a message to the Zaparoo Core log file.

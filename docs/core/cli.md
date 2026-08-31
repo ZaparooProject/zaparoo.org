@@ -32,6 +32,7 @@ These flags are defined by the shared Core CLI and are available in current comm
 | `-write` | Text string | Writes text to the next token found by a write-capable reader. |
 | `-reload` | None | Reloads settings, mappings, launchers, and platform launcher dependencies. |
 | `-pair` | None | Starts app/client pairing and prints the pairing result when complete. |
+| `-update` | None | Prints update status, checks for a new release, and installs it when one is waiting. |
 | `-backup` | None | Creates a portable full-device backup ZIP on supported platforms. |
 | `-backups` | None | Lists available full-device backup ZIPs. |
 | `-restore` | Backup name | Restores a full-device backup ZIP and restarts Core. |
@@ -60,12 +61,6 @@ Use `-api` to send one raw API call to the local Core service. The format is the
 ```
 
 If the method does not need parameters, omit the colon and JSON body. The CLI prints the response body returned by Core.
-
-This is also how you install a reported [Core update](./updates.md#installing-an-update-yourself) from the device:
-
-```bash
-./zaparoo -api 'update.apply'
-```
 
 For method names and parameter shapes, see the [API methods reference](./api/methods.md).
 
@@ -105,6 +100,16 @@ Use `-pair` to start the same pairing flow used by clients such as the [Zaparoo 
 ```
 
 Core prints a PIN to the terminal. Enter that PIN in the client app. When pairing succeeds, the CLI prints the pairing response as a single line.
+
+## Check for updates
+
+Use `-update` to check for a new release and install it when one is waiting. It prints the current version and update state first, and only installs when there is something to install.
+
+```bash
+./zaparoo -update
+```
+
+See [Core updates](./updates.md#installing-an-update-yourself) for what blocks an install and how rollback works.
 
 <a id="back-up-and-restore-user-data"></a>
 

@@ -248,6 +248,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 |-----------|------|---------|-----------|
 | `Arcade` | Arcade/MAME | `MAME` | |
 | `Atomiswave` | Atomiswave | | |
+| `Cave68000` | CAVE 68000 | | `Arcade` |
 | `Chihiro` | Sega Chihiro | | |
 | `CPS1` | Capcom Play System 1 | | `Arcade` |
 | `CPS2` | Capcom Play System 2 | | `Arcade` |

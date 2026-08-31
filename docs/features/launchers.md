@@ -160,6 +160,8 @@ Use `launchers.preference` when you want an ordered fallback across launcher gro
 preference = ["Native", "EmuDeck", "RetroDECK"]
 ```
 
+MiSTer groups its alternate cores the same way: `RetroAchievements`, `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable`. See [MiSTer launcher groups](../platforms/mister/launchers.md#launcher-groups).
+
 Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action`, `load_path`, `render_scale`, or `render_resolution`.
 
 ## Troubleshooting

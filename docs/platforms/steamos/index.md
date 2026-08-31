@@ -108,7 +108,7 @@ Pair a phone, browser, or other Core client with a temporary six-digit PIN. You 
 - In the terminal UI, run `~/.local/bin/zaparoo`, then open **Settings > Clients** and select **Pair**.
 - From Konsole, run `~/.local/bin/zaparoo -pair`.
 
-Enter the displayed PIN in the client. The PIN expires after five minutes. The first paired client receives administrator access; the terminal UI lets you choose member or administrator access for later clients. Existing unencrypted installations may also offer **Secure Now** in the Decky plugin, which enables encryption before pairing the first client. Local Decky-to-Core traffic remains on the Steam Deck.
+Enter the displayed PIN in the client. The PIN expires after five minutes. The first paired client receives administrator access; the terminal UI lets you choose member or administrator access for later clients. If encryption has been turned off, the Decky plugin may also offer **Secure Now**, which turns it back on before pairing the first client. Local Decky-to-Core traffic remains on the Steam Deck.
 
 ## Zaparoo Online
 
@@ -117,7 +117,11 @@ Use **Link device** in the Decky plugin to scan a QR code or open the displayed 
 - **Sync play history** uploads retained sessions and live session updates. It does not require Warp.
 - **Automatic cloud backup** requires Warp. Its schedule can be **Daily**, **Weekly**, or **Manual only**; start an on-demand backup from the full web UI or terminal UI.
 
-Like every Core platform, SteamOS cloud backups contain Zaparoo configuration, mappings, launcher files, and the user database. SteamOS platform data, such as emulator configuration and saves, is not included. See [Device Backups](../../features/backups.md) for complete backup contents, exclusions, and restore behavior.
+Cloud snapshots contain the same data as a local backup; see [device backups](#device-backups) below.
+
+## Device backups
+
+SteamOS supports portable [device backups](../../features/backups.md) that include Zaparoo data plus emulator settings, BIOS files, saves, and save states from EmuDeck, RetroDECK, and standalone emulators, non-Steam game saves, and Bottles, Faugus Launcher, Kodi, and Moonlight configuration. Games, ROMs, and runtimes are not included. Create local backups from the Core terminal UI, or link Zaparoo Online for cloud snapshots.
 
 ## Readers
 

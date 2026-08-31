@@ -460,6 +460,8 @@ ignore_on_connect = true
 - `tap` is the default mode and means when a token is used with a reader it can be removed again without affecting the playing media. If a token is tapped, removed and then tapped again it will relaunch the already playing media.
 - `hold` mode makes it so a token must be held to the reader for as long as any launched media will play. That is, after a token is removed from the reader, it will exit the media. This makes a token act more like real physical media. **Core does not currently make any attempt to save before exiting media.** See [`exit_delay`](#exit_delay), [`ignore_system`](#ignore_system), and [`on_remove`](#on_remove) for related options.
 
+`mode` is the device-wide default. One reader can override it with [`scan_mode`](#readers-connect-scan-mode) on its `[[readers.connect]]` entry or on its [driver](#readers-drivers-scan-mode), and one token can override its reader with the [`#tap` and `#hold` traits](../zapscript/syntax.md#traits).
+
 ##### exit_delay
 
 | Key        | Type         | Default |
@@ -659,6 +661,24 @@ enabled = false
 
 This is useful for keeping a connection definition in the config while not actively using it, without having to delete and re-add it later.
 
+##### scan_mode {#readers-connect-scan-mode}
+
+| Key       | Type                     | Default |
+| --------- | ------------------------ | ------- |
+| scan_mode | string ("tap" \| "hold") |         |
+
+`scan_mode` sets the [scan mode](#scan-mode) for this one reader, so a cartridge slot can hold while an NFC antenna on the same device taps. It takes priority over the driver's [`scan_mode`](#readers-drivers-scan-mode) and the global `mode`.
+
+```toml
+[readers.scan]
+mode = 'tap'
+
+[[readers.connect]]
+driver = 'pn532'
+path = '/dev/ttyUSB1'
+scan_mode = 'hold'
+```
+
 #### readers.drivers
 
 `readers.drivers` configures driver-specific settings. It's a sub-section that uses driver IDs as keys, and must have this header format: `[readers.drivers.DRIVER_ID]`
@@ -669,6 +689,9 @@ auto_detect = false
 
 [readers.drivers.simpleserial]
 enabled = false
+
+[readers.drivers.opticaldrive]
+scan_mode = 'hold'
 ```
 
 ##### enabled {#readers-drivers-enabled}
@@ -686,6 +709,19 @@ enabled = false
 | auto_detect | boolean | true    |
 
 `auto_detect` controls whether this specific driver should participate in automatic reader detection, overriding the global `auto_detect` setting for this driver only.
+
+##### scan_mode {#readers-drivers-scan-mode}
+
+| Key       | Type                     | Default |
+| --------- | ------------------------ | ------- |
+| scan_mode | string ("tap" \| "hold") |         |
+
+`scan_mode` sets the [scan mode](#scan-mode) for every reader that uses this driver. A `[[readers.connect]]` entry's own [`scan_mode`](#readers-connect-scan-mode) takes priority over it, and it takes priority over the global `mode`.
+
+```toml
+[readers.drivers.opticaldrive]
+scan_mode = 'hold'
+```
 
 ### Systems
 
@@ -724,7 +760,7 @@ ID of the [launcher](../features/launchers.md) that should be used by default wh
 | ----------- | ------ | ------- |
 | before_exit | string |         |
 
-A [hook](../features/hooks.md) containing a snippet of [ZapScript](../zapscript/index.md) to run before media exits if [hold mode](#scan-mode) is enabled. Core waits for it before continuing exit handling, so commands like [`delay`](../zapscript/utilities.md#delay) can be used.
+A [hook](../features/hooks.md#exit-hooks) containing a snippet of [ZapScript](../zapscript/index.md) to run just before media for this system stops or is replaced, whether by another token, `stop`, a playtime limit, or a [hold mode](#scan-mode) card removal. Core waits for it, up to 30 seconds, so commands like [`delay`](../zapscript/utilities.md#delay) can be used. A failure is logged and does not stop the exit.
 
 ##### pause_on_launch
 
@@ -791,6 +827,8 @@ MiSTer provides the `RetroAchievements` group for every built-in RetroAchievemen
 [launchers]
 preference = ["RetroAchievements"]
 ```
+
+The other MiSTer alternate core families are groups too: `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable` for nightly builds. See [MiSTer launcher groups](../platforms/mister/launchers.md#launcher-groups).
 
 An explicit ZapScript `?launcher=` argument takes priority, followed by a saved per-media override and [`systems.default`](#systemsdefault). Core only consults `preference` after those choices. If no preference matches, normal platform launcher detection applies.
 
@@ -1087,7 +1125,7 @@ allowed_ips = [
 encryption = false
 device_id = '4d01c19f-09ba-4871-a58a-82fb49f5b518'
 allowed_origins = [
-    'https://app.zaparoo.org'
+    'zaparoo.example.lan'
 ]
 allow_run = [
     '\*\*launch\.random:.+'
@@ -1214,7 +1252,49 @@ It's currently reserved for future use when devices can communicate with each ot
 | --------------- | -------- | ------- |
 | allowed_origins | string[] | []      |
 
-`allowed_origins` specifies which origins are allowed to access the Core API via CORS (Cross-Origin Resource Sharing). By default, localhost and the active device IP address are allowed.
+`allowed_origins` adds browser origins that are allowed to reach the Core API. An origin is the scheme, host and port a page was loaded from, like `http://zaparoo.example.lan:7497`. Browsers attach it to cross-origin API requests and to every WebSocket connection, and Core rejects any origin it doesn't recognize.
+
+You need this when you reach the [Web UI](../app/web.md) or the API through a name Core doesn't already know about, such as a hostname from your router or DNS server, a VPN address, or a reverse proxy.
+
+##### What Core allows on its own
+
+- `http://localhost` and `https://localhost`, with and without the API port
+- `http://127.0.0.1` and `https://127.0.0.1` on the API port
+- Every private IPv4 address currently assigned to the device, on the API port. This is rechecked on each request, so an address that only appears after Core starts still works.
+- The device's own hostname and its mDNS `.local` name, over HTTP and HTTPS, with and without the API port. A device called `mister` covers `http://mister:7497` and `http://mister.local:7497`.
+- The [Zaparoo App](../app/index.md) origins: `https://zaparoo.app` for the hosted web app, plus `capacitor://localhost` and `ionic://localhost` for the mobile builds
+
+Everything else needs an entry. That includes IPv6 addresses, public IPv4 addresses, addresses outside the private ranges such as Tailscale's `100.64.0.0/10`, and any hostname you point at the device yourself.
+
+Core won't trust a name just because it resolves to the device. If it did, any site you visited could publish a DNS record aimed at your device and drive Core from a browser tab, an attack called [DNS rebinding](https://en.wikipedia.org/wiki/DNS_rebinding). The allowlist is what stops it, so it stays explicit.
+
+##### Entry formats
+
+A bare hostname is the most forgiving form. It expands to four origins, covering HTTP and HTTPS with and without the API port:
+
+```toml
+[service]
+allowed_origins = [
+    'zaparoo.example.lan'
+]
+```
+
+That one entry allows `http://zaparoo.example.lan`, `https://zaparoo.example.lan`, `http://zaparoo.example.lan:7497` and `https://zaparoo.example.lan:7497`.
+
+Include a scheme and Core matches more narrowly:
+
+| Entry                              | What it allows                                                     |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| `zaparoo.example.lan`              | HTTP and HTTPS, with and without the API port                       |
+| `http://zaparoo.example.lan`       | `http://zaparoo.example.lan` and `http://zaparoo.example.lan:7497`  |
+| `https://zaparoo.example.lan:8443` | `https://zaparoo.example.lan:8443` and nothing else                 |
+| `capacitor://localhost`            | Exactly as written, with no port variant added                      |
+
+The port that matters is the one in the browser's address bar, not the one Core listens on. A reverse proxy serving `https://zaparoo.example.lan` on the default HTTPS port sends an origin with no port, so a bare hostname or `https://zaparoo.example.lan` covers it. If the proxy listens somewhere else, add that port explicitly.
+
+Matching ignores case, and surrounding whitespace and a trailing `/` are trimmed from each entry. IPv6 literals need a scheme and square brackets, like `http://[fd12:3456::1]:7497`.
+
+If the Web UI loads but never connects, see [Web UI troubleshooting](../app/web.md#troubleshooting).
 
 #### encryption
 
@@ -1925,7 +2005,7 @@ allowed_ips = [
 encryption = false
 device_id = '4d01c19f-09ba-4871-a58a-82fb49f5b518'
 allowed_origins = [
-    'https://app.zaparoo.org'
+    'zaparoo.example.lan'
 ]
 allow_run = [
     '\*\*launch\.random:.+'
