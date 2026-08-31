@@ -36,9 +36,10 @@ This command generates static content into the `build` directory and can be serv
 5. Copy installer files:
    - `cp ../zaparoo-core/scripts/install.sh static/`
    - `cp ../zaparoo-core/scripts/install-zaparoo.desktop static/`
-6. Update versions in:
-   - `src/components/DownloadCard/index.tsx` (version, date, blog slug)
-   - `static/install.sh` (DEFAULT_VERSION)
+6. Update release data in:
+   - `src/data/coreRelease.ts` (version, release date, blog slug, GitHub release URL)
+   - `src/data/platforms.ts` (`supportTier`) when a platform enters or leaves beta
+   - `static/install.sh` needs no version edit; it resolves the latest release for its channel
 7. Update `static/llms.txt` manually with new important docs pages or platform changes
 8. Write blog post in `blog/YYYY-MM-DD-core-vX.X.X/index.mdx`
 9. Build and verify: `pnpm build && pnpm serve`
