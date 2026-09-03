@@ -55,6 +55,7 @@ Important notes:
 - [Platforms Overview](https://zaparoo.org/docs/platforms/): All supported platforms and install instructions.
 - [MiSTer FPGA](https://zaparoo.org/docs/platforms/mister/): Install and configure Zaparoo on MiSTer FPGA.
 - [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer, including alternate core families, launcher groups, and unstable nightly launchers.
+- [Zaparoo MiSTer Main](https://zaparoo.org/docs/platforms/mister/main/): Zaparoo's build of MiSTer Main: the Zaparoo page in the OSD, kiosk mode, auto-save, disc autorun, MiSTer_cmd commands, direct game tracking, and an early Core start.
 - [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
 - [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows.
 - [SteamOS (Steam Deck)](https://zaparoo.org/docs/platforms/steamos/): Install Zaparoo on Steam Deck and SteamOS.
@@ -75,7 +76,7 @@ Important notes:
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
-- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, Hub arrangement, color schemes, Get metadata, support log uploads, and library tools.
+- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, Hub arrangement, color schemes, Update metadata, support log uploads, and library tools.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for play history sync, virtual cards and decks, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).
 

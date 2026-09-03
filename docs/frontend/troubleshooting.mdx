@@ -22,7 +22,11 @@ The start screen shows **Can't reach Zaparoo Core. Check your connection.** when
 
 Run **Update media database** from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own. On a brand-new library, Frontend starts this scan itself: the Hub shows **Updating the media database** while it runs and **No games found yet** if nothing was found.
 
-A media database update finds game files and makes them available to Frontend. Getting metadata does not add missing games to the database.
+A media database update finds game files and makes them available to Frontend. Updating metadata does not add missing games to the database.
+
+## A game says its file is missing
+
+The details dialog shows **This game's file is missing.** when Core can no longer find the file it indexed, because it was moved, renamed, or deleted, or sits on a drive that is not mounted. Check the storage, then run **Update media database** so the library matches what is on disk.
 
 ## Games appear without artwork
 
@@ -30,20 +34,20 @@ Work through these checks in order:
 
 1. Confirm the game appears after running **Update media database**. Metadata imports only enrich games already present in Core's database.
 2. Confirm compatible metadata and artwork files exist on the SD card, USB drive, or NAS. Core does not download artwork from the internet.
-3. Run **Get metadata** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
+3. Run **Update metadata** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
 4. Check that each `gamelist.xml` game path resolves to an indexed game and that its image paths resolve to files Core can read.
 
 See [Add Artwork and Metadata](./scraping.mdx) for supported sources and the complete import workflow.
 
-## Get metadata is unavailable
+## Update metadata is unavailable
 
-Getting metadata cannot start while a media database update is running. Wait for the update to finish, then try again.
+Updating metadata cannot start while a media database update is running. Wait for the update to finish, then try again.
 
-Only one import can run at a time. If one is already running, wait for it to finish before starting another. The **Get metadata** and **Update media database** entries in options menus are hidden while an update, optimization, or import is running.
+Only one import can run at a time. If one is already running, wait for it to finish before starting another. The **Update metadata** and **Update media database** entries in options menus are hidden while an update, optimization, or import is running.
 
 ## Updated artwork does not appear
 
-A normal import skips games that already have imported metadata. Turn on **Replace existing** in the **Get metadata** dialog, then run the import again after replacing artwork, correcting paths, or changing metadata that was previously imported.
+A normal import skips games that already have imported metadata. Turn on **Replace existing** in the **Update metadata** dialog, then run the import again after replacing artwork, correcting paths, or changing metadata that was previously imported.
 
 ## Arcade artwork is missing
 
@@ -63,7 +67,7 @@ The built-in updater needs an internet connection. The tile shows **No internet 
 
 ## An action failed
 
-When something goes wrong, Frontend opens a dialog that names the action, such as **Launch failed**, **Favorite update failed**, **Media update failed**, **Get metadata failed**, **Token write failed**, or **Setting not saved**, with **Retry** and **OK**. Retry repeats the action once Core is reachable again. If it keeps failing, check that Core is running and connected, then read the Core log for the reason.
+When something goes wrong, Frontend opens a dialog that names the action, such as **Launch failed**, **Favorite update failed**, **Media update failed**, **Update metadata failed**, **Token write failed**, or **Setting not saved**, with **Retry** and **OK**. Retry repeats the action once Core is reachable again. If it keeps failing, check that Core is running and connected, then read the Core log for the reason.
 
 ## Upload support logs
 

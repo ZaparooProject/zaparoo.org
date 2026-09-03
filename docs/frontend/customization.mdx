@@ -25,6 +25,14 @@ The picker shows a three-color swatch for each preset. In the file, the value is
 
 Presets recolor Frontend's built-in tinted artwork. Your own images and full-color logos are not changed.
 
+**Color intensity**, on the same page, sets how strongly the accent color tints tile edges and selected rows. **Subtle** is the default and matches earlier releases; **Vivid** pushes the tint harder. It is stored next to the scheme:
+
+```toml title="frontend.toml"
+[settings]
+color_scheme = "nord"
+color_intensity = "vivid"
+```
+
 ## Custom folder
 
 On MiSTer, the default customization folder is:

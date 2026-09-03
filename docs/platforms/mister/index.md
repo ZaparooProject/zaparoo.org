@@ -45,11 +45,13 @@ To enable them:
 
 The `recents` setting records recently launched games. `log_file_entry` records the filename selected in MiSTer's file browser, which lets Zaparoo match a MiSTer launch to a specific game. MiSTer.ini warns about the extra SD card writes from `recents`, but it's not a real concern with modern SD cards.
 
+If you run [Zaparoo's MiSTer Main build](./main.md#game-tracking), none of this is needed: Main reports the running game to Core itself.
+
 ### Start Core earlier
 
 Core is started by `/media/fat/linux/user-startup.sh`, which MiSTer runs last during boot, after networking, Bluetooth and Samba. The menu appears before that finishes, so for a short while after power on a scanned token does nothing. Two ways to start Core sooner:
 
-- Install [Zaparoo Frontend](../../frontend/setup.mdx). Frontend starts Core itself as soon as it launches, before the rest of the boot sequence finishes, and there is nothing extra to maintain.
+- Install [Zaparoo Frontend](../../frontend/setup.mdx). Its MiSTer Main build starts Core before the menu even loads, and there is nothing extra to maintain.
 - Add an init script. Over SSH, create `/etc/init.d/S11zaparoo` with the contents below, make it executable with `chmod +x /etc/init.d/S11zaparoo`, and reboot. It runs early in the init sequence instead of at the end. The file lives inside `linux/linux.img`, so a MiSTer Linux update removes it and you need to add it again. Leave the `mrext/zaparoo` line in `user-startup.sh` alone: starting the service twice is harmless, and that line is what keeps Core starting once the script is gone.
 
 ```sh
@@ -107,6 +109,10 @@ See [Launchers](./launchers.md) for the full list of supported systems, file ext
 ## Main forks
 
 Some MiSTer Main forks are available with Zaparoo integration or features that work well with Zaparoo.
+
+### Zaparoo
+
+Zaparoo's own build of MiSTer Main ships with [Zaparoo Frontend](../../frontend/index.mdx) and works without it too. It reports the running game to Core, starts Core before the menu, and adds kiosk mode, auto-save, disc autorun, and commands a card can send. See [Zaparoo MiSTer Main](./main.md).
 
 ### spark2k06
 

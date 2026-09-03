@@ -43,7 +43,7 @@ Install Frontend (consider a [local backup](../features/backups.md) first, since
 
 3. Start or reboot your MiSTer. Frontend will start automatically.
 
-To disable or uninstall Frontend, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
+To switch Frontend off for a while, use the **Frontend** row on the MiSTer OSD's **System Settings > Zaparoo** page, which comes with [Zaparoo MiSTer Main](../platforms/mister/main.md). To uninstall it, remove the `main=zaparoo/MiSTer_Zaparoo` line from `MiSTer.ini` to return to the stock MiSTer menu.
 
 ## Updating
 
@@ -77,7 +77,7 @@ If you use Frontend on a CRT, open **Settings > Display > Analog video**.
 - **Video standard** chooses **NTSC (60 Hz)** or **PAL (50 Hz)** when CRT mode is active. Changing it also restarts Frontend.
 - **Screen position** opens a test pattern. Use the arrows to nudge the picture into place, then press any button to keep the position.
 
-You can also toggle CRT mode from the MiSTer OSD, which is useful when you need to turn CRT mode on before you have access to an HDMI display. Press Menu on a controller or `F12` on a keyboard, as you would in a normal MiSTer core, open **System Settings**, then **Frontend**, which sits directly above **Reboot**. CRT mode, Video standard, and Screen position are on that page.
+You can also toggle CRT mode from the MiSTer OSD, which is useful when you need to turn CRT mode on before you have access to an HDMI display. Press Menu on a controller or `F12` on a keyboard, as you would in a normal MiSTer core, open **System Settings**, then **Zaparoo**, which sits directly above **Reboot**. CRT mode, Video standard, and Screen position are on that page, next to the other [Zaparoo MiSTer Main settings](../platforms/mister/main.md#zaparoo-page-in-the-osd).
 
 CRT mode enables the pixel fonts and tighter layouts designed for 240p output. It also uses a safe area for menus while backgrounds and screensaver art can still fill the full CRT frame.
 
@@ -91,9 +91,13 @@ Open **Settings > Display**, then set **Orientation** to **Rotated CW** or **Rot
 
 Open **Settings > Display**, then **Interface resolution**. **Automatic (Recommended)** picks an integer division of your output up to 720 lines high, so a 1080p display runs at 960 by 540 and a 1440p display at 1280 by 720. The other options are exact divisors of your output up to 1080 lines high; the full 1080p option runs with animations off. Changing it restarts Frontend. A mode your display refuses is reset to Automatic.
 
+### Change the interface layout
+
+Open **Settings > Display**, then **Interface layout**. **Device default** is the layout Frontend was built for, **Standard** is the TV layout, and **Handheld** packs the Hub into fewer columns for small screens.
+
 ## Language, region, and controls
 
 - **Settings > Language** sets the interface language (18 languages plus **Automatic**, applied after a restart), the **Region** used for system and game names (Automatic, Americas, Europe, or Japan), and the **Clock format**.
 - **Settings > Controls** sets the **Button style** shown in on-screen prompts (automatic or styles A to E), lets you swap the controller buttons for confirm and cancel or for Options and View, and turns **Mouse support** on.
-- **Settings > Appearance** holds the [color scheme](./customization.mdx#color-scheme), system logo style, **Reduce motion**, and the **Screensaver** timeout (off, or 1 to 30 minutes).
+- **Settings > Appearance** holds the [color scheme](./customization.mdx#color-scheme) and **Color intensity**, system logo style, **Reduce motion**, and the **Screensaver** timeout (off, or 1 to 30 minutes).
 - **Settings > About** shows the version and licence, a **Documentation** code you can scan to open this guide on your phone, the **Debug logging** switch (restarts Frontend), and **Upload log file** for [support](./troubleshooting.mdx#upload-support-logs).
