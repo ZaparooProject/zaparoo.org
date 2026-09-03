@@ -1,0 +1,216 @@
+---
+sidebar_position: 1
+sidebar_label: Overview
+slug: /
+title: Documentation
+description: "Set up Zaparoo, choose compatible hardware, create tokens, customize launches, and build integrations on supported gaming platforms."
+keywords: [zaparoo, nfc game launcher, rfid game launcher, mister fpga, steamos, batocera, documentation]
+---
+
+import {
+  DocsActionGroup,
+  NavCardGroup,
+} from "@site/src/components/DocsNavGrid";
+import {
+  BookOpen,
+  CircuitBoard,
+  Cloud,
+  Code2,
+  Cpu,
+  CreditCard,
+  Hammer,
+  LifeBuoy,
+  ListChecks,
+  Monitor,
+  Palette,
+  Puzzle,
+  ScanLine,
+  Search,
+  ShoppingCart,
+  Smartphone,
+  Tv,
+  Users,
+  Wand2,
+  Zap,
+} from "lucide-react";
+
+# Zaparoo Documentation
+
+Zaparoo launches games and media when you scan a [token](./tokens/index.md) (an NFC card, a toy, a QR code, a disc) on a [reader](./readers/index.md) connected to a device running [Zaparoo Core](./core/index.md). The free [Zaparoo App](./app/index.md) writes tokens and manages settings from your phone. Terms you don't recognise are in the [glossary](./glossary.md).
+
+New here? Use the setup guide. Know what you want to do? Try common tasks. Otherwise, browse the sections below.
+
+<DocsActionGroup
+  actions={[
+    {
+      icon: Zap,
+      title: "Setup guide",
+      link: "/start/",
+      primary: true,
+      umamiEvent: "docs-home-setup-guide",
+    },
+    {
+      icon: ListChecks,
+      title: "Common tasks",
+      link: "./common-tasks/",
+      umamiEvent: "docs-home-common-tasks",
+    },
+    {
+      icon: Search,
+      title: "Search documentation",
+      link: "/search",
+      umamiEvent: "docs-home-search",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Hardware and setup"
+  cards={[
+    {
+      icon: Monitor,
+      title: "Platforms",
+      description: "Install Zaparoo on MiSTer, Windows, SteamOS, Batocera, Linux, and more.",
+      link: "./platforms/",
+      umamiEvent: "docs-home-card-platforms",
+    },
+    {
+      icon: ScanLine,
+      title: "Readers",
+      description: "Choose and configure NFC, barcode, cartridge, optical, and virtual readers.",
+      link: "./readers/",
+      umamiEvent: "docs-home-card-readers",
+    },
+    {
+      icon: CreditCard,
+      title: "Tokens",
+      description: "Create NFC cards, QR codes, barcodes, toys, and removable-drive tokens.",
+      link: "./tokens/",
+      umamiEvent: "docs-home-card-tokens",
+    },
+    {
+      icon: CircuitBoard,
+      title: "ZapESP32",
+      description: "Build and configure a wireless DIY NFC reader with an ESP32.",
+      link: "./zapesp32/",
+      umamiEvent: "docs-home-card-zapesp32",
+    },
+    {
+      icon: ShoppingCart,
+      title: "Zaparoo Shop",
+      description: "Tested readers, cards, and starter kits. Purchases fund development.",
+      link: "https://shop.zaparoo.com",
+      umamiEvent: "docs-home-card-shop",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Apps and services"
+  cards={[
+    {
+      icon: Smartphone,
+      title: "Zaparoo App",
+      description: "Connect to Core, scan tokens, write NFC tags, and manage your device from iOS or Android.",
+      link: "./app/",
+      umamiEvent: "docs-home-card-app",
+    },
+    {
+      icon: Tv,
+      title: "Zaparoo Frontend",
+      description: "Browse and launch your MiSTer media library from a TV-friendly interface.",
+      link: "./frontend/",
+      umamiEvent: "docs-home-card-frontend",
+    },
+    {
+      icon: Cloud,
+      title: "Zaparoo Online",
+      description: "Free play history sync, virtual cards and decks, and the User API. Warp adds paid cloud backup.",
+      link: "./online/",
+      umamiEvent: "docs-home-card-online",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Customize and automate"
+  cards={[
+    {
+      icon: Cpu,
+      title: "Zaparoo Core",
+      description: "Configure the service that reads tokens, launches media, and powers Zaparoo clients.",
+      link: "./core/",
+      umamiEvent: "docs-home-card-core",
+    },
+    {
+      icon: Puzzle,
+      title: "Features",
+      description: "Set up mappings, profiles, playlists, backups, play controls, and custom launchers.",
+      link: "./features/",
+      umamiEvent: "docs-home-card-features",
+    },
+    {
+      icon: Code2,
+      title: "ZapScript",
+      description: "Control what happens when a token is scanned, from launches to custom actions.",
+      link: "./zapscript/",
+      umamiEvent: "docs-home-card-zapscript",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Design and community"
+  cards={[
+    {
+      icon: Wand2,
+      title: "Zaparoo Designer",
+      description: "Create custom card label artwork in your browser.",
+      link: "./designer/",
+      umamiEvent: "docs-home-card-designer",
+    },
+    {
+      icon: Palette,
+      title: "Labels",
+      description: "Choose templates, print artwork, and apply labels to your cards.",
+      link: "./labels/",
+      umamiEvent: "docs-home-card-labels",
+    },
+    {
+      icon: Hammer,
+      title: "Community Projects",
+      description: "Browse DIY readers, 3D prints, and community-built tools.",
+      link: "./community-projects/",
+      umamiEvent: "docs-home-card-projects",
+    },
+    {
+      icon: Users,
+      title: "Community",
+      description: "Discord, Reddit, YouTube, vendors, contributors, and press coverage.",
+      link: "./community-hub/",
+      umamiEvent: "docs-home-card-community",
+    },
+  ]}
+/>
+
+<NavCardGroup
+  title="Help"
+  cards={[
+    {
+      icon: LifeBuoy,
+      title: "Something not working?",
+      description: "Where to ask, how to collect logs, and what to include in a report.",
+      link: "/support/",
+      umamiEvent: "docs-home-card-help",
+    },
+    {
+      icon: BookOpen,
+      title: "Glossary",
+      description: "Token, reader, Core, mapping, UID, NDEF, and the other terms used in these docs.",
+      link: "./glossary/",
+      umamiEvent: "docs-home-card-glossary",
+    },
+  ]}
+/>
+
+<SponsorCallout variant="sponsor" />

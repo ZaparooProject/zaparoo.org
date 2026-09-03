@@ -1,0 +1,125 @@
+---
+sidebar_position: 7
+description: "Install Zaparoo on Bazzite: launch Steam, Lutris, Heroic, emulator, EmuDeck, and RetroDECK games with NFC cards on Bazzite-powered gaming PCs and handhelds."
+keywords: [zaparoo bazzite, bazzite nfc, zaparoo lutris, zaparoo heroic, bazzite game launcher]
+---
+
+# Bazzite
+
+:::warning[Beta]
+Bazzite support is currently in beta. Some features may not work as expected.
+:::
+
+Zaparoo Core on [Bazzite](https://bazzite.gg/) supports launching games from Steam, Lutris, Heroic, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, and Moonlight, plus shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
+
+## File paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `/tmp/<session_id>-zaparoo/core.log`   |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+
+Where `~` is the home directory of the current user.
+
+## Install
+
+Open a terminal and run:
+
+```bash
+curl -fsSL https://zaparoo.org/install.sh | bash
+```
+
+This installs all necessary components and sets up the service to run on startup. Since Bazzite has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`). After installation, Core checks for new releases and can update itself in place; see [Core updates](../core/updates.md).
+
+## Uninstall
+
+Remove the installed components, leaving the application binary until last:
+
+```bash
+~/.local/bin/zaparoo -uninstall service
+~/.local/bin/zaparoo -uninstall desktop
+sudo ~/.local/bin/zaparoo -uninstall hardware
+~/.local/bin/zaparoo -uninstall application
+```
+
+## Readers
+
+<ReaderSupport platformId="bazzite" />
+
+## Launchers
+
+| Launcher      | Systems | Notes                                  |
+| ------------- | ------- | -------------------------------------- |
+| Steam         | PC      | Native and Flatpak Steam installations |
+| Lutris        | PC      | Native or Flatpak library data         |
+| Heroic        | PC      | Epic Games and GOG titles              |
+| Standalone emulators | Multiple | Installed native, AppImage, or Flatpak emulators |
+| EmuDeck       | Multiple | Systems from an EmuDeck installation  |
+| RetroDECK     | Multiple | Systems from a RetroDECK installation |
+| Bottles       | PC      | Programs from Bottles                  |
+| Faugus        | PC      | Games from Faugus Launcher             |
+| Moonlight     | PC      | Streamed apps through Moonlight        |
+| Kodi          | Media   | Videos, movies, TV shows, music        |
+| Web Browser   | N/A     | Opens URLs in default browser          |
+| Shell Scripts | Any     | Custom `.sh` file execution            |
+
+### Steam
+
+Launches games from your Steam library. Both native (pre-installed) and Flatpak Steam installations are automatically detected. Games are launched using `xdg-open`, which works in both desktop and gaming modes.
+
+Games are indexed from:
+- `~/.steam/steam/steamapps/`
+- `~/.local/share/Steam/`
+
+To manually launch a Steam game, write `steam://<app_id>` to a token.
+
+### Lutris and Heroic
+
+Core indexes installed PC games from Lutris and Heroic during a media database update. It checks native and Flatpak library locations. Lutris comes with Bazzite; Heroic is available from Bazaar.
+
+Run each launcher at least once and install its games before updating the media database. Core reads:
+
+- Lutris installed games from `pga.db` and launches them with `lutris://` entries.
+- Heroic installed Epic Games and GOG titles from its library files and launches them with `heroic://` entries.
+
+### Emulators
+
+Core registers launchers for emulators it finds installed, whether native, AppImage, or Flatpak, and adds EmuDeck and RetroDECK systems when either is installed. Detection rules, supported systems, file types, and pointer files are listed under [standalone emulators](./linux/launchers.md#standalone-emulators), [EmuDeck](./linux/launchers.md#emudeck), and [RetroDECK](./linux/launchers.md#retrodeck) on the Linux launchers page. Use [`launchers.preference`](../core/config.md#preference) to choose between the `Native`, `EmuDeck`, and `RetroDECK` groups.
+
+### Bottles, Faugus, and Moonlight
+
+Programs from [Bottles](./linux/launchers.md#bottles), games from [Faugus Launcher](./linux/launchers.md#faugus), and streamed apps through [Moonlight](./linux/launchers.md#moonlight) are indexed and launched the same way as on desktop Linux.
+
+### Gaming Mode
+
+Core manages gamescope focus for non-Steam launchers in Gaming Mode, including Kodi, scripts, and custom launchers. It restores the previous focus state after the launched window closes. Return to Menu stops the active launcher; Steam's Game Mode shell remains responsible for displaying its menu.
+
+### Kodi
+
+Launch media content from a [Kodi](https://kodi.tv/) instance running on your network.
+
+Supported content:
+- Video and audio files
+- Movies and TV episodes
+- Music (songs, albums, artists)
+
+```toml title="config.toml"
+[[launchers.default]]
+launcher = "Kodi"
+server_url = "http://kodi:8080"
+```
+
+Replace `kodi:8080` with your Kodi instance's address and web interface port.
+
+### Shell scripts
+
+Execute arbitrary shell scripts. Requires explicit allow list configuration for security.
+
+```toml title="config.toml"
+[launchers]
+allow_file = [
+    "^/home/.*/scripts/.*\\.sh$"
+]
+```
