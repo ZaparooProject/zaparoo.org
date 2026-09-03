@@ -28,6 +28,8 @@ Both actions are under **Settings > Library > Maintenance**.
 | **Update metadata** | Imports artwork and details from files you already have, for entries that have not been imported yet. | After adding a pack, `gamelist.xml`, or compatible media folders. |
 | **Update metadata** with **Replace existing** | Refreshes previously imported metadata and cleans up artwork references that no longer exist. | After replacing artwork, correcting paths, or changing imported metadata. |
 
+![Library settings with Update media database and Update metadata](/img/docs/frontend/library-settings.webp)
+
 Updating metadata cannot start while a media database update is running, and only one import can run at a time. Core pauses the import while media is running and resumes when playback stops.
 
 ## Choose an artwork source
@@ -86,6 +88,8 @@ After adding compatible files:
 1. Open **Settings > Library > Maintenance**.
 2. Run **Update media database** if you added games or have not indexed the library yet.
 3. Select **Update metadata**. Choose the **Source** (Frontend remembers it for next time), pick the **Systems** to cover (or all of them), turn on **Replace existing** if you are refreshing artwork you imported before, then select **Start import**.
+
+![Update metadata dialog with Source, Systems, Replace existing, and Start import](/img/docs/frontend/update-metadata-dialog.webp)
 
 Frontend shows import progress by system when Core provides it. When the import finishes, artwork appears in the game browser.
 

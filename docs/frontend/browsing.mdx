@@ -20,6 +20,8 @@ The **Other** category holds [launchable items](../features/launchers.md#launcha
 
 The Hub is a grid you arrange yourself. Tiles can be categories, the built-in **Resume**, **Favorites**, **Recently played**, **Update**, and **Settings** actions, systems, folders, or games. To add a tile, choose **Add to Hub** from the options menu of any system, folder, or game, or use **Add item...** in the Hub's **View** menu; a folder that holds a single game is added as that game. A tile's options menu offers **Move**, plus **Hide** for categories and actions or **Remove** for tiles you added, and **Reset layout** in the View menu restores the default arrangement. The layout is stored under `[[hub.items]]` in `frontend.toml`; see [configuration file](./customization.mdx#configuration-file).
 
+![Options menu on a Hub tile you added, with Move and Remove](/img/docs/frontend/hub-tile-remove.webp)
+
 ## Use the options menu
 
 Open the options menu to manage the item you are viewing. Depending on whether you are on a category, a system, or a game, the menu can:
@@ -34,11 +36,15 @@ Open the options menu to manage the item you are viewing. Depending on whether y
 - **Write to NFC token** on a connected reader, or **Write with App**, which shows a code to scan with the Zaparoo App.
 - **Discover alt. versions** for Arcade games.
 
+![Options menu on a game, with Details, Add to favorites, Change launcher, Write with App, Add to Hub, and Update metadata](/img/docs/frontend/game-options-menu.webp)
+
 See [Add Artwork and Metadata](./scraping.mdx#understand-the-library-actions) for the difference between updating the media database and updating metadata.
 
 ## Favorites
 
 Favorites live on the Hub and in **Show > Favorites** while browsing. In the favorites view, the **View** menu can **Sort** by default order or A-Z, **Group by** system, or pick a **Random favorite**. Favorite systems have their own screen as well.
+
+![Favorites grouped by system](/img/docs/frontend/favorites-by-system.webp)
 
 ## Choose alternate MiSTer launchers
 

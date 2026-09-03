@@ -809,10 +809,6 @@ export default function Showcase(props: {
     const isVideo = videoPosterUrls.has(src);
     const caption = parseCaption(alt);
 
-    if (!props.showCaptions && !isVideo) {
-      return <img alt={alt} src={src} {...restProps} />;
-    }
-
     return (
       <div className={styles.mediaCard}>
         <img alt={alt} src={src} {...restProps} />

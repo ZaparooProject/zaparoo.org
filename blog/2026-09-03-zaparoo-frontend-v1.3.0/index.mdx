@@ -15,7 +15,7 @@ import gamesGridImage from "./games_grid.png";
 
 [Zaparoo Frontend](/docs/frontend/) v1.3.0 and [Zaparoo Core](/docs/core/) v2.17.1 are now available. Update All installs both together.
 
-Frontend is a lot faster and has a new look, plus a Hub you can arrange yourself, a reorganized settings menu, and a MiSTer Main build that adds kiosk mode and CRT settings to the OSD. Core v2.17.1 is a patch release that fixes problems found after v2.17.0, most of all RetroDECK and EmuDeck games that would not launch on Linux and SteamOS, and arcade games on MiSTer that registered as closed the moment they started.
+Frontend is a lot faster and has a new look, plus a Hub you can arrange yourself, a reorganized settings menu, and a MiSTer Main build that adds kiosk mode and CRT settings to the OSD. Core v2.17.1 is a patch release for problems found after v2.17.0. The two that mattered most: RetroDECK and EmuDeck games refusing to launch on Linux and SteamOS, and MiSTer arcade games counted as closed the moment they started.
 
 Thank you to [Giancarlo Erra](https://github.com/giancarloerra) for the paging, random picks, favorites controls, and performance work, [Peter Brittain](https://github.com/KindarConrath) for grouping favorites by system, [theypsilon](https://github.com/theypsilon) for the updater improvements, and [Wilfried Jeanniard](https://github.com/willoucom) for the French translation.
 
@@ -136,9 +136,11 @@ The layout is saved under `[[hub.items]]` in `frontend.toml`; see [configuration
 
 - Systems stored on more than one drive show the root beside duplicate names, and folders show an item count.
 - The letter jump works at a system's root, and Left and Right page a whole screen in list layout.
-- The top status strip shows the page in grid layouts and your place in the list in list layout.
+- The top status strip shows the page number in grid layout and your position in list layout.
 - The game details dialog says **This game's file is missing.** when Core can no longer find the file, and its metadata table is translated, with short labels on small screens.
 - Box art that failed to load during a NAS mount race recovers once the system finishes indexing.
+
+![Game details dialog with box art and a metadata table](./game_details.png)
 
 ### Favorites and recents
 
@@ -151,7 +153,7 @@ The layout is saved under `[[hub.items]]` in `frontend.toml`; see [configuration
 
 ## Launching
 
-![Write with App dialog showing a QR code](./write_with_app.png)
+![Game options menu with Details first, then Add to favorites, Change launcher, Write with App, Add to Hub, and Update metadata](./game_options_menu.png)
 
 - **Change launcher** works on a single game as well as a system, and shows the current choice inline.
 - **Random game** picks from the current system through Core's `launch.random`.
@@ -160,6 +162,8 @@ The layout is saved under `[[hub.items]]` in `frontend.toml`; see [configuration
 - **Launch core** is now **Launch system**.
 - Alternate arcade versions are always discovered for Arcade games; the setting is gone.
 - A Hub shortcut to a launch-only system launches it instead of opening an empty list.
+
+![Write with App dialog showing a QR code](./write_with_app.png)
 
 ## Settings and library
 
@@ -233,7 +237,7 @@ Core v2.17.1 fixes problems found after v2.17.0. Install it the usual way for yo
 
 - RetroDECK and EmuDeck games with an uppercase letter anywhere in their path could not launch on Linux, Bazzite, ChimeraOS, and SteamOS. Launcher checks were handed a lowercased path, which never matched on a case-sensitive filesystem. See [RetroDECK](/docs/platforms/linux/launchers/#retrodeck) and [EmuDeck](/docs/platforms/linux/launchers/#emudeck).
 - The same bug stopped [AmigaVision](/docs/platforms/mister/launchers/#amigavision-amiga) launching on MiSTer when the Amiga folder lives on an ext4 drive rather than the SD card, and turned its listing files into launch targets that could only fail.
-- `launch.title` and `@System/Title` could boot the first `.bin` track of a disc folder instead of its `.cue` or playlist. Wrong entries already cached are cleared on upgrade.
+- [`launch.title`](/docs/zapscript/launch/#launchtitle) and `@System/Title` could boot the first `.bin` track of a disc folder instead of its `.cue` or playlist. Wrong entries already cached are cleared on upgrade.
 - [`**control`](/docs/zapscript/utilities/#control) failed against native audio with `launcher not found: native-audio`, `**control:stop` left the track reported as playing, and after `launchers.refresh` or a MiSTer RBF rescan even `media.control` could not stop it.
 
 ### MiSTer
@@ -246,11 +250,11 @@ Core v2.17.1 fixes problems found after v2.17.0. Install it the usual way for yo
 ### Library, API, and readers
 
 - Browsing a folder with around a thousand subfolders took 30 seconds and then showed them all as plain folders. The same page now resolves in a couple of seconds, and disc folders with more than 64 files are recognized as games too.
-- A page of token history could take over a minute to load on a busy device. ZapScript is now capped at 8192 bytes, on every reader, the `run` method, Zap Links, and mapping overrides, so parsing stays bounded. An NTAG216 holds 888 bytes.
-- Scrape progress stopped updating during a scrape when encryption was optional, because notifications sent before a client's first frame went out unencrypted and desynced it.
+- A page of token history could take over a minute to load. ZapScript is now capped at 8192 bytes on every reader, the `run` method, Zap Links, and mapping overrides, so parsing stays bounded. For comparison, an NTAG216 holds 888 bytes.
+- With encryption set to optional, scrape progress could stop updating mid-scrape. Notifications sent before a client's first message went out unencrypted and knocked that client out of sync.
 - Zaparoo Companion gamelists could attach artwork to the wrong game when one file was listed under two titles, such as Crash Bandicoot 3 getting Crash Bandicoot's box art. New scrapes match correctly; run Update metadata with Replace existing to fix existing entries.
 - Methods that return nothing now answer with `null` instead of `{}`, which is what the [API reference](/docs/core/api/) always said. `media.control`, `settings.backup.delete`, `mappings.new`, `clients.delete`, and `clients.pair.cancel` are the five whose documented result changes, and `zaparoo -api` prints `null` for them.
-- USB reader topology paths came back empty on every Linux host, so USB reader IDs change once after this update. They are runtime identifiers and nothing in your config refers to them.
+- USB reader IDs were built from an empty port path on Linux, so they change once after this update. They are runtime identifiers and nothing in your config refers to them.
 
 ---
 
