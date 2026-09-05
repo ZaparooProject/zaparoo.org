@@ -1,0 +1,76 @@
+---
+description: "Troubleshoot Zaparoo Frontend setup, missing games, unavailable metadata imports, and missing artwork on MiSTer FPGA."
+keywords: [zaparoo frontend troubleshooting, missing frontend games, missing mister artwork, get metadata unavailable, gamelist.xml not working]
+sidebar_position: 5
+---
+
+# Troubleshoot Frontend
+
+Start with the symptom you see. Frontend displays the library managed by [Zaparoo Core](../core/index.md), so game discovery and artwork problems can involve either the Frontend screen or Core's media database.
+
+## Frontend warns that Core needs updating
+
+Frontend is built for Zaparoo Core v2.17.0 or newer. Older Core builds still connect, but Frontend shows an **Update Zaparoo Core** warning and some features may not work. Some MiSTer images include an old Core build.
+
+Update Core through [Update All](../platforms/mister/index.md#install), then reboot MiSTer or restart Frontend. See [Install and Set Up Frontend](./setup.mdx) for the supported installation methods.
+
+## Frontend cannot reach Core
+
+The start screen shows **Can't reach Zaparoo Core. Check your connection.** when Core is not running. Make sure Core is installed and enabled as a startup service on the MiSTer; see [MiSTer troubleshooting](../platforms/mister/index.md#troubleshooting).
+
+## Games do not appear
+
+Run **Update media database** from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own. On a brand-new library, Frontend starts this scan itself: the Hub shows **Updating the media database** while it runs and **No games found yet** if nothing was found.
+
+A media database update finds game files and makes them available to Frontend. Updating metadata does not add missing games to the database.
+
+## A game says its file is missing
+
+The details dialog shows **This game's file is missing.** when Core can no longer find the file it indexed, because it was moved, renamed, or deleted, or sits on a drive that is not mounted. Check the storage, then run **Update media database** so the library matches what is on disk.
+
+## Games appear without artwork
+
+Work through these checks in order:
+
+1. Confirm the game appears after running **Update media database**. Metadata imports only enrich games already present in Core's database.
+2. Confirm compatible metadata and artwork files exist on the SD card, USB drive, or NAS. Core does not download artwork from the internet.
+3. Run **Update metadata** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
+4. Check that each `gamelist.xml` game path resolves to an indexed game and that its image paths resolve to files Core can read.
+
+See [Add Artwork and Metadata](./scraping.mdx) for supported sources and the complete import workflow.
+
+## Update metadata is unavailable
+
+Updating metadata cannot start while a media database update is running. Wait for the update to finish, then try again.
+
+Only one import can run at a time. If one is already running, wait for it to finish before starting another. The **Update metadata** and **Update media database** entries in options menus are hidden while an update, optimization, or import is running.
+
+## Updated artwork does not appear
+
+A normal import skips games that already have imported metadata. Turn on **Replace existing** in the **Update metadata** dialog, then run the import again after replacing artwork, correcting paths, or changing metadata that was previously imported.
+
+## Arcade artwork is missing
+
+MiSTer Arcade games use `.mra` files under `/media/fat/_Arcade`. Use an artwork pack that explicitly includes `_Arcade` content or use ZapScraper's Arcade support. A console artwork pack does not necessarily include Arcade games. Update All's **Game Artwork DBs** include an Arcade database. Import it with the `mister-docs` source.
+
+See the [artwork source guide](./scraping.mdx#choose-an-artwork-source) for the available packs and tools.
+
+## Artwork on USB or a NAS is not found
+
+Metadata can sit beside games on an SD card, USB drive, or NAS share. Check that `gamelist.xml` game and image paths resolve to locations Core can read.
+
+To keep metadata separate from your games, configure a [`custom_path`](../features/scraping.md#custom-gamelist-bundles) and create one folder per exact system ID. Custom bundles enrich games already in the media database, so update the database before importing.
+
+## The Update tile is greyed out
+
+The built-in updater needs an internet connection. The tile shows **No internet connection** until the MiSTer is online.
+
+## An action failed
+
+When something goes wrong, Frontend opens a dialog that names the action, such as **Launch failed**, **Favorite update failed**, **Media update failed**, **Update metadata failed**, **Token write failed**, or **Setting not saved**, with **Retry** and **OK**. Retry repeats the action once Core is reachable again. If it keeps failing, check that Core is running and connected, then read the Core log for the reason.
+
+## Upload support logs
+
+Open **Settings > About**, then **Upload log file**. Frontend uploads a support bundle to `logs.zaparoo.org` and shows a link, and a code you can scan, to share in Discord or a GitHub issue. Turn on **Debug logging** on the same page first if you have been asked for more detail; it restarts Frontend.
+
+The upload includes a support summary, the Frontend log tail, and the Core log tail when Core is reachable. Include what you were trying to do, the steps that reproduce the problem, and the uploaded support link when asking for help.
