@@ -46,12 +46,12 @@ install_dir = "D:\\Steam"  # Optional custom Steam install directory
 The Zaparoo LaunchBox integration works in both the desktop LaunchBox interface and Big Box. You may also see Big Box written as `BigBox`. Both interfaces use the same plugin, indexed game library, and `launchbox://` token format.
 
 :::tip Required Plugin
-LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration v1.2.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.2.0.zip) and follow the installation steps below.
+LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration v1.3.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.3.0.zip) and follow the installation steps below.
 :::
 
 ### Plugin Installation
 
-1. Download the [Zaparoo LaunchBox Integration v1.2.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.2.0.zip) file
+1. Download the [Zaparoo LaunchBox Integration v1.3.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.3.0.zip) file
 2. Extract the zip file
 3. Copy the `Zaparoo LaunchBox Integration` folder to the `Plugins` directory under your LaunchBox installation
 4. Restart LaunchBox

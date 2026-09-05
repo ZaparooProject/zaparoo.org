@@ -44,7 +44,7 @@ By default a scrape skips media that has already been scraped, so repeat runs ar
 
 ## Scrapers
 
-Core currently includes three scrapers. The first two are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. The third reads the artwork and manual packs that MiSTer's Update All installs.
+Core currently includes three scrapers. The first two are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. The third reads the artwork and manual databases Update All installs on a MiSTer.
 
 ### gamelist.xml
 
@@ -119,16 +119,16 @@ A force re-scrape also removes image references that follow this naming conventi
 
 ### mister-docs
 
-The `mister-docs` scraper is MiSTer only. It imports artwork, game information, English synopses, and manuals from the packs that [Update All](https://github.com/theypsilon/Update_All_MiSTer) installs under `docs/<system>/` on any MiSTer storage root, including the SD card, USB drives, network storage, and custom index roots. It never downloads anything itself.
+The `mister-docs` scraper is MiSTer only. It imports artwork, game information, synopses, and manuals from the **Game Artwork DBs** and **Game Manuals (EN) DBs** that [Update All](https://github.com/theypsilon/Update_All_MiSTer) installs under `docs/<system>/` on any MiSTer storage root, including the SD card, USB drives, network storage, and custom index roots. The artwork databases follow the [MiSTer Artwork Pack](https://github.com/chipster6502/MiSTer_artwork_pack) format. It never downloads anything itself.
 
 In each system's `docs` folder it reads:
 
 - `Artwork/index.tsv` and the images it lists, which become box art.
-- `gameinfo.tsv`, if present, which becomes `year`, `genre`, `developer`, and `players` [tags](./tags.md).
-- `synopsis_en.tsv`, if present, which becomes the game's description.
+- `gameinfo.tsv`, if present, which becomes `year`, `genre`, `developer`, and `players` [tags](./tags.md). Games it lists without an image still get their metadata.
+- `synopsis_<lang>.tsv` files, if present, which become the game's description. Core uses the first language in [`media.default_langs`](../core/config.md#default_langs) that the pack has, then English, then whatever is there.
 - PDF files in a child folder whose name contains `manual`, which become the game's manual.
 
-Games are matched by their ROM or MRA file name first, then by a unique title. Update All's **Game Manuals (EN)** database provides the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.
+Games are matched by their catalogued ROM name first, or for arcade by the set name inside each `.mra` file, then by a unique title. Update All's **Game Manuals (EN) DBs** provide the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.
 
 ## What scraping produces
 

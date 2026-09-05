@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 slug: acr122u
-description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, Windows PC/SC, Linux libnfc, and troubleshooting.
+description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, Windows PC/SC, Linux libnfc auto-detect, and troubleshooting.
 keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
 ---
 
@@ -31,15 +31,20 @@ Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. [NTAG](../../to
 
 ## Configure the reader
 
-Zaparoo Core auto-detects supported ACR122U readers by default.
+On Linux-based platforms, Core uses the `libnfcacr122` driver. It is enabled, but it does not search for the reader until you turn on auto-detect for it in [`config.toml`](../../core/config.md#readers-drivers-auto-detect):
 
-On Linux-based platforms, Core uses the `libnfcacr122` driver. This does not need a PC/SC daemon, but some clone variants are incompatible. With the libnfc driver, it is normal for the reader LED and beeper not to react when scanning a card.
+```toml
+[readers.drivers.libnfcacr122]
+auto_detect = true
+```
 
-On Windows, Core uses the `acr122pcsc` driver through PC/SC. This can scan tags, but writing tags through Zaparoo is not supported with this driver.
+The driver does not need a PC/SC daemon, but some clone variants are incompatible, and it is normal for the reader LED and beeper not to react when scanning a card.
+
+On Windows, Core uses the `acr122pcsc` driver through PC/SC and auto-detects the reader. This can scan tags, but writing tags through Zaparoo is not supported with this driver.
 
 ### Manual configuration
 
-Auto-detection should work on supported platforms, but if auto-detection fails or you need to specify a particular reader, you can manually configure it.
+If auto-detection fails or you need to specify a particular reader, you can manually configure it.
 
 On Windows, the `path` must match the PC/SC reader name:
 
@@ -53,7 +58,7 @@ To find the PC/SC reader name, check [Device Manager](https://www.lifewire.com/d
 
 ## Linux-based platforms
 
-An ACR122U on Linux-based platforms should be detected automatically unless `auto_detect` is disabled in [`config.toml`](../../core/config.md). If the reader is detected but the LED and beeper do not react, that is expected with the libnfc driver.
+An ACR122U on Linux-based platforms is detected once auto-detect is turned on for the `libnfcacr122` driver, as shown above. If the reader is detected but the LED and beeper do not react, that is expected with the libnfc driver.
 
 If the reader lights up or beeps but Core does not detect scans, it may be a clone that only works through PC/SC.
 

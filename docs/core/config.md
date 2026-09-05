@@ -706,9 +706,9 @@ scan_mode = 'hold'
 
 | Key         | Type    | Default |
 | ----------- | ------- | ------- |
-| auto_detect | boolean | true    |
+| auto_detect | boolean | _varies by driver_ |
 
-`auto_detect` controls whether this specific driver should participate in automatic reader detection, overriding the global `auto_detect` setting for this driver only.
+`auto_detect` controls whether this specific driver should participate in automatic reader detection, overriding the global `auto_detect` setting for this driver only. Some drivers, such as `libnfcacr122`, are enabled but not auto-detected until this is set to `true`.
 
 ##### scan_mode {#readers-drivers-scan-mode}
 
@@ -1346,7 +1346,7 @@ When enabled, Zaparoo advertises itself on your local network using mDNS/DNS-SD.
 | ------- | ------- | ------- |
 | enabled | boolean | true    |
 
-`enabled` enables or disables mDNS network discovery. When enabled, Zaparoo advertises a `_zaparoo._tcp` service with TXT records containing the device ID, version, and platform.
+`enabled` enables or disables mDNS network discovery. When enabled, Zaparoo advertises a `_zaparoo._tcp` service on each active network interface.
 
 ##### instance_name
 

@@ -17,7 +17,7 @@ When Zaparoo Core starts, it:
 3. Establishes connections to detected or manually configured readers
 4. Begins listening for token scans
 
-PN532 USB and ACR122U readers support auto-detection on their listed platforms. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. RS-232 barcode and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
+PN532 USB readers support auto-detection on their listed platforms, and the ACR122U does on Windows. On Linux-based platforms the ACR122U driver is enabled but only searches for the reader once you turn on auto-detect for it. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. RS-232 barcode and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
 
 ## Available drivers
 
@@ -94,7 +94,12 @@ By default, Zaparoo Core automatically detects readers whose drivers support aut
 auto_detect = true
 ```
 
-Some drivers are enabled but not auto-detected by default. For those readers, add a manual connection or enable auto-detect for the specific driver.
+Some drivers are enabled but not auto-detected by default. For those readers, add a manual connection or enable auto-detect for the specific driver. For example, to have Core search for an ACR122U on a Linux-based platform:
+
+```toml
+[readers.drivers.libnfcacr122]
+auto_detect = true
+```
 
 ### Manual reader configuration
 

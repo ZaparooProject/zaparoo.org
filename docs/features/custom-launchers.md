@@ -23,7 +23,7 @@ When Core cannot track the launched process, features that depend on active medi
 
 To start, open the `launchers` directory in the Core data folder. Check the page for your [platform](../platforms/index.mdx) if you're not sure where that folder is.
 
-Create a new file ending in `.toml`. This example uses `OpenEmuGB.toml`. The filename is not important, but launcher IDs are, so use a unique ID unless you have a specific reason not to.
+Create a new file ending in `.toml`. This example uses `OpenEmuGB.toml`. The filename is not important, but launcher IDs are, so use a unique ID.
 
 Open the file and add the launcher definition:
 
@@ -38,7 +38,7 @@ execute = "osascript -e 'tell application \"OpenEmu\" to open POSIX file \"[[med
 
 The first line, `[[launchers.custom]]`, tells Core this is a custom launcher definition. It's required. Make sure to include the double square brackets.
 
-The `id` line defines the internal ID of the launcher. Generally this won't matter, but you can reference it with the `?launcher=<launcher id>` advanced argument in [ZapScript](../zapscript/index.md).
+The `id` line defines the internal ID of the launcher. It must be unique: an entry that reuses a built-in launcher's ID, or another custom launcher's, is skipped with an error in the log. You can reference it with the `?launcher=<launcher id>` advanced argument in [ZapScript](../zapscript/index.md).
 
 The `system` line specifies which system this launcher will belong to.
 
@@ -75,6 +75,20 @@ You can use the following variables in your execute command:
 Custom launcher commands also receive a `ZAPAROO_ENVIRONMENT` environment variable containing a JSON object with the same data as the expression variables. This allows shell scripts to access the full context.
 
 Save the file, restart Zaparoo Core, and run a media database update. Core should detect matching media for the launcher and make it launchable from scans.
+
+## Add media to an existing system
+
+A custom launcher without an `execute` line adds folders to a system your platform already launches. Games found there are indexed under that system and launch through the platform's own launcher for it, so use this when your ROMs live somewhere the platform does not scan.
+
+```toml
+[[launchers.custom]]
+id = "SNESOnNAS"
+system = "SNES"
+media_dirs = ["/mnt/nas/roms/snes"]
+file_exts = [".sfc", ".smc"]
+```
+
+Both `system` and `media_dirs` are required for an entry like this. Clients that browse folders, such as [Zaparoo Frontend](../frontend/index.mdx), can open these folders even when they sit outside the normal scan roots.
 
 ## Advanced options
 

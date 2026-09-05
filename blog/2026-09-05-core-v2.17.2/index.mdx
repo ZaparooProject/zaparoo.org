@@ -1,0 +1,92 @@
+---
+slug: core-v2.17.2
+title: "Zaparoo Core v2.17.2 released"
+description: "Zaparoo Core v2.17.2 fixes reader auto-detect on MiSTer and Linux, stops Steam and LaunchBox games properly on Windows, keeps Core discoverable when the network changes, speeds up browsing big MiSTer folders, and matches Update All's artwork databases including arcade."
+tags: [software, core]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo Core v2.17.2 is now available. This patch release fixes problems found after v2.17.1, mostly around reader auto-detect on MiSTer and Linux, stopping Steam and LaunchBox games on Windows, and keeping Core discoverable when your network changes.
+
+{/* truncate */}
+
+## Download
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.17.2"
+    link="https://zaparoo.org/downloads#zaparoo-core"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-github" />}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-core/"
+    variant="primary"
+  />
+</div>
+
+Core will let you know about this release in the Inbox. On MiSTer, Update All installs it, and on Batocera the package manager does. Everywhere else it installs itself if you have turned on [automatic installs](/docs/core/updates/#automatic-installs), or you can download it above.
+
+## Before you update
+
+- **ACR122U on MiSTer and other Linux-based platforms: turn auto-detect back on.** A crash in a third-party library, hit when a USB device was unplugged while Core scanned for this reader, is fixed, so enabling it is safe. Auto-detect for the libnfc ACR122U driver now stays off by default so that if anything like it happens again, far fewer people are affected. Add this to `config.toml` and the reader connects as before:
+
+  ```toml
+  [readers.drivers.libnfcacr122]
+  auto_detect = true
+  ```
+
+  Windows uses a different driver and is not affected. See [ACR122U](/docs/readers/nfc/acr122u/).
+- **LaunchBox users: install [plugin v1.3.0](/docs/platforms/windows/launchers/#launchbox).** Core can now stop a LaunchBox game, but only through the new plugin. With the old one, a stop reports failure and a new card will not launch over a game that is still running.
+
+## Readers
+
+- **Turning on [`auto_detect`](/docs/core/config/#readers-auto-detect) no longer needs a restart.** It applies within seconds.
+- **A reader that auto-detect found but could not open is retried.** One failed open, such as a port still busy at boot, used to take that reader out of auto-detect until Core restarted. Core now retries it, backing off from 2 seconds to a minute.
+- **Controller adapters no longer block PN532 auto-detect.** A DaemonBite or CTRLDock style adapter never reads its serial port, so the probe hung on it and never reached the reader. Those ports are now skipped, each probe has its own deadline, and a pass that still runs out of time is logged.
+- **Any USB serial port is probed on Linux.** A PN532 on a serial bridge Core did not recognize by USB ID was never tried. Built-in UARTs still need evidence of a reader first.
+- **Auto-detect explains itself in the log.** Once per change it says which ports it saw, skipped, and found, so a reader that was never enumerated no longer looks the same as one that did not answer.
+- **Crashes leave a trace.** The service's error output goes to `core.stderr.log` beside `core.log`, and log uploads and downloads include it, trimmed to fit the 1 MB upload limit.
+- **Input macros respect the key lists.** `{press:super}`, `{_super}`, and `{hold:super:500}` slipped past the [allow and block lists](/docs/core/config/#zapscriptinput) that block `{super}` on desktop platforms, and `{press:a}` passed `combos` mode. Every [macro](/docs/zapscript/input/#inputkeyboard) is now checked against the key it acts on.
+
+## Windows
+
+- **Steam games actually stop.** Stopping a game from a [hold mode](/docs/core/config/#scan-mode) card removal, a [playtime limit](/docs/core/config/#playtimelimits), or the `stop` command killed one process and reported success while the game kept running. Core now finds the game's real process, asks it to close, force-kills it if it will not, and waits until it has gone.
+- **LaunchBox games can be stopped.** The plugin had no stop command. With plugin v1.3.0, Core asks LaunchBox to end the game, so its shutdown path and any per-emulator exit script still run, and kills the game's process tree if that fails.
+- **Core knows when a stop failed.** Active media is only cleared once the game is confirmed gone, a new card is refused rather than launching a second game over the first, and hold mode, playtime limits, and `playlist.stop` no longer report a game as ended while it is running. The API's [`stop`](/docs/core/api/methods/#stop) method returns an error in that case. Only Windows can detect this. Other platforms behave as before.
+- **Steam library folders are read from the registry.** They were looked up in Linux locations, so a game started from [Steam](/docs/platforms/windows/launchers/#steam) itself showed as "Steam Game 12345" with no install folder. Libraries outside Program Files are found too.
+- **Steam game switches are tracked.** Going straight from one Steam game to another left the first one tracked as running, and Steam installed after Core started was not noticed until a restart.
+- **The installer adds a Windows Firewall rule.** Ticked by default, it replaces Windows's own "allow access" prompt, which limited Core to whichever network profile you accepted it on, so some setups found Core over Wi-Fi but not Ethernet. The uninstaller removes the rule.
+
+## Network discovery
+
+- **Core stays discoverable when the network changes.** It announced itself once at startup, so a cable plugged in later, or Windows swapping from Wi-Fi to Ethernet, left it reachable by IP but missing from the [App](/docs/app/)'s device list. It now rechecks its interfaces every 15 seconds and announces on each one.
+- **Every Windows adapter is discoverable.** Only one was before. Each now answers with its own address.
+- **Strict resolvers get a valid answer.** The advertisement carried a malformed empty record that Apple's resolver and others rejected, sometimes along with the address. Plain DNS clients that query the multicast group get a proper answer too, and adapters that are up but not connected are no longer advertised.
+
+## MiSTer
+
+- **Arcade artwork from Update All matches.** The `mister-docs` scraper now follows the [MiSTer Artwork Pack](https://github.com/chipster6502/MiSTer_artwork_pack) format its Game Artwork DBs use, so arcade games get their box art instead of almost none of them. See [mister-docs](/docs/features/scraping/#mister-docs).
+- **Descriptions follow your language.** The scraper picks synopses by [`media.default_langs`](/docs/core/config/#default_langs) instead of English only, gives games listed in `gameinfo.tsv` without an image their year, genre, developer, and players anyway, and reports progress during a step. Run Update metadata with the `mister-docs` source again after updating.
+- **The scraper is much faster on big sets.** A lookup that took minutes on an Arcade library now takes seconds, and the same lookup serves clients fetching batches of images.
+- **Browsing huge system folders no longer times out.** A system folder with tens of thousands of files, especially one spread across the SD card and a USB drive, could take so long to load that [Frontend](/docs/frontend/) showed "failed to load". It now loads right away, and tag filters and the letter index on those folders are faster too.
+
+## Launchers and library
+
+- **Custom launchers can add `media_dirs` to an existing system.** Games in those folders are indexed, launch through the platform's own launcher for that system, and Frontend can browse the folder even outside the scan roots. See [add media to an existing system](/docs/features/custom-launchers/#add-media-to-an-existing-system).
+- **Duplicate launcher IDs are rejected.** An entry that reuses a built-in launcher's ID, or another custom one's, is skipped with an error in the log instead of silently matching nothing.
+- **`pause_on_launch` survives API edits.** An API client updating system defaults dropped [`pause_on_launch`](/docs/core/config/#pause_on_launch) from `config.toml`, because [`settings.update`](/docs/core/api/methods/#settingsupdate) could not carry it.
+- **An idle service stops polling the database.** It ran a query every few seconds to check for a corruption marker. It now reads the marker file only.
+
+## Other changes
+
+- **Releases are gated on the full test suite** on Linux, Windows, and macOS. v2.17.1 shipped on a commit whose Windows tests were failing. Those and the macOS run are fixed.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

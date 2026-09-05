@@ -27,7 +27,7 @@ Access these paths by pasting them in Explorer's address bar or in a Win+R dialo
 
 Download Zaparoo Core for Windows from the [Downloads page](/downloads/).
 
-**Installer**: Run the setup executable and follow the wizard. Options include running on startup and creating a desktop icon.
+**Installer**: Run the setup executable and follow the wizard. Options include running on startup, creating a desktop icon, and adding a Windows Firewall rule so Core is reachable on every network profile.
 
 **Manual**: Extract `Zaparoo.exe` from the zip and run it. It starts in the system tray.
 
@@ -35,7 +35,7 @@ Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in we
 
 ## Uninstall
 
-Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application but leaves your Core configuration and user data under `%localappdata%\zaparoo`.
+Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application and its firewall rule but leaves your Core configuration and user data under `%localappdata%\zaparoo`.
 
 ## Updates
 

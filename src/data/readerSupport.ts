@@ -28,7 +28,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -130,7 +130,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -232,7 +232,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -436,7 +436,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "limited",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -538,7 +538,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -640,7 +640,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -843,7 +843,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -945,7 +945,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -1047,7 +1047,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {
@@ -1149,7 +1149,7 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
+          "setup": "Manual enable",
           "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
         },
         {

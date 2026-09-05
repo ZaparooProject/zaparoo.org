@@ -65,7 +65,7 @@ Add to `/storage/.config/autostart.sh`:
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Auto-detected | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
 | Barcode and QR | [RS-232 scanner](../readers/barcode/rs232.md) | Supported | Manual config |  |

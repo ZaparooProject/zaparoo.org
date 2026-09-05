@@ -20,7 +20,7 @@ Not every reader sold as "NFC" or "RFID" works with Zaparoo, and some cheap ones
 | [PN532 USB](./nfc/pn532-usb.md) | Most people | NFC cards, tags, toys | Plug and play | All |
 | [PN532 module](./nfc/pn532-module.md) | DIY builds and custom cases | NFC cards, tags, toys | Wiring required | All |
 | [ZapESP32](../zapesp32/index.md) | Wireless DIY reader with sound and lights | NFC cards, tags, toys | Flash an ESP32 | All (over the network) |
-| [ACR122U](./nfc/acr122u.md) | If you already own one | NFC cards, tags, toys | Plug and play, with limits | Linux-based platforms; limited on Windows |
+| [ACR122U](./nfc/acr122u.md) | If you already own one | NFC cards, tags, toys | Enable in config, with limits | Linux-based platforms; limited on Windows |
 | [RC522](./nfc/rc522.md) | If you already own one | NFC cards, tags | Needs a Simple Serial bridge | All |
 | [Zaparoo App camera](./barcode/index.md) | No hardware at all | Barcodes, QR codes | Free in the App | All |
 | [Serial barcode scanner](./barcode/rs232.md) | Hands-free barcode setups | Barcodes, QR codes | RS-232 or USB-COM mode, manual config | All |
