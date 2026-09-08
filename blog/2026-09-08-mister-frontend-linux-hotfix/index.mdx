@@ -1,0 +1,18 @@
+---
+slug: mister-frontend-linux-hotfix
+title: "MiSTer Frontend Startup Hotfix"
+description: "A hotfix restores Zaparoo Frontend startup after a recent MiSTer update introduced a newer Linux kernel. Run Update All again, then reboot."
+tags: [software, frontend, mister]
+authors: [wizzo]
+draft: false
+---
+
+A recent MiSTer update introduced a newer Linux kernel that stops Zaparoo Frontend from opening. A hotfix is now available through **Update All**.
+
+{/* truncate */}
+
+The newer kernel changed how Frontend can access the display, so it quits before anything appears on screen. The standard MiSTer menu still works.
+
+To install the fix, open MiSTer's **Scripts** menu, run **Update All**, then reboot your MiSTer. You can run Update All while Frontend is unavailable, and no configuration changes are needed.
+
+The hotfix restores Frontend on the new kernel without changing how it runs on older versions. If it still will not start after updating, let us know on [Discord](https://zaparoo.org/discord) or [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/).
