@@ -495,10 +495,13 @@ const config: Config = {
           "scraper.md",
         ],
         modifyContent(filename: string, content: string) {
-          if (filename !== "index.md") return undefined;
-          return {
-            content: content.replace(/\n## Releasing updates\n[\s\S]*$/, ""),
-          };
+          // Upstream lives in docs/ beside docs/api/, but here api/ is a
+          // sibling of contributing/, so relative API links need one more hop.
+          let modified = content.replace(/\]\(\.\/api\//g, "](../api/");
+          if (filename === "index.md") {
+            modified = modified.replace(/\n## Releasing updates\n[\s\S]*$/, "");
+          }
+          return modified === content ? undefined : { content: modified };
         },
       },
     ],
@@ -830,6 +833,8 @@ const config: Config = {
     // ["./plugins/image-optimization", {}],
     // Performance optimization plugin
     ["./plugins/performance-optimization", {}],
+    // Newest blog posts as global data for the homepage
+    ["./plugins/recent-posts", { count: 3 }],
   ],
 };
 

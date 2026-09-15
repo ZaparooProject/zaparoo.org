@@ -28,7 +28,7 @@ After changing settings, mappings, or custom launchers outside the app, [reload 
 
 The rebuildable media database is separate from Core's user database, which stores favorites, launcher overrides, history, and token mappings. If the media database is corrupt, Core can [rebuild it without deleting that user data](../core/cli.md#database-recovery). Scraped metadata and artwork must be imported again after a rebuild.
 
-A folder that holds one game, such as a PlayStation folder with one `.cue` and its `.bin` tracks or one `.m3u` and its discs, is shown as that game when you browse, with its artwork and tags, instead of as a plain folder. This includes a folder holding a single ROM. Folders with several games or nested folders stay ordinary folders.
+A folder that holds one game, such as a PlayStation folder with one `.cue` and its `.bin` tracks or one `.m3u` and its discs, is shown as that game when you browse, with its artwork and tags, instead of as a plain folder. This includes a folder holding a single ROM, and a folder of loose disc images (`.cue`, `.chd`, `.iso`, `.bin`, `.img`, or `.pbp`) that all belong to the same title. Folders with several games or nested folders stay ordinary folders.
 
 :::info Local sources only
 Core's built-in scrapers read metadata and artwork that already exist on your device. They do not download anything from the internet. To fetch artwork, scrape it first with a tool like MiSTer Companion or Skraper, then run a Zaparoo scrape to import the results.
@@ -38,13 +38,13 @@ Core's built-in scrapers read metadata and artwork that already exist on your de
 
 Start a scrape from the [Zaparoo App](../app/index.md) under **Settings**, or from the [TUI](../core/tui.md) under **Manage media**.
 
-You can scrape your whole library or pick specific [systems](./systems.md). Only one scrape runs at a time, and scraping cannot run while a media database update is in progress. A running scrape can be paused, resumed, or cancelled.
+You can scrape your whole library, specific [systems](./systems.md), or a single game or folder in clients that offer it. Only one scrape runs at a time, and scraping cannot run while a media database update is in progress. A running scrape can be paused, resumed, or cancelled, and one interrupted by a restart picks up where it left off.
 
 By default a scrape skips media that has already been scraped, so repeat runs are quick. A **force** (full re-scrape) processes everything again, refreshes existing metadata, and cleans up references to artwork files that have since been removed.
 
 ## Scrapers
 
-Core currently includes three scrapers. The first two are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. The third reads the artwork and manual databases Update All installs on a MiSTer.
+The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, and `pinup-popper` reads the PinUP Popper library on Windows.
 
 ### gamelist.xml
 
@@ -95,6 +95,22 @@ A bundle can provide metadata before all of its artwork is installed. Run a forc
 
 A normal `gamelist.xml` beside the ROMs takes precedence when it and the custom bundle both match the same game. Invalid or malformed custom files are logged and skipped without stopping other systems from scraping.
 
+#### MiSTer arcade gamelists
+
+Scrapers like Skraper write arcade gamelists against MAME ROM sets such as `pacman.zip`, while MiSTer launches `.mra` files. On MiSTer and MiSTeX, an entry whose `<path>` is a ROM set name is matched to the `.mra` that names that set, and artwork is looked up by the set name too. When more than one installed `.mra` uses the same set name, the entry is skipped; use an exact `.mra` path to pick one.
+
+Put the gamelist in a [custom bundle](#custom-gamelist-bundles) under an `Arcade` directory, or beside the `.mra` files in `_Arcade`:
+
+```text
+/media/fat/metadata/
+└── Arcade/
+    ├── gamelist.xml
+    └── images/
+        └── pacman.png
+```
+
+[Hardware classifications](../platforms/mister/launchers.md#hardware-classification) such as `CPS1` have no folder of their own, so a bundle directory named after the classification is the only way to scrape them.
+
 ### media-folder
 
 The `media-folder` scraper imports artwork from EmulationStation-style `media/` folders without needing a `gamelist.xml`. Use it when you have media folders but no gamelist, or to pick up artwork a gamelist did not list.
@@ -111,7 +127,7 @@ SNES/media/screenshot/Super Mario World.png
 
 Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxart3d`, `screenshot`, `thumbnail`, `marquee`, `wheel` (and `logo`), `fanart`, `titleshot`, and `map`. Supported image types are PNG, JPG, JPEG, and WEBP. Games in subfolders are matched against the mirrored path first, then the flat filename.
 
-A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist.
+A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist. Any other folder can have artwork too: for `SNES/RPGs/`, Core checks `SNES/media/boxart/RPGs.png` and shows it as the folder's cover in clients that display folder art. It does not make the folder launchable.
 
 When a system exists in more than one indexed root, such as the normal games folder plus an [`index_root`](../core/config.md#index_root), Core checks each root's `media/` folder in root order and uses the first matching file. The same lookup applies when `gamelist.xml` falls back to `media/`. This lets setups with ROMs on one root and artwork on another use the same EmulationStation `media/` folder layout.
 
@@ -129,6 +145,10 @@ In each system's `docs` folder it reads:
 - PDF files in a child folder whose name contains `manual`, which become the game's manual.
 
 Games are matched by their catalogued ROM name first, or for arcade by the set name inside each `.mra` file, then by a unique title. Update All's **Game Manuals (EN) DBs** provide the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.
+
+### pinup-popper
+
+The `pinup-popper` scraper is Windows only and appears when the [PinUP Popper launcher](../platforms/windows/launchers.md#pinup-popper) finds a Popper installation. It imports each table's year, manufacturer, player count, notes, genre, and wheel, playfield, backglass, and flyer images from Popper's own library. It runs on its own after a media database update for tables that have no metadata yet; run a force scrape to refresh tables that were already imported.
 
 ## What scraping produces
 

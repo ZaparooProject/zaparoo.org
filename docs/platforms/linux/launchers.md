@@ -9,7 +9,7 @@ Linux supports Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, 
 
 ## Steam
 
-Scans Steam library for installed games and non-Steam shortcuts. Works with native Steam, Flatpak, and Snap installations.
+Scans Steam library for installed games and non-Steam shortcuts. Works with native Steam, Flatpak, and Snap installations. A `steam://` token for a game that is not installed opens its Steam details page instead of launching, and leaves whatever is running alone.
 
 | System ID | Scheme |
 |-----------|--------|
@@ -78,7 +78,7 @@ index_root = ["/home/user/ROMs"]
 
 Core maps each supported system to a default RetroArch core. You can change a launcher's core with its [`load_path`](../../core/config.md#load_path) default.
 
-Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop. Core enables these through a small network-command overlay at `~/.config/zaparoo/retroarch-network.cfg`; it does not modify your primary RetroArch configuration.
+Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop, plus disc tray, next disc, and previous disc for multi-disc games. Core enables these through a small network-command overlay at `~/.config/zaparoo/retroarch-network.cfg`; it does not modify your primary RetroArch configuration.
 
 ## Standalone emulators
 

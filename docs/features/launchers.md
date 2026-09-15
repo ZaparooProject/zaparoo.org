@@ -50,11 +50,11 @@ id = "Tools"
 kind = "virtual_system"
 backend = "command"
 name = "Tools"
-category = "Computer"
+categories = ["Computer"]
 execute = "echo tools"
 ```
 
-The virtual system appears in browse and search without needing a media file. Selecting it runs `execute`. Valid categories are `Other`, `Console`, `Computer`, `Handheld`, and `Arcade`; `Other` is used when `category` is omitted.
+The virtual system appears in browse and search without needing a media file. Selecting it runs `execute`. See [kind and backend](./custom-launchers.md#kind-and-backend) for the category names you can use.
 
 Core derives a stable launchable identity from `backend` and `id`, so keep those values unchanged if you want App display settings and artwork to stay attached to the entry. Restart Core or refresh the launchers, then update the media database after adding a virtual system.
 
@@ -91,8 +91,9 @@ Built-in action names include:
 | `stop` | Stop active media |
 | `fast_forward` | Fast forward |
 | `rewind` | Rewind |
-| `next` | Move to the next item |
+| `next` | Move to the next item, such as the next track or disc |
 | `previous` | Move to the previous item |
+| `toggle_tray` | Open or close the emulated disc tray |
 
 Not every launcher supports every action. Use the [`media`](../core/api/methods.md#media) or [`media.active`](../core/api/methods.md#mediaactive) API response to check the `launcherControls` available for the current media.
 
@@ -103,7 +104,7 @@ Built-in launcher support currently includes:
 | Launcher | Supported actions |
 | -------- | ----------------- |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
-| Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `stop` |
+| Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
 | Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |
 

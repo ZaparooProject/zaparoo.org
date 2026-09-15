@@ -27,7 +27,7 @@ Access these paths by pasting them in Explorer's address bar or in a Win+R dialo
 
 Download Zaparoo Core for Windows from the [Downloads page](/downloads/).
 
-**Installer**: Run the setup executable and follow the wizard. Options include running on startup, creating a desktop icon, and adding a Windows Firewall rule so Core is reachable on every network profile.
+**Installer**: Run the setup executable and follow the wizard. Options include running on startup, creating a desktop icon, adding a Windows Firewall rule so Core is reachable on every network profile, and installing the ViGEmBus driver for virtual gamepad input (not offered on ARM64).
 
 **Manual**: Extract `Zaparoo.exe` from the zip and run it. It starts in the system tray.
 
@@ -35,7 +35,7 @@ Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in we
 
 ## Uninstall
 
-Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application and its firewall rule but leaves your Core configuration and user data under `%localappdata%\zaparoo`.
+Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application and its firewall rule but leaves your Core configuration and user data under `%localappdata%\zaparoo`. The ViGEmBus driver stays installed in case other software uses it; remove it from the same list, where it appears as **ViGEm Bus Driver**.
 
 ## Updates
 
@@ -57,6 +57,10 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 | Pair Device... | Shows a PIN for pairing a phone, tablet, or browser |
 | Check for Updates | Shows the update state and installs a waiting release; the label changes to **Install** with the version when one is waiting |
 | Quit | Stops the Zaparoo service and exits |
+
+## Client security
+
+Windows requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Pair Device...** in the tray menu. The PIN expires after five minutes. See [encryption](../../core/config.md#encryption) for how paired clients and their permissions work.
 
 ## Readers
 
@@ -86,11 +90,16 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | RetroBat | 80+ | Auto-detected, requires running with web API enabled |
 | Flashpoint | PC | Manual token creation |
 | Kodi | Video, Music | Local files and library media |
+| PinUP Popper | Pinball | Auto-detected, launches through Popper |
 | Web Browser | Any | Opens URLs in default browser |
 | Executables | Any | `.exe` files (requires allow list) |
 | Scripts | Any | `.bat`, `.cmd`, `.lnk`, `.a3x`, `.ahk` (requires allow list) |
 
 Executables and Scripts require an `allow_file` configuration in your `config.toml` before they can be launched. See [Launchers](./launchers.md) for setup instructions and configuration.
+
+## Input
+
+ZapScript [input commands](../../zapscript/input.md) send keyboard presses to the active window. They cannot reach windows running as administrator or the lock screen. Virtual gamepad input needs the ViGEmBus driver from the installer and [`gamepad_enabled = true`](../../core/config.md#gamepad_enabled) in `config.toml`; it is off by default because an extra controller changes the controller order in games.
 
 ## Troubleshooting
 
@@ -100,4 +109,4 @@ Executables and Scripts require an `allow_file` configuration in your `config.to
 
 **A reader is not detected.** Some PN532 USB readers need a USB serial driver on Windows. See the [PN532 USB](../../readers/nfc/pn532-usb.md) page.
 
-**Steam or LaunchBox games do not launch.** See [Windows launchers](./launchers.md) for the required setup for each launcher.
+**Steam, LaunchBox, or PinUP Popper games do not launch.** See [Windows launchers](./launchers.md) for the required setup for each launcher.

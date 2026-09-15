@@ -21,6 +21,10 @@ When Core cannot track the launched process, features that depend on active medi
 
 ## Creating a custom launcher
 
+:::warning Only install launchers you trust
+Custom launcher files can run programs and scripts on your device with the same permissions as Zaparoo Core. Their launch commands and configured controls do not need approval through `allow_execute`. Treat installing a shared launcher file like installing a script: check what it runs before copying it into your `launchers` folder.
+:::
+
 To start, open the `launchers` directory in the Core data folder. Check the page for your [platform](../platforms/index.mdx) if you're not sure where that folder is.
 
 Create a new file ending in `.toml`. This example uses `OpenEmuGB.toml`. The filename is not important, but launcher IDs are, so use a unique ID.
@@ -96,7 +100,7 @@ Both `system` and `media_dirs` are required for an entry like this. Clients that
 
 Every custom launcher has a `kind` and a `backend`, both optional in most files:
 
-- `kind` is `launcher` (the default) for an entry that launches media, or `virtual_system` for an entry that adds a [launchable](./launchers.md#launchables) system. Virtual systems can set `category` to `Other` (the default), `Console`, `Computer`, `Handheld`, or `Arcade`.
+- `kind` is `launcher` (the default) for an entry that launches media, or `virtual_system` for an entry that adds a [launchable](./launchers.md#launchables) system. Virtual systems can set `categories` to one or more of `Other` (the default), `Console`, `Computer`, `Handheld`, `Arcade`, or a name declared with [`[[systems.category]]`](../core/config.md#systemscategory); the first is where clients list the system. The older `category` key still works.
 - `backend` is `command` for an entry that runs an `execute` line, or `mister_core` for a MiSTer core defined by `load_path`. When `execute` is set and `backend` is omitted, Core assumes `command`. A `command` launcher cannot also set `load_path`.
 
 See [ROM-less MiSTer cores](../platforms/mister/launchers.md#other-cores) for `mister_core` examples.
@@ -150,7 +154,7 @@ lifecycle = "background"
 
 Define control actions that can be triggered on active media via [launcher controls](./launchers.md#launcher-controls). Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime. Media-launching, playlist, and nested `control` commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay`, and `echo` are allowed.
 
-The `execute` command in control scripts still requires a matching [`allow_execute`](../core/config.md#allow_execute) entry.
+The `execute` command in configured control scripts does not require an [`allow_execute`](../core/config.md#allow_execute) entry, matching the launcher's own `execute` command. The same command sent directly from a token or the run API still requires the allowlist. Configured controls still respect `block_commands`, and remotely fetched ZapScript cannot bypass the execute restrictions.
 
 ```toml
 [[launchers.custom]]

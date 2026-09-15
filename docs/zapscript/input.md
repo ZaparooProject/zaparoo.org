@@ -15,7 +15,7 @@ The platform sets a default input mode, which you can configure with [`[zapscrip
 Simulates keyboard key presses.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input), with some limits on Windows.
 :::
 
 ### Syntax
@@ -127,7 +127,7 @@ This command is blocked when the script comes from a remote source.
 Types a string of literal text exactly as written. Unlike [`input.keyboard`](#inputkeyboard), it does not interpret `{}` macros, `*` repeats, or advanced arguments, so every character including `{`, `}`, `?`, and `*` is typed as-is. Use it for arbitrary text like search queries, URLs, or passwords.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md). Like other input commands, single-character keys are blocked by default on desktop platforms, so `input.text` needs the input mode set to `unrestricted` there. See [`[zapscript.input]`](../core/config.md#zapscriptinput).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input). Like other input commands, single-character keys are blocked by default on desktop platforms, so `input.text` needs the input mode set to `unrestricted` there. See [`[zapscript.input]`](../core/config.md#zapscriptinput).
 :::
 
 ### Syntax
@@ -166,7 +166,7 @@ This command is blocked when the script comes from a remote source.
 Simulates gamepad button presses.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md). The virtual gamepad can interfere with some emulators on Batocera, so it is disabled by default there. It can be re-enabled in the [config file](../core/config.md#gamepad_enabled).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input). The virtual gamepad can interfere with some emulators on Batocera, so it is disabled by default there. It can be re-enabled in the [config file](../core/config.md#gamepad_enabled). Windows also has it off by default and needs a driver; see [Windows input](../platforms/windows/index.md#input).
 :::
 
 This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game or emulator settings, and it can't pretend to be player 1 if a real controller is already connected as player 1.
@@ -240,7 +240,7 @@ This command is blocked when the script comes from a remote source.
 Inserts coins for players 1 through 4 in arcade games.
 
 :::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), and [Batocera](../platforms/batocera/index.md).
+Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input).
 :::
 
 ### Syntax

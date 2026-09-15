@@ -1,0 +1,110 @@
+---
+slug: app-v1.14.1
+title: "Zaparoo App v1.14.1 Released"
+description: "Zaparoo App v1.14.1 is on the App Store and Google Play worldwide. It adds launchables to the Library tab, uses less battery, and no longer gets stuck on a failed encrypted handshake when Core restarts."
+tags: [software, app]
+authors: [wizzo]
+draft: true
+---
+
+Zaparoo App v1.14.1 is out now on the [App Store](https://apps.apple.com/us/app/zaparoo/id6480331015) and [Google Play](https://play.google.com/store/apps/details?id=dev.wizzo.tapto), everywhere. This is the first release in a while for iPhone users and for Google Play in France, since [v1.13.0](/blog/app-v1.13.0) only shipped on Android outside France. If that's you, everything from that release is new too, and it's [recapped at the end](#coming-from-v1112).
+
+v1.14.1 adds custom launchers and ROM-less MiSTer cores to the Library tab, uses less battery on the Zap page, and fixes a reconnect dead end after a Core restart along with a batch of pairing, purchase, and startup problems.
+
+{/* truncate */}
+
+**The highlights:**
+
+- **[Library](#library)**: launch and write custom launchers and MiSTer built-in cores, and jump to a letter in big folders without the wait
+- **[Battery](#battery)**: the Zap page no longer keeps the screen and sensors busy when nothing is connected, with a new **Keep screen on** setting
+- **[Connection and pairing](#connection-and-pairing)**: no more "Encrypted handshake failed" dead end after a Core restart, and pairing failures say what went wrong
+
+## Download
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="fa-brands fa-apple" />}
+    label="App Store"
+    link="https://apps.apple.com/us/app/zaparoo/id6480331015"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-google-play" />}
+    label="Google Play"
+    link="https://play.google.com/store/apps/details?id=dev.wizzo.tapto"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-github" />}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-app/"
+    variant="primary"
+  />
+</div>
+
+## Before you update
+
+- **Coming from v1.11.2 on iOS or in France:** the [Library tab, device profiles, Warp, and background media controls](#coming-from-v1112) from v1.13.0 are all new to you.
+- **Core version:** Library needs Core v2.15.0 or newer. Device profiles and Online device linking need Core v2.16.0 or newer.
+- **Online settings:** changing Core's Zaparoo Online settings from the App needs an admin or local connection. Other paired clients see a read-only summary.
+
+## Library
+
+- **Launchables show up as systems.** [Custom launchers](/docs/features/custom-launchers/) and ROM-less MiSTer cores like Chess or Flappy Bird now appear in the Library tab's system list. Opening one gives you **Write** and **Launch**, since there is nothing to browse inside. Launch is only available while Core is connected, so it no longer sits waiting on a request that can't go through during a reconnect.
+- **Letter jumps land right away.** Jumping to a letter in a folder with thousands of entries used to load every page in between. It now starts at that letter and fills in earlier entries as you scroll back.
+- **Cover art in the details view** no longer shows twice after reopening a game from another list.
+
+**Requires:** Core v2.15.0 or newer and a media database.
+
+## Pro and Zaparoo Online
+
+- **A nudge to link Pro to your account.** You have always been able to link a Pro purchase to a free [Zaparoo Online](/docs/online/) account, which backs it up if the store loses track of it and lets you use Pro on any of your Android or iOS phones. The App now offers it right after a purchase made while signed out, with a **Not now** if you would rather skip it. If you bought Pro a while ago and never linked it, sign in under **Settings > Online** and it links from there.
+- **Warp includes Pro.** The Pro screen now says so, with a link to Zaparoo Online, so nobody buys both by accident. Warp checkout also stops listing Pro as a benefit if you already own it.
+- **Sign-in on Android** falls back to the Google account picker when Credential Manager has no account to offer, so you can add one instead of hitting a dead end. A cancelled Sign in with Apple is treated as a cancel, not a failure.
+- **Warp access is rechecked** as soon as you finish the account requirements prompt, instead of at your next sign-in.
+- **Store restrictions are explained.** If your store account can't make purchases, the Pro and Warp screens say so instead of showing a failed status with a Retry that can't work.
+
+## Battery
+
+- **The Zap page stays awake only while a Core is connected.** A new **Keep screen on** option under **Settings > Readers** controls this, so you can let the phone sleep normally if you prefer.
+- **Shake detection** only samples the accelerometer while the App is in the foreground, and the idle scan button stops pulsing after a few seconds.
+- **Reconnects back off** up to 30 seconds when Core is unreachable, and retry immediately when the network comes back or changes.
+
+## Connection and pairing
+
+- **No more "Encrypted handshake failed" dead end.** When Core cannot set up an encrypted session, usually because it restarted mid-handshake or no longer knows the App, it closes the connection without saying why. The App treated the first such close as fatal, stopped reconnecting, and showed that raw error. It now keeps reconnecting as it does for any other drop, and after three silent failures in a row it opens pairing with an explanation.
+- **Pairing errors say what happened.** No pairing in progress, an expired or used PIN, too many attempts, and the paired client limit each get their own message, so you know whether to start pairing again on the device or remove an old client.
+- **Reconnecting through a fallback address** gets its own retry budget, so the App no longer asks you to pair again on the first hiccup.
+
+## Android
+
+- **Blank tags format on the first tap and write on the next.** Writing to an unformatted tag used to fail with a confusing error. The App now formats it once, then asks you to lift the tag and tap again to write.
+- **Status bar icons stay light** on the App's dark background, and the bottom navigation sits correctly above the three-button navigation bar with no white strip.
+- **Device search** no longer throws an error on every scan.
+
+## Other changes
+
+- **Cancelling a media database update** works again from the Manage Media page.
+- **Slow devices start reliably.** A slow settings read no longer leaves the App running on defaults for the whole session, replays the onboarding tour, or rolls back a live update mid-session.
+- **Older Cores are no longer polled** for inbox, playtime limit, and reader features they don't have, which was failing every few seconds in the background.
+- **Expected outcomes are no longer reported as errors.** A blocked or busy launch, a game that isn't in the database, a reader with no tag on it, or an older Core that doesn't support a feature is handled quietly, so real problems stand out in error reports. Reports now include the Core version and platform.
+- **Bottom tab labels** hyphenate in languages where they don't fit, and the connection role label wraps below the status instead of running under the buttons.
+- **The App download is smaller** after removing an unused font.
+
+## Coming from v1.11.2 {#coming-from-v1112}
+
+If you're updating from v1.11.2 on iPhone or Google Play in France, these are the [v1.13.0](/blog/app-v1.13.0) changes you skipped:
+
+- **[Library browser](/blog/app-v1.13.0#browse-your-library):** browse, search, favorite, launch, and write media from your Core library. Needs Core v2.15.0 or newer.
+- **[Device profiles](/blog/app-v1.13.0#device-profiles):** create and manage profiles, roles, PINs, playtime limits, and profile cards under **Settings > Play Controls**. Needs Core v2.16.0 or newer.
+- **[Background media controls](/blog/app-v1.13.0#background-media-controls):** foreground and background media each have their own stop action, and playlists get previous, play/pause, and next.
+- **[Interaction and accessibility](/blog/app-v1.13.0#interaction-and-accessibility):** modals follow drag gestures, swipe-back shows progress, haptics, tab state is preserved, unread badges on Inbox and Settings, and better screen reader support.
+- **[Zaparoo Online and Warp](/blog/app-v1.13.0#zaparoo-online-and-warp):** subscribe to and manage Warp, two-factor authentication, and link a Core device for play history sync and cloud backup.
+- **[Connection fixes](/blog/app-v1.13.0#connection-fixes):** pairing survives a device moving between hostname and IP address, and connection messages distinguish reconnecting, Core unavailable, and no network.
+- **[Other changes](/blog/app-v1.13.0#other-changes):** NFC writes are verified after writing, `zaparoo://run` links, read-only badges for file-based mappings, searchable third-party licenses, and more.
+
+---
+
+As always, feedback and bug reports are welcome on [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-app/).
+
+<SponsorCallout variant="combined" />

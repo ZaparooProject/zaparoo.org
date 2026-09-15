@@ -41,7 +41,7 @@ Linking a device does not turn on cloud backup, play history sync, or remote con
 
 ## Cloud backup with Warp
 
-Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active.
+Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase linked from the App, so Pro works on both Android and iOS.
 
 Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer and SteamOS snapshots can also contain supported platform settings, saves, and save states. Comparable platform-data backup support is planned for more platforms. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 

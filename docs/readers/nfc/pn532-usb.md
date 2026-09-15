@@ -74,6 +74,8 @@ sudo usermod -a -G dialout $USER
 
 Log out and back in after changing groups.
 
+PN532Killer readers in UART mode are detected and configured the same way as any other PN532 USB reader. The udev rule installed by Core's [hardware support](../../platforms/linux/install.md) step covers them.
+
 ### macOS
 
 The PN532 USB reader is supported on macOS. If auto-detection fails, configure the `/dev/cu.*` serial device manually.

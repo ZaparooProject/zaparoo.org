@@ -16,7 +16,7 @@ Zaparoo also tracks when you start Steam games externally (from Big Picture or t
 
 Core uses the configured `install_dir` or the first Steam installation it finds, normally `~/.steam/steam/` or `~/.local/share/Steam/`. It indexes installed games from that installation and any additional libraries listed in Steam's `libraryfolders.vdf`, plus non-Steam shortcuts from Steam's user data.
 
-To manually launch a Steam game, write `steam://<app_id>` to a token. For example: `steam://1145360` for Hades.
+To manually launch a Steam game, write `steam://<app_id>` to a token. For example: `steam://1145360` for Hades. If the game is not installed, Core opens its Steam details page instead and leaves whatever is running alone.
 
 ```toml title="config.toml"
 [[launchers.default]]
@@ -71,7 +71,7 @@ Core skips unavailable launchers in this preference list. Explicit token launche
 
 Core registers its supported RetroArch launchers and checks for the `org.libretro.RetroArch` Flatpak and each matching core file before launch. Launchers with a missing Flatpak or core remain visible as unavailable but are not selected for launches.
 
-Games are indexed from ES-DE-style system folders under the configured media roots. Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop.
+Games are indexed from ES-DE-style system folders under the configured media roots. Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop, plus disc tray, next disc, and previous disc for multi-disc games.
 
 Core uses Zaparoo-owned per-system configuration overlays, leaving your primary RetroArch configuration unchanged. These profiles enable network commands and low-latency settings while disabling threaded video, run-ahead, rewind, shaders, overlays, and automatic overrides for launches managed by Core.
 

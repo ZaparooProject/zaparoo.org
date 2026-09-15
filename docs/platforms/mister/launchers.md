@@ -30,6 +30,7 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `Arcadia` | Arcadia | `.bin` |
 | `AmigaCD32` | AmigaCD32 | `.cue`, `.chd`, `.iso` |
 | `Astrocade` | Astrocade | `.bin` |
+| `CommodoreCDTV` | CDTV, AmigaCDTV, CommodoreCDTV | `.chd`, `.cue`, `.iso` |
 | `Atari2600` | ATARI7800, Atari2600 | `.a26`, `.bin` |
 | `Atari5200` | ATARI5200 | `.car`, `.a52`, `.bin`, `.rom` |
 | `Atari7800` | ATARI7800 | `.a78`, `.bin` |
@@ -185,6 +186,7 @@ Neo Geo games are also indexed as both `NeoGeo` and `NeoGeoMVS`. The MVS launche
 | `Arduboy` | Arduboy | `.hex`, `.bin` |
 | `Audio` | MegaVGMDrive | `.vgm` |
 | `Chip8` | Chip8 | `.ch8` |
+| `DVDPlayer` | DVD, DVD-Player | `.iso` |
 | `Groovy` | Groovy | `.gmc` |
 | `OpenBOR` | OpenBOR | `.pak` |
 | `Pico8` | PICO-8 | `.p8`, `.p8.png` |
@@ -211,11 +213,11 @@ id = "MisterOtherMyCore"
 kind = "virtual_system"
 backend = "mister_core"
 name = "My Core"
-category = "Other"
+categories = ["Other"]
 load_path = "_Other/MyCore"
 ```
 
-`load_path` is relative to `/media/fat`, uses forward slashes, and omits the `.rbf` extension and any date or hash suffix. Valid categories are `Other`, `Console`, `Computer`, `Handheld`, and `Arcade`.
+`load_path` is relative to `/media/fat`, uses forward slashes, and omits the `.rbf` extension and any date or hash suffix. See [kind and backend](../../features/custom-launchers.md#kind-and-backend) for the category names you can use.
 
 A new entry receives a stable identity based on its `id`. To rename, recategorize, or change the path of a built-in Other core without losing its existing App settings or artwork, use its built-in ID in a custom entry. For example, override `MisterOtherFlappyBird` while keeping that ID unchanged.
 
@@ -236,6 +238,10 @@ Restart Core or [reload it](../../core/cli.md#reload-core) after installing one 
 ### ao486
 
 If a `.vhd` file is launched via Zaparoo and is in its own folder with an `.iso` or `.chd` file, that disc image will be automatically mounted alongside the hard drive.
+
+### Commodore CDTV
+
+CDTV discs launch through the Minimig core using a saved configuration. In the Minimig core, set up CDTV (with CD32 disabled) and save the config under the name `CDTV`, so it exists as `/media/fat/config/CDTV.cfg`. Core mounts the disc image into that preset when a CDTV token is scanned. Without the saved preset, CDTV launches fail with an error in the log.
 
 ### AmigaVision (Amiga)
 
@@ -327,6 +333,8 @@ MiSTer supports `render_scale` values of `25`, `33`, `50`, and `100`. `render_re
 Some alternate or unofficial versions of cores are supported and can be used by explicitly setting a launcher in the ZapScript on a token. Zaparoo assumes they're installed in either the default location from Update All or in the appropriate menu folder.
 
 To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `N64/some/game.n64?launcher=80MHzNintendo64`
+
+`NeoGeoPocketColor` uses the Kitrinx NGPC core when it is installed and the Jotego core otherwise. `HybridDVDPlayer` launches DVD images through the hybrid `_Other/DVD_Player` core instead of the FPGA DVD core.
 
 To boot an alternate core without loading a game, give [`launch.system`](../../zapscript/launch.md#launchsystem) the same argument. Launcher IDs are matched case-insensitively:
 

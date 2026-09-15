@@ -56,7 +56,7 @@ Settings includes:
 - Updating the media library and downloading artwork and metadata.
 - Configuring scan behavior and connected [external readers](../readers/index.md).
 - Inbox notifications, app icon badges on supported devices, accessibility, and language.
-- **Zaparoo Online**: signing in, linking a Core device, subscribing to or managing Warp, and restoring purchases.
+- **Zaparoo Online**: signing in, linking a Core device, subscribing to or managing Warp, and restoring purchases. Changing Core's Online settings needs an admin or local connection to Core.
 - [Play Controls](../features/play-controls.md) for playtime limits, Launch Guard, and [device profiles](../features/profiles.md). Profile management requires Core v2.16.0 or newer.
 
 If Core requires an encrypted connection, the app asks for the pairing PIN shown by Core. If Core's network address changes later, the app can reconnect without asking you to pair it again.
@@ -72,7 +72,7 @@ There are two current Pro features:
 - **Launch on scan:** Scan NFC tags, QR codes, or barcodes with your phone to launch them on the connected Core device.
 - **Shake to launch:** Shake your phone to play something random from a chosen system or run custom [ZapScript](../zapscript/index.md).
 
-Pro is available as a one-time purchase through the App Store or Play Store, with future Pro features included. Pro is also included while your [Warp subscription](../online/index.md#cloud-backup-with-warp) is active. If you'd rather support Zaparoo development another way, there are [other ways to help](/sponsor/).
+Pro is available as a one-time purchase through the App Store or Play Store, with future Pro features included. Linking it to a free [Zaparoo Online](../online/index.md) account lets you use it on both Android and iOS. Pro is also included while your [Warp subscription](../online/index.md#cloud-backup-with-warp) is active. If you'd rather support Zaparoo development another way, there are [other ways to help](/sponsor/).
 
 ## Getting the app
 
@@ -88,7 +88,7 @@ The [app source code](https://github.com/ZaparooProject/zaparoo-app), including 
 
 **The app can't find my device.** Device search works only in the phone app, not the Web UI, and the phone and the device must be on the same network. If search finds nothing, type the device's IP address into **Device address**.
 
-**It says pairing required.** Core is set to require encrypted connections. Get a PIN from Core (terminal UI: **Settings > Clients > Pair**, or run `zaparoo -pair` on the device), then enter it under **Pair with Device**. The PIN expires after five minutes.
+**It says pairing required.** Core is set to require encrypted connections. Get a PIN from Core (terminal UI: **Settings > Clients > Pair**, or run `zaparoo -pair` on the device), then enter it under **Pair with Device**. The PIN expires after five minutes and works once. If the app says no pairing is in progress, start pairing on the device again for a new PIN.
 
 **Library says to create a media database.** In **Settings**, run a media database update, then open Library again. Library also needs Core v2.15.0 or newer.
 

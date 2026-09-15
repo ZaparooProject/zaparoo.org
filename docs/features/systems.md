@@ -337,7 +337,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 - **Aliases** are explicit alternative names that Core treats as the same system, such as `MegaDrive` for `Genesis`, `GB` for `Gameboy`, or `N64` for `Nintendo64`
 - **Fallbacks** let Core try related systems when resolving launchers, searches, or random selection. Core checks the requested system first and only tries each fallback tier when the previous tier has no result. For example, `GameboyColor` can fall back to `Gameboy`, and MiSTer's `CPS1` classification can fall back to `Arcade`
 - Not all systems are supported on every platform - check your [platform's documentation](../platforms/index.mdx) for launcher-specific support
-- System defaults can be configured in your [configuration file](../core/config.md#systems)
+- System defaults can be configured in your [configuration file](../core/config.md#systems), and [`[[systems.category]]`](../core/config.md#systemscategory) adds your own categories, such as a kids shelf, next to the built-in ones above
 - Systems are used in [ZapScript](../zapscript/index.md) commands for launching specific system types
 
 ### Examples

@@ -317,6 +317,7 @@ gamepad_enabled = true
 Platform defaults:
 - **MiSTer/MiSTeX**: Enabled by default
 - **Batocera**: Disabled by default (may conflict with some emulators)
+- **Windows**: Disabled by default, and needs the ViGEmBus driver offered by the [installer](../platforms/windows/index.md#input)
 - **Other platforms**: Enabled by default
 
 When disabled, the `**input.gamepad` command will return an error.
@@ -447,6 +448,7 @@ ignore_system = [ 'PC', 'MSX' ]
 on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
 ignore_on_connect = true
+allow_relaunch = false
 ```
 
 ##### mode {#scan-mode}
@@ -457,7 +459,7 @@ ignore_on_connect = true
 
 `mode` defines the behavior of scans. It has two options:
 
-- `tap` is the default mode and means when a token is used with a reader it can be removed again without affecting the playing media. If a token is tapped, removed and then tapped again it will relaunch the already playing media.
+- `tap` is the default mode and means when a token is used with a reader it can be removed again without affecting the playing media. Tapping a token that resolves to the media already playing leaves it running, unless [`allow_relaunch`](#allow_relaunch) is on.
 - `hold` mode makes it so a token must be held to the reader for as long as any launched media will play. That is, after a token is removed from the reader, it will exit the media. This makes a token act more like real physical media. **Core does not currently make any attempt to save before exiting media.** See [`exit_delay`](#exit_delay), [`ignore_system`](#ignore_system), and [`on_remove`](#on_remove) for related options.
 
 `mode` is the device-wide default. One reader can override it with [`scan_mode`](#readers-connect-scan-mode) on its `[[readers.connect]]` entry or on its [driver](#readers-drivers-scan-mode), and one token can override its reader with the [`#tap` and `#hold` traits](../zapscript/syntax.md#traits).
@@ -522,6 +524,19 @@ ignore_on_connect = true
 ```
 
 When enabled, if a token is already present on a reader when it connects (e.g., a card left on the reader when Zaparoo starts), that initial scan will be silently ignored. Subsequent scans from the same reader will work normally.
+
+##### allow_relaunch
+
+| Key            | Type    | Default |
+| -------------- | ------- | ------- |
+| allow_relaunch | boolean | false   |
+
+In [tap mode](#scan-mode), a scan that resolves to the media already playing is skipped and the game keeps running. This covers any token that lands on the same file, not only a repeat scan of the same card. Other commands on the token still run, and no launch or exit [hooks](../features/hooks.md) fire. Set `allow_relaunch` to `true` to make a repeat scan restart the game from the beginning instead. Hold mode and API launches are not affected.
+
+```toml
+[readers.scan]
+allow_relaunch = true
+```
 
 #### readers.scan.launch_guard {#launch-guard-config}
 
@@ -775,6 +790,40 @@ A [hook](../features/hooks.md#exit-hooks) containing a snippet of [ZapScript](..
 system = "Audio"
 pause_on_launch = false
 ```
+
+#### systems.category
+
+`systems.category` adds a category of your own, such as a favorites or kids shelf, that clients like the [Zaparoo App](../app/index.md) and [Zaparoo Frontend](../frontend/index.mdx) show alongside the built-in categories. It's a sub-section that can be defined multiple times, and must have this header: `[[systems.category]]`.
+
+Pay attention to the double pairs of square brackets. Each defined `systems.category` section must have its own header.
+
+```toml
+[[systems.category]]
+name = "Kids"
+systems = ["NES", "SNES", "Genesis"]
+
+[[systems.category]]
+name = "Favorites"
+systems = ["SNES", "PSX"]
+```
+
+A system stays in its built-in category and is also listed under every custom category that names it. A system can appear in more than one. Custom launchers that add a [virtual system](../features/custom-launchers.md#kind-and-backend) can use custom category names in their `categories` list.
+
+##### name
+
+| Key  | Type   | Default |
+| ---- | ------ | ------- |
+| name | string |         |
+
+The category name as clients display it. Names must be unique, and references to a category elsewhere in the config match it case-insensitively.
+
+##### systems
+
+| Key     | Type     | Default |
+| ------- | -------- | ------- |
+| systems | string[] |         |
+
+IDs or aliases of the [systems](../features/systems.md) in this category. An entry with an invalid name or an unknown system is logged and skipped without stopping Core from loading the rest of the config.
 
 ### Launchers
 
@@ -1056,7 +1105,7 @@ Command names match the ZapScript command identifier (e.g., `execute`, `http.get
 
 #### zapscript.input
 
-`zapscript.input` is a sub-section of `zapscript` that controls which keys the [`**input.keyboard`](../zapscript/input.md#inputkeyboard) and [`**input.gamepad`](../zapscript/input.md#inputgamepad) commands can send.
+`zapscript.input` is a sub-section of `zapscript` that controls which keys the [`**input.keyboard`](../zapscript/input.md#inputkeyboard) and [`**input.gamepad`](../zapscript/input.md#inputgamepad) commands can send. The `allow` and `block` lists also apply to keyboard input that paired member clients send through the API, such as the App's remote keyboard. Localhost and admin clients are exempt.
 
 ```toml
 [zapscript.input]
@@ -1304,7 +1353,7 @@ If the Web UI loads but never connects, see [Web UI troubleshooting](../app/web.
 
 `encryption` requires remote WebSocket API clients to use the [paired-client encryption flow](./api/encryption.md). Localhost connections are always allowed without encryption.
 
-When the key is not set, Core uses the platform default: `true` on Linux and SteamOS, `false` everywhere else. A value you set yourself is kept, including through a backup restore.
+When the key is not set, Core uses the platform default: `true` on Linux, SteamOS, and Windows, `false` everywhere else. A value you set yourself is kept, including through a backup restore.
 
 ```toml
 [service]
@@ -1923,6 +1972,7 @@ ignore_system = [ 'PC', 'MSX' ]
 on_scan = '**echo:card was scanned'
 on_remove = '**echo:card was removed'
 ignore_on_connect = true
+allow_relaunch = false
 
 [readers.scan.launch_guard]
 enabled = true
@@ -1946,6 +1996,10 @@ enabled = false
 system = 'SNES'
 launcher = 'SindenSNES'
 before_exit = '**input.keyboard:{f12}||**delay:2000'
+
+[[systems.category]]
+name = 'Kids'
+systems = ['NES', 'SNES', 'Genesis']
 
 [launchers]
 index_root = [

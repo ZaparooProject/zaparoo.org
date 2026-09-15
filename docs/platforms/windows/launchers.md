@@ -33,7 +33,7 @@ Launches games from your Steam library via the `steam://` URL scheme. Both offic
 
 Steam is auto-detected via Windows registry. Games are indexed from your Steam library folders.
 
-To manually launch a Steam game, write `steam://<app_id>` to a token. For example: `steam://1145360` for Hades.
+To manually launch a Steam game, write `steam://<app_id>` to a token. For example: `steam://1145360` for Hades. If the game is not installed, Core opens its Steam details page instead and leaves whatever is running alone.
 
 ```toml title="config.toml"
 [[launchers.default]]
@@ -67,6 +67,12 @@ To manually create a LaunchBox or Big Box game token, write `launchbox://<game_i
 launcher = "LaunchBox"
 install_dir = "D:\\LaunchBox"  # Optional custom install directory
 ```
+
+## PinUP Popper
+
+Launches virtual pinball tables through [PinUP Popper](https://www.nailbuster.com/wikipinup/doku.php). Popper is auto-detected from the registry, and tables from every Popper emulator (Visual Pinball, Future Pinball, Pinball FX, and others) are indexed under the `Pinball` system. Popper's own metadata and images are imported after a media database update; see [pinup-popper](../../features/scraping.md#pinup-popper).
+
+To manually launch a table, write `popper://<game_id>` to a token, using the table's GameID from Popper's database.
 
 ## RetroBat
 

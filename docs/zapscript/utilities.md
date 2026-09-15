@@ -351,8 +351,9 @@ Defined action names include:
 - `stop` - Stop the active media
 - `fast_forward` - Fast forward
 - `rewind` - Rewind
-- `next` - Skip to next
-- `previous` - Go to previous
+- `next` - Skip to next track or disc
+- `previous` - Go to previous track or disc
+- `toggle_tray` - Open or close the emulated disc tray
 
 ### Advanced Arguments
 

@@ -25,13 +25,15 @@ import Showcase, { showcaseCount } from "@site/src/components/Showcase";
 import StructuredData from "@site/src/components/StructuredData";
 import ProductRow from "@site/src/components/ProductRow";
 
-import recentPostsData from "../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json";
+import { usePluginData } from "@docusaurus/useGlobalData";
 import siteStats from "@site/src/data/stats";
 import products from "@site/src/data/products";
 import { formatReleaseDate } from "@site/src/data/coreRelease";
-const recentPosts = recentPostsData;
+
+type RecentPost = { title: string; permalink: string; date: string };
 
 function LatestNews(): ReactNode {
+  const recentPosts = usePluginData("recent-posts") as { items: RecentPost[] };
   return (
     <div className="container">
       <div className="text--center padding-horiz--md">

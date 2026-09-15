@@ -194,7 +194,7 @@ systemctl --user restart zaparoo.service
 
 ### An NFC reader is not detected
 
-Reconnect the reader after installing NFC reader support. If support was skipped during installation, run repair mode and accept the NFC reader support prompt. The installed udev rule covers CH340-based PN532 USB readers; other serial readers may need separate device permissions. The hardware step also configures Linux module access for libnfc ACR122U readers.
+Reconnect the reader after installing NFC reader support. If support was skipped during installation, run repair mode and accept the NFC reader support prompt. The installed udev rule covers CH340-based PN532 USB readers and PN532Killer readers in UART mode; other serial readers may need separate device permissions. The hardware step also configures Linux module access for libnfc ACR122U readers.
 
 ## FAQ
 
