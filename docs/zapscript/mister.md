@@ -6,7 +6,7 @@ keywords: [zapscript mister, mister fpga zaparoo, zapscript core load, mister os
 
 # MiSTer
 
-These commands target [MiSTer](../platforms/mister/index.md), with some support on [MiSTeX](../platforms/mistex.md). `mister.ini`, `mister.core`, `mister.mgl`, and `mister.wallpaper` work on both platforms. `mister.script` is MiSTer only. On unsupported platforms, the command returns an error and the rest of the script stops. To boot an alternate core without loading a game, use [`launch.system` with `?launcher=`](./launch.md#launchsystem).
+These commands target [MiSTer](../platforms/mister/index.md). On unsupported platforms, the command returns an error and the rest of the script stops. To boot an alternate core without loading a game, use [`launch.system` with `?launcher=`](./launch.md#launchsystem).
 
 ## mister.ini
 
@@ -22,12 +22,6 @@ Loads a MiSTer.ini configuration file.
 
 **`index`** (required)
 The ini file index (`1` to `4`) as shown in the MiSTer menu.
-
-### Advanced Arguments
-
-| Argument | Type       | Default | Description                                                        |
-| -------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -63,12 +57,6 @@ Launches a MiSTer core .rbf file directly.
 
 **`path`** (required)
 Path to the core, relative to the SD card root. Uses the same format as the `rbf` tag in MGL files. The end of the filename, such as a date suffix, can be omitted.
-
-### Advanced Arguments
-
-| Argument | Type       | Default | Description                                                        |
-| -------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -111,12 +99,11 @@ This command is supported on [MiSTer](../platforms/mister/index.md) only.
 **`script`** (required)
 The script filename (must exist directly in `/media/fat/Scripts`; names containing path separators are rejected). Arguments can be included after the filename.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `hidden` | boolean    | `false` | Run the script in the background without displaying on screen      |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -159,12 +146,6 @@ Launches MGL (MiSTer Game Library) content from inline XML.
 **`content`** (required)
 The MGL XML content as a string. A temporary MGL file is created and launched.
 
-### Advanced Arguments
-
-| Argument | Type       | Default | Description                                                        |
-| -------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
-
 ### Examples
 
 Create and launch an MGL to run Sonic on the Genesis core:
@@ -197,12 +178,6 @@ Sets or unsets the MiSTer main menu wallpaper. When setting a wallpaper, the ima
 
 **`filename`** (optional)
 The wallpaper image filename (e.g., `background.png`). Supports `.png` and `.jpg` files. The file must exist in `/media/fat/wallpapers/`. If omitted, the current wallpaper is unset.
-
-### Advanced Arguments
-
-| Argument | Type       | Default | Description                                                        |
-| -------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

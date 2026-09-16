@@ -8,7 +8,7 @@ keywords: [zapscript http, zaparoo http command, rest api zapscript, webhook zap
 
 These commands make HTTP requests to external services. Both commands run asynchronously in the background with a 30-second timeout, so they won't block script execution.
 
-By default, all URLs are accessible. Use [`allow_http`](../core/config.md#allow_http) in the config file to restrict which URLs these commands can reach.
+By default, all URLs are accessible. Use [`allow_http`](../core/config/zapscript.md#allow_http) in the config file to restrict which URLs these commands can reach.
 
 ## http.get
 
@@ -29,12 +29,6 @@ If your URL contains special characters, you can either:
 - Escape them with `^` (e.g., `^?` for a literal `?`)
 - Quote the entire URL (e.g., `**http.get:"https://example.com/?q=test"`)
 - URL encode them (`%2C` for `,`, `%7C%7C` for `||`, `%2A%2A` for `**`)
-
-### Advanced Arguments
-
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -78,12 +72,6 @@ The MIME type of the request body (e.g., `application/json`, `text/plain`).
 
 **`body`** (required)
 The request body content. Can be empty.
-
-### Advanced Arguments
-
-| Argument | Type | Default | Description |
-|----------|------|---------|-------------|
-| `when` | expression | - | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

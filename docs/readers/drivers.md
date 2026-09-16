@@ -64,7 +64,7 @@ The `operator` driver is enabled by default. Core auto-detects it when `/media/f
 
 | Driver ID      | Hardware                  | Platforms     | Documentation                                |
 | -------------- | ------------------------- | ------------- | -------------------------------------------- |
-| `rs232barcode` | RS-232 barcode/QR scanners | Current Core platforms | [RS-232 Scanner](./barcode/rs232.md) |
+| `rs232barcode` | RS-232 barcode/QR scanners | Current Core platforms | [RS-232 Scanner](./barcode/index.md#hardware-scanners) |
 
 :::info App Barcode Scanning
 The Zaparoo App can also scan barcodes and QR codes using your device's camera. Scanned codes are sent to Core via the API and don't require a dedicated reader driver.
@@ -85,48 +85,7 @@ These drivers support custom hardware, automation, and non-reader token sources:
 
 ## Configuration
 
-### Auto-detection
-
-By default, Zaparoo Core automatically detects readers whose drivers support auto-detection:
-
-```toml
-[readers]
-auto_detect = true
-```
-
-Some drivers are enabled but not auto-detected by default. For those readers, add a manual connection or enable auto-detect for the specific driver. For example, to have Core search for an ACR122U on a Linux-based platform:
-
-```toml
-[readers.drivers.libnfcacr122]
-auto_detect = true
-```
-
-### Manual reader configuration
-
-To manually specify a reader, add a `readers.connect` section to your [`config.toml`](../core/config.md):
-
-```toml
-[[readers.connect]]
-driver = "pn532uart"
-path = "/dev/ttyUSB0"
-```
-
-A `[[readers.connect]]` entry also enables that driver unless the driver is explicitly disabled with `[readers.drivers.DRIVER_ID]`. See the individual reader page for driver-specific paths and options.
-
-### Driver-specific settings
-
-You can control individual drivers with `readers.drivers` sections:
-
-```toml
-[readers.drivers.tty2oled]
-enabled = true
-
-[readers.drivers.simpleserial]
-enabled = false
-auto_detect = false
-```
-
-Use `[readers.drivers.DRIVER_ID]` for driver settings. `[[readers.drivers]]` is not valid config syntax.
+Readers whose drivers support auto-detection are found on their own while `auto_detect = true` in `[readers]`. Some drivers are enabled but not searched for by default; turn on auto-detect for that driver under `[readers.drivers.DRIVER_ID]`, or add a `[[readers.connect]]` entry with the driver ID and path from the tables above. Adding a connection also enables the driver. The keys and defaults are in the [readers section of the config reference](../core/config/readers.md#readers), and each reader page shows the entry it needs.
 
 ## Troubleshooting
 
@@ -176,13 +135,13 @@ Each reader operates independently and can scan tokens.
 
 ## Legacy NFC drivers
 
-Core v2.6.0 switched PN532 readers to the newer `pn532` driver. The old libnfc-based PN532 drivers are still available as fallback options if a reader worked before v2.6.0 but has trouble with the newer driver.
+PN532 readers use the `pn532` driver. The older libnfc-based PN532 drivers are still available as fallback options if a reader has trouble with it.
 
 ### When to use legacy drivers
 
 Use the legacy drivers if you experience:
 
-- Connection issues with PN532 readers that worked before v2.6.0
+- Connection issues with a PN532 reader that the `pn532` driver cannot open
 - Problems reading or writing specific tag types
 - I2C communication issues on embedded platforms
 

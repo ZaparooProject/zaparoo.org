@@ -32,7 +32,7 @@ When a tag is part of a title ID, wrap it in parentheses:
 
 ## Filename tags
 
-During media database updates, Core can parse known filename markers from ROM sets such as [No-Intro](https://no-intro.org/) and [TOSEC](https://www.tosec.org/). This behavior is controlled by [`filename_tags`](../core/config.md#filename_tags), which is enabled by default.
+During media database updates, Core can parse known filename markers from ROM sets such as [No-Intro](https://no-intro.org/) and [TOSEC](https://www.tosec.org/). This behavior is controlled by [`filename_tags`](../core/config/media.md#filename_tags), which is enabled by default.
 
 This filename:
 
@@ -118,7 +118,7 @@ For same-named variants, browse, search, and lookup responses include `disambigu
 
 ## Default regions and languages
 
-Set default preferences in the [`media`](../core/config.md#media) config section when you want Core to prefer certain regions or languages without writing tags into every title ID.
+Set default preferences in the [`media`](../core/config/media.md#media) config section when you want Core to prefer certain regions or languages without writing tags into every title ID.
 
 ```toml
 [media]

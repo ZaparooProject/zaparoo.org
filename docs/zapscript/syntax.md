@@ -29,7 +29,7 @@ If a command results in an error, Core will stop processing the rest of the scri
 
 Whitespace outside of arguments is ignored, though it's rare to add any to a script.
 
-### Auto Launch
+### Auto launch
 
 Because launching media is such an essential part of ZapScript, the `launch` command has special handling built in. If a command section does not start with a `**` it is assumed to be an argument to the `launch` command and parsed in Auto Launch mode.
 
@@ -39,7 +39,7 @@ The `,` character does not need to be escaped in Auto Launch mode, since the pat
 
 Advanced arguments are allowed in Auto Launch mode, so the `?` character should be escaped or quoted. Advanced argument parsing has a stricter syntax and will fall back on treating the string as an argument, so most unescaped `?` characters should pass through as part of the argument.
 
-### Media Title Syntax
+### Media title syntax
 
 ZapScript also supports a special syntax for launching media by title lookup. If a command section starts with `@` or contains a `/` separator without a file extension, it's parsed as a media title lookup.
 
@@ -71,13 +71,13 @@ No arguments:
 
 All argument values are automatically trimmed, so any whitespace before or after the value will be removed before being run. An argument should be quoted if this behavior isn't wanted.
 
-### Positional Arguments
+### Positional arguments
 
 Commands may have one or more positional arguments, which are separated by a `,` character. Positional arguments begin with a `:` character immediately after the command name.
 
 Arguments containing `,` or `?` must be escaped or quoted so they are not treated as new arguments.
 
-### Advanced Arguments
+### Advanced arguments
 
 Commands can also have advanced arguments which start with a `?` and are then defined using a key value pair similar to a URL, using `=` to separate a key with its value, and `&` to separate multiple advanced arguments.
 
@@ -89,7 +89,7 @@ Multiple advanced arguments:
 
 If an argument contains a `&` character, it must be escaped or quoted so it is not treated as a new advanced argument.
 
-## Escaping Characters
+## Escaping characters
 
 All arguments support escaping individual characters using the `^` character.
 
@@ -125,7 +125,7 @@ Some special characters may be inserted using escape sequences:
 
 Keep in mind these will still be trimmed at runtime if they're at the start or end of an argument, so you must quote them if you want to preserve them.
 
-## Quoting Arguments
+## Quoting arguments
 
 Arguments can also be quoted if (and only if) the first character in an argument is either a `"` or a `'` character.
 
@@ -157,7 +157,7 @@ Traits are flags about the token itself rather than commands to run. Write them 
 
 A bare trait means `true`, so `#hold` and `#hold=true` are the same, and `#hold=false` is the same as `#tap`. Keys are case-insensitive.
 
-Core currently understands two traits, which override the [scan mode](../core/config.md#scan-mode) for that token only:
+Core currently understands two traits, which override the [scan mode](../core/config/readers.md#scan-mode) for that token only:
 
 | Trait   | Effect                                                                              |
 | ------- | ----------------------------------------------------------------------------------- |
@@ -166,7 +166,7 @@ Core currently understands two traits, which override the [scan mode](../core/co
 
 A playlist keeps the mode of the token that started it for every track. A trait Core does not recognize is ignored, so a misspelled `#taap` is silently not an override.
 
-## When Condition
+## When condition
 
 All commands support an advanced argument called `when` which allows for basic conditional control of running a command. See the [Expressions](#expressions) section for how to use this.
 
@@ -214,7 +214,7 @@ The return value of an expression may only be a simple type and will be converte
 
 Make sure to check the [expr documentation](https://expr-lang.org/docs/language-definition) for more information and options.
 
-### Expression Environment
+### Expression environment
 
 Expressions have access to a set of environment variables:
 
@@ -255,75 +255,11 @@ The expression environment is resolved and set once before the running of each c
 
 There is no guarantee that a command will update environment variables before the next command. For example, if a command launches media and the next command references the `active_media` variable, it may or may not have updated by the time the proceeding command's environment is calculated. In this case you should also use the `delay` command to give some time to process fully.
 
-## JSON Arguments
+## JSON arguments
 
 If an argument starts with a `{` character, it will be specially parsed and validated as a JSON object until the matching `}` end character. This is used by [playlist commands](../features/playlists.md#inline-json) for inline playlist definitions.
 
-## Zap Links
-
-Zap Links is a feature that allows querying and running remote ZapScript scripts on the fly from a remote HTTP/S URL.
-
-For example, the following URL is written to a token: `https://zpr.au/c$abcd1234`
-
-Virtual cards and decks in [Zaparoo Online](../online/index.md#cards-and-decks) are a hosted way to use Zap Links without running a server of your own.
-
-Every time the token is scanned, Core will make a request to this URL checking for a ZapScript payload. If it successfully receives one, it will run that ZapScript instead. Core also stores the last successful payload for offline fallback, but normal online scans fetch the current response so the payload can still be dynamic.
-
-The payload itself is plaintext ZapScript, with no extra formatting. The response's `Content-Type` header must use the MIME type `application/vnd.zaparoo.zapscript`.
-
-Core detects Zap Link support by domain. When a domain is encountered for the first time on a token, Core will query for the file `/.well-known/zaparoo` which must exist and contain the JSON payload `{"zapscript":1}`. If successful, this result is cached and later URLs on the same domain are treated as Zap Links immediately. If the domain responds but does not support Zap Links, Core caches that result and prunes non-supporting hosts after 30 days so they can be checked again. Temporary network and server errors are not cached.
-
-Zap Link URLs must use HTTPS. Plain `http://` is only accepted for `localhost` and for private or link-local IP addresses, which covers a server on your own network while you test it. URLs that include a username or password are rejected, redirects are followed up to 10 times with every hop checked against the same rules, and the `.well-known/zaparoo` check is a plain request without Zaparoo headers.
-
-:::warning
-ZapScript received via a Zap Link is treated as a remote source. For security, remote sources cannot run `input.keyboard`, `input.gamepad`, or `execute`. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
-:::
-
-### Platform Detection
-
-Zap Link servers receive headers identifying the device making the request:
-
-| Header             | Description      | Example                                   |
-| ------------------ | ---------------- | ----------------------------------------- |
-| `Zaparoo-OS`       | Operating system | `linux`, `windows`, `darwin`              |
-| `Zaparoo-Arch`     | CPU architecture | `amd64`, `arm`, `arm64`                   |
-| `Zaparoo-Platform` | Zaparoo platform | `mister`, `steamos`, `bazzite`, `windows` |
-
-Servers can use these headers to serve different scripts for different devices from the same URL.
-
-### Self-Hosting
-
-You can host your own Zap Link server as long as it follows the conventions above. A server reachable from the internet needs a valid HTTPS certificate; only local and private addresses may use plain HTTP.
-
-Here's an example in Python which would serve a directory of text files as Zap Links:
-
-```python
-from flask import Flask, send_file, abort, Response
-import os
-
-app = Flask(__name__)
-
-@app.route("/.well-known/zaparoo")
-def zaparoo_meta():
-    return {"zapscript": 1}
-
-@app.route("/<zap_id>")
-def serve_zaplink(zap_id):
-    filename = f"zaps/{zap_id}.txt"
-    if not os.path.exists(filename):
-        abort(404)
-    with open(filename, "rb") as f:
-        content = f.read()
-        return Response(
-            content,
-            mimetype="application/vnd.zaparoo.zapscript"
-        )
-
-if __name__ == "__main__":
-    app.run()
-```
-
-## Deprecated Commands
+## Deprecated commands
 
 These older command names are kept for compatibility. New scripts should use the current names.
 

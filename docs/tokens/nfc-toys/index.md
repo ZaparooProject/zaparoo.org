@@ -20,7 +20,7 @@ Any NFC reader that Zaparoo supports can scan these toys. See [readers](../../re
 
 ### Amiibo
 
-Nintendo Amiibo figures and cards use [NTAG215](../nfc/ntag.md) chips. Zaparoo can read them, but Nintendo locks the writable pages at manufacture, so they are read-only.
+Nintendo Amiibo figures and cards use [NTAG215](../nfc/index.md#ntag-types) chips. Zaparoo can read them, but Nintendo locks the writable pages at manufacture, so they are read-only.
 
 ### Skylanders
 
@@ -32,7 +32,7 @@ Disney Infinity figures use [MIFARE](../nfc/mifare.md) chips with game-specific 
 
 ### LEGO Dimensions
 
-LEGO Dimensions character and vehicle tags use [NTAG213](../nfc/ntag.md) chips. Their data is encrypted and game-specific, so they are treated as read-only.
+LEGO Dimensions character and vehicle tags use [NTAG213](../nfc/index.md#ntag-types) chips. Their data is encrypted and game-specific, so they are treated as read-only.
 
 ## Map a toy in the Zaparoo App
 
@@ -56,7 +56,7 @@ match_pattern = '04a23bc1d45e80'
 zapscript = '**launch.search:Mario Kart'
 ```
 
-Replace the UID with the one Core reports for your figure, from its logs or the App's scan history. UIDs are lowercase hex with no separators.
+Replace the UID with the one Core reports for your figure, from its logs or the App's scan history. Core matches UIDs in either case, with or without colons.
 
 ## Troubleshooting
 

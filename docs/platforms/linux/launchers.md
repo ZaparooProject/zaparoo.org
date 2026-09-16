@@ -1,5 +1,5 @@
 ---
-description: "Configure Steam, Lutris, Heroic, RetroArch, standalone emulator, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, browser, and script launchers in Zaparoo Core for Linux."
+description: "Configure Steam, Lutris, Heroic, RetroArch, standalone emulator, EmuDeck, RetroDECK, Kodi, browser, and script launchers in Zaparoo Core for Linux."
 keywords: [zaparoo linux launchers, zaparoo steam linux, zaparoo lutris, zaparoo heroic, zaparoo retroarch, linux emulator nfc launch, zaparoo emudeck linux, zaparoo retrodeck linux, zaparoo bottles, zaparoo moonlight]
 ---
 
@@ -69,14 +69,14 @@ Install the Flatpak from Flathub, then use RetroArch to install the cores for th
 flatpak install flathub org.libretro.RetroArch
 ```
 
-RetroArch launchers scan ES-DE-style system folders such as `nes`, `snes`, and `megadrive` under each configured [`launchers.index_root`](../../core/config.md#index_root). For example:
+RetroArch launchers scan ES-DE-style system folders such as `nes`, `snes`, and `megadrive` under each configured [`launchers.index_root`](../../core/config/launchers.md#index_root). For example:
 
 ```toml
 [launchers]
 index_root = ["/home/user/ROMs"]
 ```
 
-Core maps each supported system to a default RetroArch core. You can change a launcher's core with its [`load_path`](../../core/config.md#load_path) default.
+Core maps each supported system to a default RetroArch core. You can change a launcher's core with its [`load_path`](../../core/config/launchers.md#load_path) default.
 
 Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop, plus disc tray, next disc, and previous disc for multi-disc games. Core enables these through a small network-command overlay at `~/.config/zaparoo/retroarch-network.cfg`; it does not modify your primary RetroArch configuration.
 
@@ -84,7 +84,7 @@ Built-in controls include save state, load state, menu, pause, reset, fast forwa
 
 Core registers a launcher for each emulator below that it finds installed. It looks, in order, for the native executable on `PATH`, in `~/.local/bin`, as an AppImage in `~/Applications` whose file name starts with the emulator name, and finally as a Flatpak in the output of `flatpak list`. Flatpak launches run with read-only access to the game's folder and stop when Core stops them.
 
-Emulators marked "launch by path" have no scanned folders. Core launches a file through them when a token or a [custom launcher](../../features/custom-launchers.md) names the file explicitly. The others scan ES-DE-style folders under each [`launchers.index_root`](../../core/config.md#index_root), with the folder name shown in the table.
+Emulators marked "launch by path" have no scanned folders. Core launches a file through them when a token or a [custom launcher](../../features/custom-launchers.md) names the file explicitly. The others scan ES-DE-style folders under each [`launchers.index_root`](../../core/config/launchers.md#index_root), with the folder name shown in the table.
 
 | Launcher ID | Emulator | System | Detected as | Files and folder |
 |-------------|----------|--------|-------------|------------------|
@@ -124,7 +124,7 @@ Some emulators take an installed game or a title ID rather than a ROM file. For 
 - `.psvita` files hold the game's title ID.
 - `.scummvm` files hold the ScummVM game ID.
 
-These launchers belong to the `Native` launcher group. When a system has several possible launchers, set the order with [`launchers.preference`](../../core/config.md#preference):
+These launchers belong to the `Native` launcher group. When a system has several possible launchers, set the order with [`launchers.preference`](../../core/config/launchers.md#preference):
 
 ```toml
 [launchers]
@@ -184,7 +184,7 @@ Core streams apps from a [Moonlight](https://moonlight-stream.org/) host you des
 |-----------|--------|-----------|
 | `PC` | `moonlight` | `.moonlight` |
 
-Moonlight is detected as the `com.moonlight_stream.Moonlight` Flatpak or the `moonlight` command. Create a `moonlight` folder under an [`index_root`](../../core/config.md#index_root) and add one `.moonlight` file per app, named after the app. Each file is either JSON or two lines, host then app:
+Moonlight is detected as the `com.moonlight_stream.Moonlight` Flatpak or the `moonlight` command. Create a `moonlight` folder under an [`index_root`](../../core/config/launchers.md#index_root) and add one `.moonlight` file per app, named after the app. Each file is either JSON or two lines, host then app:
 
 ```json
 {"host": "gaming-pc.local", "app": "Steam"}

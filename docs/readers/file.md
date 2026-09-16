@@ -16,7 +16,7 @@ This is useful for scripts, local tools, and automation that need to trigger Zap
 
 ## Configure the reader
 
-Add a `file` reader to your [`config.toml`](../core/config.md):
+Add a `file` reader to your [`config.toml`](../core/config/index.md):
 
 ```toml
 [[readers.connect]]

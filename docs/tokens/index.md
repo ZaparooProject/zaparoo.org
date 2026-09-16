@@ -6,11 +6,11 @@ keywords: [zaparoo tokens, nfc cards games, zaparoo nfc, qr code game launcher, 
 
 # Tokens
 
-Tokens are physical objects that trigger actions in Zaparoo. Writable tokens hold a small piece of text, like a game title or [ZapScript](../zapscript/index.md) command, not the game itself. Read-only tokens, such as some NFC toys or product barcodes, can be matched to ZapScript with [mappings](../features/mappings.md). When you scan a token on a [reader](../readers/index.md), Zaparoo reads the token data and runs the matching action.
+Tokens are the physical objects you scan to trigger actions in Zaparoo: NFC cards, QR codes, barcodes, NFC toys like Amiibo figures, discs, and USB drives. [Readers](../readers/index.md) are the hardware that scans them. Software sources such as the API, MQTT, and the file reader can also act as tokens without any hardware; see [readers](../readers/index.md).
 
-Tokens are the things you scan; [readers](../readers/index.md) are the hardware that scans them. The most common tokens are NFC cards, but Zaparoo also supports QR codes, barcodes, NFC toys like Amiibo figures, discs, and USB drives.
+Writable tokens hold a small piece of text, like a game title or [ZapScript](../zapscript/index.md) command, not the game itself. Read-only tokens, such as some NFC toys or product barcodes, are matched to ZapScript with [mappings](../features/mappings.md). Terms like NFC, NDEF, and UID are defined in the [glossary](../glossary.md).
 
-Most people start with [NTAG215 cards](./nfc/ntag.md): they hold enough for any normal ZapScript, work with every NFC reader, and are cheap in bulk.
+Most people start with [NTAG215 cards](./nfc/index.md): they hold enough for any normal ZapScript, work with every NFC reader, and are cheap in bulk.
 
 <Gallery media={[
   { src: "/img/showcase/KarlFayeton_printed_cards.webp", width: 1200, height: 900, alt: "Sleeved NFC cards with front and back artwork" },
@@ -21,7 +21,7 @@ Most people start with [NTAG215 cards](./nfc/ntag.md): they hold enough for any 
 *From left: cards by Karl Fayeton from [Community Showcase #5](/blog/community-showcase-5), then NFC coins by Foolz and floppy-style tokens by Suiren from [Community Showcase #6](/blog/community-showcase-6).*
 
 :::tip
-The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks premium NFC cards with pre-printed designs ready to use with Zaparoo.
+The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks premium NFC cards with pre-printed designs ready to use with Zaparoo. Community members also sell custom cards and labels; ask in the [Discord](https://zaparoo.org/discord) to find someone near you.
 :::
 
 ## Token types
@@ -50,7 +50,7 @@ The destination device still needs compatible media and a launcher for the reque
 
 ## Storage
 
-See [token storage](./storage/index.md) for binders, [cassette cases](./storage/cassette-cases.md), Nintendo Switch replacement cases, and other ways to keep a collection on the shelf.
+See [token storage](./storage/index.md) for binders, [cassette cases](./storage/index.md#cassette-cases), Nintendo Switch replacement cases, and other ways to keep a collection on the shelf.
 
 ---
 

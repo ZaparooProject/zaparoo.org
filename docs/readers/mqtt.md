@@ -16,7 +16,7 @@ Use it when another system already speaks MQTT, such as [Home Assistant](https:/
 
 ## Configure the reader
 
-Add an MQTT reader to your [`config.toml`](../core/config.md):
+Add an MQTT reader to your [`config.toml`](../core/config/index.md):
 
 ```toml
 [[readers.connect]]
@@ -38,7 +38,7 @@ path = "mqtts://broker.example.com:8883/zaparoo/tokens"
 
 ## Add broker credentials
 
-If your broker needs a username and password, add them to [`auth.toml`](../core/config.md#auth-file). Match the broker address, not the full topic path:
+If your broker needs a username and password, add them to [`auth.toml`](../core/config/service.md#auth-file). Match the broker address, not the full topic path:
 
 ```toml
 ["mqtt://broker.example.com:1883"]

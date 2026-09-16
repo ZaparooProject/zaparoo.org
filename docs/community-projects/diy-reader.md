@@ -53,7 +53,7 @@ Click "NEXT" on this page.
 Upload the [BOM-JLCPCB.xlsx file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) in the left file picker (BOM) and the [PickPlace-JLCPCB.xlsx file](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/diy-reader/pcb) in the right file picker (CPL). Then click the "Process BOM & CPL" button.
 
 :::info
-You may receive an error about the "J2 designator" as seen below. Ignore this and press "Continue". This is referring to the female header pins which you will solder yourself later.
+You may receive an error about the "J2 designator". Ignore this and press "Continue". This is referring to the female header pins which you will solder yourself later.
 :::
 
 ### Bill of materials
@@ -128,9 +128,8 @@ Then, place the top piece on top and push it in place into the bottom piece. The
 
 <img src="/img/docs/community-projects/diy-reader/Fully_assembled_DIY_Reader.jpg" alt="Fully assembled DIY Reader" width="300"/>
 
-Congratulations, you did it! Welcome to Zaparoo. This reader should be plug and play with Zaparoo on a [MiSTer FPGA](../platforms/mister/index.md) and [Commodore 64](../platforms/commodore64.md).
+That is the build done. The reader is plug and play with Zaparoo on a [MiSTer FPGA](../platforms/mister/index.md) and [Commodore 64](../platforms/commodore64.md).
 
-Have fun!
 
 ## Contributors
 

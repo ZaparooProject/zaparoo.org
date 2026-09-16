@@ -14,7 +14,7 @@ keywords:
 
 # Zaparoo Online
 
-[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It can back up Zaparoo data from every Core platform, include supported [MiSTer](../platforms/mister/index.md) and [SteamOS](../platforms/steamos/index.md) settings and saves, sync play history, give apps access to your data, and manage virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
+[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It backs up Zaparoo data from every Core platform, including supported [MiSTer](../platforms/mister/index.md) and [SteamOS](../platforms/steamos/index.md) settings and saves. It also syncs play history, gives apps access to your data, and manages virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
 Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, the User API, and virtual cards and decks are free. Remote control through the User API is free for one device at a time and unlimited with Warp.
 
@@ -23,7 +23,7 @@ Online currently provides:
 - **Cloud backup with Warp:** keep off-site snapshots of Zaparoo data, plus supported MiSTer saves and settings
 - **Play history sync:** optionally upload play sessions to your account
 - **User API:** give apps scoped access to data from your account
-- **Remote control:** let apps you authorise send approved commands to a device that has opted in
+- **Remote control:** let apps you authorize send approved commands to a device that has opted in
 - **Virtual cards and decks:** create cards and collections online, then write them to physical NFC tags
 
 :::info Optional Online Service
@@ -41,9 +41,9 @@ Linking a device does not turn on cloud backup, play history sync, or remote con
 
 ## Cloud backup with Warp
 
-Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase linked from the App, so Pro works on both Android and iOS.
+Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase (the App's paid phone-as-reader feature) linked from the App, so Pro works on both Android and iOS.
 
-Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer and SteamOS snapshots can also contain supported platform settings, saves, and save states. Comparable platform-data backup support is planned for more platforms. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
+Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer and SteamOS snapshots can also contain supported platform settings, saves, and save states. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 
 Portable local backups remain free. Ending a Warp subscription stops new cloud snapshots but leaves existing snapshots available to browse, download, and restore. If you unlink a device, its backups stay under **Unlinked devices** for 60 days and are then deleted.
 
@@ -80,11 +80,11 @@ Synced history also shows on the device's page in Online under **Recent play**.
 
 Core checks the setting again before each batch. Disabling it stops later uploads but does not delete history already stored by Zaparoo Online. Unlinking the device also stops sync without deleting play history already stored. You can delete stored play history at any time under **Account > Profile**.
 
-While sync is enabled and the device is linked, local retention cleanup preserves sessions that have not reached the server yet. After a session is acknowledged, the normal [`playtime.retention`](../core/config.md#retention) period still applies to the local copy.
+While sync is enabled and the device is linked, local retention cleanup preserves sessions that have not reached the server yet. After a session is acknowledged, the normal [`playtime.retention`](../core/config/profiles.md#retention) period still applies to the local copy.
 
 ## Remote control
 
-Apps you authorise through the [User API](#user-api) can send commands to a device once that device opts in: turn on **Remote control** under **Settings > Online** in the terminal UI. A remote command can launch a game or a system, stop what is playing, search and browse the library, or run a MiSTer script, and each one is recorded on the device under **Remote control activity**. Unlinking the device turns it off again.
+Apps you authorize through the [User API](#user-api) can send commands to a device once that device opts in: turn on **Remote control** under **Settings > Online** in the terminal UI. A remote command can launch a game or a system, stop what is playing, search and browse the library, or run a MiSTer script, and each one is recorded on the device under **Remote control activity**. Unlinking the device turns it off again.
 
 Free accounts can remote-control one device at a time. Warp subscribers are not limited.
 

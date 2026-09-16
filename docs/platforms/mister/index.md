@@ -1,6 +1,7 @@
 ---
 description: "Install and configure Zaparoo on MiSTer FPGA: the platform where Zaparoo started. Includes NFC reader setup, file paths, and MiSTer-specific ZapScript commands."
 keywords: [zaparoo mister fpga, mister nfc, mister fpga nfc reader, zaparoo mister install, nfc mister fpga]
+sidebar_position: 1
 ---
 
 # MiSTer FPGA
@@ -23,6 +24,8 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 Zaparoo is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) as a dedicated item in **Tools & Scripts**. Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file. Frontend is optional; Core can run in the background with the standard MiSTer menu.
 
 Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service. That service starts at the end of MiSTer's boot; see [start Core earlier](#start-core-earlier) if you want it ready sooner after power on.
+
+With the service running, plug in your reader and write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<mister-ip>:7497/app/`.
 
 For manual Core installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
@@ -87,10 +90,10 @@ MiSTer supports portable [device backups](../../features/backups.md) containing 
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |

@@ -8,18 +8,13 @@ keywords: [zaparoo tui, zaparoo terminal ui, zaparoo core settings, zaparoo logs
 
 The Zaparoo Core terminal UI, or TUI, is Core's local menu interface. Use it when you are on the device running Core and want to check status, write a token, manage media, or change settings without opening the [Zaparoo App](../app/index.md), [Web UI](../app/web.md), or [command line](cli.md).
 
-Windows does not use the TUI. It runs Core from the system tray instead.
+The TUI is built into Core on MiSTer, Batocera, Linux, SteamOS, Bazzite, ChimeraOS, LibreELEC, and RePlayOS. Windows runs Core from the system tray instead and uses the App or Web UI for settings.
 
 ## Opening the TUI
 
 Start Core from the launcher, script, or executable documented for your platform. For example, MiSTer users open Zaparoo from the Scripts menu, and Batocera users open it from the Ports system in EmulationStation.
 
-Use the relevant platform guide for install paths and startup behavior:
-
-- [MiSTer FPGA](../platforms/mister/index.md)
-- [Batocera](../platforms/batocera/index.md)
-- [Linux](../platforms/linux/index.md)
-- [RePlayOS](../platforms/replayos.md)
+On Linux, SteamOS, Bazzite, ChimeraOS, LibreELEC, and RePlayOS, running the `zaparoo` binary with no flags opens the TUI and starts the service if it is not already running. Use the relevant [platform guide](../platforms/index.mdx) for install paths and startup behavior.
 
 Service or daemon modes skip the TUI. See the [command line reference](cli.md) for platform flags.
 
@@ -79,7 +74,7 @@ Some settings still require a full service restart.
 
 ## TUI settings
 
-TUI-specific settings live in `tui.toml` next to `config.toml`. You can change them from **Settings** > **TUI**, or edit the file manually. See the [TUI config reference](config.md#tui-config-file) for the full list.
+TUI-specific settings live in `tui.toml` next to `config.toml`. You can change them from **Settings** > **TUI**, or edit the file manually. The settings are listed below.
 
 The TUI settings menu includes:
 
@@ -89,7 +84,7 @@ The TUI settings menu includes:
 - `crt_mode`
 - `on_screen_keyboard`
 
-`crt_mode` and `on_screen_keyboard` default to `true` on MiSTer and MiSTeX, and `false` elsewhere.
+`crt_mode` and `on_screen_keyboard` default to `true` on MiSTer and `false` elsewhere.
 
 ## Logs
 

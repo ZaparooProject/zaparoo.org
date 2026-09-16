@@ -7,7 +7,7 @@ keywords: [zaparoo chimeraos, chimeraos nfc, chimera game launcher nfc, zaparoo 
 # ChimeraOS
 
 :::warning[Beta]
-ChimeraOS support is currently in beta. Some features may not work as expected.
+ChimeraOS is a [beta platform](./index.mdx#support-levels): Core installs and runs, but some launchers and setup paths are still being completed.
 :::
 
 Zaparoo Core on [ChimeraOS](https://chimeraos.org/) supports launching Steam games, GOG games via the Chimera web app, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, and shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
@@ -33,6 +33,8 @@ curl -fsSL https://zaparoo.org/install.sh | bash
 
 This installs all necessary components and sets up the service to run on startup. Since ChimeraOS has an immutable root filesystem, the installation is user-local (installed to `~/.local/bin`). After installation, Core checks for new releases and can update itself in place; see [Core updates](../core/updates.md).
 
+Once Core is running, write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://127.0.0.1:7497/app/`.
+
 ## Uninstall
 
 Remove the installed components, leaving the application binary until last:
@@ -43,6 +45,10 @@ Remove the installed components, leaving the application binary until last:
 sudo ~/.local/bin/zaparoo -uninstall hardware
 ~/.local/bin/zaparoo -uninstall application
 ```
+
+## Client security
+
+Encryption is off by default on ChimeraOS, so the Zaparoo App and browsers connect without pairing. To require pairing with a PIN, set [`encryption = true`](../core/config/service.md#encryption) in `config.toml`; Core then shows the PIN under **Settings > Clients > Pair** in the terminal UI or with `~/.local/bin/zaparoo -pair`.
 
 ## Readers
 
@@ -75,7 +81,7 @@ To manually launch a Steam game, write `steam://<app_id>` to a token.
 
 ### Emulators
 
-Core registers launchers for emulators it finds installed, whether native, AppImage, or Flatpak, and adds EmuDeck and RetroDECK systems when either is installed. Detection rules, supported systems, file types, and pointer files are listed under [standalone emulators](./linux/launchers.md#standalone-emulators), [EmuDeck](./linux/launchers.md#emudeck), and [RetroDECK](./linux/launchers.md#retrodeck) on the Linux launchers page. Use [`launchers.preference`](../core/config.md#preference) to choose between the `Native`, `EmuDeck`, and `RetroDECK` groups.
+Core registers launchers for emulators it finds installed, whether native, AppImage, or Flatpak, and adds EmuDeck and RetroDECK systems when either is installed. Detection rules, supported systems, file types, and pointer files are listed under [standalone emulators](./linux/launchers.md#standalone-emulators), [EmuDeck](./linux/launchers.md#emudeck), and [RetroDECK](./linux/launchers.md#retrodeck) on the Linux launchers page. Use [`launchers.preference`](../core/config/launchers.md#preference) to choose between the `Native`, `EmuDeck`, and `RetroDECK` groups.
 
 ### Bottles, Faugus, and Moonlight
 

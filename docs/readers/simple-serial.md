@@ -16,7 +16,7 @@ Use this for custom readers, barcode or QR scanners, button panels, or hardware 
 
 ## Configure the reader
 
-Simple Serial uses the `simpleserial` driver. It does not identify a device on its own, so configure the serial port in your [`config.toml`](../core/config.md):
+Simple Serial uses the `simpleserial` driver. It does not identify a device on its own, so configure the serial port in your [`config.toml`](../core/config/index.md):
 
 ```toml
 [[readers.connect]]
@@ -86,7 +86,7 @@ SCAN\tremovable=no\ttext=**launch.random:Arcade\n
 
 `removable=no` is not a token persistence option. Core still clears the active Simple Serial token after about 1 second without another scan line.
 
-Use `removable=no` only for one-shot serial devices, such as barcode or QR scanners, when you use [hold mode](../core/config.md#scan-mode) and do not want that scan to start hold-mode media exit handling after the timeout.
+Use `removable=no` only for one-shot serial devices, such as barcode or QR scanners, when you use [hold mode](../core/config/readers.md#scan-mode) and do not want that scan to start hold-mode media exit handling after the timeout.
 
 ## Device behavior
 

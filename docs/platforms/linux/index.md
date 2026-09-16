@@ -43,7 +43,23 @@ curl -fsSL https://zaparoo.org/install.sh | bash -s -- --channel beta
 
 After installation, Core checks for new releases and can update itself in place. See [Core updates](../../core/updates.md).
 
-For manual component-based installation, see [Manual Install](./install.md).
+### Manual install
+
+To install without the script, download Zaparoo Core for Linux from the [Downloads page](/downloads/), unzip it, and copy the `zaparoo` file somewhere like your home directory or `/usr/local/bin`. Then install the components you want:
+
+```bash
+./zaparoo -install application  # Installs the application binary
+./zaparoo -install desktop      # Installs desktop integration
+./zaparoo -install service      # Installs systemd service
+sudo ./zaparoo -install hardware  # Installs udev rules and hardware support
+```
+
+For a complete installation, run all four commands. The `hardware` component adds a udev rule so users can read NFC reader serial devices and a modprobe blacklist entry that fixes ACR122U reader issues. Then enable and start the service:
+
+```bash
+systemctl --user enable zaparoo.service
+systemctl --user start zaparoo.service
+```
 
 ## Service controls
 
@@ -58,11 +74,18 @@ systemctl --user start zaparoo.service
 
 ## Uninstall
 
-See [Uninstalling](./install.md#uninstalling) for the component removal commands and required permissions.
+Run the install script's uninstall mode (shown above), or remove the components by hand in this order. Keep the application binary until last so it remains available for the other commands:
+
+```bash
+./zaparoo -uninstall service
+./zaparoo -uninstall desktop
+sudo ./zaparoo -uninstall hardware
+./zaparoo -uninstall application
+```
 
 ## Client security
 
-Linux requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Settings > Clients > Pair** in the terminal UI, or run `zaparoo -pair`. The PIN expires after five minutes. See [encryption](../../core/config.md#encryption) for how paired clients and their permissions work.
+Linux requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Settings > Clients > Pair** in the terminal UI, or run `zaparoo -pair`. The PIN expires after five minutes. See [encryption](../../core/config/service.md#encryption) for how paired clients and their permissions work.
 
 ## Readers
 
@@ -70,10 +93,10 @@ Linux requires encrypted connections from remote clients. Pair a phone, browser,
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |

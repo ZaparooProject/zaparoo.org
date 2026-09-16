@@ -52,7 +52,7 @@ Check the markings on your module before connecting power. Some boards accept bo
 
 ## Configure the reader
 
-[Zaparoo Core](../../core/index.md) can auto-detect PN532 UART readers by default. If auto-detection does not find the module, add it to your [`config.toml`](../../core/config.md) with the `pn532uart` driver.
+[Zaparoo Core](../../core/index.md) can auto-detect PN532 UART readers by default. If auto-detection does not find the module, add it to your [`config.toml`](../../core/config/index.md) with the `pn532uart` driver.
 
 Linux-based platforms usually expose the USB-to-serial adapter as `/dev/ttyUSB0` or `/dev/ttyACM0`:
 
@@ -108,7 +108,7 @@ Move the module away from metal, dense wiring, and other electronics. If the tag
 
 ### Writing fails
 
-Keep the tag still on the reader while writing. If writing [MIFARE Classic](../../tokens/nfc/mifare.md) tags fails repeatedly, test with an [NTAG](../../tokens/nfc/ntag.md) tag before replacing the reader.
+Keep the tag still on the reader while writing. If writing [MIFARE Classic](../../tokens/nfc/mifare.md) tags fails repeatedly, test with an [NTAG](../../tokens/nfc/index.md) tag before replacing the reader.
 
 ## Where to buy
 

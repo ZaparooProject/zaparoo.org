@@ -19,7 +19,7 @@ Use the [Core terminal UI](../core/tui.md) on the device:
 3. Enter a name, role, PIN, and any playtime limit overrides.
 4. Select **Save**.
 
-You can also create and manage profiles from the [Zaparoo App](../app/index.md) under **Settings > Play Controls** (Core v2.16.0 or newer).
+You can also create and manage profiles from the [Zaparoo App](../app/index.md) under **Settings > Play Controls**.
 
 The first profile is always an administrator and requires a 4-8 digit PIN. Later profiles default to the member role. Core prevents you from deleting or demoting the final administrator profile.
 
@@ -141,7 +141,7 @@ Manage paired clients from **Settings > Clients** in the terminal UI:
 
 The first paired client receives the admin role. For later pairings, choose the role when approving the pairing. The final admin client cannot be revoked.
 
-Client restrictions are only enforceable when remote clients must pair. Enable **Require encryption** under **Settings > Clients**, or set [`service.encryption`](../core/config.md#encryption) to `true`. When encryption is disabled, unpaired remote clients retain full API access for compatibility with older clients.
+Client restrictions are only enforceable when remote clients must pair. Enable **Require encryption** under **Settings > Clients**, or set [`service.encryption`](../core/config/service.md#encryption) to `true`. When encryption is disabled, unpaired remote clients retain full API access for compatibility with older clients.
 
 :::note Existing paired clients
 Clients paired before role support are assigned the member role during the upgrade. To grant one admin access, create an admin profile if needed, revoke that client, and pair it again as **Admin** from **Settings > Clients**.

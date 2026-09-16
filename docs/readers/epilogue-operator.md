@@ -20,7 +20,7 @@ keywords: [epilogue operator mister, gb operator mister, sn operator mister, 64 
 
 ## Setup
 
-1. Update to Zaparoo Core v2.16.0 or later.
+1. Update Zaparoo Core to the latest release.
 2. Download the latest package from the [official bridge releases](https://github.com/epilogue-co/zaparoo-operator/releases).
 3. Extract the entire archive to the root of the MiSTer SD card.
 4. Open **F12 > Scripts > Operator** and run the initial setup.

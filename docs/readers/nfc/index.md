@@ -32,7 +32,7 @@ On Windows, check Device Manager for the device name and assigned COM port. On L
 
 ## Reading and writing
 
-PN532 readers can read and write supported NFC tags through Zaparoo. That includes [NTAG](../../tokens/nfc/ntag.md) tags and [MIFARE Classic](../../tokens/nfc/mifare.md), though NTAG is the better choice when buying new tags.
+PN532 readers can read and write supported NFC tags through Zaparoo. That includes [NTAG](../../tokens/nfc/index.md) tags and [MIFARE Classic](../../tokens/nfc/mifare.md), though NTAG is the better choice when buying new tags.
 
 ACR122U support depends on the platform and driver. It can scan on Windows through PC/SC, but writing tags through Zaparoo is not supported there. On Linux-based platforms, Core uses [libnfc](https://github.com/nfc-tools/libnfc) for ACR122U support.
 

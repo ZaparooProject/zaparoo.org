@@ -5,7 +5,7 @@ keywords: [super zap boy zaparoo, mister nfc build, snes shell mister, zaparoo g
 
 # Super Zap Boy
 
-Super Zap Boy is a custom case project created by Phoenix that uses an SNES shell with an SBC inside, designed to work with a Super Game Boy for reading games. The Super Game Boy contains a PN532 NFC reader connected to an SBC (either a DE-10 Nano or a clone board), which is housed inside the SNES shell. These components are connected internally via a wired USB connection.
+Super Zap Boy is a custom case project created by Phoenix that uses an SNES shell with a single-board computer (SBC) inside, designed to work with a Super Game Boy for reading games. The Super Game Boy contains a PN532 NFC reader connected to an SBC (either a DE-10 Nano or a clone board), which is housed inside the SNES shell. These components are connected internally via a wired USB connection.
 
 The games' paths are written onto an NFC tag using the Zaparoo App. This tag is then placed inside a Game Boy cartridge, where the NFC reader inside the Super Game Boy can scan it and launch the game. For the current writing flow, see the [Zaparoo App docs](../app/index.md).
 
@@ -23,7 +23,7 @@ The Zaparoo project introduces a new way for people to fill this gap with physic
 
 ## The build
 
-:::warning[Before You Begin]
+:::warning[Before you begin]
 
 This process requires some soldering skills and involves cutting or removing parts of your existing hardware. I would rank this process as intermediate. If you enjoy tinkering, read on. Otherwise, consider seeking help from others before attempting any irreversible modifications.
 
@@ -81,7 +81,7 @@ Additionally, you will need some cables and other items. Keep in mind that we ha
 2. **Prepare the Shell:** After you're done, it should look like this. Ensure the cut areas are flat and won't scratch the back of your NFC reader. You can sand these off, but be careful not to overdo it.
 3. **Position the NFC Reader:** Position the NFC reader to the back of the Super Game Boy case as shown. Ensure the NFC reader is positioned so that the USB-C cable can still be plugged into it.
 
-:::tip[Positioning Tip]
+:::tip[Positioning tip]
 
 Test the position with both the cable and the NFC reader to get it just right before applying the double-sided tape. I made the mistake of placing the NFC reader too flat in the center, which caused my USB-C cable not to fit anymore.
 
@@ -137,7 +137,7 @@ Test the position with both the cable and the NFC reader to get it just right be
   }
 ]} />
 
-## Checkpoint!
+## Checkpoint
 
 At this point, you've reached a **checkpoint**. You can either:
 
@@ -149,20 +149,19 @@ At this point, you've reached a **checkpoint**. You can either:
 If you decide to stop at this stage and use the Super Zap Boy as a standalone reader, the only thing left to do is:
 
 - **Create** custom labels for your games.
-- Start **playing** your games through the reader!
+- Start **playing** your games through the reader.
 
 Now that you have your Super Zap Boy, I invite everyone to get creative with how you display it. Here are some ideas:
 
 - Design and 3D print a stand for your Super Zap Boy, allowing it to be neatly displayed or slotted into something cool.
 - Get inventive with how you display your cases and games.
 
-The sky's the limit when it comes to **customization** and **presentation!**
 
-## The Main Dish: Readying the Super MiSTer Entertainment System
+## Readying the Super MiSTer Entertainment System
 
 <img src="/img/docs/community-projects/super-zap-boy/SMES.png" alt="Super MiSTer Entertainment System" width="300"/>
 
-If you've made it this far, **congratulations** on building your own **Super Zap Boy**! Now, let's take it to the next level by integrating it with the **Super MiSTer** and completing the project.
+With the Super Zap Boy built, the rest of the project puts the MiSTer inside the console shell.
 
 In this final section, we will house a Single-Board Computer (SBC), such as the **Raspberry Pi,** the **DE-10 Nano** or one of its clones, inside the **SMES** case.
 
@@ -170,7 +169,7 @@ In this final section, we will house a Single-Board Computer (SBC), such as the 
 A Raspberry Pi runs Zaparoo through [Batocera](../platforms/batocera/index.md) rather than MiSTer, so the MiSTer-specific steps below apply to a **Terasic DE-10 Nano** or a clone board like the **QMTECH** or **MiSTer Pi**.
 :::
 
-### Step 1: Disassembly
+### Step 1: disassembly
 
 To begin, you'll need to disassemble the SMES case.
 
@@ -185,7 +184,7 @@ To begin, you'll need to disassemble the SMES case.
    - **Remove** the **eject mechanism** as it takes up too much space and will no longer be needed since the Super GameBoy will be **permanently slotted**.
    - For now, **remove** the **cartridge slot** (it can be re-installed later if desired).
 
-### Step 2: Trimming
+### Step 2: trimming
 
 Next, we need to make room inside the SMES case for the board and cables.
 
@@ -196,7 +195,7 @@ Next, we need to make room inside the SMES case for the board and cables.
    - Position everything carefully to ensure the board and components fit **snugly** without obstructing anything.
    - Trim as needed until it matches the reference pictures (see images below).
 
-### Step 3: Securing the Components
+### Step 3: securing the components
 
 Once everything is positioned correctly:
 
@@ -227,16 +226,16 @@ You're almost done! After these steps, your Zap Boy combined with Super MiSTer s
   }
 ]} />
 
-## Optional: Power Switch for SMES
+## Optional: power switch for SMES
 
 You can repurpose the **original** SNES power switch to power the MiSTer setup using a **Male DC Barrel Jack** and a **Female USB-C Breakout Board**. This setup allows you to turn your MiSTer on and off with the SNES switch.
 
-### Required Parts (Available on AliExpress)
+### Required parts (available on AliExpress)
 
 - <ProductLink href="https://www.aliexpress.com/item/1005007404205142.html" store="aliexpress">DC Power Pigtail Male Cable</ProductLink>
 - <ProductLink href="https://www.aliexpress.com/item/1005006846325447.html" store="aliexpress">USB Type-C Connector Board</ProductLink>
 
-### Wiring Instructions
+### Wiring instructions
 
 1. **Snip off** the connector from the end of the **SNES power switch**.
 2. **Cut** the **black cable** of the barrel jack in half.
@@ -245,19 +244,19 @@ You can repurpose the **original** SNES power switch to power the MiSTer setup u
 5. **Solder one end** of the SNES power switch (either end) to the black cable coming from the **USB-C breakout board**.
 6. **Solder the other end** of the SNES power switch to the **black cable** of the barrel jack.
 
-### Final Assembly
+### Final assembly
 
 1. **Plug the male DC barrel jack** into the female DC barrel jack on your DE-10 Nano or QMTECH board.
    - If you are using a MiSTER Pi, you will need a **Female Barrel Jack to USB-C converter**.
 2. You now have the **female USB-C breakout board** acting as a **DC input** for your MiSTer, and the SNES power switch will control its power.
 
-### Power Supply Recommendation
+### Power supply recommendation
 
 For powering the SMES I recommend using a **Raspberry Pi USB-C power supply** to ensure consistent and safe power delivery. The recommended power for the MiSTer is 5V 3A.
 
-## Optional: Reset Button
+## Optional: reset button
 
-You can also get the **reset button** working on your SMES. For this you need some **glue,** a 3D-printed **mount** from the [SMES hardware files](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/smes), some wires and an actuation button (I bought one of <ProductLink href="https://www.aliexpress.us/item/1005007217364224.html" store="aliexpress">these</ProductLink>).
+You can also get the **reset button** working on your SMES. For this you need some **glue,** a 3D-printed **mount** from the [SMES hardware files](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/smes), some wires and an actuation button (I bought <ProductLink href="https://www.aliexpress.us/item/1005007217364224.html" store="aliexpress">this small clicky button</ProductLink>).
 
 You need an **actuation button** and some wires for soldering. I used small clicky buttons found on AliExpress. The button will need to be attached to the mount and then placed beneath the reset button's mechanism so that when pressed down it activates your button that is on the mount.
 
@@ -288,18 +287,18 @@ If you are using the **QMTECH** board, you will need to bridge **pin 10** togeth
   }
 ]} />
 
-## Optional: Customizing the SNES Case Logo
+## Optional: customizing the SNES case logo
 
 <img src="/img/docs/community-projects/super-zap-boy/Super_Mister_Entertainment_System_-_White_BG_v2.png" alt="SMES Logo" width="300"/>
 
 If you'd like, you can **remove the original logo** on the top front of the SNES case and replace it with a **custom-made logo** for this project.
 
-### Materials Needed
+### Materials needed
 
 - **100% transparent sticker paper** (for applying the custom logo)
 - **Magic Eraser sponge** (acts like sanding paper but is gentler on the case)
 
-### Step-by-Step Instructions
+### Step-by-step instructions
 
 1. **Prepare the Sponge:**
    - Wet the **Magic Eraser sponge**. It will be used to gently remove the original logo.
@@ -345,7 +344,7 @@ Once the logo is removed, you can then apply your custom logo using the **transp
   }
 ]} />
 
-## Optional: 3D-Printed Backplate
+## Optional: 3D-printed backplate
 
 You can choose to make your own backplate, or opt to **3D print** one specifically designed for this project.
 
@@ -372,13 +371,13 @@ The backplate is designed to fit **specific parts** (as mentioned earlier in the
   }
 ]} />
 
-## Optional: Front Controller Ports & System LED
+## Optional: front controller ports and system LED
 
 You can use the front controller ports of the SMES, which offer **extremely low latency** due to being wired and support a **1000Hz polling rate**.
 
 Another neat feature of this mod is that the power to the front controller ports is the **same** power that lights up the **LED** on the SMES. So, you get two mods for the price of one!
 
-### What You'll Need
+### What you'll need
 
 To set this up, you'll need the following components:
 
@@ -390,7 +389,7 @@ This guide assumes you want to use **both controller ports** since the same boar
 1. **Remove the front controller ports** carefully.
 2. **Detach the ribbon cable**. You won't need it for this mod.
 
-### Soldering Guide
+### Soldering guide
 
 To complete this mod, you'll need to do some soldering. Follow the instructions below carefully.
 
@@ -418,7 +417,7 @@ When soldering the controller ports, **the pins for Controller 2 are inverted**.
 
 :::
 
-### Final Check
+### Final check
 
 If you've soldered everything correctly, your setup should look something like this:
 
@@ -437,11 +436,11 @@ If you've soldered everything correctly, your setup should look something like t
   }
 ]} />
 
-## Final Result
+## Final result
 
-This is it guys, the finish line! If you did everything correctly so far it should look a little something like this.
+If you did everything so far, the finished build looks something like this.
 
-Now if you don't have it exactly like this, that's completely okay! You can mix and match different items, it doesn't really matter. The important part is that you have a functional Super Zap Boy and a SMES. As long as that's working and you can enjoy games with it, that's all that matters!
+Yours does not have to match exactly. Mix and match parts as you like; the important part is a working Super Zap Boy and SMES.
 
 If this guide was not clear on something and you still have questions, find me as @Phoenix on the [Zaparoo Discord](https://zaparoo.org/discord).
 
@@ -454,7 +453,7 @@ If this guide was not clear on something and you still have questions, find me a
   }
 ]} />
 
-## Optional: Cassette Cases and other cosmetics
+## Optional: cassette cases and other cosmetics
 
 <Gallery photos={[
   {
@@ -479,7 +478,7 @@ If this guide was not clear on something and you still have questions, find me a
 
 Wallpapers for this project are available in the [SMES wallpaper files](https://github.com/ZaparooProject/zaparoo-hardware/tree/main/smes/Wallpapers). The folder includes multiple **16:9 1920x1080** versions and one **4:3 640x480** version for CRTs. Use the one that you like best. If you plan on using these, I recommend turning off the MiSTer logo in the menu so it does not cover the wallpaper. You can do this in the `MiSTer.ini` file on the root of your SD card by changing `logo=1` to `logo=0`.
 
-And if you want one of those beautiful cases with the custom cover to go along with your cartridges, check out Anime0t4ku's [cassette case guide](../tokens/storage/cassette-cases.md).
+And if you want one of those beautiful cases with the custom cover to go along with your cartridges, check out Anime0t4ku's [cassette case guide](../tokens/storage/index.md#cassette-cases).
 
 ## Credits
 

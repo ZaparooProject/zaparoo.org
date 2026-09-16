@@ -8,7 +8,7 @@ keywords: [zaparoo hooks, zapscript hooks, zaparoo on_scan, zaparoo on_ready, za
 
 Hooks run [ZapScript](../zapscript/index.md) at specific points in Core's lifecycle. Use them for local automation, webhooks, save workflows, startup actions, lighting, buttons, or scripts that need context from Core.
 
-Hooks are configured in `config.toml`. Manual config edits require a Core restart or config reload where supported.
+For example, `on_media_start` can flash a lamp or update an LED marquee whenever a game starts, and `on_scan` can log every card that gets tapped or veto a launch. Hooks are configured in `config.toml`. Manual config edits require a Core restart or config reload where supported.
 
 ## Hook reference
 
@@ -110,7 +110,7 @@ allow_execute = ["/media/fat/zaparoo/scripts/.*"]
 on_ready = "**execute:/media/fat/zaparoo/scripts/on-ready.sh"
 ```
 
-`execute` still requires a matching [`allow_execute`](../core/config.md#allow_execute) entry. Input commands still follow the configured [`[zapscript.input]`](../core/config.md#zapscriptinput) rules.
+`execute` still requires a matching [`allow_execute`](../core/config/zapscript.md#allow_execute) entry. Input commands still follow the configured [`[zapscript.input]`](../core/config/zapscript.md#zapscriptinput) rules.
 
 ## Examples
 

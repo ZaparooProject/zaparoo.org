@@ -8,7 +8,7 @@ keywords: [mifare classic zaparoo, mifare 1k nfc, zaparoo nfc tags, acr122u mifa
 
 MIFARE Classic 1K is an older NFC tag standard with 1024 bytes of storage. After the card's reserved blocks, Zaparoo has 720 bytes available for the NDEF message, so usable text is a little under that. Many low-cost NFC reader bundles include MIFARE Classic cards or fobs.
 
-Zaparoo can read and write NDEF text on MIFARE Classic 1K tags, but compatibility depends more on the reader, phone, and driver than it does with [NTAG](./ntag.md). Blank tags may need to be NDEF formatted before use. The Android Zaparoo App can try to format and write them when the phone supports MIFARE Classic. Zaparoo Core can write them through supported PN532/libnfc reader paths.
+Zaparoo can read and write NDEF text on MIFARE Classic 1K tags, but compatibility depends more on the reader, phone, and driver than it does with [NTAG](./index.md#ntag-types). Blank tags may need to be NDEF formatted before use. The Android Zaparoo App can try to format and write them when the phone supports MIFARE Classic. Zaparoo Core can write them through supported PN532/libnfc reader paths.
 
 The main exception is the [ACR122U](../../readers/nfc/acr122u.md). On Windows, the ACR122U PC/SC driver can scan tags but cannot write through Zaparoo. On Linux-based platforms, the libnfc ACR122U driver can attempt MIFARE Classic writes, but some cards or reader variants may need manual formatting or may not write reliably.
 

@@ -6,8 +6,8 @@ keywords: [zaparoo libreelec, libreelec nfc, kodi nfc launcher zaparoo, libreele
 
 # LibreELEC
 
-:::warning
-LibreELEC support is in beta. Launching and readers are supported, but requires manual setup.
+:::warning[Beta]
+LibreELEC is a [beta platform](./index.mdx#support-levels): launching and readers work, but install and startup are manual.
 :::
 
 Zaparoo Core on LibreELEC provides Kodi integration for movies, TV shows, and music. Also works on [CoreELEC](https://coreelec.org/) and other Kodi-based systems.
@@ -34,6 +34,8 @@ cd /storage
 ./zaparoo -service start
 ```
 
+Once Core is running, write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<libreelec-ip>:7497/app/`.
+
 ### Kodi API Setup
 
 Enable Kodi remote control for Zaparoo to work:
@@ -59,16 +61,20 @@ Add to `/storage/.config/autostart.sh`:
 2. Remove the line you added to `/storage/.config/autostart.sh`.
 3. Delete `/storage/zaparoo`, and `/storage/.local/share/zaparoo` if you also want to remove your configuration and data.
 
+## Client security
+
+Encryption is off by default on LibreELEC, so the Zaparoo App and browsers connect without pairing. To require pairing with a PIN, set [`encryption = true`](../core/config/service.md#encryption) in `config.toml`; Core then shows the PIN under **Settings > Clients > Pair** in the terminal UI or with `./zaparoo -pair`.
+
 ## Readers
 
 | Type | Reader | Support | Setup | Notes |
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../readers/mqtt.md) | Supported | Manual config |  |

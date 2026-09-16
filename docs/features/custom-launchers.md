@@ -16,14 +16,10 @@ Custom launcher tracking depends on how the launcher starts the app:
 - With `background`, Core starts the command and does not track the process afterward
 - If the command hands off to another app and exits, Core may lose track of the media even with `blocking`
 
-When Core cannot track the launched process, features that depend on active media state, such as [hold mode](../core/config.md#scan-mode) exit handling or API stop commands, may not work for that launcher.
+When Core cannot track the launched process, features that depend on active media state, such as [hold mode](../core/config/readers.md#scan-mode) exit handling or API stop commands, may not work for that launcher.
 :::
 
 ## Creating a custom launcher
-
-:::warning Only install launchers you trust
-Custom launcher files can run programs and scripts on your device with the same permissions as Zaparoo Core. Their launch commands and configured controls do not need approval through `allow_execute`. Treat installing a shared launcher file like installing a script: check what it runs before copying it into your `launchers` folder.
-:::
 
 To start, open the `launchers` directory in the Core data folder. Check the page for your [platform](../platforms/index.mdx) if you're not sure where that folder is.
 
@@ -41,6 +37,10 @@ execute = "osascript -e 'tell application \"OpenEmu\" to open POSIX file \"[[med
 ```
 
 The first line, `[[launchers.custom]]`, tells Core this is a custom launcher definition. It's required. Make sure to include the double square brackets.
+
+:::warning Only install launchers you trust
+Custom launcher files can run programs and scripts on your device with the same permissions as Zaparoo Core. Their launch commands and configured controls do not need approval through `allow_execute`. Treat installing a shared launcher file like installing a script: check what it runs before copying it into your `launchers` folder.
+:::
 
 The `id` line defines the internal ID of the launcher. It must be unique: an entry that reuses a built-in launcher's ID, or another custom launcher's, is skipped with an error in the log. You can reference it with the `?launcher=<launcher id>` advanced argument in [ZapScript](../zapscript/index.md).
 
@@ -68,9 +68,9 @@ You can use the following variables in your execute command:
 | `[[device.hostname]]` | Device hostname |
 | `[[device.os]]` | Operating system ("linux", "windows", "darwin") |
 | `[[device.arch]]` | System architecture ("amd64", "arm64", etc.) |
-| `[[action]]` | Launch action from [launcher defaults](../core/config.md#launchersdefault) or ZapScript advanced args |
-| `[[install_dir]]` | Install directory from [launcher defaults](../core/config.md#launchersdefault) |
-| `[[server_url]]` | Server URL from [launcher defaults](../core/config.md#launchersdefault) |
+| `[[action]]` | Launch action from [launcher defaults](../core/config/launchers.md#launchersdefault) or ZapScript advanced args |
+| `[[install_dir]]` | Install directory from [launcher defaults](../core/config/launchers.md#launchersdefault) |
+| `[[server_url]]` | Server URL from [launcher defaults](../core/config/launchers.md#launchersdefault) |
 | `[[system_id]]` | System ID the launcher belongs to |
 | `[[launcher_id]]` | The launcher's ID |
 
@@ -100,7 +100,7 @@ Both `system` and `media_dirs` are required for an entry like this. Clients that
 
 Every custom launcher has a `kind` and a `backend`, both optional in most files:
 
-- `kind` is `launcher` (the default) for an entry that launches media, or `virtual_system` for an entry that adds a [launchable](./launchers.md#launchables) system. Virtual systems can set `categories` to one or more of `Other` (the default), `Console`, `Computer`, `Handheld`, `Arcade`, or a name declared with [`[[systems.category]]`](../core/config.md#systemscategory); the first is where clients list the system. The older `category` key still works.
+- `kind` is `launcher` (the default) for an entry that launches media, or `virtual_system` for an entry that adds a [launchable](./launchers.md#launchables) system. Virtual systems can set `categories` to one or more of `Other` (the default), `Console`, `Computer`, `Handheld`, `Arcade`, or a name declared with [`[[systems.category]]`](../core/config/launchers.md#systemscategory); the first is where clients list the system. The older `category` key still works.
 - `backend` is `command` for an entry that runs an `execute` line, or `mister_core` for a MiSTer core defined by `load_path`. When `execute` is set and `backend` is omitted, Core assumes `command`. A `command` launcher cannot also set `load_path`.
 
 See [ROM-less MiSTer cores](../platforms/mister/launchers.md#other-cores) for `mister_core` examples.
@@ -154,7 +154,7 @@ lifecycle = "background"
 
 Define control actions that can be triggered on active media via [launcher controls](./launchers.md#launcher-controls). Values are [ZapScript](../zapscript/index.md) strings that run in a restricted control runtime. Media-launching, playlist, and nested `control` commands are blocked, but utility commands like `input.keyboard`, `execute`, `delay`, and `echo` are allowed.
 
-The `execute` command in configured control scripts does not require an [`allow_execute`](../core/config.md#allow_execute) entry, matching the launcher's own `execute` command. The same command sent directly from a token or the run API still requires the allowlist. Configured controls still respect `block_commands`, and remotely fetched ZapScript cannot bypass the execute restrictions.
+The `execute` command in configured control scripts does not require an [`allow_execute`](../core/config/zapscript.md#allow_execute) entry, matching the launcher's own `execute` command. The same command sent directly from a token or the run API still requires the allowlist. Configured controls still respect `block_commands`, and remotely fetched ZapScript cannot bypass the execute restrictions.
 
 ```toml
 [[launchers.custom]]
@@ -175,7 +175,7 @@ Available control actions are reported in the `launcherControls` field of the ac
 
 ### restricted
 
-When set to `true`, only files matching the [`allow_file`](../core/config.md#allow_file) patterns in `config.toml` can be launched. Use this for security-sensitive launchers. An `allow_file` entry that is not a valid regular expression is skipped and logged with the reason.
+When set to `true`, only files matching the [`allow_file`](../core/config/launchers.md#allow_file) patterns in `config.toml` can be launched. Use this for security-sensitive launchers. An `allow_file` entry that is not a valid regular expression is skipped and logged with the reason.
 
 ```toml
 [[launchers.custom]]
@@ -209,3 +209,45 @@ media_dirs = ["games"]
 file_exts = [".rom"]
 execute = "/opt/launchers/[[platform]]/run.sh \"[[media_path]]\" --host [[device.hostname]]"
 ```
+
+## Command launchables {#command-launchables}
+
+A custom launcher can expose a command as a virtual system on any Core platform. Add an entry to a launcher TOML file in Core's `launchers` directory:
+
+```toml
+[[launchers.custom]]
+id = "Tools"
+kind = "virtual_system"
+backend = "command"
+name = "Tools"
+categories = ["Computer"]
+execute = "echo tools"
+```
+
+The virtual system appears in browse and search without needing a media file. Selecting it runs `execute`. See [kind and backend](#kind-and-backend) for the category names you can use.
+
+Core derives a stable launchable identity from `backend` and `id`, so keep those values unchanged if you want App display settings and artwork to stay attached to the entry. Restart Core or refresh the launchers, then update the media database after adding a virtual system.
+
+For MiSTer cores that launch without media, use the [`mister_core` backend](../platforms/mister/launchers.md#add-your-own-other-core) instead.
+
+## Troubleshooting
+
+### Verifying your launcher loaded
+
+Check the Zaparoo Core logs when it starts up. Look for messages about custom launchers, such as:
+- `parsed custom launcher from TOML`
+- `registered custom launcher`
+- `loaded custom launchers`
+
+If your launcher isn't loading, check for TOML syntax or validation errors in the logs. Invalid custom entries are ignored and logged.
+
+### Testing commands
+
+Before adding a command to your launcher config, test it manually in your terminal or command prompt. Replace `[[media_path]]` with an actual file path to verify it works.
+
+### Common issues
+
+- **Paths with spaces**: Quote the program path and `[[media_path]]` separately in your `execute` command, especially on Windows. If you wrap the command in another shell like PowerShell, that shell can split the path on its spaces. Launch the program directly instead when you can. See [Windows custom launchers](../platforms/windows/launchers.md#quoting-paths-and-powershell)
+- **Launcher selection**: If several launchers match the same file, Core prefers more specific matches. Duplicate IDs or equally specific matches can be order-dependent
+- **File not found**: Ensure your `media_dirs` paths are absolute or correctly relative to the Core executable directory
+- **Command not found**: Verify the programs you're calling in `execute` are installed and in your system's PATH

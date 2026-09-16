@@ -4,7 +4,7 @@ description: "SteamOS launchers for Zaparoo: Steam, native emulator Flatpaks, Re
 keywords: [zaparoo steamos launchers, steam deck emudeck nfc, retrodeck zaparoo, steam deck retroarch nfc, zaparoo runtime]
 ---
 
-# SteamOS Launchers
+# Launchers
 
 How Zaparoo Core starts games on SteamOS. Install and reader setup are on the [SteamOS](./index.md) page. For a launcher that isn't listed here, write a [custom launcher](../../features/custom-launchers.md).
 
@@ -58,7 +58,7 @@ Each emulator is detected as a native executable on `PATH` or in `~/.local/bin`,
 
 shadPS4, Vita3K, and RPCS3 use `.ps4`, `.psvita`, and `.ps3` pointer files respectively when scanning. Each file holds one launch target, up to 4096 bytes. ScummVM uses `.scummvm` target files. The launcher IDs, file types, and scanned folder for every emulator are listed under [standalone emulators](../linux/launchers.md#standalone-emulators) on the Linux launchers page; SteamOS uses the same detection.
 
-Use [`launchers.preference`](../../core/config.md#preference) to choose an ordered fallback between native emulators, EmuDeck, and RetroDECK:
+Use [`launchers.preference`](../../core/config/launchers.md#preference) to choose an ordered fallback between native emulators, EmuDeck, and RetroDECK:
 
 ```toml title="config.toml"
 [launchers]
@@ -75,7 +75,7 @@ Games are indexed from ES-DE-style system folders under the configured media roo
 
 Core uses Zaparoo-owned per-system configuration overlays, leaving your primary RetroArch configuration unchanged. These profiles enable network commands and low-latency settings while disabling threaded video, run-ahead, rewind, shaders, overlays, and automatic overrides for launches managed by Core.
 
-In Gaming Mode, RetroArch launches use Zaparoo Runtime when it is available. Direct fallback launches use gamescope focus handling. You can override the core selected for a launcher with [`load_path`](../../core/config.md#load_path).
+In Gaming Mode, RetroArch launches use Zaparoo Runtime when it is available. Direct fallback launches use gamescope focus handling. You can override the core selected for a launcher with [`load_path`](../../core/config/launchers.md#load_path).
 
 ## EmuDeck
 

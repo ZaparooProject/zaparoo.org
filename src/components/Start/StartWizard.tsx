@@ -421,6 +421,7 @@ export const StartWizard: React.FC = () => {
               className={`${styles.card} ${
                 choice.platform === platform.id ? styles.active : ""
               }`}
+              aria-pressed={choice.platform === platform.id}
               onClick={() =>
                 updateChoice({
                   platform: platform.id,
@@ -476,6 +477,7 @@ export const StartWizard: React.FC = () => {
                   className={`${styles.card} ${
                     choice.token === token.id ? styles.active : ""
                   }`}
+                  aria-pressed={choice.token === token.id}
                   onClick={() => {
                     const validReaders = getValidReaders(token);
                     updateChoice({
@@ -523,6 +525,7 @@ export const StartWizard: React.FC = () => {
                   className={`${styles.card} ${
                     choice.reader === reader.id ? styles.active : ""
                   }`}
+                  aria-pressed={choice.reader === reader.id}
                   onClick={() => updateChoice({ reader: reader.id })}
                 >
                   <div className={styles.icon}>
@@ -649,7 +652,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             )}
             {needsRS232 && (
               <li>
-                <a href="/docs/readers/barcode/rs232/">RS-232 barcode scanner</a>
+                <a href="/docs/readers/barcode/#hardware-scanners">RS-232 barcode scanner</a>
               </li>
             )}
             {needsMQTT && (
@@ -662,7 +665,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             {/* Token hardware */}
             {choice.token === "nfc-cards" && (
               <li>
-                <a href="/docs/tokens/nfc/ntag/">NTAG NFC tags</a>
+                <a href="/docs/tokens/nfc/">NTAG NFC tags</a>
               </li>
             )}
             {choice.token === "qr-codes" && <li>Printer for QR codes</li>}
@@ -777,7 +780,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 </StyledButton>
                 {needsUSBReader && (
                   <StyledButton
-                    to="/docs/readers/nfc/pn532-usb/"
+                    to="/docs/readers/nfc/"
                     variant="secondary"
                     outline
                     block
@@ -788,7 +791,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
                 )}
                 {choice.token === "nfc-cards" && (
                   <StyledButton
-                    to="/docs/tokens/nfc/ntag/"
+                    to="/docs/tokens/nfc/"
                     variant="secondary"
                     outline
                     block
@@ -876,7 +879,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             )}
             {needsRS232 && (
               <li>
-                <a href="/docs/readers/barcode/rs232">Configure RS232</a> serial
+                <a href="/docs/readers/barcode/#hardware-scanners">Configure RS232</a> serial
                 port
               </li>
             )}
@@ -907,8 +910,8 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
             {choice.token === "nfc-cards" && (
               <>
                 <li>
-                  <a href="/docs/app/">Link media</a> to your cards using the
-                  Zaparoo App
+                  <a href="/docs/app/#first-run">Link media</a> to your cards using
+                  the Zaparoo App
                 </li>
                 <li>
                   Design and{" "}
@@ -969,7 +972,9 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               </li>
             )}
 
-            <li>Tap a token and play.</li>
+            <li>
+              <a href="/docs/app/#first-run">Tap a token</a> and play.
+            </li>
           </ol>
         </div>
       </div>

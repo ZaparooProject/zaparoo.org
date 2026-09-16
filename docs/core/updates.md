@@ -12,11 +12,11 @@ Zaparoo Core checks for new releases on its own and tells you when one is availa
 
 Core checks about every 12 hours against a signed release manifest, and posts a message to the Inbox when a newer release exists. The Inbox is available in the [Zaparoo App](../app/index.md), the [Web UI](../app/web.md), the [terminal UI](./tui.md), and the [Decky plugin](../platforms/steamos/decky.md).
 
-On MiSTer, Core counts as managed by Update All when Downloader is configured with the Zaparoo database, and on Batocera when the Zaparoo package is installed through its package manager. Managed installs still get the Inbox message, but it points at that tool and Core never replaces itself, because the package manager would undo the change. Builds compiled from source never check.
+On MiSTer, Core counts as managed by Update All when Downloader is configured with the Zaparoo database, and on Batocera when the Zaparoo package is installed through the Content Downloader. Managed installs still get the Inbox message, but it points at that tool and Core never replaces itself, because the package manager would undo the change. Builds compiled from source never check.
 
 ## Settings
 
-Update settings live under `[updates]` in [`config.toml`](./config.md#updates):
+Update settings live under `[updates]` in [`config.toml`](./config/index.md#updates):
 
 | Key | Default | What it does |
 | --- | ------- | ------------ |
@@ -79,7 +79,7 @@ The API offers the same steps separately:
 
 | Platform | Update behavior |
 | -------- | --------------- |
-| MiSTer, Batocera | Check only when managed by Update All or the Batocera package manager; otherwise updates in place. Batocera updates carry the EmulationStation hook, `multimedia_keys.conf`, the Ports entry, the service files, and the write-game script. |
+| MiSTer, Batocera | Check only when managed by Update All or the Batocera Content Downloader; otherwise updates in place. Batocera updates carry the EmulationStation hook, `multimedia_keys.conf`, the Ports entry, the service files, and the write-game script. |
 | Windows | Updates in place when Core can write to its install folder and rename `Zaparoo.exe`; otherwise the Inbox message says to run the installer. |
 | All other platforms | Updates in place. |
 
@@ -89,7 +89,7 @@ The API offers the same steps separately:
 
 ## Troubleshooting
 
-**An update is reported but nothing installs.** Automatic installs are off unless `install = true`, and managed installs update through Update All or the Batocera package manager. Run `-update` to see what is blocking an install. A release this device already rolled back is only reinstalled by hand.
+**An update is reported but nothing installs.** Automatic installs are off unless `install = true`, and managed installs update through Update All or the Batocera Content Downloader. Run `-update` to see what is blocking an install. A release this device already rolled back is only reinstalled by hand.
 
 **Core rolled back to the previous version.** The new build did not start within 30 seconds. Check the Inbox message and the log file, then try `-update` again or install the release from your platform guide.
 

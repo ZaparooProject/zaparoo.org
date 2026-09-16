@@ -28,7 +28,7 @@ There are two ways to scan barcodes with Zaparoo:
 
 **Phone camera** using the [Zaparoo App](../app/index.md). You can scan a barcode while creating a mapping, or use the Zap screen as a camera reader if the Launch on scan (Pro) feature is enabled.
 
-**Hardware scanner** using an [RS-232 barcode scanner](../readers/barcode/rs232.md) connected through a serial port or USB-to-serial adapter. Core receives whatever text the scanner sends, so supported formats depend on the scanner.
+**Hardware scanner** using an [RS-232 barcode scanner](../readers/barcode/index.md#hardware-scanners) connected through a serial port or USB-to-serial adapter. Core receives whatever text the scanner sends, so supported formats depend on the scanner.
 
 ## Setting up with the Zaparoo App
 

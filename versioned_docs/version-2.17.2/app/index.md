@@ -1,5 +1,5 @@
 ---
-description: "The Zaparoo App for iOS and Android: connect to Zaparoo Core, browse and launch your media library, create tokens, and use your phone as a wireless reader with Pro."
+description: "The Zaparoo App for iOS and Android: connect to Zaparoo Core, browse and launch your library, write tokens, and use your phone as a reader with Pro."
 keywords: [zaparoo app, zaparoo ios, zaparoo android, nfc app game launcher, zaparoo mobile, zaparoo pro]
 ---
 
@@ -9,13 +9,17 @@ Use the Zaparoo App to manage [Zaparoo Core](../core/index.md) from an iPhone or
 
 Every Core release also includes the browser-based [Web UI](./web.md) for setups that do not use a phone.
 
-## First run
+## First run {#first-run}
 
 1. Install the app from the App Store or Google Play. Links are on the [Downloads](/downloads/) page.
-2. On the device card, tap the search icon to find Zaparoo devices on your network, or type the device's IP address into **Device address**.
-3. If the status shows **Pairing required**, tap the key icon and enter the six-digit PIN that Core displays (in the terminal UI under **Settings > Clients > Pair**).
-4. Open **Create**, search for a game, and hold a blank NFC card to your phone to write it.
-5. Tap the card on your reader.
+2. Open **Settings**. On the device card at the top, tap the search icon to find Zaparoo devices on your network, or type the device's IP address into the address field.
+3. If the card shows **Pairing required**, tap the key icon and enter the six-digit PIN from Core. Where you get the PIN depends on the platform:
+   - **MiSTer, Batocera, Linux, and RePlayOS:** open the [terminal UI](../core/tui.md) (`zaparoo` in the MiSTer Scripts menu, the Ports system on Batocera, or `zaparoo` in a terminal) and go to **Settings > Clients > Pair**.
+   - **SteamOS:** select **Pair client** in the [Decky plugin](../platforms/steamos/decky.md), or run `~/.local/bin/zaparoo -pair` in Konsole.
+   - **Windows:** right-click the tray icon and choose **Pair Device...**.
+4. If searching finds no games, open **Settings > Manage Media** and run a [media database update](../features/scraping.md#updating-the-media-database). Core only knows about games it has indexed.
+5. Open **Create**, search for a game, and hold a blank NFC card to your phone to write it.
+6. Tap the card on your reader.
 
 ## What the app does
 
@@ -23,13 +27,24 @@ The app has four main sections.
 
 ### Zap
 
+<Gallery media={[
+  { src: "/img/docs/app/zap.webp", width: 540, height: 1080, alt: "Zap tab with the scan button, Camera and Controls shortcuts, and the connected device card" },
+  { src: "/img/docs/app/controls.webp", width: 540, height: 1080, alt: "Controls sheet with remote buttons and a keyboard tab" },
+]} />
+
 Scan [NFC tags](../tokens/nfc/index.md), [QR codes](../tokens/qr-codes.md), or [barcodes](../tokens/barcodes.md) from the home screen. You can also:
 
 - See and stop media playing on the connected device, including separate foreground and background playback.
 - Run a previous token again from your scan history.
-- Open **Controls** for remote buttons and keyboard input (Core v2.10.0 or newer), plus screenshots on Core versions that support them.
+- Open **Controls** for remote buttons, keyboard input, and screenshots on platforms that support them.
 
 ### Create
+
+<Gallery media={[
+  { src: "/img/docs/app/create.webp", width: 540, height: 1080, alt: "Create tab with search for media, mappings, custom ZapScript, and NFC utilities" },
+  { src: "/img/docs/app/search-result.webp", width: 540, height: 1080, alt: "A search result with its system, tags, path, and ZapScript, and a Write to tag button" },
+  { src: "/img/docs/app/nfc-utils.webp", width: 540, height: 1080, alt: "NFC utilities screen for reading tag information" },
+]} />
 
 Search the connected device's media library and write a result to an NFC tag. Blank NTAG215 cards are stocked in the <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink>. Create also includes:
 
@@ -40,15 +55,28 @@ Search the connected device's media library and write a result to an NFC tag. Bl
 
 ### Library
 
+<Gallery media={[
+  { src: "/img/docs/app/library.webp", width: 540, height: 1080, alt: "Library tab listing Favorites and systems filtered by category" },
+  { src: "/img/docs/app/library-system.webp", width: 540, height: 1080, alt: "Folders and files inside a system" },
+  { src: "/img/docs/app/library-game.webp", width: 540, height: 1080, alt: "A game's details with Favorite, Write, and Launch actions" },
+]} />
+
 Browse systems and folders from Core's media library, then:
 
 - Search across every system or keep a Favorites collection.
 - View artwork, descriptions, release details, and tags.
 - Launch a title or write it to an NFC tag.
 
-Library and Favorites require Core v2.15.0 or newer and a media database. Create one from Settings if the app prompts you.
+Library and Favorites need a media database. Create one from Settings if the app prompts you.
 
 ### Settings
+
+<Gallery media={[
+  { src: "/img/docs/app/settings.webp", width: 540, height: 1080, alt: "Settings tab with the device address card, media database update, and settings list" },
+  { src: "/img/docs/app/readers.webp", width: 540, height: 1080, alt: "Readers settings with scan mode and scanning options" },
+  { src: "/img/docs/app/play-controls.webp", width: 540, height: 1080, alt: "Play Controls settings with profiles and playtime limits" },
+  { src: "/img/docs/app/online.webp", width: 540, height: 1080, alt: "Zaparoo Online sign-in screen" },
+]} />
 
 Settings includes:
 
@@ -57,7 +85,7 @@ Settings includes:
 - Configuring scan behavior and connected [external readers](../readers/index.md).
 - Inbox notifications, app icon badges on supported devices, accessibility, and language.
 - **Zaparoo Online**: signing in, linking a Core device, subscribing to or managing Warp, and restoring purchases. Changing Core's Online settings needs an admin or local connection to Core.
-- [Play Controls](../features/play-controls.md) for playtime limits, Launch Guard, and [device profiles](../features/profiles.md). Profile management requires Core v2.16.0 or newer.
+- [Play Controls](../features/play-controls.md) for playtime limits, Launch Guard, and [device profiles](../features/profiles.md). Profile management needs an up-to-date Core.
 
 If Core requires an encrypted connection, the app asks for the pairing PIN shown by Core. If Core's network address changes later, the app can reconnect without asking you to pair it again.
 
@@ -86,11 +114,13 @@ The [app source code](https://github.com/ZaparooProject/zaparoo-app), including 
 
 ## Troubleshooting
 
-**The app can't find my device.** Device search works only in the phone app, not the Web UI, and the phone and the device must be on the same network. If search finds nothing, type the device's IP address into **Device address**.
+**The app can't find my device.** Device search works only in the phone app, not the Web UI, and the phone and the device must be on the same network. If search finds nothing, type the device's IP address into the address field on the device card under **Settings**.
 
 **It says pairing required.** Core is set to require encrypted connections. Get a PIN from Core (terminal UI: **Settings > Clients > Pair**, or run `zaparoo -pair` on the device), then enter it under **Pair with Device**. The PIN expires after five minutes and works once. If the app says no pairing is in progress, start pairing on the device again for a new PIN.
 
-**Library says to create a media database.** In **Settings**, run a media database update, then open Library again. Library also needs Core v2.15.0 or newer.
+**Library says to create a media database.** In **Settings**, run a media database update, then open Library again.
+
+**A section says it requires a newer Core.** The app hides features the connected Core cannot provide: Controls need Core v2.10.0, Library and Favorites need v2.15.0, and profiles need v2.16.0. Update Core to use them.
 
 **Writing a tag fails.** The tag is probably full or read-only. See [NTAG troubleshooting](../tokens/nfc/ntag.md#troubleshooting).
 
@@ -106,4 +136,4 @@ No. Your phone and Core device do not need to be next to each other, but both mu
 
 **Does the app work on iPhone?**
 
-Yes. iPhones can scan and write [NTAG](../tokens/nfc/ntag.md) tags, but they do not support [MIFARE Classic](../tokens/nfc/mifare.md). Use NTAG tags for phone-based scanning and writing.
+Yes. iPhones can scan and write [NTAG](../tokens/nfc/index.md) tags, but they do not support [MIFARE Classic](../tokens/nfc/mifare.md). Use NTAG tags for phone-based scanning and writing.

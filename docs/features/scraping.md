@@ -1,11 +1,11 @@
 ---
 sidebar_position: 8
-sidebar_label: Scraping
+sidebar_label: Media Database and Scraping
 description: "Update the Zaparoo Core media database and import local metadata and artwork with the gamelist.xml and media-folder scrapers."
 keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder]
 ---
 
-# Media Database and Scraper Guide
+# Media Database and Scraping
 
 Core's media database is a rebuildable index of games, apps, videos, music, and other launchable media on your device. A media database update finds those items and makes them searchable. Scraping then enriches the indexed records with local metadata and artwork such as cover images, descriptions, developers, and genres.
 
@@ -97,7 +97,7 @@ A normal `gamelist.xml` beside the ROMs takes precedence when it and the custom 
 
 #### MiSTer arcade gamelists
 
-Scrapers like Skraper write arcade gamelists against MAME ROM sets such as `pacman.zip`, while MiSTer launches `.mra` files. On MiSTer and MiSTeX, an entry whose `<path>` is a ROM set name is matched to the `.mra` that names that set, and artwork is looked up by the set name too. When more than one installed `.mra` uses the same set name, the entry is skipped; use an exact `.mra` path to pick one.
+Scrapers like Skraper write arcade gamelists against MAME ROM sets such as `pacman.zip`, while MiSTer launches `.mra` files. On MiSTer, an entry whose `<path>` is a ROM set name is matched to the `.mra` that names that set, and artwork is looked up by the set name too. When more than one installed `.mra` uses the same set name, the entry is skipped; use an exact `.mra` path to pick one.
 
 Put the gamelist in a [custom bundle](#custom-gamelist-bundles) under an `Arcade` directory, or beside the `.mra` files in `_Arcade`:
 
@@ -129,7 +129,7 @@ Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxar
 
 A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist. Any other folder can have artwork too: for `SNES/RPGs/`, Core checks `SNES/media/boxart/RPGs.png` and shows it as the folder's cover in clients that display folder art. It does not make the folder launchable.
 
-When a system exists in more than one indexed root, such as the normal games folder plus an [`index_root`](../core/config.md#index_root), Core checks each root's `media/` folder in root order and uses the first matching file. The same lookup applies when `gamelist.xml` falls back to `media/`. This lets setups with ROMs on one root and artwork on another use the same EmulationStation `media/` folder layout.
+When a system exists in more than one indexed root, such as the normal games folder plus an [`index_root`](../core/config/launchers.md#index_root), Core checks each root's `media/` folder in root order and uses the first matching file. The same lookup applies when `gamelist.xml` falls back to `media/`. This lets setups with ROMs on one root and artwork on another use the same EmulationStation `media/` folder layout.
 
 A force re-scrape also removes image references that follow this naming convention when their file is no longer on disk.
 
@@ -141,7 +141,7 @@ In each system's `docs` folder it reads:
 
 - `Artwork/index.tsv` and the images it lists, which become box art.
 - `gameinfo.tsv`, if present, which becomes `year`, `genre`, `developer`, and `players` [tags](./tags.md). Games it lists without an image still get their metadata.
-- `synopsis_<lang>.tsv` files, if present, which become the game's description. Core uses the first language in [`media.default_langs`](../core/config.md#default_langs) that the pack has, then English, then whatever is there.
+- `synopsis_<lang>.tsv` files, if present, which become the game's description. Core uses the first language in [`media.default_langs`](../core/config/media.md#default_langs) that the pack has, then English, then whatever is there.
 - PDF files in a child folder whose name contains `manual`, which become the game's manual.
 
 Games are matched by their catalogued ROM name first, or for arcade by the set name inside each `.mra` file, then by a unique title. Update All's **Game Manuals (EN) DBs** provide the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.

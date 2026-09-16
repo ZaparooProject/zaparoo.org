@@ -6,17 +6,22 @@ keywords: [zapscript input, zaparoo keyboard shortcut, zapscript button press, i
 
 # Input
 
-These commands simulate input devices like keyboards and gamepads. For security, Core blocks input commands from remote sources. Currently, [Zap Links](./syntax.md#zap-links) are the only remote source. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
+These commands simulate input devices like keyboards and gamepads. Core blocks all of them when the script comes from a remote source, which today means [Zap Links](./zap-links.md). Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
 
-The platform sets a default input mode, which you can configure with [`[zapscript.input]`](../core/config.md#zapscriptinput). On desktop platforms, single-character keys are blocked by default; only key combos and special keys like `{f1}` work. Embedded platforms like MiSTer allow all keys.
+The platform sets a default input mode, which you can configure with [`[zapscript.input]`](../core/config/zapscript.md#zapscriptinput). On desktop platforms, single-character keys are blocked by default; only key combos and special keys like `{f1}` work. Embedded platforms like MiSTer allow all keys.
+
+## Platform support
+
+Input commands work on [MiSTer](../platforms/mister/index.md), [Batocera](../platforms/batocera/index.md), [RePlayOS](../platforms/replayos.md), and [Windows](../platforms/windows/index.md#input). Other platforms accept the command but nothing is typed.
+
+| Command | Notes |
+| ------- | ----- |
+| `input.keyboard`, `input.text`, `input.coinp1` to `input.coinp4` | On Windows, keys cannot reach windows running as administrator or the lock screen. `input.text` types single characters, so on desktop platforms it needs the input mode set to `unrestricted`. |
+| `input.gamepad` | Uses a virtual gamepad that games must map by hand. Off by default on Batocera, where it can interfere with some emulators, on RePlayOS, and on Windows, where it also needs the ViGEmBus driver. Turn it on with [`gamepad_enabled`](../core/config/media.md#gamepad_enabled). |
 
 ## input.keyboard
 
 Simulates keyboard key presses.
-
-:::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input), with some limits on Windows.
-:::
 
 ### Syntax
 
@@ -83,12 +88,11 @@ Type some keys with a pause in the middle:
 
 A single repeat can be at most 1000, and one command can expand to at most 5000 keys.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `speed`  | duration   | `100ms` | Delay between key presses. Milliseconds (`50`) or a duration (`200ms`). Lower is faster |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -116,19 +120,11 @@ Open the MiSTer OSD menu:
 **input.keyboard:{f12}
 ```
 
-:::warning Remote Blocked
-This command is blocked when the script comes from a remote source.
-:::
-
 ---
 
 ## input.text
 
 Types a string of literal text exactly as written. Unlike [`input.keyboard`](#inputkeyboard), it does not interpret `{}` macros, `*` repeats, or advanced arguments, so every character including `{`, `}`, `?`, and `*` is typed as-is. Use it for arbitrary text like search queries, URLs, or passwords.
-
-:::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input). Like other input commands, single-character keys are blocked by default on desktop platforms, so `input.text` needs the input mode set to `unrestricted` there. See [`[zapscript.input]`](../core/config.md#zapscriptinput).
-:::
 
 ### Syntax
 
@@ -155,19 +151,11 @@ Type a URL exactly, including the `?` and `=`:
 **input.text:https://example.com/search?q=zaparoo
 ```
 
-:::warning Remote Blocked
-This command is blocked when the script comes from a remote source.
-:::
-
 ---
 
 ## input.gamepad
 
 Simulates gamepad button presses.
-
-:::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input). The virtual gamepad can interfere with some emulators on Batocera, so it is disabled by default there. It can be re-enabled in the [config file](../core/config.md#gamepad_enabled). Windows also has it off by default and needs a driver; see [Windows input](../platforms/windows/index.md#input).
-:::
 
 This command uses a separate virtual gamepad device, not an existing connected controller, which gives it limited use. It must be mapped manually in game or emulator settings, and it can't pretend to be player 1 if a real controller is already connected as player 1.
 
@@ -202,12 +190,11 @@ The buttons to press in sequence. Supports both single characters and named butt
 | `{select}`       | Select            |
 | `{menu}`         | Menu/Guide button |
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `speed`  | duration   | `100ms` | Delay between button presses. Milliseconds (`50`) or a duration (`200ms`). Lower is faster |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -229,19 +216,11 @@ Press A, A, B, B in sequence:
 **input.gamepad:AABB
 ```
 
-:::warning Remote Blocked
-This command is blocked when the script comes from a remote source.
-:::
-
 ---
 
 ## input.coinp1 / input.coinp2 / input.coinp3 / input.coinp4
 
 Inserts coins for players 1 through 4 in arcade games.
-
-:::note Platform Support
-Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/mistex.md), [Batocera](../platforms/batocera/index.md), and [Windows](../platforms/windows/index.md#input).
-:::
 
 ### Syntax
 
@@ -258,12 +237,6 @@ Supported on [MiSTer](../platforms/mister/index.md), [MiSTeX](../platforms/miste
 The number of coins to insert, from 0 to 99.
 
 Omit the amount to insert one coin.
-
-### Advanced Arguments
-
-| Argument | Type       | Default | Description                                                        |
-| -------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

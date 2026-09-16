@@ -59,7 +59,7 @@ Replace `<IP ADDRESS>` with your Core device's IP address and `<ZAPSCRIPT>` with
 :::warning
 Phone-camera URLs depend on your Core device's IP address. If the IP address changes, you need to update the QR codes.
 
-Remote launch requests also have to match a pattern in Core's [`allow_run`](../core/config.md#allow_run) setting in the `[service]` section of the config file. With no patterns set, every remote launch is refused. If you do not want to enable remote launch URLs, use the Zaparoo App scanning option instead.
+Remote launch requests also have to match a pattern in Core's [`allow_run`](../core/config/service.md#allow_run) setting in the `[service]` section of the config file. With no patterns set, every remote launch is refused. If you do not want to enable remote launch URLs, use the Zaparoo App scanning option instead.
 :::
 
 ### Examples

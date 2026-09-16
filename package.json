@@ -15,7 +15,8 @@
     "typecheck": "tsc",
     "docs:sync-stable": "node scripts/sync-stable-docs.mjs",
     "stats": "node scripts/update-stats.mjs",
-    "tag-release": "TIMESTAMP=$(date '+%Y%m%d%H%M') && pnpm build && git tag \"v$TIMESTAMP\" && git push origin \"v$TIMESTAMP\""
+    "tag-release": "TIMESTAMP=$(date '+%Y%m%d%H%M') && pnpm build && git tag \"v$TIMESTAMP\" && git push origin \"v$TIMESTAMP\"",
+    "docs:reader-tables": "node scripts/generate-reader-tables.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.1",

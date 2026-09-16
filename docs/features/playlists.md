@@ -126,49 +126,7 @@ Because this is JSON, strings must be quoted and any quotes inside item ZapScrip
 
 ## Using a playlist
 
-Load a playlist source and launch the first item:
-
-```zapscript
-**playlist.play:/media/fat/playlists/favorites.pls
-```
-
-Load a playlist source without launching anything yet:
-
-```zapscript
-**playlist.load:/media/fat/playlists/favorites.pls
-```
-
-Open a picker for a playlist source:
-
-```zapscript
-**playlist.open:/media/fat/playlists/favorites.pls
-```
-
-Move through an active playlist from separate tokens:
-
-```zapscript
-**playlist.next
-```
-
-```zapscript
-**playlist.previous
-```
-
-Pause and resume the active playlist:
-
-```zapscript
-**playlist.pause
-```
-
-```zapscript
-**playlist.play
-```
-
-Stop the current media and clear the active playlist:
-
-```zapscript
-**playlist.stop
-```
+Write `**playlist.play:<source>` to a token to load a playlist and start its first item, or `**playlist.load:<source>` to load it without launching. Separate tokens can then run `**playlist.next`, `**playlist.previous`, `**playlist.pause`, and `**playlist.stop`. Every command and its arguments are on the [playlist command reference](../zapscript/playlist.md).
 
 ## Picker support
 

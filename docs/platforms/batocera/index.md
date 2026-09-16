@@ -41,7 +41,26 @@ curl -fsSL https://zaparoo.org/install.sh | bash
 
 This installs Zaparoo via the pacman package manager, sets up the startup service, and adds a Zaparoo entry to the Ports system.
 
-For manual installation methods (Network Share, USB, or SSH), see [Manual Install](./install.md).
+### Manual install
+
+If you prefer not to use the Content Downloader or the install script, download Zaparoo Core for Batocera from the [Downloads page](/downloads/) and unzip it. It comes with two files: `zaparoo`, the Core executable, and `zaparoo_service`, a service script that runs Core on startup.
+
+Over the network share or from a USB drive (press `F1` for the file manager):
+
+1. Copy `zaparoo` into `/userdata/system` (`\\BATOCERA\share\system` on Windows).
+2. Create a `services` directory inside it if there isn't one, and copy `zaparoo_service` there.
+3. Press `Start`, open `System Settings` > `Services` (in the Advanced section), and enable `zaparoo_service`.
+4. Restart Batocera.
+
+Over SSH (default credentials `root` / `linux`; see Batocera's [SSH guide](https://wiki.batocera.org/access_the_batocera_via_ssh)), copy `zaparoo` to `/userdata/system` with `scp` or [WinSCP](https://winscp.net/), then run:
+
+```bash
+cd /userdata/system
+chmod +x ./zaparoo
+./zaparoo -install
+batocera-services enable zaparoo_service
+batocera-services start zaparoo_service
+```
 
 ## Uninstall
 
@@ -61,10 +80,10 @@ For a child-friendly or arcade-style setup with no visible game library, see the
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |

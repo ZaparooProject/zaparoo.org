@@ -19,7 +19,7 @@ install_dir = "C:\\Games\\LaunchBox"
 install_dir = 'C:\Games\LaunchBox'
 ```
 
-An invalid TOML file can prevent Core from loading any configuration, not just the launcher with the incorrect path. See the [config file reference](../../core/config.md) for general syntax and reload behavior.
+An invalid TOML file can prevent Core from loading any configuration, not just the launcher with the incorrect path. See the [config file reference](../../core/config/index.md) for general syntax and reload behavior.
 
 ## Window focus
 
@@ -43,7 +43,7 @@ install_dir = "D:\\Steam"  # Optional custom Steam install directory
 
 ## LaunchBox
 
-The Zaparoo LaunchBox integration works in both the desktop LaunchBox interface and Big Box. You may also see Big Box written as `BigBox`. Both interfaces use the same plugin, indexed game library, and `launchbox://` token format.
+The Zaparoo LaunchBox integration works in both the desktop LaunchBox interface and Big Box. Both interfaces use the same plugin, indexed game library, and `launchbox://` token format.
 
 :::tip Required Plugin
 LaunchBox integration requires the Zaparoo plugin. Download [Zaparoo LaunchBox Integration v1.3.0.zip](https://zaparoo.org/files/Zaparoo%20LaunchBox%20Integration%20v1.3.0.zip) and follow the installation steps below.
@@ -203,8 +203,8 @@ Plays media via Kodi's JSON-RPC API. Kodi must be running with remote control en
 
 | System ID | Extensions |
 |-----------|------------|
-| `Video` | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm`, `.m4v`, `.wmv`, `.flv` |
-| `MusicTrack` | `.mp3`, `.flac`, `.ogg`, `.wav`, `.m4a`, `.wma`, `.aac` |
+| `Video` | `.avi`, `.mp4`, `.mkv`, `.iso`, `.bdmv`, `.ifo`, `.mpeg`, `.mpg`, `.mov`, `.wmv`, `.flv`, `.webm`, `.m4v`, `.3gp`, `.ts`, `.m2ts`, `.mts`, `.m3u`, `.m3u8` |
+| `MusicTrack` | `.mp3`, `.flac`, `.ogg`, `.m4a`, `.wav`, `.wma`, `.aac`, `.opus` |
 
 ### Library Media
 

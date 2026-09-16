@@ -24,7 +24,7 @@ Playlists can play in the `primary` slot, the default that is shared with games,
 **playlist.play:/media/fat/music/album?slot=background
 ```
 
-All playlist commands accept the `slot` argument, so `playlist.next`, `playlist.pause`, and the rest can target a specific slot. When omitted, commands act on the active playlist's slot.
+All playlist commands accept the `slot` argument, so `playlist.next`, `playlist.pause`, and the rest can target a specific slot. When omitted, commands act on the active playlist's slot, or the primary slot when no playlist is running. Slots are explained on the [audio playback](../features/audio.md#media-slots) page.
 
 ## Repeat modes
 
@@ -57,14 +57,13 @@ Loads a playlist and immediately launches the first item.
 **`source`** (optional)
 Path to a folder, `.pls` file, or inline JSON playlist. If omitted, resumes the current paused playlist.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -103,14 +102,13 @@ Loads a playlist into memory without launching anything.
 **`source`** (required)
 Path to a folder, `.pls` file, or inline JSON playlist.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -147,14 +145,13 @@ Loads a playlist and opens an interactive picker menu to select an item.
 **`source`** (optional)
 Path to a folder, `.pls` file, or inline JSON playlist. If omitted, reopens the picker for the current playlist.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -186,12 +183,11 @@ Stops the current media and clears the playlist from memory.
 
 None.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -217,12 +213,11 @@ Pauses the current playlist without clearing it.
 
 None.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -248,12 +243,11 @@ Launches the next item in the playlist.
 
 None.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -279,12 +273,11 @@ Launches the previous item in the playlist.
 
 None.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -311,12 +304,11 @@ Jumps to a specific position in the playlist.
 **`index`** (required)
 The 1-based index of the item to launch.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument | Type       | Default | Description                                                        |
 | -------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
-| `when`   | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

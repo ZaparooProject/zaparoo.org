@@ -112,49 +112,14 @@ See [Zaparoo Online play history sync](../online/index.md#play-history-sync) for
 
 ## Manual configuration
 
-### Launch guard
+Both features can be set in `config.toml` instead of the App or TUI. Turn on the launch guard with re-tap confirmation and the default timeout:
 
 ```toml
 [readers.scan.launch_guard]
 enabled = true
-timeout = 15
-delay = 0
-require_confirm = false
 ```
 
-Common examples:
-
-```toml
-# Re-tap to confirm, using default timeout
-[readers.scan.launch_guard]
-enabled = true
-```
-
-```toml
-# Wait up to 30 seconds and require a 5-second cool-down before re-tap
-[readers.scan.launch_guard]
-enabled = true
-timeout = 30
-delay = 5
-```
-
-```toml
-# Only confirm through the API
-[readers.scan.launch_guard]
-enabled = true
-require_confirm = true
-```
-
-```toml
-# Stage indefinitely until confirmed, replaced, or media stops
-[readers.scan.launch_guard]
-enabled = true
-timeout = -1
-```
-
-See the [launch guard config reference](../core/config.md#launch-guard-config) for all options.
-
-### Playtime limits
+Limit play to two hours a day in 45-minute sessions with a 20-minute break:
 
 ```toml
 [playtime.limits]
@@ -162,27 +127,9 @@ enabled = true
 daily = "2h"
 session = "45m"
 session_reset = "20m"
-warnings = ["10m", "5m", "2m", "1m"]
 ```
 
-Limit play to 1 hour per day:
-
-```toml
-[playtime.limits]
-enabled = true
-daily = "1h"
-```
-
-Allow 45-minute gaming sessions with 30-minute breaks:
-
-```toml
-[playtime.limits]
-enabled = true
-session = "45m"
-session_reset = "30m"
-```
-
-See the [playtime config reference](../core/config.md#playtime) for all options.
+The [launch guard](../core/config/readers.md#launch-guard-config) and [playtime](../core/config/profiles.md#playtime) config references list every key, including `timeout`, `delay`, `require_confirm`, and `warnings`.
 
 ## API and notifications
 
@@ -194,7 +141,7 @@ See the [playtime config reference](../core/config.md#playtime) for all options.
 
 Disabling playtime limits resets the current session and clears cooldown timers. Daily usage history is kept. Re-enabling starts a fresh session, but daily usage from history still counts toward the daily limit.
 
-Playtime history is kept locally for 365 days by default. Change [`playtime.retention`](../core/config.md#retention) to keep fewer days or set it to `0` to keep all history. When online sync is enabled and linked, cleanup waits for a session to be acknowledged before removing its local copy.
+Playtime history is kept locally for 365 days by default. Change [`playtime.retention`](../core/config/profiles.md#retention) to keep fewer days or set it to `0` to keep all history. When online sync is enabled and linked, cleanup waits for a session to be acknowledged before removing its local copy.
 
 ## Platform support
 
@@ -219,10 +166,10 @@ On MiSTer, game tracking requires `recents=1` and `log_file_entry=1` in `MiSTer.
 
 ### Warnings not appearing
 
-1. Check the [`warnings`](../core/config.md#warnings) array.
-2. Make sure [audio feedback](../core/config.md#scan_feedback) is enabled.
+1. Check the [`warnings`](../core/config/profiles.md#warnings) array.
+2. Make sure [audio feedback](../core/config/media.md#scan_feedback) is enabled.
 3. Check the Zaparoo App is connected to receive notifications.
 
 ### Session not resetting
 
-Check [`session_reset`](../core/config.md#session_reset). If it is set to `"0"`, sessions never reset automatically.
+Check [`session_reset`](../core/config/profiles.md#session_reset). If it is set to `"0"`, sessions never reset automatically.

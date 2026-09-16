@@ -24,12 +24,12 @@ broker = "mqtt://192.168.1.100:1883"
 topic = "zaparoo/events"
 ```
 
-See the [Config File Reference](../core/config.md#servicepublishersmqtt) for all options:
+See the [Config File Reference](../core/config/service.md#servicepublishersmqtt) for all options:
 
-- [`enabled`](../core/config.md#mqtt-publisher-enabled): turn this publisher on or off
-- [`broker`](../core/config.md#mqtt-publisher-broker): MQTT broker URL (`mqtt://`, `mqtts://`, or `ssl://`)
-- [`topic`](../core/config.md#mqtt-publisher-topic): MQTT topic to publish to
-- [`filter`](../core/config.md#mqtt-publisher-filter): limit which event types are published
+- [`enabled`](../core/config/service.md#mqtt-publisher-enabled): turn this publisher on or off
+- [`broker`](../core/config/service.md#mqtt-publisher-broker): MQTT broker URL (`mqtt://`, `mqtts://`, or `ssl://`)
+- [`topic`](../core/config/service.md#mqtt-publisher-topic): MQTT topic to publish to
+- [`filter`](../core/config/service.md#mqtt-publisher-filter): limit which event types are published
 
 ## PixelCade
 
@@ -40,13 +40,13 @@ The PixelCade publisher displays game marquee art on a [PixelCade](https://pixel
 host = "192.168.1.50"
 ```
 
-See the [Config File Reference](../core/config.md#servicepublisherspixelcade) for all options:
+See the [Config File Reference](../core/config/service.md#servicepublisherspixelcade) for all options:
 
-- [`enabled`](../core/config.md#pixelcade-publisher-enabled): turn this publisher on or off
-- [`host`](../core/config.md#pixelcade-publisher-host): hostname or IP address of the PixelCade device (required)
-- [`port`](../core/config.md#pixelcade-publisher-port): HTTP API port (default: `8080`)
-- [`mode`](../core/config.md#pixelcade-publisher-mode): `"stream"` or `"write"` endpoint (default: `"stream"`)
-- [`filter`](../core/config.md#pixelcade-publisher-filter): limit which event types trigger requests
+- [`enabled`](../core/config/service.md#pixelcade-publisher-enabled): turn this publisher on or off
+- [`host`](../core/config/service.md#pixelcade-publisher-host): hostname or IP address of the PixelCade device (required)
+- [`port`](../core/config/service.md#pixelcade-publisher-port): HTTP API port (default: `8080`)
+- [`mode`](../core/config/service.md#pixelcade-publisher-mode): `"stream"` or `"write"` endpoint (default: `"stream"`)
+- [`filter`](../core/config/service.md#pixelcade-publisher-filter): limit which event types trigger requests
 
 PixelCade currently only sends requests for `media.started` notifications. Other notification types are ignored even if they pass the filter.
 

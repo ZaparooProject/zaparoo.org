@@ -6,7 +6,7 @@ keywords: [zaparoo audio, zaparoo background music, zaparoo media slots, native 
 
 # Audio Playback
 
-Zaparoo Core can play audio files on their own, without an emulator or separate media player. This is handled by a built-in native audio launcher that plays files through the same audio output Core uses for [scan feedback sounds](../core/config.md#audio).
+Zaparoo Core can play audio files on their own, without an emulator or separate media player. This is handled by a built-in native audio launcher that plays files through the same audio output Core uses for [scan feedback sounds](../core/config/media.md#audio).
 
 Use it to play a single track, a folder of music as a [playlist](./playlists.md), or background music that keeps playing while you launch and play games.
 
@@ -34,7 +34,7 @@ Playback is split into two slots:
 | `primary` | The default slot. Games and other media launch here. |
 | `background` | A separate slot for audio that plays alongside whatever is in the primary slot. |
 
-Commands act on the primary slot unless you set a slot. Add `?slot=background` (or the short form `?slot=bg`) to target the background slot instead.
+Commands act on the slot of the playlist that is running, or the primary slot when none is, unless you set a slot. Add `?slot=background` (or the short form `?slot=bg`) to target the background slot instead.
 
 The background slot is what makes background music possible: a game runs in the primary slot while music plays in the background slot at the same time.
 
@@ -58,7 +58,7 @@ While background music plays you can keep scanning game tokens as usual. They la
 
 By default, background music automatically pauses when a game launches in the primary slot and resumes when the game quits. This keeps the music from competing with a game's own audio.
 
-To keep background music playing through game launches, turn this off for the `Audio` system in the [config file](../core/config.md#systemsdefault):
+To keep background music playing through game launches, turn this off for the `Audio` system in the [config file](../core/config/launchers.md#systemsdefault):
 
 ```toml
 [[systems.default]]
@@ -105,4 +105,4 @@ To control background audio, add the slot:
 
 ## Volume
 
-Native audio playback uses the same volume setting as scan feedback sounds, set with [`volume`](../core/config.md#volume) in the config file.
+Native audio playback uses the same volume setting as scan feedback sounds, set with [`volume`](../core/config/media.md#volume) in the config file.

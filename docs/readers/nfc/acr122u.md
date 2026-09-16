@@ -24,14 +24,14 @@ The ACR122U is no longer produced by its original designer [ACS](https://www.acs
 ## Platforms
 
 :::warning Linux-based platforms
-Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. [NTAG](../../tokens/nfc/ntag.md) read/write support works, but [MIFARE Classic](../../tokens/nfc/mifare.md) write support is limited and some MIFARE cards may need manual formatting or may not work. The reader LED and beeper also do not work with this driver, and some clone variants are incompatible.
+Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. [NTAG](../../tokens/nfc/index.md) read/write support works, but [MIFARE Classic](../../tokens/nfc/mifare.md) write support is limited and some MIFARE cards may need manual formatting or may not work. The reader LED and beeper also do not work with this driver, and some clone variants are incompatible.
 :::
 
 <PlatformSupport readerId="acr122u" />
 
 ## Configure the reader
 
-On Linux-based platforms, Core uses the `libnfcacr122` driver. It is enabled, but it does not search for the reader until you turn on auto-detect for it in [`config.toml`](../../core/config.md#readers-drivers-auto-detect):
+On Linux-based platforms, Core uses the `libnfcacr122` driver. It is enabled, but it does not search for the reader until you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect):
 
 ```toml
 [readers.drivers.libnfcacr122]

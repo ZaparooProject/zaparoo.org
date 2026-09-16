@@ -45,7 +45,7 @@ export default function DocVersionBanner(props: Props): ReactNode {
         props.className,
         "theme-doc-version-banner alert alert--warning margin-bottom--md",
       )}
-      role="alert"
+      role="note"
     >
       <div>
         This is unreleased documentation for the next Zaparoo Core release.

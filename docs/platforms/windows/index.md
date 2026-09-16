@@ -6,7 +6,7 @@ keywords: [zaparoo windows, nfc game launcher windows, zaparoo launchbox, zaparo
 # Windows
 
 :::warning[Beta]
-Windows support is currently in beta. Some features may not work as expected.
+Windows is a [beta platform](../index.mdx#support-levels): Core installs and runs, but some launchers and setup paths are still being completed.
 :::
 
 Zaparoo Core on Windows runs in the system tray and supports Steam, LaunchBox, Big Box, and custom launcher configurations.
@@ -60,7 +60,7 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 
 ## Client security
 
-Windows requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Pair Device...** in the tray menu. The PIN expires after five minutes. See [encryption](../../core/config.md#encryption) for how paired clients and their permissions work.
+Windows requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Pair Device...** in the tray menu. The PIN expires after five minutes. See [encryption](../../core/config/service.md#encryption) for how paired clients and their permissions work.
 
 ## Readers
 
@@ -71,7 +71,7 @@ Windows requires encrypted connections from remote clients. Pair a phone, browse
 | NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Auto-detected | Can scan tags, but cannot write them through PCSC. |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Not supported |  | Linux only |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
@@ -99,11 +99,11 @@ Executables and Scripts require an `allow_file` configuration in your `config.to
 
 ## Input
 
-ZapScript [input commands](../../zapscript/input.md) send keyboard presses to the active window. They cannot reach windows running as administrator or the lock screen. Virtual gamepad input needs the ViGEmBus driver from the installer and [`gamepad_enabled = true`](../../core/config.md#gamepad_enabled) in `config.toml`; it is off by default because an extra controller changes the controller order in games.
+ZapScript [input commands](../../zapscript/input.md) send keyboard presses to the active window. They cannot reach windows running as administrator or the lock screen. Virtual gamepad input needs the ViGEmBus driver from the installer and [`gamepad_enabled = true`](../../core/config/media.md#gamepad_enabled) in `config.toml`; it is off by default because an extra controller changes the controller order in games.
 
 ## Troubleshooting
 
-**Core stops applying settings after you edit `config.toml`.** One syntax error makes Core ignore the whole file. Open it from the tray menu (**Edit Config**), check it against the [config reference](../../core/config.md), and remember that backslashes in Windows paths must be escaped or written in single-quoted strings.
+**Core stops applying settings after you edit `config.toml`.** One syntax error makes Core ignore the whole file. Open it from the tray menu (**Edit Config**), check it against the [config reference](../../core/config/index.md), and remember that backslashes in Windows paths must be escaped or written in single-quoted strings.
 
 **Core is not running.** Start `Zaparoo.exe`; it lives in the system tray. Use **View Log** in the tray menu to see why it stopped.
 

@@ -35,16 +35,20 @@ This installs and enables the `zaparoo.service` systemd unit to run on startup. 
 /media/sd/zaparoo/zaparoo -uninstall
 ```
 
+## Client security
+
+Encryption is off by default on RePlayOS, so the Zaparoo App and browsers connect without pairing. To require pairing with a PIN, set [`encryption = true`](../core/config/service.md#encryption) in `config.toml`; Core then shows the PIN under **Settings > Clients > Pair** in the terminal UI or with `/media/sd/zaparoo/zaparoo -pair`.
+
 ## Readers
 
 | Type | Reader | Support | Setup | Notes |
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../readers/optical-drive.md) | Supported | Manual config |  |
 | Optical and Media | [External Drive](../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../readers/mqtt.md) | Supported | Manual config |  |
@@ -104,4 +108,4 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 
 ### Shell scripts
 
-Run `.sh` scripts. Scripts must be allow-listed via the [`allow_file`](../core/config.md#allow_file) setting in `config.toml`.
+Run `.sh` scripts. Scripts must be allow-listed via the [`allow_file`](../core/config/launchers.md#allow_file) setting in `config.toml`.

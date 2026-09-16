@@ -77,7 +77,7 @@ match_pattern = '044ed8daed7281'
 zapscript = '**launch.random:snes'
 ```
 
-UID matching is normalized, so this also matches `044ed8daed7281`.
+UID matching is normalized, so this also matches `04:4E:D8:DA:ED:72:81`.
 
 ### Match a barcode
 

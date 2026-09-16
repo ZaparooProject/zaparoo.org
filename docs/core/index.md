@@ -24,15 +24,18 @@ Core coordinates the main Zaparoo system:
 
 Start with the [platform guides](../platforms/index.mdx) for installation steps. Each platform has its own paths, startup behavior, launchers, and reader notes.
 
-After Core is installed, you can control it through:
+After Core is installed, you can control it through the [Zaparoo App](../app/index.md) on iOS or Android, the embedded [Web UI](../app/web.md) at `http://<device-ip>:7497/app/`, and the [Core API](./api/index.md) for custom tools. Those work everywhere. What you get on the device itself depends on the platform:
 
-- The [Zaparoo App](../app/index.md) on iOS or Android.
-- The embedded [Web UI](../app/web.md) at `http://<device-ip>:7497/app/`.
-- The [terminal UI](./tui.md), when available for your platform.
-- The [command line](./cli.md), when supported by your platform.
-- The [Core API](./api/index.md) for custom tools and integrations.
+| Platform | On the device | Service control |
+| -------- | ------------- | --------------- |
+| MiSTer | [Terminal UI](./tui.md) from the Scripts menu | `-service` flags |
+| Batocera | Terminal UI from the Ports system | `-service` flags |
+| Linux, SteamOS, Bazzite, ChimeraOS | Terminal UI by running `zaparoo` | systemd user service, `-daemon`, `-start` |
+| LibreELEC | Terminal UI by running `zaparoo` | `-service` flags |
+| RePlayOS | Terminal UI by running `zaparoo` | systemd service, `-daemon` |
+| Windows | System tray menu | Tray menu |
 
-Most Core settings live in `config.toml`. See the [configuration reference](./config.md) for file locations, option names, and examples.
+The [command line reference](./cli.md) lists the flags for each platform. Most Core settings live in `config.toml`; see the [configuration reference](./config/index.md) for file locations, option names, and examples.
 
 Core checks for new releases on its own and can install them in place when you opt in. See [Core updates](./updates.md) for how checks, automatic installs, and rollback work on each platform.
 
@@ -40,7 +43,7 @@ Core checks for new releases on its own and can install them in place when you o
 
 Core keeps a rebuildable media database so the app, Web UI, TUI, and ZapScript can search for games and other launchable media. Update it after adding files, installing games in a supported launcher, or changing launcher paths. Scraping is a separate step that imports local metadata and artwork into those indexed records.
 
-The [media database and scraper guide](../features/scraping.md) explains how to update all systems or selected systems, run scrapers, and recover a damaged media database without deleting favorites, history, mappings, or launcher overrides.
+The [media database and scraping guide](../features/scraping.md) explains how to update all systems or selected systems, run scrapers, and recover a damaged media database without deleting favorites, history, mappings, or launcher overrides.
 
 ## Maintenance and troubleshooting
 
@@ -51,14 +54,14 @@ Use these starting points for Core maintenance tasks:
 | Reload settings, mappings, or launchers | [Reload Core from the TUI](./tui.md#reload-core) or [command line](./cli.md#reload-core) |
 | Restart or manage the Core service | [Platform command-line flags](./cli.md#platform-flags) and your [platform guide](../platforms/index.mdx) |
 | Find, view, or export logs | [TUI logs](./tui.md#logs) and the log path in your [platform guide](../platforms/index.mdx) |
-| Update the media database or run a scraper | [Media database and scraper guide](../features/scraping.md) |
+| Update the media database or run a scraper | [Media database and scraping](../features/scraping.md) |
 | Back up before making changes | [Device backups](../features/backups.md), local for free or automatic with Warp |
-| Edit `config.toml` | [Configuration reference](./config.md) |
+| Edit `config.toml` | [Configuration reference](./config/index.md) |
 | Recover a corrupt media database | [Database recovery](./cli.md#database-recovery) |
-| Update Core | [Core updates](./updates.md); Update All on MiSTer and the package manager on Batocera when they installed Core |
+| Update Core | [Core updates](./updates.md); Update All on MiSTer and the Content Downloader on Batocera when they installed Core |
 | Uninstall Core | Your [platform guide](../platforms/index.mdx); uninstall steps are platform-specific |
 
-Direct uninstall instructions are available for [MiSTer](../platforms/mister/index.md#uninstall), [Batocera](../platforms/batocera/index.md#uninstall), [LibreELEC](../platforms/libreelec.md#uninstall), [Linux](../platforms/linux/install.md#uninstalling), [SteamOS](../platforms/steamos/index.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
+Direct uninstall instructions are available for [MiSTer](../platforms/mister/index.md#uninstall), [Batocera](../platforms/batocera/index.md#uninstall), [LibreELEC](../platforms/libreelec.md#uninstall), [Linux](../platforms/linux/index.md#uninstall), [SteamOS](../platforms/steamos/index.md#uninstall), [Bazzite](../platforms/bazzite.mdx#uninstall), [ChimeraOS](../platforms/chimeraos.mdx#uninstall), [Windows](../platforms/windows/index.md#uninstall), and [RePlayOS](../platforms/replayos.md#uninstall).
 
 ## Features and customization
 
@@ -70,7 +73,7 @@ If you are setting up hardware, start with the [readers](../readers/index.md) an
 
 The [Core API](./api/index.md) reference and the [Developer Guide](./contributing/index.md) are maintained in the Core repository and published here automatically, so they read differently from the rest of these docs. The [Zaparoo CLI](https://github.com/ZaparooProject/zaparoo-cli) is the maintained command-line client for scripts, tests, and AI agents.
 
-A client on another device must [pair with Core](./config.md#encryption) or send an [API key](./config.md#api-keys) on most platforms; the [permissions](./api/index.md#permissions) section of the API reference lists what each kind of client can call.
+A client on another device must [pair with Core](./config/service.md#encryption) or send an [API key](./config/service.md#api-keys) on most platforms; the [permissions](./api/index.md#permissions) section of the API reference lists what each kind of client can call.
 
 ## Source and license
 

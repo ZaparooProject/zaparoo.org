@@ -20,7 +20,7 @@ This is useful if you want physical tokens without buying [NFC cards](../tokens/
 
 ## Enable the reader
 
-The reader is disabled by default. Add this to your [`config.toml`](../core/config.md):
+The reader is disabled by default. Add this to your [`config.toml`](../core/config/index.md):
 
 ```toml
 [[readers.connect]]

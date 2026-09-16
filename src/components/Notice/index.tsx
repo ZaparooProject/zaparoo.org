@@ -29,9 +29,10 @@ export default function Notice({
   variant,
   compact = false,
   className,
-  as: Element = "div",
+  as,
   ariaLabel,
 }: Props): ReactNode {
+  const Element = as ?? (ariaLabel ? "aside" : "div");
   return (
     <Element
       className={clsx(

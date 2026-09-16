@@ -10,7 +10,7 @@ A system is a category [Zaparoo Core](../core/index.md) uses to group scanned me
 
 Most systems refer to a console, handheld, computer, or arcade platform, but systems can also describe other media types like movies, music, and images. Each [platform](../platforms/index.mdx) supports the systems its launchers can handle.
 
-System IDs are case-insensitive in [configuration files](../core/config.md) and ZapScript commands. This page lists the user-facing system IDs, explicit aliases, and fallback systems built into Core.
+System IDs are case-insensitive in [configuration files](../core/config/index.md) and ZapScript commands. This page lists the user-facing system IDs, explicit aliases, and fallback systems built into Core.
 
 Not every system here can be launched. Some, such as mobile phones or VR headsets, exist so media can be classified and tagged correctly. Whether a system launches depends on the [launchers](./launchers.md) your platform provides.
 
@@ -185,7 +185,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `ColecoAdam` | Coleco Adam | | |
 | `CommanderX16` | Commander X16 | | |
 | `CommodorePlus4` | Commodore Plus/4 | `Commodore Plus/4`, `Plus/4`, `Plus4`, `CPlus4`, `C+4` | |
-| `DOS` | MS-DOS | `ao486`, `MS-DOS` | `PC` |
+| `DOS` | MS-DOS | `ao486` | `PC` |
 | `Dragon32` | Dragon 32/64 | `Dragon 32/64`, `Dragon 32`, `Dragon 64` | |
 | `EDSAC` | EDSAC | | |
 | `ElektorTVGamesComputer` | Elektor TV Games Computer | `Elektor TV Games Computer`, `TV Games Computer`, `TVGC` | |
@@ -257,7 +257,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `DICE` | Sega DICE | | |
 | `Gaelco` | Gaelco arcade boards | | |
 | `Hikaru` | Sega Hikaru | | |
-| `HyperNeoGeo64` | Hyper Neo Geo 64 | `Hyper Neo Geo 64`, `HNG64` | `Arcade` |
+| `HyperNeoGeo64` | Hyper Neo Geo 64 | `HNG64` | `Arcade` |
 | `IremM72` | Irem M72 | | `Arcade` |
 | `IremM92` | Irem M92 | | `Arcade` |
 | `JalecoMegaSystem1` | Jaleco Mega System 1 | | `Arcade` |
@@ -333,11 +333,10 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 
 ## Usage notes
 
-- **System IDs are case-insensitive** when used in configuration files and ZapScript commands
 - **Aliases** are explicit alternative names that Core treats as the same system, such as `MegaDrive` for `Genesis`, `GB` for `Gameboy`, or `N64` for `Nintendo64`
 - **Fallbacks** let Core try related systems when resolving launchers, searches, or random selection. Core checks the requested system first and only tries each fallback tier when the previous tier has no result. For example, `GameboyColor` can fall back to `Gameboy`, and MiSTer's `CPS1` classification can fall back to `Arcade`
 - Not all systems are supported on every platform - check your [platform's documentation](../platforms/index.mdx) for launcher-specific support
-- System defaults can be configured in your [configuration file](../core/config.md#systems), and [`[[systems.category]]`](../core/config.md#systemscategory) adds your own categories, such as a kids shelf, next to the built-in ones above
+- System defaults can be configured in your [configuration file](../core/config/launchers.md#systems), and [`[[systems.category]]`](../core/config/launchers.md#systemscategory) adds your own categories, such as a kids shelf, next to the built-in ones above
 - Systems are used in [ZapScript](../zapscript/index.md) commands for launching specific system types
 
 ### Examples

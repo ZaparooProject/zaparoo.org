@@ -27,9 +27,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -51,7 +51,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -129,9 +129,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -153,7 +153,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -231,9 +231,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -255,7 +255,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -357,7 +357,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -459,7 +459,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -537,9 +537,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -561,7 +561,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -639,9 +639,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -663,7 +663,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -764,7 +764,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -842,9 +842,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -866,7 +866,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -944,9 +944,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -968,7 +968,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -1046,9 +1046,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -1070,7 +1070,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }
@@ -1148,9 +1148,9 @@ export const readerSupportByPlatform = {
         {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
-          "support": "supported",
+          "support": "limited",
           "setup": "Manual enable",
-          "note": "Uses libnfc: LED and beeper do not work, and some clone variants are incompatible."
+          "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
         },
         {
           "name": "RC522",
@@ -1172,7 +1172,7 @@ export const readerSupportByPlatform = {
         },
         {
           "name": "RS-232 scanner",
-          "href": "readers/barcode/rs232",
+          "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
         }

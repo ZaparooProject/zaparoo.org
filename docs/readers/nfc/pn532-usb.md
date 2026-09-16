@@ -22,7 +22,7 @@ This is the reader stocked in the <ProductLink href="https://shop.zaparoo.com/" 
 
 [Zaparoo Core](../../core/index.md) auto-detects PN532 USB readers by default. In most setups, connect the reader to a normal USB port, start Core, and scan a tag.
 
-If auto-detection does not find it, add the serial port to your [`config.toml`](../../core/config.md). Use the `pn532uart` driver for USB serial modules.
+If auto-detection does not find it, add the serial port to your [`config.toml`](../../core/config/index.md). Use the `pn532uart` driver for USB serial modules.
 
 Use the serial device or COM port assigned by your operating system.
 
@@ -74,7 +74,7 @@ sudo usermod -a -G dialout $USER
 
 Log out and back in after changing groups.
 
-PN532Killer readers in UART mode are detected and configured the same way as any other PN532 USB reader. The udev rule installed by Core's [hardware support](../../platforms/linux/install.md) step covers them.
+PN532Killer readers in UART mode are detected and configured the same way as any other PN532 USB reader. The udev rule installed by Core's [hardware support](../../platforms/linux/index.md#manual-install) step covers them.
 
 ### macOS
 

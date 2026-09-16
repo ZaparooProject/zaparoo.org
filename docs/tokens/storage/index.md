@@ -25,9 +25,38 @@ Binders work well when you want to browse cards in pages. The pocket size depend
 
 Top-loading pockets are usually better than side-loading pockets because cards are less likely to slip out as you turn pages. If you use double-sided pages, pulling cards from the back side can be awkward once the binder is full.
 
-## Cassette cases
+## Cassette cases {#cassette-cases}
 
-[Cassette cases](./cassette-cases.md) fit well with retro gaming setups. You can create custom cassette wrap covers with [Zaparoo Designer](../../designer/index.md) or the [NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator), and 3D printed inserts are available for holding credit card size NFC cards inside the cases.
+<Gallery
+  photos={[
+    {
+      src: "/img/docs/tokens/cassette-Front.jpg",
+      width: 1200,
+      height: 421,
+      alt: "Front artwork for a cassette case cover"
+    },
+    {
+      src: "/img/docs/tokens/cassette-Back.jpg",
+      width: 1200,
+      height: 759,
+      alt: "Back artwork for a cassette case cover"
+    },
+    {
+      src: "/img/docs/tokens/cassette-Spine.jpg",
+      width: 1824,
+      height: 1026,
+      alt: "Spine artwork for cassette case covers"
+    }
+  ]}
+/>
+
+Cassette cases fit well with retro gaming setups. Add printed wrap covers and the cases start to feel like a physical shelf for a digital game library.
+
+Create covers in [Zaparoo Designer](../../designer/index.md) by choosing the **Cassette tape case** media type and one of the cassette cover templates, or use the [NFC Cassette Cover Generator](https://github.com/Anime0t4ku/NFC-Cassette-Cover-Generator), a desktop app by [Anime0t4ku](https://github.com/Anime0t4ku) that exports a single print-ready wrap cover with SteamGridDB and TMDB artwork import. Print covers on glossy photo paper at 4.11 by 4 inches (10.44 by 10.16 cm).
+
+For credit card size NFC cards, a [3D printable inlay](https://www.printables.com/model/950825-tapto-cassette-case-insert) holds one, two, or three cards inside the case. The same cases store Game Boy cartridges with a [different insert](https://www.printables.com/model/958451-gameboy-cassette-case-insert) once the internal cassette pins are removed or trimmed.
+
+<img src="/img/docs/tokens/Cassette-gb.png" alt="Game Boy cartridges stored in cassette cases" width="300" />
 
 ## Nintendo Switch cases
 

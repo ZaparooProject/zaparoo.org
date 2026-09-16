@@ -83,7 +83,7 @@ While reading or writing, Core temporarily disables normal ZapScript execution s
 
 ## Reload Core
 
-Use `-reload` after editing the [config file](config.md), [mapping files](../features/mappings.md), or [custom launcher files](../features/custom-launchers.md) while Core is running. It also refreshes supported platform launcher dependencies, including MiSTer RBF files and Batocera's EmulationStation system configuration.
+Use `-reload` after editing the [config file](./config/index.md), [mapping files](../features/mappings.md), or [custom launcher files](../features/custom-launchers.md) while Core is running. It also refreshes supported platform launcher dependencies, including MiSTer RBF files and Batocera's EmulationStation system configuration.
 
 ```bash
 ./zaparoo -reload
@@ -173,8 +173,8 @@ These Linux desktop-style builds share the same extra flags.
 
 | Flag | Argument | Description |
 | ---- | -------- | ----------- |
-| `-install` | `application`, `desktop`, `service`, or `hardware` | Installs one component. |
-| `-uninstall` | `application`, `desktop`, `service`, or `hardware` | Uninstalls one component. |
+| `-install` | `application`, `desktop`, `service`, or `hardware`; also `steam-runtime` on SteamOS | Installs one component. |
+| `-uninstall` | `application`, `desktop`, `service`, or `hardware`; also `steam-runtime` on SteamOS | Uninstalls one component. |
 | `-steam-runtime-status` | None | SteamOS only. Reports whether the Zaparoo Runtime Steam shortcut is installed and current. |
 | `-daemon` | None | Runs the service in the foreground with no TUI. |
 | `-start` | None | Starts the user service if needed and opens the Web UI in the browser. |
@@ -191,7 +191,7 @@ Examples:
 
 Outside install and uninstall commands, do not run these builds as root. The Linux service is a user service, and Core exits if normal service or UI mode starts with root privileges.
 
-### MiSTer FPGA and MiSTeX
+### MiSTer FPGA
 
 | Flag | Argument | Description |
 | ---- | -------- | ----------- |
@@ -236,6 +236,14 @@ Example:
 ```bash
 /storage/zaparoo -service restart
 ```
+
+### RePlayOS
+
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-install` | None | Installs the Zaparoo systemd service. |
+| `-uninstall` | None | Removes the Zaparoo systemd service. |
+| `-daemon` | None | Runs the service in the foreground with no TUI. |
 
 ### macOS
 

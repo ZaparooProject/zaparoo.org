@@ -1,5 +1,6 @@
 ---
-description: "Zaparoo's build of MiSTer Main: what it adds for Core and Frontend users, the Zaparoo page in the OSD, kiosk mode, auto-save, disc autorun, game tracking, and its MiSTer_cmd commands."
+sidebar_position: 4
+description: "Zaparoo's build of MiSTer Main: the Zaparoo OSD page, kiosk mode, auto-save, disc autorun, game tracking, and its MiSTer_cmd commands."
 keywords: [zaparoo mister main, mister_zaparoo, mister kiosk mode, mister auto-save, mister disc autorun, mister osd zaparoo, zaparoo main fork]
 ---
 

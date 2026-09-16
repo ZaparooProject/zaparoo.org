@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Install the official Zaparoo plugin for Decky Loader on Steam Deck: write tags, stop media, index media, pair clients, and link Zaparoo Online from the Quick Access Menu."
+description: "Install the Zaparoo plugin for Decky Loader on Steam Deck: write tags, stop media, index media, pair clients, and link Zaparoo Online from the Quick Access Menu."
 keywords: [zaparoo decky, decky loader zaparoo, steam deck zaparoo plugin, quick access menu nfc]
 ---
 

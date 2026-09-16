@@ -35,11 +35,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "supported"
           }
         ]
       },
@@ -125,11 +120,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "supported"
           }
         ]
       },
@@ -205,7 +195,8 @@ export const platformSupportByReader = {
           {
             "name": "Linux",
             "href": "platforms/linux/",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           }
         ]
       },
@@ -215,12 +206,8 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "limited"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           }
         ]
       },
@@ -230,12 +217,14 @@ export const platformSupportByReader = {
           {
             "name": "Batocera",
             "href": "platforms/batocera/",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           },
           {
             "name": "RePlayOS",
             "href": "platforms/replayos",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           }
         ]
       },
@@ -245,17 +234,20 @@ export const platformSupportByReader = {
           {
             "name": "SteamOS",
             "href": "platforms/steamos",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           },
           {
             "name": "Bazzite",
             "href": "platforms/bazzite",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           },
           {
             "name": "ChimeraOS",
             "href": "platforms/chimeraos",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           }
         ]
       },
@@ -265,7 +257,8 @@ export const platformSupportByReader = {
           {
             "name": "LibreELEC",
             "href": "platforms/libreelec",
-            "support": "limited"
+            "support": "limited",
+            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
           }
         ]
       }
@@ -294,11 +287,6 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "limited"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
             "support": "limited"
           }
         ]
@@ -374,11 +362,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "supported"
           }
         ]
       },
@@ -452,11 +435,6 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
             "support": "supported"
           }
         ]
@@ -533,12 +511,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "unsupported",
-            "note": "Not included in the current MiSTeX Core reader set."
           }
         ]
       },
@@ -612,11 +584,6 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
             "support": "supported"
           }
         ]
@@ -692,11 +659,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "unsupported"
           }
         ]
       },
@@ -770,11 +732,6 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
             "support": "supported"
           }
         ]
@@ -850,11 +807,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "supported"
           }
         ]
       },
@@ -929,11 +881,6 @@ export const platformSupportByReader = {
             "name": "MiSTer",
             "href": "platforms/mister/",
             "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
-            "support": "supported"
           }
         ]
       },
@@ -1007,11 +954,6 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "supported"
-          },
-          {
-            "name": "MiSTeX",
-            "href": "platforms/mistex",
             "support": "supported"
           }
         ]

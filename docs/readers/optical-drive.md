@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-description: "Use a CD, DVD, or Blu-ray disc to launch matching indexed media or trigger a Zaparoo command on Linux, including ZapScript burned into a zaparoo.txt file on the disc."
+description: "Use a CD, DVD, or Blu-ray disc to launch matching media or run a Zaparoo command on Linux, including ZapScript in a zaparoo.txt file on the disc."
 keywords: [zaparoo optical drive, cd token, dvd token, physical disc launcher, disc game ID, zaparoo.txt disc]
 ---
 
@@ -22,7 +22,7 @@ Optical drives are not automatically detected by default. Choose automatic detec
 
 On MiSTer, automatic detection can conflict with physical CD cores. Enable it when you want Core to use the drive as a Zaparoo token reader.
 
-Add these driver settings to your [`config.toml`](../core/config.md):
+Add these driver settings to your [`config.toml`](../core/config/index.md):
 
 ```toml
 [readers.drivers.opticaldrive]

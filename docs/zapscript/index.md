@@ -7,7 +7,17 @@ keywords: [zapscript, zaparoo scripting language, zapscript commands, nfc script
 
 ZapScript is a small scripting language written to the storage of Zaparoo tokens. It tells Zaparoo what to do when a token is scanned. Through regular use you won't need to write much yourself, but you can use it to customize launching or add scripted actions. The [Zaparoo App](../app/index.md) is the easiest way to write ZapScript to tokens. If you write ZapScript by hand, read [Syntax](./syntax.md) first.
 
-## Quick Reference
+## Write your first card
+
+Most cards only need the name of a game. The [Zaparoo App](../app/index.md) writes that for you when you pick a game from your library, and the [Web UI](../app/web.md) does the same from a browser. When you want a card to do something else, write ZapScript by hand in the App's **Custom write** or ZapScript editor:
+
+1. Start with a launch. `@Genesis/Sonic the Hedgehog` launches a game by system and title; `**launch.random:SNES` picks one at random.
+2. Add more commands with `||` between them. `**delay:1000||@SNES/Super Mario World` waits a second first.
+3. Tune a command with `?` arguments. `@N64/GoldenEye 007?launcher=80MHzNintendo64` picks a specific launcher.
+
+That covers most cards. [Syntax](./syntax.md) explains the rest: escaping, quoting, `when` conditions, and expressions.
+
+## Quick reference
 
 | Command | Description |
 |---------|-------------|
@@ -20,10 +30,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`input.keyboard`](./input.md#inputkeyboard) | Simulate keyboard input |
 | [`input.text`](./input.md#inputtext) | Type a string of literal text |
 | [`input.gamepad`](./input.md#inputgamepad) | Simulate gamepad input |
-| [`input.coinp1`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 1 |
-| [`input.coinp2`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 2 |
-| [`input.coinp3`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 3 |
-| [`input.coinp4`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coin for player 4 |
+| [`input.coinp1` to `input.coinp4`](./input.md#inputcoinp1--inputcoinp2--inputcoinp3--inputcoinp4) | Insert coins for players 1 to 4 |
 | [`http.get`](./http.md#httpget) | Make an HTTP GET request |
 | [`http.post`](./http.md#httppost) | Make an HTTP POST request |
 | [`playlist.play`](./playlist.md#playlistplay) | Load and play a playlist |
@@ -50,7 +57,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 | [`mister.mgl`](./mister.md#mistermgl) | Execute MGL content |
 | [`mister.wallpaper`](./mister.md#misterwallpaper) | Set or unset MiSTer menu wallpaper |
 
-## Command Categories
+## Command categories
 
 - [Launch](./launch.md): Commands for launching games, systems, and media
 - [Input](./input.md): Commands for simulating keyboard and gamepad input
@@ -63,7 +70,7 @@ ZapScript is a small scripting language written to the storage of Zaparoo tokens
 
 The syntax of ZapScript is designed to be human-readable and writeable, with minimal complexity and focused on fitting as much information as possible on the limited storage available on NFC tags and QR codes.
 
-See [Syntax](./syntax.md) for a detailed explanation of all the different parts of ZapScript syntax, [Expressions](./syntax.md#expressions) for dynamic values, and [Zap Links](./syntax.md#zap-links) for remote script hosting.
+See [Syntax](./syntax.md) for a detailed explanation of all the different parts of ZapScript syntax, [Expressions](./syntax.md#expressions) for dynamic values, and [Zap Links](./zap-links.md) for scripts hosted at a URL.
 
 ## Examples
 

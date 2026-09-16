@@ -1,8 +1,8 @@
 ---
 sidebar_position: 10
 title: Launchers
-description: Create custom launchers and use launcher controls in Zaparoo to integrate emulators and media applications.
-keywords: [zaparoo launchers, zaparoo custom launchers, zaparoo launcher controls, zaparoo emulator integration, custom launcher toml]
+description: "How Zaparoo Core starts games on each platform: launchables, launcher controls, launcher availability, and default launcher selection."
+keywords: [zaparoo launchers, zaparoo launcher controls, default launcher, launcher preference, launchables]
 ---
 
 # Launchers
@@ -40,25 +40,7 @@ MiSTer's ROM-less [Other cores](../platforms/mister/launchers.md#other-cores), l
 
 The one place this shows through is the token value. A launchable is identified by a compact `zaparoo://` URI instead of a file path, so a token that launches one holds a value like `zaparoo://gezdgnbvgy3tqojqgezdgnbvgy` rather than a normal path. You don't write this by hand; the App fills it in when you save a launchable.
 
-### Create a command launchable
-
-A custom launcher can expose a command as a virtual system on any Core platform. Add an entry to a launcher TOML file in Core's `launchers` directory:
-
-```toml
-[[launchers.custom]]
-id = "Tools"
-kind = "virtual_system"
-backend = "command"
-name = "Tools"
-categories = ["Computer"]
-execute = "echo tools"
-```
-
-The virtual system appears in browse and search without needing a media file. Selecting it runs `execute`. See [kind and backend](./custom-launchers.md#kind-and-backend) for the category names you can use.
-
-Core derives a stable launchable identity from `backend` and `id`, so keep those values unchanged if you want App display settings and artwork to stay attached to the entry. Restart Core or refresh the launchers, then update the media database after adding a virtual system.
-
-For MiSTer cores that launch without media, use the [`mister_core` backend](../platforms/mister/launchers.md#add-your-own-other-core) instead.
+A custom launcher can expose a command as a virtual system on any Core platform; see [command launchables](./custom-launchers.md#command-launchables). For MiSTer cores that launch without media, use the [`mister_core` backend](../platforms/mister/launchers.md#add-your-own-other-core).
 
 ## Launcher controls
 
@@ -144,8 +126,8 @@ Core resolves launcher choices in this order:
 
 1. Explicit ZapScript `?launcher=` argument
 2. Saved per-media launcher override
-3. Explicit [`[[systems.default]]`](../core/config.md#systemsdefault) launcher
-4. First available [`launchers.preference`](../core/config.md#preference) entry
+3. Explicit [`[[systems.default]]`](../core/config/launchers.md#systemsdefault) launcher
+4. First available [`launchers.preference`](../core/config/launchers.md#preference) entry
 5. Normal platform launcher detection
 
 Use a system default when every game in one system should use the same launcher. Core applies it to title/search launches and direct path launches when it can infer the system from the path. System defaults remain authoritative even when their selected launcher is unavailable, so Core reports the missing dependency instead of choosing another launcher.
@@ -161,28 +143,8 @@ Use `launchers.preference` when you want an ordered fallback across launcher gro
 preference = ["Native", "EmuDeck", "RetroDECK"]
 ```
 
-MiSTer groups its alternate cores the same way: `RetroAchievements`, `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable`. See [MiSTer launcher groups](../platforms/mister/launchers.md#launcher-groups).
+MiSTer groups its alternate cores the same way: `RetroAchievements`, `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable`. See [MiSTer launcher groups](../platforms/mister/alternate-launchers.md#launcher-groups).
 
-Use [`[[launchers.default]]`](../core/config.md#launchersdefault) to set launcher-specific defaults such as `action`, `load_path`, `render_scale`, or `render_resolution`.
+Use [`[[launchers.default]]`](../core/config/launchers.md#launchersdefault) to set launcher-specific defaults such as `action`, `load_path`, `render_scale`, or `render_resolution`.
 
-## Troubleshooting
-
-### Verifying your launcher loaded
-
-Check the Zaparoo Core logs when it starts up. Look for messages about custom launchers, such as:
-- `parsed custom launcher from TOML`
-- `registered custom launcher`
-- `loaded custom launchers`
-
-If your launcher isn't loading, check for TOML syntax or validation errors in the logs. Invalid custom entries are ignored and logged.
-
-### Testing commands
-
-Before adding a command to your launcher config, test it manually in your terminal or command prompt. Replace `[[media_path]]` with an actual file path to verify it works.
-
-### Common issues
-
-- **Paths with spaces**: Quote the program path and `[[media_path]]` separately in your `execute` command, especially on Windows. If you wrap the command in another shell like PowerShell, that shell can split the path on its spaces. Launch the program directly instead when you can. See [Windows custom launchers](../platforms/windows/launchers.md#quoting-paths-and-powershell)
-- **Launcher selection**: If several launchers match the same file, Core prefers more specific matches. Duplicate IDs or equally specific matches can be order-dependent
-- **File not found**: Ensure your `media_dirs` paths are absolute or correctly relative to the Core executable directory
-- **Command not found**: Verify the programs you're calling in `execute` are installed and in your system's PATH
+Problems with a custom launcher not loading or a command not running are covered under [custom launcher troubleshooting](./custom-launchers.md#troubleshooting).

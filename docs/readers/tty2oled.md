@@ -16,7 +16,7 @@ Use this if you already have [TTY2OLED](https://github.com/venice1200/MiSTer_tty
 
 ## Enable the reader
 
-The `tty2oled` driver is disabled by default. Enable it in your [`config.toml`](../core/config.md):
+The `tty2oled` driver is disabled by default. Enable it in your [`config.toml`](../core/config/index.md):
 
 ```toml
 [readers.drivers.tty2oled]

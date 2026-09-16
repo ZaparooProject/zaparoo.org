@@ -25,7 +25,7 @@ The `launch` command is implied when no command prefix is used (Auto Launch mode
 **`path`** (required)
 The media to launch. Accepts multiple formats - see [Path Formats](#path-formats) below.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
@@ -37,7 +37,6 @@ The media to launch. Accepts multiple formats - see [Path Formats](#path-formats
 | `name`              | string     | -       | Custom display name for remote downloads                           |
 | `pre_notice`        | string     | -       | Message to show before launching                                   |
 | `slot`              | string     | `primary` | Media slot to play in: `primary` or `background` ([audio](../features/audio.md)) |
-| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -91,7 +90,7 @@ Audio files (`.wav`, `.mp3`, `.ogg`, `.flac`) launch through Core's built-in [au
 
 `set_name` and `set_name_same_dir` are currently used by MiSTer launchers. Unsupported platforms may ignore them. On MiSTer, `set_name` maps to the MGL `<setname>` tag. Add `set_name_same_dir=1` when you want a separate core config name while still loading games from the original core folder. Without `set_name_same_dir=1`, MiSTer also changes the core's games folder.
 
-### Path Formats
+### Path formats
 
 The `launch` command supports several path formats, tried in this order:
 
@@ -137,7 +136,7 @@ Tag operators:
 
 See the [Tags documentation](../features/tags.md) for available filters.
 
-#### System Lookup
+#### System lookup
 
 Uses the system ID as a virtual folder:
 
@@ -149,7 +148,7 @@ PCEngine/Game.pce
 
 Works across different devices with the same internal folder structure. System aliases are supported.
 
-#### Absolute Path
+#### Absolute path
 
 Direct path starting with `/`:
 
@@ -157,7 +156,7 @@ Direct path starting with `/`:
 /media/fat/games/Genesis/Game.md
 ```
 
-#### Relative Path
+#### Relative path
 
 Path relative to game folders:
 
@@ -189,7 +188,7 @@ SNES/*mario world*
 
 This delegates to [`launch.search`](#launchsearch) internally, launching the first indexed match.
 
-#### Zip File Paths
+#### Zip file paths
 
 On MiSTer, paths can reference files inside zip archives:
 
@@ -206,7 +205,7 @@ URIs are passed directly to the appropriate platform launcher:
 steam://1145360
 ```
 
-### Remote Install
+### Remote install
 
 Download and install media from SMB or HTTP URLs:
 
@@ -215,7 +214,7 @@ smb://10.0.0.123/Games/path/to/file.bin?system=Genesis
 http://10.0.0.123/path/to/file.bin?system=Genesis
 ```
 
-The `system` argument is required for remote URLs. Files are cached locally after first download. Authentication can be configured in [auth.toml](../core/config.md#auth-file).
+The `system` argument is required for remote URLs. Files are cached locally after first download. Authentication can be configured in [auth.toml](../core/config/service.md#auth-file).
 
 ---
 
@@ -244,7 +243,7 @@ The game title to search for. Supports fuzzy matching.
 **launch.title:Genesis/Sonic (-unfinished:demo)
 ```
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
@@ -253,7 +252,6 @@ The game title to search for. Supports fuzzy matching.
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
-| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -286,7 +284,7 @@ The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis
 Launches a system/emulator without loading specific media.
 
 :::note Platform Support
-Launching a system by ID is supported on [MiSTer](../platforms/mister/index.md) and [MiSTeX](../platforms/mistex.md). The `menu` argument returns to the platform's menu or frontend where supported, including [Batocera](../platforms/batocera/index.md). The `launcher` argument is MiSTer only.
+Launching a system by ID is supported on [MiSTer](../platforms/mister/index.md). The `menu` argument returns to the platform's menu or frontend where supported, including [Batocera](../platforms/batocera/index.md). The `launcher` argument is MiSTer only.
 :::
 
 ### Syntax
@@ -300,14 +298,13 @@ Launching a system by ID is supported on [MiSTer](../platforms/mister/index.md) 
 **`system`** (required)
 The [system ID](../features/systems.md) to launch. Use `menu` to return to the main menu.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument   | Type       | Default | Description           |
 | ---------- | ---------- | ------- | --------------------- |
 | `launcher` | string     | -       | Boot this launcher's core for the system without loading media. MiSTer only. Launcher IDs are matched case-insensitively. |
-| `when`     | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
-With `launcher`, Core reports an error if the launcher does not exist, belongs to a different system, has no selectable core, or its core file is not installed. See [alternate launchers](../platforms/mister/launchers.md#alternate-launchers) for the available IDs.
+With `launcher`, Core reports an error if the launcher does not exist, belongs to a different system, has no selectable core, or its core file is not installed. See [alternate launchers](../platforms/mister/alternate-launchers.md) for the available IDs.
 
 ### Examples
 
@@ -364,7 +361,7 @@ When the selected [system has fallbacks](../features/systems.md#usage-notes), Co
 
 If the picked game cannot be launched, Core tries another candidate, up to 16 in total. Launchable virtual entries, such as `steam://` games, are drawn from the media database like file paths, so `tags` filters apply to them too.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
@@ -373,7 +370,6 @@ If the picked game cannot be launched, Core tries another candidate, up to 16 in
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
-| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -438,7 +434,7 @@ A media database search query. `*` can be used for broad partial matches.
 **`system`** (optional)
 The system ID to search within. If omitted, searches all systems. When the selected [system has fallbacks](../features/systems.md#usage-notes), Core searches the requested system first and only moves to the next fallback tier when no matching media exists.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
@@ -447,7 +443,6 @@ The system ID to search within. If omitted, searches all systems. When the selec
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
-| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 
@@ -493,7 +488,7 @@ Which recent game to launch, where `1` is the most recently played.
 Defaults to `1`. Duplicate plays of the same game are collapsed, so
 `2` is the previous *different* game, `3` the one before that, and so on.
 
-### Advanced Arguments
+### Advanced arguments
 
 | Argument            | Type       | Default | Description                                                        |
 | ------------------- | ---------- | ------- | ------------------------------------------------------------------ |
@@ -501,7 +496,6 @@ Defaults to `1`. Duplicate plays of the same game are collapsed, so
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
-| `when`              | expression | -       | Conditional execution (see [Expressions](./syntax.md#expressions)) |
 
 ### Examples
 

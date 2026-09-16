@@ -15,7 +15,7 @@ keywords:
 
 Device backups capture Zaparoo configuration and user data on every Core platform. MiSTer and SteamOS backups can also include supported settings, saves, and save states. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
 
-Local backups are portable ZIP files and do not require an online account. Cloud backups require a linked [Zaparoo Online](../online/index.md) account and Warp for new snapshots.
+Local backups are portable ZIP files and do not require an online account. Cloud backups require a linked [Zaparoo Online](../online/index.md) account and Warp for new snapshots. The [`[backup]` section](../core/config/index.md#backup) of `config.toml` sets where local backups go (`local_dir`), whether platform data is included (`scope`), and the cloud schedule.
 
 ## Local or cloud
 
@@ -53,7 +53,7 @@ SteamOS backups also include supported platform data:
 - Saves and settings inside the Proton prefixes of non-Steam games, such as their Documents, Saved Games, and AppData folders
 - Bottles, Faugus Launcher, Kodi, Moonlight, and Steam ROM Manager configuration
 
-Unless listed above, backups do not include platform settings, emulator configuration, saves, save states, or game library data. Support for more platform data is planned.
+Unless listed above, backups do not include platform settings, emulator configuration, saves, save states, or game library data.
 
 Backups do not include ROMs, disc images, installed games, downloaded cores, emulator runtimes, caches, Core binaries, the rebuildable media database, scraped artwork, logs, or authentication credentials. This includes shared and per-profile `retroachievements.cfg` files used by [MiSTer profiles](./profiles.md#retroachievements-accounts), because they contain plaintext passwords. Paired clients and the destination device's identity, encryption setting, and Zaparoo Online credentials are preserved during restore rather than copied from the backup.
 

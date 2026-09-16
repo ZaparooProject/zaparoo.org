@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
-description: "Zaparoo Core features: device backups, profiles, mappings, playlists, audio playback, media database scraping, play controls, hooks, launchers, publishers, and game tags."
+description: "Zaparoo Core features: backups, profiles, mappings, playlists, audio, scraping, play controls, hooks, launchers, publishers, and tags."
 keywords: [zaparoo features, zaparoo backup, zaparoo profiles, zaparoo mappings, zaparoo playlists, zaparoo media database, zaparoo hooks, zaparoo launchers, zaparoo audio, zaparoo scraping]
 ---
 
 # Features
 
-Everything in this section is optional. Zaparoo launches games out of the box; these features are the things you can turn on or configure when you want more. If you are new, start with [device backups](./backups.md) and [playlists](./playlists.md).
+Everything in this section is optional. Zaparoo launches games out of the box; these features are the things you can turn on or configure when you want more. If you are new, start with [device backups](./backups.md) and [playlists](./playlists.md), and check the [glossary](../glossary.md) for any term you don't recognize.
 
 ## Everyday
 

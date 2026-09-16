@@ -24,7 +24,7 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 
 Download Zaparoo Core for MiSTeX from the [GitHub releases page](https://github.com/ZaparooProject/zaparoo-core/releases/latest) and copy the `zaparoo.sh` file to the `Scripts` folder on your SD card.
 
-Run `zaparoo` from the MiSTeX `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service.
+Run `zaparoo` from the MiSTeX `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service. With the service running, write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<mistex-ip>:7497/app/`.
 
 :::warning
 Using FileZilla? Enable binary transfer mode per [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/). FileZilla incorrectly detects `zaparoo.sh` as text and will corrupt it.
@@ -36,10 +36,10 @@ Using FileZilla? Enable binary transfer mode per [these steps](https://oryon.net
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Manual enable | Uses libnfc: LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../readers/barcode/rs232.md) | Supported | Manual config |  |
+| Barcode and QR | [RS-232 scanner](../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../readers/optical-drive.md) | Not supported | Not available | Not included in the current MiSTeX Core reader set. |
 | Optical and Media | [External Drive](../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../readers/mqtt.md) | Supported | Manual config |  |
