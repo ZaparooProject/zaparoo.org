@@ -137,7 +137,7 @@ When enabled, if a token is already present on a reader when it connects (e.g., 
 | -------------- | ------- | ------- |
 | allow_relaunch | boolean | false   |
 
-In [tap mode](#scan-mode), a scan that resolves to the media already playing is skipped and the game keeps running. This covers any token that lands on the same file, not only a repeat scan of the same card. Other commands on the token still run, and no launch or exit [hooks](../../features/hooks.md) fire. Set `allow_relaunch` to `true` to make a repeat scan restart the game from the beginning instead. Hold mode and API launches are not affected.
+In [tap mode](#scan-mode), a scan that resolves to the media already playing is skipped and the game keeps running. This covers any token that lands on the same file, not only a repeat scan of the same card. Other commands on the token still run, and no launch or exit [hooks](../../features/hooks.md) fire. Set `allow_relaunch` to `true` to make a repeat scan restart the game from the beginning instead. Hold mode and API launches are not affected, and neither is a [playlist](../../features/playlists.md#using-a-playlist) card, which moves to the next item when scanned again.
 
 ```toml
 [readers.scan]

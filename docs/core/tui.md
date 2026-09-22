@@ -22,7 +22,7 @@ Service or daemon modes skip the TUI. See the [command line reference](cli.md) f
 
 The main screen shows the local Core service status, device IP address, the running version and [update state](./updates.md#where-update-status-shows), Web UI address, connected reader status, and the most recent scanned token.
 
-If the Core service is not running, most actions are disabled and the TUI tells you to check the logs.
+While the service is starting, the status reads **STARTING**. If it is not running, or it started and stopped on a problem it could not fix (**NOT WORKING**), most actions are disabled, the status shows the last error from the log, and the **Settings** button becomes **Logs** so you can view or upload the log for support.
 
 Exiting the TUI may leave the Core service running in the background, depending on how Core was started on that platform.
 
@@ -64,7 +64,7 @@ Custom writes parse the ZapScript before writing and show an error for unknown c
 
 Open **Settings > Backup** to create, inspect, restore, or delete [device backups](../features/backups.md). Supported devices can also link a Zaparoo Online account, upload cloud snapshots, choose an automatic schedule, and restore compatible snapshots from other devices on the account.
 
-**Settings > Online** shows account-link status and available online services. Linking displays a URL and one-time code to approve from another device. The **Play history sync** toggle separately controls whether retained and future play sessions are uploaded; account linking alone leaves history local. The **Remote control** toggle works the same way, and the **Remote status** line under it shows whether Zaparoo Online can currently send commands to this device; see [remote control](../online/index.md#remote-control).
+**Settings > Online** shows account-link status and available online services. Linking displays a URL and one-time code to approve from another device. The **Play history sync** toggle separately controls whether retained and future play sessions are uploaded; account linking alone leaves history local. The **Remote control** toggle works the same way, and the **Remote status** line under it shows whether Zaparoo Online can currently send commands to this device; see [remote control](../online/index.md#remote-control). The **Library sync** toggle syncs favorites, likes, play later, decks, and the list of games on this device with the account; see [Library sync](../online/index.md#library-sync).
 
 ## Reload Core
 
@@ -88,6 +88,6 @@ The TUI settings menu includes:
 
 ## Logs
 
-Open **Settings** > **Logs** to view recent Core log output, refresh the view, or upload the log for support.
+Open **Settings** > **Logs** to view recent Core log output, refresh the view, or upload the log for support. It also works from the **Logs** button shown while Core is not running.
 
 Some platforms also show a **Copy** action that copies the log to a platform-specific location.

@@ -154,6 +154,22 @@ Core defines many more tag types than this, including hardware add-ons, embedded
 
 `patch` tags come from bracketed patch notes in filenames, such as `[FastROM hack by Author v1.1]`, and let a title ID pick that patched variant of a game.
 
+## User tags
+
+A few tags are set by you rather than read from a filename. Favorites come from the [Zaparoo App](../app/index.md) or [Frontend](../frontend/index.mdx); likes and play later come from your Zaparoo Online account through [Library sync](../online/index.md#library-sync). They filter like any other tag:
+
+```zapscript
+**launch.random:SNES?tags=user:favorite
+```
+
+| Tag | Meaning |
+| --- | --- |
+| `user:favorite` | Marked as a favorite |
+| `user:liked`, `user:disliked` | Liked or disliked. Disliking clears favorite and liked |
+| `user:playlater` | Saved to play later |
+| `user:hidden` | Hidden from browsing, search, and random picks. A card or script still launches it |
+| `user:deck:<id>` | In the [deck](./playlists.md#deck) with that ID. Set by the deck, not by hand |
+
 ## Scraped tags and labels
 
 [Metadata scrapers](./scraping.md) can add tags for publishers, developers, genres, arcade boards, game families, regions, and languages. Core stores these tag values as normalized slugs so matching stays consistent. For example, `T&E Soft` is stored as `t-and-e-soft`.

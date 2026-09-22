@@ -147,7 +147,15 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 
 ### Arcade Systems
 
-Core skips the folders and symlinks Arcade Organizer creates, so each arcade game is indexed once from its `.mra` file.
+Core skips the folders and symlinks Arcade Organizer creates, so each arcade game is indexed once from its `.mra` file. If you browse your arcade games through those folders, set [`scan_duplicates`](../../core/config/launchers.md#scan_duplicates) on the `Arcade` launcher to index them too. Every copy becomes its own entry, so the arcade library grows several times over and indexing takes longer:
+
+```toml
+[[launchers.default]]
+launcher = "Arcade"
+scan_duplicates = true
+```
+
+After an arcade index, the [`mister-arcade`](../../features/scraping.md#mister-arcade) scraper fills in year, developer, genre, controls, and monitor rotation from the MiSTer arcade catalog on its own.
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
@@ -297,7 +305,7 @@ NeoGeo/mslug2
 
 ### ScummVM
 
-ScummVM support uses the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Install the script, add your games to the ScummVM folder, and update the media database. Games are automatically detected from the ScummVM configuration file.
+ScummVM support uses the [bbond007 script](https://github.com/bbond007/MiSTer_ScummVM). Install the script, add your games to the ScummVM folder, and update the media database. Games are automatically detected from the ScummVM configuration file. A game kept as several variants in subfolders of one folder, such as `kyra3/dos-english` and `kyra3/dos-french`, shares that folder's `gamelist.xml` entry and artwork.
 
 ### Video Playback
 

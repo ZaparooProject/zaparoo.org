@@ -14,7 +14,7 @@ Use playlists when one token should represent a set of games, a music or video q
 
 A playlist has an ordered list of items and a current position. Each item contains ZapScript, so an item can be a media path, a [title ID](../zapscript/launch.md#launchtitle), or another supported command.
 
-Playlists are loaded at runtime. They are not a permanent library feature, and the active playlist is cleared when you stop it or when Core restarts.
+Playlists are loaded at runtime, and the active playlist is cleared when you stop it or when Core restarts. To keep a playlist on the device, save it as a [deck](#deck).
 
 ## Playlist source formats
 
@@ -25,6 +25,7 @@ The `playlist.play`, `playlist.load`, and `playlist.open` commands all take the 
 | Folder | You want immediate files in a folder to become playlist items. Subfolders, hidden files, files without extensions, and zip contents are not included. |
 | `.pls` file | You want a reusable playlist file with numbered entries, optional display titles, and entries that can run ZapScript. |
 | Inline JSON | You want the whole playlist stored inside one ZapScript command. |
+| Deck | You want a saved playlist that stays on the device and can be edited without rewriting the token. |
 
 ### Folder
 
@@ -124,9 +125,23 @@ Inline JSON is parsed as a single [JSON argument](../zapscript/syntax.md#json-ar
 
 Because this is JSON, strings must be quoted and any quotes inside item ZapScript need to be escaped.
 
+### Deck
+
+A deck is a playlist saved on the device: an ordered collection of games and scripts with a name and an ID that survives restarts. Edit the deck and every token that points at it follows. A `deck://<id>` source opens it:
+
+```zapscript
+**playlist.play:deck://0k3v9x2rq7bm
+```
+
+Decks live in Core, with or without an account. Today [Zaparoo Online](../online/index.md#cards-and-decks) is the only place to create and edit them, and [Library sync](../online/index.md#library-sync) brings your decks to the device and your device's decks to the account. Scanning a [Zap Link](../zapscript/zap-links.md) to a shared deck keeps a read-only copy on the device, so the link works offline after that.
+
+Games in a deck carry a `user:deck:<id>` [tag](./tags.md#user-tags), so `**launch.random:SNES?tags=user:deck:0k3v9x2rq7bm` picks from the deck.
+
 ## Using a playlist
 
 Write `**playlist.play:<source>` to a token to load a playlist and start its first item, or `**playlist.load:<source>` to load it without launching. Separate tokens can then run `**playlist.next`, `**playlist.previous`, `**playlist.pause`, and `**playlist.stop`. Every command and its arguments are on the [playlist command reference](../zapscript/playlist.md).
+
+Scanning the playlist's card again while it is playing moves to the next item, and wraps to the first after the last. If the playlist is paused, the scan picks up where it stopped. A card for a different playlist starts that one from its first item, and `**playlist.goto:1` takes the current playlist back to the start. In [hold mode](../core/config/readers.md#scan-mode), removing the card clears the playlist, so every scan starts it fresh.
 
 ## Picker support
 

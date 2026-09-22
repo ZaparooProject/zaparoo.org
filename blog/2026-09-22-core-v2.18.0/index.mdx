@@ -1,0 +1,179 @@
+---
+slug: core-v2.18.0
+title: "Zaparoo Core v2.18.0 released"
+description: "Zaparoo Core v2.18.0 syncs favorites and decks with Zaparoo Online, brings keyboard and gamepad input and PinUP Popper to Windows, stops tap mode restarting the running game, adds custom system categories, hidden media, and multi-disc sets, and fills in arcade metadata and launches CDTV and DVD on MiSTer."
+tags: [software, core]
+authors: [wizzo]
+draft: true
+---
+
+Zaparoo Core v2.18.0 is now available. Favorites and decks can now sync with your Zaparoo Online account, and a Zap Link to a deck works on the device even offline. Windows gets real keyboard and gamepad input and a PinUP Popper launcher for virtual pinball cabinets. Tapping the card for the game you are already playing no longer restarts it, and tapping a playlist's card again moves to the next item. You can group systems into categories of your own, hide entries from the library, and multi-disc games show as one item.
+
+{/* truncate */}
+
+MiSTer gains CDTV and DVD Player launchers, arcade metadata filled in from the MiSTer arcade catalog, arcade artwork from Skraper-style gamelists, and a fix for shared folders like Game Boy and Game Boy Color mixing up each other's artwork. RetroArch launchers can swap discs from a card. Browsing a folder with thousands of games, or searching a big library, no longer stalls on every page. And when Core cannot start, it now tells you why instead of silently exiting.
+
+Thank you to [Trey Turner](https://github.com/treyturner) for adding support for PN532Killer readers.
+
+**The highlights:**
+
+- **[Zaparoo Online](#zaparoo-online)**: favorites, likes, play later, and decks sync across your devices, and Zap Links to decks open offline
+- **[Windows input](#windows)**: `input.keyboard` works, and a virtual gamepad is available with the ViGEmBus driver
+- **[PinUP Popper](#pinup-popper)**: index, launch, and stop virtual pinball tables on Windows, with Popper's own artwork
+- **[Tap mode](#readers-and-scanning)**: scanning the running game leaves it alone, unless you turn `allow_relaunch` back on
+- **[Custom categories](#custom-categories)**: a kids shelf or favorites group of systems, shown in the App and Frontend
+- **[Library](#library-and-scraping)**: hidden entries, multi-disc sets as one game, folder artwork, and fast pages in huge folders
+- **[MiSTer](#mister)**: CDTV and DVD Player launchers, arcade metadata from the MiSTer catalog, Arcade Organizer folders back by choice
+- **[RetroArch disc controls](#launchers)**: open the tray and switch discs from a control card
+
+## Download
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.18.0"
+    link="https://zaparoo.org/downloads#zaparoo-core"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-github" />}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-core/"
+    variant="primary"
+  />
+</div>
+
+Core will let you know about this release in the Inbox. On MiSTer, Update All installs it, and on Batocera the package manager does. Everywhere else it installs itself if you have turned on [automatic installs](/docs/core/updates/#automatic-installs), or you can download it above.
+
+## Before you update
+
+- **Windows now requires paired clients.** Encryption is on by default, including for existing installs unless `config.toml` sets `encryption = false`. Pair the App and other remote clients with **Pair Device...** in the tray menu. See [client security](/docs/platforms/windows/#client-security).
+- **Tapping the card for the running game no longer restarts it.** To get the old behavior back, set [`allow_relaunch = true`](/docs/core/config/readers/#allow_relaunch) under `[readers.scan]`.
+- **Tapping a playlist's card again moves to the next item** instead of starting over. `**playlist.goto:1` goes back to the start.
+- **Windows gamepad input is off until you turn it on.** Tick the ViGEmBus driver in the installer, then set `gamepad_enabled = true` under `[input]`. See [Windows input](/docs/platforms/windows/#input).
+- **Custom Zaparoo Online servers use one key now.** [`online_base_url`](/docs/core/config/service/#online_base_url) under `[service]` replaces the three old `base_url` keys, which are ignored from now on.
+- **A `[[launchers.default]]` entry naming a launcher now beats one naming its group**, wherever the two sit in the file.
+- **Virtual systems use `categories` now.** Custom launchers with `kind = "virtual_system"` take a `categories` list. The old `category` key still works.
+- **Update the media database, then scrape again.** Multi-disc sets, folder artwork, and hidden entries need a fresh index, and MiSTer scrapers pick up the arcade and shared-folder fixes below.
+- **CDTV on MiSTer needs a saved preset.** See [Commodore CDTV](/docs/platforms/mister/launchers/#commodore-cdtv).
+
+## Find changes for your setup
+
+- **Every Core platform:** [Zaparoo Online](#zaparoo-online), [readers and scanning](#readers-and-scanning), [library and scraping](#library-and-scraping), [custom categories](#custom-categories), [launchers](#launchers), [service and diagnostics](#service-and-diagnostics), [API changes](#api-changes)
+- **Windows:** [Windows](#windows), [PinUP Popper](#pinup-popper)
+- **MiSTer:** [MiSTer](#mister)
+- **Linux, SteamOS, Bazzite, and ChimeraOS:** [launchers](#launchers)
+
+## Zaparoo Online
+
+**Applies to:** All Core platforms, with a linked [Zaparoo Online](/docs/online/) account.
+
+:::info New to Zaparoo Online?
+[Zaparoo Online](https://online.zaparoo.com) is an optional account for features that need a cloud connection. Library sync, decks, virtual cards, and play history sync are free; only cloud backup needs the paid Warp tier. Link a device from **Settings > Online** in the TUI, and turn each feature on separately. Core keeps working without an account.
+:::
+
+- **Library sync.** Turn on **Library sync** under **Settings > Online** in the TUI and your favorites, likes, and play later list stay the same on every linked device and in Online's **Library** page, within seconds of a change. Hidden entries stay on the device. The device's game list is uploaded too, so remote control and deck building in Online know what each device can play. It is free and off by default. See [Library sync](/docs/online/#library-sync).
+- **Decks are saved playlists on the device.** A deck keeps its games and scripts across restarts, so a token can point at it with `**playlist.play:deck://<id>` and you can change what is in it without rewriting the token. Zaparoo Online is the only place to build and edit decks for now, and Library sync carries them to the device. Editing decks on the device itself is coming. See [decks](/docs/features/playlists/#deck).
+- **Deck links work offline.** Scan a Zap Link to a shared deck once and Core keeps a copy, so it opens without a connection from then on.
+- **Likes and play later.** Alongside favorites, a game can be liked, disliked, or saved for later, and each is a [tag you can filter on](/docs/features/tags/#user-tags). You set them in Online; the App and Frontend do not have buttons for them yet.
+- **Shared decks cannot type or run programs.** A deck someone else made, or any playlist opened from a Zap Link, follows the same rule as Zap Links. Your own decks and playlist files are unaffected.
+
+## Windows
+
+- **Keyboard input works.** `input.keyboard`, `input.text`, the coin commands, and keyboard macros did nothing on Windows before. Keys cannot reach a window running as administrator or the lock screen. See [Windows input](/docs/platforms/windows/#input).
+- **A virtual gamepad, with a driver.** `input.gamepad` uses [ViGEmBus](https://github.com/nefarius/ViGEmBus), which the installer offers as an unticked option (no ARM64 build). It stays off by default because an extra controller shifts every real one's slot in games; turn it on with [`gamepad_enabled`](/docs/core/config/media/#gamepad_enabled).
+- **The App's remote keyboard follows the key lists.** Keyboard input from a paired member client goes through the same [`[zapscript.input]`](/docs/core/config/zapscript/#zapscriptinput) allow and block lists as a scanned card. Admins and localhost are exempt.
+- **Filesystem roots show up in browse.** Directories like `C:/roms/` were missing from the root listing.
+
+### PinUP Popper
+
+**Applies to:** Windows.
+
+Core launches virtual pinball tables through [PinUP Popper](/docs/platforms/windows/launchers/#pinup-popper). It indexes every table in Popper's database under the `Pinball` system and asks Popper to start and stop them, so your launch scripts, PuP-Packs, and DOF setup keep working. Visual Pinball, Future Pinball, Pinball FX, Pinball M, Zaccaria, and Pro Pinball tables are tracked as running games, so hold mode and playtime limits behave as they do everywhere else.
+
+A `pinup-popper` scraper imports each table's year, manufacturer, player count, notes, and wheel, playfield, backglass, and flyer images from Popper's own library. It runs on its own after a media database update. See [pinup-popper](/docs/features/scraping/#pinup-popper).
+
+## Readers and scanning
+
+- **Tap mode leaves the running game alone.** Any card, mapping, or script that lands on the game already playing is skipped, playtime and playlists carry on, and other commands on the card still run. [Launch guard](/docs/features/play-controls/#launch-guard) no longer asks you to confirm a tap that would change nothing. Hold mode and API launches are unchanged.
+- **PN532Killer readers are supported** in UART mode, like any [PN532 USB](/docs/readers/nfc/pn532-usb/) reader. Thanks to Trey Turner.
+- **Unplugged readers go quietly.** USB readers no longer reappear and vanish every second in the log after being unplugged.
+- **Auto-detect stops re-probing** serial devices that are not a PN532, and the log lists the ports it actually tried.
+- **Held keys can be shifted or combos.** `{press:M}`, `{press:!}`, and `{press:ctrl+c}` now hold what they say, and combos like `{ctrl+A}` work. See [input macros](/docs/zapscript/input/#macros).
+- **Hold mode ownership survives a fast relaunch.**
+
+## Library and scraping
+
+- **Multi-disc games are one game.** A folder of loose disc images with one title, in `.cue`, `.chd`, `.iso`, `.bin`, `.img`, or `.pbp`, shows and launches as one item, like an `.m3u` folder already did. You can still open the folder to pick a disc.
+- **Folders can have artwork.** The `media-folder` scraper picks up an image named after any folder. See [media-folder](/docs/features/scraping/#media-folder).
+- **Hide entries you do not want to see.** A `user:hidden` tag removes an entry from browse, search, and random picks while cards and scripts still launch it. No App or Frontend button yet.
+- **Scrape one game or one folder,** and a scrape interrupted by a restart carries on where it stopped. Frontend already offers this on a game's options menu.
+- **Huge folders page quickly.** A folder with thousands of games, or a sorted search across a big library, no longer stalls on every page.
+- **Unreadable gamelists are reported.** A `gamelist.xml` that cannot be read is named in an Inbox warning instead of skipped silently, one bad entry no longer fails the whole file, and the size limit rises to 128 MB (16 MB on MiSTer).
+- **Title matching fixes.** A game whose only copies were prototypes, translations, or hacks could launch a different game or nothing, and a card written for a ROM hack on one device could launch the original on another.
+- **Restores bring favorites back in line.** Favorites, hidden entries, and per-game launcher choices now match the restored backup.
+
+## Custom categories
+
+**Applies to:** All Core platforms.
+
+Systems have always sat in fixed categories: Console, Handheld, Computer, Arcade, and Other. You can now add your own in `config.toml`:
+
+```toml
+[[systems.category]]
+name = "Kids"
+systems = ["NES", "SNES", "Genesis"]
+```
+
+A system stays in its built-in category and also appears under every custom one that names it. The App and Frontend show custom categories alongside the built-in ones. See [`systems.category`](/docs/core/config/launchers/#systemscategory).
+
+Config handling got sturdier in the same change: a bad entry is skipped instead of stopping Core, a settings change is refused rather than overwriting a `config.toml` that would not load, and every file Core writes is saved atomically so an interrupted write cannot leave half a file behind.
+
+## MiSTer
+
+- **Arcade metadata from the MiSTer catalog.** The `mister-arcade` scraper fills in year, developer, genre, players, controls, and monitor rotation for every arcade game in the catalog Core already downloads. It runs on its own after an arcade index and only fills what is empty. MiSTeX gets it too. See [mister-arcade](/docs/features/scraping/#mister-arcade).
+- **Arcade Organizer folders, if you want them.** Set [`scan_duplicates = true`](/docs/core/config/launchers/#scan_duplicates) on the `Arcade` launcher and reindex to browse those folders again. Every copy becomes its own entry, so the arcade library grows several times over and indexing takes longer.
+- **Commodore CDTV.** CD images in a `CDTV` folder launch through Minimig using a saved `CDTV` preset. See [Commodore CDTV](/docs/platforms/mister/launchers/#commodore-cdtv).
+- **DVD Player.** `.iso` images in a `DVD` folder launch through the DVD core, with a `HybridDVDPlayer` launcher for the hybrid core.
+- **Kitrinx NGPC is preferred** when installed, with Jotego's core as the fallback.
+- **Arcade gamelists match by set name.** A Skraper pack that lists `pacman.zip` now matches the `.mra` for that set, artwork included, through a custom bundle. See [MiSTer arcade gamelists](/docs/features/scraping/#mister-arcade-gamelists).
+- **Shared folders keep their artwork straight.** Systems that share a folder, like Game Boy and Game Boy Color in `GAMEBOY`, no longer pick up each other's gamelist entries.
+- **ScummVM games get metadata,** including variants kept in subfolders of one game folder. Reindex ScummVM after updating.
+- **The log survives a reboot.** Core copies it to `/media/fat/zaparoo/core.log` when it shuts down cleanly, and when it stops on a startup problem that needs your attention.
+- **Two games behind the same MGL** launched through `.LASTLAUNCH.mgl` are told apart now.
+
+## Launchers
+
+- **RetroArch disc controls.** The built-in RetroArch launchers on Linux and SteamOS accept `toggle_tray`, `next`, and `previous` [control actions](/docs/features/launchers/#launcher-controls), so a card can swap discs without restarting the game. RetroArch does not report whether the swap worked.
+- **Steam games that are not installed open their details page** instead of being handed to Steam, without stopping the game you are playing.
+- **SteamOS launches can be hosted by a frontend.** A frontend Steam launched, like a coming release of Zaparoo Frontend, can run the emulator itself so you do not end up with two Steam apps open for one game.
+- **One `before_exit` for a whole family of launchers.** Set it on a [`[[launchers.default]]`](/docs/core/config/launchers/#launchers-default-before-exit) entry for a launcher or group, or on [`[launchers]`](/docs/core/config/launchers/#launchers-before-exit) for everything else, instead of repeating it under every system. See [exit hooks](/docs/features/hooks/#exit-hooks).
+- **A missing gamepad no longer stops the service.**
+
+## Service and diagnostics
+
+- **A failed start explains itself.** The Web UI address shows a page while Core is still starting, and if Core stops because its data was upgraded by a newer version, the page names that version and what to reinstall. The TUI shows the same with the last error from the log. You should never see it; it is there so you are not left guessing if you do.
+- **Get the log out without the service.** The TUI shows a **Logs** button while Core is down, the Windows tray has **Upload Log**, and the other platforms have [`-upload-log`](/docs/core/cli/#upload-the-log).
+- **Crashes leave evidence** in `core.crash.log` in Core's data directory, included in log bundles. With [error reporting](/docs/core/config/#error_reporting) on, one sanitized report is sent on the next start.
+- **Remote launches follow the house rules.** Remote control launches now respect the require-a-profile setting and playtime limits.
+- **Smaller fixes.** Stale PID files from another process recover on start, long WebSocket sessions are no longer cut off, expected outcomes are no longer sent as error reports, and release binaries are smaller.
+
+## API changes
+
+- `systems` and `media.search` results carry a `categories` array; `category` is kept and equals the first entry.
+- `media.tags.update` accepts `user:hidden`, `user:liked`, `user:disliked`, and `user:playlater` alongside `user:favorite`. Browse, search, and counts take `includeHidden`, and `media.visibility` announces changes.
+- `media.browse` marks disc sets and folders with artwork through `hasCover`; `media.image` accepts a directory.
+- `media.scrape` takes an optional scope: a media ID, a file, or a folder.
+- New `media.lookup.candidates` (up to five ranked titles for an approximate name) and `media.asset` (chunked PDF manuals over the WebSocket).
+- New `decks`, `decks.get`, `decks.new`, `decks.update`, `decks.delete`, and `decks.open` methods, and a `decks.changed` notification.
+- The playlist state in `media` carries `unsafe` when its items come from an untrusted source.
+- `settings` exposes `librarySyncEnabled` and the read-only `onlineBaseUrl` to localhost and admin clients.
+- `/health` returns `{"status":"ok","state":"ready"}` instead of a bare `OK`, with `state` also `starting` or `failed`. It still answers 200.
+
+See the [API reference](/docs/core/api/methods/) for details.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

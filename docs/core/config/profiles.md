@@ -53,7 +53,6 @@ Restart Core after changing `swap_data` manually to reconcile the active data mo
 [playtime]
 retention = 365
 sync = false
-base_url = "https://api.zaparoo.com"
 
 [playtime.limits]
 enabled = true
@@ -84,16 +83,6 @@ Set to `0` to keep all history forever (disables cleanup).
 
 When play history sync is enabled and the device is linked, cleanup preserves local sessions until the server acknowledges them.
 
-### base_url
-
-| Key      | Type   | Default                     |
-| -------- | ------ | --------------------------- |
-| base_url | string | `"https://api.zaparoo.com"` |
-
-`base_url` selects the API service used for play history sync. It is independent of [`backup.remote.base_url`](./index.md#backup), so custom backup and play history services can use different endpoints.
-
-Keep `base_url` at its default unless you use a custom service. Core uses the linked credential stored for the endpoint's scheme and host. Public services must use HTTPS; plain HTTP is accepted only for localhost, private IP addresses, and link-local development endpoints.
-
 ### sync
 
 | Key  | Type    | Default |
@@ -107,7 +96,7 @@ Keep `base_url` at its default unless you use a custom service. Core uses the li
 sync = true
 ```
 
-You can also change this setting under **Settings > Online** in the terminal UI. See [Play history sync](../../online/index.md#play-history-sync) for the data included and how disabling sync behaves.
+You can also change this setting under **Settings > Online** in the terminal UI. See [Play history sync](../../online/index.md#play-history-sync) for the data included and how disabling sync behaves. To sync to your own server instead of Zaparoo Online, set [`online_base_url`](./service.md#online_base_url).
 
 ### playtime.limits
 

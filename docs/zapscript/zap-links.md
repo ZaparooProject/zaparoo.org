@@ -21,7 +21,7 @@ Core detects Zap Link support by domain. When a domain is encountered for the fi
 Zap Link URLs must use HTTPS. Plain `http://` is only accepted for `localhost` and for private or link-local IP addresses, which covers a server on your own network while you test it. URLs that include a username or password are rejected, redirects are followed up to 10 times with every hop checked against the same rules, and the `.well-known/zaparoo` check is a plain request without Zaparoo headers.
 
 :::warning
-ZapScript received via a Zap Link is treated as a remote source. For security, remote sources cannot run `input.keyboard`, `input.gamepad`, or `execute`. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
+ZapScript received via a Zap Link is treated as a remote source, and so is every item of a playlist it opens. For security, remote sources cannot run `input.keyboard`, `input.gamepad`, or `execute`. Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
 :::
 
 ## Platform Detection

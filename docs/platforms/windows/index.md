@@ -54,6 +54,7 @@ Right-click the Zaparoo icon in the system tray to access the following options:
 | Launchers | Opens the custom launchers directory in Explorer |
 | Reload | Reloads Core settings and files without restarting |
 | View Log | Opens the log file for troubleshooting |
+| Upload Log | Uploads the log for support and copies the link to the clipboard |
 | Pair Device... | Shows a PIN for pairing a phone, tablet, or browser |
 | Check for Updates | Shows the update state and installs a waiting release; the label changes to **Install** with the version when one is waiting |
 | Quit | Stops the Zaparoo service and exits |
@@ -105,7 +106,7 @@ ZapScript [input commands](../../zapscript/input.md) send keyboard presses to th
 
 **Core stops applying settings after you edit `config.toml`.** One syntax error makes Core ignore the whole file. Open it from the tray menu (**Edit Config**), check it against the [config reference](../../core/config/index.md), and remember that backslashes in Windows paths must be escaped or written in single-quoted strings.
 
-**Core is not running.** Start `Zaparoo.exe`; it lives in the system tray. Use **View Log** in the tray menu to see why it stopped.
+**Core is not running.** Start `Zaparoo.exe`; it lives in the system tray. Use **View Log** in the tray menu to see why it stopped, or **Upload Log** to get a link you can share when asking for help. If Core stopped because a newer version had upgraded its data, the Web UI address shows a page saying which version to reinstall.
 
 **A reader is not detected.** Some PN532 USB readers need a USB serial driver on Windows. See the [PN532 USB](../../readers/nfc/pn532-usb.md) page.
 

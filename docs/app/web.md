@@ -41,4 +41,6 @@ A bare hostname covers HTTP and HTTPS, with and without the API port. Behind a r
 
 ## Troubleshooting
 
+**The page says Zaparoo is starting or could not start.** Core is still finishing an update, or it hit a problem it could not fix on its own. The page updates on its own once Core is ready.
+
 **The page loads but never connects.** The Web UI's files load from any address, but the connection back to Core only works from an origin Core allows. If it works at the device's IP address, such as `http://192.168.1.100:7497/app/`, but not at a name, add that name to [`allowed_origins`](../core/config/service.md#allowed_origins) exactly as it appears in the address bar, then run `zaparoo -reload`.

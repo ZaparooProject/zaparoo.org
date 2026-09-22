@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
 toc_max_heading_level: 5
-description: "Zaparoo Core config.toml reference for [[systems.default]], [[systems.category]], [launchers], [[launchers.default]], custom launchers, allow lists, and the [groovy] section."
-keywords: [zaparoo launchers config, systems.default, systems.category, launchers.default, allow_file, allow_execute, launcher preference]
+description: "Zaparoo Core config.toml reference for [[systems.default]], [[systems.category]], [launchers], [[launchers.default]], before_exit, scan_duplicates, allow lists, and the [groovy] section."
+keywords: [zaparoo launchers config, systems.default, systems.category, launchers.default, allow_file, allow_execute, launcher preference, before_exit, scan_duplicates]
 ---
 
 # Systems and Launchers Config
@@ -47,6 +47,8 @@ ID of the [launcher](../../features/launchers.md) that should be used by default
 | before_exit | string |         |
 
 A [hook](../../features/hooks.md#exit-hooks) containing a snippet of [ZapScript](../../zapscript/index.md) to run just before media for this system stops or is replaced, whether by another token, `stop`, a playtime limit, or a [hold mode](./readers.md#scan-mode) card removal. Core waits for it, up to 30 seconds, so commands like [`delay`](../../zapscript/utilities.md#delay) can be used. A failure is logged and does not stop the exit.
+
+A `before_exit` can also be set per launcher or launcher group on [`launchers.default`](#launchers-default-before-exit), or for everything under [`[launchers]`](#launchers-before-exit). An entry naming the launcher that started the media wins over this system entry, which wins over a group entry and the global one.
 
 #### pause_on_launch
 
@@ -112,6 +114,7 @@ allow_file = [
     '^/media/fat/something.mgl$'
 ]
 on_media_start = '**echo:media started'
+before_exit = '**input.keyboard:{f12}'
 ```
 
 ### index_root
@@ -205,9 +208,24 @@ Scripts executed via `**execute:` receive a `ZAPAROO_ENVIRONMENT` environment va
 
 The `launching` object contains information about the media that is about to launch, which is only available in this hook. See [Hooks](../../features/hooks.md) for examples.
 
+### before_exit {#launchers-before-exit}
+
+| Key         | Type   | Default |
+| ----------- | ------ | ------- |
+| before_exit | string |         |
+
+`before_exit` is the fallback [exit hook](../../features/hooks.md#exit-hooks): a snippet of [ZapScript](../../zapscript/index.md) that runs just before media stops or is replaced when no [`systems.default`](#before_exit) or [`launchers.default`](#launchers-default-before-exit) entry covers it. It also runs for games Core did not launch itself, such as one started from the MiSTer menu.
+
+```toml
+[launchers]
+before_exit = "**input.keyboard:{f12}"
+```
+
 ### launchers.default
 
 `launchers.default` overrides default settings for specific launchers. It's a sub-section that can be defined multiple times, and must have this header: `[[launchers.default]]`. See also [`systems.default`](#systemsdefault) for system-specific settings.
+
+`launcher` can name a launcher ID or a [launcher group](#preference). An entry naming the launcher itself always wins over an entry naming one of its groups, wherever the two sit in the file. Between entries of the same kind, a later entry overrides an earlier one.
 
 Pay attention to the double pairs of square brackets. Each defined `launchers.default` section must have its own header.
 
@@ -223,7 +241,37 @@ server_url = 'http://localhost:5678'
 | -------- | ------ | ------- |
 | launcher | string |         |
 
-ID of the [launcher](../../features/launchers.md) this default override entry applies to.
+ID of the [launcher](../../features/launchers.md), or name of a launcher group, this default override entry applies to.
+
+#### before_exit {#launchers-default-before-exit}
+
+| Key         | Type   | Default |
+| ----------- | ------ | ------- |
+| before_exit | string |         |
+
+An [exit hook](../../features/hooks.md#exit-hooks) for media started by this launcher, or by any launcher in the named group. One entry can cover a whole family, such as every MiSTer RetroAchievements core, without repeating the script under each system.
+
+```toml
+[[launchers.default]]
+launcher = "RetroAchievements"
+before_exit = "**input.keyboard:{f2}"
+```
+
+#### scan_duplicates
+
+| Key             | Type    | Default |
+| --------------- | ------- | ------- |
+| scan_duplicates | boolean | false   |
+
+`scan_duplicates` indexes the extra copies of games a launcher normally skips: folders and shortcuts that point at games it has already indexed. On MiSTer, the `Arcade` launcher skips the folders [Arcade Organizer](../../platforms/mister/launchers.md#arcade-systems) creates, so turning this on brings them back for browsing. Every copy becomes its own entry, so the arcade library grows several times over and indexing takes longer.
+
+```toml
+[[launchers.default]]
+launcher = "Arcade"
+scan_duplicates = true
+```
+
+Reload Core, then [update the media database](../../features/scraping.md#updating-the-media-database). Turning it off again also needs a database update before the extra entries disappear.
 
 #### install_dir
 

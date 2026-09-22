@@ -16,7 +16,7 @@ For example, `on_media_start` can flash a lamp or update an LED marquee whenever
 | --- | --- | --- | --- | --- |
 | `on_scan` | `[readers.scan]` | After a token is scanned, before the token or mapping script runs | Yes, blocks token processing | `scanned` |
 | `on_remove` | `[readers.scan]` | After a token is removed in hold mode | Yes, blocks remove processing and keeps media running | none |
-| `before_exit` | `[[systems.default]]` | Before media for the matching system stops or is replaced | No, errors are logged; capped at 30 seconds | none |
+| `before_exit` | `[[launchers.default]]`, `[[systems.default]]`, `[launchers]` | Before matching media stops or is replaced | No, errors are logged; capped at 30 seconds | none |
 | `before_media_start` | `[launchers]` | Before a media-launching command runs | Yes, blocks launch | `launching` |
 | `on_media_start` | `[launchers]` | After active media is set | No, errors are logged | active media |
 | `on_boot` | `[service]` | First Core start after the device boots | No, errors are logged | `hook` |
@@ -54,13 +54,29 @@ on_media_start = "**http.get:https://example.com/media-started"
 
 ## Exit hooks
 
-Use `before_exit` on a system default to run a script just before media for that system stops or is replaced. It runs when another token launches over the running game, on `stop`, `playlist.stop`, and the `media.stop` API method, when a [playtime limit](./play-controls.md#playtime-limits) stops the game, and on a hold-mode card removal after `on_remove` and `exit_delay`. It does not run when a game is quit from the emulator or frontend itself, because the media is already gone by the time Core notices.
+`before_exit` runs a script just before media stops or is replaced. It runs when another token launches over the running game, on `stop`, `playlist.stop`, and the `media.stop` API method, when a [playtime limit](./play-controls.md#playtime-limits) stops the game, and on a hold-mode card removal after `on_remove` and `exit_delay`. It does not run when a game is quit from the emulator or frontend itself, because the media is already gone by the time Core notices.
+
+It can be set at three scopes: a [system](../core/config/launchers.md#before_exit), a [launcher or launcher group](../core/config/launchers.md#launchers-default-before-exit), or [globally](../core/config/launchers.md#launchers-before-exit) for everything else.
 
 ```toml
+[launchers]
+before_exit = "**input.keyboard:{f12}"
+
+[[launchers.default]]
+launcher = "RetroAchievements"
+before_exit = "**input.keyboard:{f2}"
+
 [[systems.default]]
 system = "SNES"
-before_exit = "**input.keyboard:{f12}||**delay:2000"
+before_exit = "**input.keyboard:{f4}||**delay:2000"
 ```
+
+A group entry covers every launcher in that group across every system, so one line handles a whole family like the MiSTer RetroAchievements cores or every Kodi launcher. When more than one scope matches, the narrowest wins and an unset one falls through to the next:
+
+1. A `[[launchers.default]]` entry naming the launcher that started the media
+2. A `[[systems.default]]` entry for the media's system
+3. A `[[launchers.default]]` entry naming one of that launcher's groups
+4. The global `[launchers]` `before_exit`
 
 This can be useful for opening an emulator menu, saving, or giving the platform time to settle before the media exits.
 

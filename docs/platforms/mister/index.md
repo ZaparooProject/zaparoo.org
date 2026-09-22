@@ -17,7 +17,7 @@ MiSTer is fully supported by Zaparoo and is where the project originally started
 | Log file           | `/tmp/zaparoo/core.log`          |
 | Mappings directory | `/media/fat/zaparoo/mappings`    |
 
-The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off.
+The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off, so Core copies the log to `/media/fat/zaparoo/core.log` when it shuts down cleanly, and when it stops on a startup problem that needs your attention.
 
 ## Install
 
@@ -134,7 +134,7 @@ An alternative version of MiSTer Main by [funkycochise](https://github.com/funky
 
 ## Troubleshooting
 
-**Zaparoo does not start at boot.** Run `zaparoo` from the MiSTer **Scripts** menu and accept the prompt to enable it as a startup service, or check that `/media/fat/linux/user-startup.sh` contains the `mrext/zaparoo` line.
+**Zaparoo does not start at boot.** Run `zaparoo` from the MiSTer **Scripts** menu and accept the prompt to enable it as a startup service, or check that `/media/fat/linux/user-startup.sh` contains the `mrext/zaparoo` line. If the Scripts menu shows **NOT WORKING**, Core started and stopped on a problem it could not fix on its own; the screen shows the last error, and the Web UI address shows the same explanation. Press **Logs** there to upload the log for support.
 
 **Tokens do nothing for a while after power on.** Core is started last in MiSTer's boot sequence, so it can lag behind the menu appearing. See [start Core earlier](#start-core-earlier).
 
@@ -142,7 +142,7 @@ An alternative version of MiSTer Main by [funkycochise](https://github.com/funky
 
 **A reader is detected by the wrong driver, or conflicts with another serial device.** Other USB serial devices, such as tty2oled or an Arduino, can confuse auto-detection. Disable `auto_detect` in `config.toml` and set the reader path manually; see [reader drivers](../../readers/drivers.md).
 
-**Logs are empty after a reboot.** MiSTer keeps the log in `/tmp`, which is cleared at shutdown. Collect logs right after the problem happens; see the [help page](/support/).
+**Logs are empty after a reboot.** MiSTer keeps the live log in `/tmp`, which is cleared at shutdown. A copy is written to `/media/fat/zaparoo/core.log` when Core shuts down cleanly, and when it stops on a startup problem that needs your attention, but not after a crash or power cut, so collect logs right after the problem happens; see the [help page](/support/).
 
 ## FAQ
 

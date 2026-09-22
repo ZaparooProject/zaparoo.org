@@ -6,7 +6,7 @@ keywords: [zapscript input, zaparoo keyboard shortcut, zapscript button press, i
 
 # Input
 
-These commands simulate input devices like keyboards and gamepads. Core blocks all of them when the script comes from a remote source, which today means [Zap Links](./zap-links.md). Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
+These commands simulate input devices like keyboards and gamepads. Core blocks all of them when the script comes from a remote source: a [Zap Link](./zap-links.md), a playlist it opened, or a copy of someone else's [deck](../features/playlists.md#deck). Scripts sent through the [Zaparoo App](../app/index.md) are not remote.
 
 The platform sets a default input mode, which you can configure with [`[zapscript.input]`](../core/config/zapscript.md#zapscriptinput). On desktop platforms, single-character keys are blocked by default; only key combos and special keys like `{f1}` work. Embedded platforms like MiSTer allow all keys.
 
@@ -54,7 +54,7 @@ Curly braces also support a small macro language for repeating keys, typing lite
 | `{release:key}` or `{^key}` | Release a held key |
 | `{hold:key:dur}` or `{~key:dur}` | Hold a key for a duration, then release it |
 
-Any keys still held at the end of the sequence are released automatically.
+`key` in these three macros can be a plain key, a shifted character like `M` or `!`, or a combo like `ctrl+c`. A shifted character holds Shift with the key, and a release matches the press that named the same keys. Any keys still held at the end of the sequence are released automatically.
 
 Press the Down arrow 10 times:
 
@@ -78,6 +78,12 @@ Hold the A key for one second:
 
 ```zapscript
 **input.keyboard:{hold:a:1s}
+```
+
+Hold Ctrl+A for half a second:
+
+```zapscript
+**input.keyboard:{hold:ctrl+a:500}
 ```
 
 Type some keys with a pause in the middle:

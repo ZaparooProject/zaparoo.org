@@ -18,7 +18,7 @@ MiSTeX is fully supported by Zaparoo and closely follows [MiSTer](./mister/index
 | Log file           | `/tmp/zaparoo/core.log`          |
 | Mappings directory | `/media/fat/zaparoo/mappings`    |
 
-The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is deleted when MiSTeX is powered off.
+The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is deleted when MiSTeX is powered off, so Core copies the log to `/media/fat/zaparoo/core.log` when it shuts down cleanly, and when it stops on a startup problem that needs your attention.
 
 ## Install
 

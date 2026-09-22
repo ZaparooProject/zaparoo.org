@@ -1,8 +1,8 @@
 ---
 sidebar_position: 5
 toc_max_heading_level: 5
-description: "Zaparoo Core config.toml reference for [service]: API port, encryption and pairing, allowed origins, discovery, device ID, remote control, publishers, and the auth.toml credentials file."
-keywords: [zaparoo service config, zaparoo encryption, allowed_origins, zaparoo api port, auth.toml, zaparoo publishers config, remote_control]
+description: "Zaparoo Core config.toml reference for [service]: API port, encryption and pairing, allowed origins, discovery, device ID, online_base_url, remote control, publishers, and the auth.toml credentials file."
+keywords: [zaparoo service config, zaparoo encryption, allowed_origins, zaparoo api port, auth.toml, zaparoo publishers config, remote_control, online_base_url]
 ---
 
 # Service Config and Auth File
@@ -29,6 +29,7 @@ allowed_origins = [
 allow_run = [
     '\*\*launch\.random:.+'
 ]
+online_base_url = "https://api.zaparoo.com"
 
 [service.remote_control]
 enabled = false
@@ -227,6 +228,19 @@ Each entry is a [Regular Expression](https://github.com/google/re2/wiki/Syntax).
 - Plain file paths are normalized to a launch command before checking.
 - When `allow_run` is configured, remote IPs can access run endpoints regardless of `allowed_ips`. The `allow_run` patterns still restrict which ZapScript can run.
 
+### online_base_url
+
+| Key             | Type   | Default                     |
+| --------------- | ------ | --------------------------- |
+| online_base_url | string | `"https://api.zaparoo.com"` |
+
+`online_base_url` is the [Zaparoo Online](../../online/index.md) service Core talks to for account linking, cloud backup, play history sync, Library sync, and remote control. Leave it unset unless you run your own compatible server. A custom public server must use HTTPS; plain HTTP is accepted only for localhost, private IP addresses, and link-local development endpoints. An invalid value falls back to the official service.
+
+```toml
+[service]
+online_base_url = "https://zaparoo.example.lan"
+```
+
 ### service.discovery
 
 `service.discovery` is a sub-section of `service` that configures mDNS network discovery.
@@ -271,14 +285,6 @@ enabled = true
 | enabled | boolean | false   |
 
 `enabled` turns remote control on. Unlinking the device turns it off again. You can also change it under **Settings > Online** in the [terminal UI](../tui.md#backups-and-zaparoo-online).
-
-#### base_url {#service-remote-control-base-url}
-
-| Key      | Type   | Default                   |
-| -------- | ------ | ------------------------- |
-| base_url | string | `https://api.zaparoo.com` |
-
-`base_url` is the Zaparoo Online endpoint Core polls for remote commands. Leave it at the default unless you run your own compatible server.
 
 ### service.publishers
 

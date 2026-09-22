@@ -36,6 +36,7 @@ These flags are defined by the shared Core CLI and are available in current comm
 | `-backup` | None | Creates a portable full-device backup ZIP on supported platforms. |
 | `-backups` | None | Lists available full-device backup ZIPs. |
 | `-restore` | Backup name | Restores a full-device backup ZIP and restarts Core. |
+| `-upload-log` | None | Uploads the log file for support and prints the link. Works while Core is not running. Not available on Windows. |
 | `-profiles` | None | Lists device profile IDs, roles, and names for local recovery. |
 | `-profile-reset-pin` | Profile ID | Replaces a profile PIN with a generated eight-digit PIN. |
 | `-profile-reset-switch-id` | Profile ID | Generates a new profile switch ID and invalidates existing switch cards. |
@@ -134,6 +135,14 @@ Use `-restore` with a backup name to restore it. Active media must be stopped. C
 ```
 
 These flags call the [`settings.backup`](./api/methods.md#settingsbackup), `settings.backup.list`, and `settings.backup.restore` API methods.
+
+## Upload the log
+
+Use `-upload-log` to send the log to `logs.zaparoo.org` and print a link you can share on Discord or in a GitHub issue. It works even when Core will not start.
+
+```bash
+./zaparoo -upload-log
+```
 
 ## Database recovery
 
@@ -256,6 +265,6 @@ Without either flag, the macOS build starts the local [TUI](tui.md) after starti
 
 ### Windows
 
-Windows does not support CLI arguments. The Windows build is compiled as a GUI application and starts Core in the system tray.
+Windows does not support CLI arguments. The Windows build is compiled as a GUI application and starts Core in the system tray. Use **Upload Log** in the tray menu to share a log.
 
 Windows also refuses to run with elevated administrator rights. Start it as your normal user.

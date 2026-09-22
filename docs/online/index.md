@@ -1,5 +1,5 @@
 ---
-description: "Use Zaparoo Online for cloud backups, play history sync, the User API, and virtual cards and decks."
+description: "Use Zaparoo Online for cloud backups, play history sync, library sync, the User API, and virtual cards and decks."
 keywords:
   [
     zaparoo online,
@@ -14,20 +14,21 @@ keywords:
 
 # Zaparoo Online
 
-[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It backs up Zaparoo data from every Core platform, including supported [MiSTer](../platforms/mister/index.md) and [SteamOS](../platforms/steamos/index.md) settings and saves. It also syncs play history, gives apps access to your data, and manages virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
+[Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It backs up Zaparoo data from every Core platform, including supported [MiSTer](../platforms/mister/index.md) and [SteamOS](../platforms/steamos/index.md) settings and saves. It also syncs play history, favorites, and decks, gives apps access to your data, and manages virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
-Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, the User API, and virtual cards and decks are free. Remote control through the User API is free for one device at a time and unlimited with Warp.
+Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, Library sync, the User API, and virtual cards and decks are free. Remote control through the User API is free for one device at a time and unlimited with Warp.
 
 Online currently provides:
 
 - **Cloud backup with Warp:** keep off-site snapshots of Zaparoo data, plus supported MiSTer saves and settings
 - **Play history sync:** optionally upload play sessions to your account
+- **Library sync:** keep favorites, likes, play later, and decks the same on every linked device
 - **User API:** give apps scoped access to data from your account
 - **Remote control:** let apps you authorize send approved commands to a device that has opted in
 - **Virtual cards and decks:** create cards and collections online, then write them to physical NFC tags
 
 :::info Optional Online Service
-Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It complements the open-source Zaparoo projects without replacing local functionality. Linking a device does not enable cloud backup or play history sync automatically.
+Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It complements the open-source Zaparoo projects without replacing local functionality. Linking a device does not enable cloud backup, play history sync, or Library sync automatically.
 :::
 
 ## Create an account
@@ -37,7 +38,7 @@ Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizz
 3. Claim a username when prompted.
 4. Link a device: on the device, open **Settings > Online** in the terminal UI (or the Decky plugin on SteamOS) to get a URL and one-time code, then approve it from the **Link device** button on your Online dashboard.
 
-Linking a device does not turn on cloud backup, play history sync, or remote control. Each is enabled separately.
+Linking a device does not turn on cloud backup, play history sync, Library sync, or remote control. Each is enabled separately.
 
 ## Cloud backup with Warp
 
@@ -81,6 +82,19 @@ Synced history also shows on the device's page in Online under **Recent play**.
 Core checks the setting again before each batch. Disabling it stops later uploads but does not delete history already stored by Zaparoo Online. Unlinking the device also stops sync without deleting play history already stored. You can delete stored play history at any time under **Account > Profile**.
 
 While sync is enabled and the device is linked, local retention cleanup preserves sessions that have not reached the server yet. After a session is acknowledged, the normal [`playtime.retention`](../core/config/profiles.md#retention) period still applies to the local copy.
+
+## Library sync
+
+Library sync keeps the personal side of your library the same on every linked device and in Online: favorites, likes and dislikes, play later, and your decks. It also uploads the list of games each device holds, so remote control and deck building in Online know what each device can play. It is free and off by default.
+
+To opt in from the Core terminal UI, open **Settings > Online**, link the device if it is not already linked, and turn on **Library sync**. The setting is [`library.sync`](../core/config/index.md#library-sync) in `config.toml`.
+
+With it on:
+
+- A favorite, like, dislike, or play later set on one device, or in Online under **Library**, reaches your other devices within seconds. It follows the game rather than the file, so the US and European copies of a game share one favorite, while a ROM hack keeps its own. Hidden entries and launcher choices stay on the device.
+- Decks you make in Online appear on the device as [saved playlists](../features/playlists.md#deck), and decks on the device appear in Online. Edits on either side are kept, and a deck edited in both places at once is merged. A deck locked in Online is read-only on the device.
+
+Turning Library sync off removes the device's game list from your account and stops syncing. Favorites and decks already on the device stay there. Linking or unlinking the device also turns it off.
 
 ## Remote control
 
@@ -130,6 +144,8 @@ Decks organize cards into shareable collections. You can reorder cards, share a 
 Physical Zaparoo cards that come with a code can be added to your account under **Redeem cards**.
 
 Use the [Zaparoo App](../app/index.md) to write cards and decks to physical NFC tags.
+
+On a device, a deck is a [saved playlist](../features/playlists.md#deck) that any token can open with `**playlist.play:deck://<id>`. Online is where you create and edit decks today, and [Library sync](#library-sync) keeps the device and your account in step. A [Zap Link](../zapscript/zap-links.md) to a shared deck opens it as a playlist too, and the device keeps a read-only copy so the link works offline after that.
 
 ## Your account
 

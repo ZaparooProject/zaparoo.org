@@ -1,8 +1,8 @@
 ---
 sidebar_position: 8
 sidebar_label: Media Database and Scraping
-description: "Update the Zaparoo Core media database and import local metadata and artwork with the gamelist.xml and media-folder scrapers."
-keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder]
+description: "Update the Zaparoo Core media database and import local metadata and artwork with the gamelist.xml, media-folder, mister-docs, mister-arcade, and pinup-popper scrapers."
+keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, mister arcade metadata]
 ---
 
 # Media Database and Scraping
@@ -44,7 +44,7 @@ By default a scrape skips media that has already been scraped, so repeat runs ar
 
 ## Scrapers
 
-The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, and `pinup-popper` reads the PinUP Popper library on Windows.
+The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, `mister-arcade` reads the MiSTer arcade catalog, and `pinup-popper` reads the PinUP Popper library on Windows.
 
 ### gamelist.xml
 
@@ -94,6 +94,8 @@ For custom bundles, Core only stores an explicit image path when the file exists
 A bundle can provide metadata before all of its artwork is installed. Run a force re-scrape after adding more artwork.
 
 A normal `gamelist.xml` beside the ROMs takes precedence when it and the custom bundle both match the same game. Invalid or malformed custom files are logged and skipped without stopping other systems from scraping.
+
+A `gamelist.xml` that cannot be read, because it is invalid XML or over the size limit, is skipped and named in an Inbox warning when the scrape ends, and the rest of the scrape carries on. The file can be up to 128 MB, or 16 MB on MiSTer, which does not have the memory for a larger one; a library that big can import its artwork through [media folders](#media-folder) instead.
 
 #### MiSTer arcade gamelists
 
@@ -145,6 +147,12 @@ In each system's `docs` folder it reads:
 - PDF files in a child folder whose name contains `manual`, which become the game's manual.
 
 Games are matched by their catalogued ROM name first, or for arcade by the set name inside each `.mra` file, then by a unique title. Update All's **Game Manuals (EN) DBs** provide the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.
+
+### mister-arcade
+
+The `mister-arcade` scraper runs on MiSTer and MiSTeX. It fills in arcade metadata from the [MiSTer arcade catalog](https://github.com/MiSTer-devel/ArcadeDatabase_MiSTer), which Core already downloads. Games are matched by the MAME set name inside each `.mra`, not by filename. It imports the year, developer, genre, series, arcade board, player count and whether players take turns, controls and button count, 15 kHz or 31 kHz video, vertical (tate) monitor rotation, and region, revision, and bootleg details for each set.
+
+It runs on its own after a media database update that indexed arcade games and only fills in fields that are empty, so artwork and metadata from `gamelist.xml` or `mister-docs` are kept. Run it with force to refresh what it wrote. Sets the catalog does not list, mostly under `_Arcade/_alternatives`, are skipped.
 
 ### pinup-popper
 

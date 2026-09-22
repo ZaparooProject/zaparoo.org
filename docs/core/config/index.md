@@ -61,7 +61,7 @@ The options are split across these pages by the TOML table they live in:
 
 | Page | Tables |
 | ---- | ------ |
-| This page | Global settings, `[updates]`, `[backup]` |
+| This page | Global settings, `[updates]`, `[backup]`, `[library]` |
 | [Audio, input, media, and scraper](./media.md) | `[audio]`, `[input]`, `[media]`, `[scraper]` |
 | [Readers](./readers.md) | `[readers]`, `[readers.scan]`, `[[readers.connect]]`, `[readers.drivers]` |
 | [Systems and launchers](./launchers.md) | `[[systems.default]]`, `[[systems.category]]`, `[launchers]`, `[[launchers.default]]`, `[[launchers.custom]]`, `[groovy]` |
@@ -157,7 +157,6 @@ scope = "platform"
 [backup.remote]
 enabled = false
 schedule = "daily"
-base_url = "https://api.zaparoo.com"
 ```
 
 | Key | Type | Default | Description |
@@ -166,11 +165,27 @@ base_url = "https://api.zaparoo.com"
 | `scope` | string | `"platform"` | `"platform"` includes supported device settings and save data; `"zaparoo"` includes only Zaparoo-owned data. |
 | `remote.enabled` | boolean | `false` | Enables automatic cloud backup scheduling. Manual uploads remain available while disabled. |
 | `remote.schedule` | string | `"daily"` | Cloud schedule: `"daily"`, `"weekly"`, or `"manual"`. |
-| `remote.base_url` | string | `"https://api.zaparoo.com"` | Cloud backup service URL. |
 
 Full platform backups are currently supported on MiSTer and SteamOS. See [Device Backups](../../features/backups.md) for included data and restore behavior.
 
-Keep `remote.base_url` at its default unless you use a custom service. Custom public servers must use HTTPS. Plain HTTP is accepted only for localhost, private IP addresses, and link-local development endpoints.
+To back up to your own server instead of Zaparoo Online, set [`online_base_url`](./service.md#online_base_url).
+
+## Library
+
+```toml
+[library]
+sync = false
+```
+
+### sync {#library-sync}
+
+| Key  | Type    | Default |
+| ---- | ------- | ------- |
+| sync | boolean | false   |
+
+`sync` turns on [Library sync](../../online/index.md#library-sync) with a linked Zaparoo Online account. It keeps favorites, likes, dislikes, play later, and decks in step with the account, and uploads the list of games on this device so remote control and deck building in Online know what it can play. Linking an account does not enable it, and linking or unlinking turns it back off. Turning it off removes this device's game list from the account and keeps local favorites and decks.
+
+You can also change it under **Settings > Online** in the [terminal UI](../tui.md#backups-and-zaparoo-online).
 
 ## Complete example {#complete-example}
 
@@ -196,7 +211,9 @@ scope = "platform"
 [backup.remote]
 enabled = false
 schedule = "daily"
-base_url = "https://api.zaparoo.com"
+
+[library]
+sync = false
 
 [audio]
 scan_feedback = true
@@ -271,10 +288,19 @@ allow_file = [
     '^/media/fat/something.mgl$'
 ]
 on_media_start = '**echo:media started'
+before_exit = '**input.keyboard:{f12}'
 
 [[launchers.default]]
 launcher = 'KodiTV'
 server_url = 'http://localhost:5678'
+
+[[launchers.default]]
+launcher = 'RetroAchievements'
+before_exit = '**input.keyboard:{f2}'
+
+[[launchers.default]]
+launcher = 'Arcade'
+scan_duplicates = true
 
 [zapscript]
 allow_execute = [
@@ -296,7 +322,6 @@ swap_data = true
 [playtime]
 retention = 365
 sync = false
-base_url = "https://api.zaparoo.com"
 
 [playtime.limits]
 enabled = true
@@ -308,6 +333,7 @@ warnings = ["10m", "5m", "2m", "1m"]
 [service]
 api_port = 7497
 api_listen = "0.0.0.0"
+online_base_url = "https://api.zaparoo.com"
 allowed_ips = [
     "192.168.1.100",
     "192.168.1.0/24"
