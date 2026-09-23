@@ -52,7 +52,7 @@ The `gamelist.xml` scraper imports EmulationStation metadata from a `gamelist.xm
 
 It imports:
 
-- **Tags**: developer, publisher, year, genre, rating, player count, plus per-file region and language. These feed into the [tag system](./tags.md#scraped-tags-and-labels) for matching and filtering.
+- **Tags**: developer, publisher, year, genre, rating, player count, plus per-file region and language. These feed into the [tag system](./tags.md#scraped-tags) for matching and filtering.
 - **Descriptions** and the game's ScreenScraper ID.
 - **Artwork and media paths**: box art (2D, 3D, side, back), screenshots, title screens, marquees, wheels and logos, fan art, maps, plus videos and PDF manuals.
 
@@ -160,6 +160,6 @@ The `pinup-popper` scraper is Windows only and appears when the [PinUP Popper la
 
 ## What scraping produces
 
-Scraped text values become [tags](./tags.md), which Core uses to choose between similar media and which you can filter on when launching by title. Scraped artwork is shown in the Zaparoo App when you browse your library, and descriptions and manuals appear in clients that display them, such as [Zaparoo Frontend](../frontend/index.mdx).
+Scraped values become [tags](./tags.md) when Core can translate them into its tag vocabulary; a value it cannot translate is left out. Core uses tags to choose between similar media, and you can filter on them when launching by title. Scraped artwork is shown in the Zaparoo App when you browse your library, and descriptions and manuals appear in clients that display them, such as [Zaparoo Frontend](../frontend/index.mdx).
 
 For the full metadata field mapping and the API methods used to start scrapes and read scraped data, see the [scraper subsystem reference](../core/contributing/scraper.md), a developer page maintained in the Core repository.

@@ -6,7 +6,7 @@ keywords: [zaparoo tags, title id tags, media tags zaparoo, region tags zaparoo]
 
 # Tags
 
-Tags are metadata labels that Zaparoo Core extracts from media filenames. They help Core choose between multiple matches for the same title, especially when your library has several regions, languages, revisions, demos, or bad dumps.
+Tags are metadata labels that Zaparoo Core reads from media filenames and from [metadata scrapers](./scraping.md). They help Core choose between multiple matches for the same title, especially when your library has several regions, languages, revisions, demos, or bad dumps.
 
 You will usually see tags when using [title IDs](../zapscript/launch.md#launchtitle). For example, this launches the US version of `Super Mario World` when more than one version is available:
 
@@ -170,11 +170,19 @@ A few tags are set by you rather than read from a filename. Favorites come from 
 | `user:hidden` | Hidden from browsing, search, and random picks. A card or script still launches it |
 | `user:deck:<id>` | In the [deck](./playlists.md#deck) with that ID. Set by the deck, not by hand |
 
-## Scraped tags and labels
+## Tags are stable
 
-[Metadata scrapers](./scraping.md) can add tags for publishers, developers, genres, arcade boards, game families, regions, and languages. Core stores these tag values as normalized slugs so matching stays consistent. For example, `T&E Soft` is stored as `t-and-e-soft`.
+A tag you write in a title ID or a filter should mean the same thing on every device, whichever source the metadata came from, and keep meaning it after an update. So Core controls which tag values exist:
 
-When scraped metadata includes a human-readable label, API responses can preserve that label alongside the normalized tag value. Use the normalized `type:value` form when writing title IDs or tag filters by hand.
+- **Most tag types are a fixed list.** `genre`, `region`, `lang`, `arcadeboard`, `players`, `input`, the `search` franchises and features, and most of the filename types in the table above only accept values Core defines. Genres follow [GameDataBase](https://github.com/PigSaint/GameDataBase), for example `genre:shmup:v` or `genre:action:platformer`.
+- **A few follow a strict format** instead of a list: `year` (1950 to 2099), `builddate` (a real date), `rating` (0 to 100), the numbers in `disc`, `disctotal`, `set`, track and episode tags, and the versions in `rev` and `patch`.
+- **Only `developer`, `publisher` and `credit` accept any name**, because company names cannot be listed. Core stores them as normalized slugs, so `T&E Soft` becomes `t-and-e-soft`, and keeps the original spelling as a label.
+
+## Scraped tags
+
+[Metadata scrapers](./scraping.md) cannot add tag types or tag values. A scraper translates what its source says into an existing value: a `Shoot'em Up / Vertical` genre becomes `genre:shmup:v`, a game series becomes `search:franchise:castlevania`, a `CPS2` board becomes `arcadeboard:capcom:cps2`. A value the scraper cannot translate is left out rather than stored as it was written. That keeps filters working across sources, at the cost of dropping the occasional unusual source value until Core learns to map it.
+
+Use the `type:value` form when writing title IDs or tag filters by hand.
 
 ## Credit
 
