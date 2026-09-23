@@ -174,8 +174,8 @@ A few tags are set by you rather than read from a filename. Favorites come from 
 
 A tag you write in a title ID or a filter should mean the same thing on every device, whichever source the metadata came from, and keep meaning it after an update. So Core controls which tag values exist:
 
-- **Most tag types are a fixed list.** `genre`, `region`, `lang`, `arcadeboard`, `players`, `input`, the `search` franchises and features, and the filename types in the table above only accept values Core defines. Genres follow [GameDataBase](https://github.com/PigSaint/GameDataBase), for example `genre:shmup:v` or `genre:action:platformer`.
-- **A few follow a strict format** instead of a list, such as `year` (1950 to 2099), `builddate` (a real date), `rating` (0 to 100), and disc, track and episode numbers.
+- **Most tag types are a fixed list.** `genre`, `region`, `lang`, `arcadeboard`, `players`, `input`, the `search` franchises and features, and most of the filename types in the table above only accept values Core defines. Genres follow [GameDataBase](https://github.com/PigSaint/GameDataBase), for example `genre:shmup:v` or `genre:action:platformer`.
+- **A few follow a strict format** instead of a list: `year` (1950 to 2099), `builddate` (a real date), `rating` (0 to 100), the numbers in `disc`, `disctotal`, `set`, track and episode tags, and the versions in `rev` and `patch`.
 - **Only `developer`, `publisher` and `credit` accept any name**, because company names cannot be listed. Core stores them as normalized slugs, so `T&E Soft` becomes `t-and-e-soft`, and keeps the original spelling as a label.
 
 ## Scraped tags
