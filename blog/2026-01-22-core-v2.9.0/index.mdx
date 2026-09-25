@@ -38,7 +38,7 @@ Zaparoo Core v2.9.0 is now available. This release brings a major TUI overhaul, 
 
 ## TUI Overhaul
 
-The terminal UI has been completely overhauled with a focus on usability and better integration with the API settings system. TUI-specific options are now stored in a separate [tui.toml](/docs/core/config#tui-config-file) file.
+The terminal UI has been completely overhauled with a focus on usability and better integration with the API settings system. TUI-specific options are now stored in a separate [tui.toml](/docs/core/tui/#tui-settings) file.
 
 - **Settings use API** instead of direct config manipulation, so changes take effect immediately
 - **Theme system** with multiple color schemes
@@ -85,7 +85,7 @@ launcher = "Kodi"
 server_url = "http://kodi:8080"
 ```
 
-This sets `server_url` for all Kodi launchers without needing to configure each one individually. The `launcher` field in [`[launchers.default]`](/docs/core/config#launchersdefault) matches both launcher IDs and group names.
+This sets `server_url` for all Kodi launchers without needing to configure each one individually. The `launcher` field in [`[launchers.default]`](/docs/core/config/launchers/#launchersdefault) matches both launcher IDs and group names.
 
 ## Custom Launcher Enhancements
 
@@ -124,7 +124,7 @@ The [go-pn532](https://github.com/ZaparooProject/go-pn532) driver has been updat
 
 ## API Key Authentication
 
-Optional [API key authentication](/docs/core/config#api-keys) is now available to protect remote API access. Localhost connections remain allowed without authentication.
+Optional [API key authentication](/docs/core/config/service/#api-keys) is now available to protect remote API access. Localhost connections remain allowed without authentication.
 
 ## Stable Reader IDs
 

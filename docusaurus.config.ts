@@ -82,7 +82,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          lastVersion: "2.17.2",
+          lastVersion: "2.18.0",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -91,7 +91,7 @@ const config: Config = {
               banner: "unreleased",
               badge: true,
             },
-            "2.17.2": {
+            "2.18.0": {
               label: "Stable",
               path: "/",
               banner: "none",
@@ -608,27 +608,26 @@ const config: Config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          // Pages merged or moved in the 2.18.0 docs cycle. Change these
-          // /docs/next/ paths to /docs/ when 2.18.0 becomes the stable snapshot.
+          // Pages merged or moved in the 2.18.0 docs cycle.
           {
-            to: "/docs/next/platforms/linux/#manual-install",
-            from: "/docs/next/platforms/linux/install/",
+            to: "/docs/platforms/linux/#manual-install",
+            from: "/docs/platforms/linux/install/",
           },
           {
-            to: "/docs/next/platforms/batocera/#manual-install",
-            from: "/docs/next/platforms/batocera/install/",
+            to: "/docs/platforms/batocera/#manual-install",
+            from: "/docs/platforms/batocera/install/",
           },
           {
-            to: "/docs/next/tokens/nfc/",
-            from: "/docs/next/tokens/nfc/ntag/",
+            to: "/docs/tokens/nfc/",
+            from: "/docs/tokens/nfc/ntag/",
           },
           {
-            to: "/docs/next/readers/barcode/#hardware-scanners",
-            from: "/docs/next/readers/barcode/rs232/",
+            to: "/docs/readers/barcode/#hardware-scanners",
+            from: "/docs/readers/barcode/rs232/",
           },
           {
-            to: "/docs/next/tokens/storage/#cassette-cases",
-            from: "/docs/next/tokens/storage/cassette-cases/",
+            to: "/docs/tokens/storage/#cassette-cases",
+            from: "/docs/tokens/storage/cassette-cases/",
           },
           {
             to: "/start/",
@@ -851,7 +850,7 @@ const config: Config = {
       {
         generateLLMsTxt: false,
         generateLLMsFullTxt: true,
-        docsDir: "versioned_docs/version-2.17.2",
+        docsDir: "versioned_docs/version-2.18.0",
         includeBlog: false,
         excludeImports: true,
         removeDuplicateHeadings: true,

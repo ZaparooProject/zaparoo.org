@@ -76,7 +76,7 @@ toggle_pause = "**input.keyboard:p"
 ## Other Changes
 
 - **New MiSTer cores** — 3DO (`.iso`, `.cue`) and Jaguar CD (`.cdi`)
-- **[Ignore on connect](/docs/core/config#ignore_on_connect)** — new config option to suppress the first token read from each newly-connected reader. Stops accidental launches from cards left sitting on readers
+- **[Ignore on connect](/docs/core/config/readers/#ignore_on_connect)** — new config option to suppress the first token read from each newly-connected reader. Stops accidental launches from cards left sitting on readers
 - **Self-update infrastructure** — built-in update checking and one-click apply with graceful restart. This will be activated in a future app update.
 - **New API methods** — `media.browse` (directory-style library navigation), `media.history` and `media.history.top` (play history and most-played), `media.lookup` (title resolution), `input.keyboard` and `input.gamepad` (remote input), `screenshot`, `update.check`/`update.apply`, and `settings.auth.claim` (secure credential flow for app authentication). See the [API docs](/docs/core/api/methods) for details.
 - **Tag disambiguation** — ZapScript title commands now only include tags (year, players) when they're needed to distinguish between game variants

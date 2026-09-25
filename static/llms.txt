@@ -6,7 +6,7 @@ Important notes:
 
 - Zaparoo does not provide ROMs, game files, or any copyrighted media. It is purely a launcher and reader system.
 - Zaparoo Core is the background service (daemon) that runs on the target device. The Zaparoo App is the free iOS and Android companion used to write tokens and manage settings; Zaparoo App Pro (US$6.99 one-time purchase, included with Warp) turns the phone into a wireless reader.
-- Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching the Core media library on MiSTer. Zaparoo Online is a free optional account (play history sync, virtual cards and decks, User API); Zaparoo Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro). Local backups are always free.
+- Zaparoo Frontend is a TV and controller-friendly interface for browsing and launching the Core media library on MiSTer. Zaparoo Online is a free optional account (Library sync for favorites, likes, play later, and decks, play history sync, virtual cards and decks, User API); Zaparoo Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro). Local backups are always free.
 - ZapScript is the scripting language embedded into NFC tags, QR codes, and other tokens to control what Zaparoo does when they are scanned.
 - Zaparoo was previously known as TapTo. Historical references to TapTo refer to the same project.
 - The project is community-driven and open-source; the Zaparoo name and shop are operated by Wizzo Pty Ltd.
@@ -40,8 +40,7 @@ Important notes:
 ## Tokens
 
 - [Tokens Overview](https://zaparoo.org/docs/tokens/): All supported token types and how they work.
-- [NFC Tags](https://zaparoo.org/docs/tokens/nfc/): Overview of NFC tag compatibility and usage.
-- [NTAG Tags](https://zaparoo.org/docs/tokens/nfc/ntag/): Common NTAG NFC tags supported by Zaparoo.
+- [NFC Tags](https://zaparoo.org/docs/tokens/nfc/): NFC tag compatibility and usage, including NTAG tags.
 - [MIFARE Tags](https://zaparoo.org/docs/tokens/nfc/mifare/): MIFARE Classic NFC tag support and limitations.
 - [NFC Toys](https://zaparoo.org/docs/tokens/nfc-toys/): Map Amiibo, Skylanders, Disney Infinity, and LEGO Dimensions figures to games by UID.
 - [PCB Cards](https://zaparoo.org/docs/tokens/pcb-cards/): Custom PCB-format NFC cards for Zaparoo.
@@ -54,7 +53,8 @@ Important notes:
 
 - [Platforms Overview](https://zaparoo.org/docs/platforms/): All supported platforms and install instructions.
 - [MiSTer FPGA](https://zaparoo.org/docs/platforms/mister/): Install and configure Zaparoo on MiSTer FPGA.
-- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer, including alternate core families, launcher groups, and unstable nightly launchers.
+- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer, with each system's folders and formats and special launchers like ScummVM, CDTV, and DVD Player.
+- [MiSTer Alternate Launchers](https://zaparoo.org/docs/platforms/mister/alternate-launchers/): Use alternate MiSTer cores such as RetroAchievements, DB9, LLAPI, and unstable nightlies, with launcher groups and preferences.
 - [Zaparoo MiSTer Main](https://zaparoo.org/docs/platforms/mister/main/): Zaparoo's build of MiSTer Main: the Zaparoo page in the OSD, kiosk mode, auto-save, disc autorun, MiSTer_cmd commands, direct game tracking, and an early Core start.
 - [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
 - [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows.
@@ -62,7 +62,6 @@ Important notes:
 - [SteamOS Launchers](https://zaparoo.org/docs/platforms/steamos/launchers/): Launching Steam games, emulators, EmuDeck, and RetroDECK on SteamOS, including Zaparoo Runtime in Gaming Mode.
 - [Decky Loader Plugin](https://zaparoo.org/docs/platforms/steamos/decky/): Install the Zaparoo plugin for Decky Loader to write tags, stop media, index, pair, and link Zaparoo Online from the Quick Access Menu.
 - [Batocera](https://zaparoo.org/docs/platforms/batocera/): Install and configure Zaparoo on Batocera.
-- [Batocera Install](https://zaparoo.org/docs/platforms/batocera/install/): Step-by-step Batocera installation guide.
 - [Batocera Launchers](https://zaparoo.org/docs/platforms/batocera/launchers/): Launching games and emulators on Batocera.
 - [Bazzite](https://zaparoo.org/docs/platforms/bazzite/): Install Zaparoo on Bazzite Linux.
 - [ChimeraOS](https://zaparoo.org/docs/platforms/chimeraos/): Install Zaparoo on ChimeraOS.
@@ -74,16 +73,16 @@ Important notes:
 
 ## App
 
-- [Zaparoo App](https://zaparoo.org/docs/app/): Mobile and desktop app for writing tokens and managing Zaparoo.
+- [Zaparoo App](https://zaparoo.org/docs/app/): Mobile app for writing tokens, browsing and launching the library, building decks, marking favorites, likes, and play later, and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
 - [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, Hub arrangement, color schemes, Update metadata, support log uploads, and library tools.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
-- [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for play history sync, virtual cards and decks, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).
+- [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for Library sync, play history sync, virtual cards and decks, remote control, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).
 
 ## Core
 
 - [Core Overview](https://zaparoo.org/docs/core/): Zaparoo Core daemon reference and architecture.
-- [Configuration](https://zaparoo.org/docs/core/config/): Full config.toml reference for Zaparoo Core.
+- [Configuration](https://zaparoo.org/docs/core/config/): config.toml reference for Zaparoo Core, split into media, readers, launchers, ZapScript, service, and profiles sections.
 - [CLI Reference](https://zaparoo.org/docs/core/cli/): Command-line interface for interacting with Core.
 - [Terminal UI (TUI)](https://zaparoo.org/docs/core/tui/): Local terminal menu for Core status, token writing, media updates, settings, and logs.
 - [Core Updates](https://zaparoo.org/docs/core/updates/): How Core checks for new releases, opt-in automatic installs with rollback, what blocks an update, and which platforms update in place.
@@ -94,12 +93,13 @@ Important notes:
 - [Features Overview](https://zaparoo.org/docs/features/): Overview of all Zaparoo Core features.
 - [Launchers](https://zaparoo.org/docs/features/launchers/): How Core resolves and launches games from token scans, including launcher defaults and launch hooks.
 - [Mappings](https://zaparoo.org/docs/features/mappings/): Map token IDs to specific games or scripts.
-- [Tags](https://zaparoo.org/docs/features/tags/): Manage and inspect NFC tag content from Core.
+- [Tags](https://zaparoo.org/docs/features/tags/): Media metadata tags from filenames and scrapers, the fixed tag vocabulary, and user tags like favorites and play later.
 - [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
 - [Device Profiles](https://zaparoo.org/docs/features/profiles/): Give each person separate playtime limits and profile cards, with separate saves and save states on MiSTer.
 - [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, and MiSTer and SteamOS configuration, saves, and save states.
+- [Playlists and Decks](https://zaparoo.org/docs/features/playlists/): Play folders, playlist files, and decks from one token, with pickers and advance-on-rescan.
 - [Audio](https://zaparoo.org/docs/features/audio/): Play WAV, MP3, OGG, and FLAC files through Core's native audio launcher, including a background slot that keeps music playing while games launch.
-- [Scraping](https://zaparoo.org/docs/features/scraping/): Import local game artwork from gamelist.xml and EmulationStation-style media folders.
+- [Scraping](https://zaparoo.org/docs/features/scraping/): Import metadata and artwork from gamelist.xml, media folders, MiSTer artwork packs and arcade catalog, and PinUP Popper.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.
@@ -112,6 +112,7 @@ Important notes:
 - [Input Commands](https://zaparoo.org/docs/zapscript/input/): Send keyboard, mouse, gamepad, and MiSTer coin inputs via ZapScript.
 - [Utilities](https://zaparoo.org/docs/zapscript/utilities/): Utility commands: delays, variables, conditionals, and staged token writes.
 - [Playlists](https://zaparoo.org/docs/zapscript/playlist/): Cycle through a list of actions on repeated scans.
+- [Zap Links](https://zaparoo.org/docs/zapscript/zap-links/): Tokens that point to ZapScript hosted online, including shared decks.
 - [MiSTer Commands](https://zaparoo.org/docs/zapscript/mister/): MiSTer-specific ZapScript commands.
 - [HTTP Requests](https://zaparoo.org/docs/zapscript/http/): Make HTTP requests from ZapScript.
 

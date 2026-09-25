@@ -52,7 +52,7 @@ Manual configuration is also available through [`readers.connect`](/docs/readers
 
 ## Reader, launch, and playback fixes
 
-- [Hold mode](/docs/core/config/#scan-mode) now stays tied to the token that launched the game. Scanning and removing a command card no longer closes the active game or resets its exit countdown.
+- [Hold mode](/docs/core/config/readers/#scan-mode) now stays tied to the token that launched the game. Scanning and removing a command card no longer closes the active game or resets its exit countdown.
 - Reinserting a launch token during a delayed `on_remove` hook now cancels the remaining hook and keeps the game running.
 - Stop requests now wait for an in-progress launch to finish, fixing a race that could leave the new game running.
 - [Native audio](/docs/features/audio/) stays responsive while playback controls run. Playlist pause and resume state is also preserved and reported correctly to API clients.

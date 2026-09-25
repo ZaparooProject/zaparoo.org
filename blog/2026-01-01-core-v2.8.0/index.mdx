@@ -48,7 +48,7 @@ Happy New Year! Zaparoo Core v2.8.0 is now available. This release fixes a criti
 
 ## mDNS Network Discovery
 
-Zaparoo now [advertises itself](/docs/core/config#servicediscovery) on your local network using mDNS. Mobile apps and other clients can automatically find and connect to your Zaparoo instance without needing to enter IP addresses manually. Access Zaparoo using friendly `.local` addresses like `http://mister.local:7497`.
+Zaparoo now [advertises itself](/docs/core/config/service/#servicediscovery) on your local network using mDNS. Mobile apps and other clients can automatically find and connect to your Zaparoo instance without needing to enter IP addresses manually. Access Zaparoo using friendly `.local` addresses like `http://mister.local:7497`.
 
 ```toml
 [service.discovery]
@@ -58,7 +58,7 @@ instance_name = "MyZaparoo" # Optional custom name
 
 ## Blocking Hooks
 
-Three hooks can now block actions by returning an error: [`on_scan`](/docs/core/config#on_scan), [`on_remove`](/docs/core/config#on_remove), and the new [`before_media_start`](/docs/core/config#before_media_start). Scripts executed via `**execute:` now receive a `ZAPAROO_ENVIRONMENT` JSON variable with full system state.
+Three hooks can now block actions by returning an error: [`on_scan`](/docs/core/config/readers/#on_scan), [`on_remove`](/docs/core/config/readers/#on_remove), and the new [`before_media_start`](/docs/core/config/launchers/#before_media_start). Scripts executed via `**execute:` now receive a `ZAPAROO_ENVIRONMENT` JSON variable with full system state.
 
 ```toml
 [launchers]
@@ -73,7 +73,7 @@ Your script gets access to the current platform, active media, scanned token, an
 - **Neo Geo fixes** for files inside zip archives or extracted game folders being incorrectly indexed as separate games.
 - **Alt-core path fixes** for the 80MHz N64 and 2X PSX alternative cores.
 
-## [Zap Link](/docs/zapscript/syntax#zap-links) Improvements
+## [Zap Link](/docs/zapscript/zap-links/) Improvements
 
 - **Platform detection headers** identify your device's OS, architecture, and platform. Servers can serve different scripts for different devices from the same URL.
 - **Faster first scans** by pre-warming known hosts in the background when Zaparoo starts.
@@ -96,7 +96,7 @@ Your script gets access to the current platform, active media, scanned token, an
 - **Windows installers are now signed** which helps avoid SmartScreen warnings. Thanks to [SignPath](https://signpath.io/) for sponsoring the project with free code signing.
 - **System ID aliases** in [config](/docs/core/config) options like `[[systems.default]]` and `ignore_system`. Use `megadrive`, `N64`, or `playstation` instead of exact system IDs.
 - **[Opt-in error reporting](/docs/core/config#error_reporting)** via Sentry. When enabled, anonymous crash reports help identify and fix bugs. Disabled by default.
-- [Zap Link](/docs/zapscript/syntax#zap-links) hosts that don't support the protocol are automatically re-checked after 30 days.
+- [Zap Link](/docs/zapscript/zap-links/) hosts that don't support the protocol are automatically re-checked after 30 days.
 - Launch guard prevents concurrent media launches from causing conflicts
 - Linux platform code refactored into a shared base, reducing duplication across SteamOS, Bazzite, and ChimeraOS
 - Steam code consolidated into a unified package with platform-specific implementations

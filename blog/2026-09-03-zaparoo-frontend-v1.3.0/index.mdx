@@ -245,7 +245,7 @@ Core v2.17.1 fixes problems found after v2.17.0. Install it the usual way for yo
 - Arcade games registered as closing the moment they launched, leaving zero-second play sessions. This was a regression in v2.17.0.
 - Hold mode never stopped a game from `_Arcade/_alternatives` whose set name is missing from `ArcadeDatabase.csv`, and those games were not tracked when started from the MiSTer menu.
 - Scans of exFAT and FAT storage stopped reading a folder at the first symlink, so everything after it was missing from the library. One log showed 1450 truncated folders under `_Arcade/_alternatives`. Run a media database update after installing.
-- A per-reader [`scan_mode`](/docs/core/config/#scan-mode) was ignored when the reader was configured with an older driver ID such as `pn532_uart`.
+- A per-reader [`scan_mode`](/docs/core/config/readers/#scan-mode) was ignored when the reader was configured with an older driver ID such as `pn532_uart`.
 
 ### Library, API, and readers
 

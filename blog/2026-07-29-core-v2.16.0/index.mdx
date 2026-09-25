@@ -141,7 +141,7 @@ Image requests can now use 32px and 64px resize tiers alongside existing larger 
 
 Thanks to [BossRighteous](https://github.com/BossRighteous), Core can now import [per-system `gamelist.xml` bundles](/docs/features/scraping/#custom-gamelist-bundles) stored separately from ROM folders. This keeps a curated metadata and artwork library in a separate location while leaving game storage unchanged.
 
-Set [`scraper.gamelist_xml.custom_path`](/docs/core/config/#scraper-gamelist-xml-custom-path) to the bundle directory, with one subfolder for each system ID.
+Set [`scraper.gamelist_xml.custom_path`](/docs/core/config/media/#scraper-gamelist-xml-custom-path) to the bundle directory, with one subfolder for each system ID.
 
 - Custom gamelists enrich games already in the media database and use their own directory for artwork and other assets.
 - Regular gamelists beside ROMs still take priority.
@@ -190,7 +190,7 @@ MiSTer can automatically detect optical drives exposed as `/dev/sr0`, `/dev/sr1`
 Core now includes [built-in RetroArch launchers](/docs/platforms/linux/launchers/#retroarch). They map supported systems to default RetroArch cores and scan ROMs from ES-DE-style system folders, removing the need to create a custom launcher for each core.
 
 - **Dependency checks:** Core verifies that the RetroArch Flatpak and required core are installed. Apps can report an unavailable launcher and explain what is missing instead of attempting a failed automatic launch.
-- **Core overrides:** Set a launcher's [`load_path`](/docs/core/config/#load_path) default to choose a different RetroArch core.
+- **Core overrides:** Set a launcher's [`load_path`](/docs/core/config/launchers/#load_path) default to choose a different RetroArch core.
 - **Controls:** Save state, load state, menu, pause, reset, fast forward, rewind, and stop are supported through a separate network-command overlay. Core does not change your primary RetroArch configuration.
 - **SteamOS integration:** These launchers work with EmuDeck's RetroArch systems while standalone EmuDeck emulators remain supported. RetroArch launches also receive Gaming Mode focus handling.
 - **Process tracking:** Active-media state clears when the launched emulator exits, while stale events from an older process cannot clear a newer launch.
@@ -210,7 +210,7 @@ Xenia Canary, Ryubing, shadPS4, PCSX2, Cemu, Azahar, Vita3K, RPCS3, DuckStation,
 
 </details>
 
-**Launcher selection:** A new [`launchers.preference`](/docs/core/config/#preference) setting chooses an ordered fallback across launcher groups. SteamOS users can prefer `Native`, `EmuDeck`, or `RetroDECK`. Explicit token launchers, saved per-game overrides, and system defaults continue to take priority. When several launchers scan the same system, Core merges duplicate paths while preserving the best available display metadata.
+**Launcher selection:** A new [`launchers.preference`](/docs/core/config/launchers/#preference) setting chooses an ordered fallback across launcher groups. SteamOS users can prefer `Native`, `EmuDeck`, or `RetroDECK`. Explicit token launchers, saved per-game overrides, and system defaults continue to take priority. When several launchers scan the same system, Core merges duplicate paths while preserving the best available display metadata.
 
 **Native RetroArch:** Zaparoo-owned low-latency profiles enable network controls, tune video and audio latency, and disable features that conflict with the profile. Your primary RetroArch configuration remains unchanged.
 
@@ -233,8 +233,8 @@ Core v2.16.0 includes the Core-side part of this fix. A future Frontend update i
 
 **Rendering controls:**
 
-- [`render_scale`](/docs/core/config/#render_scale) supports 25%, 33%, 50%, or 100% of the current output dimensions.
-- [`render_resolution`](/docs/core/config/#render_resolution) accepts an exact `WIDTHxHEIGHT` framebuffer size.
+- [`render_scale`](/docs/core/config/launchers/#render_scale) supports 25%, 33%, 50%, or 100% of the current output dimensions.
+- [`render_resolution`](/docs/core/config/launchers/#render_resolution) accepts an exact `WIDTHxHEIGHT` framebuffer size.
 
 These settings do not change the physical display output mode. Existing defaults remain unchanged: video uses one-third dimensions and ScummVM uses 640×480.
 
@@ -297,7 +297,7 @@ Core v2.16.0 adds support for new Zaparoo Online features that we'll cover in a 
 - **Fixed:** [Neo Geo indexing](/docs/platforms/mister/launchers/#neogeo) now handles root-level, nested, and symlinked ROM-set folders, with safer `romsets.xml` fallback handling and clearer diagnostics.
 - **Fixed:** Core detection now refreshes after `.rbf` files are added, removed, replaced, or changed through symlinks. Standardized unstable-nightly filenames work as fallbacks for systems such as 3DO, while regular cores keep priority.
 - **Fixed:** [AmigaVision](/docs/platforms/mister/launchers/#amigavision-amiga) and Amiga 500 virtual entries now route through the installed AmigaVision MGL instead of failing with `No RBF found!`.
-- **New:** RetroAchievements launchers now cover Atari 7800, Famicom Disk System, Game Gear, Neo Geo CD, Saturn, and TurboGrafx-16 CD, including correct paths for systems that share another core. All MiSTer RetroAchievements launchers can be [preferred with one `RetroAchievements` group setting](/docs/platforms/mister/launchers/#retroachievements).
+- **New:** RetroAchievements launchers now cover Atari 7800, Famicom Disk System, Game Gear, Neo Geo CD, Saturn, and TurboGrafx-16 CD, including correct paths for systems that share another core. All MiSTer RetroAchievements launchers can be [preferred with one `RetroAchievements` group setting](/docs/platforms/mister/alternate-launchers/#retroachievements).
 
 ### Windows
 

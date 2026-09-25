@@ -101,7 +101,7 @@ Linux and SteamOS now require remote clients to pair, on existing installs as we
 
 Unpaired remote clients now only get the older compatibility access on MiSTer, MiSTeX, Batocera, LibreELEC, and RePlayOS. Everywhere else a remote client must pair or send an API key, for WebSocket, HTTP, and event streams alike. Paired members can now send input and take screenshots, and installing updates needs its own capability. The [permissions](/docs/core/api/#permissions) section of the API reference has the full table.
 
-Opening the Web UI by the device's own name, such as `http://mister.local:7497/app/`, now connects without any configuration. Any other name you reach Core by, like a DNS entry on your router, a VPN address, or a reverse proxy, needs an [`allowed_origins`](/docs/core/config/#allowed_origins) entry; the [Web UI page](/docs/app/web/#troubleshooting) covers the symptom when one is missing.
+Opening the Web UI by the device's own name, such as `http://mister.local:7497/app/`, now connects without any configuration. Any other name you reach Core by, like a DNS entry on your router, a VPN address, or a reverse proxy, needs an [`allowed_origins`](/docs/core/config/service/#allowed_origins) entry; the [Web UI page](/docs/app/web/#troubleshooting) covers the symptom when one is missing.
 
 ### Remote control through the User API
 
@@ -181,7 +181,7 @@ The installer is reworked around it:
 
 **Applies to:** MiSTer.
 
-`launchers.preference` accepts the `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable` groups alongside `RetroAchievements`, so one line prefers a whole core family and falls back to the stock core where it is missing. Nightlies from the unstable nightlies database get their own `Unstable<System>` launchers, so a nightly can be preferred over a stock core instead of only standing in for a missing one. See [launcher groups](/docs/platforms/mister/launchers/#launcher-groups).
+`launchers.preference` accepts the `DB9`, `LLAPI`, `DualRAM`, `Sinden`, `PWM`, and `Unstable` groups alongside `RetroAchievements`, so one line prefers a whole core family and falls back to the stock core where it is missing. Nightlies from the unstable nightlies database get their own `Unstable<System>` launchers, so a nightly can be preferred over a stock core instead of only standing in for a missing one. See [launcher groups](/docs/platforms/mister/alternate-launchers/#launcher-groups).
 
 ### Arcade and Neo Geo indexing
 
@@ -220,7 +220,7 @@ A burned data disc can carry its own ZapScript in a `zaparoo.txt` file, the same
 
 **Applies to:** All Core platforms.
 
-`scan_mode` on a `[[readers.connect]]` entry or a `[readers.drivers.<id>]` section overrides the global scan mode for that reader, so a cartridge slot or an optical drive can hold while an NFC antenna on the same device taps. A card can override its reader with a `#tap` or `#hold` trait in its script, such as `#hold||SNES/Super Metroid.sfc`, and a playlist keeps the mode of the card that started it. See [scan mode](/docs/core/config/#scan-mode) and [traits](/docs/zapscript/syntax/#traits).
+`scan_mode` on a `[[readers.connect]]` entry or a `[readers.drivers.<id>]` section overrides the global scan mode for that reader, so a cartridge slot or an optical drive can hold while an NFC antenna on the same device taps. A card can override its reader with a `#tap` or `#hold` trait in its script, such as `#hold||SNES/Super Metroid.sfc`, and a playlist keeps the mode of the card that started it. See [scan mode](/docs/core/config/readers/#scan-mode) and [traits](/docs/zapscript/syntax/#traits).
 
 ### Extend a playtime session
 

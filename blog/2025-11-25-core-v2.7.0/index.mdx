@@ -118,11 +118,11 @@ Two really cool new reader types:
 
 ## And Also...
 
-**Readers:** [RS232 barcode scanners](/docs/readers/barcode/rs232/) are now supported, and if the new NFC driver isn't working for you, there's a [legacy driver option](/docs/readers/drivers/#legacy-nfc-drivers) using `legacypn532uart` and `legacypn532i2c`.
+**Readers:** [RS232 barcode scanners](/docs/readers/barcode/#hardware-scanners) are now supported, and if the new NFC driver isn't working for you, there's a [legacy driver option](/docs/readers/drivers/#legacy-nfc-drivers) using `legacypn532uart` and `legacypn532i2c`.
 
 **Cross-platform stuff:** [Keyboard combos](/docs/zapscript/input/#inputkeyboard) now work on all platforms instead of just MiSTer. Neo Geo AES and MVS are now separate platforms. Scan audio feedback works everywhere and reports ZapScript errors. URL launching works on Windows and Linux.
 
-**Config & integration:** There's a new notification publisher for pushing API notifications to external services. [API security](/docs/core/config/#api_listen) got `api_listen` for binding to specific interfaces and `allowed_ips` for IP allowlists. You can set [custom audio files](/docs/core/config/#success_sound) for success/fail sounds. And [`.zaparooignore`](/docs/core/config/#index_root) files let you exclude directories from media scanning.
+**Config & integration:** There's a new notification publisher for pushing API notifications to external services. [API security](/docs/core/config/service/#api_listen) got `api_listen` for binding to specific interfaces and `allowed_ips` for IP allowlists. You can set [custom audio files](/docs/core/config/media/#success_sound) for success/fail sounds. And [`.zaparooignore`](/docs/core/config/launchers/#index_root) files let you exclude directories from media scanning.
 
 **ZapScript:** [`launch.random`](/docs/zapscript/launch/#launchrandom) is way faster now, especially for huge libraries. [`launch.title`](/docs/zapscript/launch/#launchtitle) is the new explicit command for title ID launching. The [`?system=<id>`](/docs/zapscript/launch/) argument works for local file paths. And [`**playlist.open`](/docs/zapscript/playlist/#playlistopen) with no arguments reloads the current playlist.
 
