@@ -10,7 +10,7 @@ Zaparoo Frontend runs on MiSTer FPGA and connects to the local [Zaparoo Core](..
 
 ## Requirements
 
-Frontend is built for Zaparoo Core v2.17.0 or newer. Update All installs matching versions of both. If you install by hand and Core is older, Frontend still connects but shows an **Update Zaparoo Core** warning at startup and some features may not work until you update.
+Update Zaparoo Core alongside Frontend. Update All installs both, and the [libretro artwork source](./scraping.mdx#download-libretro-artwork) requires Core v2.19.0. If you install by hand, update both rather than replacing Frontend alone.
 
 On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
 
@@ -31,6 +31,8 @@ The ZIP contains license files, a `README.txt`, and a `zaparoo` folder with thes
 - `MiSTer_Zaparoo`
 - `frontend`
 - `menu_zaparoo.rbf`
+
+Keep these files from the same release together. Copy the complete `zaparoo` folder, including `modules/` if the release provides it. CRT output depends on matching Frontend, Main, and Menu builds.
 
 Install Frontend (consider a [local backup](../features/backups.md) first, since this edits `MiSTer.ini`):
 
@@ -55,7 +57,7 @@ You can still update manually by downloading a new release ZIP and replacing the
 
 ## First run
 
-The first start shows a welcome notice explaining the non-commercial license; select **I understand** to continue. Frontend then connects to Core locally. If your media database is empty, Frontend starts the first media database update in the background. While it runs, the Hub shows **Updating the media database** with the note that your games appear as Core finds them; if nothing is found, it shows **No games found yet** with a pointer to **Settings > Library**.
+The first start shows a welcome notice explaining the non-commercial license; select **I understand** to continue. Frontend then connects to Core locally. If your media database is empty and no update is running, select **Start media update** when prompted. Setup closes, progress appears in the header, and systems become available as Core finds games. You can browse while the update runs. If you restart Frontend during indexing, it returns to the library without asking you to start another update.
 
 ![The Hub while the first media database update runs, with progress in the status line](/img/docs/frontend/first-run-indexing.webp)
 

@@ -22,6 +22,8 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 
 ## Supported systems
 
+Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer Main. Follow the core's own setup instructions before using its launcher.
+
 ### Console Systems
 
 | System ID | Folders | Extensions |
@@ -36,19 +38,26 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `Atari5200` | ATARI5200 | `.car`, `.a52`, `.bin`, `.rom` |
 | `Atari7800` | ATARI7800 | `.a78`, `.bin` |
 | `AtariLynx` | AtariLynx | `.lnx` |
+| `AtariLynx2P` | AtariLynx2P | `.lnx`, `.lyx` |
+| `BBCBridgeCompanion` | BBCBridgeCompanion | `.bin` |
+| `CasioLoopy` | Loopy | `.bin` |
 | `CasioPV1000` | Casio_PV-1000 | `.bin` |
 | `CDI` | CD-i | `.cue`, `.chd` |
 | `ChannelF` | ChannelF | `.rom`, `.bin` |
 | `ColecoVision` | Coleco | `.col`, `.bin`, `.rom` |
 | `CreatiVision` | CreatiVision | `.rom`, `.bin`, `.bas` |
+| `DataRover840` | DataRover840 | `.rom`, `.ima`, `.bin`, `.pkg`, `.mc2`, `.img` |
 | `FDS` | NES, FDS | `.fds` |
 | `Gamate` | Gamate | `.bin` |
 | `Gameboy` | GAMEBOY | `.gb` |
 | `GameboyColor` | GAMEBOY, GBC | `.gbc` |
 | `Gameboy2P` | GAMEBOY2P | `.gb`, `.gbc` |
+| `GameCom` | GameCom | `.tgc` |
 | `GameGear` | SMS, GameGear | `.gg` |
 | `GameGear2P` | GameGear2P | `.gg` |
+| `GameKing` | GameKing | `.bin` |
 | `GameNWatch` | GameNWatch | `.bin` |
+| `GameTank` | GameTank | `.gtr` |
 | `GBA` | GBA | `.gba` |
 | `GBA2P` | GBA2P | `.gba` |
 | `Genesis` | MegaDrive, Genesis | `.gen`, `.bin`, `.md` |
@@ -58,6 +67,8 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `MasterSystem` | SMS | `.sms` |
 | `MegaCD` | MegaCD | `.cue`, `.chd` |
 | `MegaDuck` | GAMEBOY, MegaDuck | `.bin` |
+| `MyVision` | MyVision | `.bin` |
+| `NDS` | NDS | `.nds` |
 | `NeoGeo` | NEOGEO | `.neo`, `.zip` (folders) |
 | `NeoGeoMVS` | NEOGEO | `.neo`, `.zip` (folders) |
 | `NeoGeoCD` | NeoGeo-CD, NEOGEO | `.cue`, `.chd` |
@@ -67,7 +78,9 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `NESMusic` | NES | `.nsf` |
 | `Nintendo64` | N64 | `.n64`, `.z64` |
 | `Odyssey2` | ODYSSEY2 | `.bin` |
+| `PCFX` | PCFX | `.cue`, `.chd` |
 | `PocketChallengeV2` | WonderSwan, PocketChallengeV2 | `.pc2` |
+| `PocketStation` | PocketStation | `.gme`, `.mcs`, `.sav`, `.bin` |
 | `PokemonMini` | PokemonMini | `.min` |
 | `PSX` | PSX | `.cue`, `.chd`, `.exe` |
 | `Saturn` | Saturn | `.cue`, `.chd` |
@@ -75,14 +88,21 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `SG1000` | SG1000, Coleco, SMS | `.sg` |
 | `SNES` | SNES | `.sfc`, `.smc`, `.bin`, `.bs` |
 | `SNESMusic` | SNES | `.spc` |
+| `StudioII` | Studio-II | `.st2`, `.bin`, `.ch8` |
+| `SuperACan` | SuperAcan | `.bin` |
+| `SuperCassetteVision` | SCV | `.rom`, `.bin` |
 | `SuperGameboy` | SGB | `.sgb`, `.gb`, `.gbc` |
 | `SuperGrafx` | TGFX16 | `.sgx` |
 | `SuperVision` | SuperVision | `.bin`, `.sv` |
+| `SuperVision8000` | SuperVision8000 | `.bin` |
+| `Tamagotchi` | Tamagotchi | `.bin` |
+| `TI89` | TI89 | `.89u` |
 | `TurboGrafx16` | TGFX16 | `.pce`, `.bin` |
 | `TurboGrafx16CD` | TGFX16-CD | `.cue`, `.chd` |
 | `VC4000` | VC4000 | `.bin` |
 | `Vectrex` | VECTREX | `.vec`, `.bin`, `.rom` |
 | `VirtualBoy` | VirtualBoy | `.vb` |
+| `VSmile` | VSmile | `.bin` |
 | `WonderSwan` | WonderSwan | `.ws` |
 | `WonderSwanColor` | WonderSwan, WonderSwanColor | `.wsc` |
 
@@ -93,35 +113,56 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `AcornAtom` | AcornAtom | `.vhd` |
 | `AcornElectron` | AcornElectron | `.vhd` |
 | `AliceMC10` | AliceMC10 | `.c10` |
+| `Altair8800` | Altair8800 | `.rom` |
 | `Amiga` | Amiga | `.adf` |
 | `Amstrad` | Amstrad | `.dsk`, `.cdt`, `.sna` |
+| `AmstradNC` | AmstradNC | `.rom`, `.zip`, `.dsk`, `.img` |
 | `AmstradPCW` | Amstrad PCW | `.dsk` |
 | `Apogee` | APOGEE | `.rka`, `.rkr`, `.gam` |
 | `AppleI` | Apple-I | `.txt` |
 | `AppleII` | Apple-II | `.dsk`, `.do`, `.po`, `.nib`, `.hdv` |
 | `AppleIIGS` | Apple-IIgs | `.hdv`, `.po`, `.2mg`, `.woz`, `.dsk`, `.do`, `.nib` |
+| `AppleIII` | Apple-III | `.woz`, `.dsk`, `.do`, `.po`, `.nib`, `.2mg`, `.hdv` |
 | `AppleLisa` | LISA | `.img`, `.vhd` |
 | `Aquarius` | AQUARIUS | `.bin`, `.caq` |
 | `Atari800` | ATARI800 | `.atr`, `.xex`, `.xfd`, `.atx`, `.car`, `.rom`, `.bin` |
 | `BBCMicro` | BBCMicro | `.ssd`, `.dsd`, `.vhd` |
 | `BK0011M` | BK0011M | `.bin`, `.dsk`, `.vhd` |
+| `C128` | C128 | `.d64`, `.g64`, `.d71`, `.g71`, `.d81`, `.t64`, `.prg`, `.crt`, `.reu`, `.tap` |
 | `C16` | C16 | `.d64`, `.g64`, `.prg`, `.tap`, `.bin` |
 | `C64` | C64 | `.d64`, `.g64`, `.t64`, `.d81`, `.prg`, `.crt`, `.reu`, `.tap` |
 | `CasioPV2000` | Casio_PV-2000 | `.bin` |
+| `CBMII` | CBM-II | `.d80`, `.d82`, `.d64`, `.prg` |
 | `CoCo2` | CoCo2 | `.dsk`, `.cas`, `.ccc`, `.rom` |
+| `CoCo3` | COCO3 | `.ccc`, `.cas`, `.dsk`, `.vhd` |
+| `ColecoAdam` | Adam | `.col`, `.bin`, `.rom`, `.dsk`, `.ddp` |
+| `CommanderX16` | X16 | `.img`, `.crt`, `.bin`, `.rom` |
 | `DOS` | AO486, /media/fat/_DOS Games | `.mgl`, `.vhd`, `.img`, `.ima`, `.vfd`, `.iso`, `.cue`, `.chd` |
 | `EDSAC` | EDSAC | `.tap` |
+| `EG2000` | eg2000 | `.cas` |
+| `Enterprise` | Enterprise | `.vhd`, `.img`, `.dsk`, `.rom` |
+| `FM7` | FM-7 | `.t77`, `.d77`, `.d88` |
+| `FMTowns` | Marty | `.cue`, `.chd`, `.iso`, `.d88`, `.d77`, `.hdm`, `.icm`, `.vhd`, `.hdd`, `.h0` |
 | `Galaksija` | Galaksija | `.tap` |
+| `Homelab` | Homelab | `.htp` |
 | `Interact` | Interact | `.cin`, `.k7` |
+| `IQ151` | IQ151 | `.iqd` |
+| `JR100` | JR100 | `.prg`, `.bas`, `.cmt` |
 | `Jupiter` | Jupiter | `.ace` |
 | `Laser` | Laser | `.vz` |
 | `Lynx48` | Lynx48 | `.tap` |
 | `MacPlus` | MACPLUS | `.dsk`, `.img`, `.vhd` |
+| `MicroBee` | MicroBee | `.dsk`, `.ss8`, `.ds8`, `.tap` |
 | `MSX` | MSX | `.vhd` |
 | `MSX1` | MSX1 | `.dsk`, `.rom` |
 | `MultiComp` | MultiComp | `.img` |
+| `ND120` | ND120 | `.img`, `.bpu`, `.tap` |
+| `NeXT` | NeXT | `.vhd`, `.img`, `.iso`, `.cue`, `.bin`, `.chd` |
 | `Orao` | ORAO | `.tap` |
 | `Oric` | Oric | `.dsk` |
+| `PC88` | PC8801 | `.d88` |
+| `PC98` | PC98 | `.d88`, `.hdm`, `.fdi`, `.vhd`, `.hdi`, `.hdf`, `.img`, `.ima`, `.iso`, `.bin`, `.pcd` |
+| `PCjr` | PCjr | `.img`, `.ima`, `.vfd`, `.jrc`, `.jrt` |
 | `PCXT` | PCXT | `.img`, `.vhd`, `.ima`, `.vfd` |
 | `PDP1` | PDP1 | `.bin`, `.rim`, `.pdp` |
 | `PET2001` | PET2001 | `.prg`, `.tap` |
@@ -129,17 +170,25 @@ For example, Zaparoo can browse a ZIP containing a supported SNES ROM as a folde
 | `QL` | QL | `.mdv`, `.win` |
 | `RX78` | RX78 | `.bin` |
 | `SAMCoupe` | SAMCOUPE | `.dsk`, `.mgt`, `.img` |
+| `SBC7` | SBC7 | `.h7x`, `.pr7`, `.img`, `.dsk` |
+| `SGIIndy` | SGIIndy | `.img`, `.iso`, `.chd` |
 | `SordM5` | Sord M5 | `.bin`, `.rom`, `.cas` |
+| `SparcStation` | SparcStation | `.raw`, `.iso` |
 | `Specialist` | SPMX | `.rks`, `.odi` |
 | `SVI328` | SVI328 | `.cas`, `.bin`, `.rom` |
+| `Tandy1000` | Tandy1000 | `.img`, `.ima`, `.vfd`, `.vhd` |
 | `TatungEinstein` | TatungEinstein | `.dsk` |
+| `Thomson` | TOMO | `.rom`, `.bin`, `.wav`, `.fd` |
 | `TI994A` | TI-99_4A | `.bin`, `.m99` |
+| `TK2000` | TK2000 | `.nib`, `.dsk`, `.do`, `.po` |
 | `TomyTutor` | TomyTutor | `.bin`, `.cas` |
 | `TRS80` | TRS-80 | `.dsk`, `.jvi`, `.cmd`, `.cas` |
 | `TSConf` | TSConf | `.vhd` |
+| `TVC` | TVC | `.cas` |
 | `UK101` | UK101 | `.txt`, `.bas`, `.lod` |
 | `Vector06C` | VECTOR06 | `.rom`, `.com`, `.c00`, `.edd`, `.fdd` |
 | `VIC20` | VIC20 | `.d64`, `.g64`, `.prg`, `.tap`, `.crt` |
+| `VideoBrain` | VideoBrain | `.bin` |
 | `X68000` | X68000 | `.d88`, `.hdf`, `.mgl` |
 | `ZX81` | ZX81 | `.p`, `.0` |
 | `ZXSpectrum` | Spectrum | `.tap`, `.csw`, `.tzx`, `.sna`, `.z80`, `.trd`, `.img`, `.dsk`, `.mgt`, `.vhd` |
@@ -194,12 +243,14 @@ Neo Geo games are also indexed as both `NeoGeo` and `NeoGeoMVS`. The MVS launche
 |-----------|---------|------------|
 | `Arduboy` | Arduboy | `.hex`, `.bin` |
 | `Audio` | MegaVGMDrive | `.vgm` |
+| `BennuGD` | BennuGD | `.dat`, `.dcb` |
 | `Chip8` | Chip8 | `.ch8` |
 | `DVDPlayer` | DVD, DVD-Player | `.iso` |
 | `Groovy` | Groovy | `.gmc` |
 | `OpenBOR` | OpenBOR | `.pak` |
 | `Pico8` | PICO-8 | `.p8`, `.p8.png` |
 | `ScummVM` | ScummVM | (special) |
+| `Solarus` | Solarus | `.sol` |
 | `Video` | Video, Movies, TV | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm` |
 
 ## Special Features
@@ -340,3 +391,23 @@ MiSTer supports `render_scale` values of `25`, `33`, `50`, and `100`. `render_re
 ## Alternate launchers
 
 RetroAchievements, DB9, LLAPI, PWM, overclock, DualRAM, Sinden, and unstable nightly cores each get their own launcher IDs, selected per token with `?launcher=<launcher ID>` or as a default with `load_path`. They are listed on [Alternate Launchers](./alternate-launchers.md), along with the launcher groups that let `launchers.preference` prefer a whole family.
+
+### Hardware-specific launchers
+
+These cores share an existing system ID. Select their launcher from Frontend's **Change launcher** menu or with `?launcher=<launcher ID>` in ZapScript. Their game folders and formats are:
+
+| Launcher ID | System ID | Folders | Extensions |
+| --- | --- | --- | --- |
+| `Atari2600ARM` | `Atari2600` | ATARI2600 | `.a26`, `.bin` |
+| `MacIIvi` | `MacOS` | MacIIvi | `.dsk`, `.img`, `.vhd`, `.hda`, `.iso`, `.toast`, `.cue`, `.bin`, `.chd` |
+| `MacLC` | `MacOS` | MacLC | `.dsk`, `.img`, `.vhd`, `.hda`, `.iso`, `.toast`, `.cue`, `.bin`, `.chd` |
+| `MacLCII` | `MacOS` | MacLCii | `.dsk`, `.img`, `.vhd`, `.hda` |
+| `MacQuadra800` | `MacOS` | MacQuadra800 | `.hda`, `.vhd`, `.iso`, `.toast`, `.cue`, `.bin`, `.chd` |
+| `PC110` | `DOS` | PC110 | `.img`, `.ima`, `.vfd`, `.vhd`, `.iso`, `.cue`, `.chd` |
+| `PCXTEGA` | `PCXT` | PCXT-EGA | `.img`, `.ima`, `.vfd`, `.vhd` |
+| `PETUniversal` | `PET2001` | PET_Universal | `.prg`, `.tap`, `.d64`, `.d80`, `.d82` |
+| `Phosphor` | `Audio` | Phosphor | `.mp3`, `.wav`, `.flac`, `.ogg`, `.tar` |
+| `Raster` | `Video` | Raster | `.mpg`, `.tar` |
+| `SparcStation20` | `SparcStation` | SparcStation | `.raw`, `.iso` |
+| `System80` | `TRS80` | System80 | `.dsk`, `.jv1`, `.dmk`, `.cas` |
+| `Z486` | `DOS` | Z486 | `.img`, `.ima`, `.vfd`, `.vhd`, `.iso`, `.cue`, `.chd` |

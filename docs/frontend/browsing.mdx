@@ -12,9 +12,23 @@ If covers, screenshots, or descriptions are missing, follow [Add Artwork and Met
 
 ## Browse the library
 
-Open a category to browse its systems, then select a system to browse its games. Selecting a system opens its games straight away. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket instead of paging through a long list, **Random game** to pick one for you, or **Show** to switch between **All** and **Favorites**. In list layout, Left and Right move a whole page.
+Open a category to browse its systems, then select a system to browse its games. Opening a system starts at its root folder. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket, **Random game** to pick one for you, or [**Filter**](#filter-games) to narrow the list. In list layout, Left and Right move a whole page.
+
+Hold a direction to move faster through a long list. Frontend advances from rows to pages, then letters, with a rail showing your position.
 
 The **Other** category holds [launchable items](../features/launchers.md#launchables) that have no normal game file behind them, such as ROM-less MiSTer cores. You can launch them like any other game or write them to a token.
+
+## Filter games
+
+While browsing a system, open **View > Filter**. Choose one value per category, such as **Genre**, **Year**, **Players**, or **Region**, then select **Apply**. **Lists** filters by favorites, liked games, or games saved for later. Available choices come from the system's tags and metadata.
+
+Selected categories must all match. Choose **Any** to clear one category, or **View > Clear filter** to remove the whole filter. Backing out of the category list discards your changes. Filters are remembered separately for each system and apply to games directly inside the current folder; subfolders remain visible.
+
+## Hide games
+
+Choose **Hide** from a game's options menu to keep it out of normal browsing. Visibility is saved in Core, and hiding does not delete the game file.
+
+To undo it, turn on **Settings > Library > Browsing > Show hidden items**, then choose **Unhide** from the game's options menu. Favorites, Recently played, and **Lists** filters still include hidden games that belong to those views.
 
 ## Arrange the Hub
 
@@ -30,7 +44,7 @@ Open the options menu to manage the item you are viewing. Depending on whether y
 - **Change launcher** for a system, or override the launcher for one game.
 - **Launch system** to boot a system's core with no game loaded.
 - **Update media database** or **Update metadata** for that system or game.
-- **Hide** a category or system (turn on **Show hidden items** in Settings to unhide it).
+- **Hide** a category, system, or game. See [Hide games](#hide-games) for game visibility and how to undo it.
 - **Add to Hub**.
 - Show **Details**, or add a game to favorites.
 - **Write to NFC token** on a connected reader, or **Write with App**, which shows a code to scan with the Zaparoo App.
@@ -42,13 +56,13 @@ See [Add Artwork and Metadata](./scraping.mdx#understand-the-library-actions) fo
 
 ## Favorites
 
-Favorites live on the Hub and in **Show > Favorites** while browsing. In the favorites view, the **View** menu can **Sort** by default order or A-Z, **Group by** system, or pick a **Random favorite**. Favorite systems have their own screen as well.
+Favorites live on the Hub. To browse favorites within one system, use **View > Filter > Lists**. In the favorites view, the **View** menu can **Sort** by default order or A-Z, **Group by** system, or pick a **Random favorite**. Favorite systems have their own screen as well.
 
 ![Favorites grouped by system](/img/docs/frontend/favorites-by-system.webp)
 
 ## Choose alternate MiSTer launchers
 
-Open a system's options menu to choose any installed launcher that Core supports for that system. Alternate launchers include RetroAchievements, DB9, LLAPI, PWM, 80 MHz overclock, DualRAM, and Sinden variants. Depending on the system, you might see options such as `DualRAMPSX`, `DB9SNES`, `LLAPINintendo64`, `SindenPSX`, or `RASNES`. A game's options menu can also override the launcher for that one game.
+Open a system's options menu to choose a launcher that Core supports for that system. Launchers Core reports as unavailable appear dimmed, with a reason when one is available. They remain selectable. Alternate launchers include RetroAchievements, DB9, LLAPI, PWM, 80 MHz overclock, DualRAM, and Sinden variants. Depending on the system, you might see options such as `DualRAMPSX`, `DB9SNES`, `LLAPINintendo64`, `SindenPSX`, or `RASNES`. A game's options menu can also override the launcher for that one game.
 
 RetroAchievements launchers also support a group preference. If you generally want a RetroAchievements core whenever one is installed, set this preference in Core's `config.toml`:
 
@@ -65,7 +79,7 @@ Open **Settings > Library > Browsing** to change how the library appears:
 
 - **Systems layout** and **Games layout**: a grid of covers or a detailed list. The games layout also covers Favorites and Recents.
 - **Preferred artwork**: which imported image type Frontend asks Core for first.
-- **Show hidden items**: shows hidden systems and categories so you can unhide them.
+- **Show hidden items**: shows hidden systems and games so you can unhide them.
 - **Show original filenames**: each file's real name, without the extension, instead of Core's cleaned-up title.
 
 Related settings live elsewhere: system logo style and **Reduce motion** under **Settings > Appearance**, regional system names (**Region**) and **Clock format** under **Settings > Language**, and **Mouse support** under **Settings > Controls**.

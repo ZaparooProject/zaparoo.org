@@ -41,6 +41,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `Dreamcast` | Sega Dreamcast | | |
 | `FDS` | Famicom Disk System | `FamicomDiskSystem` | |
 | `GameCube` | Nintendo GameCube | | |
+| `GameTank` | GameTank | | |
 | `Genesis` | Sega Genesis/Mega Drive | `MegaDrive` | |
 | `GenesisMSU` | Genesis/Mega Drive MSU-MD | `MegaDriveMSU`, `MSU-MD` | `Genesis` |
 | `GearVR` | Gear VR | `Gear VR`, `Samsung Gear VR` | |
@@ -56,6 +57,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `MetaQuest2` | Meta Quest 2 | `Meta Quest 2`, `Oculus Quest 2`, `Quest 2` | |
 | `MetaQuest3` | Meta Quest 3 | `Meta Quest 3`, `Quest 3` | |
 | `Multivision` | Magnavox/Philips Odyssey² Multivision | | |
+| `MyVision` | Nichibutsu My Vision | | |
 | `NES` | Nintendo NES | | |
 | `NESMusic` | NES Music | | `NES` |
 | `NGage` | Nokia N-Gage | `N-Gage` | |
@@ -89,10 +91,12 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `SNESMSU1` | SNES MSU-1 | `MSU1`, `MSU-1` | `SNES` |
 | `SNESMusic` | SNES Music | | `SNES` |
 | `Socrates` | VTech Socrates | | |
+| `StudioII` | RCA Studio II | | |
 | `Sufami` | Sufami Turbo | | |
 | `SuperACan` | Funtech Super A'Can | | |
 | `SuperCassetteVision` | Super Cassette Vision | `Epoch Super Cassette Vision`, `SCV` | |
 | `SuperGrafx` | SuperGrafx | | `TurboGrafx16` |
+| `SuperVision8000` | Super Vision 8000 | | |
 | `Switch` | Nintendo Switch | `NintendoSwitch` | |
 | `Terebikko` | Terebikko | `Bandai Terebikko` | |
 | `TurboGrafx16` | TurboGrafx-16/PC Engine | `TGFX16`, `PCEngine` | `SuperGrafx` |
@@ -115,6 +119,9 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
 | `AtariLynx` | Atari Lynx | | |
+| `AtariLynx2P` | Atari Lynx (2 Player) | | |
+| `BBCBridgeCompanion` | BBC Bridge Companion | | |
+| `DataRover840` | DataRover 840 | | |
 | `DigiBlast` | digiBLAST | `digiBLAST`, `Digiblast` | |
 | `Evercade` | Evercade | | |
 | `Gamate` | Gamate | | |
@@ -124,6 +131,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `GameCom` | Tiger Game.com | | |
 | `GameGear` | Sega Game Gear | `GG` | |
 | `GameGear2P` | Game Gear (2 Player) | | |
+| `GameKing` | TimeTop GameKing | | |
 | `GameNWatch` | Game & Watch | | |
 | `GBA` | Game Boy Advance | `GameboyAdvance` | |
 | `GBA2P` | Game Boy Advance (2 Player) | | |
@@ -147,7 +155,9 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `SGBMSU1` | Super Game Boy MSU-1 | | `SuperGameboy` |
 | `SuperGameboy` | Super Game Boy | `SGB` | `Gameboy` |
 | `SuperVision` | Watara SuperVision | | |
+| `Tamagotchi` | Tamagotchi | | |
 | `TapwaveZodiac` | Tapwave Zodiac | `Tapwave Zodiac`, `Zodiac` | |
+| `TI89` | TI-89 Titanium | | |
 | `Vita` | PlayStation Vita | `PSVita` | |
 | `VMU` | Visual Memory Unit | `Visual Memory Unit`, `Visual Memory System`, `VMS`, `Dreamcast VMU` | |
 | `WonderSwan` | WonderSwan | | |
@@ -160,16 +170,19 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `AcornAtom` | Acorn Atom | | |
 | `AcornElectron` | Acorn Electron | | |
 | `AliceMC10` | Alice MC-10 | | |
+| `Altair8800` | MITS Altair 8800 | | |
 | `Amiga` | Commodore Amiga | `Minimig` | `Amiga500`, `Amiga1200` |
 | `Amiga500` | Amiga 500 | `A500` | `Amiga` |
 | `Amiga1200` | Amiga 1200 | `A1200` | `Amiga` |
 | `AmigaCD32` | Amiga CD32 | | `Amiga` |
 | `Amstrad` | Amstrad CPC | | |
+| `AmstradNC` | Amstrad NC100/NC200 | | |
 | `AmstradPCW` | Amstrad PCW | `Amstrad-PCW` | |
 | `Apogee` | Apogee BK-01 | | |
 | `AppleI` | Apple I | `Apple-I` | |
 | `AppleII` | Apple II | `Apple-II` | |
 | `AppleIIGS` | Apple IIGS | `Apple-IIGS`, `Apple IIGS` | |
+| `AppleIII` | Apple III | | |
 | `AppleLisa` | Apple Lisa | `Apple-Lisa` | |
 | `Aquarius` | Mattel Aquarius | | |
 | `Archimedes` | Acorn Archimedes | | |
@@ -177,22 +190,30 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `AtariST` | Atari ST | | |
 | `BBCMicro` | BBC Micro | | |
 | `BK0011M` | Elektronika BK-0011M | | |
+| `C128` | Commodore 128 | | |
 | `C16` | Commodore 16 | | |
 | `C64` | Commodore 64 | | |
 | `CasioPV2000` | Casio PV-2000 | `Casio_PV-2000` | |
+| `CBMII` | Commodore CBM-II | | |
 | `CDI` | Philips CD-i | `CD-i` | |
 | `CoCo2` | TRS-80 Color Computer 2 | | |
+| `CoCo3` | Tandy Color Computer 3 | | |
 | `ColecoAdam` | Coleco Adam | | |
 | `CommanderX16` | Commander X16 | | |
 | `CommodorePlus4` | Commodore Plus/4 | `Commodore Plus/4`, `Plus/4`, `Plus4`, `CPlus4`, `C+4` | |
 | `DOS` | MS-DOS | `ao486` | `PC` |
 | `Dragon32` | Dragon 32/64 | `Dragon 32/64`, `Dragon 32`, `Dragon 64` | |
 | `EDSAC` | EDSAC | | |
+| `EG2000` | EACA EG2000 Colour Genie | | |
 | `ElektorTVGamesComputer` | Elektor TV Games Computer | `Elektor TV Games Computer`, `TV Games Computer`, `TVGC` | |
+| `Enterprise` | Enterprise 64/128 | | |
 | `FM7` | Fujitsu FM-7 | | |
 | `FMTowns` | FM Towns | | |
 | `Galaksija` | Galaksija | | |
+| `Homelab` | Homelab | | |
 | `Interact` | Interact Home Computer | | |
+| `IQ151` | ZPA IQ 151 | | |
+| `JR100` | National JR-100 | | |
 | `Jupiter` | Jupiter Ace | | |
 | `Laser` | Laser 310 | `Laser310` | |
 | `LegacyComputer` | Legacy Computer | `Legacy Computer` | |
@@ -200,18 +221,22 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `Lynx48` | Camputers Lynx | | |
 | `MacOS` | macOS | | |
 | `MacPlus` | Macintosh Plus | | |
+| `MicroBee` | Microbee | | |
 | `MSX` | MSX | | `MSX1`, `MSX2` |
 | `MSX1` | MSX1 | | `MSX` |
 | `MSX2` | MSX2 | | `MSX` |
 | `MSX2Plus` | MSX2+ | | `MSX2`, `MSX` |
 | `MultiComp` | MultiComp | | |
 | `MZ2200` | Sharp MZ-2200 | `Sharp MZ-2200`, `MZ-2200` | |
+| `ND120` | Norsk Data ND-120 | | |
+| `NeXT` | NeXT Computer | | |
 | `Orao` | Orao | | |
 | `Oric` | Oric | | |
 | `PC` | PC | | `DOS`, `Windows` |
 | `PC6000` | NEC PC-6000 Series | `NEC PC-6000 Series`, `PC-6000`, `PC-6001` | |
 | `PC88` | NEC PC-8801 | | |
 | `PC98` | NEC PC-9801 | | |
+| `PCjr` | IBM PCjr | | |
 | `PCXT` | IBM PC XT | | |
 | `PDP1` | PDP-1 | | |
 | `PDP10` | PDP-10 | `PDP-10`, `DEC PDP-10`, `DECsystem-10` | |
@@ -221,20 +246,27 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `QL` | Sinclair QL | | |
 | `RX78` | Bandai RX-78 | | |
 | `SAMCoupe` | SAM Coupé | | |
+| `SBC7` | SBC7 | | |
 | `ScummVM` | ScummVM | | |
+| `SGIIndy` | SGI Indy | | |
 | `SordM5` | Sord M5 | `Sord M5` | |
+| `SparcStation` | Sun SPARCstation | | |
 | `Specialist` | Specialist MX | `SPMX` | |
 | `Spectravideo` | Spectravideo SVI-318/328 | | |
 | `SVI328` | Spectravideo SVI-328 | | |
+| `Tandy1000` | Tandy 1000 | | |
 | `TatungEinstein` | Tatung Einstein | | |
 | `Thomson` | Thomson computers | | |
 | `TI994A` | TI-99/4A | `TI-99_4A` | |
+| `TK2000` | Microdigital TK2000 | | |
 | `TomyTutor` | Tomy Tutor | | |
 | `TRS80` | TRS-80 | | |
 | `TSConf` | TS-Configuration | | |
+| `TVC` | Videoton TV-Computer | | |
 | `UK101` | UK101 | | |
 | `Vector06C` | Vector-06C | `Vector06` | |
 | `VIC20` | Commodore VIC-20 | | |
+| `VideoBrain` | Fairchild VideoBrain | | |
 | `Windows` | Windows | `Win32`, `Win16` | `PC` |
 | `X1` | Sharp X1 | | |
 | `X68000` | Sharp X68000 | | |
@@ -293,6 +325,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `Arduboy` | Arduboy | | |
 | `Audio` | Audio Files | | |
 | `Audiobook` | Audiobook | | `Audio` |
+| `BennuGD` | BennuGD | | |
 | `BlackBerryOS` | BlackBerry OS | `BlackBerry OS`, `BBOS` | |
 | `BluRayPlayer` | Blu-ray Player | `Blu-ray Player`, `Blu-ray`, `BD Player` | |
 | `Chip8` | CHIP-8 | | |
@@ -319,6 +352,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `PodcastEpisode` | Podcast Episode | | `Audio` |
 | `PodcastSeries` | Podcast Series | | `Audio` |
 | `PlugNPlay` | Plug & Play TV Games | | |
+| `Solarus` | Solarus | | |
 | `SteamVR` | SteamVR | `Steam VR` | |
 | `TIC80` | TIC-80 | | |
 | `TVEpisode` | TV Episodes | `TV` | `Video` |

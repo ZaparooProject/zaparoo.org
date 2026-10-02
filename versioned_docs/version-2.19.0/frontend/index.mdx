@@ -60,14 +60,14 @@ Frontend is optional. It runs on the MiSTer display and uses Core for media scan
 
 ## How Frontend works
 
-Frontend displays the library managed by Core. Core finds games during a media database update, imports local artwork and metadata when you choose **Update metadata**, and launches the selected game. Frontend provides the on-screen library, menus, and controller interface for those actions.
+Frontend displays the library managed by Core. Core finds games during a media database update, adds artwork and game information when you choose **Update metadata**, and launches the selected game. Frontend provides the on-screen library, menus, and controller interface for those actions.
 
-Frontend does not download artwork from the internet. Start with [Add Artwork and Metadata](./scraping.mdx) if you want covers, screenshots, descriptions, or other game information in the browser.
+Start with [Add Artwork and Metadata](./scraping.mdx) to download libretro covers and screenshots or import local artwork, descriptions, and manuals.
 
 ## Quick start
 
 1. [Install or update Frontend](./setup.mdx) on MiSTer.
-2. Start Frontend. On an empty library it starts the first media database update in the background.
+2. Start Frontend. If prompted on an empty library, select **Start media update**. The scan runs in the background.
 3. [Add artwork and metadata](./scraping.mdx) if you want game covers and descriptions.
 4. [Browse and launch games](./browsing.mdx) from the library hub.
 
@@ -76,6 +76,8 @@ For platform-specific launcher behavior, see the [MiSTer launcher documentation]
 ## Credits
 
 A big thank you to [Andrea Bogazzi](https://github.com/asturur), [BossRighteous](https://github.com/BossRighteous), and [Tim Wilsie](https://github.com/timwilsie) for creating Zaparoo Frontend with [Wizzo](https://github.com/wizzomafizzo), to [Giancarlo Erra](https://github.com/giancarloerra), [Peter Brittain](https://github.com/KindarConrath), and [theypsilon](https://github.com/theypsilon) for browsing, favorites, and updater contributions, and to the translators: Andrea Bogazzi (Italiano), Carlos R. (Español), devilschile2 (Euskara), and [Wilfried Jeanniard](https://github.com/willoucom) (Français). If Frontend has become part of your setup, [supporting Zaparoo](/sponsor/) keeps work like this going.
+
+The optional accelerated HDMI display path builds on [Nigel Breslaw](https://github.com/NigelBreslaw)'s [MiSTer MagiK](https://github.com/NigelBreslaw/MiSTer-MagiK) scanout work.
 
 ## Source and license
 

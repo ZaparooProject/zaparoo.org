@@ -64,6 +64,11 @@ Name each image after the ID it overrides. Matching is case-insensitive, so `sne
 
 Supported image types are PNG, JPG, JPEG, WEBP, BMP, and SVG.
 
+- Bitmap files must be 8 MiB or smaller, have no edge over 8192 pixels, and fit a 32 MiB decoding memory budget.
+- SVG files must be 256 KiB or smaller and use self-contained vector artwork, without embedded or referenced images or SVG filters.
+
+Invalid or oversized files fall back to built-in artwork. Resize the image or convert an unsupported SVG to PNG if your override is ignored.
+
 ### System artwork
 
 System artwork in `systems/` uses [Zaparoo system IDs](../features/systems.md):

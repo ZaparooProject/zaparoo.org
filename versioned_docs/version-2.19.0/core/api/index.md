@@ -197,7 +197,7 @@ If a method fails, it will populate the `error` key in the response object with 
 | :------ | :----- | :------- | :---------------------------------------------------------------------------------------- |
 | code    | number | Yes      | An integer specifying the general error category. **Error codes are not yet formalised.** |
 | message | string | Yes      | Short human readable message explaining the error cause, if possible.                     |
-| data    | object | No       | Optional structured detail. Methods that emit it document its shape; [`run`](methods.md#run) emits `{ "category": string }`. |
+| data    | object | No       | Optional structured detail. Methods that emit it document its shape; [`run`](methods.md#run) emits `{ "category": string }`, plus `reason` and `params` for the categories that [document them](methods.md#launch-repair-errors). |
 
 #### Protocol Errors
 
@@ -304,6 +304,7 @@ Methods execute actions and return data from Core. See [API Methods](./methods) 
 | media.title.parse               | Preview media title and slug parsing.                                                  | All clients |
 | settings                        | List current configuration settings.                                                  | Tiered |
 | settings.update                 | Update and save configuration settings.                                               | `settings.write` |
+| settings.zapscript.hold         | Disable ZapScript until this WebSocket connection closes.                             | `settings.write` |
 | settings.reload                 | Reload settings from disk.                                                            | All clients |
 | settings.logs.download          | Download current log file.                                                            | All clients |
 | settings.backup                 | Create local device backup.                                                           | Local/admin |
@@ -381,6 +382,7 @@ Notifications let a server or client know an event has occurred. See the [API No
 | ui.changed             | Authoritative global UI event state changed.                                      |
 | media.started          | New media was started on server.                                                  |
 | media.stopped          | Media has stopped on server.                                                      |
+| media.history.changed  | Play history was recorded outside the media started and stopped lifecycle.        |
 | media.indexing         | The state of the indexing or optimization process has changed.                    |
 | media.scraping         | Progress updates emitted during media scraping (includes progress/status details). |
 | playtime.limit.reached | A playtime limit (session or daily) has been reached and enforced.                |

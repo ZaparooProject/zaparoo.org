@@ -61,9 +61,50 @@ If execution fails, the response carries an [error](index.md#response-errors) wh
 | `timeout`          | Core stopped waiting after the request timeout (30 seconds). Anything already started continues. |
 | `cancelled`        | The request was cancelled, for example because the connection closed. Anything already started continues. |
 | `unavailable`      | The service is shutting down.                                                                 |
+| `launch_repair`    | The launch needs the user to fix something first. See [launch repair errors](#launch-repair-errors). |
 | `execution_failed` | Any other execution failure.                                                                  |
 
 Error messages are fixed per category and never include filesystem paths or token contents; the details are in the Core log. `timeout` and `cancelled` only mean Core stopped waiting: nothing that already started is rolled back. During shutdown the connection often closes before the `unavailable` response can be written, so treat a dropped connection with a request in flight the same way.
+
+##### Launch repair errors
+
+A `launch_repair` error means the launch stopped for something the user can act on, such as an uninstalled launcher or a missing permission. Its `data` carries two extra keys that let a client write and localize its own wording:
+
+| Key      | Type   | Required | Description                                                                          |
+| :------- | :----- | :------- | :----------------------------------------------------------------------------------- |
+| `reason` | string | Yes      | A machine readable reason from the closed set below.                                  |
+| `params` | object | No       | Display names for the reason's wording. Present only when the reason carries one.     |
+
+The reasons and the parameters each one can carry:
+
+| Reason                          | Meaning                                                                          | Parameters           |
+| :------------------------------ | :-------------------------------------------------------------------------------- | :------------------- |
+| `launcher_not_installed`        | The launcher application is not installed.                                        | `launcher`, `plugin` |
+| `launcher_component_missing`    | The launcher is installed, but the entry point it declares is gone or disabled.    | `launcher`, `plugin` |
+| `launcher_plugin_missing`       | The launcher is installed but its plugin or core for this system is absent.       | `launcher`, `plugin` |
+| `launcher_version_unsupported`  | The installed build of the launcher cannot be used for this media, for example because its storage model is unsupported. The user needs a different build of that launcher. | `launcher`, `plugin` |
+| `launcher_ambiguous`            | Several usable launchers and no reviewed default; the user must choose one. Reserved: see below. | `launcher`, `plugin` |
+| `launcher_unsupported_media`    | This launcher cannot play the selected media entry.                               | `launcher`, `plugin` |
+| `launcher_options_unsupported`  | The launch options requested are not supported by this launcher.                  | `launcher`, `plugin` |
+| `storage_permission_required`   | The launcher lacks the storage permission it needs.                               | `launcher`, `plugin` |
+| `storage_provider_unsupported`  | The media lives on a provider this launcher cannot read.                          | `launcher`, `plugin` |
+| `storage_unavailable`           | The storage holding the media is not present.                                     | `launcher`, `plugin` |
+| `media_unavailable`             | The media file cannot be resolved or opened.                                      | `launcher`, `plugin` |
+| `media_access_revoked`          | The host's own access to this media's source was revoked or withdrawn, distinct from `media_unavailable`'s unspecified cause: the user can act on this one by re-granting access. | `launcher`, `plugin` |
+| `host_unavailable`              | The host's launch service is not answering.                                       | `launcher`, `plugin` |
+| `host_foreground_required`      | The launch needs the user to return to the app first.                             | `launcher`, `plugin` |
+| `cancelled`                     | The launch was cancelled before it started.                                       | `launcher`, `plugin` |
+| `outcome_unknown`               | The launch was dispatched, but the result could not be confirmed.                 | `launcher`, `plugin` |
+| `refused`                       | The operating system refused the request. This is not a catch-all.                | `launcher`, `plugin` |
+| `unspecified`                   | Core sent no structured reason. Show `message` verbatim.                          | `launcher`, `plugin` |
+
+`refused` means specifically that the operating system refused the launch. A failure Core cannot classify that far reports `unspecified` instead, so do not treat `refused` as "something else went wrong".
+
+`launcher_ambiguous` is reserved. No Core version emits it yet, because launcher selection resolves by catalog precedence rather than asking the user. It is published so that clients can handle it when a version does; do not wait for it.
+
+`params` has a closed key set: `launcher` is the launcher application's display name, such as `RetroArch` or `DuckStation`, and `plugin` is the name of its plugin or core for this system, such as `Mesen`. Both are short display names only, never identifiers, paths, URIs or text from the host. A key is absent when Core has no name for it, so treat both as optional for every reason.
+
+Clients must tolerate an unknown `reason`, and an absent one from an older Core, by falling back to the error's `message`, exactly as they do for `unspecified`. The message is a fixed English string that reads sensibly on its own, so it is always a usable last resort, but it is not a stable contract: branch on `reason` wherever the wording matters.
 
 Physical reader scans, playlists and the [launch endpoint](index.md#launch-endpoint) are not affected. They remain asynchronous and do not report execution failures.
 
@@ -113,6 +154,27 @@ Earlier Core versions returned `null` as soon as the token was accepted, before 
     "message": "media not found",
     "data": {
       "category": "media_not_found"
+    }
+  }
+}
+```
+
+##### Launch repair error response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "52f6242e-7a5a-11ef-bf93-020304050607",
+  "error": {
+    "code": 1,
+    "message": "this launcher's plugin for this system is not installed",
+    "data": {
+      "category": "launch_repair",
+      "reason": "launcher_plugin_missing",
+      "params": {
+        "launcher": "RetroArch",
+        "plugin": "Mesen"
+      }
     }
   }
 }
@@ -488,6 +550,7 @@ None.
 | currentStepDisplay | string | No       | Display name of the current indexing step or optimization step. |
 | totalFiles         | number | No       | Total number of files to index.                 |
 | totalMedia         | number | No       | Total number of media entries in the database. Only included when database exists and is not indexing. |
+| scan               | object | No       | The current system's folder scan, only included while a scan is running: `path` is the folder being read and `entries` the files and folders read so far. |
 
 ##### Active media object
 
@@ -614,6 +677,7 @@ An object:
 | path      | string                   | Yes      | Canonical indexed media path. Use with `system.id` for `media.meta` and `media.image`. |
 | relativePath | string               | No       | Launcher-relative convenience path, when it can be derived. Not a stable media identity. |
 | hasCover  | boolean                  | Yes      | Whether media-level or title-level image properties are available. |
+| coverColor | string                  | No       | Average colour of the cover thumbnail as `#rrggbb`, for a placeholder while the image loads. Omitted until Core has built a thumbnail for the media through `media.image` with a `maxSize`. |
 | zapScript | string                   | Yes      | ZapScript command to launch this media item. Includes the disambiguating tags inline (e.g. `@Arcade/X-Men Vs. Street Fighter (region:eu) (builddate:1996-10-04)`) so the written command resolves back to this specific variant. |
 | tags      | [TagInfo](#taginfo-object)[] | Yes      | Array of tags associated with this media item.                                               |
 | disambiguatingTags | [TagInfo](#taginfo-object)[] | No | Subset of `tags` whose values differ across same-named siblings of this title, plus any tag that makes the file a distinct game (a ROM hack, homebrew or public-domain work) even when it has no sibling, ordered by display importance. Omitted when there is nothing to disambiguate. Clients can render these to tell variants apart. |
@@ -783,7 +847,7 @@ A directory holding media for more than one system also stays plain, because its
 
 Tags filter direct media files in the current path. Directories remain visible for navigation with tag-unfiltered `fileCount` values, while `totalFiles`, file pagination, and cursors reflect only matching files. Tagged directory entries remain plain directories rather than being promoted to logical single-game aliases.
 
-Visibility is separate from ordinary tag filtering: hidden media is excluded from files, directory/root counts, and letter indexes before pagination. Hidden-only directories/routes disappear. Set `includeHidden: true` to show hidden entries with their `user:hidden` tag. Required user tag filters, such as `user:favorite`, `user:liked` or `user:hidden`, also include hidden entries. Changing visibility mode or editing media preferences invalidates existing browse cursors; restart without a cursor when Core reports `library visibility changed`.
+Visibility is separate from ordinary tag filtering: hidden media is excluded from files, directory/root counts, and letter indexes before pagination. Hidden-only directories/routes disappear. Set `includeHidden: true` to show hidden entries with their `user:hidden` tag. Required user tag filters, such as `user:favorite`, `user:liked` or `user:hidden`, also include hidden entries. Changing visibility mode or editing media preferences invalidates existing browse cursors. A request with a cursor must restart without one when Core reports `library visibility changed`. A request with no cursor is retried once inside Core automatically and only returns an error if preferences change again during that retry.
 
 #### Parameters
 
@@ -829,6 +893,7 @@ All parameters are optional. When called with no parameters, returns root entrie
 | tags         | object[] | No       | Tags attached to the media. Each object has `tag` (string) and `type` (string). Present on `media` entries and logical single-game container `directory` entries. |
 | disambiguatingTags | object[] | No | Subset of `tags` whose values differ across same-named siblings of this title, plus any tag that makes the file a distinct game (a ROM hack, homebrew or public-domain work) even when it has no sibling, ordered by display importance. Same object shape as `tags`. Omitted when there is nothing to disambiguate. |
 | hasCover     | boolean  | Yes      | Whether image properties are available. For directories this includes path-keyed folder artwork and, when collapsed, media/title artwork. Clients can skip image requests when false. |
+| coverColor   | string   | No       | Average colour of the cover thumbnail as `#rrggbb`, for a placeholder while the image loads. Present on `media` entries and logical single-game container `directory` entries once Core has built a thumbnail for the media through `media.image` with a `maxSize`. |
 
 ##### Browse pagination object
 
@@ -1593,10 +1658,13 @@ Optionally, an object:
 | mediaPath  | string | Yes      | Path to the media file.                                |
 | relativePath | string | No     | Launcher-relative convenience path, when it can be derived. Not a stable media identity. |
 | hasCover   | boolean | Yes     | Whether media-level or title-level image properties are available. |
+| coverColor | string  | No      | Average colour of the cover thumbnail as `#rrggbb`, for a placeholder while the image loads. Omitted until Core has built a thumbnail for the media through `media.image` with a `maxSize`. |
 | launcherId | string | Yes      | ID of the launcher used.                               |
 | startedAt  | string | Yes      | Timestamp when media started in RFC3339 format.        |
 | endedAt    | string | No       | Timestamp when media stopped in RFC3339 format. Omitted if media is still active. |
 | playTime   | number | Yes      | Duration of the play session in seconds.               |
+| sessionSource | string | Yes   | How the session was timed: `active_media` (Core's own launch lifecycle), `foreground_events` (host foreground evidence, with user-granted permission) or `host_return` (until the launcher came back, without that permission). |
+| sessionConfidence | string | Yes | `unspecified` for a row predating this distinction, `exact` for measured foreground time, `approximate` for a `host_return` estimate that never proves the game was played, or `provisional` for a `foreground_events` launch not yet confirmed (no `endedAt`, `playTime` 0; it becomes `exact` or is withdrawn). |
 | tags       | [TagInfo](#taginfo-object)[] | No | Tags for the resolved media, merged from file-level and title-level tags exactly as `media.search` returns them. An empty array means the media is indexed but has no tags. Omitted when `mediaId` is omitted or when media database enrichment fails or times out. |
 
 #### Example
@@ -1635,6 +1703,8 @@ Optionally, an object:
         "startedAt": "2025-01-22T14:30:00Z",
         "endedAt": "2025-01-22T15:15:30Z",
         "playTime": 2730,
+        "sessionSource": "foreground_events",
+        "sessionConfidence": "exact",
         "tags": [
           { "tag": "favorite", "type": "user" },
           { "tag": "action:platformer", "type": "genre" }
@@ -2224,6 +2294,8 @@ An object identifying a media row by `mediaId` or identifying media/directory co
 Supported image type values are `image`, `thumbnail`, `boxart`, `boxart3d`, `screenshot`, `wheel`, `titleshot`, `map`, `marquee`, and `fanart`. They resolve to canonical property tags such as `property:image-image` and `property:image-boxart`.
 
 Resizing is intended for grid and preview views where transferring and holding full-size art is expensive. `maxSize` is snapped up to the nearest of a small set of standard tiers (`32`, `64`, `128`, `256`, `512`, `768`) server-side. The returned image is **never larger than the snapped tier and never larger than the source** — when the source already fits the tier it is returned at its native dimensions, so the result may still be larger than the exact `maxSize` you asked for. Request your true display size (logical size × pixel ratio) and downscale to the final size on the client. The snapped tiers bound how many resized variants are cached per image. Output is re-encoded as WebP (lossy, alpha preserved) regardless of source format — including when the source already fits the box, so even a near-native request still gets the smaller WebP — and cached on disk so repeat requests are cheap. The original bytes are kept only when WebP would not shrink them (already-compact sources), when `maxSize` is omitted/non-positive (full size), or when the source cannot be decoded.
+
+When a resized thumbnail is built for a request whose image type preference list has more than one entry, Core records the image type it resolved to and the thumbnail's average colour. Later requests, including after a restart, are then served from the thumbnail cache without reading the original artwork, and list results (`media.browse`, `media.search`, `media.history`) report the colour as `coverColor`. A request for a single image type does not change the recorded cover. The records are cleared together with the thumbnail cache after indexing or scraping changes artwork.
 
 `localPath` never returns an original scraper or media path. Core resolves image semantics, materializes its own bounded thumbnail cache artifact, and returns that path. Path delivery is available to any client that explicitly requests it, regardless of peer locality or Core platform; remote callers are responsible for having an appropriate shared-filesystem view of the Core host path. Treat the path as opaque, transient, and nonportable: read it immediately, never persist it or derive neighboring paths, and retry once with `delivery: "inline"` if the file is inaccessible or disappears before it is opened. If cache materialization fails, Core can safely return `delivery: "inline"` in the same response.
 
@@ -2870,7 +2942,7 @@ None.
 
 | Key                       | Type                                      | Required | Description                                                     |
 | :------------------------ | :---------------------------------------- | :------- | :-------------------------------------------------------------- |
-| runZapScript              | boolean                                   | Yes      | Whether ZapScript execution is enabled.                         |
+| runZapScript              | boolean                                   | Yes      | The user's ZapScript setting. Holds do not change it.           |
 | debugLogging              | boolean                                   | Yes      | Whether debug logging is enabled.                               |
 | audioScanFeedback         | boolean                                   | Yes      | Whether audio feedback on scan is enabled.                      |
 | readersAutoDetect         | boolean                                   | Yes      | Whether automatic reader detection is enabled.                  |
@@ -3002,6 +3074,42 @@ Returns `null` on success.
   "params": {
     "debugLogging": false
   }
+}
+```
+
+##### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "562c0b60-7ae8-11ef-87d7-020304050607",
+  "result": null
+}
+```
+
+### settings.zapscript.hold
+
+**Access:** Localhost or `settings.write`. WebSocket only.
+
+Disable ZapScript execution for as long as this WebSocket connection stays open. The hold is released when the connection closes for any reason, including a client that is killed, so it cannot leave ZapScript disabled the way `settings.update` with `runZapScript: false` can. Holds do not change the `runZapScript` setting. A connection holds at most once; repeat calls succeed without stacking.
+
+#### Parameters
+
+None.
+
+#### Result
+
+Returns `null` on success.
+
+#### Example
+
+##### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "562c0b60-7ae8-11ef-87d7-020304050607",
+  "method": "settings.zapscript.hold"
 }
 ```
 
@@ -4983,6 +5091,7 @@ The unfiltered response can be large on platforms with many launchers (250+ on M
 | groups              | string[] | No       | Group names this launcher belongs to. Group names are valid values for `systemDefaults.launcher`.      |
 | available           | boolean  | Yes      | Whether this launcher's runtime dependencies are currently satisfied.                                  |
 | availabilityReason  | string   | No       | Why the launcher is unavailable. Omitted when `available` is `true`.                                   |
+| detected            | boolean  | No       | Whether the platform looked for this launcher and found it installed. Omitted when the platform does not check its launchers, which is every platform that reports nothing here; an omitted value means unknown, not missing. Distinct from `available`, which is about the launcher's runtime dependencies. |
 | default             | boolean  | No       | Whether this launcher is the configured default for its system (`systemDefaults.launcher`, matched by launcher ID or by any of `groups`). Omitted (implicitly `false`) otherwise.                                    |
 | backend             | string   | No       | What kind of thing this launcher runs. Currently only `mister_core` is emitted. Omitted when the platform has nothing to say about this launcher. Clients must ignore backend values they don't recognize. |
 | misterCore          | [MisterCoreInfo](#mistercoreinfo-object) | No | Present when `backend` is `mister_core` and the core is installed. Absent when the core isn't installed; `available` and `availabilityReason` say why. |
@@ -5796,7 +5905,7 @@ None.
 | latestVersion   | string  | No       | The latest available version (if the check succeeded).                                                                                                               |
 | releaseNotes    | string  | No       | Release notes for the latest version.                                                                                                                                |
 | channel         | string  | No       | The update channel the check used: `stable` or `beta`.                                                                                                               |
-| eligibility     | string  | No       | Whether this install can take OTA updates: `eligible`, `development`, `unsupported` (this install cannot be replaced in place, such as a Windows install under a directory Zaparoo cannot write to), or `managed` (a package manager owns the install, so it should do the installing). An install that cannot be replaced reports `unsupported` even when a package manager owns it, because that is the one an install is actually refused for. |
+| eligibility     | string  | No       | Whether this install can take OTA updates: `eligible`, `development`, `unsupported` (this install cannot be replaced in place, such as a Windows install under a directory Zaparoo cannot write to), or `managed` (a package manager owns the install, so it should do the installing). An install that cannot be replaced reports `unsupported` even when a package manager owns it, because that is the one an install is actually refused for. The exception is a Core embedded in a host application, which reports `managed` regardless: it never replaces its own executable, so replaceability does not apply. |
 | checkedAt       | string  | No       | RFC3339 timestamp of when the release metadata was last fetched.                                                                                                     |
 | rolloutHeld     | boolean | No       | The release is newer but has not reached this device's share of the fleet yet. Applying it by hand still works; automatic installs wait.                              |
 | blockedBy       | object  | No       | What is stopping an update being applied right now. Absent when nothing is.                                                                                          |
@@ -5882,6 +5991,8 @@ Reasons:
 **Access:** Requires `update.apply`.
 
 Download and apply the latest available update, then gracefully restart the service. The response is sent to the client before the restart occurs.
+
+A Core embedded in a host application refuses `update.apply`: the host updates Core as part of its own package.
 
 Before anything is downloaded the device checks that it is safe to install: nothing writing to the databases, no backup or token write in progress, nothing playing, and enough battery. A refusal comes back as an error whose message is the same text `update.check` reports in `blockedBy.message`. Call `update.check` first to know in advance, and whether `force` would get past it.
 

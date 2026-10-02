@@ -1,13 +1,13 @@
 ---
 sidebar_position: 8
 sidebar_label: Media Database and Scraping
-description: "Update the Zaparoo Core media database and import local metadata and artwork with the gamelist.xml, media-folder, mister-docs, mister-arcade, and pinup-popper scrapers."
+description: "Update the Zaparoo Core media database, download libretro artwork, or import local metadata, covers, and manuals."
 keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, mister arcade metadata]
 ---
 
 # Media Database and Scraping
 
-Core's media database is a rebuildable index of games, apps, videos, music, and other launchable media on your device. A media database update finds those items and makes them searchable. Scraping then enriches the indexed records with local metadata and artwork such as cover images, descriptions, developers, and genres.
+Core's media database is a rebuildable index of games, apps, videos, music, and other launchable media on your device. A media database update finds those items and makes them searchable. Scraping then adds artwork and game information, either downloaded from libretro or imported from local files.
 
 If you use Zaparoo Frontend on MiSTer, start with [Add Artwork and Metadata](../frontend/scraping.mdx) for a task-oriented setup guide. This page is the detailed Core reference for database updates, scraper behavior, paths, and supported files.
 
@@ -30,9 +30,9 @@ The rebuildable media database is separate from Core's user database, which stor
 
 A folder that holds one game, such as a PlayStation folder with one `.cue` and its `.bin` tracks or one `.m3u` and its discs, is shown as that game when you browse, with its artwork and tags, instead of as a plain folder. This includes a folder holding a single ROM, and a folder of loose disc images (`.cue`, `.chd`, `.iso`, `.bin`, `.img`, or `.pbp`) that all belong to the same title. Folders with several games or nested folders stay ordinary folders.
 
-:::info Local sources only
-Core's built-in scrapers read metadata and artwork that already exist on your device. They do not download anything from the internet. To fetch artwork, scrape it first with a tool like MiSTer Companion or Skraper, then run a Zaparoo scrape to import the results.
-:::
+Arcade set archives and ScummVM launch files get readable titles from their projects' game lists when Core recognizes the set or game ID. For example, `dkong.zip` becomes **Donkey Kong** and `sky.scummvm` becomes **Beneath a Steel Sky**. Update the media database to apply these names to an existing library.
+
+The [`libretro-thumbnails`](#libretro-thumbnails) source downloads artwork when you run it. The other sources import files already on your device, such as packs installed by Update All or artwork prepared with MiSTer Companion or Skraper.
 
 ## Running a scrape
 
@@ -45,6 +45,16 @@ By default a scrape skips media that has already been scraped, so repeat runs ar
 ## Scrapers
 
 The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, `mister-arcade` reads the MiSTer arcade catalog, and `pinup-popper` reads the PinUP Popper library on Windows.
+
+### libretro-thumbnails
+
+The `libretro-thumbnails` scraper downloads box art, screenshots, and title screens from the [libretro thumbnail server](https://thumbnails.libretro.com), the same source RetroArch uses. It is available across Core platforms for systems covered by the source. It does not download descriptions, tags, or manuals.
+
+Run it from your client's scraper picker. In [Zaparoo Frontend](../frontend/scraping.mdx#download-libretro-artwork), select **libretro thumbnails** as the **Source** in **Update metadata**, then choose the systems to cover. It never runs automatically after a media database update.
+
+Core matches artwork by filename first, then by title and region. Arcade set archives and ScummVM launch files also match by their catalog titles. A game without matching artwork stays unchanged.
+
+Downloads are stored under `libretro-thumbnails/` in Core's data directory. Normal runs skip games already processed by this source and reuse downloaded files. Use a force re-scrape, called **Replace existing** in Frontend, to process them again and download fresh images.
 
 ### gamelist.xml
 
@@ -101,7 +111,9 @@ A `gamelist.xml` that cannot be read, because it is invalid XML or over the size
 
 Scrapers like Skraper write arcade gamelists against MAME ROM sets such as `pacman.zip`, while MiSTer launches `.mra` files. On MiSTer, an entry whose `<path>` is a ROM set name is matched to the `.mra` that names that set, and artwork is looked up by the set name too. When more than one installed `.mra` uses the same set name, the entry is skipped; use an exact `.mra` path to pick one.
 
-Put the gamelist in a [custom bundle](#custom-gamelist-bundles) under an `Arcade` directory, or beside the `.mra` files in `_Arcade`:
+Core also discovers MiSTer Companion's ZapScraper output at `games/mame/gamelist.xml` beside each `_Arcade` root on MiSTer and MiSTeX. Its artwork resolves relative to `games/mame/`, with no `custom_path` setting needed. For competing set-name matches, an `_Arcade` gamelist takes priority, then a custom bundle, then this discovered source.
+
+For other layouts, put the gamelist in a [custom bundle](#custom-gamelist-bundles) under an `Arcade` directory, or beside the `.mra` files in `_Arcade`:
 
 ```text
 /media/fat/metadata/

@@ -1,5 +1,5 @@
 ---
-description: "Add game artwork and metadata to Zaparoo Frontend on MiSTer FPGA using Update All packs, metadata packs, ZapScraper, Skraper, or existing gamelist.xml files."
+description: "Download libretro game artwork or import local covers, manuals, and metadata into Zaparoo Frontend on MiSTer FPGA."
 keywords: [zaparoo frontend artwork, mister box art, mister cover art, zaparoo scraping, get metadata, missing artwork, gamelist.xml]
 sidebar_label: Add Artwork and Metadata
 sidebar_position: 3
@@ -7,16 +7,16 @@ sidebar_position: 3
 
 # Add Artwork and Metadata
 
-Frontend displays artwork and game information after [Zaparoo Core](../core/index.md) imports compatible local files. Frontend and Core do not download artwork from the internet. Start with Update All's artwork and manual databases, a metadata pack, or an external scraper, then import the results into Core with **Update metadata**.
+Frontend displays artwork and game information managed by [Zaparoo Core](../core/index.md). Use **Update metadata** to download libretro artwork or import local files from Update All, a metadata pack, or an external scraper.
 
 ## How artwork reaches Frontend
 
 1. **Update the media database.** Core finds your games and makes them available to Frontend.
-2. **Obtain artwork and metadata.** Turn on Update All's artwork and manual databases, or use a metadata pack, ZapScraper, Skraper, or compatible EmulationStation files you already have.
-3. **Update metadata.** Core imports the local artwork and game information and matches it to indexed games.
+2. **Choose a source.** Use libretro for downloaded artwork. For local imports, turn on Update All's artwork and manual databases, or prepare files with a metadata pack, ZapScraper, or Skraper.
+3. **Update metadata.** Core downloads or imports the selected source and matches it to indexed games.
 4. **Browse the results.** Frontend displays the imported covers, screenshots, descriptions, and other metadata.
 
-Artwork can be stored on the MiSTer SD card, USB storage, or a NAS that Core can read.
+Local artwork can be stored on the MiSTer SD card, USB storage, or a NAS that Core can read.
 
 ## Understand the library actions
 
@@ -25,8 +25,8 @@ Both actions are under **Settings > Library > Maintenance**.
 | Action | What it does | When to use it |
 | ------ | ------------ | -------------- |
 | **Update media database** | Rescans your game folders to pick up added or removed files. You choose which systems to scan. | After changing your game library or launcher paths. |
-| **Update metadata** | Imports artwork and details from files you already have, for entries that have not been imported yet. | After adding a pack, `gamelist.xml`, or compatible media folders. |
-| **Update metadata** with **Replace existing** | Refreshes previously imported metadata and cleans up artwork references that no longer exist. | After replacing artwork, correcting paths, or changing imported metadata. |
+| **Update metadata** | Downloads libretro artwork or imports local artwork and details, skipping entries already processed by that source. | To add artwork, or after adding a pack, `gamelist.xml`, or compatible media folders. |
+| **Update metadata** with **Replace existing** | Processes entries again. Libretro downloads fresh images; local sources refresh metadata and remove stale artwork references. | To refresh a source you have already used. |
 
 ![Library settings with Update media database and Update metadata](/img/docs/frontend/library-settings.webp)
 
@@ -36,6 +36,7 @@ Updating metadata cannot start while a media database update is running, and onl
 
 | Source | Use it when |
 | ------ | ----------- |
+| [**libretro thumbnails**](#download-libretro-artwork) | You want Core to download box art, screenshots, and title screens. |
 | [**MiSTer artwork and manuals from Update All**](#mister-artwork-and-manuals-from-update-all) | You want box art and manuals installed by Update All. |
 | [**Metadata pack**](#metadata-packs) | You have a compatible ROM set and want prebuilt artwork. |
 | [**ZapScraper**](#zapscraper-in-mister-companion) | You want artwork generated for a specific MiSTer SD card, local folder, or network location. |
@@ -43,6 +44,17 @@ Updating metadata cannot start while a media database update is running, and onl
 | [**Existing EmulationStation files**](../features/scraping.md#scrapers) | You already have compatible `gamelist.xml` files or media folders from another frontend. |
 
 Metadata packs may not match custom naming, ROM hacks, or unusual library layouts. The [Core media database and scraper guide](../features/scraping.md) documents compatible `gamelist.xml` files, media folders, custom bundle paths, and path resolution.
+
+## Download libretro artwork
+
+This source requires Core v2.19.0 and an internet connection. It downloads box art, screenshots, and title screens without preparing a local pack:
+
+1. Run **Update media database** if your games have not been indexed yet.
+2. Open **Settings > Library > Maintenance > Update metadata**.
+3. Set **Source** to **libretro thumbnails**, then choose the **Systems** to cover.
+4. Leave **Replace existing** off for the first run, then select **Start import**.
+
+Core saves the downloaded images on your device, so Frontend can display them offline afterward. It does not download game descriptions or manuals. Some games have no matching artwork; see [libretro-thumbnails](../features/scraping.md#libretro-thumbnails) for matching and refresh behavior.
 
 ## MiSTer artwork and manuals from Update All
 
@@ -74,6 +86,8 @@ ZapScraper has two output formats:
 - **Zaparoo Companion** creates output for Frontend.
 
 Supported folders include console and handheld systems, Arcade, and AmigaVision.
+
+For Arcade output at `games/mame/gamelist.xml`, select the **gamelist.xml** source and the **Arcade** system in **Update metadata**. Core finds this layout automatically; keep its artwork under `games/mame/`. See [MiSTer arcade gamelists](../features/scraping.md#mister-arcade-gamelists) for other layouts.
 
 ## Skraper
 

@@ -75,7 +75,10 @@ Important notes:
 
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile app for writing tokens, browsing and launching the library, building decks, marking favorites, likes, and play later, and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
-- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly frontend for browsing and launching the Zaparoo Core media library, including MiSTer install, TATE mode, display settings, Hub arrangement, color schemes, Update metadata, support log uploads, and library tools.
+- [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly MiSTer interface for browsing and launching the Core library, with Hub arrangement, display settings, color schemes, and support log uploads.
+- [Frontend Setup](https://zaparoo.org/docs/frontend/setup/): Install and update Frontend, start background library scans, and configure CRT and TATE displays.
+- [Frontend Browsing](https://zaparoo.org/docs/frontend/browsing/): Browse and launch games, filter by tags, hide or unhide games, arrange the Hub, and choose alternate launchers.
+- [Frontend Artwork](https://zaparoo.org/docs/frontend/scraping/): Download libretro artwork or import local covers, manuals, and metadata.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for Library sync, play history sync, virtual cards and decks, remote control, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).
 
@@ -99,7 +102,7 @@ Important notes:
 - [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, and MiSTer and SteamOS configuration, saves, and save states.
 - [Playlists and Decks](https://zaparoo.org/docs/features/playlists/): Play folders, playlist files, and decks from one token, with pickers and advance-on-rescan.
 - [Audio](https://zaparoo.org/docs/features/audio/): Play WAV, MP3, OGG, and FLAC files through Core's native audio launcher, including a background slot that keeps music playing while games launch.
-- [Scraping](https://zaparoo.org/docs/features/scraping/): Import metadata and artwork from gamelist.xml, media folders, MiSTer artwork packs and arcade catalog, and PinUP Popper.
+- [Scraping](https://zaparoo.org/docs/features/scraping/): Download libretro box art, screenshots, and title screens, or import metadata and artwork from gamelist.xml, media folders, MiSTer artwork packs and arcade catalog, and PinUP Popper.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.

@@ -10,17 +10,19 @@ Start with the symptom you see. Frontend displays the library managed by [Zaparo
 
 ## Frontend warns that Core needs updating
 
-Frontend is built for Zaparoo Core v2.17.0 or newer. Older Core builds still connect, but Frontend shows an **Update Zaparoo Core** warning and some features may not work. Some MiSTer images include an old Core build.
+Some MiSTer images include an old Core build. Update both Core and Frontend for the features described in this guide; see [requirements](./setup.mdx#requirements).
 
 Update Core through [Update All](../platforms/mister/index.md#install), then reboot MiSTer or restart Frontend. See [Install and Set Up Frontend](./setup.mdx) for the supported installation methods.
 
 ## Frontend cannot reach Core
 
-The start screen shows **Can't reach Zaparoo Core. Check your connection.** when Core is not running. Make sure Core is installed and enabled as a startup service on the MiSTer; see [MiSTer troubleshooting](../platforms/mister/index.md#troubleshooting).
+The start screen shows **Can't reach Zaparoo Core. Check the connection.** when Core is not reachable. Make sure Core is installed and enabled as a startup service on the MiSTer; see [MiSTer troubleshooting](../platforms/mister/index.md#troubleshooting).
 
 ## Games do not appear
 
-Run **Update media database** from **Settings > Library > Maintenance**. You can also open a system's options menu and update that system on its own. On a brand-new library, Frontend starts this scan itself: the Hub shows **Updating the media database** while it runs and **No games found yet** if nothing was found.
+If a [filter](./browsing.mdx#filter-games) is active, choose **View > Clear filter**. To find [hidden games](./browsing.mdx#hide-games), turn on **Settings > Library > Browsing > Show hidden items**.
+
+Run **Update media database** from **Settings > Library > Maintenance** if games have not been indexed. You can also update one system from its options menu. On a brand-new library, select **Start media update** when prompted. Progress appears in the header, and systems appear as Core finds games.
 
 A media database update finds game files and makes them available to Frontend. Updating metadata does not add missing games to the database.
 
@@ -33,9 +35,9 @@ The details dialog shows **This game's file is missing.** when Core can no longe
 Work through these checks in order:
 
 1. Confirm the game appears after running **Update media database**. Metadata imports only enrich games already present in Core's database.
-2. Confirm compatible metadata and artwork files exist on the SD card, USB drive, or NAS. Core does not download artwork from the internet.
+2. For **libretro thumbnails**, check the internet connection and that Core is v2.19.0 or newer. For local sources, confirm compatible files exist on the SD card, USB drive, or NAS.
 3. Run **Update metadata** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
-4. Check that each `gamelist.xml` game path resolves to an indexed game and that its image paths resolve to files Core can read.
+4. For `gamelist.xml`, check that each game path resolves to an indexed game and that its image paths resolve to files Core can read. Libretro has no matching image for some games.
 
 See [Add Artwork and Metadata](./scraping.mdx) for supported sources and the complete import workflow.
 
@@ -47,7 +49,7 @@ Only one import can run at a time. If one is already running, wait for it to fin
 
 ## Updated artwork does not appear
 
-A normal import skips games that already have imported metadata. Turn on **Replace existing** in the **Update metadata** dialog, then run the import again after replacing artwork, correcting paths, or changing metadata that was previously imported.
+A normal run skips games already processed by the selected source. Turn on **Replace existing** in the **Update metadata** dialog, then run it again to refresh downloaded artwork or changed local files.
 
 ## Arcade artwork is missing
 

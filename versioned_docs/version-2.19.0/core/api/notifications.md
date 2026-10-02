@@ -157,6 +157,10 @@ Launch guard continues emitting `tokens.staged` and `tokens.staged.ready` for co
 
 An indexed media item's hidden preference changed. No payload. Refresh browse/search, system counts, and favorites/history hidden indicators; discard existing `media.browse`, `media.browse.index` and `media.search` cursors, all of which stop being valid. Clients should also refresh after reconnect because notifications are not replayed. Visibility is a shared installation-wide preference, not a launch restriction.
 
+### media.history.changed
+
+A platform recorded or updated play history outside the `media.started` and `media.stopped` lifecycle - for example, an externally launched game's playtime confirmed from host foreground evidence after it closed. No payload. Refetch `media.history`, `media.history.latest` and `media.history.top`. Notifications are not replayed, so also refetch after reconnect.
+
 ### media.started
 
 New media was started on server.
@@ -231,8 +235,9 @@ Sent during media database generation to indicate indexing progress and completi
 | currentStepDisplay | string  | No       | Display name of current system being indexed, or optimization step name (e.g., `"vacuum"`).      |
 | totalFiles         | number  | No       | Total number of media files discovered during indexing.                                          |
 | totalMedia         | number  | No       | Total number of media entries in the database. Only included when database exists and is ready.  |
+| scan               | object | No       | The current system's folder scan, only included while a scan is running: `path` is the folder being read and `entries` the files and folders read so far. |
 
-**Indexing Progress:** Track using `currentStep` out of `totalSteps` systems processed.
+**Indexing Progress:** Track using `currentStep` out of `totalSteps` systems processed. A system's folder scan can run for many minutes on a large library; while it does, `scan` updates every few seconds.
 
 **Optimization Progress:** When `optimizing` is true and `indexing` is false, `currentStepDisplay` shows the optimization operation name (e.g., `"vacuum"`, `"analyze"`).
 
@@ -291,7 +296,7 @@ Sent during media database generation to indicate indexing progress and completi
 
 Sent while a metadata scraper run is active and when it completes.
 
-The first notification for a scraper run identifies the scraper and sets `scraping` to true. Progress notifications include the current system, per-system counters, whole-run system-step progress, pause state, and completion state. A final notification has `scraping` set to false and `done` set to true. Existing flat counter fields remain for compatibility; new UIs should prefer `currentSystem` for per-system progress and `totalSteps`/`currentStep`/`currentStepDisplay` for whole-run progress.
+The first notification for a scraper run identifies the scraper and sets `scraping` to true. Per-item progress is sent at most every 250 ms; changes of state, system, step, pause or throttle, a system's last item, errors and the final notification are always sent. `media.scrape.status` returns the latest progress between notifications. Progress notifications include the current system, per-system counters, whole-run system-step progress, pause state, and completion state. A final notification has `scraping` set to false and `done` set to true. Existing flat counter fields remain for compatibility; new UIs should prefer `currentSystem` for per-system progress and `totalSteps`/`currentStep`/`currentStepDisplay` for whole-run progress.
 
 #### Parameters
 
