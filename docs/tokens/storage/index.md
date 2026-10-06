@@ -25,6 +25,10 @@ Binders work well when you want to browse cards in pages. The pocket size depend
 
 Top-loading pockets are usually better than side-loading pockets because cards are less likely to slip out as you turn pages. If you use double-sided pages, pulling cards from the back side can be awkward once the binder is full.
 
+<img src="/img/showcase/grego2d_card_binder.webp" alt="SNES game cards arranged in a small zippered card binder" width="450" loading="lazy" />
+
+*grego2d’s card binder, shared in [Community Showcase #7](/blog/community-showcase-7).*
+
 ## Cassette cases {#cassette-cases}
 
 <Gallery
@@ -67,6 +71,10 @@ Search for `empty Nintendo Switch game case` or `Nintendo Switch replacement cas
 ## Card boxes
 
 Long card boxes, the kind used for bulk Magic: The Gathering or sports card storage, work well for larger collections where you want to flip through cards quickly instead of displaying them in pages.
+
+<img src="/img/showcase/prestocube_card_box.webp" alt="Printed card box filled with sleeved game cards and tabbed dividers" width="600" loading="lazy" />
+
+*prestocube’s printed box holds 72 sleeved cards and four dividers. The [print files](https://www.printables.com/model/1803189-nfc-card-box-with-divider-and-mister-kun-logo) are available on Printables.*
 
 The [community storage projects](../../community-projects/index.mdx#storage) directory includes printable boxes, dividers, cassette inserts, cases, and card stands.
 

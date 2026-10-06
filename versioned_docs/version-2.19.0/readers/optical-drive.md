@@ -10,6 +10,10 @@ An optical disc can work as a [Zaparoo token](../tokens/index.md) on Linux-based
 
 Core does not run games or media directly from the physical disc. The disc acts as a trigger for an indexed file or [ZapScript](../zapscript/index.md) command.
 
+<img src="/img/showcase/Liz_cuphead_custom_disc.webp" alt="Custom-printed Cuphead DVD in a matching steelbook case" width="450" loading="lazy" />
+
+*Liz made a custom Cuphead disc to launch the game through Zaparoo, shared in [Community Showcase #7](/blog/community-showcase-7).*
+
 ## Platforms
 
 <PlatformSupport readerId="optical-drive" />

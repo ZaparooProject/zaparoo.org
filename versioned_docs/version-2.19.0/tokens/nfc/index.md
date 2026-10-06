@@ -35,6 +35,10 @@ Some NFC toys use NTAG chips internally, such as [Amiibo](../nfc-toys/index.md#a
 
 All form factors work the same way. Pick whatever suits your setup.
 
+<img src="/img/showcase/thomasbell81_cartridges_2.webp" alt="Gold 3D-printed Zelda cartridge with an NFC tag inside, in a printed Nintendo sleeve" width="450" loading="lazy" />
+
+*thomasbell81’s replica cartridge contains an NFC sticker inside the printed shell, shared in [Community Showcase #7](/blog/community-showcase-7).*
+
 ## Where to buy
 
 :::tip
