@@ -6,7 +6,7 @@ Current scraper implementations:
 
 - `gamelist.xml` imports EmulationStation metadata such as developer, publisher, genre, rating, player count, descriptions, artwork paths, videos, manuals, and ScreenScraper game IDs. It also reads `<folder>` entries and `<game>` entries whose path is a directory.
 - `media-folder` imports image paths from EmulationStation-style `media/` folders under each system folder. It does not read `gamelist.xml`, download assets, or write non-image metadata. Indexed directories also match artwork named after themselves, whether or not they collapse to a launch target. Directory image properties use stable `(system, path)` identities and each successfully completed system atomically replaces its prior directory snapshot, removing stale folder artwork. A force run (re-scrape) also deletes stale media image properties whose paths match the same local media-folder convention and whose replacement file is no longer found.
-- `mister-docs` imports locally installed MiSTer Downloader artwork, manuals, game metadata, and English synopses from `docs/<system>/` directories. It is registered only on MiSTer and never downloads source assets itself.
+- `mister-docs` imports locally installed MiSTer Downloader artwork, screenshots, title screens, manuals, game metadata, and English synopses from `docs/<system>/` directories. It is registered only on MiSTer and never downloads source assets itself.
 - `mister-arcade` imports the MiSTer arcade catalog's metadata onto indexed `.mra` rows, keyed by the MAME set name declared inside each descriptor. It is registered on MiSTer and MiSTeX, reads the catalog those platforms already cache and embed, and runs automatically after arcade indexing.
 - `libretro-thumbnails` downloads box art, screenshots and title screens from the libretro thumbnail server (`https://thumbnails.libretro.com`), the source RetroArch uses, for systems with a libretro playlist. A file matches its thumbnail by name, after libretro's rule of replacing ``&*/:`<>?\|`` with `_`: an arcade set archive by the game MAME names it (`dkong.zip` by "Donkey Kong (US set 1)", from `pkg/database/arcadenames`) and then its own name, a ScummVM launch file by ScummVM's title for its game ID (`pkg/database/scummvmnames`) and then its own name, any other file by its own name. Failing that it matches by its indexed title slug, ranked by shared region, then clean No-Intro names over dump flags, pre-release builds and TOSEC dates. Images and each playlist's name index (refreshed weekly) are kept under Core's data directory, `libretro-thumbnails/<playlist>/<kind>/`, and recorded as `image-boxart`, `image-screenshot` and `image-titleshot` media properties. It is the only scraper that downloads, so it never runs automatically after indexing. It is registered on every platform.
 - `pinup-popper` imports PinUP Popper's own table metadata (year, manufacturer, player count, type, category, theme, notes) and wheel, playfield, backglass and flyer images for `Pinball` media indexed by the PinUP Popper launcher. It is registered only on Windows when a PinUP Popper installation is available, and reads `PUPDatabase.db` and the emulator media folders in place.
@@ -47,13 +47,13 @@ Scrapers(*config.Instance) map[string]platforms.Scraper
 
 ### Ordinary Jobs After Indexing
 
-A scraper can declare `SupportsFillMissing` and bind `AutoScrapeLaunchers` to selected launcher IDs. PinUP Popper and `mister-arcade` opt in; the remaining scrapers are manual. Both filesystem launchers and custom scanners can supply eligible contributions. Empty, failed, unavailable or unrelated sources do not request a job, and failed/cancelled indexes do not submit their summary.
+A scraper can declare `SupportsFillMissing` and bind `AutoScrapeLaunchers` to selected launcher IDs. PinUP Popper and `mister-arcade` opt in. A scraper that is not tied to particular launchers sets `AutoScrapeAllLaunchers` instead, so every indexed system queues it; `mister-docs` does, because it only reads packs already on the card and skips a system that has none. The remaining scrapers are manual. Both filesystem launchers and custom scanners can supply eligible contributions. Empty, failed, unavailable or unrelated sources do not request a job, and failed/cancelled indexes do not submit their summary.
 
 The sequence is **index → existing optimization → ordinary scraping**. Successful indexing persists eligible jobs before its final notification. The existing service recovery watcher starts them after optimization releases its write lease; there is no separate automatic-job worker. All jobs use the same scrape pauser, gameplay throttling, progress notifications and executor.
 
 The config-backed operation record holds one current job and an ordered pending list, bounded to 64 total jobs. Identical pending scopes/policies are deduplicated. A new manual request receives a conflict rather than overwriting pending work. Versioned records carry authoritative status; legacy records are readable and upgraded when resumed. Unknown versions fail closed.
 
-Orderly shutdown drains source execution but retains unfinished jobs and run markers. Restart resumes those options and skips committed row work. Advancement is persisted before the previous job's markers are removed. Ordinary source failures allow unrelated pending jobs to continue; persistence failures stop advancement, and database corruption uses existing recovery. A failed final job is not retried indefinitely by the watcher.
+Orderly shutdown drains source execution but retains unfinished jobs and run markers. Restart resumes those options and skips committed row work; `mister-docs` writes no run markers on a run over whole systems and restarts the system it was on, which its batched fill-missing writes make cheap. Advancement is persisted before the previous job's markers are removed. Ordinary source failures allow unrelated pending jobs to continue; persistence failures stop advancement, and database corruption uses existing recovery. A failed final job is not retried indefinitely by the watcher.
 
 Indexing is only a trigger, not a durable parent workflow: use `media.scrape.cancel` after indexing finishes, not `media.generate.cancel`. A crash between successful indexing and queue persistence can require another index or manual request. Once accepted into the queue, a job survives restart.
 
@@ -61,7 +61,21 @@ Indexing is only a trigger, not a durable parent workflow: use `media.scrape.can
 
 Index-triggered jobs only fill missing metadata. A property is missing when no row of that type exists—not when its text is empty or its artwork file has disappeared. Existing exclusive tag values remain; additive tags may gain values. Nothing is automatically replaced or deleted.
 
-These checks and inserts share the existing single/batch scrape transaction. Fill-missing runs reconsider rows carrying a permanent scraper sentinel, so later indexes can fill newly available fields. Per-run markers still skip committed work within a resumed job. Popper orders targets by media path to make shared-title fills deterministic. Manual non-force and force write policies remain unchanged.
+These checks and inserts share the existing single/batch scrape transaction. A batch is written with multi-row statements under either policy: a fill-missing batch reads which rows already hold a value for each exclusive tag type once, inserts tag links with `INSERT OR IGNORE` and properties with `ON CONFLICT DO NOTHING`, and stores what the one-target-at-a-time policy stores for the same targets in the same order (the first target to offer a shared title's field wins it). Fill-missing runs reconsider rows carrying a permanent scraper sentinel, so later indexes can fill newly available fields. Per-run markers still skip committed work within a resumed job. Popper orders targets by media path to make shared-title fills deterministic. Manual non-force and force write policies remain unchanged.
+
+### Unchanged Systems
+
+A fill-missing run reconsiders a system only when something it depends on moved. Every scraper that runs after an index (`mister-docs`, `mister-arcade`, PinUP Popper and the Android apps scraper) stores a fingerprint per system in `DBConfig` (`ScrapeFingerprint:<scraper>:<system>`) when they complete it, on any run over whole systems. It joins the state of the scraper's source with the system's library revision.
+
+The library revision (`LibraryRevision:<system>` in `DBConfig`, read with `MediaDBI.LibraryRevision`) is a counter the index reconcile bumps, in its own transaction, when it inserted or renamed a title, inserted or changed a media row, flagged media missing, or added or removed a tag link for that system. Indexing a system whose files did not change leaves it where it was. Reading it is one keyed lookup, which matters on SD-card storage where even an index-only count of a large system takes minutes at background priority.
+
+For `mister-docs` the source state is one listing of names per pack folder serving the system: each TSV's size and modification time, plus the count of the other files and a digest of their names. For `mister-arcade` it is a digest of the catalog. For PinUP Popper it is Popper's own library as read from its database, plus a listing digest of every emulator's screen folders. The Android apps scraper has no source state: icons come from the host per package and fill-missing never replaces one already stored, so it compares the library revision alone, and it does not record a system in which the host could not supply an icon, so that system is tried again. An index-triggered run that finds the stored fingerprint unchanged reports the system and moves on without parsing a pack, reading a media row or writing anything.
+
+A manual or force run never consults the fingerprint and always does the full work, then stores a fresh one. That is also the way out when a source changed in a way the fingerprint cannot see, or when another tool removed metadata the scraper had filled. Truncating a system, or the whole database, deletes the fingerprints of the rows it removes, so rebuilt rows are always scraped again.
+
+### Post-Write Work
+
+Title disambiguation reads only media-level tags of the types in `database.ZapScriptTagTypes`, so a write recomputes it only for the titles of targets that carry such a tag. A batch of artwork, title metadata and sentinels recomputes nothing. Each batch logs where its time went (`begin`, `duration` for its statements, `commit`, `change_tracking`, `disambiguation`) with its row counts at debug level, and `scraper.ApplyTargets`, the write loop `mister-docs`, `mister-arcade` and PinUP Popper share, logs how long a system's batches spent waiting on the pauser against writing.
 
 ## Scoped Runs
 
@@ -213,7 +227,7 @@ Artwork for a directory entry is looked up under the directory's own name, match
 
 ## media-folder Directory Artwork
 
-For every present indexed media row, `media-folder` considers each ancestor directory below its system ROM root. It searches the usual artwork categories under `<systemRoot>/media/`, first at the mirrored ROM-relative location and then by flat directory basename. For example, directory `RPGs/Final Fantasy VII` checks `media/boxart/RPGs/Final Fantasy VII.png` before `media/boxart/Final Fantasy VII.png`. System root itself is excluded.
+For every present indexed media row, `media-folder` considers each ancestor directory below its system ROM root. It searches the usual artwork categories under `<systemRoot>/media/`, first at the mirrored ROM-relative location and then by flat directory basename. For example, directory `RPGs/Final Fantasy VII` checks `media/boxart/RPGs/Final Fantasy VII.png` before `media/boxart/Final Fantasy VII.png`. System root itself is excluded. Directories are also matched in `media/folders/` and `media/folder/`, which are searched first for the `image` type and are never used for a game file's artwork.
 
 Folder artwork does not change browse structure. Arbitrary collections remain `type: "directory"`; only existing container rules add launch metadata. `media.browse` reports `hasCover: true` when a directory image property exists for one of that entry's systems, and `media.image` accepts the directory's `(system, path)` to return it.
 
@@ -312,11 +326,14 @@ Game manuals can be selected through Update All's **Game Manuals (EN)** settings
 Core derives `docs` roots from MiSTer's configured SD, USB, network/CIFS, and custom index roots, and also probes `/media/usb6` and `/media/usb7`, which artwork packs may be installed to but MiSTer's games-folder list does not reach. It recognizes content by installed format rather than repository name, following the [MiSTer Artwork Pack format](https://github.com/chipster6502/MiSTer_artwork_pack/blob/main/PACK_FORMAT.md):
 
 - Artwork: `docs/<System>/Artwork/` holding one `<key>.jpg` per game, normally with an `index.tsv` beside them that maps every known dump to its key. `<System>` is the MiSTer `games/` folder name. A directory with images and no index still resolves games filed under their exact key.
+- Screenshots and title screens: `docs/<System>/Screenshots/` and `docs/<System>/Titles/`, separate packs in the same layout with one `<key>.png` per game and an `index.tsv` of their own. Each folder is resolved independently, since the keys that carry a file differ between packs.
 - Optional title metadata: `gameinfo.tsv` beside the images. Games it lists without an image still receive their metadata.
 - Optional description: `synopsis_<lang>.tsv` beside the images. Which languages a pack ships varies per system, so Core reads whichever files exist and picks the first match from `media.default_langs`, then English, then the first available language.
 - Manuals: direct PDF files in a child directory whose name contains `manual`, for example `docs/SNES/Manuals/` or `docs/NES/Famicom Disk System Manuals/`.
 
-This format-based discovery means future compatible databases need no Core update. Run `mister-docs` again after Downloader installs or updates content. Normal runs rescan installed records idempotently; force runs additionally delete stale box-art/manual properties whose old paths are proven to belong to a discovered MiSTer docs convention.
+Every pack ships the same `gameinfo.tsv` and synopsis files, so Core reads them from one image folder per system: `Artwork/` when it is installed, otherwise `Screenshots/`, otherwise `Titles/`.
+
+This format-based discovery means future compatible databases need no Core update. A fill-missing `mister-docs` run is queued after every successful index for the systems that were indexed, so newly installed packs are picked up by the next index; it only adds properties a game does not have yet, and it leaves a system alone when neither its packs nor its indexed rows changed since the last completed run (see [Unchanged Systems](#unchanged-systems)). Run `mister-docs` by hand after Downloader installs or updates content to import it sooner or to replace what is stored. Normal runs rescan installed records idempotently; force runs additionally delete stale box-art, screenshot, title-screen and manual properties whose old paths are proven to belong to a discovered MiSTer docs convention.
 
 Metadata files are treated as untrusted input. Core bounds their size and record count, rejects symlink/path escapes and non-regular assets, skips ambiguous matches, and continues past malformed optional sources where possible.
 
@@ -333,7 +350,9 @@ CRC and size columns are not used because hashing every installed ROM would impo
 
 | Source | Destination |
 |---|---|
-| Artwork image | `property:image-boxart` at media scope for exact matches, title scope for unique slug fallback |
+| `Artwork/` image | `property:image-boxart` at media scope for exact matches, title scope for unique slug fallback |
+| `Screenshots/` image | `property:image-screenshot`, same scopes |
+| `Titles/` image | `property:image-titleshot`, same scopes |
 | `gameinfo.tsv` year | title tag `year` |
 | `gameinfo.tsv` genre | title tags `genre`, through the shared ScreenScraper genre table; a hierarchy such as `Shoot'em Up / Vertical` writes both `shmup:v` and `shmup` |
 | `gameinfo.tsv` developer | title tag `developer` |

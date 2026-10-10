@@ -352,6 +352,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `PodcastEpisode` | Podcast Episode | | `Audio` |
 | `PodcastSeries` | Podcast Series | | `Audio` |
 | `PlugNPlay` | Plug & Play TV Games | | |
+| `Script` | Scripts | `Scripts` | |
 | `Solarus` | Solarus | | |
 | `SteamVR` | SteamVR | `Steam VR` | |
 | `TIC80` | TIC-80 | | |

@@ -714,6 +714,13 @@ main header > a[href="/blog/tags/"] {
     white-space: normal;
 }
 
+/* Keep a gap between a row of buttons when it wraps onto several lines. */
+.markdown div:has(> .button + .button) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
 [class*="authorSocialLink"] {
     align-items: center;
     display: inline-flex;

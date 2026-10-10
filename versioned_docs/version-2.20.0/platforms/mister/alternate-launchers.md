@@ -66,7 +66,7 @@ To use a RetroAchievements core by default for one system in [Zaparoo Frontend](
 
 1. Highlight the system.
 2. Open **Options**.
-3. Select **Change launcher**.
+3. Select **Manage system**, then **Change launcher**.
 4. Select the installed RetroAchievements launcher.
 
 Frontend saves the selection as that system's default launcher. Select **Default** from the same menu to remove the override. Only launchers currently available from Core appear in the list.

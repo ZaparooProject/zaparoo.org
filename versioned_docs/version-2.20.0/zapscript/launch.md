@@ -409,6 +409,8 @@ Launch a random Mario game from any system:
 **launch.random:all/*mario*
 ```
 
+`all` leaves out the `Script` and `Application` systems, so a random pick never runs a script or opens an app. Name either system to include it.
+
 :::info System Weighting
 When multiple systems are specified, a system is picked at random first (with equal weight per system), then a random game is selected from that system. This prevents systems with larger libraries from dominating random picks.
 :::

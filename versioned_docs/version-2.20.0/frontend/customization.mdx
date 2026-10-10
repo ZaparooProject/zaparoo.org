@@ -93,6 +93,7 @@ Hub icons in `hub/` use category or action IDs:
 | `resume` | Resume |
 | `favorites` | Favorites |
 | `recents` | Recently played |
+| `search` | Search |
 | `update` | Update |
 | `settings` | Settings |
 
@@ -133,7 +134,7 @@ Frontend ships its built-in system logos in two styles. **Settings > Appearance 
 
 ## Configuration file
 
-Frontend stores its settings in `/media/fat/zaparoo/frontend.toml` and edits that file in place, so comments you add by hand survive. The Hub layout is a list of `[[hub.items]]` entries, one per tile, with a `type` of `category`, `action`, `system`, `folder`, `zapscript`, or `blank` and an `id`, `path`, or `script` to match:
+Frontend stores its settings in `/media/fat/zaparoo/frontend.toml` and edits that file in place, so comments you add by hand survive. The Hub layout is a list of `[[hub.items]]` entries, one per tile, with a `type` of `category`, `action`, `system`, `folder`, `zapscript`, `search`, or `blank` and an `id`, `path`, or `script` to match:
 
 ```toml title="frontend.toml"
 [[hub.items]]
@@ -151,3 +152,25 @@ name = "Random SNES"
 ```
 
 Arranging tiles from the Hub writes this for you. Leave the `[hub] known` list alone; Frontend uses it to remember tiles you removed.
+
+### Saved searches
+
+A `search` tile opens the results of a [search](./browsing.mdx#search). **Add to Hub** on the results writes one for you:
+
+```toml title="frontend.toml"
+[[hub.items]]
+type = "search"
+name = "SNES and Genesis RPGs"
+query = "final"
+systems = ["SNES", "Genesis"]
+tags = ["genre:rpg", "year:1994"]
+```
+
+| Key | What it does |
+| --- | --- |
+| `query` | Text to match in game names. Leave it out to list everything the other keys allow. |
+| `systems` | [System IDs](../features/systems.md) to search. Leave it out to search every system. A tile written by hand can name several. |
+| `tags` | [Tags](../features/tags.md) a game must have, written as `type:value`. |
+| `path` | Limits the search to one folder, as **Search here...** does. It is a full path, so edit it if the games move to another drive. |
+
+A tile needs at least one of these keys.

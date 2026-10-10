@@ -20,9 +20,9 @@ The start screen shows **Can't reach Zaparoo Core. Check the connection.** when 
 
 ## Games do not appear
 
-If a [filter](./browsing.mdx#filter-games) is active, choose **View > Clear filter**. To find [hidden games](./browsing.mdx#hide-games), turn on **Settings > Library > Browsing > Show hidden items**.
+If a [filter](./browsing.mdx#filter-games) is active, open **View > Tags** and choose **Clear tags**. To find [hidden games](./browsing.mdx#hide-games), turn on **Settings > Library > Browsing > Show hidden items**.
 
-Run **Update media database** from **Settings > Library > Maintenance** if games have not been indexed. You can also update one system from its options menu. On a brand-new library, select **Start media update** when prompted. Progress appears in the header, and systems appear as Core finds games.
+Run **Update media database** from **Settings > Library > Maintenance** if games have not been indexed. You can also update one system from **Manage system** in its options menu. On a brand-new library, select **Start media update** when prompted. Progress appears in the header, and systems appear as Core finds games.
 
 A media database update finds game files and makes them available to Frontend. Updating metadata does not add missing games to the database.
 
@@ -72,5 +72,7 @@ When something goes wrong, Frontend opens a dialog that names the action, such a
 ## Upload support logs
 
 Open **Settings > About**, then **Upload log file**. Frontend uploads a support bundle to `logs.zaparoo.org` and shows a link, and a code you can scan, to share in Discord or a GitHub issue. Turn on **Debug logging** on the same page first if you have been asked for more detail; it restarts Frontend.
+
+On a MiSTer that has never run Update All or Downloader, the upload cannot verify the server. Run Update All once, then upload again.
 
 The upload includes a support summary, the Frontend log tail, and the Core log tail when Core is reachable. Include what you were trying to do, the steps that reproduce the problem, and the uploaded support link when asking for help.

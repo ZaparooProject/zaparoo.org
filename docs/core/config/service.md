@@ -30,6 +30,7 @@ allow_run = [
     '\*\*launch\.random:.+'
 ]
 online_base_url = "https://api.zaparoo.com"
+internet_check = true
 
 [service.remote_control]
 enabled = false
@@ -239,6 +240,19 @@ Each entry is a [Regular Expression](https://github.com/google/re2/wiki/Syntax).
 ```toml
 [service]
 online_base_url = "https://zaparoo.example.lan"
+```
+
+### internet_check
+
+| Key            | Type    | Default |
+| -------------- | ------- | ------- |
+| internet_check | boolean | true    |
+
+`internet_check` lets Core test whether the device can reach the internet, so clients can show an online or offline status. Where the operating system cannot answer that itself, Core makes small plain HTTP requests to public connectivity check addresses run by Google, Cloudflare, and Microsoft. It only does this while a client is connected to the API. Set it to `false` to stop these requests.
+
+```toml
+[service]
+internet_check = false
 ```
 
 ### service.discovery

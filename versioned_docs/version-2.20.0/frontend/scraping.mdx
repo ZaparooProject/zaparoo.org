@@ -58,7 +58,7 @@ Core saves the downloaded images on your device, so Frontend can display them of
 
 ## MiSTer artwork and manuals from Update All
 
-[Update All](../platforms/mister/index.md#install) installs box art and game manuals for you. Turn on **Game Artwork DBs** and **Game Manuals (EN) DBs** in its settings, pick the systems you want, and run it. Each artwork database can be set to 2D boxes, 3D boxes, or box plus screenshot, and there is one for Arcade. After Update All finishes, choose the `mister-docs` source in **Update metadata**. Core imports the box art, the year, genre, developer, and player count, a description in your language when the pack has one, and the manual, without downloading anything itself. See [mister-docs](../features/scraping.md#mister-docs) for what it reads.
+[Update All](../platforms/mister/index.md#install) installs box art and game manuals for you. Turn on **Game Artwork DBs** and **Game Manuals (EN) DBs** in its settings, pick the systems you want, and run it. Each artwork database can be set to 2D boxes, 3D boxes, or box plus screenshot, and there is one for Arcade. With Core v2.20.0, the next **Update media database** imports them when it finishes, filling in games that have no artwork or details yet. Core imports the box art, the year, genre, developer, and player count, a description in your language when the pack has one, and the manual, without downloading anything itself. Screenshot and title-screen packs in the same format are imported too. To import sooner, or to replace artwork you already have, choose the `mister-docs` source in **Update metadata**. See [mister-docs](../features/scraping.md#mister-docs) for what it reads.
 
 ## Metadata packs
 
@@ -101,13 +101,13 @@ After adding compatible files:
 
 1. Open **Settings > Library > Maintenance**.
 2. Run **Update media database** if you added games or have not indexed the library yet.
-3. Select **Update metadata**. Choose the **Source** (Frontend remembers it for next time), pick the **Systems** to cover (or all of them), turn on **Replace existing** if you are refreshing artwork you imported before, then select **Start import**.
+3. Select **Update metadata**. Choose the **Source** (Frontend remembers it for next time), pick the **Systems** to cover (all of them, or check as many as you want and go back), turn on **Replace existing** if you are refreshing artwork you imported before, then select **Start import**.
 
 ![Update metadata dialog with Source, Systems, Replace existing, and Start import](/img/docs/frontend/update-metadata-dialog.webp)
 
 Frontend shows import progress by system when Core provides it. When the import finishes, artwork appears in the game browser.
 
-To update or import one system, or one game, at a time, open its options menu and choose **Update media database** or **Update metadata** there.
+To update or import one system, or one game, at a time, open its options menu, choose **Manage system** or **Manage game**, then **Update media database** or **Update metadata**.
 
 ## Add Arcade artwork
 

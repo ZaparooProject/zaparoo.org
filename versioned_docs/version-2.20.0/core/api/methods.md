@@ -14,6 +14,7 @@ Each method below identifies which clients may call it:
 - **`input`:** localhost, member, and admin. Legacy input is grandfathered only on MiSTer, MiSTeX, Batocera, and ReplayOS.
 - **`screenshot`:** localhost, member, and admin. Legacy screenshot capture is grandfathered only on MiSTer and ReplayOS.
 - **`update.apply`:** localhost and authenticated admin. Member and legacy do not receive it.
+- **`device.power`:** localhost and authenticated admin. Member and legacy do not receive it.
 - **Localhost or admin:** localhost, paired admin, and API-key admin. Member and legacy are rejected.
 - **Localhost only:** requests originating from Core's device. All remote clients are rejected.
 
@@ -638,7 +639,7 @@ None.
 
 **Access:** All clients.
 
-Query the media database and return matching indexed media. Hidden entries are excluded before pagination unless `includeHidden` is true. Explicit required user tag filters (`user:favorite`, `user:liked`, `user:hidden` and the other user tags) also include hidden entries; OR/NOT user tag filters do not enable this exception.
+Query the media database and return matching indexed media. Hidden entries, and everything under a hidden folder, are excluded before pagination unless `includeHidden` is true. A search whose `pathPrefix` is a hidden folder, or a path inside one, addresses that folder directly and still searches it. Explicit required user tag filters (`user:favorite`, `user:liked`, `user:hidden` and the other user tags) also include hidden entries; OR/NOT user tag filters do not enable this exception.
 
 **Note:** This API uses cursor-based pagination for all requests. The `total` field is deprecated and returns only the current response-page count; it is not the full match count. Use the `pagination` object to navigate through results. For subsequent pages, include the `nextCursor` value and repeat the same systems, pathPrefix, query, tags, letter, and sort scope. Changing `includeHidden` or editing media preferences invalidates existing search cursors; restart without a cursor when Core reports `library visibility changed`.
 
@@ -837,9 +838,15 @@ Browse indexed media content by directory, similar to navigating a file manager.
 
 When called without a `path` parameter (or with an empty path), returns top-level root entries including filesystem roots and virtual scheme roots. When `systems` is provided without `path`, returns populated launcher routes for those systems only. Pass the same `systems` filter when browsing a returned route to keep shared paths scoped to the selected systems.
 
+`path` also accepts the launcher-relative form reported as `relativePath`: a system ID, optionally followed by a path below that system's launcher folder (for example `SNES` or `SNES/USA`). Core browses the first matching folder, in platform root order, that holds indexed content, and the result's `path` is that folder's absolute path. A relative path that matches no indexed folder is an error. This lets a client keep a folder reference that survives the media moving to another root.
+
 Set `rootView` to `contents` with exactly one system to replace its filesystem routes with a one-level view of their immediate contents. This is display-only: entries retain physical paths, and browsing a returned directory uses ordinary single-path behavior. Root priority follows platform order (first root wins); exact, case-sensitive filesystem basenames define collisions. Virtual URI routes remain separate.
 
-A directory whose direct contents collapse to a single logical launch target is returned with that target's `mediaId`, display name, `zapScript`, `tags`, and `hasCover`, so a per-game disc folder appears as one launchable game. A directory qualifies when it has no nested media and holds one media file, one `.m3u` plus its discs, one `.cue` plus its companion tracks, or at least two supported disc-image files that all share one positive title identity. Shared-title disc sets support `.cue`, `.chd`, `.iso`, `.bin`, `.img`, and `.pbp`; mixed title identities or other extensions remain ambiguous. The selected target is deterministic by path then media ID. Existing single-file, playlist, and cue precedence remains unchanged. Its `type` stays `directory` and it keeps its own `path` and `fileCount`, so clients can still navigate into it. Directories that hold nested media or an ambiguous file set stay plain directories.
+A directory whose direct contents collapse to a single logical launch target is returned with that target's `mediaId`, display name, `zapScript`, `tags`, and `hasCover`, so a per-game disc folder appears as one launchable game. Display names leave out set markers such as `(Disc 1)`; the disc number is reported in `tags` instead. A directory qualifies when it has no nested media and holds one media file, one `.m3u` plus its discs, one `.cue` plus its companion tracks, or at least two supported disc-image files that all share one positive title identity. Shared-title disc sets support `.cue`, `.chd`, `.iso`, `.bin`, `.img`, and `.pbp`; mixed title identities or other extensions remain ambiguous. The selected target is deterministic by path then media ID. Existing single-file, playlist, and cue precedence remains unchanged. Its `type` stays `directory` and it keeps its own `path` and `fileCount`, so clients can still navigate into it. Directories that hold nested media or an ambiguous file set stay plain directories.
+
+A directory that collapsed because it holds several disc images of one game is marked `multiDisc: true`. Its launch fields point at the disc most recently played from that folder, or at the first disc when none of them appears in the system's recent play history, and its `tags` carry that disc's number. Its `disambiguatingTags` omit the disc number, since the entry stands for the whole set. To offer the other discs, browse the entry's `path`. Only `media.browse` follows play history: `media.meta` and `media.image` resolve the folder's path to the first disc.
+
+Request a `directory` entry's image from `media.image` with its `(system, path)`, not its `mediaId`. The path form returns the folder's own artwork first and falls back to the launch target's artwork; the `mediaId` form only ever returns the launch target's.
 
 Plain directories may also have artwork imported by the `media-folder` scraper. This does not make them launchable or hide their children; it only sets `hasCover` and lets clients request the image with the directory's `(system, path)`.
 
@@ -847,7 +854,7 @@ A directory holding media for more than one system also stays plain, because its
 
 Tags filter direct media files in the current path. Directories remain visible for navigation with tag-unfiltered `fileCount` values, while `totalFiles`, file pagination, and cursors reflect only matching files. Tagged directory entries remain plain directories rather than being promoted to logical single-game aliases.
 
-Visibility is separate from ordinary tag filtering: hidden media is excluded from files, directory/root counts, and letter indexes before pagination. Hidden-only directories/routes disappear. Set `includeHidden: true` to show hidden entries with their `user:hidden` tag. Required user tag filters, such as `user:favorite`, `user:liked` or `user:hidden`, also include hidden entries. Changing visibility mode or editing media preferences invalidates existing browse cursors. A request with a cursor must restart without one when Core reports `library visibility changed`. A request with no cursor is retried once inside Core automatically and only returns an error if preferences change again during that retry.
+Visibility is separate from ordinary tag filtering: hidden media is excluded from files, directory/root counts, and letter indexes before pagination. Hidden-only directories/routes disappear. A hidden folder is left out of its parent's listing and its media are subtracted from every count above it, but the folder still lists normally when its own `path`, or a path inside it, is browsed. Set `includeHidden: true` to show hidden entries with their `user:hidden` tag; a hidden folder's `directory` entry carries the tag in `tags`, and the entries inside it do not. Required user tag filters, such as `user:favorite`, `user:liked` or `user:hidden`, also include hidden entries. Changing visibility mode or editing media preferences invalidates existing browse cursors. A request with a cursor must restart without one when Core reports `library visibility changed`. A request with no cursor is retried once inside Core automatically and only returns an error if preferences change again during that retry.
 
 #### Parameters
 
@@ -855,7 +862,7 @@ All parameters are optional. When called with no parameters, returns root entrie
 
 | Key        | Type   | Required | Description                                                                                                |
 | :--------- | :----- | :------- | :--------------------------------------------------------------------------------------------------------- |
-| path       | string | No       | Directory path to browse. Omit or set empty to list root entries. Supports filesystem paths and virtual URI schemes (e.g. `mame-arcade://`). |
+| path       | string | No       | Directory path to browse. Omit or set empty to list root entries. Supports filesystem paths, launcher-relative paths (e.g. `SNES/USA`), and virtual URI schemes (e.g. `mame-arcade://`). |
 | systems    | string[] | No     | Case-sensitive list of system IDs to restrict route discovery and browse results to. A missing key or empty list preserves unfiltered behavior. |
 | fuzzySystem | boolean | No     | Enable fuzzy matching for system IDs in the `systems` array (e.g., `"snes"` matches `"SNES"`). |
 | includeHidden | boolean | No | Include hidden media and its contribution to directory/root counts. Defaults to `false`. Repeat with cursor requests. |
@@ -871,6 +878,7 @@ All parameters are optional. When called with no parameters, returns root entrie
 | Key        | Type                                  | Required | Description                                                              |
 | :--------- | :------------------------------------ | :------- | :----------------------------------------------------------------------- |
 | path       | string                                | Yes      | The browsed directory path. Empty string when listing roots.             |
+| relativePath | string                              | No       | Launcher-relative path of the browsed directory itself (for example `SNES/USA`). Present only when `systems` names exactly one system and the directory sits under that system's launcher folders. |
 | entries    | [BrowseEntry](#browse-entry-object)[] | Yes      | Array of entries in the current path.                                    |
 | totalFiles | number                                | Yes      | Total count of media files in the current directory (respects `tags` and `letter` filters). |
 | totalDirs  | number                                | Yes      | Total count of immediate child directories in the current directory.     |
@@ -880,8 +888,8 @@ All parameters are optional. When called with no parameters, returns root entrie
 
 | Key          | Type     | Required | Description                                                                                      |
 | :----------- | :------- | :------- | :----------------------------------------------------------------------------------------------- |
-| mediaId      | number   | No       | Opaque media database row ID. Present on `media` entries, and on `directory` entries whose direct contents collapse to one logical launch target, for efficient follow-up `media.meta` and `media.image` requests. |
-| name         | string   | Yes      | Display name of the entry.                                                                       |
+| mediaId      | number   | No       | Opaque media database row ID. Present on `media` entries, and on `directory` entries whose direct contents collapse to one logical launch target, where it identifies that target. Use it for follow-up `media.meta` requests and for `media.image` on `media` entries; request a `directory` entry's image by `(system, path)` so folder artwork is used. |
+| name         | string   | Yes      | Display name of the entry. Set markers such as `(Disc 1)` are left out of media names and reported in `tags`. |
 | path         | string   | Yes      | Full path to the entry.                                                                          |
 | type         | string   | Yes      | Entry type: `root`, `directory`, or `media`.                                                     |
 | fileCount    | number   | No       | Number of files in this directory. Present on `root` and `directory` entries, except a `root` entry whose exact count could not be computed in time (known non-empty, count omitted). |
@@ -889,11 +897,12 @@ All parameters are optional. When called with no parameters, returns root entrie
 | systemId     | string   | No       | System ID for the media or single-system filtered route (e.g. `SNES`). Present on `media` entries and filtered `root` entries when exactly one system applies. |
 | systemIds    | string[] | No       | System IDs represented by a filtered `root` or `directory` entry.                                |
 | zapScript    | string   | No       | ZapScript command to launch this media. Present on `media` entries and logical single-game container `directory` entries. |
-| relativePath | string   | No       | Launcher-relative convenience path (for example `SNES/Game.sfc`) when portable conversion succeeds. Present on media and logical single-game container entries; omitted for unmatched absolute paths and virtual URIs. Not a stable media identity. |
+| relativePath | string   | No       | Launcher-relative convenience path (for example `SNES/Game.sfc`) when portable conversion succeeds. Present on media and logical single-game container entries, and on `directory` and `root` entries that belong to exactly one system, where it names the folder itself (`SNES/USA`, or `SNES` for the system's launcher folder) and can be sent back as `path`. Omitted for unmatched absolute paths, virtual URIs, and folders shared by several systems. Not a stable media identity. |
 | tags         | object[] | No       | Tags attached to the media. Each object has `tag` (string) and `type` (string). Present on `media` entries and logical single-game container `directory` entries. |
 | disambiguatingTags | object[] | No | Subset of `tags` whose values differ across same-named siblings of this title, plus any tag that makes the file a distinct game (a ROM hack, homebrew or public-domain work) even when it has no sibling, ordered by display importance. Same object shape as `tags`. Omitted when there is nothing to disambiguate. |
+| multiDisc    | boolean  | No       | `true` on a `directory` entry that stands for several disc images of one game. Its launch fields point at the disc last played from it, or the first disc; browse its `path` to list the others. Omitted otherwise. |
 | hasCover     | boolean  | Yes      | Whether image properties are available. For directories this includes path-keyed folder artwork and, when collapsed, media/title artwork. Clients can skip image requests when false. |
-| coverColor   | string   | No       | Average colour of the cover thumbnail as `#rrggbb`, for a placeholder while the image loads. Present on `media` entries and logical single-game container `directory` entries once Core has built a thumbnail for the media through `media.image` with a `maxSize`. |
+| coverColor   | string   | No       | Average colour of the cover thumbnail as `#rrggbb`, for a placeholder while the image loads. Present on `media` entries and logical single-game container `directory` entries once Core has built a thumbnail for the media through `media.image` with a `maxSize`. Omitted on a container `directory` entry that has folder artwork of its own, because the colour describes the launch target's cover. |
 
 ##### Browse pagination object
 
@@ -934,7 +943,8 @@ All parameters are optional. When called with no parameters, returns root entrie
         "fileCount": 150,
         "hasCover": false,
         "systemId": "SNES",
-        "systemIds": ["SNES"]
+        "systemIds": ["SNES"],
+        "relativePath": "SNES"
       }
     ],
     "totalFiles": 0
@@ -1079,6 +1089,8 @@ Return the ordered first-character "jump to letter" buckets for a browse scope. 
 
 The scope parameters mirror `media.browse` so the index describes the exact media-file list `media.browse` would return for the same scope. The per-bucket `cursor` is an ordinary browse cursor: pass it to `media.browse` with the same `path`/`systems`/`tags`/`sort` to get a normal page that begins at the bucket and continues into the next bucket as the user scrolls.
 
+A scope can have no media files of its own and still be a list of games: on most CD systems each game is a folder, which `media.browse` returns as a `directory` entry carrying the game's `mediaId`. When the scope has no media files but does have directory entries, the buckets are computed over those directory entries instead and `entryType` is `directory`. See [Directory buckets](#directory-buckets). A scope with at least one media file of its own is always bucketed by its media files.
+
 #### Parameters
 
 All parameters are optional.
@@ -1097,7 +1109,8 @@ All parameters are optional.
 | Key        | Type                                          | Required | Description                                                                 |
 | :--------- | :-------------------------------------------- | :------- | :-------------------------------------------------------------------------- |
 | scheme     | string                                        | Yes      | Collation used to derive the buckets. `latin` for first-character bucketing; `none` when no rail applies (a root listing, or a directory whose effective sort is not alphabetical, e.g. a ranked/date-prefixed collection folder), in which case `groups` is empty. |
-| totalFiles | number                                        | Yes      | Total media files matching the complete systems/path/tags scope.             |
+| entryType  | string                                        | Yes      | What the groups count: `media` for the scope's media files, or `directory` when the scope has no media files and the groups describe its directory entries. Always `media` when `scheme` is `none` for a root listing. A Core that predates this field omits it; treat a missing value as `media`. |
+| totalFiles | number                                        | Yes      | Total media files matching the complete systems/path/tags scope. `0` when `entryType` is `directory`. |
 | groups     | [BrowseIndexGroup](#browse-index-group-object)[] | Yes   | Only non-empty buckets, ordered to match `sort`.                            |
 
 ##### Browse index group object
@@ -1106,11 +1119,23 @@ All parameters are optional.
 | :----- | :----- | :------- | :------------------------------------------------------------------------------------------------ |
 | key    | string | Yes      | Stable bucket identifier (`A`–`Z`, `0-9`, `#`). Treat as opaque.                                  |
 | label  | string | Yes      | Display text for the bucket. Equal to `key` for the `latin` scheme.                               |
-| count  | number | Yes      | Number of media files in the bucket.                                                              |
-| cursor | string | Yes      | Opaque `media.browse` cursor positioned just before the bucket's first row. Empty string for the bucket that begins the list (call `media.browse` with no cursor for the first page). |
-| offset | number | Yes      | 0-based position of the bucket's first item among the scope's media files, taken from its row number in the same ordered listing `media.browse` pages through (so it cannot drift from the browse order). Excludes any directory entries the listing shows before files; a client that jumps to a position in the full list adds its own leading-directory count. Use this to jump to the bucket's position rather than reloading from `cursor`. |
+| count  | number | Yes      | Number of media files in the bucket, or the number of directory entries when `entryType` is `directory`. |
+| cursor | string | Yes      | Opaque `media.browse` cursor positioned just before the bucket's first row (its first directory entry when `entryType` is `directory`). Empty string for the bucket that begins the list (call `media.browse` with no cursor for the first page). |
+| offset | number | Yes      | 0-based position of the bucket's first item among the scope's media files, taken from its row number in the same ordered listing `media.browse` pages through (so it cannot drift from the browse order). Excludes any directory entries the listing shows before files; a client that jumps to a position in the full list adds its own leading-directory count. Use this to jump to the bucket's position rather than reloading from `cursor`. When `entryType` is `directory` this is instead the position among the scope's directory entries, and nothing is added to it: see [Directory buckets](#directory-buckets). |
 
 Clients should render `groups` exactly as received, in order, without assuming a particular alphabet: `scheme` and `key` are opaque so a future locale-aware scheme (e.g. pinyin/kana/hangul buckets) requires no client change.
+
+##### Directory buckets
+
+When `entryType` is `directory`, every group describes directory entries of the scope rather than media files:
+
+- `count` is the number of directory entries in the bucket.
+- `offset` is the 0-based position of the bucket's first directory among the scope's `directory` entries, in the order `media.browse` returns them. It already counts directories, so a client must not add a leading-directory count to it. In the root `contents` view, any `root` entries `media.browse` lists ahead of the directories are not counted.
+- `cursor` is the cursor `media.browse` itself returns after the directory that precedes the bucket. Passing it to `media.browse` with the same scope returns a page that begins at the bucket's first directory and continues through the remaining directories.
+- Buckets follow the order `media.browse` lists directories in, which ascends by name whatever `sort` is: `sort` orders media files only. The bucket is taken from the directory name as it is ordered, which ignores bracketed metadata such as `(USA)` or `[T-En]`. A directory entry that stands for a single game displays that game's name, which can begin with a different character than the directory name it is ordered by.
+- The same `systems` and `includeHidden` scoping `media.browse` applies to its directory listing applies here. `tags` filters media files only, in both methods: a `tags` filter that leaves the scope with no matching media files yields directory buckets over the unfiltered directory entries, which is what `media.browse` lists for that request.
+
+A flat virtual scheme (for example `steam://`) has no directory entries and is always `media`.
 
 #### Example
 
@@ -1136,6 +1161,7 @@ Clients should render `groups` exactly as received, in order, without assuming a
   "id": 1,
   "result": {
     "scheme": "latin",
+    "entryType": "media",
     "totalFiles": 150,
     "groups": [
       { "key": "#", "label": "#", "count": 3, "cursor": "", "offset": 0 },
@@ -1229,11 +1255,13 @@ and feature values run long, are capped.
 
 **Access:** All clients.
 
-Add or remove user tags for an indexed media item.
+Add or remove user tags for an indexed media item, or hide a folder.
 
 Mutable tags are `user:favorite`, `user:hidden`, `user:liked`, `user:disliked` and `user:playlater`. All are installation-wide preferences available to all clients, not security restrictions. Add `user:hidden` to hide an entry; remove it to unhide. When the same tag appears in both lists, addition wins. Editing one flag preserves the others, except for the pairs the model forbids: adding `user:disliked` clears `user:liked` and `user:favorite`, and adding `user:liked` or `user:favorite` clears `user:disliked`. A request that adds both sides of such a pair at once is rejected. Deck membership tags (`user:deck:<id>`) are read-only here and managed through the decks methods.
 
 Hidden entries disappear from normal discovery and random selection, but remain launchable through direct NFC, ZapScript, playlists, and explicit API launches. Favorites, the other user tag lists and history retain hidden entries and include the `user:hidden` tag when their current media tags are available. `includeHidden: true` on browse/search enables recovery.
+
+A folder is hidden by sending its `system` and `path` with `user:hidden` as the only tag. The path must name no indexed file and hold indexed media for that system. The hide is one preference stored against the folder's path, not a tag on each file under it, so it also covers files indexed later and its cost does not grow with the folder. The folder leaves its parent's `media.browse` listing and `media.browse.index`, and its media leave `media.search`, system counts and random selection, until `includeHidden` is set. Browsing or searching the folder's own path still works, so a client can keep a shortcut to a hidden folder. The result's `tags` holds `user:hidden` while the folder is hidden and is empty otherwise. Any other tag sent with a folder's path keeps its earlier meaning: it applies to the folder's single launch target when it has one.
 
 All flags persist in UserDB and are restored to MediaDB on reindex/rebuild by canonical system/path, like existing favorites. Moving a file does not transfer any preference; the old path's preferences remain stored. Automatic reassociation is deferred. Successful hide/unhide emits [`media.visibility`](notifications.md#mediavisibility), prompting connected clients to refresh their lists and discard old cursors.
 
@@ -1254,6 +1282,34 @@ Either `mediaId` or `system` plus `path` is required. At least one of `add` or `
 | Key  | Type                         | Required | Description                          |
 | :--- | :--------------------------- | :------- | :----------------------------------- |
 | tags | [TagInfo](#taginfo-object)[] | Yes      | Effective tags for the media item.   |
+
+#### Media database busy errors
+
+While indexing, database optimization, maintenance or recovery owns the media database, the update is refused at once and nothing is stored. The response is an [error](index.md#response-errors) whose `data.category` is `busy`, the same category [`run`](#run) uses for a launch already in progress. Branch on the category, not on the message, and retry once the operation has finished ([`media`](#media) and the [`media.indexing`](notifications.md) notification report it). A running scrape does not refuse the update.
+
+| Message                                  | Operation holding the media database        |
+| :--------------------------------------- | :------------------------------------------ |
+| `media indexing is in progress`          | Indexing.                                   |
+| `database optimization in progress`      | Optimization.                               |
+| `media database maintenance in progress` | Maintenance or recovery.                    |
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "a1b2c3d4-7a5d-11ef-9c7b-020304050607",
+  "error": {
+    "code": 1,
+    "message": "media indexing is in progress",
+    "data": {
+      "category": "busy"
+    }
+  }
+}
+```
+
+[`media.meta.update`](#mediametaupdate) is refused the same way. [`media.generate`](#mediagenerate) and [`media.scrape`](#mediascrape) report `busy` too when they cannot start because one of these operations, or another index or scrape, is running; their messages also include `indexing already in progress`, `scraping already in progress` and `scraping is in progress`.
+
+A Core that predates the category sends the same messages with no `data`.
 
 #### Example
 
@@ -1313,6 +1369,7 @@ An omitted or `null` value parameters key is also valid and will index every sys
 - The server will validate all provided system IDs and return an error if any are invalid
 - If all systems are specified (equivalent to no restriction), a full database rebuild will be performed for optimal performance
 - Selective indexing cannot be performed while database optimization is running
+- A request refused because indexing, scraping, optimization, maintenance or recovery is already running returns an error whose `data.category` is `busy`. See [media database busy errors](#media-database-busy-errors).
 - Resume functionality will validate that the system configuration hasn't changed between indexing sessions
 
 #### Result
@@ -1568,7 +1625,7 @@ Returns `null` on success.
 
 Return the most recent played media entry from the user database only. This is intended for startup paths that need the last played game as quickly as possible, without media database enrichment.
 
-This method does not return tags, metadata, media IDs, relative paths, pagination, end time, or play time.
+This method does not return tags, metadata, media IDs, ZapScript, pagination, end time, or play time.
 
 #### Parameters
 
@@ -1588,6 +1645,7 @@ None. Empty params may be omitted or sent as `{}`.
 | systemName | string | Yes      | Display name of the system from the history row. |
 | mediaName  | string | Yes      | Display name of the media from the history row. |
 | mediaPath  | string | Yes      | Path to the media file from the history row.    |
+| relativePath | string | No     | Launcher-relative convenience path, when it can be derived. Not a stable media identity. |
 | launcherId | string | Yes      | ID of the launcher used.                        |
 | startedAt  | string | Yes      | Timestamp when media started in RFC3339 format. |
 
@@ -1615,6 +1673,7 @@ None. Empty params may be omitted or sent as `{}`.
       "systemName": "Super Nintendo Entertainment System",
       "mediaName": "Super Mario World",
       "mediaPath": "/roms/snes/Super Mario World (USA).sfc",
+      "relativePath": "SNES/Super Mario World (USA).sfc",
       "launcherId": "SNES",
       "startedAt": "2025-01-22T14:30:00Z"
     }
@@ -1657,6 +1716,7 @@ Optionally, an object:
 | mediaName  | string | Yes      | Display name of the media.                             |
 | mediaPath  | string | Yes      | Path to the media file.                                |
 | relativePath | string | No     | Launcher-relative convenience path, when it can be derived. Not a stable media identity. |
+| zapScript  | string | No       | ZapScript command to launch this media item, in the same form `media.search` reports. Omitted when the history path cannot be resolved in the current media database. |
 | hasCover   | boolean | Yes     | Whether media-level or title-level image properties are available. |
 | coverColor | string  | No      | Average colour of the cover thumbnail as `#rrggbb`, for a placeholder while the image loads. Omitted until Core has built a thumbnail for the media through `media.image` with a `maxSize`. |
 | launcherId | string | Yes      | ID of the launcher used.                               |
@@ -1698,6 +1758,7 @@ Optionally, an object:
         "mediaName": "Super Mario World",
         "mediaPath": "/roms/snes/Super Mario World (USA).sfc",
         "relativePath": "snes/Super Mario World (USA).sfc",
+        "zapScript": "@SNES/Super Mario World",
         "hasCover": true,
         "launcherId": "SNES",
         "startedAt": "2025-01-22T14:30:00Z",
@@ -1752,6 +1813,7 @@ Optionally, an object:
 | mediaName     | string | Yes      | Display name of the media.                             |
 | mediaPath     | string | Yes      | Path to the media file (from most recent session).     |
 | relativePath  | string | No       | Launcher-relative convenience path, when it can be derived. Not a stable media identity. |
+| zapScript     | string | No       | ZapScript command to launch this media item, in the same form `media.search` reports. Omitted when the history path cannot be resolved in the current media database. |
 | totalPlayTime | number | Yes      | Total play time across all sessions in seconds.        |
 | sessionCount  | number | Yes      | Number of play sessions.                               |
 | lastPlayedAt  | string | Yes      | Timestamp of the most recent session in RFC3339 format. |
@@ -1788,6 +1850,7 @@ Optionally, an object:
         "mediaName": "Super Mario World",
         "mediaPath": "/roms/snes/Super Mario World (USA).sfc",
         "relativePath": "snes/Super Mario World (USA).sfc",
+        "zapScript": "@SNES/Super Mario World",
         "totalPlayTime": 7200,
         "sessionCount": 12,
         "lastPlayedAt": "2026-02-14T20:30:00Z",
@@ -1991,6 +2054,8 @@ Single requests return the existing single `media` response shape. Batch request
 | Key        | Type                                    | Required | Description                                           |
 | :--------- | :-------------------------------------- | :------- | :---------------------------------------------------- |
 | path       | string                                  | Yes      | Media file path.                                      |
+| relativePath | string                                | No       | Launcher-relative convenience path, when it can be derived. Not a stable media identity. |
+| zapScript  | string                                  | No       | ZapScript command to launch this media item, in the same form `media.search` reports. Omitted for a missing media row. |
 | parentDir  | string                                  | Yes      | Parent directory stored for the media row.            |
 | isMissing  | boolean                                 | Yes      | Whether the indexed file is currently missing.        |
 | tags       | [TagInfo](#taginfo-object)[]            | Yes      | ROM-level tags for this media row.                    |
@@ -2048,6 +2113,8 @@ Property keys are canonical type tags such as `property:description`, `property:
   "result": {
     "media": {
       "path": "/roms/snes/Super Mario World.sfc",
+      "relativePath": "SNES/Super Mario World.sfc",
+      "zapScript": "@SNES/Super Mario World",
       "parentDir": "/roms/snes",
       "isMissing": false,
       "tags": [
@@ -2138,6 +2205,8 @@ An object identifying the media row by `mediaId` or by `system` and canonical `p
 | Key   | Type                            | Required | Description                 |
 | :---- | :------------------------------ | :------- | :-------------------------- |
 | media | [MediaMeta](#media-meta-object) | Yes      | Updated metadata for row.   |
+
+While indexing, database optimization, maintenance or recovery owns the media database, the update is refused with an error whose `data.category` is `busy`. See [media database busy errors](#media-database-busy-errors).
 
 #### Example
 
@@ -2293,7 +2362,7 @@ An object identifying a media row by `mediaId` or identifying media/directory co
 
 Supported image type values are `image`, `thumbnail`, `boxart`, `boxart3d`, `screenshot`, `wheel`, `titleshot`, `map`, `marquee`, and `fanart`. They resolve to canonical property tags such as `property:image-image` and `property:image-boxart`.
 
-Resizing is intended for grid and preview views where transferring and holding full-size art is expensive. `maxSize` is snapped up to the nearest of a small set of standard tiers (`32`, `64`, `128`, `256`, `512`, `768`) server-side. The returned image is **never larger than the snapped tier and never larger than the source** — when the source already fits the tier it is returned at its native dimensions, so the result may still be larger than the exact `maxSize` you asked for. Request your true display size (logical size × pixel ratio) and downscale to the final size on the client. The snapped tiers bound how many resized variants are cached per image. Output is re-encoded as WebP (lossy, alpha preserved) regardless of source format — including when the source already fits the box, so even a near-native request still gets the smaller WebP — and cached on disk so repeat requests are cheap. The original bytes are kept only when WebP would not shrink them (already-compact sources), when `maxSize` is omitted/non-positive (full size), or when the source cannot be decoded.
+Resizing is intended for grid and preview views where transferring and holding full-size art is expensive. `maxSize` is snapped up to the nearest of a small set of standard tiers (`32`, `64`, `128`, `256`, `512`, `768`) server-side. The returned image is **never larger than the snapped tier and never larger than the source**: when the source already fits the tier it is returned at its native dimensions, so the result may still be larger than the exact `maxSize` you asked for. Request your true display size (logical size × pixel ratio) and downscale to the final size on the client. The snapped tiers bound how many resized variants are cached per image. Output that had to be scaled down is re-encoded as WebP (lossy, alpha preserved) regardless of source format, and cached on disk so repeat requests are cheap. A source that already fits the box is re-encoded as WebP too when it is larger than 64 KiB, so a near-native request for large art still gets the smaller WebP. The original bytes and content type are returned instead when the source already fits the box and is at most 64 KiB (the encode costs far more than the few kilobytes it would save on constrained devices), when WebP would not shrink them (already-compact sources), when `maxSize` is omitted/non-positive (full size), or when the source cannot be decoded. A resized request can therefore return `image/jpeg` or `image/png` as well as `image/webp`: read `contentType` rather than assuming WebP. The same applies to `localPath` delivery, where the cached file keeps the original's extension.
 
 When a resized thumbnail is built for a request whose image type preference list has more than one entry, Core records the image type it resolved to and the thumbnail's average colour. Later requests, including after a restart, are then served from the thumbnail cache without reading the original artwork, and list results (`media.browse`, `media.search`, `media.history`) report the colour as `coverColor`. A request for a single image type does not change the recorded cover. The records are cleared together with the thumbnail cache after indexing or scraping changes artwork.
 
@@ -6044,3 +6113,290 @@ Parameters may be omitted entirely, which is the same as `force: false`.
   }
 }
 ```
+
+## Device
+
+These methods describe and control the machine Core is running on. They are the same on every platform. A platform that cannot report or do something says so in `capabilities` instead of offering a different method.
+
+None of these methods is available to legacy clients or to Zaparoo Online remote operations.
+
+### device.status
+
+**Access:** Localhost or any authenticated client.
+
+Query the state of the device: its battery, network links, Bluetooth adapter, storage, displays, connected controllers, clock and identity.
+
+Core keeps this state current while at least one client holds a WebSocket or SSE connection, and sends [`device.changed`](notifications.md#devicechanged) when the part of it a status display needs has changed. Call this method once after connecting, then follow the notification. Do not poll it.
+
+A caller with no open connection, such as a one-off HTTP request, gets a fresh reading taken for that request.
+
+Every section key is always present. A section that is `null` is either unsupported on this device or has no reading yet; `capabilities.sections` says which. Within a section, a value that is not known is `null`.
+
+#### Parameters
+
+None.
+
+#### Result
+
+| Key          | Type                              | Required | Description                                                  |
+| :----------- | :-------------------------------- | :------- | :----------------------------------------------------------- |
+| capabilities | [Capabilities](#capabilities-object) | Yes   | What this device can report and do.                          |
+| power        | [Power](#power-object) \| null    | Yes      | The battery the device runs on.                              |
+| network      | [Network](#network-object) \| null | Yes     | Network links and internet reachability.                     |
+| bluetooth    | [Bluetooth](#bluetooth-object) \| null | Yes | The Bluetooth adapter.                                       |
+| storage      | [Storage](#storage-object) \| null | Yes     | The filesystems holding media and Core's data.               |
+| display      | [Display](#display-object) \| null | Yes     | What the device is showing its picture on.                   |
+| controllers  | [Controllers](#controllers-object) \| null | Yes | Connected game controllers.                              |
+| time         | [Time](#time-object)              | Yes      | The device clock.                                            |
+| system       | [System](#system-object) \| null  | Yes      | What the device is.                                          |
+
+##### Capabilities object
+
+| Key      | Type   | Required | Description                                                                                         |
+| :------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
+| sections | object | Yes      | Section name to `supported` or `unsupported`.                                                       |
+| actions  | object | Yes      | Method name to `supported` or `notPermitted`. An action the device cannot perform is left out.      |
+
+A key that is absent from either object means unsupported. Later versions of Core add sections and actions; a client must ignore keys it does not know.
+
+`actions` is worked out for the calling client. `notPermitted` means either the client lacks the capability the method requires, or the device's operating system refuses Core.
+
+##### Power object
+
+| Key           | Type            | Required | Description                                                                                             |
+| :------------ | :-------------- | :------- | :------------------------------------------------------------------------------------------------------ |
+| present       | boolean         | Yes      | Whether the device has a battery of its own.                                                            |
+| percent       | number \| null  | Yes      | Charge of the lowest battery, 0-100. Reported whether or not the device is charging.                    |
+| source        | string \| null  | Yes      | `battery` or `external`.                                                                                |
+| chargeState   | string \| null  | Yes      | `charging`, `discharging`, `full` or `notCharging`.                                                     |
+| timeRemaining | number          | No       | Estimated seconds until empty. Only present while discharging and when an estimate exists.              |
+| batteries     | Battery[]       | Yes      | Each battery: `id`, `percent`, `chargeState` and optional `timeRemaining`, with the meanings above.     |
+
+Batteries that belong to a peripheral, such as a wireless controller, are not reported here. A controller's battery is on its entry in `controllers`.
+
+Some hardware reports only a charge level. `source` and `chargeState` are then `null`.
+
+##### Network object
+
+| Key        | Type            | Required | Description                                                                                       |
+| :--------- | :-------------- | :------- | :------------------------------------------------------------------------------------------------ |
+| type       | string          | Yes      | Kind of link carrying the default route: `wifi`, `wired`, `other`, or `none` when there is none.  |
+| interface  | string \| null  | Yes      | Name of that interface.                                                                           |
+| internet   | string \| null  | Yes      | `full`, `portal` (something such as a sign-in page is answering in place of the internet) or `none`. |
+| interfaces | Interface[]     | Yes      | Each Wi-Fi and wired link: `name`, `type`, `up`, and `addresses` (loopback and link-local excluded). |
+
+`internet` comes from the operating system where it already checks reachability. Otherwise Core requests a small known page over plain HTTP, on a link change and then every five minutes while a client is connected. It is `null` until the first answer, and stays `null` when `internet_check = false` is set under `[service]` in the config and the operating system has no answer of its own.
+
+##### Bluetooth object
+
+| Key     | Type             | Required | Description                                                        |
+| :------ | :--------------- | :------- | :----------------------------------------------------------------- |
+| present | boolean          | Yes      | Whether the device has a Bluetooth adapter.                        |
+| powered | boolean \| null  | Yes      | Whether the adapter is switched on, where that can be read.        |
+
+Core reads the adapter's state and never changes it.
+
+##### Storage object
+
+| Key     | Type     | Required | Description                 |
+| :------ | :------- | :------- | :-------------------------- |
+| volumes | Volume[] | Yes      | One entry per filesystem.   |
+
+Each volume has `path` (where it is mounted, or a directory on it when that is not known), `roles` (`media`, `data`, or both), `totalBytes`, `freeBytes` (the space Core may use) and `usedBytes`.
+
+##### Display object
+
+| Key               | Type             | Required | Description                                                                              |
+| :---------------- | :--------------- | :------- | :--------------------------------------------------------------------------------------- |
+| internalPanel     | boolean          | Yes      | Whether the device has a built-in screen.                                                |
+| internalActive    | boolean          | Yes      | Whether the built-in screen is being driven.                                             |
+| externalConnected | boolean          | Yes      | Whether an external display is plugged in.                                               |
+| externalActive    | boolean          | Yes      | Whether an external display is being driven.                                             |
+| docked            | boolean \| null  | Yes      | Whether a device with a built-in screen is driving an external one. `null` without one.  |
+
+##### Controllers object
+
+| Key   | Type         | Required | Description                         |
+| :---- | :----------- | :------- | :---------------------------------- |
+| count | number       | Yes      | Number of connected controllers.    |
+| items | Controller[] | Yes      | The controllers.                    |
+
+| Controller key | Type            | Required | Description                                                                                  |
+| :------------- | :-------------- | :------- | :------------------------------------------------------------------------------------------- |
+| id             | string          | Yes      | Identifies the controller only while it stays connected.                                     |
+| name           | string \| null  | Yes      | The name the controller reports.                                                             |
+| vendorId       | string \| null  | Yes      | USB vendor ID, four lowercase hex digits.                                                    |
+| productId      | string \| null  | Yes      | USB product ID, four lowercase hex digits.                                                   |
+| connection     | string          | Yes      | `usb`, `bluetooth` or `unknown`.                                                             |
+| battery        | object \| null  | Yes      | `percent` (number or `null`) and `level` (`empty`, `low`, `medium` or `full`).               |
+
+Virtual controllers, including the one Core creates for [`input.gamepad`](#inputgamepad), are not listed.
+
+On Windows, controllers are read through XInput: at most four, with no name or IDs, and a battery `level` without a `percent`.
+
+##### Time object
+
+| Key           | Type            | Required | Description                                                                                   |
+| :------------ | :-------------- | :------- | :-------------------------------------------------------------------------------------------- |
+| clockReliable | boolean         | Yes      | `false` when the clock is clearly unset, as on a device with no clock battery before it syncs. |
+| timezone      | string \| null  | Yes      | IANA time zone name.                                                                          |
+| utcOffset     | number          | Yes      | Current offset from UTC in seconds.                                                           |
+
+##### System object
+
+| Key      | Type            | Required | Description                                  |
+| :------- | :-------------- | :------- | :------------------------------------------- |
+| hostname | string          | Yes      | The device's hostname.                       |
+| platform | string          | Yes      | Core's platform ID, as in [`version`](#version). |
+| os       | string          | Yes      | Operating system family, such as `linux`.    |
+| arch     | string          | Yes      | CPU architecture, such as `arm64`.           |
+| model    | string \| null  | Yes      | Hardware model, where the device reports one. |
+
+#### Example
+
+##### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "5e9f3a0e-7a5d-4d5c-9b6e-2f3d4c5b6a79",
+  "method": "device.status"
+}
+```
+
+##### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "5e9f3a0e-7a5d-4d5c-9b6e-2f3d4c5b6a79",
+  "result": {
+    "capabilities": {
+      "sections": {
+        "power": "supported",
+        "network": "supported",
+        "bluetooth": "supported",
+        "storage": "supported",
+        "display": "supported",
+        "controllers": "supported",
+        "time": "supported",
+        "system": "supported"
+      },
+      "actions": {
+        "device.power.reboot": "supported",
+        "device.power.shutdown": "supported",
+        "device.power.suspend": "supported"
+      }
+    },
+    "power": {
+      "present": true,
+      "percent": 96,
+      "source": "external",
+      "chargeState": "charging",
+      "batteries": [{ "id": "BAT1", "percent": 96, "chargeState": "charging" }]
+    },
+    "network": {
+      "type": "wifi",
+      "interface": "wlan0",
+      "internet": "full",
+      "interfaces": [{ "name": "wlan0", "type": "wifi", "up": true, "addresses": ["192.168.1.20"] }]
+    },
+    "bluetooth": { "present": true, "powered": true },
+    "storage": {
+      "volumes": [
+        {
+          "path": "/home",
+          "roles": ["media", "data"],
+          "totalBytes": 494384795648,
+          "freeBytes": 201863462912,
+          "usedBytes": 292521332736
+        }
+      ]
+    },
+    "display": {
+      "internalPanel": true,
+      "internalActive": false,
+      "externalConnected": true,
+      "externalActive": true,
+      "docked": true
+    },
+    "controllers": {
+      "count": 1,
+      "items": [
+        {
+          "id": "input17",
+          "name": "DualSense Wireless Controller",
+          "vendorId": "054c",
+          "productId": "0ce6",
+          "connection": "bluetooth",
+          "battery": { "percent": 80, "level": "full" }
+        }
+      ]
+    },
+    "time": { "clockReliable": true, "timezone": "Australia/Perth", "utcOffset": 28800 },
+    "system": { "hostname": "steamdeck", "platform": "steamos", "os": "linux", "arch": "amd64", "model": "Jupiter" }
+  }
+}
+```
+
+### device.power.reboot
+
+**Access:** Requires `device.power`.
+
+Restart the device. The response is sent before the device goes down.
+
+Check `capabilities.actions` in [`device.status`](#devicestatus) before offering this to a user: it lists the action only where the device can perform it, and marks it `notPermitted` where it cannot be used.
+
+The request is refused while a backup or restore is running.
+
+#### Parameters
+
+None.
+
+#### Result
+
+Returns `null` once the request has been accepted.
+
+#### Errors
+
+A refusal carries a `category` in the error's `data`:
+
+| Category        | Meaning                                                              |
+| :-------------- | :------------------------------------------------------------------- |
+| `unsupported`   | This device cannot perform the action.                               |
+| `not_permitted` | The device's operating system does not allow Core to perform it.     |
+| `busy`          | A backup or restore is running.                                      |
+
+#### Example
+
+##### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "0c1b2a39-4857-4a6b-8c9d-0e1f2a3b4c5d",
+  "method": "device.power.reboot"
+}
+```
+
+##### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "0c1b2a39-4857-4a6b-8c9d-0e1f2a3b4c5d",
+  "result": null
+}
+```
+
+### device.power.shutdown
+
+**Access:** Requires `device.power`.
+
+Power the device off. Access, parameters, result and errors are the same as [`device.power.reboot`](#devicepowerreboot).
+
+### device.power.suspend
+
+**Access:** Requires `device.power`.
+
+Put the device to sleep. Access, parameters, result and errors are the same as [`device.power.reboot`](#devicepowerreboot).

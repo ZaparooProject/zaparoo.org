@@ -249,6 +249,7 @@ Neo Geo games are also indexed as both `NeoGeo` and `NeoGeoMVS`. The MVS launche
 | `Groovy` | Groovy | `.gmc` |
 | `OpenBOR` | OpenBOR | `.pak` |
 | `Pico8` | PICO-8 | `.p8`, `.p8.png` |
+| `Script` | /media/fat/Scripts | `.sh` |
 | `ScummVM` | ScummVM | (special) |
 | `Solarus` | Solarus | `.sol` |
 | `Video` | Video, Movies, TV | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm` |
@@ -353,6 +354,12 @@ Or a folder:
 ```zapscript
 NeoGeo/mslug2
 ```
+
+### Scripts
+
+The `.sh` files in `/media/fat/Scripts`, including its subfolders, are indexed as the **Scripts** system after a media database update. Launching one runs it on screen, the same as picking it from MiSTer's Scripts menu, and Core returns to the MiSTer menu first if a core is running. Scripts are listed by file name. Hidden folders such as `.config` are skipped.
+
+A script launched this way gets no arguments. Use the [`mister.script`](../../zapscript/mister.md#misterscript) command to pass arguments or run a script hidden.
 
 ### ScummVM
 

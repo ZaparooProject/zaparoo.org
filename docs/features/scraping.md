@@ -141,7 +141,7 @@ SNES/media/screenshot/Super Mario World.png
 
 Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxart3d`, `screenshot`, `thumbnail`, `marquee`, `wheel` (and `logo`), `fanart`, `titleshot`, and `map`. Supported image types are PNG, JPG, JPEG, and WEBP. Games in subfolders are matched against the mirrored path first, then the flat filename.
 
-A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist. Any other folder can have artwork too: for `SNES/RPGs/`, Core checks `SNES/media/boxart/RPGs.png` and shows it as the folder's cover in clients that display folder art. It does not make the folder launchable.
+A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist. Any other folder can have artwork too: for `SNES/RPGs/`, Core checks `SNES/media/boxart/RPGs.png` and shows it as the folder's cover in clients that display folder art. It does not make the folder launchable. To keep folder artwork apart from game artwork, put it in `media/folders/` or `media/folder/`. Core checks those first for folders and never uses them for a game.
 
 When a system exists in more than one indexed root, such as the normal games folder plus an [`index_root`](../core/config/launchers.md#index_root), Core checks each root's `media/` folder in root order and uses the first matching file. The same lookup applies when `gamelist.xml` falls back to `media/`. This lets setups with ROMs on one root and artwork on another use the same EmulationStation `media/` folder layout.
 
@@ -149,16 +149,19 @@ A force re-scrape also removes image references that follow this naming conventi
 
 ### mister-docs
 
-The `mister-docs` scraper is MiSTer only. It imports artwork, game information, synopses, and manuals from the **Game Artwork DBs** and **Game Manuals (EN) DBs** that [Update All](https://github.com/theypsilon/Update_All_MiSTer) installs under `docs/<system>/` on any MiSTer storage root, including the SD card, USB drives, network storage, and custom index roots. The artwork databases follow the [MiSTer Artwork Pack](https://github.com/chipster6502/MiSTer_artwork_pack) format. It never downloads anything itself.
+The `mister-docs` scraper is MiSTer only. It imports artwork, screenshots, title screens, game information, synopses, and manuals from the **Game Artwork DBs** and **Game Manuals (EN) DBs** that [Update All](https://github.com/theypsilon/Update_All_MiSTer) installs under `docs/<system>/` on any MiSTer storage root, including the SD card, USB drives, network storage, and custom index roots. The artwork databases follow the [MiSTer Artwork Pack](https://github.com/chipster6502/MiSTer_artwork_pack) format. It never downloads anything itself.
 
 In each system's `docs` folder it reads:
 
 - `Artwork/index.tsv` and the images it lists, which become box art.
+- `Screenshots/index.tsv` and `Titles/index.tsv` and the images they list, which become screenshots and title screens. These are separate packs in the same format.
 - `gameinfo.tsv`, if present, which becomes `year`, `genre`, `developer`, and `players` [tags](./tags.md). Games it lists without an image still get their metadata.
 - `synopsis_<lang>.tsv` files, if present, which become the game's description. Core uses the first language in [`media.default_langs`](../core/config/media.md#default_langs) that the pack has, then English, then whatever is there.
 - PDF files in a child folder whose name contains `manual`, which become the game's manual.
 
-Games are matched by their catalogued ROM name first, or for arcade by the set name inside each `.mra` file, then by a unique title. Update All's **Game Manuals (EN) DBs** provide the manuals. Run the scraper again after Update All refreshes the packs; a force run also removes box art and manual references whose files are gone.
+Games are matched by their catalogued ROM name first, or for arcade by the set name inside each `.mra` file, then by a unique title. Update All's **Game Manuals (EN) DBs** provide the manuals.
+
+It runs on its own after a media database update, for the systems that were updated, and only fills in what a game is missing. Run it by hand to import newly installed packs sooner, and with force to replace what is stored; a force run also removes box art, screenshot, title screen, and manual references whose files are gone.
 
 ### mister-arcade
 
