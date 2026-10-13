@@ -19,7 +19,7 @@ Use the [Core terminal UI](../core/tui.md) on the device:
 3. Enter a name, role, PIN, and any playtime limit overrides.
 4. Select **Save**.
 
-You can also create and manage profiles from the [Zaparoo App](../app/index.md) under **Settings > Play Controls**.
+You can also create and manage profiles from the [Zaparoo App](../app/index.md) under **Settings > Play controls**.
 
 The first profile is always an administrator and requires a 4-8 digit PIN. Later profiles default to the member role. Core prevents you from deleting or demoting the final administrator profile.
 

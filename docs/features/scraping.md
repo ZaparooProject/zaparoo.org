@@ -21,7 +21,7 @@ On MiSTer, Zaparoo can browse ZIP archives like folders and index supported file
 
 Update the database after adding or removing media, installing games in a supported launcher, or changing launcher paths. Start an update from either interface:
 
-- In the Zaparoo App, open **Settings > Manage Media**, choose **All systems** or specific systems, then select **Update media database**.
+- In the Zaparoo App, open **Settings > Manage media**, choose **All systems** or specific systems, then select **Update media database**.
 - In the [terminal UI](../core/tui.md#managing-media), open **Manage media** and start an update.
 
 After changing settings, mappings, or custom launchers outside the app, [reload Core](../core/tui.md#reload-core) before updating the database. This lets Core rediscover launcher configuration before it scans for media.
