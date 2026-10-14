@@ -452,7 +452,9 @@ const config: Config = {
       appId: "77TW8QV8RJ",
       apiKey: "1a1a6d112273bca53b36497779516e42",
       indexName: "zaparoo",
-      contextualSearch: true,
+      // DocSearch crawls lag releases, so version-tag filters returned no
+      // results between a release and the next weekly crawl.
+      contextualSearch: false,
       searchPagePath: "search",
       insights: true,
     },
