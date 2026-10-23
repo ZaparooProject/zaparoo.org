@@ -16,7 +16,7 @@ keywords:
 
 [Zaparoo Online](https://online.zaparoo.com) is an optional companion service for features that need an account or cloud connection. It backs up Zaparoo data from every Core platform, including supported [MiSTer](../platforms/mister/index.md) and [SteamOS](../platforms/steamos/index.md) settings and saves. It also syncs play history, favorites, and decks, gives apps access to your data, and manages virtual cards and decks. [Zaparoo Core](../core/index.md) continues to work without an Online account.
 
-Cloud backup requires Warp, the paid tier of Zaparoo Online. Play history sync, Library sync, the User API, and virtual cards and decks are free. Remote control through the User API is free for one device at a time and unlimited with Warp.
+Cloud backup requires Warp, which is how you support Zaparoo and pay for its hosted features. Play history sync, Library sync, the User API, and virtual cards and decks are free. Remote control through the User API is free on every device.
 
 Online currently provides:
 
@@ -26,6 +26,7 @@ Online currently provides:
 - **User API:** give apps scoped access to data from your account
 - **Remote control:** let apps you authorize send approved commands to a device that has opted in
 - **Virtual cards and decks:** create cards and collections online, then write them to physical NFC tags
+- **Public profiles and Discover:** share decks on your profile, and browse, save, and remix other people's public decks
 
 :::info Optional Online Service
 Zaparoo Online is a proprietary service operated by [Wizzo Pty Ltd](https://wizzo.au/). It complements the open-source Zaparoo projects without replacing local functionality. Linking a device does not enable cloud backup, play history sync, or Library sync automatically.
@@ -42,7 +43,7 @@ Linking a device does not turn on cloud backup, play history sync, Library sync,
 
 ## Cloud backup with Warp
 
-Warp is the optional paid tier for Zaparoo Online. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase (the App's paid phone-as-reader feature) linked from the App, so Pro works on both Android and iOS.
+Warp is how you support Zaparoo and pay for its hosted features. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase (the App's paid phone-as-reader feature) linked from the App, so Pro works on both Android and iOS.
 
 Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer and SteamOS snapshots can also contain supported platform settings, saves, and save states. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 
@@ -100,9 +101,7 @@ Turning Library sync off removes the device's game list from your account and st
 
 Apps you authorize through the [User API](#user-api) can send commands to a device once that device opts in: turn on **Remote control** under **Settings > Online** in the terminal UI. A remote command can launch a game or a system, stop what is playing, search and browse the library, or run a MiSTer script, and each one is recorded on the device under **Remote control activity**. Unlinking the device turns it off again.
 
-Free accounts can remote-control one device at a time. Warp subscribers are not limited.
-
-The **Remote status** line under the toggle shows whether Online can currently reach the device, including when a free account's remote slot is held by another device. Select it for an explanation of what to do.
+The **Remote status** line under the toggle shows whether Online can currently reach the device. Select it for an explanation of what to do.
 
 ## User API
 
@@ -146,6 +145,12 @@ Physical Zaparoo cards that come with a code can be added to your account under 
 Use the [Zaparoo App](../app/index.md) to write cards and decks to physical NFC tags.
 
 On a device, a deck is a [saved playlist](../features/playlists.md#deck) that any token can open with `**playlist.play:deck://<id>`. Create and edit decks in Online or in the [Zaparoo App](../app/index.md#decks), and [Library sync](#library-sync) keeps the device and your account in step. A [Zap Link](../zapscript/zap-links.md) to a shared deck opens it as a playlist too, and the device keeps a read-only copy so the link works offline after that.
+
+## Public profiles and Discover
+
+Set a deck's visibility to **Public** to list it on your profile and in Discover. A public deck needs a claimed username, with **Hide my ownership** turned off. Your profile is at `online.zaparoo.com/u/<username>`, with the short link `zaparoo.online/<username>`.
+
+[Discover](https://online.zaparoo.com/discover) lists public decks sorted by **Popular**, **New**, or **Most remixed**. Save a deck to find it again under **Saved**, or remix a public or unlisted deck to copy it into your own decks, credited "Remixed from @user". Profiles, Discover, saving, and remixing are free.
 
 ## Your account
 

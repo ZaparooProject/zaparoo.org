@@ -13,7 +13,7 @@ export const products = {
     short: "Warp",
     // One sentence, reused verbatim wherever Warp is introduced.
     summary:
-      "Warp is the paid tier of Zaparoo Online. It backs up your Zaparoo data off-site automatically and restores it to this device or a replacement, and it includes Zaparoo App Pro while you subscribe.",
+      "Warp is how you support Zaparoo and pay for its hosted features. It backs up your Zaparoo data off-site automatically and restores it to this device or a replacement, and it includes Zaparoo App Pro while you subscribe.",
     freeLine: "Local backups are always free.",
     tagline: "Never lose a save to a dead SD card.",
     shortPitch:
@@ -37,7 +37,7 @@ export const products = {
   online: {
     name: "Zaparoo Online",
     summary:
-      "Zaparoo Online is a free, optional account for play history sync, virtual cards and decks, and the User API. Cloud backup is its paid tier, Warp.",
+      "Zaparoo Online is a free, optional account for play history sync, virtual cards and decks, and the User API. Warp adds cloud backup and supports development.",
     url: "https://online.zaparoo.com",
   },
   appPro: {

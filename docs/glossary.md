@@ -18,7 +18,7 @@ Short definitions of the words used across these docs, with a link to the page t
 - **Core API**: the local JSON-RPC API that Core exposes. The App, Web UI, and third-party tools all talk to Core through it. See the [Core API reference](./core/api/index.md).
 - **Zaparoo Frontend**: a TV and controller-friendly interface for browsing and launching your library on MiSTer. See [Zaparoo Frontend](./frontend/index.mdx).
 - **Zaparoo Online**: a free, optional account for play history sync, virtual cards and decks, and the User API. See [Zaparoo Online](./online/index.md).
-- **Warp**: the paid tier of Zaparoo Online. Automatic off-site backups of your Zaparoo data (plus saves and settings on MiSTer), with App Pro included. See [cloud backup](./features/backups.md#cloud-backup).
+- **Warp**: how you support Zaparoo and pay for its hosted features. Automatic off-site backups of your Zaparoo data (plus saves and settings on MiSTer), with App Pro included. See [cloud backup](./features/backups.md#cloud-backup).
 - **Zaparoo Designer**: the web app for designing printable card labels. See [Zaparoo Designer](./designer/index.md).
 - **ZapESP32**: open-source firmware that turns an ESP32 board into a wireless NFC reader. See [ZapESP32](./zapesp32/index.md).
 - **Zaparoo Shop**: official readers, cards, and starter kits, tested with Zaparoo. Purchases fund development. See the [Zaparoo Shop](https://shop.zaparoo.com).
