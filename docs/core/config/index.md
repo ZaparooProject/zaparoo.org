@@ -255,7 +255,7 @@ delay = 5
 require_confirm = false
 
 [[readers.connect]]
-driver = 'acr122pcsc'
+driver = 'ccid'
 path = 'ACS ACR122 0'
 
 [[readers.connect]]

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 slug: acr122u
-description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, Windows PC/SC, Linux libnfc auto-detect, and troubleshooting.
+description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, the ccid driver, manual configuration, and Windows troubleshooting.
 keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
 ---
 
@@ -11,62 +11,52 @@ keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, 
 
 The ACR122U, also sold as ACR122, is a USB NFC reader in a finished case with a built-in cable, status LED, and beeper. It can scan supported Zaparoo [NFC tags](../../tokens/nfc/index.md) and cards, but it has more compatibility caveats than the [PN532 USB](./pn532-usb.md).
 
-Internally it uses a PN532 NFC chip, but the host device does not talk to that chip the same way it talks to PN532 USB modules. Zaparoo uses different ACR122U drivers depending on the platform.
+Core talks to it through the `ccid` driver, which supports USB smart card readers with a contactless slot. The same driver handles the [ACS ACR1552U, Feitian bR500, and other USB smart card readers](./usb-smart-card-readers.md).
 
 :::warning Before you buy
 If you're buying your first reader, a [PN532 USB](./pn532-usb.md) is a safer choice. It avoids the ACR122U clone compatibility issues described below. The <ProductLink href="https://shop.zaparoo.com/" store="shop">Zaparoo Shop</ProductLink> stocks official PN532 readers that support the project.
 :::
 
 :::info
-The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so new listings are usually clone hardware. Internal differences between clones can affect Zaparoo compatibility, and they are not always visible from the listing. Some clones only work through [PC/SC](https://pcscworkgroup.com/specifications/), which means they may work on Windows but fail on Linux-based Zaparoo platforms where [Zaparoo Core](../../core/index.md) uses [libnfc](https://github.com/nfc-tools/libnfc) for this reader.
+The ACR122U is no longer produced by its original designer [ACS](https://www.acs.com.hk/en/), so new listings are usually clone hardware. Internal differences between clones can affect Zaparoo compatibility, and they are not always visible from the listing.
 :::
 
 ## Platforms
-
-:::warning Linux-based platforms
-Zaparoo uses the libnfc ACR122U driver on Linux-based platforms. [NTAG](../../tokens/nfc/index.md) read/write support works, but [MIFARE Classic](../../tokens/nfc/mifare.md) write support is limited and some MIFARE cards may need manual formatting or may not work. The reader LED and beeper also do not work with this driver, and some clone variants are incompatible.
-:::
 
 <PlatformSupport readerId="acr122u" />
 
 ## Configure the reader
 
-On Linux-based platforms, Core uses the `libnfcacr122` driver. It is enabled, but it does not search for the reader until you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect):
+The `ccid` driver is enabled and auto-detects the ACR122U when you plug it in, so most setups need no configuration. It can read and write [NTAG](../../tokens/nfc/index.md) and [MIFARE Classic](../../tokens/nfc/mifare.md) tags.
+
+On Windows and on Linux systems running the PC/SC service (`pcscd`), Core goes through that service. Elsewhere, such as on MiSTer, it talks to the reader over USB directly, so no extra software is needed.
+
+### Manual configuration
+
+If you have more than one smart card reader and need to pick one, add a connection with the reader's PC/SC name as the `path`:
+
+```toml
+[[readers.connect]]
+driver = "ccid"
+path = "ACS ACR122 0"
+```
+
+On Windows, the name is listed in [Device Manager](https://www.lifewire.com/device-manager-2625860) under **Smart card readers**. Connections written for the old `acr122pcsc` driver still work.
+
+### libnfc driver
+
+The older `libnfcacr122` driver is still available on Linux-based platforms. It is enabled but does not search for the reader unless you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect):
 
 ```toml
 [readers.drivers.libnfcacr122]
 auto_detect = true
 ```
 
-The driver does not need a PC/SC daemon, but some clone variants are incompatible, and it is normal for the reader LED and beeper not to react when scanning a card.
-
-On Windows, Core uses the `acr122pcsc` driver through PC/SC and auto-detects the reader. This can scan tags, but writing tags through Zaparoo is not supported with this driver.
-
-### Manual configuration
-
-If auto-detection fails or you need to specify a particular reader, you can manually configure it.
-
-On Windows, the `path` must match the PC/SC reader name:
-
-```toml
-[[readers.connect]]
-driver = "acr122pcsc"
-path = "ACS ACR122 0"
-```
-
-To find the PC/SC reader name, check [Device Manager](https://www.lifewire.com/device-manager-2625860) under **Smart card readers**.
-
-## Linux-based platforms
-
-An ACR122U on Linux-based platforms is detected once auto-detect is turned on for the `libnfcacr122` driver, as shown above. If the reader is detected but the LED and beeper do not react, that is expected with the libnfc driver.
-
-If the reader lights up or beeps but Core does not detect scans, it may be a clone that only works through PC/SC.
+Use it only if the `ccid` driver cannot read your reader. Its LED and beeper do not react when scanning a card.
 
 ## Windows
 
 On Windows, the reader should appear under **Smart card readers** in Device Manager. The LED usually lights red and flashes green when a card is scanned. The reader may also beep on scan.
-
-The Windows PC/SC driver can scan tags, but it cannot write tags through Zaparoo. If you want to write tags from Zaparoo, use a [PN532 USB](./pn532-usb.md) or the [Zaparoo App](../../app/index.md) instead.
 
 ### Troubleshooting
 

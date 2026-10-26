@@ -34,7 +34,7 @@ Simulates keyboard key presses.
 **`keys`** (required)
 The keys to press. Each parsed key is pressed with a short delay between keys, 100ms by default and configurable with the `speed` advanced argument. Special keys are entered using curly braces.
 
-**Special keys:** `{esc}`, `{backspace}`, `{tab}`, `{enter}`, `{lctrl}`, `{lshift}`, `{backslash}`, `{rshift}`, `{lalt}`, `{space}`, `{caps}`, `{num}`, `{scroll}`, `{f1}`-`{f12}`, `{home}`, `{up}`, `{pgup}`, `{left}`, `{right}`, `{end}`, `{down}`, `{pgdn}`, `{ins}`, `{del}`, `{volup}`, `{voldn}`
+**Special keys:** `{esc}`, `{backspace}`, `{tab}`, `{enter}`, `{lctrl}`, `{rctrl}`, `{lshift}`, `{backslash}`, `{rshift}`, `{lalt}`, `{ralt}`, `{space}`, `{caps}`, `{num}`, `{scroll}`, `{f1}`-`{f12}`, `{home}`, `{up}`, `{pgup}`, `{left}`, `{right}`, `{end}`, `{down}`, `{pgdn}`, `{ins}`, `{del}`, `{volup}`, `{voldn}`
 
 **Escaping:** Use `\{` and `\}` for literal curly braces, `\\` for a literal backslash.
 

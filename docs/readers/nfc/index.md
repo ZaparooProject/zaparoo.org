@@ -15,7 +15,8 @@ If you are buying your first reader, start with the [PN532 USB](./pn532-usb.md).
 | --- | --- | --- |
 | [PN532 USB](./pn532-usb.md) | You want a USB reader that works without wiring. | Some versions of Windows may need a third-party USB serial driver. |
 | [PN532 Module](./pn532-module.md) | You are building a custom reader or embedding NFC in another project. | Requires wiring, soldering, and a USB-to-serial adapter or direct bus connection. |
-| [ACR122U](./acr122u.md) | You already have one, or you specifically want this reader style. | Clone hardware support varies, and Windows scanning is read-only in Zaparoo. |
+| [ACR122U](./acr122u.md) | You already have one, or you specifically want this reader style. | Clone hardware support varies. |
+| [USB smart card readers](./usb-smart-card-readers.md) | You have an ACR1552U, Feitian bR500, or another USB smart card reader with an NFC slot. | Only some models are tested, and Bluetooth is not supported. |
 | [RC522](./rc522.md) | You have a microcontroller project that can send scans to Core. | Not a direct Zaparoo NFC reader; it needs the [Simple Serial protocol](../simple-serial.md). |
 
 ## Is my reader compatible?
@@ -26,7 +27,7 @@ Before trying manual configuration, identify how the reader appears to the opera
 
 - A PN532 USB reader normally appears as a serial device, such as a COM port on Windows or `/dev/ttyUSB0` on Linux.
 - If scanning a card types digits into Notepad or another text field, the device is a keyboard-emulation reader. It is not a PN532 reader and cannot be configured as one.
-- Payment and CCID smart-card readers are not automatically compatible. Support for one PC/SC reader, such as the ACR122U on listed platforms, does not imply support for every CCID device.
+- A USB smart card reader with a contactless slot can work through the [`ccid` driver](./usb-smart-card-readers.md), but only the ACR122U, ACR1552U, and Feitian bR500 have been tested. Contact-only smart card and payment readers cannot read NFC tags.
 
 On Windows, check Device Manager for the device name and assigned COM port. On Linux, use `lsusb` and check whether a serial device appears. Compare what you find with the [supported-reader table](../index.md#comparison) before adding a manual reader entry.
 
@@ -34,7 +35,7 @@ On Windows, check Device Manager for the device name and assigned COM port. On L
 
 PN532 readers can read and write supported NFC tags through Zaparoo. That includes [NTAG](../../tokens/nfc/index.md) tags and [MIFARE Classic](../../tokens/nfc/mifare.md), though NTAG is the better choice when buying new tags.
 
-ACR122U support depends on the platform and driver. It can scan on Windows through PC/SC, but writing tags through Zaparoo is not supported there. On Linux-based platforms, Core uses [libnfc](https://github.com/nfc-tools/libnfc) for ACR122U support.
+The ACR122U and other [USB smart card readers](./usb-smart-card-readers.md) can read and write NTAG and MIFARE Classic tags.
 
 RC522 setups are read-only from Zaparoo's point of view because the microcontroller sends scan text over Simple Serial.
 

@@ -50,6 +50,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `IntellivisionAmico` | Intellivision Amico | `Intellivision Amico`, `Amico` | |
 | `Jaguar` | Atari Jaguar | | |
 | `JaguarCD` | Atari Jaguar CD | | `Jaguar` |
+| `LaserActive` | Pioneer LaserActive | | |
 | `LeapTV` | LeapTV | `LeapFrog LeapTV` | |
 | `MagnavoxOdyssey` | Magnavox Odyssey | `Magnavox Odyssey`, `Odyssey` | |
 | `MasterSystem` | Sega Master System | `SMS` | |
@@ -201,7 +202,8 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `ColecoAdam` | Coleco Adam | | |
 | `CommanderX16` | Commander X16 | | |
 | `CommodorePlus4` | Commodore Plus/4 | `Commodore Plus/4`, `Plus/4`, `Plus4`, `CPlus4`, `C+4` | |
-| `DOS` | MS-DOS | `ao486` | `PC` |
+| `DOS` | MS-DOS | `ao486` | `PC`, `Doom` |
+| `Doom` | Doom | | `DOS` |
 | `Dragon32` | Dragon 32/64 | `Dragon 32/64`, `Dragon 32`, `Dragon 64` | |
 | `EDSAC` | EDSAC | | |
 | `EG2000` | EACA EG2000 Colour Genie | | |

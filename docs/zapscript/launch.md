@@ -146,7 +146,7 @@ TurboGrafx16/Game.pce
 PCEngine/Game.pce
 ```
 
-Works across different devices with the same internal folder structure. System aliases are supported.
+Works across different devices with the same internal folder structure. System aliases are supported. On Windows, a backslash works as the separator too, such as `Dreamcast\Game.chd`.
 
 #### Absolute path
 
@@ -356,6 +356,8 @@ One of the following formats:
 | `all`                     | Random from any system         |
 | `/path/to/folder`         | Random file from a folder      |
 | `<system>/*pattern*`      | Random indexed media matching a search query |
+| `deck://<id>`             | Random item from a [deck](../features/playlists.md#deck) |
+| Kodi collection           | Random episode or song from a [Kodi show, album, or artist](../features/playlists.md#kodi-collection) |
 
 When the selected [system has fallbacks](../features/systems.md#usage-notes), Core tries the requested system first and only moves to the next fallback tier when no matching media exists.
 
@@ -370,6 +372,9 @@ If the picked game cannot be launched, Core tries another candidate, up to 16 in
 | `action`            | string     | `run`   | `run` to launch, `details` to show info                            |
 | `set_name`          | string     | -       | Platform-specific launcher/core name override                      |
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
+| `advance`           | duration   | -       | Roll a new random game after this much playing time                |
+| `idle`              | duration   | -       | Roll a new random game after this long with no input               |
+| `countdown`         | duration   | `10s`   | Countdown before an automatic roll. Needs `advance` or `idle`      |
 
 ### Examples
 
@@ -408,6 +413,14 @@ Launch a random Mario game from any system:
 ```zapscript
 **launch.random:all/*mario*
 ```
+
+Launch a random arcade game, and switch to another one every 15 minutes:
+
+```zapscript
+**launch.random:Arcade?advance=15m
+```
+
+`advance` and `idle` turn the command into a one-item playlist that repeats, so it keeps rolling until you stop it or launch something else. They work the same way as on [playlists](../features/playlists.md#timed-and-idle-switching).
 
 `all` leaves out the `Script` and `Application` systems, so a random pick never runs a script or opens an app. Name either system to include it.
 

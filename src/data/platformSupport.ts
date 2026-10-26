@@ -189,14 +189,12 @@ export const platformSupportByReader = {
           {
             "name": "Windows",
             "href": "platforms/windows/",
-            "support": "limited",
-            "note": "Scanning works through PC/SC. Writing tags through Zaparoo is not supported."
+            "support": "supported"
           },
           {
             "name": "Linux",
             "href": "platforms/linux/",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           }
         ]
       },
@@ -206,8 +204,7 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           }
         ]
       },
@@ -217,14 +214,12 @@ export const platformSupportByReader = {
           {
             "name": "Batocera",
             "href": "platforms/batocera/",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           },
           {
             "name": "RePlayOS",
             "href": "platforms/replayos",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           }
         ]
       },
@@ -234,20 +229,17 @@ export const platformSupportByReader = {
           {
             "name": "SteamOS",
             "href": "platforms/steamos",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           },
           {
             "name": "Bazzite",
             "href": "platforms/bazzite",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           },
           {
             "name": "ChimeraOS",
             "href": "platforms/chimeraos",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
           }
         ]
       },
@@ -257,8 +249,81 @@ export const platformSupportByReader = {
           {
             "name": "LibreELEC",
             "href": "platforms/libreelec",
-            "support": "limited",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            "support": "supported"
+          }
+        ]
+      }
+    ]
+  },
+  "usb-smart-card": {
+    "groups": [
+      {
+        "name": "Base OS",
+        "platforms": [
+          {
+            "name": "Windows",
+            "href": "platforms/windows/",
+            "support": "supported"
+          },
+          {
+            "name": "Linux",
+            "href": "platforms/linux/",
+            "support": "supported"
+          }
+        ]
+      },
+      {
+        "name": "FPGA",
+        "platforms": [
+          {
+            "name": "MiSTer",
+            "href": "platforms/mister/",
+            "support": "supported"
+          }
+        ]
+      },
+      {
+        "name": "Retro Gaming OS",
+        "platforms": [
+          {
+            "name": "Batocera",
+            "href": "platforms/batocera/",
+            "support": "supported"
+          },
+          {
+            "name": "RePlayOS",
+            "href": "platforms/replayos",
+            "support": "supported"
+          }
+        ]
+      },
+      {
+        "name": "Handheld and Gaming Linux",
+        "platforms": [
+          {
+            "name": "SteamOS",
+            "href": "platforms/steamos",
+            "support": "supported"
+          },
+          {
+            "name": "Bazzite",
+            "href": "platforms/bazzite",
+            "support": "supported"
+          },
+          {
+            "name": "ChimeraOS",
+            "href": "platforms/chimeraos",
+            "support": "supported"
+          }
+        ]
+      },
+      {
+        "name": "Media Center",
+        "platforms": [
+          {
+            "name": "LibreELEC",
+            "href": "platforms/libreelec",
+            "support": "supported"
           }
         ]
       }

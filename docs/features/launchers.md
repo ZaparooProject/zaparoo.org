@@ -85,12 +85,19 @@ Built-in launcher support currently includes:
 
 | Launcher | Supported actions |
 | -------- | ----------------- |
-| Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
-| Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
+| MiSTer and MiSTeX cores | `toggle_menu`, `reset`, `stop`, plus `save_state` and `load_state` on cores with save states |
+| Batocera EmulationStation launchers | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `next` (next disc), `stop`, as far as the running emulator supports them |
+| RePlayOS launchers | `save_state`, `load_state`, `reset`, `stop`. Needs [net control](../platforms/replayos.md#launcher-controls) turned on |
+| Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
+| Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `pause`, `resume`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
 | Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |
 
 EmuDeck standalone emulator launchers and RetroDECK launchers do not currently define built-in launcher controls.
+
+On MiSTer, Batocera, and RePlayOS, controls also work on games started from the system's own menu, not only games Zaparoo launched.
+
+`save_state` and `load_state` take an optional `slot` argument, such as `**control:save_state?slot=2`. MiSTer accepts slots 1 to 4 and RePlayOS 1 to 18, and the default is slot 1. Batocera picks the slot itself and rejects the argument.
 
 To control [background audio](./audio.md) instead of the active game, add `?slot=background` to the control action.
 

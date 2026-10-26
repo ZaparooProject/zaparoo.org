@@ -1,8 +1,8 @@
 ---
 sidebar_position: 8
 sidebar_label: Media Database and Scraping
-description: "Update the Zaparoo Core media database, download libretro artwork, or import local metadata, covers, and manuals."
-keywords: [zaparoo media database, zaparoo scraper, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, mister arcade metadata]
+description: "Update the Zaparoo Core media database, download libretro artwork, fill in GameDataBase game info, or import local metadata, covers, and manuals."
+keywords: [zaparoo media database, zaparoo scraper, gamedatabase, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, mister arcade metadata]
 ---
 
 # Media Database and Scraping
@@ -32,7 +32,7 @@ A folder that holds one game, such as a PlayStation folder with one `.cue` and i
 
 Arcade set archives and ScummVM launch files get readable titles from their projects' game lists when Core recognizes the set or game ID. For example, `dkong.zip` becomes **Donkey Kong** and `sky.scummvm` becomes **Beneath a Steel Sky**. Update the media database to apply these names to an existing library.
 
-The [`libretro-thumbnails`](#libretro-thumbnails) source downloads artwork when you run it. The other sources import files already on your device, such as packs installed by Update All or artwork prepared with MiSTer Companion or Skraper.
+The [`libretro-thumbnails`](#libretro-thumbnails) source downloads artwork when you run it, and [`gamedatabase`](#gamedatabase) reads game information built into Core. The other sources import files already on your device, such as packs installed by Update All or artwork prepared with MiSTer Companion or Skraper.
 
 ## Running a scrape
 
@@ -54,7 +54,17 @@ Run it from your client's scraper picker. In [Zaparoo Frontend](../frontend/scra
 
 Core matches artwork by filename first, then by title and region. Arcade set archives and ScummVM launch files also match by their catalog titles. A game without matching artwork stays unchanged.
 
-Downloads are stored under `libretro-thumbnails/` in Core's data directory. Normal runs skip games already processed by this source and reuse downloaded files. Use a force re-scrape, called **Replace existing** in Frontend, to process them again and download fresh images.
+Downloads are stored under `libretro-thumbnails/` in Core's data directory. Normal runs skip games already processed by this source and reuse downloaded files. Use a force re-scrape, called **Replace existing** in Frontend, to process them again and download fresh images. When the thumbnail server cannot be reached, the scraper matches against the images already in that folder.
+
+### gamedatabase
+
+The `gamedatabase` scraper fills in game information from a copy of [GameDataBase](https://github.com/PigSaint/GameDataBase), by [PigSaint](https://github.com/PigSaint), that ships inside Core. It needs no download and runs on every platform.
+
+It adds genre, player count, controls, save type, add-on hardware, franchise, release year, developer, and publisher as [tags](./tags.md), and marks compilations. It does not add artwork, descriptions, or manuals.
+
+Console games are matched by title, and arcade games by MAME set name. When a title had several regional releases, Core prefers the region in the game's filename, then your [`media.default_regions`](../core/config/media.md#default_regions). A title that matches more than one different game is skipped. It covers Nintendo systems from the NES to the Nintendo 64 and Game Boy Advance, Sega systems from the SG-1000 to the Saturn, the PC Engine and PC-FX, Neo Geo Pocket, LaserActive, and arcade.
+
+It runs on its own after a media database update and only fills in what a game is missing. Run it with force to replace what it wrote.
 
 ### gamelist.xml
 
@@ -129,7 +139,7 @@ For other layouts, put the gamelist in a [custom bundle](#custom-gamelist-bundle
 
 The `media-folder` scraper imports artwork from EmulationStation-style `media/` folders without needing a `gamelist.xml`. Use it when you have media folders but no gamelist, or to pick up artwork a gamelist did not list.
 
-It only imports images. It does not read descriptions, tags, videos, or manuals.
+It only imports images. It does not read descriptions, tags, videos, or manuals. It runs on its own after a media database update and only fills in artwork a game is missing, so artwork you add to a `media/` folder shows up after the next update.
 
 For each game, it looks under `<system folder>/media/` in convention-named subfolders and matches files by the game's filename. For example, for `SNES/Super Mario World.sfc` it looks for files like:
 
@@ -139,7 +149,7 @@ SNES/media/boxart/Super Mario World.jpg
 SNES/media/screenshot/Super Mario World.png
 ```
 
-Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxart3d`, `screenshot`, `thumbnail`, `marquee`, `wheel` (and `logo`), `fanart`, `titleshot`, and `map`. Supported image types are PNG, JPG, JPEG, and WEBP. Games in subfolders are matched against the mirrored path first, then the flat filename.
+Common subfolders include `images`, `boxart` (and `cover`, `box2dfront`), `boxart3d`, `screenshot`, `thumbnail`, `marquee`, `wheel` (and `logo`), `fanart`, `titleshot`, and `map`. The libretro folder names `Named_Boxarts`, `Named_Snaps`, and `Named_Titles` work too, along with plurals such as `snaps` and `titles`. Folder names are matched without regard to case. Supported image types are PNG, JPG, JPEG, and WEBP. Games in subfolders are matched against the mirrored path first, then the flat filename.
 
 A per-game folder that Core shows as one game also matches artwork named after the folder, so `PSX/media/boxart/Cool Game.png` beside a `PSX/Cool Game/` disc folder works without a gamelist. Any other folder can have artwork too: for `SNES/RPGs/`, Core checks `SNES/media/boxart/RPGs.png` and shows it as the folder's cover in clients that display folder art. It does not make the folder launchable. To keep folder artwork apart from game artwork, put it in `media/folders/` or `media/folder/`. Core checks those first for folders and never uses them for a game.
 

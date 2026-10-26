@@ -111,7 +111,7 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
 | `AcornAtom` | AcornAtom | `.vhd` |
-| `AcornElectron` | AcornElectron | `.vhd` |
+| `AcornElectron` | AcornElectron | `.vhd`, `.uef` |
 | `AliceMC10` | AliceMC10 | `.c10` |
 | `Altair8800` | Altair8800 | `.rom` |
 | `Amiga` | Amiga | `.adf` |
@@ -124,7 +124,7 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | `AppleIIGS` | Apple-IIgs | `.hdv`, `.po`, `.2mg`, `.woz`, `.dsk`, `.do`, `.nib` |
 | `AppleIII` | Apple-III | `.woz`, `.dsk`, `.do`, `.po`, `.nib`, `.2mg`, `.hdv` |
 | `AppleLisa` | LISA | `.img`, `.vhd` |
-| `Aquarius` | AQUARIUS | `.bin`, `.caq` |
+| `Aquarius` | AQUARIUS | `.caq` |
 | `Atari800` | ATARI800 | `.atr`, `.xex`, `.xfd`, `.atx`, `.car`, `.rom`, `.bin` |
 | `BBCMicro` | BBCMicro | `.ssd`, `.dsd`, `.vhd` |
 | `BK0011M` | BK0011M | `.bin`, `.dsk`, `.vhd` |
@@ -159,8 +159,8 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | `ND120` | ND120 | `.img`, `.bpu`, `.tap` |
 | `NeXT` | NeXT | `.vhd`, `.img`, `.iso`, `.cue`, `.bin`, `.chd` |
 | `Orao` | ORAO | `.tap` |
-| `Oric` | Oric | `.dsk` |
-| `PC88` | PC8801 | `.d88` |
+| `Oric` | Oric | `.dsk`, `.tap`, `.sna` |
+| `PC88` | PC8801 | `.d88`, `.cmt`, `.t88` |
 | `PC98` | PC98 | `.d88`, `.hdm`, `.fdi`, `.vhd`, `.hdi`, `.hdf`, `.img`, `.ima`, `.iso`, `.bin`, `.pcd` |
 | `PCjr` | PCjr | `.img`, `.ima`, `.vfd`, `.jrc`, `.jrt` |
 | `PCXT` | PCXT | `.img`, `.vhd`, `.ima`, `.vfd` |
@@ -182,7 +182,7 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | `TI994A` | TI-99_4A | `.bin`, `.m99` |
 | `TK2000` | TK2000 | `.nib`, `.dsk`, `.do`, `.po` |
 | `TomyTutor` | TomyTutor | `.bin`, `.cas` |
-| `TRS80` | TRS-80 | `.dsk`, `.jvi`, `.cmd`, `.cas` |
+| `TRS80` | TRS-80 | `.dsk`, `.jvi`, `.jv1`, `.cmd`, `.cas` |
 | `TSConf` | TSConf | `.vhd` |
 | `TVC` | TVC | `.cas` |
 | `UK101` | UK101 | `.txt`, `.bas`, `.lod` |
@@ -190,13 +190,13 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | `VIC20` | VIC20 | `.d64`, `.g64`, `.prg`, `.tap`, `.crt` |
 | `VideoBrain` | VideoBrain | `.bin` |
 | `X68000` | X68000 | `.d88`, `.hdf`, `.mgl` |
-| `ZX81` | ZX81 | `.p`, `.0` |
-| `ZXSpectrum` | Spectrum | `.tap`, `.csw`, `.tzx`, `.sna`, `.z80`, `.trd`, `.img`, `.dsk`, `.mgt`, `.vhd` |
+| `ZX81` | ZX81 | `.p`, `.0`, `.o` |
+| `ZXSpectrum` | Spectrum | `.tap`, `.csw`, `.tzx`, `.sna`, `.z80`, `.trd`, `.img`, `.dsk`, `.mgt`, `.vhd`, `.pzx` |
 | `ZXNext` | ZXNext | `.vhd`, `.tzx`, `.csw` |
 
 ### Arcade Systems
 
-Core skips the folders and symlinks Arcade Organizer creates, so each arcade game is indexed once from its `.mra` file. If you browse your arcade games through those folders, set [`scan_duplicates`](../../core/config/launchers.md#scan_duplicates) on the `Arcade` launcher to index them too. Every copy becomes its own entry, so the arcade library grows several times over and indexing takes longer:
+Core indexes `.mra` files in `_Utility` as `Arcade` games too, such as MiSTercade test MRAs. It skips the folders and symlinks Arcade Organizer creates, so each arcade game is indexed once from its `.mra` file. If you browse your arcade games through those folders, set [`scan_duplicates`](../../core/config/launchers.md#scan_duplicates) on the `Arcade` launcher to index them too. Every copy becomes its own entry, so the arcade library grows several times over and indexing takes longer:
 
 ```toml
 [[launchers.default]]
@@ -208,7 +208,7 @@ After an arcade index, the [`mister-arcade`](../../features/scraping.md#mister-a
 
 | System ID | Folders | Extensions |
 |-----------|---------|------------|
-| `Arcade` | _Arcade | `.mra` |
+| `Arcade` | _Arcade, _Utility | `.mra` |
 | `Cave68000` | _Arcade | `.mra` |
 | `CPS1` | _Arcade | `.mra` |
 | `CPS2` | _Arcade | `.mra` |
@@ -260,7 +260,7 @@ Neo Geo games are also indexed as both `NeoGeo` and `NeoGeoMVS`. The MVS launche
 
 MiSTer's `_Other` folder holds standalone FPGA cores that run without a ROM file, like Chess, Flappy Bird, and Game of Life. Zaparoo exposes the supported ones as virtual systems ([launchables](../../features/launchers.md#launchables)) and indexes them when their core is installed, so they show up in browse and search and can be written to a token like any other game.
 
-Supported cores: Chess, Donut, Epoch Galaxy II, Flappy Bird, Game of Life, GBMidi, GenMidi, MiSTer Quake, Slug Cross, Sonic Mania, Tamagotchi, and Tomy Scramble.
+Supported cores: Chess, Donut, Epoch Galaxy II, Flappy Bird, Game of Life, GBMidi, GenMidi, MiSTer Quake, Slug Cross, Sonic Mania, Tamagotchi, and Tomy Scramble. The Groovy core in `_Utility` is exposed the same way when it is installed.
 
 Core also exposes two installed MGL shortcuts as launchables. `/media/fat/Load GB-GBC Cartridge.mgl` appears as the **Load GB/GBC Cartridge** console system, while `/media/fat/_Custom Cores/PapriumMD.mgl` appears as **Paprium** media under Genesis. Each entry is only indexed when its MGL file exists.
 
@@ -285,6 +285,17 @@ A new entry receives a stable identity based on its `id`. To rename, recategoriz
 Only cores you have installed are indexed. Restart Core or [reload it](../../core/cli.md#reload-core), then update the media database after adding or changing an `_Other` core entry.
 
 The 3S-ARM port of Street Fighter III: 3rd Strike also ships as an `_Other` core, but Zaparoo exposes it as virtual media under the `Arcade` system instead of as an Other core entry.
+
+### Computer cores
+
+On many computer cores, Core loads and starts the game for you. After the core has taken the file, Core types whatever the machine needs to run it, such as `LOAD"*",8,1` and `RUN` on the C64, using the core's own keyboard layout. This works for disks and tapes on the Commodore 64, 128, 16, and VIC-20, Amstrad CPC, ZX81, ZX Spectrum, Acorn Electron, BBC Micro, TRS-80, CoCo2, QL, BK0011M, Tatung Einstein, Vector-06C, and Oric.
+
+`.vhd` images that hold a collection of games are listed like folders, with each game inside as its own entry. Launching one boots the image and starts that game. This covers MMB images on the BBC Micro and Acorn Electron, and the SD card images used by the Acorn Atom, ZX Spectrum (esxDOS), ZX Spectrum Next, MSX, and Enterprise cores.
+
+Known limitations:
+
+- BBC Micro floppies on the Master model, the MSX ROM mapper, C64 tapes, CoCo2 disks, and CoCo3 cartridges need a core option set at launch. Only MiSTer Main builds that support options in MGL files can set it; older builds load the file without setting the option.
+- QL microdrive cartridges hang in the core on about half of all loads, even when loaded by hand.
 
 ### Companion-installed media cores
 

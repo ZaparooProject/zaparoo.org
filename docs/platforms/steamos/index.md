@@ -129,7 +129,8 @@ SteamOS supports portable [device backups](../../features/backups.md) that inclu
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Auto-detected |  |
+| NFC/RFID | [USB smart card readers](../../readers/nfc/usb-smart-card-readers.md) | Supported | Auto-detected |  |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
 | Barcode and QR | [RS-232 scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
@@ -194,7 +195,7 @@ systemctl --user restart zaparoo.service
 
 ### An NFC reader is not detected
 
-Reconnect the reader after installing NFC reader support. If support was skipped during installation, run repair mode and accept the NFC reader support prompt. The installed udev rule covers CH340-based PN532 USB readers and PN532Killer readers in UART mode; other serial readers may need separate device permissions. The hardware step also configures Linux module access for libnfc ACR122U readers.
+Reconnect the reader after installing NFC reader support. If support was skipped during installation, run repair mode and accept the NFC reader support prompt. The installed udev rules cover CH340-based PN532 USB readers, PN532Killer readers in UART mode, and USB smart card readers such as the ACR122U; other serial readers may need separate device permissions. The hardware step also configures Linux module access for libnfc ACR122U readers.
 
 ## FAQ
 

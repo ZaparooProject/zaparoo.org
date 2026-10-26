@@ -54,7 +54,7 @@ To install without the script, download Zaparoo Core for Linux from the [Downloa
 sudo ./zaparoo -install hardware  # Installs udev rules and hardware support
 ```
 
-For a complete installation, run all four commands. The `hardware` component adds a udev rule so users can read NFC reader serial devices and a modprobe blacklist entry that fixes ACR122U reader issues. Then enable and start the service:
+For a complete installation, run all four commands. The `hardware` component adds udev rules so users can read NFC reader serial devices and USB smart card readers, and a modprobe blacklist entry that fixes ACR122U reader issues. Then enable and start the service:
 
 ```bash
 systemctl --user enable zaparoo.service
@@ -93,7 +93,8 @@ Linux requires encrypted connections from remote clients. Pair a phone, browser,
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../../readers/nfc/acr122u.md) | Supported | Auto-detected |  |
+| NFC/RFID | [USB smart card readers](../../readers/nfc/usb-smart-card-readers.md) | Supported | Auto-detected |  |
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
 | Barcode and QR | [RS-232 scanner](../../readers/barcode/index.md) | Supported | Manual config |  |

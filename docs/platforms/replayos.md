@@ -45,7 +45,8 @@ Encryption is off by default on RePlayOS, so the Zaparoo App and browsers connec
 | ---- | ------ | ------- | ----- | ----- |
 | NFC/RFID | [PN532 USB](../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
 | NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
-| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Limited | Manual enable | Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible. |
+| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Auto-detected |  |
+| NFC/RFID | [USB smart card readers](../readers/nfc/usb-smart-card-readers.md) | Supported | Auto-detected |  |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
 | Barcode and QR | [RS-232 scanner](../readers/barcode/index.md) | Supported | Manual config |  |
@@ -109,3 +110,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 ### Shell scripts
 
 Run `.sh` scripts. Scripts must be allow-listed via the [`allow_file`](../core/config/launchers.md#allow_file) setting in `config.toml`.
+
+### Launcher controls
+
+The save state, load state, reset, and stop [launcher controls](../features/launchers.md#launcher-controls) need RePlayOS 1.7.3 or later with SYSTEM > NET_CONTROL turned on. Zaparoo reads the access code from RePlayOS on its own.

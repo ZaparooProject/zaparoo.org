@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
-description: "Use Zaparoo playlists to group media, write playlist sources, play items in order or shuffled, and move between entries from ZapScript."
-keywords: [zaparoo playlists, zapscript playlist, playlist picker, shuffled playlist]
+description: "Use Zaparoo playlists to group media, write playlist sources, play items in order or shuffled, rotate games on a timer or when idle, and move between entries from ZapScript."
+keywords: [zaparoo playlists, zapscript playlist, playlist picker, shuffled playlist, attract mode, playlist auto advance]
 ---
 
 # Playlists
@@ -14,11 +14,13 @@ Use playlists when one token should represent a set of games, a music or video q
 
 A playlist has an ordered list of items and a current position. Each item contains ZapScript, so an item can be a media path, a [title ID](../zapscript/launch.md#launchtitle), or another supported command.
 
-Playlists are loaded at runtime, and the active playlist is cleared when you stop it or when Core restarts. To keep a playlist on the device, save it as a [deck](#deck).
+Core remembers where you left each playlist, including its shuffled order, separately for each [profile](./profiles.md). Loading the playlist again opens it on that item, or on the first item if that one is gone. A playlist that played to its end starts over next time. Add [`start`](../zapscript/playlist.md#choosing-the-starting-item) to a playlist command to pick the item yourself.
+
+After Core restarts, the playlist that was open comes back paused, ready for `**playlist.play` to continue it. A playlist held by a card in [hold mode](../core/config/readers.md#scan-mode) is not restored. To keep a playlist's items on the device, save it as a [deck](#deck).
 
 ## Playlist source formats
 
-The `playlist.play`, `playlist.load`, and `playlist.open` commands all take the same kind of source. A source can be a folder path, a `.pls` file path, or an inline JSON playlist.
+The `playlist.play`, `playlist.load`, and `playlist.open` commands all take the same kind of source. A source can be a folder path, a `.pls` file path, an inline JSON playlist, a deck, or a Kodi collection.
 
 | Source | Use it when |
 | ------ | ----------- |
@@ -26,6 +28,7 @@ The `playlist.play`, `playlist.load`, and `playlist.open` commands all take the 
 | `.pls` file | You want a reusable playlist file with numbered entries, optional display titles, and entries that can run ZapScript. |
 | Inline JSON | You want the whole playlist stored inside one ZapScript command. |
 | Deck | You want a saved playlist that stays on the device and can be edited without rewriting the token. |
+| Kodi collection | You want every episode of a TV show, or every song on an album or by an artist, from your Kodi library. |
 
 ### Folder
 
@@ -137,13 +140,61 @@ Decks live in Core, with or without an account. Create and edit them in the [Zap
 
 Games in a deck carry a `user:deck:<id>` [tag](./tags.md#user-tags), so `**launch.random:SNES?tags=user:deck:0k3v9x2rq7bm` picks from the deck.
 
+### Kodi collection
+
+A TV show, album, or artist from your [Kodi](../platforms/linux/launchers.md#kodi) library becomes a playlist of its episodes or songs. Use the `kodi-show://`, `kodi-album://`, or `kodi-artist://` value the [Zaparoo App](../app/index.md) writes for that item:
+
+```zapscript
+**playlist.play:kodi-album://12/Rumours?mode=shuffle
+```
+
+Launching the same value directly, without a playlist command, hands the whole show, album, or artist to Kodi instead.
+
 ## Using a playlist
 
-Write `**playlist.play:<source>` to a token to load a playlist and start its first item, or `**playlist.load:<source>` to load it without launching. Separate tokens can then run `**playlist.next`, `**playlist.previous`, `**playlist.pause`, and `**playlist.stop`. Every command and its arguments are on the [playlist command reference](../zapscript/playlist.md).
+Write `**playlist.play:<source>` to a token to load a playlist and start playing it, or `**playlist.load:<source>` to load it without launching. Separate tokens can then run `**playlist.next`, `**playlist.previous`, `**playlist.pause`, and `**playlist.stop`. Every command and its arguments are on the [playlist command reference](../zapscript/playlist.md).
 
-Scanning the playlist's card again while it is playing moves to the next item, and wraps to the first after the last. If the playlist is paused, the scan picks up where it stopped. A card for a different playlist starts that one from its first item, and `**playlist.goto:1` takes the current playlist back to the start. In [hold mode](../core/config/readers.md#scan-mode), removing the card clears the playlist, so every scan starts it fresh.
+Scanning the playlist's card again while it is playing moves to the next item, and wraps to the first after the last. If the playlist is paused, the scan picks up where it stopped. A card for a different playlist opens that one where you last left it, and `**playlist.goto:1` takes the current playlist back to the start. In hold mode, removing the card clears the playlist, and putting it back opens the playlist on the item it was on.
 
 If an item fails to launch, the playlist pauses on it instead of moving on. `**playlist.play` tries the item again, and `**playlist.next`, `**playlist.previous`, or `**playlist.goto` carry on from another item.
+
+## Moving to the next item on its own
+
+A playlist moves on by itself when its current item ends:
+
+- **Media finishes.** A video or song that plays to its end starts the next item straight away.
+- **A game exits.** When you quit a game yourself, Core counts down before starting the next item, 10 seconds by default. Pressing a button or key after the first 2 seconds cancels the countdown, as does scanning a card or launching something else. If a game the playlist started on its own is quit within 30 seconds, the playlist pauses instead.
+
+Stopping or replacing media through Zaparoo never moves the playlist on. The last item of a playlist without [repeat](../zapscript/playlist.md#repeat-modes) ends the playlist.
+
+[MiSTer](../platforms/mister/index.md) shows the countdown on screen with **Play now** and **Stop playlist** options. On other platforms, a connected client that supports Core's global UI events can show and answer it.
+
+### Timed and idle switching
+
+Two arguments switch items while a game is still running, for example to rotate through games on a display or arcade cabinet:
+
+| Argument | Switches to the next item |
+| -------- | ------------------------- |
+| `advance` | After that much playing time. The timer stops while the playlist is paused. |
+| `idle` | After that long with no keyboard, mouse, or controller input. |
+
+Write durations with a unit, such as `90s`, `10m`, or `1h`, up to 24 hours. `advance` and `idle` cannot be used together, and only work in the primary slot.
+
+```zapscript
+**playlist.play:/media/fat/games/Genesis?mode=shuffle&advance=10m
+```
+
+Loading a playlist with `idle` and `**playlist.load` leaves it waiting: it starts on its own once nobody has touched the device for that long. A game you start yourself is never switched away from.
+
+```zapscript
+**playlist.load:deck://0k3v9x2rq7bm?idle=5m&repeat=all
+```
+
+`idle` needs a device where Core can watch the keyboard, mouse, and controllers. Core refuses it on macOS, SteamOS, Bazzite, ChimeraOS, and Android.
+
+`countdown` sets how long the countdown runs, such as `countdown=30s`. `countdown=0` skips it. Core only shows a countdown before a timed or idle switch where it can draw one without interrupting the game, so on MiSTer and Batocera these switches happen straight away.
+
+[`launch.random`](../zapscript/launch.md#launchrandom) takes the same `advance`, `idle`, and `countdown` arguments to roll a new random game each time.
 
 ## Picker support
 

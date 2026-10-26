@@ -329,7 +329,7 @@ Defined action names include:
 
 | Argument  | Type       | Default | Description                                                        |
 | --------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `slot`    | string     | `primary` | Media slot to control: `primary` or `background` ([audio](../features/audio.md)) |
+| `slot`    | string     | `primary` | Media slot to control: `primary` or `background` ([audio](../features/audio.md)). For `save_state` and `load_state`, the save state slot number instead, where the launcher [supports it](../features/launchers.md#current-support) |
 | `seconds` | number     | `10`    | Seek amount for `fast_forward` and `rewind` on [audio playback](../features/audio.md) |
 
 ### Examples
@@ -344,6 +344,12 @@ Save the current state, such as a save state in an emulator:
 
 ```zapscript
 **control:save_state
+```
+
+Save to state slot 2:
+
+```zapscript
+**control:save_state?slot=2
 ```
 
 Pause [background music](../features/audio.md) without affecting the active game:

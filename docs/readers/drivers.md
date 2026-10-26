@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
 description: "Configure Zaparoo reader drivers for NFC, cartridge bridges, barcode scanners, optical drives, MQTT, and other reader hardware."
-keywords: [zaparoo drivers, cartridge reader driver, pn532 driver, acr122u driver, nfc reader driver]
+keywords: [zaparoo drivers, cartridge reader driver, pn532 driver, acr122u driver, ccid nfc reader, nfc reader driver]
 ---
 
 # Reader Drivers
@@ -17,7 +17,7 @@ When Zaparoo Core starts, it:
 3. Establishes connections to detected or manually configured readers
 4. Begins listening for token scans
 
-PN532 USB readers support auto-detection on their listed platforms, and the ACR122U does on Windows. On Linux-based platforms the ACR122U driver is enabled but only searches for the reader once you turn on auto-detect for it. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. RS-232 barcode and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
+PN532 USB readers and USB smart card NFC readers such as the ACR122U support auto-detection on their listed platforms. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. RS-232 barcode and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
 
 ## Available drivers
 
@@ -29,14 +29,18 @@ NFC readers support NFC tags, cards, and compatible toys such as Amiibo and LEGO
 | -------------------------- | ------------------ | -------------- | ---------------------------------------------- |
 | `pn532`, `pn532uart`       | PN532 USB modules  | Current Core platforms | [PN532 USB](./nfc/pn532-usb.md)       |
 | `pn532i2c`, `pn532spi`     | PN532 bare modules | Current Core platforms | [PN532 Module](./nfc/pn532-module.md) |
-| `libnfcacr122`             | ACR122U reader     | Linux-based platforms | [ACR122U](./nfc/acr122u.md)           |
-| `acr122pcsc`               | ACR122U reader     | Windows               | [ACR122U](./nfc/acr122u.md)           |
+| `ccid`                     | USB smart card NFC readers, such as the ACR122U | Windows, macOS, Linux-based platforms | [USB Smart Card Readers](./nfc/usb-smart-card-readers.md) |
+| `libnfcacr122`             | ACR122U reader     | Linux-based platforms | [ACR122U](./nfc/acr122u.md#libnfc-driver) |
 | `legacypn532uart` (legacy) | PN532 USB fallback | Linux-based platforms | See [legacy NFC drivers](#legacy-nfc-drivers) |
 | `legacypn532i2c` (legacy)  | PN532 I2C fallback | Linux-based platforms | See [legacy NFC drivers](#legacy-nfc-drivers) |
 
 :::note Backward compatibility
 Driver IDs with underscores, such as `pn532_uart` and `simple_serial`, are still supported. Core strips underscores internally, but new configurations should use the non-underscore driver IDs shown here.
 :::
+
+#### CCID readers
+
+The `ccid` driver supports [USB smart card readers](./nfc/usb-smart-card-readers.md) with a contactless NFC slot, including the ACR122U, ACS ACR1552U, and Feitian bR500. It replaces the Windows-only `acr122pcsc` driver. Connections and `[readers.drivers.acr122pcsc]` settings written for it apply to `ccid`.
 
 ### Optical readers
 
@@ -96,6 +100,7 @@ Readers whose drivers support auto-detection are found on their own while `auto_
 3. Check the hardware connection. Make sure the USB cable is a data cable, not power-only.
 4. Review the hardware-specific reader page for setup and troubleshooting notes.
 5. Try manual configuration with `[[readers.connect]]`.
+6. For a USB smart card reader that is not on the tested list, follow [get an untested reader supported](./nfc/usb-smart-card-readers.md#get-an-untested-reader-supported).
 
 ### Unable to enumerate USB device
 

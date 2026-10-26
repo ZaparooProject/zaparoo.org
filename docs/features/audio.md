@@ -78,6 +78,10 @@ Background playlists can repeat. Add a [`repeat`](../zapscript/playlist.md#repea
 
 Use `repeat=all` to loop the whole playlist or `repeat=one` to loop the current track. The default is `repeat=off`.
 
+## Resuming long tracks
+
+A track 10 minutes or longer, such as an audiobook chapter or a podcast episode, resumes where you left it the next time it plays in the primary slot. Positions are kept separately for each [profile](./profiles.md), and a track that plays to its end starts from the beginning next time. Background audio always starts from the beginning.
+
 ## Controlling playback
 
 Use the [`control`](../zapscript/utilities.md#control) command, or the [`media.control`](../core/api/methods.md#mediacontrol) API method, to control audio. The native audio launcher supports:

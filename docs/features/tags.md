@@ -186,4 +186,4 @@ Use the `type:value` form when writing title IDs or tag filters by hand.
 
 ## Credit
 
-Zaparoo's tag taxonomy is inspired by [GameDataBase](https://github.com/PigSaint/GameDataBase), a game metadata project by [PigSaint](https://github.com/PigSaint). GameDataBase uses a deeper hierarchical tag system; Zaparoo uses simpler `type:value` tags for filename parsing and title matching.
+Zaparoo's tag taxonomy is inspired by [GameDataBase](https://github.com/PigSaint/GameDataBase), a game metadata project by [PigSaint](https://github.com/PigSaint). GameDataBase uses a deeper hierarchical tag system; Zaparoo uses simpler `type:value` tags for filename parsing and title matching. Core also ships a copy of GameDataBase's data, which the [`gamedatabase` scraper](./scraping.md#gamedatabase) uses to tag your library.

@@ -305,7 +305,7 @@ scan_mode = 'hold'
 `readers.drivers` configures driver-specific settings. It's a sub-section that uses driver IDs as keys, and must have this header format: `[readers.drivers.DRIVER_ID]`
 
 ```toml
-[readers.drivers.acr122pcsc]
+[readers.drivers.ccid]
 auto_detect = false
 
 [readers.drivers.simpleserial]

@@ -10,7 +10,7 @@ Zaparoo supports keeping a [playlist](../features/playlists.md) of media in memo
 
 ## Playlist sources
 
-The `playlist.play`, `playlist.load`, and `playlist.open` commands take a source: a folder path, a `.pls` file path, an inline JSON playlist, or a `deck://<id>` deck. The [playlists feature page](../features/playlists.md#playlist-source-formats) documents each format, including how `.pls` entries are treated as ZapScript and which fields inline JSON uses.
+The `playlist.play`, `playlist.load`, and `playlist.open` commands take a source: a folder path, a `.pls` file path, an inline JSON playlist, a `deck://<id>` deck, or a [Kodi collection](../features/playlists.md#kodi-collection). The [playlists feature page](../features/playlists.md#playlist-source-formats) documents each format, including how `.pls` entries are treated as ZapScript and which fields inline JSON uses.
 
 ```zapscript
 **playlist.play:/media/fat/games/Genesis
@@ -40,11 +40,27 @@ The `playlist.play`, `playlist.load`, and `playlist.open` commands accept a `rep
 **playlist.play:/media/fat/music/album?repeat=all
 ```
 
+## Choosing the starting item
+
+A playlist opens on the item where the active profile left it, or on the first item if it has not been played or played to its end. Add `start` to open it on a specific item instead, counted from 1. This works on the playlist that is already open too.
+
+```zapscript
+**playlist.play:/media/fat/games/Genesis?start=1
+```
+
+## Automatic switching
+
+`advance` and `idle` switch to the next item while a game is still running, and `countdown` sets how long the countdown before an automatic switch runs. They take durations with a unit, such as `30s`, `10m`, or `1h`. See [moving to the next item on its own](../features/playlists.md#moving-to-the-next-item-on-its-own) for how each one behaves.
+
+```zapscript
+**playlist.play:/media/fat/games/Arcade?mode=shuffle&advance=10m&repeat=all
+```
+
 ---
 
 ## playlist.play
 
-Loads a playlist and immediately launches the first item. If the source names the playlist that is already active, it moves to the next item instead, wrapping after the last, or resumes a paused playlist at its position.
+Loads a playlist and immediately launches the item it [starts on](#choosing-the-starting-item). If the source names the playlist that is already active, it moves to the next item instead, wrapping after the last, or resumes a paused playlist at its position. With `start`, it plays that item instead.
 
 ### Syntax
 
@@ -55,7 +71,7 @@ Loads a playlist and immediately launches the first item. If the source names th
 ### Arguments
 
 **`source`** (optional)
-Path to a folder, `.pls` file, inline JSON playlist, or `deck://<id>`. If omitted, resumes the current paused playlist.
+Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi collection. If omitted, resumes the current paused playlist.
 
 ### Advanced arguments
 
@@ -64,6 +80,10 @@ Path to a folder, `.pls` file, inline JSON playlist, or `deck://<id>`. If omitte
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
+| `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
+| `advance` | duration  | -       | Switch to the next item after this much playing time              |
+| `idle`   | duration   | -       | Switch to the next item after this long with no input             |
+| `countdown` | duration | `10s`  | Countdown before an automatic switch. `0` skips it                |
 
 ### Examples
 
@@ -89,7 +109,7 @@ Resume a paused playlist:
 
 ## playlist.load
 
-Loads a playlist into memory without launching anything.
+Loads a playlist into memory without launching anything. With `idle`, the playlist waits and starts on its own once the device has been idle for that long.
 
 ### Syntax
 
@@ -100,7 +120,7 @@ Loads a playlist into memory without launching anything.
 ### Arguments
 
 **`source`** (required)
-Path to a folder, `.pls` file, inline JSON playlist, or `deck://<id>`.
+Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi collection.
 
 ### Advanced arguments
 
@@ -109,6 +129,10 @@ Path to a folder, `.pls` file, inline JSON playlist, or `deck://<id>`.
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
+| `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
+| `advance` | duration  | -       | Switch to the next item after this much playing time              |
+| `idle`   | duration   | -       | Switch to the next item after this long with no input             |
+| `countdown` | duration | `10s`  | Countdown before an automatic switch. `0` skips it                |
 
 ### Examples
 
@@ -143,7 +167,7 @@ Loads a playlist and opens an interactive picker menu to select an item.
 ### Arguments
 
 **`source`** (optional)
-Path to a folder, `.pls` file, inline JSON playlist, or `deck://<id>`. If omitted, reopens the picker for the current playlist.
+Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi collection. If omitted, reopens the picker for the current playlist.
 
 ### Advanced arguments
 
@@ -152,6 +176,10 @@ Path to a folder, `.pls` file, inline JSON playlist, or `deck://<id>`. If omitte
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
+| `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
+| `advance` | duration  | -       | Switch to the next item after this much playing time              |
+| `idle`   | duration   | -       | Switch to the next item after this long with no input             |
+| `countdown` | duration | `10s`  | Countdown before an automatic switch. `0` skips it                |
 
 ### Examples
 
