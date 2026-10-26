@@ -189,12 +189,20 @@ export const platformSupportByReader = {
           {
             "name": "Windows",
             "href": "platforms/windows/",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Scanning works through PC/SC. Writing tags through Zaparoo is not supported."
+            }
           },
           {
             "name": "Linux",
             "href": "platforms/linux/",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           }
         ]
       },
@@ -204,7 +212,11 @@ export const platformSupportByReader = {
           {
             "name": "MiSTer",
             "href": "platforms/mister/",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           }
         ]
       },
@@ -214,12 +226,20 @@ export const platformSupportByReader = {
           {
             "name": "Batocera",
             "href": "platforms/batocera/",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           },
           {
             "name": "RePlayOS",
             "href": "platforms/replayos",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           }
         ]
       },
@@ -229,17 +249,29 @@ export const platformSupportByReader = {
           {
             "name": "SteamOS",
             "href": "platforms/steamos",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           },
           {
             "name": "Bazzite",
             "href": "platforms/bazzite",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           },
           {
             "name": "ChimeraOS",
             "href": "platforms/chimeraos",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           }
         ]
       },
@@ -249,7 +281,11 @@ export const platformSupportByReader = {
           {
             "name": "LibreELEC",
             "href": "platforms/libreelec",
-            "support": "supported"
+            "support": "supported",
+            "stable": {
+              "support": "limited",
+              "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
+            }
           }
         ]
       }

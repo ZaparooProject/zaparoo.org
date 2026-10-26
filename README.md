@@ -40,6 +40,7 @@ This command generates static content into the `build` directory and can be serv
    - `src/data/coreRelease.ts` (version, release date, blog slug, GitHub release URL)
    - `src/data/platforms.ts` (`supportTier`) when a platform enters or leaves beta
    - `static/install.sh` needs no version edit; it resolves the latest release for its channel
+   - `src/data/readerSupport.ts` and `src/data/platformSupport.ts`: remove `nextOnly` flags and `stable` overrides, since Next is now Stable
 7. Update `static/llms.txt` manually with new important docs pages or platform changes
 8. Write blog post in `blog/YYYY-MM-DD-core-vX.X.X/index.mdx`
 10. Do not leave HTML comments (`<!-- -->`) in MDX posts. They compile into public JS chunks.

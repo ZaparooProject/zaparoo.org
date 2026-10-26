@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
-import { getStatusLabel, getStatusSymbol, resolveSupportHref, type ReaderSupportGroup } from "./types";
+import { forDocsVersion, getStatusLabel, getStatusSymbol, resolveSupportHref, type ReaderSupportGroup } from "./types";
 import styles from "./styles.module.css";
 import {
   readerSupportByPlatform,
@@ -28,7 +28,7 @@ export default function ReaderSupport({ platformId, groups: explicitGroups }: Re
           <div key={group.name} className={styles.readerGroup}>
             <div className={styles.groupTitle}>{group.name}</div>
             <div className={styles.readerList}>
-              {group.readers.map((reader) => {
+              {forDocsVersion(group.readers, pathname).map((reader) => {
                 const content = (
                   <>
                     <div className={styles.itemMain}>

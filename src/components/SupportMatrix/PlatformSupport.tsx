@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
-import { getStatusLabel, getStatusSymbol, resolveSupportHref, type PlatformSupportGroup } from "./types";
+import { forDocsVersion, getStatusLabel, getStatusSymbol, resolveSupportHref, type PlatformSupportGroup } from "./types";
 import styles from "./styles.module.css";
 import {
   platformSupportByReader,
@@ -33,7 +33,7 @@ export default function PlatformSupport({ readerId, note: explicitNote, groups: 
           <div key={group.name} className={styles.familyCard}>
             <div className={styles.familyTitle}>{group.name}</div>
             <div className={styles.platformList}>
-              {group.platforms.map((platform) => {
+              {forDocsVersion(group.platforms, pathname).map((platform) => {
                 const content = (
                   <>
                     <div className={styles.itemMain}>

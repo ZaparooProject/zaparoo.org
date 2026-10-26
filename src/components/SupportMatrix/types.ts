@@ -7,6 +7,10 @@ export interface SupportItem {
   href?: string;
   support: SupportStatus;
   note?: ReactNode;
+  /** Only shown in the Next docs, for support the Stable release lacks. */
+  nextOnly?: boolean;
+  /** Values the Stable and older docs show instead, until the next release. */
+  stable?: Partial<Pick<SupportItem, "support" | "note">> & { setup?: ReactNode };
 }
 
 export interface PlatformSupportGroup {
@@ -79,4 +83,23 @@ export function resolveSupportHref(href: string, pathname: string): string {
   const docsPath = href.replace(/^(\.\.\/)+/, "").replace(/^\.\//, "");
 
   return `${docsRoot}/${docsPath}`;
+}
+
+/** Reports whether pathname is a page of the unreleased Next docs. */
+export function isNextDocs(pathname: string): boolean {
+  const parts = pathname.split("/").filter(Boolean);
+  const docsIndex = parts.findIndex((segment) => segment === "docs");
+  return docsIndex !== -1 && parts[docsIndex + 1] === "next";
+}
+
+/**
+ * Returns items as the docs version at pathname should show them: Next shows
+ * them as written, and every released version drops Next-only items and
+ * applies their Stable values.
+ */
+export function forDocsVersion<T extends SupportItem>(items: T[], pathname: string): T[] {
+  if (isNextDocs(pathname)) {
+    return items;
+  }
+  return items.filter((item) => !item.nextOnly).map((item) => (item.stable ? { ...item, ...item.stable } : item));
 }
