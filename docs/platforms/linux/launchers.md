@@ -218,7 +218,7 @@ These launchers play media from Kodi's indexed library:
 |-----------|-------------|
 | `Movie` | Movies from Kodi library |
 | `TVEpisode` | Individual TV episodes |
-| `TVShow` | Entire TV show (plays next unwatched episode) |
+| `TVShow` | Entire TV show (plays every episode from the first) |
 | `MusicTrack` | Songs from Kodi music library |
 | `MusicAlbum` | Albums from Kodi music library |
 | `MusicArtist` | Artists from Kodi music library (plays all songs) |

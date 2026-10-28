@@ -212,7 +212,7 @@ Plays media via Kodi's JSON-RPC API. Kodi must be running with remote control en
 |-----------|-------------|
 | `Movie` | Movies from Kodi library |
 | `TVEpisode` | TV episodes from Kodi library |
-| `TVShow` | TV shows (plays next unwatched episode) |
+| `TVShow` | TV shows (plays every episode from the first) |
 | `MusicTrack` | Songs from Kodi library |
 | `MusicAlbum` | Albums from Kodi library |
 | `MusicArtist` | Artists from Kodi library (plays all songs) |

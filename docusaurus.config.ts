@@ -82,7 +82,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          lastVersion: "2.20.0",
+          lastVersion: "2.21.0",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -91,7 +91,7 @@ const config: Config = {
               banner: "unreleased",
               badge: true,
             },
-            "2.20.0": {
+            "2.21.0": {
               label: "Stable",
               path: "/",
               banner: "none",
@@ -852,7 +852,7 @@ const config: Config = {
       {
         generateLLMsTxt: false,
         generateLLMsFullTxt: true,
-        docsDir: "versioned_docs/version-2.20.0",
+        docsDir: "versioned_docs/version-2.21.0",
         includeBlog: false,
         excludeImports: true,
         removeDuplicateHeadings: true,

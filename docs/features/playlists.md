@@ -163,7 +163,7 @@ If an item fails to launch, the playlist pauses on it instead of moving on. `**p
 A playlist moves on by itself when its current item ends:
 
 - **Media finishes.** A video or song that plays to its end starts the next item straight away.
-- **A game exits.** When you quit a game yourself, Core counts down before starting the next item, 10 seconds by default. Pressing a button or key after the first 2 seconds cancels the countdown, as does scanning a card or launching something else. If a game the playlist started on its own is quit within 30 seconds, the playlist pauses instead.
+- **A game exits.** When you quit a game yourself, Core counts down before starting the next item, 10 seconds by default. Pressing a button or key after the first 2 seconds cancels the countdown, as does scanning a card or launching something else. If a game the playlist started on its own is quit within 30 seconds, the playlist pauses instead. In a playlist with [`idle`](#timed-and-idle-switching), quitting a game skips the countdown and the next item starts once the idle time has passed.
 
 Stopping or replacing media through Zaparoo never moves the playlist on. The last item of a playlist without [repeat](../zapscript/playlist.md#repeat-modes) ends the playlist.
 
@@ -184,7 +184,7 @@ Write durations with a unit, such as `90s`, `10m`, or `1h`, up to 24 hours. `adv
 **playlist.play:/media/fat/games/Genesis?mode=shuffle&advance=10m
 ```
 
-Loading a playlist with `idle` and `**playlist.load` leaves it waiting: it starts on its own once nobody has touched the device for that long. A game you start yourself is never switched away from.
+Loading a playlist with `idle` through `**playlist.load` or `**playlist.open` leaves it waiting: it starts on its own once nobody has touched the device for that long. A game you start yourself is never switched away from.
 
 ```zapscript
 **playlist.load:deck://0k3v9x2rq7bm?idle=5m&repeat=all
@@ -192,7 +192,7 @@ Loading a playlist with `idle` and `**playlist.load` leaves it waiting: it start
 
 `idle` needs a device where Core can watch the keyboard, mouse, and controllers. Core refuses it on macOS, SteamOS, Bazzite, ChimeraOS, and Android.
 
-`countdown` sets how long the countdown runs, such as `countdown=30s`. `countdown=0` skips it. Core only shows a countdown before a timed or idle switch where it can draw one without interrupting the game, so on MiSTer and Batocera these switches happen straight away.
+Timed and idle switches happen straight away, without a countdown. `countdown` sets how long the countdown after a game exits runs, such as `countdown=30s`, and `countdown=0` skips it.
 
 [`launch.random`](../zapscript/launch.md#launchrandom) takes the same `advance`, `idle`, and `countdown` arguments to roll a new random game each time.
 

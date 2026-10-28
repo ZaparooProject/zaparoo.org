@@ -61,7 +61,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 
 ## Launchers
 
-| System ID                 | Folder               | Extensions                                                                                        |
+| System ID                 | Folders              | Extensions                                                                                        |
 | ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
 | `NES`                     | `nintendo_nes`       | `.nes`, `.unif`, `.unf`, `.fds`, `.zip`, `.7z`                                                    |
 | `SNES`                    | `nintendo_snes`      | `.smc`, `.sfc`, `.swc`, `.fig`, `.bs`, `.st`, `.zip`, `.7z`                                       |
@@ -75,35 +75,44 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 | `GameGear`                | `sega_gg`            | `.bin`, `.gg`, `.zip`, `.7z`                                                                      |
 | `Sega32X`                 | `sega_32x`           | `.32x`, `.chd`, `.smd`, `.bin`, `.md`, `.zip`, `.7z`                                              |
 | `MegaCD`                  | `sega_cd`            | `.cue`, `.iso`, `.chd`, `.m3u`                                                                    |
+| `GameCube` | `nintendo_gc` | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.rvz`, `.elf`, `.dol`, `.m3u` |
+| `Wii` | `nintendo_wii` | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.wad`, `.rvz`, `.elf`, `.dol`, `.m3u` |
+| `VirtualBoy` | `nintendo_vb` | `.vb`, `.zip`, `.7z` |
 | `Dreamcast`               | `sega_dc`            | `.cdi`, `.cue`, `.gdi`, `.chd`, `.m3u`                                                            |
-| `Saturn`                  | `sega_saturn`        | `.cue`, `.ccd`, `.m3u`, `.chd`, `.iso`, `.zip`                                                    |
-| `SG1000`                  | `sega_sg1000`        | `.bin`, `.sg`, `.zip`, `.7z`                                                                      |
+| `Saturn`                  | `sega_saturn`, `sega_st`        | `.cue`, `.ccd`, `.m3u`, `.chd`, `.iso`, `.zip`                                                    |
+| `SG1000`                  | `sega_sg1000`, `sega_sg`        | `.bin`, `.sg`, `.zip`, `.7z`                                                                      |
 | `Arcade` (FBNeo)          | `arcade_fbneo`       | `.zip`, `.7z`                                                                                     |
 | `Arcade` (MAME)           | `arcade_mame`        | `.zip`, `.7z`                                                                                     |
 | `Arcade` (MAME 2003 Plus) | `arcade_mame_2k3p`   | `.zip`, `.7z`                                                                                     |
+| `SegaSTV` | `arcade_stv` | `.zip` |
+| `Triforce` | `arcade_triforce` | `.iso`, `.gcz` |
 | `Atomiswave`              | `arcade_dc`          | `.zip`, `.chd`, `.lst`, `.bin`, `.dat`, `.7z`                                                     |
 | `Atari2600`               | `atari_2600`         | `.a26`, `.bin`, `.zip`, `.7z`                                                                     |
 | `Atari5200`               | `atari_5200`         | `.rom`, `.xfd`, `.atr`, `.atx`, `.cdm`, `.cas`, `.car`, `.bin`, `.a52`, `.xex`, `.zip`, `.7z`    |
 | `Atari7800`               | `atari_7800`         | `.a78`, `.bin`, `.zip`, `.7z`                                                                     |
 | `Jaguar`                  | `atari_jaguar`       | `.cue`, `.j64`, `.jag`, `.cof`, `.abs`, `.cdi`, `.rom`, `.zip`, `.7z`                            |
+| `JaguarCD` | `atari_jaguarcd` | `.cue`, `.chd` |
 | `AtariLynx`               | `atari_lynx`         | `.lnx`, `.zip`, `.7z`                                                                             |
 | `PSX`                     | `sony_psx`           | `.cue`, `.img`, `.mdf`, `.pbp`, `.toc`, `.cbn`, `.m3u`, `.ccd`, `.chd`, `.iso`                   |
+| `PS2` | `sony_ps2` | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u` |
+| `PSP` | `sony_psp` | `.iso`, `.cso`, `.pbp`, `.chd` |
 | `TurboGrafx16`            | `nec_pce`            | `.pce`, `.bin`, `.zip`, `.7z`                                                                     |
 | `TurboGrafx16CD`          | `nec_pcecd`          | `.pce`, `.cue`, `.ccd`, `.iso`, `.img`, `.chd`                                                    |
-| `NeoGeo`                  | `snk_neogeo`         | `.7z`, `.zip`                                                                                     |
-| `NeoGeoCD`                | `snk_neocd`          | `.cue`, `.iso`, `.chd`                                                                            |
+| `NeoGeo`                  | `snk_neogeo`, `snk_ng`         | `.7z`, `.zip`                                                                                     |
+| `NeoGeoCD`                | `snk_neocd`, `snk_ngcd`          | `.cue`, `.iso`, `.chd`                                                                            |
 | `NeoGeoPocket`            | `snk_ngp`            | `.ngp`, `.zip`, `.7z`                                                                             |
 | `C64`                     | `commodore_c64`      | `.d64`, `.d81`, `.crt`, `.prg`, `.tap`, `.t64`, `.m3u`, `.zip`, `.7z`                            |
 | `Amiga`                   | `commodore_ami`      | `.adf`, `.uae`, `.ipf`, `.dms`, `.dmz`, `.adz`, `.lha`, `.hdf`, `.exe`, `.m3u`, `.zip`           |
 | `AmigaCD32`               | `commodore_amicd`    | `.bin`, `.cue`, `.iso`, `.chd`                                                                    |
 | `MSX1`                    | `msx_msx`            | `.dsk`, `.mx1`, `.rom`, `.zip`, `.7z`, `.cas`, `.m3u`                                             |
 | `MSX2`                    | `msx_msx2`           | `.dsk`, `.mx2`, `.rom`, `.zip`, `.7z`, `.cas`, `.m3u`                                             |
-| `ZXSpectrum`              | `sinclair_zxs`       | `.tzx`, `.tap`, `.z80`, `.rzx`, `.scl`, `.trd`, `.dsk`, `.zip`, `.7z`                            |
+| `MSX` | `microsoft_msx` | `.dsk`, `.mx1`, `.mx2`, `.rom`, `.zip`, `.7z`, `.cas`, `.m3u` |
+| `ZXSpectrum`              | `sinclair_zxs`, `sinclair_zx`       | `.tzx`, `.tap`, `.z80`, `.rzx`, `.scl`, `.trd`, `.dsk`, `.zip`, `.7z`                            |
 | `X68000`                  | `sharp_x68k`         | `.dim`, `.img`, `.d88`, `.88d`, `.hdm`, `.dup`, `.2hd`, `.xdf`, `.hdf`, `.cmd`, `.m3u`, `.zip`, `.7z` |
 | `3DO`                     | `panasonic_3do`      | `.iso`, `.chd`, `.cue`                                                                            |
 | `CDI`                     | `philips_cdi`        | `.chd`, `.cue`, `.toc`, `.nrg`, `.gdi`, `.iso`, `.cdr`                                           |
-| `DOS`                     | `pc_dos`             | `.pc`, `.dos`, `.zip`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`                               |
-| `ScummVM`                 | `pc_scummvm`         | `.scummvm`, `.squashfs`                                                                           |
+| `DOS`                     | `pc_dos`, `ibm_pc`             | `.pc`, `.dos`, `.zip`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`                               |
+| `ScummVM`                 | `pc_scummvm`, `scummvm`         | `.scummvm`, `.squashfs`                                                                           |
 | `Amstrad`                 | `amstrad_cpc`        | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.cpr`, `.zip`, `.7z`                                    |
 | `Video`                   | `alpha_player`       | `.mkv`, `.avi`, `.mp4`, `.flac`, `.ogg`, `.nsf`, `.vgm`                                          |
 

@@ -29,11 +29,11 @@ The ACR122U is no longer produced by its original designer [ACS](https://www.acs
 
 The `ccid` driver is enabled and auto-detects the ACR122U when you plug it in, so most setups need no configuration. It can read and write [NTAG](../../tokens/nfc/index.md) and [MIFARE Classic](../../tokens/nfc/mifare.md) tags.
 
-On Windows and on Linux systems running the PC/SC service (`pcscd`), Core goes through that service. Elsewhere, such as on MiSTer, it talks to the reader over USB directly, so no extra software is needed.
+On Windows and on Linux systems running the PC/SC service (`pcscd`), Core goes through that service. Elsewhere, such as on MiSTer, it talks to the reader over USB directly, so no extra software is needed. On desktop Linux and SteamOS, that needs the udev rule from Core's hardware support; see [Linux](../../platforms/linux/index.md#troubleshooting) or [SteamOS](../../platforms/steamos/index.md#an-nfc-reader-is-not-detected) if the reader does not scan.
 
 ### Manual configuration
 
-If you have more than one smart card reader and need to pick one, add a connection with the reader's PC/SC name as the `path`:
+If you have more than one smart card reader and need to pick one, add a connection with the reader's name as the `path`:
 
 ```toml
 [[readers.connect]]
@@ -41,15 +41,18 @@ driver = "ccid"
 path = "ACS ACR122 0"
 ```
 
-On Windows, the name is listed in [Device Manager](https://www.lifewire.com/device-manager-2625860) under **Smart card readers**. Connections written for the old `acr122pcsc` driver still work.
+The `path` is the reader's PC/SC name on Windows and on Linux with `pcscd`, and a USB port such as `usb:1-1.2:0` elsewhere. Both appear as `path=` on the `ccid: found smart card reader` line in the [log](../../core/tui.md#logs). Connections written for the old `acr122pcsc` driver still work.
 
 ### libnfc driver
 
-The older `libnfcacr122` driver is still available on Linux-based platforms. It is enabled but does not search for the reader unless you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect):
+The older `libnfcacr122` driver is still available on Linux-based platforms. It is enabled but does not search for the reader unless you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect). Turn off the `ccid` driver at the same time, or it takes the reader first:
 
 ```toml
 [readers.drivers.libnfcacr122]
 auto_detect = true
+
+[readers.drivers.ccid]
+enabled = false
 ```
 
 Use it only if the `ccid` driver cannot read your reader. Its LED and beeper do not react when scanning a card.

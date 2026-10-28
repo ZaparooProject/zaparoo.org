@@ -23,7 +23,7 @@ Support levels: **Supported** means Core detects and uses the reader with the se
 | [PN532 module](./nfc/pn532-module.md) | DIY builds and custom cases | NFC cards, tags, toys | Wiring required | Supported on every platform |
 | [ZapESP32](../zapesp32/index.md) | Wireless DIY reader with sound and lights | NFC cards, tags, toys | Flash an ESP32 | Supported on every platform, over the network |
 | [ACR122U](./nfc/acr122u.md) | If you already own one | NFC cards, tags, toys | Plug and play | Supported; clone hardware varies |
-| [USB smart card readers](./nfc/usb-smart-card-readers.md) | ACR1552U, Feitian bR500, and similar readers | NFC cards, tags | Plug and play | Supported; Bluetooth not supported |
+| [USB smart card readers](./nfc/usb-smart-card-readers.md) | ACR1552U, Feitian bR500, and similar readers | NFC cards, tags, toys | Plug and play | Supported; Bluetooth not supported |
 | [RC522](./nfc/rc522.md) | If you already own one | NFC cards, tags | Needs a Simple Serial bridge | Limited; needs a microcontroller |
 | [Zaparoo App camera](./barcode/index.md) | No hardware at all | Barcodes, QR codes | Free in the App | Supported on every platform |
 | [Serial barcode scanner](./barcode/index.md#hardware-scanners) | Hands-free barcode setups | Barcodes, QR codes | RS-232 or USB-COM mode, manual config | Supported on every platform |

@@ -197,6 +197,13 @@ systemctl --user restart zaparoo.service
 
 Reconnect the reader after installing NFC reader support. If support was skipped during installation, run repair mode and accept the NFC reader support prompt. The installed udev rules cover CH340-based PN532 USB readers, PN532Killer readers in UART mode, and USB smart card readers such as the ACR122U; other serial readers may need separate device permissions. The hardware step also configures Linux module access for libnfc ACR122U readers.
 
+If you installed NFC reader support before Core v2.21.0, repair mode keeps the older rules, which do not cover USB smart card readers. Replace them from Konsole, then reconnect the reader:
+
+```bash
+sudo ~/.local/bin/zaparoo -uninstall hardware
+sudo ~/.local/bin/zaparoo -install hardware
+```
+
 ## FAQ
 
 **What NFC reader should I use with a Steam Deck?**

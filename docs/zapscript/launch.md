@@ -374,7 +374,7 @@ If the picked game cannot be launched, Core tries another candidate, up to 16 in
 | `set_name_same_dir` | string     | -       | Platform-specific flag for keeping the original game directory     |
 | `advance`           | duration   | -       | Roll a new random game after this much playing time                |
 | `idle`              | duration   | -       | Roll a new random game after this long with no input               |
-| `countdown`         | duration   | `10s`   | Countdown before an automatic roll. Needs `advance` or `idle`      |
+| `countdown`         | duration   | `10s`   | Countdown after a game exits. Needs `advance` or `idle`            |
 
 ### Examples
 

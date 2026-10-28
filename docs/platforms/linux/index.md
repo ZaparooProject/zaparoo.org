@@ -133,6 +133,15 @@ See [Launchers](./launchers.md) for full details and configuration.
 
 **Permission denied opening the reader's serial port.** Add your user to the `dialout` group (`sudo usermod -a -G dialout $USER`), then log out and back in.
 
+**A USB smart card reader does not scan.** Without `pcscd`, Core needs the udev rule for smart card readers. Installing hardware support again does not replace a rules file from an older version, so remove it first:
+
+```bash
+sudo ./zaparoo -uninstall hardware
+sudo ./zaparoo -install hardware
+```
+
+Then unplug the reader and plug it back in.
+
 **A reader is not detected.** Check the reader's page under [readers](../../readers/index.md) for the driver and any manual configuration, and turn on `debug_logging` in `config.toml` to see what Core finds.
 
 **An emulator launcher is missing.** Core only registers emulators it finds installed. Install the emulator, natively or as a Flatpak, then reload Core and update the media database.

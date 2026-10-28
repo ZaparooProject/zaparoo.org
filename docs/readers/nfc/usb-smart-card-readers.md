@@ -38,11 +38,11 @@ The [ACR122U](./acr122u.md) uses the same driver. It has its own page because of
 
 ## Setup
 
-Plug the reader in with a USB cable. Core finds it on its own, with no configuration needed.
+Plug the reader in with a USB cable. Core finds it on its own.
 
-On Windows and on Linux systems running the PC/SC service (`pcscd`), Core goes through that service. Elsewhere, such as on MiSTer, it talks to the reader over USB directly, so no extra software is needed.
+On Windows and on Linux systems running the PC/SC service (`pcscd`), Core goes through that service. Elsewhere, such as on MiSTer, it talks to the reader over USB directly, so no extra software is needed. On desktop Linux and SteamOS, that needs the udev rule from Core's hardware support; see [Linux](../../platforms/linux/index.md#troubleshooting) or [SteamOS](../../platforms/steamos/index.md#an-nfc-reader-is-not-detected) if the reader does not scan.
 
-If you have more than one smart card reader and need to pick one, add a connection to [`config.toml`](../../core/config/readers.md#readersconnect) with the reader's PC/SC name as the `path`:
+If you have more than one smart card reader and need to pick one, add a connection to [`config.toml`](../../core/config/readers.md#readersconnect) with the reader's name as the `path`:
 
 ```toml
 [[readers.connect]]
@@ -50,7 +50,7 @@ driver = "ccid"
 path = "Reader name"
 ```
 
-On Windows, the name is listed in Device Manager under **Smart card readers**.
+The `path` is the reader's PC/SC name on Windows and on Linux with `pcscd`, and a USB port such as `usb:1-1.2:0` elsewhere. Both appear as `path=` on the `ccid: found smart card reader` line in the [log](../../core/tui.md#logs).
 
 ## Other readers
 
@@ -60,9 +60,9 @@ A reader that beeps or lights up when you present a tag is doing that on its own
 
 ### Get an untested reader supported
 
-If an untested reader does not scan, Core writes what is needed to add support for it to the log. It only does this after a tag has been held to that reader, so follow these steps in order:
+If an untested reader does not scan, Core writes what is needed to add support for it to the log. It logs the reader as soon as it sees it, and the tag details once a tag has been held to it, so follow these steps in order:
 
-1. Plug the reader into the device running Core with a USB cable. If you set `auto_detect = false` in `config.toml`, change it back to `true` and restart Core.
+1. Plug the reader into the device running Core with a USB cable. If you set `auto_detect = false` in `config.toml`, globally or under `[readers.drivers.ccid]` or `[readers.drivers.acr122pcsc]`, change it back to `true` and restart Core.
 2. Hold a Zaparoo card or other NFC tag flat on **the new reader** for about five seconds. A tag on your phone or on another reader does not count.
 3. Upload the log right away, without restarting Core or unplugging anything:
    - **Windows:** open the Zaparoo tray menu and select **Upload Log**.

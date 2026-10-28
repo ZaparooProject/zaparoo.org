@@ -56,8 +56,8 @@ The built-in EmulationStation launcher supports all systems listed below. Each s
 | `CreatiVision` | `crvision` | `.bin`, `.rom`, `.zip`, `.7z` |
 | `DAPHNE` | `daphne` | `.daphne`, `.squashfs` |
 | `DICE` | `dice` | `.zip`, `.dmy` |
-| `DOS` | `dos`, `abuse`, `bstone`, `catacomb`, `cdogs`, `cgenius`, `dxx-rebirth`, `ecwolf`, `eduke32`, `fury`, `raze`, `rott`, `tyrian` | `.pc`, `.dos`, `.zip`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`, `.bstone`, `.game`, `.d1x`, `.d2x`, `.ecwolf`, `.pk3`, `.eduke32`, `.grp`, `.raze`, `.rott` |
-| `Doom` | `doom`, `gzdoom`, `prboom` | `.wad`, `.iwad`, `.pwad`, `.gzdoom` |
+| `DOS` | `dos`, `abuse`, `bstone`, `catacomb`, `cdogs`, `cgenius`, `dxx-rebirth`, `ecwolf`, `eduke32`, `fury`, `raze`, `rott`, `tyrian` | `.pc`, `.dos`, `.zip`, `.7z`, `.squashfs`, `.dosz`, `.m3u`, `.iso`, `.cue`, `.bstone`, `.game`, `.d1x`, `.d2x`, `.ecwolf`, `.pk3`, `.eduke32`, `.grp`, `.raze`, `.rott` |
+| `Doom` | `gzdoom`, `prboom` | `.wad`, `.iwad`, `.pwad`, `.gzdoom` |
 | `Dreamcast` | `dreamcast` | `.cdi`, `.cue`, `.gdi`, `.chd`, `.m3u` |
 | `FDS` | `fds` | `.fds`, `.zip`, `.7z` |
 | `FM7` | `fm7` | `.wav`, `.t77`, `.mfi`, `.dfi`, `.hfe`, `.mfm`, `.td0`, `.imd`, `.d77`, `.d88`, `.1dd`, `.cqm`, `.cqi`, `.dsk`, `.zip`, `.7z` |
@@ -205,7 +205,7 @@ These launchers play media from Kodi's indexed library. They don't scan filesyst
 |-----------|-------------|
 | `Movie` | Movies from Kodi library |
 | `TVEpisode` | Individual TV episodes |
-| `TVShow` | Entire TV show (plays next unwatched episode) |
+| `TVShow` | Entire TV show (plays every episode from the first) |
 | `MusicTrack` | Songs from Kodi music library |
 | `MusicAlbum` | Albums from Kodi music library |
 | `MusicArtist` | Artists from Kodi music library (plays all songs) |

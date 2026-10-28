@@ -1,0 +1,171 @@
+---
+slug: core-v2.21.0
+title: "Zaparoo Core v2.21.0 released"
+description: "Zaparoo Core v2.21.0 lets playlists move on by themselves, rotate games on a timer or when nobody is playing, and remember where you left them. A new driver supports USB smart card NFC readers, so the ACR122U writes tags everywhere, and launcher controls arrive on MiSTer, Batocera, and RePlayOS."
+tags: [software, core]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo Core v2.21.0 is out, and most of it is about playlists. A playlist now moves to the next item when a video ends or you quit a game, can switch games on a timer or once nobody has touched the controller for a while, and remembers where you left it, even across a restart. That covers attract mode on a cabinet as well as working through a TV series one card at a time.
+
+{/* truncate */}
+
+There's a new reader driver for USB smart card NFC readers. The ACR122U no longer needs turning on in `config.toml` on MiSTer and Linux, and now writes tags on Windows too. The ACR1552U and Feitian bR500 work the same way.
+
+Save state, load state, menu, and reset controls now work on MiSTer, Batocera, and RePlayOS, including on games you started from the system's own menu. `**delay:media_ready` waits until the game is actually running, so typed input and controls after a launch land in the game. On MiSTer, computer cores like the C64, Spectrum, and BBC Micro load and run the game for you, and every platform gets game details from a built-in copy of GameDataBase.
+
+**The highlights:**
+
+- **[Playlists that move on](#playlists-that-move-on-by-themselves)**: next item when media ends, timed and idle rotation, `launch.random` that keeps rolling
+- **[Playlist memory](#playlists-remember-where-you-left-them)**: each playlist reopens where you left it, and long audio tracks resume
+- **[USB smart card readers](#usb-smart-card-readers)**: the ACR122U, ACR1552U, and Feitian bR500, plug and play, reading and writing
+- **[Launcher controls](#launcher-controls)**: save states, menu, and reset on MiSTer, Batocera, and RePlayOS, with save slots
+- **[Wait for the game](#wait-for-the-game-to-start)**: `**delay:media_ready` knows when a game is running on most platforms
+- **[MiSTer computer cores](#mister)**: Core types the load commands, and game collections inside disk images show up as folders
+- **[GameDataBase](#library-and-scraping)**: genre, players, developer, and more for console and arcade games, built in
+- **[Kodi](#kodi)**: a random episode or song from a show, album, or artist, and shows and albums as playlists
+
+## Download
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.21.0"
+    link="https://zaparoo.org/downloads#zaparoo-core"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-github" />}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.21.0"
+    variant="primary"
+  />
+</div>
+
+Core will let you know about this release in the Inbox. On MiSTer, Update All installs it, and on Batocera the package manager does. Everywhere else it installs itself if you have turned on [automatic installs](/docs/core/updates/#automatic-installs), or you can download it above.
+
+## Before you update
+
+- **Update the media database** to pick up the Doom system, `_Utility` arcade MRAs on MiSTer, games inside MiSTer disk images, and the new RePlayOS 2.0 folders. The GameDataBase and `media-folder` sources run on their own when it finishes.
+- **ACR122U configs keep working.** The `acr122pcsc` driver is now part of `ccid`, and existing `[[readers.connect]]` entries and `[readers.drivers.acr122pcsc]` settings apply to it. On Linux and SteamOS, an older install of hardware support has no udev rule for smart card readers, and installing it again does not replace the old rules. Run `-uninstall hardware` and then `-install hardware`, as on the [Linux](/docs/platforms/linux/#troubleshooting) and [SteamOS](/docs/platforms/steamos/#an-nfc-reader-is-not-detected) pages.
+- **RePlayOS controls need net control.** Turn on SYSTEM > NET_CONTROL on RePlayOS 1.7.3 or later. See [launcher controls](/docs/platforms/replayos/#launcher-controls).
+
+## Playlists that move on by themselves
+
+**Applies to:** All Core platforms. Idle rotation needs a device where Core can watch the keyboard, mouse, and controllers.
+
+Until now a playlist sat on its current item until a card or command moved it. Now it [moves on when the item ends](/docs/features/playlists/#moving-to-the-next-item-on-its-own):
+
+- **A video or song that plays to the end** starts the next item straight away.
+- **Quitting a game** starts a 10 second countdown to the next item. Press a button or key, scan a card, or launch something else to cancel it. On MiSTer the countdown shows on screen with **Play now** and **Stop playlist**.
+- **Stopping through Zaparoo never moves the playlist on**, and a game the playlist started by itself that you quit within 30 seconds pauses the playlist instead of skipping through it.
+
+Two new arguments switch games while one is still running. `advance` switches after that much playing time, and `idle` switches once nobody has touched the keyboard, mouse, or controllers for that long:
+
+```zapscript
+**playlist.play:/media/fat/games/Arcade?mode=shuffle&advance=10m&repeat=all
+```
+
+Load a playlist with `idle` and it waits in the background, then starts on its own once the device has been left alone. A game you start yourself is never switched away from, so a cabinet can run attract mode between players:
+
+```zapscript
+**playlist.load:deck://0k3v9x2rq7bm?idle=5m&repeat=all
+```
+
+Timed and idle switches happen straight away. `countdown` sets how long the countdown after a quit runs, and `countdown=0` skips it. [`launch.random`](/docs/zapscript/launch/#launchrandom) takes the same arguments, so `**launch.random:Arcade?advance=15m` rolls a new random game every 15 minutes until you stop it. See [timed and idle switching](/docs/features/playlists/#timed-and-idle-switching) for which platforms support `idle`.
+
+## Playlists remember where you left them
+
+- **Each playlist reopens where you left it,** with the same shuffle order. That works for decks, folders, `.pls` files, inline playlists, and Kodi collections, and it is kept separately for each [profile](/docs/features/profiles/). A playlist that played to its end starts over next time. Add [`start`](/docs/zapscript/playlist/#choosing-the-starting-item) to pick the item yourself, such as `start=1` to go back to the beginning.
+- **A restart keeps your place.** The playlist that was open comes back paused, ready for `**playlist.play` to carry on.
+- **A card for another playlist opens it where you left it,** instead of at the first item, and in hold mode, putting a playlist's card back opens it on the item it was on.
+- **Long audio tracks resume.** A track of 10 minutes or more, such as an audiobook chapter or a podcast, picks up where it stopped the next time it plays. See [resuming long tracks](/docs/features/audio/#resuming-long-tracks).
+
+## USB smart card readers
+
+**Applies to:** Windows and every Linux-based platform, including MiSTer.
+
+The new [`ccid` driver](/docs/readers/nfc/usb-smart-card-readers/) supports USB smart card readers with a contactless NFC slot. It goes through the system's smart card service where there is one, and talks to the reader over USB directly where there isn't, such as on MiSTer.
+
+- **The ACR122U is plug and play everywhere.** No config on MiSTer and Linux, and it writes tags on Windows, which the old driver could not do. See [ACR122U](/docs/readers/nfc/acr122u/).
+- **The ACS ACR1552U and Feitian bR500 are supported** and tested the same way.
+- **Other smart card readers might work.** Any reader with an NFC slot is tried the first time you tap a tag on it, and Core logs what it needs to add proper support. See [get an untested reader supported](/docs/readers/nfc/usb-smart-card-readers/#get-an-untested-reader-supported).
+- **Tags read the same on every reader.** The PN532, libnfc, and smart card drivers now share the code that reads and writes NTAG and MIFARE Classic tags, so the same tag gives the same result wherever you scan it. Rewriting a tag with the text it already held no longer makes Core skip its next scan.
+
+## Launcher controls
+
+[Launcher controls](/docs/features/launchers/#launcher-controls) send actions like save state or reset to the running game from a card.
+
+- **MiSTer and MiSTeX:** `toggle_menu`, `reset`, and `stop`, plus `save_state` and `load_state` on cores with save states.
+- **Batocera:** save and load state, menu, pause, reset, fast forward, rewind, next disc, and stop, as far as the running emulator supports them.
+- **RePlayOS:** save and load state, reset, and stop, with net control turned on.
+- **Save state slots.** `**control:save_state?slot=2` picks the slot on MiSTer (1 to 4) and RePlayOS (1 to 18).
+- **Games started outside Zaparoo** can be controlled on MiSTer, Batocera, and RePlayOS, such as a game picked from the MiSTer menu or EmulationStation.
+- **RetroArch and Kodi** take separate `pause` and `resume` actions, which do nothing if the game is already in that state.
+
+## Wait for the game to start
+
+[`**delay:media_ready`](/docs/zapscript/utilities/#delay) pauses a script until the launched game is ready for input, so typed text and controls after a launch reach the game instead of a loading screen. Before this release, no launcher could tell Core when that was, so the wait ended straight away.
+
+Core now knows on MiSTer (consoles, arcade, computer cores, Amiga, and MGL launches), Batocera, RePlayOS, RetroArch with network commands turned on, Kodi, and on Windows for Steam, LaunchBox, PinUP Popper, RetroBat, and Flashpoint. Anything else carries on straight away, as before.
+
+```zapscript
+SNES/Super Mario World.sfc||**delay:media_ready||**input.keyboard:{f12}
+```
+
+On MiSTer, the first keys typed after a core loads no longer go missing.
+
+## MiSTer
+
+- **Computer cores load and run the game.** After the core has taken the file, Core types what the machine needs, like `LOAD"*",8,1` and `RUN` on the C64, using the core's own keyboard layout. This covers disks and tapes on the Commodore machines, Amstrad CPC, ZX81, ZX Spectrum, Acorn Electron, BBC Micro, TRS-80, CoCo2, QL, BK0011M, Tatung Einstein, Vector-06C, and Oric. See [computer cores](/docs/platforms/mister/launchers/#computer-cores) for the known limits.
+- **Game collections inside images are folders.** BBC and Electron MMB images and the SD card images for the Acorn Atom, ZX Spectrum (esxDOS), ZX Spectrum Next, MSX, and Enterprise list each game inside as its own entry.
+- **More file types.** Electron `.uef`, Oric `.tap` and `.sna`, PC-88 tapes, ZX81 `.o`, TRS-80 `.jv1`, and Spectrum `.pzx` files are indexed.
+- **`_Utility` MRAs are Arcade games,** such as MiSTercade test MRAs, and the Groovy core shows up as a launchable when it is installed.
+- **Arcade games on a USB drive launch** even when that drive has no `cores` folder next to its MRAs. If the same MRA is also on a drive that has its core, Core starts it from there, as the MiSTer menu does, and tells you which core is missing when none does.
+- **Patch-overlay MRAs get artwork and details,** such as the arcadepatches.com restorations, which were too large for Core to read their set name.
+- **Paprium lists with your Genesis games** instead of in its own folder, and launches by title even when you prefer RetroAchievements cores.
+
+## Library and scraping
+
+- **Game details from GameDataBase.** Core ships with a copy of [GameDataBase](https://github.com/PigSaint/GameDataBase) by [PigSaint](https://github.com/PigSaint), and the new [`gamedatabase`](/docs/features/scraping/#gamedatabase) source uses it to fill in genre, players, controls, developer, publisher, release year, franchise, and more. It needs no download, runs on every platform, and runs on its own after a media database update.
+- **A Doom system.** Doom WADs get their own [`Doom`](/docs/features/systems/) system instead of sitting among DOS games, and RetroArch's PrBoom core launches them. There's a new `LaserActive` system too.
+- **Local artwork shows up by itself.** The [`media-folder`](/docs/features/scraping/#media-folder) source runs after every media database update and fills in missing artwork, and it accepts libretro folder names like `Named_Boxarts` in any letter case.
+- **libretro thumbnails work offline** from the images already downloaded when the thumbnail server cannot be reached.
+- **Library counts stay put** after a media database update or a scrape, instead of disappearing from the App and Frontend.
+- **Titles that start with numbers** like "10-Yard Fight" and "720 Degrees" keep them.
+
+## Kodi
+
+- **A random episode or song.** [`launch.random`](/docs/zapscript/launch/#launchrandom) takes a `kodi-show://`, `kodi-album://`, or `kodi-artist://` link and plays one random item from it. It also takes a `deck://` link.
+- **Shows, albums, and artists as playlists.** [`playlist.play`](/docs/features/playlists/#kodi-collection) turns them into a Zaparoo playlist, so shuffle, `**playlist.next`, and playlist memory work on them.
+- **Core knows when Kodi finishes playing,** so a Kodi video in a playlist moves on to the next item when it ends.
+
+## Other platforms
+
+- **RePlayOS 2.0.** Its new and renamed folders are indexed, including GameCube, Wii, PSP, PS2, Virtual Boy, Jaguar CD, ST-V, and Triforce, and the old names still work. See [RePlayOS launchers](/docs/platforms/replayos/#launchers). A game already running when Core starts is picked up.
+- **Windows:** `**launch:Dreamcast\Game.chd` works with a backslash. Flashpoint starts its launcher if it is not running, and stopping a Flashpoint game closes it.
+- **Batocera** no longer indexes PyGame module files as games.
+
+## Fixes
+
+- **Stopping a game while it is still starting works.** A stop during a launch calls the launch off instead of hanging or getting lost, and a game that appears from outside Core within 30 seconds of a stop is stopped too.
+- **Games that never start no longer show as playing,** such as a game stuck on a missing BIOS prompt.
+- **Epilogue Operator cartridges show up in Zaparoo Online's history** with the right game, and so do other games launched from files outside the media database.
+
+## API changes
+
+- `media.stopped` carries a `reason`: `finished`, `exited`, `stopped`, or `replaced`.
+- `settings` and `settings.update` expose the global launcher `preference` list as `launcherPreference`.
+- The playlist in `media.active` reports `advanceMs`, `idleMs`, `countdownMs`, and `armed`, and the countdown after a game exits is a UI event clients can show and answer.
+- Settled `media.indexing` notifications include `totalMedia` and `missingMedia`.
+- The `launchers` method no longer lists the generated launchers for virtual media.
+- `device.status` fills in the model, timezone, and Bluetooth power on Windows, and the timezone on MiSTer.
+
+See the [API reference](/docs/core/api/methods/) for details.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

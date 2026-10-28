@@ -28,19 +28,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -141,19 +135,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -254,19 +242,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -367,19 +349,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Auto-detected",
-            "note": "Can scan tags, but cannot write them through PCSC."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -480,19 +456,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -593,19 +563,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -706,19 +670,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -814,26 +772,6 @@ export const readerSupportByPlatform = {
           "support": "supported",
           "setup": "Depends on wiring",
           "note": "UART can auto-detect. I2C is supported."
-        },
-        {
-          "name": "ACR122U",
-          "href": "readers/nfc/acr122u",
-          "support": "limited",
-          "setup": "Auto-detected",
-          "note": "Not yet tested on macOS hardware.",
-          "stable": {
-            "support": "unsupported",
-            "note": "Not included in the current macOS Core reader set.",
-            "setup": null
-          }
-        },
-        {
-          "name": "USB smart card readers",
-          "href": "readers/nfc/usb-smart-card-readers",
-          "support": "limited",
-          "setup": "Auto-detected",
-          "note": "Not yet tested on macOS hardware.",
-          "nextOnly": true
         },
         {
           "name": "RC522",
@@ -934,19 +872,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -1047,19 +979,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -1160,19 +1086,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",
@@ -1273,19 +1193,13 @@ export const readerSupportByPlatform = {
           "name": "ACR122U",
           "href": "readers/nfc/acr122u",
           "support": "supported",
-          "setup": "Auto-detected",
-          "stable": {
-            "support": "limited",
-            "setup": "Manual enable",
-            "note": "Uses libnfc: MIFARE Classic writing is limited, LED and beeper do not work, and some clone variants are incompatible."
-          }
+          "setup": "Auto-detected"
         },
         {
           "name": "USB smart card readers",
           "href": "readers/nfc/usb-smart-card-readers",
           "support": "supported",
-          "setup": "Auto-detected",
-          "nextOnly": true
+          "setup": "Auto-detected"
         },
         {
           "name": "RC522",

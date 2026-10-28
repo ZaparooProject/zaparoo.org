@@ -50,7 +50,7 @@ A playlist opens on the item where the active profile left it, or on the first i
 
 ## Automatic switching
 
-`advance` and `idle` switch to the next item while a game is still running, and `countdown` sets how long the countdown before an automatic switch runs. They take durations with a unit, such as `30s`, `10m`, or `1h`. See [moving to the next item on its own](../features/playlists.md#moving-to-the-next-item-on-its-own) for how each one behaves.
+`advance` and `idle` switch to the next item while a game is still running, and `countdown` sets how long the countdown after a game exits runs. They take durations with a unit, such as `30s`, `10m`, or `1h`. See [moving to the next item on its own](../features/playlists.md#moving-to-the-next-item-on-its-own) for how each one behaves.
 
 ```zapscript
 **playlist.play:/media/fat/games/Arcade?mode=shuffle&advance=10m&repeat=all
@@ -83,7 +83,7 @@ Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi coll
 | `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
 | `advance` | duration  | -       | Switch to the next item after this much playing time              |
 | `idle`   | duration   | -       | Switch to the next item after this long with no input             |
-| `countdown` | duration | `10s`  | Countdown before an automatic switch. `0` skips it                |
+| `countdown` | duration | `10s`  | Countdown after a game exits. `0` skips it                        |
 
 ### Examples
 
@@ -109,7 +109,7 @@ Resume a paused playlist:
 
 ## playlist.load
 
-Loads a playlist into memory without launching anything. With `idle`, the playlist waits and starts on its own once the device has been idle for that long.
+Loads a playlist into memory without launching anything. With `idle`, the playlist waits and starts on its own once the device has been idle for that long. `playlist.open` does the same.
 
 ### Syntax
 
@@ -132,7 +132,7 @@ Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi coll
 | `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
 | `advance` | duration  | -       | Switch to the next item after this much playing time              |
 | `idle`   | duration   | -       | Switch to the next item after this long with no input             |
-| `countdown` | duration | `10s`  | Countdown before an automatic switch. `0` skips it                |
+| `countdown` | duration | `10s`  | Countdown after a game exits. `0` skips it                        |
 
 ### Examples
 
@@ -179,7 +179,7 @@ Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi coll
 | `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
 | `advance` | duration  | -       | Switch to the next item after this much playing time              |
 | `idle`   | duration   | -       | Switch to the next item after this long with no input             |
-| `countdown` | duration | `10s`  | Countdown before an automatic switch. `0` skips it                |
+| `countdown` | duration | `10s`  | Countdown after a game exits. `0` skips it                        |
 
 ### Examples
 

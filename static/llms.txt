@@ -28,6 +28,7 @@ Important notes:
 - [PN532 USB Dongle](https://zaparoo.org/docs/readers/nfc/pn532-usb/): Setup guide for the PN532 USB NFC reader dongle.
 - [PN532 Module](https://zaparoo.org/docs/readers/nfc/pn532-module/): Wiring and config for the PN532 breakout board.
 - [ACR122U](https://zaparoo.org/docs/readers/nfc/acr122u/): Setup for the popular ACR122U USB NFC reader.
+- [USB Smart Card Readers](https://zaparoo.org/docs/readers/nfc/usb-smart-card-readers/): Use the ACS ACR1552U, Feitian bR500, and other USB smart card NFC readers through the ccid driver, and get an untested reader supported.
 - [RC522](https://zaparoo.org/docs/readers/nfc/rc522/): SPI wiring guide for the RC522 NFC module.
 - [Optical Drive](https://zaparoo.org/docs/readers/optical-drive/): Use a disc drive as a Zaparoo token reader, launch indexed games from real discs, or burn a zaparoo.txt token file onto a disc.
 - [Barcode Readers](https://zaparoo.org/docs/readers/barcode/): Use USB barcode scanners as token readers.
@@ -100,9 +101,9 @@ Important notes:
 - [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
 - [Device Profiles](https://zaparoo.org/docs/features/profiles/): Give each person separate playtime limits and profile cards, with separate saves and save states on MiSTer.
 - [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, and MiSTer and SteamOS configuration, saves, and save states.
-- [Playlists and Decks](https://zaparoo.org/docs/features/playlists/): Play folders, playlist files, and decks from one token, with pickers and advance-on-rescan.
+- [Playlists and Decks](https://zaparoo.org/docs/features/playlists/): Play folders, playlist files, and decks from one token, with pickers, advance-on-rescan, automatic advance when media ends, timed and idle rotation, and per-profile playlist memory.
 - [Audio](https://zaparoo.org/docs/features/audio/): Play WAV, MP3, OGG, and FLAC files through Core's native audio launcher, including a background slot that keeps music playing while games launch.
-- [Scraping](https://zaparoo.org/docs/features/scraping/): Download libretro box art, screenshots, and title screens, or import metadata and artwork from gamelist.xml, media folders, MiSTer artwork packs and arcade catalog, and PinUP Popper.
+- [Scraping](https://zaparoo.org/docs/features/scraping/): Download libretro box art, screenshots, and title screens, fill in game details from the built-in GameDataBase copy, or import metadata and artwork from gamelist.xml, media folders, MiSTer artwork packs and arcade catalog, and PinUP Popper.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.

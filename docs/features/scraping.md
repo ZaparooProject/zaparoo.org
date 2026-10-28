@@ -64,7 +64,7 @@ It adds genre, player count, controls, save type, add-on hardware, franchise, re
 
 Console games are matched by title, and arcade games by MAME set name. When a title had several regional releases, Core prefers the region in the game's filename, then your [`media.default_regions`](../core/config/media.md#default_regions). A title that matches more than one different game is skipped. It covers Nintendo systems from the NES to the Nintendo 64 and Game Boy Advance, Sega systems from the SG-1000 to the Saturn, the PC Engine and PC-FX, Neo Geo Pocket, LaserActive, and arcade.
 
-It runs on its own after a media database update and only fills in what a game is missing. Run it with force to replace what it wrote.
+It runs on its own after a media database update and only fills in what a game is missing. Run it with force to write its values over what is stored, including values from other sources.
 
 ### gamelist.xml
 

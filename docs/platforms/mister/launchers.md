@@ -288,14 +288,16 @@ The 3S-ARM port of Street Fighter III: 3rd Strike also ships as an `_Other` core
 
 ### Computer cores
 
-On many computer cores, Core loads and starts the game for you. After the core has taken the file, Core types whatever the machine needs to run it, such as `LOAD"*",8,1` and `RUN` on the C64, using the core's own keyboard layout. This works for disks and tapes on the Commodore 64, 128, 16, and VIC-20, Amstrad CPC, ZX81, ZX Spectrum, Acorn Electron, BBC Micro, TRS-80, CoCo2, QL, BK0011M, Tatung Einstein, Vector-06C, and Oric.
+On many computer cores, Core loads and starts the game for you. After the core has taken the file, Core types whatever the machine needs to run it, such as `LOAD"*",8,1` and `RUN` on the C64, using the core's own keyboard layout. This works for disks and tapes on the Commodore 64, 128, 16, and VIC-20, Amstrad CPC, ZX81, ZX Spectrum, Acorn Electron, BBC Micro, TRS-80, CoCo2, QL, BK0011M, Tatung Einstein, Vector-06C, and Oric, and for CoCo3 cartridges.
 
 `.vhd` images that hold a collection of games are listed like folders, with each game inside as its own entry. Launching one boots the image and starts that game. This covers MMB images on the BBC Micro and Acorn Electron, and the SD card images used by the Acorn Atom, ZX Spectrum (esxDOS), ZX Spectrum Next, MSX, and Enterprise cores.
 
 Known limitations:
 
-- BBC Micro floppies on the Master model, the MSX ROM mapper, C64 tapes, CoCo2 disks, and CoCo3 cartridges need a core option set at launch. Only MiSTer Main builds that support options in MGL files can set it; older builds load the file without setting the option.
+- BBC Micro floppies (booted on the Master model), the MSX ROM mapper, C64 tapes, CoCo2 disks, and CoCo3 cartridges need a core option set at launch. Only MiSTer Main builds that support options in MGL files can set it; older builds load the file without setting the option.
 - QL microdrive cartridges hang in the core on about half of all loads, even when loaded by hand.
+- Oric disks only start when the core is already set to the Atmos ROM.
+- On MiSTer Main builds from the development branch, the Enterprise core stops at an internal checksum error before anything is typed. Current Main releases work.
 
 ### Companion-installed media cores
 

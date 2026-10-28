@@ -29,7 +29,7 @@ NFC readers support NFC tags, cards, and compatible toys such as Amiibo and LEGO
 | -------------------------- | ------------------ | -------------- | ---------------------------------------------- |
 | `pn532`, `pn532uart`       | PN532 USB modules  | Current Core platforms | [PN532 USB](./nfc/pn532-usb.md)       |
 | `pn532i2c`, `pn532spi`     | PN532 bare modules | Current Core platforms | [PN532 Module](./nfc/pn532-module.md) |
-| `ccid`                     | USB smart card NFC readers, such as the ACR122U | Windows, macOS, Linux-based platforms | [USB Smart Card Readers](./nfc/usb-smart-card-readers.md) |
+| `ccid`                     | USB smart card NFC readers, such as the ACR122U | Windows, Linux-based platforms | [USB Smart Card Readers](./nfc/usb-smart-card-readers.md) |
 | `libnfcacr122`             | ACR122U reader     | Linux-based platforms | [ACR122U](./nfc/acr122u.md#libnfc-driver) |
 | `legacypn532uart` (legacy) | PN532 USB fallback | Linux-based platforms | See [legacy NFC drivers](#legacy-nfc-drivers) |
 | `legacypn532i2c` (legacy)  | PN532 I2C fallback | Linux-based platforms | See [legacy NFC drivers](#legacy-nfc-drivers) |
