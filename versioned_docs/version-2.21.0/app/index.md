@@ -5,7 +5,7 @@ keywords: [zaparoo app, zaparoo ios, zaparoo android, nfc app game launcher, zap
 
 # Zaparoo App
 
-Use the Zaparoo App to manage [Zaparoo Core](../core/index.md) from an iPhone or Android phone or tablet. It can find Core devices on your local network, or you can enter a device's IP address manually.
+Use the Zaparoo App to manage [Zaparoo Core](../core/index.md) from an iPhone, iPad, or Android phone or tablet. It can find Core devices on your local network, or you can enter a device's IP address manually.
 
 Every Core release also includes the browser-based [Web UI](./web.md) for setups that do not use a phone.
 
