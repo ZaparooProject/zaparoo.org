@@ -112,4 +112,6 @@ See [Launchers](./launchers.md) for the full list of supported systems and launc
 
 **Zaparoo is missing from Ports.** The Ports entry comes with the package. Reinstall Zaparoo Core from the Content Downloader.
 
+**A PN532 USB reader is not detected.** Batocera has its own NFC service, `simple_nfc`, which takes over PN532 readers with a CH340 USB chip when it's enabled. Turn it off in `System Settings` > `Services`, or from a terminal with `batocera-services stop simple_nfc` and `batocera-services disable simple_nfc`, then restart Batocera.
+
 **A reader is not detected.** Check the reader's page under [readers](../../readers/index.md) for the exact driver and any manual configuration.

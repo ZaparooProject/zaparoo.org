@@ -1,6 +1,6 @@
 ---
-description: "Browse, search, and launch games in Zaparoo Frontend, arrange the Hub, use library menus and controls, and choose alternate MiSTer launchers."
-keywords: [zaparoo frontend browsing, zaparoo frontend search, launch games from frontend, mister game browser, frontend controls, alternate mister launchers, frontend hub]
+description: "Browse, search, and launch games in Zaparoo Frontend, arrange the Hub, use collections and decks, play background music, and choose alternate MiSTer launchers."
+keywords: [zaparoo frontend browsing, zaparoo frontend search, launch games from frontend, mister game browser, frontend controls, alternate mister launchers, frontend hub, frontend decks, frontend background music]
 sidebar_position: 4
 ---
 
@@ -12,9 +12,11 @@ If covers, screenshots, or descriptions are missing, follow [Add Artwork and Met
 
 ## Browse the library
 
-Open a category to browse its systems, then select a system to browse its games. Opening a system starts at its root folder. While browsing games, open the **View** menu and choose **Go to...** to jump by letter or bucket, **Random game** to pick one for you, [**Search here...**](#search) to search the current system or folder, or [**Tags**](#filter-games) to narrow the list. In list layout, Left and Right move a whole page.
+Open a category to browse its systems, then select a system to browse its games. Opening a system starts at its root folder. While browsing games, press **Menu** and choose **Go to...** to jump by letter or bucket, [**Search here...**](#search) to search the current system or folder, or [**Tags**](#filter-games) to narrow the list. Pressing L1 and R1 together also opens **Go to...**. In list layout, Left and Right move a whole page.
 
-Hold a direction to move faster through a long list. Frontend advances from rows to pages, then letters, with a rail showing your position.
+Above 240p, a screen's Menu actions also sit in a row under its title, so you can see them before you open anything. Press **Menu** to move onto the row, Left and Right to pick an action, and Back or Down to return to the list. **Settings > Appearance > Show Menu row** turns the row off, and Menu then opens a list instead.
+
+Hold a direction to move faster through a long list. Frontend advances from rows to pages, then letters, with a rail showing your position. Hold Back to return straight to the Hub from anywhere.
 
 A folder that holds the discs of one game appears as a single row. Selecting it launches the disc you played last. To pick another, open its options menu and select **Choose disc**.
 
@@ -29,89 +31,124 @@ On the Search screen the controller buttons edit the text from wherever the curs
 | Button | Action |
 | ------ | ------ |
 | Confirm | Press the highlighted key. Hold to repeat. |
-| View | Delete a character. Hold to clear the name. |
+| Menu | Delete a character. Hold to clear the name. |
 | Options | Type a space. |
 | L and R | Move the text cursor. |
 
 Select **Search** on the keyboard to open the results as a game list sorted by name. Back returns to your search.
 
-To search inside one system or folder, open the **View** menu while browsing it and choose **Search here...**.
+Results show each game once per system. Regional releases, revisions, and copies in other folders share one entry, and the number of versions follows its name, such as `USA (3)`. Selecting the entry launches the version it shows. To launch another, open its options menu and choose **Choose version**.
 
-To keep a search, open the **View** menu on the results and choose **Add to Hub**. The new tile opens those results directly. See [saved searches](./customization.mdx#saved-searches) to write one by hand, including searches across several systems.
+To search inside one system, folder, or category, or only your favorites, press **Menu** while browsing it and choose **Search here...**. The Search screen's title then says what it is limited to, such as **Search in SNES**.
+
+To keep a search, press **Menu** on the results and choose **Save to Hub**. The new tile opens those results directly. See [saved searches](./customization.mdx#saved-searches) to write one by hand.
 
 ## Filter games
 
-While browsing a system, open the **View** menu and select **Tags**. Choose one value per category, such as **Genre**, **Year**, **Players**, or **Region**. Each choice applies as you make it. **Collections** filters by favorites, liked games, games saved for later, or one of your [decks](../online/index.md#cards-and-decks). Available choices come from the system's tags and metadata.
+While browsing a system, press **Menu** and select **Tags**. Pick a category, such as **Genre**, **Year**, **Players**, or **Region**, then tick one or more of its values. Each tick applies as you make it. **Collections** filters by favorites, liked games, games saved for later, disliked games, or one of your [decks](#decks). Available choices come from the system's tags and metadata.
 
-Selected categories must all match. Choose **Any** to clear one category, or **Clear tags** to remove them all. Filters are remembered separately for each system and apply to games directly inside the current folder; subfolders remain visible.
+A game matches if it has any of the values ticked in a category, and every category with a tick must match. For example, **Platformer** and **Shooter** under **Genre** with **USA** under **Region** shows platformers or shooters from the USA. Up to 50 tags can be ticked in total. Choose **Any** to clear one category, or **Clear tags** to remove them all. Filters are remembered separately for each system and apply to games directly inside the current folder; subfolders remain visible.
 
 ## Hide games
 
-To keep a game or folder out of normal browsing, open its options menu and choose **Manage game > Hide** for a game, or **Hide** for a folder. Hiding a folder also takes its games out of search, system counts, and random picks. Visibility is saved in Core, and hiding does not delete any files.
+To keep a game or folder out of normal browsing, open its options menu and choose **Manage game > Hide game** for a game, or **Hide folder** for a folder. Hiding a folder also takes its games out of search, system counts, and random picks. Visibility is saved in Core, and hiding does not delete any files.
 
-To undo it, turn on **Settings > Library > Browsing > Show hidden items**, then choose **Unhide** from the same place. Favorites, Recently played, and **Collections** filters still include hidden games that belong to those views.
+To undo it, turn on **Settings > Browsing > Show hidden items**, then choose **Unhide game** or **Unhide folder** from the same place. Favorites, Recently played, and **Collections** filters still include hidden games that belong to those views.
 
 ## Arrange the Hub
 
-The Hub is a grid you arrange yourself. Tiles can be categories, the built-in **Resume**, **Favorites**, **Recently played**, **Search**, **Update**, and **Settings** actions, systems, folders, games, or [saved searches](#search). To add a tile, choose **Add to Hub** from the options menu of a folder or from [**Manage**](#use-the-options-menu) in the options menu of a system or game, or use **Add item...** in the Hub's **View** menu; a folder that holds a single game is added as that game. A tile's options menu offers **Move** and **Hide** for categories and actions. A tile you added for a game or system shows that item's own menu, with **Move tile** and **Remove from Hub** under **Manage**. **Reset layout** in the View menu restores the default arrangement. The layout is stored under `[[hub.items]]` in `frontend.toml`; see [configuration file](./customization.mdx#configuration-file).
+The Hub is a grid you arrange yourself. Tiles can be categories, the built-in **Resume**, **Favorites**, **Liked**, **Play later**, **Disliked**, **Decks**, **Recently played**, **Top played**, **Search**, **Update**, and **Settings** actions, Settings pages such as **Background music**, systems, folders, games, decks, or [saved searches](#search). To add a tile, choose **Add to Hub** from the options menu of a folder or from [**Manage**](#use-the-options-menu) in the options menu of a system or game, or press **Menu** on the Hub and choose **Add item...**; a folder that holds a single game is added as that game.
 
-![Options menu on a Hub tile you added, with Move and Remove](/img/docs/frontend/hub-tile-remove.webp)
+Hub tiles have **Rename tile...**, [**Change tile icon...**](./customization.mdx#hub-icons), **Move tile**, and **Remove from Hub**. A tile for a game, a deck, **Resume**, or a system you can browse opens that item's own options menu, and these rows are on its **Edit tile** page. Other tiles, such as categories, actions, folders, and saved searches, show them on the options menu itself. Saving an empty name restores the original. **Reset layout**, under **More** in the Hub's Menu, restores the default arrangement. The layout is stored under `[[hub.items]]` in `frontend.toml`; see [configuration file](./customization.mdx#configuration-file).
+
+![Options menu on a Hub category tile, with Rename tile, Change tile icon, Move tile, Remove from Hub, and Manage category](/img/docs/frontend/v2.2/hub-tile-remove.webp)
+
+### Pin a MiSTer menu folder
+
+Folders from the MiSTer main menu, such as `_RA_Cores`, `_Chronological`, or a folder of your own `.mgl` files, can be Hub tiles too. Press **Menu** on the Hub, choose **Add item... > Custom folder...**, browse to the folder, and select **Add this folder**. The tile lists the folder's subfolders and launchable files straight from the SD card, so it works without a media database update. **Go to...**, **Tags**, and **Search here...** are not available inside it.
 
 ## Use the options menu
 
-The options menu holds the actions for the item you have selected. The same game shows the same menu in a system, Favorites, Recently played, Search results, and on the Hub.
+The options menu holds the actions for the item you have selected. The same game shows the same menu in a system, Favorites, Recently played, Search results, a deck, and on the Hub.
 
-On a game:
+On a game, a row of four toggles sits above the menu: **Favorite**, **Like**, **Dislike**, and **Play later**. Press Up from the first row to reach them. Like and Dislike clear each other. Below them:
 
-- **Details**, and **Add to favorites**.
-- **Choose disc** for a multi-disc game.
+- **Details**.
+- **Add to deck**, which lists your decks with a check on those that already hold the game, and **New deck...** to start one with it.
+- **Choose disc** for a multi-disc game, and **Choose version** for a search result with more than one version.
 - **Write to token**. With an NFC reader connected, choose **Write to NFC token** or **Write with App**. Without one, it shows a code to scan with the Zaparoo App.
 - **Discover alt. versions** for Arcade games.
-- **Manage game**, which opens **Change launcher**, **Add to Hub**, [**Hide**](#hide-games), and **Update metadata**.
+- **Manage game**, which opens **Change launcher**, **Add to Hub**, [**Hide game**](#hide-games), and **Update metadata**.
 
 On a system:
 
 - **Launch system** to boot its core with no game loaded.
 - **Random game**.
-- **Manage system**, which opens **Change launcher**, **Add to Hub**, **Hide**, **Update media database**, and **Update metadata**.
+- **Manage system**, which opens **Change launcher**, [**Preferred artwork**](./scraping.mdx#change-the-displayed-artwork), **Add to Hub**, **Hide system**, **Update media database**, and **Update metadata**.
 
-A folder has **Add to Hub** and **Hide**. A category tile on the Hub has **Move**, **Hide**, and **Manage category** for updating the media database or metadata of its systems.
+A folder has **Preferred artwork**, **Add to Hub**, and **Hide folder**. A category tile on the Hub has its tile rows and **Manage category** for updating the media database or metadata of its systems.
 
-![Options menu on a game, with Details, Add to favorites, Change launcher, Write with App, Add to Hub, and Update metadata](/img/docs/frontend/game-options-menu.webp)
+![Options menu on a game, with the Favorite, Like, Dislike, and Play later toggles above Details, Add to deck, Write to token, and Manage game](/img/docs/frontend/v2.2/game-options-menu.webp)
 
 See [Add Artwork and Metadata](./scraping.mdx#understand-the-library-actions) for the difference between updating the media database and updating metadata.
 
-## Favorites
+## Game details and manuals
 
-Favorites live on the Hub. To browse favorites within one system, use [**View > Tags > Collections**](#filter-games). In the favorites view, the **View** menu can **Sort** by default order or A-Z, **Group by** system, or pick a **Random favorite**. Favorite systems have their own screen as well.
+**Details** shows a game's artwork, description, and other information from Core. When the game has a manual, the help bar shows a **Manual** button. Press it to read the manual in the same panel: Left and Right or L and R turn pages, Up and Down scroll, Confirm switches between fit width and whole page, and Back returns to the details. Manuals come from [imported metadata](./scraping.mdx).
 
-![Favorites grouped by system](/img/docs/frontend/favorites-by-system.webp)
+## Favorites and lists
+
+Favorites, **Liked**, **Play later**, and **Disliked** each have their own screen, reached from their Hub tiles. To browse one of them within a single system, use [**Menu > Tags > Collections**](#filter-games). On these screens the Menu can **Sort** by default order, A-Z, or **Recently added**, **Group by** system, pick a **Random game**, or **Search here...**. Play later starts sorted by Recently added. Favorite systems have their own screen as well.
+
+**Top played** lists the games you have played longest, with each game's total time.
+
+![Favorites grouped by system](/img/docs/frontend/v2.2/favorites-by-system.webp)
+
+## Decks
+
+The **Decks** tile lists your [decks](../online/index.md#cards-and-decks), including decks you saved from other people in Zaparoo Online. Saved decks show a lock and their owner's name, and cannot be edited. Open a deck to see its items in order. Selecting an item plays the deck from that item, and **Menu > Play deck** plays it from the start.
+
+To build a deck from Frontend, choose **Add to deck** in a game's options menu, or **New deck...** in the Decks screen's Menu. In your own decks, an item's options menu has **Use as deck cover**, **Move in deck**, and **Remove from deck**, under **Manage game** for a game. **More** in the deck's Menu has **Add to Hub**, **Rename deck...**, **Choose cover image...**, **Remove cover**, and **Delete deck**. Decks and their covers are kept on the device, and [Library sync](../online/index.md#library-sync) keeps them in step with your account.
+
+## Background music
+
+**Settings > Background music** opens a music player for Core's [background audio](../features/audio.md). It plays music you have indexed under the `Audio` system, while you browse and while you play games.
+
+The player shows the current track with its cover art, its progress, and **Shuffle**, **Previous**, **Play/Pause**, **Next**, and **Repeat**. Its Menu has:
+
+- **Show playlist**, to see and pick tracks in the playlist that is playing.
+- **Browse music**, to browse your music folders. Selecting a track plays its folder from that track. A folder's options menu has **Play folder** and **Shuffle folder**, and the Menu has **Play all** and **Shuffle all**.
+- **Stop** and **Volume**.
+- **More**, with **Play on startup** and **Pause during games**. These are Core's [`music_autoplay`](../core/config/media.md#music_autoplay) and [`pause_on_launch`](../features/audio.md#pause-on-launch) settings.
+
+A music icon shows in the header while music plays. To reach the player from the Hub, add **Background music** with **Add item...**.
 
 ## Choose alternate MiSTer launchers
 
 Open a system's options menu and choose **Manage system > Change launcher** to pick a launcher that Core supports for that system. Launchers Core reports as unavailable appear dimmed, with a reason when one is available. They remain selectable. Alternate launchers include RetroAchievements, DB9, LLAPI, PWM, 80 MHz overclock, DualRAM, and Sinden variants. Depending on the system, you might see options such as `DualRAMPSX`, `DB9SNES`, `LLAPINintendo64`, `SindenPSX`, or `RASNES`. **Manage game > Change launcher** overrides the launcher for one game.
 
-RetroAchievements launchers also support a group preference. If you generally want a RetroAchievements core whenever one is installed, set this preference in Core's `config.toml`:
+To prefer a group of launchers everywhere it is installed, open **Settings > Library > Launcher preference**. **Add...** lists launcher groups, such as RetroAchievements, and single launchers. **Move** and **Remove** reorder or drop an entry. Core then uses the first available launcher from the list and falls back to the normal launcher when none is installed for a system. Explicit token launchers and saved system or game overrides still take priority. The list is Core's [`preference`](../core/config/launchers.md) setting, and the [MiSTer alternate launcher reference](../platforms/mister/alternate-launchers.md) has the full launcher list.
 
-```toml
-[launchers]
-preference = ["RetroAchievements"]
-```
+### RetroAchievements on MiSTer
 
-Core then prefers an available RetroAchievements launcher and falls back to the normal launcher when no supported RetroAchievements core is installed for that system. Explicit token launchers and saved system or game overrides still take priority. See the [MiSTer alternate launcher reference](../platforms/mister/alternate-launchers.md) for the full launcher list and configuration details.
+**Settings > RetroAchievements** sets up [RetroAchievements](../platforms/mister/alternate-launchers.md) without editing files. RetroAchievements must first be installed with Update All, and the page says so until it is.
+
+- **Log in...** saves your RetroAchievements account on the MiSTer after checking it with RetroAchievements. **Log out...** removes it.
+- **RetroAchievements launchers** puts the RetroAchievements group first in the launcher preference. If a system's own launcher setting overrides it, the page names that system.
+- The other rows set hardcore mode, the achievement popups and their position, and the achievement list shortcut.
 
 ## Change browsing options
 
-Open **Settings > Library > Browsing** to change how the library appears:
+Open **Settings > Browsing** to change how the library appears:
 
-- **Systems layout** and **Games layout**: a grid of covers or a detailed list. The games layout also covers Favorites and Recents.
+- **Systems layout** and **Games layout**: **Grid**, **Detailed list**, or **Text only**. The games layout also covers Favorites and Recents.
+- **Left and Right in lists**: in the detailed list, Left and Right either change page or step through the selected game's images.
 - **Preferred artwork**: which imported image type Frontend asks Core for first.
 - **Show hidden items**: shows hidden systems and games so you can unhide them.
 - **Show original filenames**: each file's real name, without the extension, instead of Core's cleaned-up title.
+- **Show tags**: shows region, revision, and disc tags after game names. When multiple games have the same display name, these tags tell them apart.
 
-Related settings live elsewhere: system logo style and **Reduce motion** under **Settings > Appearance**, regional system names (**Region**) and **Clock format** under **Settings > Language**, and **Mouse support** under **Settings > Controls**.
-
-When multiple games have the same display name, Frontend can show variant tags inline to help distinguish regions, versions, and other variants.
+Related settings live elsewhere: system logo style, the [background](./customization.mdx#background), and **Reduce motion** under **Settings > Appearance**, regional system names (**Region**) and **Clock format** under **Settings > Language**, and **Mouse support** under **Settings > Controls**.
 
 For custom system artwork, Hub icons, and display names, see [Customize Frontend](./customization.mdx).
 
@@ -125,10 +162,10 @@ The default keyboard controls are:
 | Select | `Enter` |
 | Back | `Escape` or `Backspace` |
 | Options menu | `Tab` |
-| View menu | `Space` |
+| Menu | `Space` |
 | Previous page | `PageUp` |
 | Next page | `PageDown` |
 
-MiSTer automatically maps your controller buttons to these keys: A selects, B goes back, X opens the options menu, Y opens the View menu, L and R change page, Select goes back, and Start opens help. You can swap the confirm and cancel buttons, or the options and view buttons, under **Settings > Controls**, and change the on-screen button icons with **Button style**.
+MiSTer automatically maps your controller buttons to these keys: A selects, B goes back, X opens the options menu, Y opens the Menu, L and R change page, Select goes back, and Start opens help. You can swap the confirm and cancel buttons, or the Options and Menu buttons, under **Settings > Controls**, and change the on-screen button icons with **Button style**. **Settings > Appearance > Show button hints** hides the help bar along the bottom of the screen.
 
 Keyboard bindings can be changed in `/media/fat/zaparoo/frontend.toml` under `[input.keyboard]`; a list you provide replaces the default for that action.

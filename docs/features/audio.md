@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-description: "Play music and audio files directly through Zaparoo Core, including background music that keeps playing while you launch games."
+description: "Play music, chiptunes, MIDI, and internet radio directly through Zaparoo Core, including background music that keeps playing while you launch games."
 keywords: [zaparoo audio, zaparoo background music, zaparoo media slots, native audio launcher, zaparoo music playback]
 ---
 
@@ -14,16 +14,45 @@ Use it to play a single track, a folder of music as a [playlist](./playlists.md)
 
 The native audio launcher handles the `Audio` [system](./systems.md) and plays these formats:
 
-- `.wav`
-- `.mp3`
-- `.ogg`
-- `.flac`
+| Type | Extensions |
+| ---- | ---------- |
+| Audio | `.wav`, `.mp3`, `.ogg`, `.flac` |
+| Video game music | `.vgm`, `.vgz` |
+| Chiptune | `.nsf`, `.nsfe`, `.gbs`, `.hes`, `.kss`, `.spc` |
+| MIDI | `.mid`, `.midi`, `.kar`, `.rmi` |
+| Playlists | `.pls`, `.m3u` |
 
 Audio files indexed under an `Audio` or `Music` folder are launched through it automatically. You can also launch any audio file directly by its path:
 
 ```zapscript
 **launch:/media/fat/music/chiptunes/intro.mp3
 ```
+
+An `.nsf`, `.nsfe`, `.gbs`, `.hes`, or `.kss` file can hold a whole soundtrack. It plays every track in order as one item, and the `next` and `previous` [controls](#controlling-playback) move between tracks. To play a single track, add its number, counting from 1, after the file name:
+
+```zapscript
+**launch:/media/fat/music/nsf/game.nsf/3
+```
+
+MIDI files play through a built-in FM synthesizer. To use a SoundFont instead, set [`midi_soundfont`](../core/config/media.md#midi_soundfont).
+
+## Internet radio
+
+Launch an `http://` or `https://` URL of an internet radio stream and it plays through the native audio launcher. Core checks what the URL serves first, so other URLs launch the same way they always have.
+
+```zapscript
+https://example.com/radio/stream.mp3
+```
+
+Core plays MP3, Ogg, and AAC streams from Icecast and Shoutcast stations, `.pls` and `.m3u` playlist links, and HLS (`.m3u8`) streams. Song titles sent by the station update the current track's details.
+
+Add `?slot=background` to play a station as [background music](#background-music):
+
+```zapscript
+https://example.com/radio/stream.mp3?slot=background
+```
+
+A live stream can't seek and doesn't save a resume position. Pausing disconnects from the station, and resuming joins it again at the live point.
 
 ## Media slots
 
@@ -53,6 +82,10 @@ Or play a whole folder as a background [playlist](./playlists.md):
 ```
 
 While background music plays you can keep scanning game tokens as usual. They launch in the primary slot without clearing the background slot, so the music stays loaded.
+
+When the device boots, Core starts the background playlist that was open when it last stopped, unless you stopped it yourself. Turn this off with [`music_autoplay`](../core/config/media.md#music_autoplay).
+
+On MiSTer, [Zaparoo Frontend](../frontend/browsing.mdx#background-music) has a music player for browsing your music and controlling background playback.
 
 ### Pause on launch
 
@@ -94,6 +127,8 @@ Use the [`control`](../zapscript/utilities.md#control) command, or the [`media.c
 | `stop` | Stop playback |
 | `fast_forward` | Seek forward |
 | `rewind` | Seek backward |
+| `next` | Next track of a multi-track chiptune file |
+| `previous` | Previous track of a multi-track chiptune file |
 
 To control background audio, add the slot:
 
@@ -109,4 +144,6 @@ To control background audio, add the slot:
 
 ## Volume
 
-Native audio playback uses the same volume setting as scan feedback sounds, set with [`volume`](../core/config/media.md#volume) in the config file.
+Native audio playback uses [`music_volume`](../core/config/media.md#music_volume) in the config file. When that is not set, it plays at the same [`volume`](../core/config/media.md#volume) as scan feedback sounds.
+
+Music and radio are leveled to a common loudness, using a file's ReplayGain tags when it has them, so quiet and loud tracks play at a similar volume. Turn this off with [`normalize`](../core/config/media.md#normalize).

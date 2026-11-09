@@ -28,7 +28,7 @@ Both actions are under **Settings > Library > Maintenance**.
 | **Update metadata** | Downloads libretro artwork or imports local artwork and details, skipping entries already processed by that source. | To add artwork, or after adding a pack, `gamelist.xml`, or compatible media folders. |
 | **Update metadata** with **Replace existing** | Processes entries again. Libretro downloads fresh images; local sources refresh metadata and remove stale artwork references. | To refresh a source you have already used. |
 
-![Library settings with Update media database and Update metadata](/img/docs/frontend/library-settings.webp)
+![Library settings with Update media database and Update metadata](/img/docs/frontend/v2.2/library-settings.webp)
 
 Updating metadata cannot start while a media database update is running, and only one import can run at a time. Core pauses the import while media is running and resumes when playback stops.
 
@@ -50,11 +50,11 @@ Metadata packs may not match custom naming, ROM hacks, or unusual library layout
 This source requires Core v2.19.0 and an internet connection. It downloads box art, screenshots, and title screens without preparing a local pack:
 
 1. Run **Update media database** if your games have not been indexed yet.
-2. Open **Settings > Library > Maintenance > Update metadata**.
+2. Open **Settings > Library > Maintenance > Update metadata...**.
 3. Set **Source** to **libretro thumbnails**, then choose the **Systems** to cover.
 4. Leave **Replace existing** off for the first run, then select **Start import**.
 
-Core saves the downloaded images on your device, so Frontend can display them offline afterward. It does not download game descriptions or manuals. Some games have no matching artwork; see [libretro-thumbnails](../features/scraping.md#libretro-thumbnails) for matching and refresh behavior.
+Core saves the downloaded images on your device, so Frontend can display them offline afterward. They go in `/media/fat/zaparoo/images` unless you set [`image_dir`](../core/config/media.md#image_dir). It does not download game descriptions or manuals. Some games have no matching artwork; see [libretro-thumbnails](../features/scraping.md#libretro-thumbnails) for matching and refresh behavior.
 
 ## MiSTer artwork and manuals from Update All
 
@@ -100,10 +100,10 @@ Skraper supports the game folder names MiSTer uses, so you can point it directly
 After adding compatible files:
 
 1. Open **Settings > Library > Maintenance**.
-2. Run **Update media database** if you added games or have not indexed the library yet.
-3. Select **Update metadata**. Choose the **Source** (Frontend remembers it for next time), pick the **Systems** to cover (all of them, or check as many as you want and go back), turn on **Replace existing** if you are refreshing artwork you imported before, then select **Start import**.
+2. Run **Update media database...** if you added games or have not indexed the library yet.
+3. Select **Update metadata...**. Choose the **Source** (Frontend remembers it for next time), pick the **Systems** to cover (all of them, or check as many as you want and go back), turn on **Replace existing** if you are refreshing artwork you imported before, then select **Start import**.
 
-![Update metadata dialog with Source, Systems, Replace existing, and Start import](/img/docs/frontend/update-metadata-dialog.webp)
+![Update metadata dialog with Source, Systems, Replace existing, and Start import](/img/docs/frontend/v2.2/update-metadata-dialog.webp)
 
 Frontend shows import progress by system when Core provides it. When the import finishes, artwork appears in the game browser.
 
@@ -115,7 +115,11 @@ MiSTer Arcade games use `.mra` files under `/media/fat/_Arcade`. Use a pack that
 
 ## Change the displayed artwork
 
-Open **Settings > Library > Browsing**, then change **Preferred artwork** to choose which imported image type Frontend asks Core for first (box art, 3D box art, screenshot, title screen, wheel, marquee, and more). See [Browse and Launch Games](./browsing.mdx#change-browsing-options) for the other library display settings.
+Open **Settings > Browsing**, then change **Preferred artwork** to choose which imported image type Frontend asks Core for first (box art, 3D box art, screenshot, title screen, wheel, marquee, and more).
+
+To use a different type for one system or folder, open the folder's options menu, or the system's **Manage system** page, and choose **Preferred artwork**. **Default** follows the nearest parent folder, then the system, then the Settings value, and names the type it inherits. The choice applies wherever that system's or folder's games appear, including Favorites, Search, and the Hub. Choices are saved in the `[artwork]` table of `frontend.toml`.
+
+See [Browse and Launch Games](./browsing.mdx#change-browsing-options) for the other library display settings.
 
 For your own system artwork, Hub icons, and system names, see [Customize Frontend](./customization.mdx).
 

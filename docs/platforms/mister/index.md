@@ -78,7 +78,7 @@ There is no uninstall command on MiSTer. To remove Zaparoo:
 
 ## Device profile data
 
-[Device profiles](../../features/profiles.md) automatically separate save files and save states on MiSTer. Existing saves remain under the shared profile, while each personal profile gets separate directories in the active storage location. When odelot's custom RetroAchievements Main is installed, Core can also switch account configuration with each profile.
+[Device profiles](../../features/profiles.md) automatically separate save files and save states on MiSTer. Existing saves remain under the shared profile, while each personal profile gets separate directories in the active storage location. If you use [RetroAchievements](alternate-launchers.md#retroachievements), Core also switches the RetroAchievements account with each profile.
 
 ## Device backups
 

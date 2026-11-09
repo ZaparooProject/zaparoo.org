@@ -76,7 +76,7 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | `NeoGeoPocketColor` | NGPC | `.ngc` |
 | `NES` | NES | `.nes` |
 | `NESMusic` | NES | `.nsf` |
-| `Nintendo64` | N64 | `.n64`, `.z64` |
+| `Nintendo64` | N64 | `.n64`, `.z64`, `.v64`, `.ndd` |
 | `Odyssey2` | ODYSSEY2 | `.bin` |
 | `PCFX` | PCFX | `.cue`, `.chd` |
 | `PocketChallengeV2` | WonderSwan, PocketChallengeV2 | `.pc2` |
@@ -120,7 +120,7 @@ Some listed cores require BIOS files, extra SDRAM, or a newer or patched MiSTer 
 | `AmstradPCW` | Amstrad PCW | `.dsk` |
 | `Apogee` | APOGEE | `.rka`, `.rkr`, `.gam` |
 | `AppleI` | Apple-I | `.txt` |
-| `AppleII` | Apple-II | `.dsk`, `.do`, `.po`, `.nib`, `.hdv` |
+| `AppleII` | Apple-II | `.dsk`, `.do`, `.po`, `.nib`, `.woz`, `.hdv` |
 | `AppleIIGS` | Apple-IIgs | `.hdv`, `.po`, `.2mg`, `.woz`, `.dsk`, `.do`, `.nib` |
 | `AppleIII` | Apple-III | `.woz`, `.dsk`, `.do`, `.po`, `.nib`, `.2mg`, `.hdv` |
 | `AppleLisa` | LISA | `.img`, `.vhd` |

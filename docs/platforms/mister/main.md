@@ -19,11 +19,13 @@ For every Zaparoo user on MiSTer, with or without Frontend:
 - Hands the console to Core while Core runs a script or video on screen, so the OSD and menu stay out of the way.
 - Adds [kiosk mode](#kiosk-mode), [auto-save](#auto-save), and [disc autorun](#auto-run-discs), all off by default.
 - Adds [commands](#commands) a card can send to force a save, swap a disk, or toggle a cheat without opening the OSD.
+- Runs [RetroAchievements cores](alternate-launchers.md#retroachievements) itself instead of switching to the separate RetroAchievements Main, so everything on this page keeps working while you play them. The achievement list opens with F6 or from the **Achievements** row in the OSD.
 - Can keep a [persistent log](#logs) for support.
 
 For Frontend:
 
 - Starts Frontend, restarts it if it crashes, and switches it off and on from the OSD.
+- Sends [HDMI-CEC remote](../../frontend/setup.mdx#controllers-and-remotes) buttons to Frontend.
 - Puts CRT mode, the video standard, and the screen position in the OSD, so a CRT setup can be fixed without an HDMI display.
 
 ## Releases
@@ -110,6 +112,8 @@ To send one from a card, save that as a script in `/media/fat/Scripts`, such as 
 | `zaparoo_cheat on\|off\|toggle <name\|index>` | Turns a cheat on or off by its number, its exact name, or a part of its name that matches only one cheat. Needs the cheat files the core normally uses. |
 | `zaparoo_cheat clear` | Turns every cheat off. |
 | `zaparoo_cheat list [text]` | Prints the cheats that are on, or every cheat whose name contains `text`. |
+
+For saves and cheats a card does not need a script: the [`**control`](../../zapscript/utilities.md#control) command's `save_ram` and `cheat` actions send `zaparoo_save` and `zaparoo_cheat` for you.
 
 `zaparoo_console` is in the list too. Core uses it to take over the console for on-screen scripts and video, and there is nothing to do with it yourself.
 

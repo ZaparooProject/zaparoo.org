@@ -68,6 +68,7 @@ Built-in action names include:
 | `save_state` | Save emulator state |
 | `load_state` | Load emulator state |
 | `save_ram` | Save RAM data |
+| `cheat` | Turn a game cheat on or off |
 | `toggle_menu` | Open or close an in-game menu |
 | `reset` | Reset active media |
 | `stop` | Stop active media |
@@ -85,7 +86,7 @@ Built-in launcher support currently includes:
 
 | Launcher | Supported actions |
 | -------- | ----------------- |
-| MiSTer and MiSTeX cores | `toggle_menu`, `reset`, `stop`, plus `save_state` and `load_state` on cores with save states |
+| MiSTer and MiSTeX cores | `toggle_menu`, `reset`, `stop`, plus `save_state` and `load_state` on cores with save states. On MiSTer with the [Zaparoo Main build](../platforms/mister/main.md), also `save_ram` and `cheat` |
 | Batocera EmulationStation launchers | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `next` (next disc), `stop`, as far as the running emulator supports them |
 | RePlayOS launchers | `save_state`, `load_state`, `reset`, `stop`. Needs [net control](../platforms/replayos.md#launcher-controls) turned on |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |

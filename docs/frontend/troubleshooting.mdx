@@ -20,9 +20,9 @@ The start screen shows **Can't reach Zaparoo Core. Check the connection.** when 
 
 ## Games do not appear
 
-If a [filter](./browsing.mdx#filter-games) is active, open **View > Tags** and choose **Clear tags**. To find [hidden games](./browsing.mdx#hide-games), turn on **Settings > Library > Browsing > Show hidden items**.
+If a [filter](./browsing.mdx#filter-games) is active, open **Menu > Tags** and choose **Clear tags**. To find [hidden games](./browsing.mdx#hide-games), turn on **Settings > Browsing > Show hidden items**.
 
-Run **Update media database** from **Settings > Library > Maintenance** if games have not been indexed. You can also update one system from **Manage system** in its options menu. On a brand-new library, select **Start media update** when prompted. Progress appears in the header, and systems appear as Core finds games.
+Run **Update media database...** from **Settings > Library > Maintenance** if games have not been indexed. You can also update one system from **Manage system** in its options menu. On a brand-new library, select **Start media update** when prompted. Progress appears in the header, and systems appear as Core finds games.
 
 A media database update finds game files and makes them available to Frontend. Updating metadata does not add missing games to the database.
 
@@ -36,7 +36,7 @@ Work through these checks in order:
 
 1. Confirm the game appears after running **Update media database**. Metadata imports only enrich games already present in Core's database.
 2. For **libretro thumbnails**, check the internet connection and that Core is v2.19.0 or newer. For local sources, confirm compatible files exist on the SD card, USB drive, or NAS.
-3. Run **Update metadata** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
+3. Run **Update metadata...** from **Settings > Library > Maintenance** with the right **Source** and **Systems** selected.
 4. For `gamelist.xml`, check that each game path resolves to an indexed game and that its image paths resolve to files Core can read. Libretro has no matching image for some games.
 
 See [Add Artwork and Metadata](./scraping.mdx) for supported sources and the complete import workflow.

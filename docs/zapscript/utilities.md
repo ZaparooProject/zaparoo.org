@@ -324,6 +324,7 @@ Defined action names include:
 - `next` - Skip to next track or disc
 - `previous` - Go to previous track or disc
 - `toggle_tray` - Open or close the emulated disc tray
+- `cheat` - Turn a game cheat on or off
 
 ### Advanced arguments
 
@@ -331,6 +332,8 @@ Defined action names include:
 | --------- | ---------- | ------- | ------------------------------------------------------------------ |
 | `slot`    | string     | `primary` | Media slot to control: `primary` or `background` ([audio](../features/audio.md)). For `save_state` and `load_state`, the save state slot number instead, where the launcher [supports it](../features/launchers.md#current-support) |
 | `seconds` | number     | `10`    | Seek amount for `fast_forward` and `rewind` on [audio playback](../features/audio.md) |
+| `name`    | string     | -       | For `cheat`, the cheat's file name in the game's cheat files. The extension can be left off |
+| `mode`    | string     | `on`    | For `cheat`: `on`, `off`, `toggle`, or `clear` to turn every cheat off. `clear` takes no `name` |
 
 ### Examples
 
@@ -357,6 +360,14 @@ Pause [background music](../features/audio.md) without affecting the active game
 ```zapscript
 **control:pause?slot=background
 ```
+
+Toggle a cheat in the running MiSTer game:
+
+```zapscript
+**control:cheat?name=Infinite Lives&mode=toggle
+```
+
+On MiSTer, `cheat` and `save_ram` need the [Zaparoo Main build](../platforms/mister/main.md). Cheats use the same cheat files as the MiSTer OSD, and RetroAchievements hardcore mode blocks them.
 
 :::info
 Media must be actively playing for this command to work. If no media is active, the command will return an error. The available actions depend on the launcher, and not all launchers support all actions.

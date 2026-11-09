@@ -15,6 +15,10 @@ Part of the [config file reference](./index.md). Keys are shown with their type 
 [audio]
 scan_feedback = true
 volume = 100
+music_volume = 60
+music_autoplay = true
+normalize = true
+midi_soundfont = "GeneralUser.sf2"
 success_sound = "custom_success.wav"
 fail_sound = "custom_fail.wav"
 limit_sound = "custom_limit.wav"
@@ -36,11 +40,64 @@ ready_sound = "custom_ready.ogg"
 | ------ | ----------------- | ------- |
 | volume | integer (0–200)   | 100     |
 
-`volume` sets the playback volume for audio feedback sounds and [native audio playback](../../features/audio.md). At the default `100`, sounds play at their original recorded level. Lower values quiet them down; higher values amplify, up to double at `200`.
+`volume` sets the playback volume for audio feedback sounds, and for [native audio playback](../../features/audio.md) when `music_volume` is not set. At the default `100`, sounds play at their original recorded level. Lower values quiet them down; higher values amplify, up to double at `200`.
 
 ```toml
 [audio]
 volume = 150  # 50% louder than the original sound
+```
+
+### music_volume
+
+| Key          | Type            | Default         |
+| ------------ | --------------- | --------------- |
+| music_volume | integer (0–200) | (follows `volume`) |
+
+`music_volume` sets the volume of [native audio playback](../../features/audio.md), such as music and background playlists, separately from scan feedback sounds. It uses the same scale as `volume`, and `0` mutes it. When it is not set, native audio plays at `volume`.
+
+```toml
+[audio]
+volume = 100
+music_volume = 60  # music quieter than scan sounds
+```
+
+### music_autoplay
+
+| Key            | Type    | Default |
+| -------------- | ------- | ------- |
+| music_autoplay | boolean | true    |
+
+`music_autoplay` starts the [background music](../../features/audio.md#background-music) playlist that was open when Core last stopped, the first time Core starts after the device boots. A playlist you stopped yourself stays stopped. Set it to `false` to have the playlist come back paused instead.
+
+```toml
+[audio]
+music_autoplay = false
+```
+
+### normalize
+
+| Key       | Type    | Default |
+| --------- | ------- | ------- |
+| normalize | boolean | true    |
+
+`normalize` levels [native audio playback](../../features/audio.md), including [internet radio](../../features/audio.md#internet-radio), to a common loudness so tracks and stations play at a similar volume. It uses a file's ReplayGain tags when it has them. Set it to `false` to play everything at its original level.
+
+```toml
+[audio]
+normalize = false
+```
+
+### midi_soundfont
+
+| Key            | Type   | Default            |
+| -------------- | ------ | ------------------ |
+| midi_soundfont | string | (built-in FM synth) |
+
+`midi_soundfont` sets a SoundFont (`.sf2`) file for [MIDI playback](../../features/audio.md#supported-files). A relative path resolves to `<data_dir>/assets/`. When it is not set, or the SoundFont fails to load, MIDI files play through a built-in FM synthesizer.
+
+```toml
+[audio]
+midi_soundfont = "GeneralUser.sf2"
 ```
 
 ### success_sound
@@ -230,6 +287,34 @@ default_langs = ["en", "es"]
 ```
 
 Languages are checked in order. Common language codes: `en`, `es`, `fr`, `de`, `it`, `ja`, `pt`
+
+### image_dir
+
+| Key       | Type   | Default  |
+| --------- | ------ | -------- |
+| image_dir | string | `images` in Core's data folder |
+
+`image_dir` is the folder for images downloaded by the `libretro-thumbnails` [scraper](../../features/scraping.md#libretro-thumbnails) and for Core's generated thumbnail cache. Use an absolute path, since a relative one resolves against the folder holding the Core executable.
+
+```toml
+[media]
+image_dir = "/media/usb0/zaparoo-images"
+```
+
+Core doesn't copy anything when this changes, so move the folder's contents yourself to keep existing images. Covers keep working after the move.
+
+### thumb_cache_max_mb
+
+| Key                | Type | Default |
+| ------------------ | ---- | ------- |
+| thumb_cache_max_mb | int  | `1024`  |
+
+`thumb_cache_max_mb` caps the generated thumbnail cache in MiB, up to `1048576`. Downloaded images don't count toward it.
+
+```toml
+[media]
+thumb_cache_max_mb = 2048
+```
 
 ## Scraper
 

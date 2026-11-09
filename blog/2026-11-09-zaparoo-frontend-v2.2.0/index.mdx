@@ -1,0 +1,286 @@
+---
+slug: zaparoo-frontend-v2.2.0
+title: "Zaparoo Frontend v2.2.0: Decks, Background Music, and the Menu Row"
+description: "Zaparoo Frontend v2.2.0 adds decks and collections, a background music player, background images, Bluetooth controller pairing, pinned MiSTer menu folders, and a Menu row that shows each screen's actions. Core v2.22.0 adds internet radio, chiptune and MIDI playback, and MiSTer cheat and save controls."
+tags: [software, frontend, core]
+authors: [wizzo]
+draft: false
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+[Zaparoo Frontend](/docs/frontend/) v2.2.0 brings your collections into the MiSTer interface. Like, dislike, and save games for later, build [decks](/docs/frontend/browsing/#decks) without leaving the couch, and pin any of them to the [Hub](/docs/frontend/browsing/#arrange-the-hub). There's also a background music player, background images, 12 screensaver styles, Bluetooth controller pairing, and a Menu row that puts each screen's actions in view.
+
+[Zaparoo Core](/docs/core/) v2.22.0 is out alongside it. It plays internet radio, chiptunes, and MIDI files, and music gets its own volume and picks up where it left off after a reboot. On MiSTer it can turn cheats on and off and force a save from a card, and many MiSTer launch problems are fixed.
+
+Thanks to [Andrea Bogazzi](https://github.com/asturur) for this release's CRT mode improvements, to [odelot](https://github.com/odelot) for the RetroAchievements code now built into Zaparoo's MiSTer Main, and to [Turner Monroe](https://github.com/turnercore) for fixing the dead processes Core left behind after Steam launches on Bazzite.
+
+{/* truncate */}
+
+## Download and update
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Frontend v2.2.0"
+    link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v2.2.0"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.22.0"
+    link="https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.22.0"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="link" />}
+    label="Frontend install guide"
+    link="/docs/frontend/setup/"
+    variant="primary"
+  />
+</div>
+
+On MiSTer, use **Update All** to update Frontend and Core together. If you install by hand, update both. Frontend now expects Core v2.22.0 or newer.
+
+For a manual update, copy the whole `zaparoo` folder from the release ZIP, including `modules/`, so Frontend, MiSTer Main, and the menu core all come from the same bundle. See the [manual install steps](/docs/frontend/setup/#manual-install).
+
+On Bazzite and ChimeraOS, the install script used to install the generic Linux build of Core, which opens non-Steam games behind the Steam UI in Gaming Mode. It now installs the right build, and updates keep it. If you installed with the script before, run it again.
+
+## Collections and decks
+
+A game's options menu now opens with a row of four toggles: **Favorite**, **Like**, **Dislike**, and **Play later**. Press Up from the first row to reach them. Liking a game clears a dislike, and the reverse.
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/options-toggles-frontend.png")}
+  alt="A game's options menu with the Favorite, Like, Dislike, and Play later toggles above Details, Add to deck, Write to token, Edit tile, and Manage game, with Like focused"
+  width="960"
+  height="540"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+Liked games, Play later, and Disliked games each get a screen with the same sorting and grouping as Favorites, plus a new **Recently added** sort, which Play later opens with. A new **Top played** screen ranks your games by total play time.
+
+The new **Decks** screen lists your [decks](/docs/online/#cards-and-decks), including read-only ones you saved from other people on Zaparoo Online, which show who made them. Select an item to play it. **Add to deck** in a game's options menu adds the game to a deck or starts a new one, and in your own decks you can reorder and remove items, rename the deck, and pick its cover.
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/decks-frontend.png")}
+  alt="The Decks screen with ten decks in a grid, several with their own cover images"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+## Background music
+
+**Settings > Background music** is a full player for Core's [background music](/docs/features/audio/#background-music), with the cover, title, artist, and album of what's playing, plus shuffle, repeat, skip (also on L and R), and volume. **Browse music** starts a folder from any track, and **Add item...** puts the player on the Hub.
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/music-player-frontend.png")}
+  alt="The Background music player showing the cover, title, artist, and album of the current track and the next track, with a progress bar and shuffle, previous, pause, next, and repeat buttons"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+The player also has Core's **Play on startup** and **Pause during games** settings. See [Background music](/docs/frontend/browsing/#background-music).
+
+## Backgrounds, screensavers, and logo
+
+**Settings > Appearance > Background** puts an image behind every screen: one file, or a folder for a random image each time the MiSTer starts. **Game background** instead shows the selected game's screenshot, fan art, title screen, or box art behind game lists. Blur and dimming are adjustable. See [Background](/docs/frontend/customization/#background).
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/background-frontend.png")}
+  alt="The Hub with a background image of game cover art behind the tiles"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+The screensaver used to be a bouncing logo or clock. **Settings > Appearance > Screensaver** now has 12 styles: **Bouncing**, **Spinning logo**, **System logos**, **Cover wall**, **Recent games**, **Paddle clock**, **Starfield**, **Flyby**, **Polygons**, **Snakes**, **Life**, and **Maze**. The default, **Random**, picks a different one each time and skips styles that need more covers than you have. **Bouncing** can bounce the logo, the clock, or a recently played game's cover. The idle timeout, **Start after**, moved to the same page. See [Screensaver](/docs/frontend/customization/#screensaver).
+
+<video
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/screensaver-frontend.mp4")}
+  poster={useBaseUrl("/img/blog/frontend-v2.2.0/screensaver-still-frontend.png")}
+  aria-label="The Cover wall screensaver swapping game covers in a grid, with the clock in one of the spaces"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
+
+<video
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/screensaver-maze-frontend.mp4")}
+  poster={useBaseUrl("/img/blog/frontend-v2.2.0/screensaver-maze-still-frontend.png")}
+  aria-label="The Maze screensaver moving through purple brick corridors with game covers hung on the walls"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
+
+**Settings > Appearance > Top bar logo** replaces the top bar's Zaparoo logo with your own image or hides it, and the screensaver follows. It's a supporter feature that needs Zaparoo Pro from the App or a Warp subscription, on a device linked to your account. See [Top bar logo](/docs/frontend/customization/#header-logo).
+
+## The Menu row
+
+Many of Frontend's features lived in the old View menu, which stayed hidden until you opened it, so plenty of people never found them. Each screen now shows its actions in a row under the title, such as **Go to**, **Tags**, and **Search here** in a system, or **Sort** and **Random game** in Favorites.
+
+The View button is now the **Menu** button and moves onto the row. At 240p, or with **Settings > Appearance > Show Menu row** off, it opens a list as before.
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/menu-row-frontend.png")}
+  alt="A Genesis game list with the Menu row under the title showing Go to, Tags, and Search here, with Go to focused"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+## Controllers and remotes
+
+**Settings > Controls > Controllers** pairs Bluetooth controllers. Put one in pairing mode and select it when it appears, and it reconnects on its own after that. The page also shows connected controllers with battery and charge state, and **Paired controllers** forgets one. Wireless controllers show their battery in the top bar too. See [Controllers and remotes](/docs/frontend/setup/#controllers-and-remotes).
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/controllers-frontend.png")}
+  alt="The Controllers page with a connected DualShock 4 at 100% battery and charging, a GameSir controller found while searching, and Paired controllers"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+With `hdmi_cec=1` in `MiSTer.ini`, a TV remote now drives Frontend over HDMI-CEC. Exit goes back and Root Menu opens the OSD.
+
+## Search and the Hub
+
+- Search results show each game once per system, with the number of versions next to its name. **Choose version** in the options menu picks a specific one.
+- **Search here...** now works from a category, Favorites, and Favorite systems, as well as from a system or folder.
+- Saving a search is now **Save to Hub**, and a saved search can be edited from its results.
+- On MiSTer, **Add item... > Custom folder...** pins a folder from the SD card, such as `_RA_Cores` or a folder of `.mgl` files, as a Hub tile. See [Pin a MiSTer menu folder](/docs/frontend/browsing/#pin-a-mister-menu-folder).
+- Any Hub tile, built-in ones included, can be renamed with **Rename tile...** and given any image with **Change tile icon...**. On game, system, deck, and Resume tiles, these sit with **Move tile** and **Remove from Hub** on their own **Edit tile** page. Resume shows the game it continues.
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/search-versions-frontend.png")}
+  alt="Search results for streets of rage with Bare Knuckle ~ Streets of Rage selected and a version count of 4 next to its name"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+## RetroAchievements
+
+A new **Settings > RetroAchievements** page logs you in, turns the RetroAchievements launchers on, and sets hardcore mode and the achievement popups, without editing files. See [RetroAchievements on MiSTer](/docs/frontend/browsing/#retroachievements-on-mister).
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/retroachievements-frontend.png")}
+  alt="The RetroAchievements settings page while logged in, with Account, Setup, and Gameplay sections and the RetroAchievements launchers toggle turned on"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+RetroAchievements cores now run on Zaparoo's [MiSTer Main](/docs/platforms/mister/main/). Before, launching one switched to the separate RetroAchievements Main, so kiosk mode, auto-save, and card commands stopped working while you played. The achievement list opens with F6 or from the new **Achievements** row in the OSD. This is a port of the RetroAchievements Main by odelot, who also makes the cores.
+
+## Browsing
+
+- [**Tags**](/docs/frontend/browsing/#filter-games), in a system or on the Search screen, takes several values per category, so you can show platformers or shooters from the USA.
+- **Preferred artwork** can be set for one system or folder, from a system's **Manage system** page or a folder's options menu. See [Change the displayed artwork](/docs/frontend/scraping/#change-the-displayed-artwork).
+- Large folders, like a full NES set, reopen at your last game and jump to a letter much faster.
+- Hold Back to go straight to the Hub, or press L1 and R1 together to open **Go to...** and jump to a letter.
+- When a game has a manual, its **Details** panel has a **Manual** button to read it on screen.
+- The new **Settings > Browsing** page has **Left and Right in lists**, to step through a game's images in the detailed list instead of changing page, and **Show tags**, to hide region and revision tags.
+- **Settings > Library > Launcher preference** sets Core's [launcher preference](/docs/frontend/browsing/#choose-alternate-mister-launchers) from Frontend.
+- **Settings > Appearance > Show button hints** hides the help bar.
+- 132 more systems have logos.
+- **Discover alt. versions** also finds games under `_Arcade Patches`.
+- On MiSTer, **Settings > Language > MiSTer names.txt** names systems from your MiSTer's `names.txt`. See [MiSTer names.txt](/docs/frontend/customization/#mister-namestxt).
+
+## CRT
+
+Thanks to Andrea Bogazzi, CRT mode has sharper text and icons, tighter margins, and a new **Text only** layout for systems and games. Andrea also added width to **Screen position**: press Options on the test pattern, then Left and Right stretch the picture. See [Enable CRT mode](/docs/frontend/setup/#enable-crt-mode).
+
+<img
+  src={useBaseUrl("/img/blog/frontend-v2.2.0/crt-text-only-frontend.png")}
+  alt="CRT mode at 240p showing the Channel F game list in the Text only layout"
+  width="1280"
+  height="720"
+  style={{ maxWidth: "100%", height: "auto" }}
+  loading="lazy"
+/>
+
+## Frontend fixes
+
+- A slow start no longer leaves **Settings > Display** offering only **Automatic** or loses your saved resolution.
+- Page jumps reach the last entry in a list.
+- Art for multi-disc games shows correctly, and changing the image type survives a cold boot.
+- Games opened from a Hub tile come back to the right place.
+- Game counts in the library no longer go missing.
+- Covers fade in more smoothly on MiSTer.
+- The Menu button deletes characters on the Search screen again.
+- Writing the RetroAchievements config can no longer leave it half written.
+- With [kiosk mode](/docs/platforms/mister/main/#kiosk-mode) on and Frontend turned off, the MiSTer menu shows its static again instead of a black screen.
+
+## Core v2.22.0
+
+### Music and radio
+
+Core now plays internet radio. Launch a station's stream URL from a card, add `?slot=background` to keep it playing behind your games, and the station's song titles come through as the current track. It handles Icecast and Shoutcast stations, `.pls` and `.m3u` links, and HLS streams. See [Internet radio](/docs/features/audio/#internet-radio).
+
+It also plays video game music and MIDI files. VGM, NSF, GBS, HES, KSS, and SPC files [play directly](/docs/features/audio/#supported-files), and the `next` and `previous` controls move through the tracks of a whole soundtrack in one file. MIDI plays through a built-in FM synth, or through a SoundFont you set with [`midi_soundfont`](/docs/core/config/media/#midi_soundfont).
+
+- [`music_volume`](/docs/core/config/media/#music_volume) sets the volume of music separately from scan sounds.
+- [`music_autoplay`](/docs/core/config/media/#music_autoplay) resumes your last background playlist when the device boots. It's on by default, and a playlist you stopped yourself stays stopped.
+- Folder playlists take a [`system`](/docs/zapscript/playlist/#playlistplay) argument, such as `?system=Audio`, to include only that system's files.
+- Music and radio are leveled to a similar loudness, using ReplayGain tags when a file has them. Turn it off with [`normalize`](/docs/core/config/media/#normalize).
+- MP3, FLAC, and Ogg playback uses much less CPU on MiSTer.
+
+### Cheats and saves on MiSTer
+
+[`**control`](/docs/zapscript/utilities/#control) has a new `cheat` action that turns a cheat on, off, or toggles it in the running game, or clears them all:
+
+```zapscript
+**control:cheat?name=Infinite Lives&mode=toggle
+```
+
+`save_ram` now works on MiSTer too, writing the core's save without opening the OSD. Both need the [Zaparoo Main build](/docs/platforms/mister/main/) from this release, and RetroAchievements hardcore mode blocks cheats.
+
+### Decks and library
+
+- With [Library sync](/docs/online/#library-sync) on, decks you saved on Zaparoo Online appear on your devices as read-only decks.
+- Deck covers can be set from a device and work without an account.
+- Apple II `.woz` and N64 64DD `.ndd` disk images launch on MiSTer.
+- [`image_dir`](/docs/core/config/media/#image_dir) sets where downloaded artwork and the thumbnail cache are stored, such as a USB drive, and [`thumb_cache_max_mb`](/docs/core/config/media/#thumb_cache_max_mb) sets the cache's size limit. After updating, Core moves existing images into the new default `images` folder once.
+
+### Core fixes
+
+On MiSTer:
+
+- MiSTer loads the newest release of a core instead of an unstable build.
+- RetroAchievements cores launch for systems that share a core.
+- AmigaVision games, demos, and its home screen launch again, and launching the Amiga system loads `_Computer/Amiga.mgl`.
+- Arcade Organizer entries and Operator plays show art and details.
+- Art and details for multi-disc games follow the disc you launched.
+- Search finds games by their full title.
+
+Other fixes: folders with hidden subfolders no longer show short or empty pages, covers are no longer lost after a scrape or media database update (Core rebuilds its cover cache once after updating), `write` in a multi-step script gives a clearer error, background disk writes are reduced, and rejected remote connections are logged.
+
+### For developers
+
+`media.search` can group results by title with `groupBy: "title"`, returning a `titleId` and `versionCount` for each, and `media.browse` takes `live: true` to read a folder from disk and `offset` or `anchorPath` to start a page at a position. `online.status` reports a device's link state and account features, `device.bluetooth.*` searches for, pairs, and forgets Bluetooth devices on Linux, and controllers in `device.status` gain `chargeState` and `displayName`. `settings` and `settings.update` gain `audioNormalize` and `audioMidiSoundFont`. Core can also show its pickers, confirmations, and notices inside Frontend. See the [API reference](/docs/core/api/).
+
+---
+
+If something breaks or behaves differently from the last version, report it on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/). Include your Frontend and Core versions, your display setup, and what you were doing. **Settings > About > Upload log file** gives you a [support bundle](/docs/frontend/troubleshooting/#upload-support-logs) to share.
+
+<SponsorCallout variant="combined" />

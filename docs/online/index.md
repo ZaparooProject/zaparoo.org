@@ -43,7 +43,7 @@ Linking a device does not turn on cloud backup, play history sync, Library sync,
 
 ## Cloud backup with Warp
 
-Warp is how you support Zaparoo and pay for its hosted features. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase (the App's paid phone-as-reader feature) linked from the App, so Pro works on both Android and iOS.
+Warp is how you support Zaparoo and pay for its hosted features. It adds automatic off-site backups for linked Core devices and includes Zaparoo App Pro while the subscription is active. A free account can also hold a one-time [App Pro](../app/index.md#zaparoo-app-pro) purchase (the App's paid phone-as-reader feature) linked from the App, so Pro works on both Android and iOS. Either one also unlocks the [custom top bar logo](../frontend/customization.mdx#header-logo) in Frontend.
 
 Core can upload snapshots on a daily or weekly schedule, or only when you start one. Online keeps the latest 30 changed snapshots for each linked device. Snapshots from every platform contain Zaparoo-owned data. MiSTer and SteamOS snapshots can also contain supported platform settings, saves, and save states. See [Device Backups](../features/backups.md#cloud-backup) for setup, contents, exclusions, and restore behavior.
 
@@ -150,7 +150,7 @@ On a device, a deck is a [saved playlist](../features/playlists.md#deck) that an
 
 Set a deck's visibility to **Public** to list it on your profile and in Discover. A public deck needs a claimed username, with **Hide my ownership** turned off. Your profile is at `online.zaparoo.com/u/<username>`, with the short link `zaparoo.online/<username>`.
 
-[Discover](https://online.zaparoo.com/discover) lists public decks sorted by **Popular**, **New**, or **Most remixed**. Save a deck to find it again under **Saved**, or remix a public or unlisted deck to copy it into your own decks, credited "Remixed from @user". Profiles, Discover, saving, and remixing are free.
+[Discover](https://online.zaparoo.com/discover) lists public decks sorted by **Popular**, **New**, or **Most remixed**. Save a deck to find it again under **Saved**. With [Library sync](#library-sync) on, saved decks also appear on your devices as read-only decks. Remix a public or unlisted deck to copy it into your own decks, credited "Remixed from @user". Profiles, Discover, saving, and remixing are free.
 
 ## Your account
 

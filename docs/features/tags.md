@@ -76,7 +76,7 @@ Tags support three operators in title IDs and `launch.title` tag arguments.
 | --- | --- |
 | `(tag:value)` or `(+tag:value)` | Match must have this tag. |
 | `(-tag:value)` | Match must not have this tag. |
-| `(~tag:value)` | At least one `~` tag must match. |
+| `(~tag:value)` | At least one `~` tag of each tag type must match. `(~lang:en) (~lang:fr) (~region:us) (~region:eu)` means English or French, and US or EU. |
 
 Examples:
 

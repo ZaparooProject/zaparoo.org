@@ -80,6 +80,7 @@ Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi coll
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
+| `system` | string     | -       | For a folder, only include files of this [system](../features/systems.md), such as `Audio` |
 | `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
 | `advance` | duration  | -       | Switch to the next item after this much playing time              |
 | `idle`   | duration   | -       | Switch to the next item after this long with no input             |
@@ -129,6 +130,7 @@ Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi coll
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
+| `system` | string     | -       | For a folder, only include files of this [system](../features/systems.md), such as `Audio` |
 | `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
 | `advance` | duration  | -       | Switch to the next item after this much playing time              |
 | `idle`   | duration   | -       | Switch to the next item after this long with no input             |
@@ -176,6 +178,7 @@ Path to a folder, `.pls` file, inline JSON playlist, `deck://<id>`, or Kodi coll
 | `mode`   | string     | -       | Set to `shuffle` for random order                                  |
 | `repeat` | string     | `off`   | `off`, `all`, or `one` (see [Repeat modes](#repeat-modes))         |
 | `slot`   | string     | `primary` | `primary` or `background` media [slot](#media-slots)             |
+| `system` | string     | -       | For a folder, only include files of this [system](../features/systems.md), such as `Audio` |
 | `start`  | number     | -       | Item to open on, counted from 1 (see [Choosing the starting item](#choosing-the-starting-item)) |
 | `advance` | duration  | -       | Switch to the next item after this much playing time              |
 | `idle`   | duration   | -       | Switch to the next item after this long with no input             |

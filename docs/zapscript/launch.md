@@ -132,7 +132,7 @@ Tag operators:
 
 - `(tag:value)` or `(+tag:value)` - must have this tag (AND)
 - `(-tag:value)` - must not have this tag (NOT)
-- `(~tag:value)` - at least one of these must match (OR)
+- `(~tag:value)` - at least one `~` tag of each tag type must match (OR within a type)
 
 See the [Tags documentation](../features/tags.md) for available filters.
 
