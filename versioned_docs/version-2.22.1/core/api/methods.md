@@ -316,7 +316,7 @@ None.
 
 Choice IDs are presentation-safe. Executable ZapScript and private choice values remain inside Core.
 
-On MiSTer, Main_MiSTer records in `/tmp/zaparoo/frontend_status.json` whether the Zaparoo frontend runs in place of the stock menu. While it does, Core shows no UI event through its own menu widgets and leaves every event to API clients, as long as the frontend is running or a game is; at the menu before the frontend has started, the widgets show it as before. An event raised while a game runs, which the widgets would have ended the game to show, instead returns to the menu so Main starts the frontend, and stays open for at least 60 seconds from then, or for its own timeout when that is longer. Events the widgets never show over a running game, such as the auto-advance switch countdown, are unchanged. When the file is missing, unreadable, reports the frontend inactive, or names a Main process that is no longer running (a stock Main started in its place), Core shows events as before.
+On MiSTer, Main_MiSTer records in `/tmp/zaparoo/frontend_status.json` whether the Zaparoo frontend runs in place of the stock menu. While it does, Core shows no UI event through its own menu widgets and leaves every event to API clients, including at the menu before the frontend has started, as when a game has just exited and Main is still loading the menu: such an event stays open for at least 60 seconds for the frontend to start and show it, or for its own timeout when that is longer. An event raised while a game runs, which the widgets would have ended the game to show, instead returns to the menu so Main starts the frontend, and stays open for at least 60 seconds from then, or for its own timeout when that is longer. Events the widgets never show over a running game, such as the auto-advance switch countdown, are unchanged. Main starts a new process on every core load and names it in the file shortly after, so when the file names a Main process that is no longer running, Core rereads it for up to 5 seconds before deciding. If it still names that process (a stock Main started in its place), Core shows events as before, without waiting again until the file changes. When the file is missing, unreadable or reports the frontend inactive, Core shows events as before.
 
 #### Example
 
@@ -404,6 +404,43 @@ Top-level `confirm` remains launch-guard-specific for compatibility. It cannot c
 | id      | string | Yes      | Resolved event ID. |
 | outcome | string | Yes      | `confirmed`, `selected`, `dismissed`, `timed_out`, `completed`, `superseded`, or `cancelled`. |
 | choiceId | string | No     | Selected opaque choice ID for `selected`. |
+
+### ui.shown
+
+**Access:** Localhost or any authenticated client.
+
+Reports that a client has put the active UI event on screen. The first report for an event restarts its expiry at the event's full timeout from now, so time spent waiting for the client to start does not count against the person answering it, and publishes the new `expiresAt` through `ui.changed`. A first report within a second of the event opening keeps the current expiry. Repeated reports for the same event are accepted and change nothing. An event the host renderer presents counts as shown without a report.
+
+Clients should send it once per event, when the event first becomes visible.
+
+#### Parameters
+
+| Key | Type   | Required | Description |
+| :-- | :----- | :------- | :---------- |
+| id  | string | Yes      | Active event ID. |
+
+Returns `null` when accepted. Returns client error for stale event ID or expired event.
+
+#### Example
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "ui-shown-1",
+  "method": "ui.shown",
+  "params": {
+    "id": "56969e9c-f863-4cc8-9c2c-d7512bf10d4d"
+  }
+}
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "ui-shown-1",
+  "result": null
+}
+```
 
 ## Tokens
 
@@ -3261,7 +3298,8 @@ None.
 | audioMusicVolume          | number                                    | Yes      | Volume of music and other audio played by native audio in either slot, 0 to 200 (`[audio] music_volume`). Reports `audioVolume` while it has not been set. |
 | audioMusicAutoplay        | boolean                                   | Yes      | Whether the background playlist open when Core last stopped starts playing on the first Core start of each boot (`[audio] music_autoplay`). Defaults to true. |
 | audioMusicPauseOnLaunch   | boolean                                   | Yes      | Whether background music pauses while a game runs in the primary slot and resumes when it exits. Stored as `pause_on_launch` on the `Audio` entry of `[[systems.default]]`. Defaults to true. |
-| audioNormalize            | boolean                                   | Yes      | Whether music and radio playback is levelled to a common loudness, using ReplayGain tags where a file has them (`[audio] normalize`). Defaults to true. |
+| audioNormalize            | boolean                                   | Yes      | Whether music, radio, chiptune and MIDI playback is levelled to a common loudness, using ReplayGain tags where a file has them (`[audio] normalize`). Defaults to true. |
+| audioMidiSoundFont        | string                                    | Yes      | SoundFont (.sf2) that MIDI files play through (`[audio] midi_soundfont`). Relative paths resolve under the data directory's `assets` folder. Empty means MIDI plays through the built-in FM synthesizer. |
 | readersAutoDetect         | boolean                                   | Yes      | Whether automatic reader detection is enabled.                  |
 | readersScanMode           | string                                    | Yes      | Current scan mode setting.                                      |
 | readersScanExitDelay      | number                                    | Yes      | Delay before exiting scan mode in seconds.                      |
@@ -3364,7 +3402,8 @@ An object containing any of the following optional keys:
 | audioMusicVolume          | number                                    | No       | Volume of music played by native audio in either slot, 0 to 200. `0` is silent. Applies at once to what is playing. |
 | audioMusicAutoplay        | boolean                                   | No       | Whether the restored background playlist starts playing on the first Core start of each boot. |
 | audioMusicPauseOnLaunch   | boolean                                   | No       | Whether background music pauses while a game runs. Applied after `systemDefaults` when both are sent, and kept when `systemDefaults` leaves the `Audio` entry out. |
-| audioNormalize            | boolean                                   | No       | Whether music and radio playback is levelled to a common loudness. Applies to what is playing within a few seconds. |
+| audioNormalize            | boolean                                   | No       | Whether music, radio, chiptune and MIDI playback is levelled to a common loudness. Applies to what is playing within a few seconds. |
+| audioMidiSoundFont        | string                                    | No       | SoundFont (.sf2) that MIDI files play through. Empty goes back to the built-in FM synthesizer. Applies to the next MIDI file played. |
 | readersAutoDetect         | boolean                                   | No       | Whether automatic reader detection is enabled.                  |
 | readersScanMode           | string                                    | No       | Current scan mode setting.                                      |
 | readersScanExitDelay      | number                                    | No       | Delay before exiting scan mode in seconds.                      |

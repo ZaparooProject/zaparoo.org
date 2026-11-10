@@ -167,7 +167,7 @@ A playlist moves on by itself when its current item ends:
 
 Stopping or replacing media through Zaparoo never moves the playlist on. The last item of a playlist without [repeat](../zapscript/playlist.md#repeat-modes) ends the playlist.
 
-[MiSTer](../platforms/mister/index.md) shows the countdown on screen with **Play now** and **Stop playlist** options. On other platforms, a connected client that supports Core's global UI events can show and answer it.
+[MiSTer](../platforms/mister/index.md) shows the countdown on screen with **Play now** and **Stop playlist** options. The countdown runs in full from when it appears, and a button press does not cancel it there. Pick an option or let it run out. On other platforms, a connected client that supports Core's global UI events can show and answer it.
 
 ### Timed and idle switching
 

@@ -1,0 +1,41 @@
+---
+slug: zaparoo-frontend-v2.2.1
+title: "Zaparoo Frontend v2.2.1 and Core v2.22.1"
+description: "A MiSTer hotfix: the countdown after quitting a deck game waits until Zaparoo Frontend shows it, Background image gets a None option, and the screensaver stays off while a picker is open."
+tags: [software, frontend, core]
+authors: [wizzo]
+draft: false
+---
+
+Zaparoo Frontend v2.2.1 and Core v2.22.1 fix the countdown that runs after you quit a game from a [deck](/docs/frontend/browsing/#decks) on MiSTer, along with two smaller Frontend fixes.
+
+Thanks to n00dlez for reporting these issues.
+
+{/* truncate */}
+
+## Download and update
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Frontend v2.2.1"
+    link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v2.2.1"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.22.1"
+    link="https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.22.1"
+    variant="primary"
+  />
+</div>
+
+On MiSTer, run **Update All** to update Frontend and Core together. If you update by hand, update both, since the countdown fix needs the two of them.
+
+## Fixes
+
+- **The countdown after quitting a deck game waits for you.** Frontend takes a moment to come back after a game closes, and the countdown to the next game could run out, or be cancelled by a button press, before its picker was on screen. Core now holds the countdown until the picker appears, then gives it the full time. A button press no longer cancels it, so pick **Play now** or **Stop playlist**, or let it run out.
+- **Background image has a None option.** **Settings > Appearance > Background image** is now a choice between **None** and **Custom image**. Custom image opens the file browser, and an **Image** row changes the picture once one is set. See [Background](/docs/frontend/customization/#background).
+- **The screensaver stays off while a picker or confirmation is open**, and its timer starts over once you close it.
+
+<SponsorCallout variant="combined" />
