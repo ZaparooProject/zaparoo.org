@@ -10,6 +10,10 @@ Barcodes found on real products, like the UPC on the back of a game box, can be 
 
 This means you can scan the barcode on a physical game case and have it launch that game.
 
+<img src="/img/showcase/RobinEnrico_vinyl_barcode_demo_thumb.webp" alt="Sealed video game soundtrack vinyl held below a screen showing the same album after its barcode was scanned" width="300" loading="lazy" />
+
+*Robin Enrico’s preview kiosk for sealed soundtrack vinyls, shared in [Community Showcase #8](/blog/community-showcase-8). Scanning a record’s barcode plays the album.*
+
 ## Supported formats
 
 Zaparoo supports a wide range of barcode formats:

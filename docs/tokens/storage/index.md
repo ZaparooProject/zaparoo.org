@@ -62,6 +62,8 @@ For credit card size NFC cards, a [3D printable inlay](https://www.printables.co
 
 <img src="/img/docs/tokens/Cassette-gb.png" alt="Game Boy cartridges stored in cassette cases" width="300" />
 
+To add manuals, use the [booklet template](/img/docs/tokens/cassette-booklet-template.png) by [SunieAdilangin](https://www.reddit.com/user/SunieAdilangin/). It fits eight 6 by 10 cm pages on one single-sided print. Fold it along the lines, then cut along the dotted line to make a small booklet that fits in a cassette case with a card inlay. [Their post](https://www.reddit.com/r/Zaparoo/comments/1ka3iz7/booklets_for_casette_case/) links a video that shows the folding.
+
 ## Nintendo Switch cases
 
 Empty retail-style Nintendo Switch replacement cases are another shelf-friendly option for credit card size NFC cards, with enough room inside for a card and printed cover art.
@@ -75,6 +77,10 @@ Long card boxes, the kind used for bulk Magic: The Gathering or sports card stor
 <img src="/img/showcase/prestocube_card_box.webp" alt="Printed card box filled with sleeved game cards and tabbed dividers" width="600" loading="lazy" />
 
 *prestocube’s printed box holds 72 sleeved cards and four dividers. The [print files](https://www.printables.com/model/1803189-nfc-card-box-with-divider-and-mister-kun-logo) are available on Printables.*
+
+<img src="/img/showcase/Copec_86_amiga_disks_02.webp" alt="Business card box with A to Z index dividers holding Amiga NFC cards" width="450" loading="lazy" />
+
+*Copec_86’s Amiga cards in an off-the-shelf business card box, shared in [Community Showcase #8](/blog/community-showcase-8).*
 
 The [community storage projects](../../community-projects/index.mdx#storage) directory includes printable boxes, dividers, cassette inserts, cases, and card stands.
 

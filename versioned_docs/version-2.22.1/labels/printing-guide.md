@@ -106,6 +106,12 @@ Alignment is the hardest part of the whole process. Here are techniques that wor
 
 **Double-sided approach:** If your binder pages or sleeves are double-sided, consider only labeling the front of the card. Getting both sides aligned cleanly is significantly harder.
 
+**Sleeve wraps:** You can skip sticker paper by printing the front and back art as one piece on photo paper, folding it around the card, and sliding it into a standard card sleeve.
+
+<img src="/img/showcase/ydmitchell_sleeve_wraps.webp" alt="Sleeved game cards wrapped in printed box art, next to an unfolded wrap and a blank card" width="450" loading="lazy" />
+
+*ydmitchell’s sleeve wraps, shared in [Community Showcase #8](/blog/community-showcase-8).*
+
 ## Print settings
 
 - Set quality to "High" or "Photo" mode
