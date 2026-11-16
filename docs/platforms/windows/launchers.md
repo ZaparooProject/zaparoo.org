@@ -227,7 +227,7 @@ launcher = "Kodi"
 server_url = "http://192.168.1.100:8080"
 ```
 
-If Kodi requires authentication, add credentials to `auth.toml`:
+Kodi 19 and later require a username and password for the web server. Set both in Kodi under **Settings > Services > Control**, then add them to `auth.toml` under the same URL and restart Core:
 
 ```toml title="auth.toml"
 ["http://192.168.1.100:8080"]
