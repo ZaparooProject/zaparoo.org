@@ -21,12 +21,12 @@ Use your platform guide for exact setup, supported systems, and launcher limitat
 | Platform | Launcher integrations |
 | -------- | --------------------- |
 | [MiSTer FPGA](../platforms/mister/launchers.md) | MiSTer cores, AO486, ScummVM, video, and scripts |
-| [Windows](../platforms/windows/launchers.md) | Steam, LaunchBox/Big Box, RetroBat, Flashpoint, Kodi, executables, and scripts |
-| [Linux](../platforms/linux/launchers.md) | Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, browser URLs, and scripts |
-| [SteamOS](../platforms/steamos/launchers.md) | Steam, native emulators, RetroArch, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, and scripts |
-| [Bazzite](../platforms/bazzite.mdx#launchers) | Steam, Lutris, Heroic, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, browser URLs, and scripts |
-| [ChimeraOS](../platforms/chimeraos.mdx#launchers) | Steam, ChimeraGOG, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, and scripts |
-| [Batocera](../platforms/batocera/launchers.md) | EmulationStation, Kodi, and scripts |
+| [Windows](../platforms/windows/launchers.md) | Steam, LaunchBox/Big Box, RetroBat, Flashpoint, Kodi, Jellyfin, Plex, executables, and scripts |
+| [Linux](../platforms/linux/launchers.md) | Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, Jellyfin, Plex, browser URLs, and scripts |
+| [SteamOS](../platforms/steamos/launchers.md) | Steam, native emulators, RetroArch, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, Jellyfin, Plex, and scripts |
+| [Bazzite](../platforms/bazzite.mdx#launchers) | Steam, Lutris, Heroic, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, Jellyfin, Plex, browser URLs, and scripts |
+| [ChimeraOS](../platforms/chimeraos.mdx#launchers) | Steam, ChimeraGOG, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, Jellyfin, Plex, and scripts |
+| [Batocera](../platforms/batocera/launchers.md) | EmulationStation, Kodi, Jellyfin, Plex, and scripts |
 
 For an emulator or media app without a built-in integration, write a [custom launcher](./custom-launchers.md).
 
@@ -41,6 +41,48 @@ MiSTer's ROM-less [Other cores](../platforms/mister/launchers.md#other-cores), l
 The one place this shows through is the token value. A launchable is identified by a compact `zaparoo://` URI instead of a file path, so a token that launches one holds a value like `zaparoo://gezdgnbvgy3tqojqgezdgnbvgy` rather than a normal path. You don't write this by hand; the App fills it in when you save a launchable.
 
 A custom launcher can expose a command as a virtual system on any Core platform; see [command launchables](./custom-launchers.md#command-launchables). For MiSTer cores that launch without media, use the [`mister_core` backend](../platforms/mister/launchers.md#add-your-own-other-core).
+
+## Media servers
+
+Core can index the library of a [Jellyfin](https://jellyfin.org/) or [Plex](https://www.plex.tv/) server and play its movies, TV shows, and music on a player you choose, such as a TV or a computer running the server's app. The server and player can be anywhere on your network; Core only needs to reach them. Media servers are supported on Windows, Linux, SteamOS, Bazzite, ChimeraOS, LibreELEC, and Batocera.
+
+### Linking a server
+
+Link Core to your server from the terminal UI under **Settings > Media servers**:
+
+- **Plex:** choose **Link Plex**, then open [plex.tv/link](https://plex.tv/link) and enter the code shown. If your account owns more than one server, set **Server address** to the one you want first. Servers shared with you by someone else can't be linked.
+- **Jellyfin:** set **Server address**, such as `http://192.168.1.10:8096`, then choose **Link Jellyfin**. In a Jellyfin app signed in as your user, open **Quick Connect** and enter the code shown. Quick Connect must be turned on in the Jellyfin dashboard.
+
+Linking saves the server address in `config.toml` and the access token in `auth.toml`. Update the [media database](./scraping.md#updating-the-media-database) afterwards to index the library.
+
+### Choosing a player
+
+Set [`client`](../core/config/launchers.md#client) to the name of the player that should play your media:
+
+```toml
+[[launchers.default]]
+launcher = "Jellyfin"
+client = "Living Room TV"
+```
+
+Use `launcher = "Plex"` for Plex. For Jellyfin, `client` matches the device name, app name, or device ID of a Jellyfin app that is open and signed in. For Plex, it matches the player's name as shown in Plex. If `client` isn't set and exactly one player is available, Core uses it. When a launch fails because the player can't be found, the error lists the players Core can see.
+
+Plex plays on players that accept remote control, such as Plex HTPC and Plexamp, and on Chromecast and Google TV devices on the same network. Recent Plex apps for Android TV, Apple TV, iOS, and Android no longer accept remote control from other apps, and Roku and Fire TV can't be reached. On a Google TV, Core reaches Plex through Cast.
+
+### Library media
+
+Both servers use the same system IDs as Kodi's library:
+
+| System ID | Jellyfin launcher | Plex launcher | Plays |
+|-----------|-------------------|---------------|-------|
+| `Movie` | `JellyfinMovie` | `PlexMovie` | The movie |
+| `TVEpisode` | `JellyfinTVEpisode` | `PlexTVEpisode` | The episode |
+| `TVShow` | `JellyfinTVShow` | `PlexTVShow` | Every episode from the first |
+| `MusicTrack` | `JellyfinSong` | `PlexSong` | The song |
+| `MusicAlbum` | `JellyfinAlbum` | `PlexAlbum` | Every track on the album |
+| `MusicArtist` | `JellyfinArtist` | `PlexArtist` | Every song by the artist |
+
+Movie, show, and episode tokens also store the IMDb, TMDB, or TVDB IDs the server reports, so a token keeps working after the server rebuilds its library and assigns new item IDs. Kodi movie, episode, and show tokens do the same.
 
 ## Launcher controls
 
@@ -90,6 +132,7 @@ Built-in launcher support currently includes:
 | Batocera EmulationStation launchers | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `next` (next disc), `stop`, as far as the running emulator supports them |
 | RePlayOS launchers | `save_state`, `load_state`, `reset`, `stop`. Needs [net control](../platforms/replayos.md#launcher-controls) turned on |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
+| Jellyfin and Plex launchers, see [media servers](#media-servers) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
 | Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `pause`, `resume`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
 | Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |

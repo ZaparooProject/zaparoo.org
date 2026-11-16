@@ -289,6 +289,20 @@ Override the default installation directory for this launcher. Only supported by
 
 Override the default server URL for this launcher. Only supported by some launchers and refers to an API base address.
 
+#### client
+
+| Key    | Type   | Default |
+| ------ | ------ | ------- |
+| client | string |         |
+
+Name of the player a [media server](../../features/launchers.md#media-servers) launcher plays on. Used by the `Jellyfin` and `Plex` launcher groups. When it's not set and exactly one player is available, Core uses that player.
+
+```toml
+[[launchers.default]]
+launcher = "Plex"
+client = "Plex HTPC"
+```
+
 #### action
 
 | Key    | Type   | Default |
