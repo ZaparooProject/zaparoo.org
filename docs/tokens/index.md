@@ -1,4 +1,6 @@
 ---
+title: "Tokens: NFC Cards, QR Codes, Barcodes, and More"
+sidebar_label: "Tokens"
 sidebar_position: 1
 description: "Zaparoo tokens: NFC cards, QR codes, barcodes, NFC toys, and other physical objects that trigger game and media launches when scanned."
 keywords: [zaparoo tokens, nfc cards games, zaparoo nfc, qr code game launcher, amiibo game launcher]

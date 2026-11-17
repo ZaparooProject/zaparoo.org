@@ -1,6 +1,7 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import { shopUrl } from "./src/data/products";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -82,6 +83,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
+          remarkPlugins: [require("./plugins/reader-support-table")],
           lastVersion: "2.22.1",
           includeCurrentVersion: true,
           versions: {
@@ -90,6 +92,7 @@ const config: Config = {
               path: "next",
               banner: "unreleased",
               badge: true,
+              noIndex: true,
             },
             "2.22.1": {
               label: "Stable",
@@ -117,7 +120,13 @@ const config: Config = {
         sitemap: {
           lastmod: "date",
           changefreq: "weekly",
-          ignorePatterns: ["/tags/**"],
+          ignorePatterns: [
+            "/blog/tags/**",
+            "/blog/authors/**",
+            "/blog/archive/**",
+            "/docs/next/**",
+            "/search/**",
+          ],
           filename: "sitemap.xml",
           createSitemapItems: async (params) => {
             const { defaultCreateSitemapItems, ...rest } = params;
@@ -217,29 +226,17 @@ const config: Config = {
           "data-umami-event": "navbar-downloads",
         },
         {
-          href: "https://shop.zaparoo.com",
+          href: shopUrl("navbar"),
           label: "Shop",
           position: "left",
           "data-umami-event": "navbar-shop",
           className: "navbar__item--no-icon",
         },
         {
-          to: "/showcase/",
-          label: "Showcase",
-          position: "left",
-          "data-umami-event": "navbar-showcase",
-        },
-        {
           to: "/blog/",
           label: "Blog",
           position: "left",
           "data-umami-event": "navbar-blog",
-        },
-        {
-          to: "/sponsor/",
-          label: "Sponsor",
-          position: "left",
-          "data-umami-event": "navbar-sponsor",
         },
         {
           to: "/support/",
@@ -270,7 +267,7 @@ const config: Config = {
           items: [
             {
               label: "Zaparoo Shop",
-              href: "https://shop.zaparoo.com",
+              href: shopUrl("footer"),
               "data-umami-event": "footer-shop",
             },
             {
@@ -530,6 +527,9 @@ const config: Config = {
             /\]\(\.\.\/\.\.\/core\/config\.md\)/g,
             "](../config/index.md)",
           );
+          // Upstream links the API index as "./#anchor", which resolves to
+          // the linking page here.
+          modified = modified.replace(/\]\(\.\/#/g, "](./index.md#");
           if (filename === "methods.md") {
             modified = modified.replace(
               /\]\(\.\/encryption\/?\)/g,

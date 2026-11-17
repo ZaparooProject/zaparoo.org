@@ -13,6 +13,7 @@ import {
 } from "@site/src/components/DocsNavGrid";
 import { Images, MessageCircle, Newspaper, Palette, ShoppingCart, Zap } from "lucide-react";
 import styles from "./showcase.module.css";
+import { shopUrl } from "@site/src/data/products";
 
 # Showcase
 
@@ -74,7 +75,7 @@ Browse the latest additions first, or narrow the gallery to photos or videos.
       icon: ShoppingCart,
       title: "Get cards and readers",
       description: "Tested hardware and starter kits from the Zaparoo Shop.",
-      link: "https://shop.zaparoo.com",
+      link: shopUrl("showcase"),
       umamiEvent: "showcase-shop",
     },
   ]}

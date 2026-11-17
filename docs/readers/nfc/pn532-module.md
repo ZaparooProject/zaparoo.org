@@ -1,4 +1,6 @@
 ---
+title: "PN532 Module NFC Reader Wiring and Setup"
+sidebar_label: "PN532 Module"
 sidebar_position: 2
 description: Use a raw PN532 NFC module with Zaparoo over USB UART or I2C. Covers wiring, config, and troubleshooting for DIY builds.
 keywords: [pn532 module, pn532 uart, pn532 i2c, diy nfc reader zaparoo, pn532 wiring]

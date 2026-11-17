@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with NFC Cards on Batocera"
+sidebar_label: "Batocera"
 description: "Install Zaparoo on Batocera: launch emulation games from NFC cards, barcodes, and QR codes with step-by-step setup for all Batocera devices."
 keywords: [zaparoo batocera, batocera nfc, batocera nfc game launcher, nfc card batocera, batocera zaparoo install]
 ---
@@ -6,17 +8,6 @@ keywords: [zaparoo batocera, batocera nfc, batocera nfc game launcher, nfc card 
 # Batocera
 
 [Batocera](https://batocera.org/) is a software emulation distribution based around EmulationStation, with support for a huge number of systems and devices.
-
-## File paths
-
-| Item               | Path                                                  |
-| ------------------ | ----------------------------------------------------- |
-| Config file        | `/userdata/system/.config/zaparoo/config.toml`        |
-| Data directory     | `/userdata/system/.local/share/zaparoo`               |
-| Log file           | `/userdata/system/.local/share/zaparoo/logs/core.log` |
-| Mappings directory | `/userdata/system/.local/share/zaparoo/mappings`      |
-
-Network share paths use `\\BATOCERA\share\system\` prefix instead of `/userdata/system/`.
 
 ## Install
 
@@ -65,6 +56,17 @@ batocera-services start zaparoo_service
 ## Uninstall
 
 Uninstall Zaparoo Core from Batocera's Content Downloader, the same place it was installed. Batocera stops and disables the `zaparoo_service` service and removes the package files. Your configuration and data are left in place; see the file paths above if you want to delete them too.
+
+## File paths
+
+| Item               | Path                                                  |
+| ------------------ | ----------------------------------------------------- |
+| Config file        | `/userdata/system/.config/zaparoo/config.toml`        |
+| Data directory     | `/userdata/system/.local/share/zaparoo`               |
+| Log file           | `/userdata/system/.local/share/zaparoo/logs/core.log` |
+| Mappings directory | `/userdata/system/.local/share/zaparoo/mappings`      |
+
+Network share paths use `\\BATOCERA\share\system\` prefix instead of `/userdata/system/`.
 
 ## Updates
 

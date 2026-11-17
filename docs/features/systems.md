@@ -209,6 +209,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `EG2000` | EACA EG2000 Colour Genie | | |
 | `ElektorTVGamesComputer` | Elektor TV Games Computer | `Elektor TV Games Computer`, `TV Games Computer`, `TVGC` | |
 | `Enterprise` | Enterprise 64/128 | | |
+| `EXL100` | Exelvision EXL 100 | | |
 | `FM7` | Fujitsu FM-7 | | |
 | `FMTowns` | FM Towns | | |
 | `Galaksija` | Galaksija | | |
@@ -234,6 +235,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `NeXT` | NeXT Computer | | |
 | `Orao` | Orao | | |
 | `Oric` | Oric | | |
+| `P2000T` | Philips P2000T | | |
 | `PC` | PC | | `DOS`, `Windows` |
 | `PC6000` | NEC PC-6000 Series | `NEC PC-6000 Series`, `PC-6000`, `PC-6001` | |
 | `PC88` | NEC PC-8801 | | |
@@ -267,6 +269,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `TVC` | Videoton TV-Computer | | |
 | `UK101` | UK101 | | |
 | `Vector06C` | Vector-06C | `Vector06` | |
+| `VG5000` | Philips VG5000 | | |
 | `VIC20` | Commodore VIC-20 | | |
 | `VideoBrain` | Fairchild VideoBrain | | |
 | `Windows` | Windows | `Win32`, `Win16` | `PC` |
@@ -367,6 +370,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `WindowsMixedReality` | Windows Mixed Reality | `Windows Mixed Reality`, `Windows MR`, `WMR` | |
 | `WindowsMobile` | Windows Mobile | `Windows Mobile`, `WinMo` | |
 | `WindowsPhone` | Windows Phone | `Windows Phone`, `Windows Phone OS` | |
+| `ZMachine` | Z-machine | | |
 
 ## Usage notes
 

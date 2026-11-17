@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with NFC Cards on MiSTer FPGA"
+sidebar_label: "MiSTer FPGA"
 description: "Install and configure Zaparoo on MiSTer FPGA: the platform where Zaparoo started. Includes NFC reader setup, file paths, and MiSTer-specific ZapScript commands."
 keywords: [zaparoo mister fpga, mister nfc, mister fpga nfc reader, zaparoo mister install, nfc mister fpga]
 sidebar_position: 1
@@ -8,24 +10,15 @@ sidebar_position: 1
 
 MiSTer is fully supported by Zaparoo and is where the project originally started. Zaparoo has several MiSTer-exclusive features because of this, including [MiSTer-specific ZapScript commands](../../zapscript/mister.md).
 
-## File paths
-
-| Item               | Path                             |
-| ------------------ | -------------------------------- |
-| Config file        | `/media/fat/zaparoo/config.toml` |
-| Data directory     | `/media/fat/zaparoo`             |
-| Log file           | `/tmp/zaparoo/core.log`          |
-| Mappings directory | `/media/fat/zaparoo/mappings`    |
-
-The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off, so Core copies the log to `/media/fat/zaparoo/core.log` when it shuts down cleanly, and when it stops on a startup problem that needs your attention.
-
 ## Install
 
-Zaparoo is available in [Update All](https://github.com/theypsilon/Update_All_MiSTer) as a dedicated item in **Tools & Scripts**. Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file. Frontend is optional; Core can run in the background with the standard MiSTer menu.
+1. Install Zaparoo with [Update All](https://github.com/theypsilon/Update_All_MiSTer), where it is a dedicated item in **Tools & Scripts**.
+2. Run `zaparoo` from the MiSTer `Scripts` menu. A prompt offers to enable Zaparoo as a startup service.
+3. Plug in your reader and write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<mister-ip>:7497/app/`.
 
-Once Core is installed, run `zaparoo` from the MiSTer `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service. That service starts at the end of MiSTer's boot; see [start Core earlier](#start-core-earlier) if you want it ready sooner after power on.
+Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file. Frontend is optional; Core can run in the background with the standard MiSTer menu.
 
-With the service running, plug in your reader and write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<mister-ip>:7497/app/`.
+The startup service starts at the end of MiSTer's boot; see [start Core earlier](#start-core-earlier) if you want it ready sooner after power on.
 
 For manual Core installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
@@ -75,6 +68,17 @@ There is no uninstall command on MiSTer. To remove Zaparoo:
 1. Delete `/media/fat/Scripts/zaparoo.sh`.
 2. Remove the `mrext/zaparoo` line from `/media/fat/linux/user-startup.sh`.
 3. Delete `/media/fat/zaparoo` if you also want to remove your configuration, mappings, and data.
+
+## File paths
+
+| Item               | Path                             |
+| ------------------ | -------------------------------- |
+| Config file        | `/media/fat/zaparoo/config.toml` |
+| Data directory     | `/media/fat/zaparoo`             |
+| Log file           | `/tmp/zaparoo/core.log`          |
+| Mappings directory | `/media/fat/zaparoo/mappings`    |
+
+The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is not accessible from the SD card and is deleted when MiSTer is powered off, so Core copies the log to `/media/fat/zaparoo/core.log` when it shuts down cleanly, and when it stops on a startup problem that needs your attention.
 
 ## Device profile data
 

@@ -2,7 +2,7 @@
 sidebar_position: 8
 sidebar_label: Media Database and Scraping
 description: "Update the Zaparoo Core media database, download libretro artwork, fill in GameDataBase game info, or import local metadata, covers, and manuals."
-keywords: [zaparoo media database, zaparoo scraper, gamedatabase, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, mister arcade metadata]
+keywords: [zaparoo media database, zaparoo scraper, gamedatabase, zaparoo gamelist.xml, zaparoo artwork, emulationstation media folder, mister arcade metadata, zaparoo ignore folder, zaparooignore, exclude folder from media database]
 ---
 
 # Media Database and Scraping
@@ -34,6 +34,10 @@ Arcade set archives and ScummVM launch files get readable titles from their proj
 
 The [`libretro-thumbnails`](#libretro-thumbnails) source downloads artwork when you run it, and [`gamedatabase`](#gamedatabase) reads game information built into Core. The other sources import files already on your device, such as packs installed by Update All or artwork prepared with MiSTer Companion or Skraper.
 
+### Ignoring folders
+
+To keep a folder out of the media database, create an empty file named `.zaparooignore` inside it. The next media database update skips that folder and everything in its subfolders. Delete the file and update again to include the folder.
+
 ## Running a scrape
 
 Start a scrape from the [Zaparoo App](../app/index.md) under **Settings**, or from the [TUI](../core/tui.md) under **Manage media**.
@@ -44,7 +48,7 @@ By default a scrape skips media that has already been scraped, so repeat runs ar
 
 ## Scrapers
 
-The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, `mister-arcade` reads the MiSTer arcade catalog, and `pinup-popper` reads the PinUP Popper library on Windows.
+The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, `mister-arcade` reads the MiSTer arcade catalog, `pinup-popper` reads the PinUP Popper library on Windows, and `playnite` reads the Playnite library on Windows.
 
 ### libretro-thumbnails
 
@@ -182,6 +186,10 @@ It runs on its own after a media database update that indexed arcade games and o
 ### pinup-popper
 
 The `pinup-popper` scraper is Windows only and appears when the [PinUP Popper launcher](../platforms/windows/launchers.md#pinup-popper) finds a Popper installation. It imports each table's year, manufacturer, player count, notes, genre, and wheel, playfield, backglass, and flyer images from Popper's own library. It runs on its own after a media database update for tables that have no metadata yet; run a force scrape to refresh tables that were already imported.
+
+### playnite
+
+The `playnite` scraper is Windows only and appears when the [Playnite launcher](../platforms/windows/launchers.md#playnite) finds Playnite or its Zaparoo extension is connected. It imports each game's release year, developers, publishers, genres, description, and cover and background images from Playnite's own library. Playnite must be running. It runs on its own after a media database update for games that have no metadata yet; run a force scrape to refresh games that were already imported.
 
 ## What scraping produces
 

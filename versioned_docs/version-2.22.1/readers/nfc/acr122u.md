@@ -1,4 +1,6 @@
 ---
+title: "ACR122U NFC Reader Setup"
+sidebar_label: "ACR122U"
 sidebar_position: 3
 slug: acr122u
 description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, the ccid driver, manual configuration, and Windows troubleshooting.

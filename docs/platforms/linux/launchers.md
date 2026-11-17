@@ -91,20 +91,21 @@ Emulators marked "launch by path" have no scanned folders. Core launches a file 
 | `XeniaCanary` | Xenia Canary | `Xbox360` | `xenia_canary`, `xenia-canary`, `XeniaCanary` | `.iso`, `.xex`, `.xbox360`, `.zar` in `xbox360` |
 | `Ryubing` | Ryubing | `Switch` | `io.github.ryubing.Ryujinx`, `Ryujinx`, `ryujinx`, `Ryubing` | `.xci`, `.nsp`, `.nro` in `switch` |
 | `ShadPS4` | shadPS4 | `PS4` | `net.shadps4.shadPS4`, `shadps4` | `.ps4` pointer files in `ps4` |
-| `PCSX2` | PCSX2 | `PS2` | `net.pcsx2.PCSX2`, `pcsx2-qt`, `pcsx2` | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u`, `.elf` in `ps2` |
+| `PCSX2` | PCSX2 | `PS2` | `net.pcsx2.PCSX2`, `pcsx2-qt`, `pcsx2`, `ARMSX2` | `.iso`, `.mdf`, `.nrg`, `.bin`, `.img`, `.dump`, `.gz`, `.cso`, `.chd`, `.m3u`, `.elf` in `ps2` |
 | `Cemu` | Cemu | `WiiU` | `info.cemu.Cemu`, `cemu`, `Cemu` | `.wua`, `.wup`, `.wud`, `.wux`, `.rpx`, `.squashfs`, `.wuhb` in `wiiu` |
 | `Azahar` | Azahar | `3DS` | `org.azahar_emu.Azahar`, `azahar` | `.3ds`, `.cci`, `.cxi`, `.squashfs`, `.zcci`, `.3dsx` in `3ds` |
 | `Vita3K` | Vita3K | `Vita` | `Vita3K` | `.psvita` pointer files in `psvita` |
 | `RPCS3` | RPCS3 | `PS3` | `net.rpcs3.RPCS3`, `rpcs3` | `.ps3` pointer files in `ps3` |
-| `DuckStation` | DuckStation | `PSX` | `org.duckstation.DuckStation`, `duckstation-qt`, `duckstation` | Launch by path |
-| `PPSSPP` | PPSSPP | `PSP` | `org.ppsspp.PPSSPP`, `PPSSPPSDL`, `PPSSPPQt`, `ppsspp-qt`, `ppsspp` | Launch by path |
+| `DuckStation` | DuckStation | `PSX` | `org.duckstation.DuckStation`, `duckstation-qt`, `duckstation` | `.cue`, `.img`, `.mdf`, `.pbp`, `.toc`, `.cbn`, `.m3u`, `.ccd`, `.chd`, `.iso` in `psx` |
+| `PPSSPP` | PPSSPP | `PSP` | `org.ppsspp.PPSSPP`, `PPSSPPSDL`, `PPSSPPQt`, `ppsspp-qt`, `ppsspp` | `.iso`, `.cso`, `.pbp`, `.chd` in `psp` |
 | `DolphinGameCube` | Dolphin | `GameCube` | `org.DolphinEmu.dolphin-emu`, `dolphin-emu`, `dolphin-emu-qt` | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.rvz`, `.elf`, `.dol`, `.m3u` in `gamecube` |
 | `DolphinWii` | Dolphin | `Wii` | `org.DolphinEmu.dolphin-emu`, `dolphin-emu`, `dolphin-emu-qt` | `.gcm`, `.iso`, `.gcz`, `.ciso`, `.wbfs`, `.wad`, `.rvz`, `.elf`, `.dol`, `.m3u`, `.json` in `wii` |
-| `MelonDS` | melonDS | `NDS` | `net.kuribo64.melonDS`, `melonDS` | Launch by path |
+| `MelonDS` | melonDS | `NDS` | `net.kuribo64.melonDS`, `melonDS` | `.nds`, `.bin`, `.zip`, `.7z` in `nds` |
 | `ScummVMStandalone` | ScummVM | `ScummVM` | `org.scummvm.ScummVM`, `scummvm` | `.scummvm` pointer files, launch by path |
 | `Supermodel` | Supermodel | `Model3` | `com.supermodel3.Supermodel`, `supermodel`, `Supermodel` | `.zip` in `model3` |
 | `Xemu` | xemu | `Xbox` | `app.xemu.xemu`, `xemu` | `.iso`, `.squashfs` in `xbox` |
-| `MAME` | MAME | `Arcade` | `org.mamedev.MAME`, `mame` | `.zip`, `.7z` in `arcade`; the file name is the MAME machine name |
+| `GroovyMAME` | GroovyMAME | `Arcade` | `groovymame` | `.zip`, `.7z` in `arcade` or `mame`; the file name is the MAME machine name |
+| `MAME` | MAME | `Arcade` | `org.mamedev.MAME`, `mame`, `mame64` | `.zip`, `.7z` in `arcade` or `mame`; the file name is the MAME machine name |
 | `FlycastDreamcast` | Flycast | `Dreamcast` | `org.flycast.Flycast`, `flycast` | `.cdi`, `.cue`, `.gdi`, `.chd`, `.m3u` in `dreamcast` |
 | `FlycastNaomi` | Flycast | `NAOMI` | `org.flycast.Flycast`, `flycast` | `.lst`, `.bin`, `.dat`, `.zip`, `.7z` in `naomi` |
 | `FlycastAtomiswave` | Flycast | `Atomiswave` | `org.flycast.Flycast`, `flycast` | `.lst`, `.bin`, `.dat`, `.zip`, `.7z` in `atomiswave` |

@@ -30,6 +30,7 @@ import {
   Check,
 } from "lucide-react";
 import styles from "./StartWizard.module.css";
+import { shopUrl } from "@site/src/data/products";
 import {
   StyledButton,
   Admonition,
@@ -766,7 +767,7 @@ const SummaryContent: React.FC<{ choice: Choice }> = ({ choice }) => {
               </p>
               <div className={styles.shopLinks}>
                 <StyledButton
-                  to="https://shop.zaparoo.com"
+                  to={shopUrl("start")}
                   variant="primary"
                   outline
                   block

@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with NFC Cards on Windows"
+sidebar_label: "Windows"
 description: "Install Zaparoo on Windows: system tray app with support for Steam, LaunchBox, Big Box, and custom game launchers."
 keywords: [zaparoo windows, nfc game launcher windows, zaparoo launchbox, zaparoo big box, zaparoo steam windows]
 ---
@@ -10,18 +12,6 @@ Windows is a [beta platform](../index.mdx#support-levels): Core installs and run
 :::
 
 Zaparoo Core on Windows runs in the system tray and supports Steam, LaunchBox, Big Box, and custom launcher configurations.
-
-## File paths
-
-| Item               | Path                                   |
-| ------------------ | -------------------------------------- |
-| Config file        | `%localappdata%\zaparoo\config.toml`   |
-| Data directory     | `%localappdata%\zaparoo`               |
-| Log file           | `%localappdata%\zaparoo\logs\core.log` |
-| Mappings directory | `%localappdata%\zaparoo\mappings`      |
-| Launcher directory | `%localappdata%\zaparoo\launchers`     |
-
-Access these paths by pasting them in Explorer's address bar or in a Win+R dialog.
 
 ## Install
 
@@ -36,6 +26,18 @@ Once running, use the [Zaparoo App](/docs/app/) on your phone or the built-in we
 ## Uninstall
 
 Open **Windows Settings > Apps > Installed apps**, find **Zaparoo Core**, and select **Uninstall**. This removes the installed application and its firewall rule but leaves your Core configuration and user data under `%localappdata%\zaparoo`. The ViGEmBus driver stays installed in case other software uses it; remove it from the same list, where it appears as **ViGEm Bus Driver**.
+
+## File paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `%localappdata%\zaparoo\config.toml`   |
+| Data directory     | `%localappdata%\zaparoo`               |
+| Log file           | `%localappdata%\zaparoo\logs\core.log` |
+| Mappings directory | `%localappdata%\zaparoo\mappings`      |
+| Launcher directory | `%localappdata%\zaparoo\launchers`     |
+
+Access these paths by pasting them in Explorer's address bar or in a Win+R dialog.
 
 ## Updates
 

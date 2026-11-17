@@ -205,7 +205,7 @@ If the Web UI loads but never connects, see [Web UI troubleshooting](../../app/w
 
 `encryption` requires remote WebSocket API clients to use the [paired-client encryption flow](../api/encryption.md). Localhost connections are always allowed without encryption.
 
-When the key is not set, Core uses the platform default: `true` on Linux, SteamOS, and Windows, `false` everywhere else. A value you set yourself is kept, including through a backup restore.
+When the key is not set, Core uses the platform default: `true` on Linux, SteamOS, Bazzite, ChimeraOS, and Windows, `false` everywhere else. Only MiSTer, MiSTeX, Batocera, LibreELEC, and RePlayOS accept remote clients that have not paired, so on every other platform remote clients have to pair whatever this key is set to. A value you set yourself is kept, including through a backup restore.
 
 ```toml
 [service]

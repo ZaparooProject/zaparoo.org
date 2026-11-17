@@ -1,4 +1,6 @@
 ---
+title: "Barcode and QR Code Scanner Setup"
+sidebar_label: "Barcode Scanners"
 description: "Use barcode scanners with Zaparoo: scan barcodes on game cases or custom labels with the Zaparoo App camera or an RS-232 serial scanner."
 keywords: [zaparoo barcode, barcode scanner game launcher, rs232 barcode reader zaparoo, serial barcode scanner, qr code scanner zaparoo]
 ---
@@ -37,7 +39,7 @@ driver = "rs232barcode"
 path = "COM3"  # Windows
 ```
 
-To find the port, run `ls /dev/ttyUSB* /dev/ttyACM*` on Linux or `ls /dev/tty.usb* /dev/cu.usb*` on macOS. On Windows, open Device Manager and look under **Ports (COM & LPT)** for "USB Serial Port (COMx)".
+To find the port, run `ls /dev/ttyUSB* /dev/ttyACM*` on Linux or `ls /dev/tty.usb* /dev/cu.usb*` on macOS. On Windows, open Device Manager and look under **Ports (COM & LPT)** for "USB Serial Port (COMx)". On a Linux system with no kernel driver for a CH340 or PL2303 adapter, use a `usbserial:` path instead, as described for [Simple Serial](../simple-serial.md#adapters-without-a-kernel-driver).
 
 Core talks to the scanner at 9600 baud, 8 data bits, no parity, 1 stop bit (9600 8N1). These settings are fixed. If your scanner uses different settings, reconfigure the scanner with its manual or programming barcodes.
 

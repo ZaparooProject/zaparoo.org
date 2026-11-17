@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 4
 description: "Use Zaparoo tokens with a real Commodore 64 via the TeensyROM cartridge: NFC-powered game loading on original C64 hardware."
 keywords: [zaparoo commodore 64, c64 nfc, teensyrom nfc, commodore 64 nfc game loader]
 ---

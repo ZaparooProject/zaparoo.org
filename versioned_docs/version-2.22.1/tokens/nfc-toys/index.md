@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with Amiibo and Other NFC Toys"
+sidebar_label: "NFC Toys"
 description: "Use NFC toys as Zaparoo tokens: map Amiibo, Skylanders, Disney Infinity, and LEGO Dimensions figures to games by their UID."
 keywords: [zaparoo nfc toys, amiibo zaparoo, skylanders zaparoo, disney infinity zaparoo, lego dimensions zaparoo, nfc figure game launcher]
 ---

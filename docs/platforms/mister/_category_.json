@@ -1,6 +1,6 @@
 {
   "label": "MiSTer FPGA",
-  "position": 1,
+  "position": 8,
   "link": {
     "type": "doc",
     "id": "platforms/mister/index"

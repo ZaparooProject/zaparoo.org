@@ -1,4 +1,6 @@
 ---
+title: "USB Smart Card NFC Reader Setup"
+sidebar_label: "USB Smart Card Readers"
 sidebar_position: 3.5
 description: Use USB smart card NFC readers with Zaparoo, including the ACS ACR1552U and Feitian bR500. Covers tested readers, setup, and how to get an untested reader supported.
 keywords: [acr1552u zaparoo, feitian br500 zaparoo, usb smart card reader nfc, ccid nfc reader, pc/sc nfc reader, nfc reader mister fpga]

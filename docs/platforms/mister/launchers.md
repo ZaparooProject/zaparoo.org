@@ -431,3 +431,38 @@ These cores share an existing system ID. Select their launcher from Frontend's *
 | `SparcStation20` | `SparcStation` | SparcStation | `.raw`, `.iso` |
 | `System80` | `TRS80` | System80 | `.dsk`, `.jv1`, `.dmk`, `.cas` |
 | `Z486` | `DOS` | Z486 | `.img`, `.ima`, `.vfd`, `.vhd`, `.iso`, `.cue`, `.chd` |
+
+### Use your own core for some games
+
+To run some games of a system on a core build Zaparoo doesn't list, such as an overclocked Neo Geo core kept in `/media/fat/_Custom`, add a custom launcher for that system. It then appears in Frontend's **Change launcher** menu for that system's games, and you can pick it per game or with `?launcher=<launcher ID>` in ZapScript.
+
+A custom launcher can't load a MiSTer core by itself, so it runs a small script that writes an MGL file and asks MiSTer to load it. Save this as `/media/fat/Scripts/neogeo_oc.sh` and make it executable:
+
+```sh
+#!/bin/sh
+cat > /tmp/neogeo_oc.mgl <<MGL
+<mistergamedescription>
+  <rbf>_Custom/NeoGeo_OC</rbf>
+  <file delay="1" type="f" index="1" path="../../../../..$1"/>
+</mistergamedescription>
+MGL
+echo "load_core /tmp/neogeo_oc.mgl" > /dev/MiSTer_cmd
+```
+
+Set `<rbf>` to the core's path under `/media/fat`, without `.rbf` and without any date suffix. The `delay`, `type`, and `index` values are the ones the stock core uses; the values above are for Neo Geo. For another system, copy them from an MGL file that already loads a game on that core.
+
+Then create `/media/fat/zaparoo/launchers/neogeo_oc.toml`:
+
+```toml
+[[launchers.custom]]
+id = "NeoGeoOC"
+system = "NeoGeo"
+lifecycle = "background"
+execute = "/media/fat/Scripts/neogeo_oc.sh [[media_path]]"
+```
+
+Keep `lifecycle = "background"`. The script exits as soon as the core starts loading, and with the default lifecycle Core would treat that as the game ending and stop tracking play time.
+
+Play time is only tracked if the core reports the same name as the stock core. With the core running, check `/tmp/CORENAME`; for Neo Geo it must read `NEOGEO`. If it shows another name, the game still launches, but Core stops tracking it as soon as the core loads.
+
+[Reload Core](../../core/cli.md#reload-core) after adding the files.

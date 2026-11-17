@@ -1,4 +1,6 @@
 ---
+title: "PN532 USB NFC Reader Setup"
+sidebar_label: "PN532 USB"
 sidebar_position: 1
 description: Set up the PN532 USB NFC reader with Zaparoo. Covers auto-detection, manual config, serial ports, and troubleshooting.
 keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga]

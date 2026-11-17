@@ -103,8 +103,8 @@ Controls how input keys are filtered when no `allow` list is configured.
 - `unrestricted`: all keys are allowed (subject to the `block` list). This is the default on embedded platforms like MiSTer.
 
 Platform defaults:
-- **Desktop** (Linux, Windows, macOS, SteamOS, ChimeraOS, Bazzite): `combos`
-- **Embedded** (MiSTer, Batocera, Recalbox, LibreELEC, RetroPie): `unrestricted`
+- **Desktop** (Linux, Windows, macOS, SteamOS, ChimeraOS, Bazzite, Armada): `combos`
+- **Embedded** (MiSTer, MiSTeX, Batocera, Knulli, ROCKNIX, AmberELEC, ArkOS, muOS, Lakka, Recalbox, LibreELEC, RetroPie, RePlayOS): `unrestricted`
 
 #### allow {#zapscript-input-allow}
 

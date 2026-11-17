@@ -1,4 +1,6 @@
 import React, { CSSProperties, ReactNode } from "react";
+import { useLocation } from "@docusaurus/router";
+import { withShopUtm } from "@site/src/data/products";
 import styles from "./styles.module.css";
 
 export type ProductStore =
@@ -19,6 +21,8 @@ type ProductLinkProps = {
   showIcon?: boolean;
   unstyled?: boolean;
   umamiEvent?: string;
+  /** Placement name for shop referral tags. Defaults to the site section. */
+  utmContent?: string;
 };
 
 export default function ProductLink({
@@ -30,14 +34,20 @@ export default function ProductLink({
   showIcon = true,
   unstyled = false,
   umamiEvent,
+  utmContent,
 }: ProductLinkProps) {
+  const { pathname } = useLocation();
+  // First path segment: "docs", "blog", "downloads".
+  const section = pathname.split("/").filter(Boolean)[0] ?? "homepage";
+  const taggedHref = withShopUtm(href, utmContent ?? section);
+
   const linkClassName = [unstyled ? undefined : styles.productLink, className]
     .filter(Boolean)
     .join(" ");
 
   return (
     <a
-      href={href}
+      href={taggedHref}
       target="_blank"
       rel="noopener noreferrer"
       className={linkClassName || undefined}

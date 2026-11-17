@@ -11,6 +11,7 @@ import {
 import DemoVideo from "@site/src/components/DemoVideo";
 import PlatformShowcase from "@site/src/components/Homepage/PlatformShowcase";
 import UseCases from "@site/src/components/Homepage/UseCases";
+import Faq from "@site/src/components/Homepage/Faq";
 import {
   Zap,
   Download,
@@ -166,7 +167,7 @@ function SupportStrip(): ReactNode {
         <ProductRow
           icon={<CloudUpload size={40} />}
           title={warp.tagline}
-          description={`${warp.shortPitch} ${warp.freeLine}`}
+          description={`${warp.shortPitch} ${warp.trialLine} ${warp.freeLine}`}
           price={warp.priceFrom}
           link={warp.pricingUrl("homepage_support")}
           linkText={warp.cta}
@@ -177,7 +178,7 @@ function SupportStrip(): ReactNode {
           icon={<ShoppingCart size={40} />}
           title="Official readers, cards, and starter kits"
           description={shop.homepageLine}
-          link={shop.url}
+          link={shop.url("homepage")}
           linkText="Visit the Shop"
           umamiEvent="homepage-support-shop"
         />
@@ -376,7 +377,7 @@ export default function Home(): ReactNode {
                   "button button--secondary button--lg",
                   styles.button,
                 )}
-                href={products.shop.starterKitsUrl}
+                href={products.shop.starterKitsUrl("homepage")}
                 data-umami-event="homepage-starter-kit"
               >
                 <ShoppingCart
@@ -456,6 +457,54 @@ export default function Home(): ReactNode {
           className={clsx(homepageStyles.section, homepageStyles.sectionLight)}
         >
           <LatestNews />
+        </section>
+
+        <section
+          className={clsx(homepageStyles.section, homepageStyles.sectionGray)}
+        >
+          <Faq />
+        </section>
+
+        <section
+          className={clsx(homepageStyles.section, homepageStyles.sectionLight)}
+        >
+          <div className={clsx("container", homepageStyles.finalCta)}>
+            <h2 className={homepageStyles.sectionTitle}>
+              Set up your first card
+            </h2>
+            <p className={homepageStyles.sectionSubtitle}>
+              Pick your platform and get the steps, downloads, and hardware
+              list for it.
+            </p>
+            <div className={homepageStyles.buttonGroup}>
+              <Link
+                className={clsx(
+                  "button button--primary button--lg",
+                  styles.button,
+                )}
+                to="/start/"
+                data-umami-event="final-cta-get-started"
+              >
+                <Zap size={16} className={styles.buttonIcon} aria-hidden="true" />
+                Start here
+              </Link>
+              <Link
+                className={clsx(
+                  "button button--secondary button--lg",
+                  styles.button,
+                )}
+                to="/downloads/"
+                data-umami-event="final-cta-download"
+              >
+                <Download
+                  size={16}
+                  className={styles.buttonIcon}
+                  aria-hidden="true"
+                />
+                Downloads
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
     </Layout>

@@ -1,4 +1,6 @@
 ---
+title: "Compatible NFC Readers, Barcode Scanners, and Other Readers"
+sidebar_label: "Readers"
 description: "Compatible Zaparoo hardware readers: NFC/RFID readers, cartridge bridges, barcode scanners, optical drives, MQTT, and custom serial devices."
 keywords: [zaparoo readers, nfc reader, rfid reader, cartridge reader, barcode scanner, zaparoo hardware]
 ---

@@ -1,5 +1,7 @@
 ---
-sidebar_position: 11
+title: "Launch Games with NFC Cards on MiSTeX"
+sidebar_label: "MiSTeX"
+sidebar_position: 15
 sidebar_class_name: hidden
 description: "Install Zaparoo on MiSTeX: identical to MiSTer in functionality, with a different installation method for the MiSTeX hardware."
 keywords: [zaparoo mistex, mistex nfc, mistex fpga zaparoo, nfc mistex]
@@ -8,6 +10,16 @@ keywords: [zaparoo mistex, mistex nfc, mistex fpga zaparoo, nfc mistex]
 # MiSTeX
 
 MiSTeX is fully supported by Zaparoo and closely follows [MiSTer](./mister/index.md). The main differences are installation and the current reader set.
+
+## Install
+
+Download Zaparoo Core for MiSTeX from the [GitHub releases page](https://github.com/ZaparooProject/zaparoo-core/releases/latest) and copy the `zaparoo.sh` file to the `Scripts` folder on your SD card.
+
+Run `zaparoo` from the MiSTeX `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service. With the service running, write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<mistex-ip>:7497/app/`.
+
+:::warning
+Using FileZilla? Enable binary transfer mode per [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/). FileZilla incorrectly detects `zaparoo.sh` as text and will corrupt it.
+:::
 
 ## File paths
 
@@ -19,16 +31,6 @@ MiSTeX is fully supported by Zaparoo and closely follows [MiSTer](./mister/index
 | Mappings directory | `/media/fat/zaparoo/mappings`    |
 
 The `/media/fat` directory is the top level of the SD card. The `/tmp` directory is deleted when MiSTeX is powered off, so Core copies the log to `/media/fat/zaparoo/core.log` when it shuts down cleanly, and when it stops on a startup problem that needs your attention.
-
-## Install
-
-Download Zaparoo Core for MiSTeX from the [GitHub releases page](https://github.com/ZaparooProject/zaparoo-core/releases/latest) and copy the `zaparoo.sh` file to the `Scripts` folder on your SD card.
-
-Run `zaparoo` from the MiSTeX `Scripts` menu. A prompt will offer to enable Zaparoo as a startup service. With the service running, write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<mistex-ip>:7497/app/`.
-
-:::warning
-Using FileZilla? Enable binary transfer mode per [these steps](https://oryon.net/knowledge-base/article/how-to-change-filezilla-ftp-program-to-binary-transfer/). FileZilla incorrectly detects `zaparoo.sh` as text and will corrupt it.
-:::
 
 ## Readers
 

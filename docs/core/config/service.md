@@ -205,7 +205,7 @@ If the Web UI loads but never connects, see [Web UI troubleshooting](../../app/w
 
 `encryption` requires remote WebSocket API clients to use the [paired-client encryption flow](../api/encryption.md). Localhost connections are always allowed without encryption.
 
-When the key is not set, Core uses the platform default: `true` on Linux, SteamOS, and Windows, `false` everywhere else. A value you set yourself is kept, including through a backup restore.
+When the key is not set, Core uses the platform default: `true` on Linux, SteamOS, Bazzite, ChimeraOS, Armada, and Windows, `false` everywhere else. Only MiSTer, MiSTeX, Batocera, LibreELEC, and RePlayOS accept remote clients that have not paired, so on every other platform remote clients have to pair whatever this key is set to. A value you set yourself is kept, including through a backup restore.
 
 ```toml
 [service]
@@ -282,6 +282,34 @@ When enabled, Zaparoo advertises itself on your local network using mDNS/DNS-SD.
 | instance_name | string | _system hostname_    |
 
 `instance_name` specifies a custom display name for this Zaparoo instance on the network. If not set, defaults to the system hostname.
+
+### service.ble
+
+`service.ble` is a sub-section of `service` that configures the [API over Bluetooth LE](../api/index.md#bluetooth-le), which lets a client find, pair with, and control Core without a shared Wi-Fi network. It works on Linux-based platforms and Windows with a Bluetooth adapter. A device without a usable adapter never advertises, and Core never turns the adapter on itself.
+
+```toml
+[service.ble]
+enabled = true
+name = "Living Room MiSTer"
+```
+
+Anyone in radio range can see the advertisement, but every client has to [pair](../api/encryption.md) with the PIN Core shows before it can do anything. On Windows, the adapter has to support advertising (the peripheral role), which some USB dongles do not.
+
+#### enabled {#service-ble-enabled}
+
+| Key     | Type    | Default |
+| ------- | ------- | ------- |
+| enabled | boolean | true    |
+
+`enabled` turns the Bluetooth LE API on or off.
+
+#### name {#service-ble-name}
+
+| Key  | Type   | Default                                    |
+| ---- | ------ | ------------------------------------------ |
+| name | string | _[`instance_name`](#instance_name) value_ |
+
+`name` sets the Bluetooth name Core advertises on Linux-based platforms. Windows always advertises the PC's own Bluetooth name.
 
 ### service.remote_control
 

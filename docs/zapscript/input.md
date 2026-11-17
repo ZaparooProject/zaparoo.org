@@ -12,12 +12,12 @@ The platform sets a default input mode, which you can configure with [`[zapscrip
 
 ## Platform support
 
-Input commands work on [MiSTer](../platforms/mister/index.md), [Batocera](../platforms/batocera/index.md), [RePlayOS](../platforms/replayos.md), and [Windows](../platforms/windows/index.md#input). Other platforms accept the command but nothing is typed.
+Input commands work on [MiSTer](../platforms/mister/index.md), [Batocera](../platforms/batocera/index.md), [Knulli](../platforms/handhelds/knulli.md), [ROCKNIX](../platforms/handhelds/rocknix.md), [AmberELEC](../platforms/handhelds/amberelec.md), [muOS](../platforms/handhelds/muos.md), [RePlayOS](../platforms/replayos.md), and [Windows](../platforms/windows/index.md#input). Other platforms accept the command but nothing is typed.
 
 | Command | Notes |
 | ------- | ----- |
 | `input.keyboard`, `input.text`, `input.coinp1` to `input.coinp4` | On Windows, keys cannot reach windows running as administrator or the lock screen. `input.text` types single characters, so on desktop platforms it needs the input mode set to `unrestricted`. |
-| `input.gamepad` | Uses a virtual gamepad that games must map by hand. Off by default on Batocera, where it can interfere with some emulators, on RePlayOS, and on Windows, where it also needs the ViGEmBus driver. Turn it on with [`gamepad_enabled`](../core/config/media.md#gamepad_enabled). |
+| `input.gamepad` | Uses a virtual gamepad that games must map by hand. Off by default on Batocera, where it can interfere with some emulators, on Knulli, ROCKNIX, AmberELEC, muOS, and RePlayOS, and on Windows, where it also needs the ViGEmBus driver. Turn it on with [`gamepad_enabled`](../core/config/media.md#gamepad_enabled). |
 
 ## input.keyboard
 

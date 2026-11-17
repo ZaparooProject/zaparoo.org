@@ -34,6 +34,18 @@ path = 'COM3'
 
 The serial connection uses `115200` baud. This is fixed in Core and is not currently configurable.
 
+### Adapters without a kernel driver
+
+Some Linux systems have no kernel driver for CH340, CH341, or PL2303 USB serial adapters, so no `/dev/ttyUSB*` device appears. Core can drive these adapters itself. Set `path` to `usbserial:` followed by the adapter's USB port, as listed under `/sys/bus/usb/devices`:
+
+```toml
+[[readers.connect]]
+driver = 'simpleserial'
+path = 'usbserial:1-1.2'
+```
+
+Where the kernel driver is present, keep using the `/dev/ttyUSB*` path.
+
 ## Protocol
 
 Each scan is one newline-terminated line. Use real tab characters between `SCAN` and each argument:

@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with QR Codes"
+sidebar_label: "QR Codes"
 sidebar_position: 3
 description: "Create and use QR codes as Zaparoo tokens: embed ZapScript in a QR code and scan it with the Zaparoo App, a serial scanner, or a phone camera."
 keywords: [zaparoo qr codes, qr code game launcher, zapscript qr code, zaparoo app qr]

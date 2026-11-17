@@ -1,23 +1,12 @@
 ---
+title: "Launch Games with NFC Cards on SteamOS and Steam Deck"
+sidebar_label: "SteamOS"
 description: "Install Zaparoo on SteamOS and launch Steam, native emulator, RetroArch, EmuDeck, and RetroDECK games from tokens."
 keywords: [zaparoo steamos, zaparoo steam deck, steam deck nfc, nfc steam deck game launcher, steamos nfc reader]
 ---
 # SteamOS
 
 Zaparoo Core runs in the background on SteamOS and launches Steam games, native emulators, RetroArch, EmuDeck, and RetroDECK from physical tokens. In Gaming Mode, emulator launches run through Zaparoo Runtime, a permanent Steam shortcut the installer adds so emulators can start as Steam-owned sessions. Steam games launch directly through Steam. This page covers install, security, backups, and readers; launcher setup is on [SteamOS launchers](./launchers.md) and the Quick Access Menu plugin on [Decky Loader plugin](./decky.md).
-
-## File paths
-
-| Item               | Path                                             |
-| ------------------ | ------------------------------------------------ |
-| Application        | `/home/deck/.local/bin/zaparoo`                   |
-| Config file        | `/home/deck/.config/zaparoo/config.toml`          |
-| Data directory     | `/home/deck/.local/share/zaparoo`                 |
-| Log file           | `/home/deck/.local/share/zaparoo/logs/core.log`   |
-| Mappings directory | `/home/deck/.local/share/zaparoo/mappings`        |
-| User service       | `/home/deck/.config/systemd/user/zaparoo.service` |
-
-Assuming the default `deck` account.
 
 ## Install
 
@@ -97,6 +86,19 @@ curl -fsSL https://zaparoo.org/install.sh | bash -s -- uninstall
 ```
 
 The uninstaller removes Core, its user service, desktop integration, and Zaparoo Runtime files. It asks before removing system-wide NFC reader support. Configuration, databases, mappings, indexed media, and local backup files are preserved under `/home/deck/.config/zaparoo` and `/home/deck/.local/share/zaparoo`.
+
+## File paths
+
+| Item               | Path                                             |
+| ------------------ | ------------------------------------------------ |
+| Application        | `/home/deck/.local/bin/zaparoo`                   |
+| Config file        | `/home/deck/.config/zaparoo/config.toml`          |
+| Data directory     | `/home/deck/.local/share/zaparoo`                 |
+| Log file           | `/home/deck/.local/share/zaparoo/logs/core.log`   |
+| Mappings directory | `/home/deck/.local/share/zaparoo/mappings`        |
+| User service       | `/home/deck/.config/systemd/user/zaparoo.service` |
+
+Assuming the default `deck` account.
 
 ## Client security
 

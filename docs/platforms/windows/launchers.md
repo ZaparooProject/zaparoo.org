@@ -1,6 +1,6 @@
 ---
-description: "Zaparoo launcher configuration for Windows: Steam, LaunchBox, Big Box, and custom launcher setup with file path examples."
-keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, zaparoo big box, windows game launch nfc]
+description: "Zaparoo launcher configuration for Windows: Steam, LaunchBox, Big Box, Playnite, RetroArch, standalone emulators, and custom launchers with file path examples."
+keywords: [zaparoo windows launchers, zaparoo steam windows, zaparoo launchbox, zaparoo big box, zaparoo playnite, windows emulators nfc, windows game launch nfc]
 ---
 
 # Launchers
@@ -190,6 +190,121 @@ Second, make sure `localhost` resolves to `127.0.0.1`. Core connects to `localho
 | `Thomson` | `thomson` |
 | `Spectravideo` | `spectravideo` |
 | `Oric` | `oricatmos` |
+
+## Playnite
+
+Launches games from your [Playnite](https://playnite.link/) library through Playnite, so Playnite's own play actions, emulator setups, and time tracking apply. Core finds Playnite in the folder set with `install_dir`, then through its installer's registry entry, then in `%LOCALAPPDATA%\Playnite`.
+
+Playnite needs the Zaparoo extension, `Zaparoo Playnite Integration.pext`. With the extension installed, right-click a game in Playnite and choose **Write to Zaparoo tag** to write a token for it.
+
+Playnite must be running with the extension loaded when you update the media database, because Core reads the library through it. Hidden and uninstalled games are left out, and so are Steam games when Core already indexes them through the [Steam launcher](#steam). Games are filed under the matching Zaparoo system, and games with no platform go under `PC`. Games on a platform Core does not recognize are left out.
+
+To manually create a Playnite game token, write `playnite://<game_id>` to a token, using the game's ID from Playnite. Playnite does not need to be running to launch a game; Core starts it. Games started from Playnite itself also show as playing in Zaparoo.
+
+After a media database update, the `playnite` [scraper](../../features/scraping.md#playnite) imports Playnite's own metadata and cover images.
+
+```toml title="config.toml"
+[[launchers.default]]
+launcher = "Playnite"
+install_dir = "D:\\Playnite"  # Optional custom install directory
+```
+
+## RetroArch
+
+Core registers RetroArch launchers for supported systems when it finds RetroArch, using the same search as [standalone emulators](#standalone-emulators), or the Steam version of RetroArch. Use RetroArch to install the cores for the systems you want to launch. A launcher whose core file is missing from RetroArch's `cores` folder is reported as unavailable.
+
+RetroArch launchers scan ES-DE-style system folders such as `nes`, `snes`, and `megadrive` under each configured [`launchers.index_root`](../../core/config/launchers.md#index_root). Games start in fullscreen.
+
+Built-in controls include save state, load state, menu, pause, reset, fast forward, rewind, and stop, plus disc tray, next disc, and previous disc for multi-disc games. Core enables these through a small network-command overlay at `%localappdata%\zaparoo\retroarch-network.cfg`; it does not modify your primary RetroArch configuration.
+
+## Standalone emulators
+
+Core registers a launcher for each emulator below that it finds installed. For each emulator it checks, in order:
+
+1. An `install_dir` set for one of the emulator's launcher IDs or for the emulator name, pointing at the executable or its folder.
+2. The emulator's Windows App Paths and uninstall registry entries.
+3. Scoop and winget installs, and `PATH`.
+4. Folders named after the emulator inside common locations: `%USERPROFILE%\Emulators`, the EmuDeck and ES-DE `Emulators` folders, `Emulators` or `Emulation\Emulators` at the root of each local drive, the folder that holds each `index_root`, Program Files, `%LOCALAPPDATA%`, `Games` folders, the root of each local drive, and your home, Desktop, Downloads, and Documents folders.
+
+```toml title="config.toml"
+[[launchers.default]]
+launcher = "Dolphin"
+install_dir = 'D:\Emus\Dolphin-x64'
+```
+
+Emulators scan ES-DE-style folders under each configured [`launchers.index_root`](../../core/config/launchers.md#index_root), so set it to the folder that holds your system folders. Core does not scan for standalone emulator games without it. Each launcher also scans the folder named after its Zaparoo system ID. Launchers marked "launch by path" have no scanned folders; Core launches a file through them when a token or a [custom launcher](../../features/custom-launchers.md) names the file explicitly.
+
+```toml title="config.toml"
+[launchers]
+index_root = ['D:\ROMs']
+```
+
+When two emulators can open the same file, the one listed first in the table is used. To pick another, set a [launcher default](../../core/config/launchers.md) or use a [custom launcher](../../features/custom-launchers.md). A custom launcher with the same ID as a built-in one replaces it.
+
+| Emulator | Launcher IDs | Folders |
+|----------|--------------|---------|
+| GroovyMAME | `GroovyMAME` | `arcade`, `mame` |
+| MAME | `MAME` | `arcade`, `mame` |
+| FinalBurnNeo | `FinalBurnNeo`, `FinalBurnNeoNeoGeo` | `fbneo`, `arcade`, `neogeo` |
+| Supermodel | `Supermodel` | `model3` |
+| Flycast | `FlycastDreamcast`, `FlycastNaomi`, `FlycastAtomiswave` | `dreamcast`, `dc`, `naomi`, `atomiswave` |
+| Demul | `DemulDreamcast`, `DemulNaomi`, `DemulAtomiswave` | `dreamcast`, `dc`, `naomi`, `atomiswave` |
+| Dolphin | `DolphinGameCube`, `DolphinWii` | `gamecube`, `gc`, `wii` |
+| PrimeHack | `PrimeHackGameCube`, `PrimeHackWii` | Launch by path |
+| Cemu | `Cemu` | `wiiu` |
+| Ryujinx | `Ryubing` | `switch` |
+| Eden | `Eden` | `switch` |
+| Azahar | `Azahar` | `3ds`, `n3ds` |
+| melonDS | `MelonDS` | `nds` |
+| DeSmuME | `DeSmuME` | `nds` |
+| NO$GBA | `NoGBA` | `nds` |
+| mGBA | `mGBAGBA`, `mGBAGB`, `mGBAGBC` | `gba`, `gb`, `gbc` |
+| SameBoy | `SameBoyGB`, `SameBoyGBC` | `gb`, `gbc` |
+| VisualBoyAdvance-M | `VBAMGBA`, `VBAMGB`, `VBAMGBC` | `gba`, `gb`, `gbc` |
+| Mesen | `MesenNES`, `MesenFDS`, `MesenSNES`, `MesenGB`, `MesenGBC`, `MesenGBA`, `MesenPCEngine`, `MesenMasterSystem`, `MesenGameGear`, `MesenWonderSwan`, `MesenWonderSwanColor` | `nes`, `fds`, `snes`, `gb`, `gbc`, `gba`, `pcengine`, `tg16`, `mastersystem`, `gamegear`, `wswan`, `wonderswan`, `wswanc`, `wonderswancolor` |
+| Snes9x | `Snes9x` | `snes` |
+| bsnes | `BSNESStandalone` | `snes` |
+| Project64 | `Project64` | `n64` |
+| RMG | `RMG` | `n64` |
+| Gopher64 | `Gopher64` | `n64` |
+| Nestopia | `Nestopia` | `nes` |
+| puNES | `PuNES` | `nes` |
+| DuckStation | `DuckStation` | `psx` |
+| PCSX2 | `PCSX2` | `ps2` |
+| Play! | `PlayPS2` | `ps2` |
+| PPSSPP | `PPSSPP` | `psp` |
+| RPCS3 | `RPCS3` | `ps3` |
+| Vita3K | `Vita3K` | `psvita`, `vita` |
+| shadPS4 | `ShadPS4` | `ps4` |
+| Mednafen | `MednafenPSX`, `MednafenSaturn`, `MednafenPCEngine`, `MednafenPCEngineCD`, `MednafenSuperGrafx`, `MednafenPCFX`, `MednafenLynx`, `MednafenNeoGeoPocket`, `MednafenNeoGeoPocketColor`, `MednafenWonderSwan`, `MednafenWonderSwanColor`, `MednafenVirtualBoy` | `psx`, `saturn`, `pcengine`, `tg16`, `pcenginecd`, `tg-cd`, `supergrafx`, `pcfx`, `lynx`, `atarilynx`, `ngp`, `ngpc`, `wswan`, `wonderswan`, `wswanc`, `wonderswancolor`, `virtualboy` |
+| Kega Fusion | `KegaFusionGenesis`, `KegaFusionMasterSystem`, `KegaFusionGameGear`, `KegaFusion32X`, `KegaFusionMegaCD` | `megadrive`, `genesis`, `mastersystem`, `gamegear`, `sega32x`, `megacd`, `segacd` |
+| BlastEm | `BlastEm` | `megadrive`, `genesis` |
+| jgenesis | `JgenesisGenesis`, `JgenesisMasterSystem`, `JgenesisGameGear`, `JgenesisMegaCD`, `Jgenesis32X` | `megadrive`, `genesis`, `mastersystem`, `gamegear`, `megacd`, `segacd`, `sega32x` |
+| Redream | `Redream` | `dreamcast`, `dc` |
+| Kronos | `Kronos` | `saturn` |
+| Ymir | `Ymir` | `saturn` |
+| xemu | `Xemu` | `xbox` |
+| Xenia Canary | `XeniaCanary` | `xbox360` |
+| Xenia Edge | `XeniaEdge` | `xbox360` |
+| ares | `AresNES`, `AresSNES`, `AresN64`, `AresGB`, `AresGBC`, `AresGBA`, `AresGenesis`, `AresMegaCD`, `Ares32X`, `AresMasterSystem`, `AresGameGear`, `AresSG1000`, `AresPCEngine`, `AresSuperGrafx`, `AresNeoGeoPocket`, `AresNeoGeoPocketColor`, `AresWonderSwan`, `AresWonderSwanColor`, `AresColecoVision`, `AresMSX` | `nes`, `snes`, `n64`, `gb`, `gbc`, `gba`, `megadrive`, `genesis`, `megacd`, `segacd`, `sega32x`, `mastersystem`, `gamegear`, `sg1000`, `pcengine`, `tg16`, `supergrafx`, `ngp`, `ngpc`, `wswan`, `wonderswan`, `wswanc`, `wonderswancolor`, `colecovision`, `msx1`, `msx` |
+| BizHawk | `BizHawkNES`, `BizHawkSNES`, `BizHawkN64`, `BizHawkGB`, `BizHawkGBC`, `BizHawkGBA`, `BizHawkGenesis`, `BizHawkMasterSystem`, `BizHawkGameGear`, `BizHawkPCEngine`, `BizHawkPSX`, `BizHawkAtari2600`, `BizHawkAtari7800`, `BizHawkLynx`, `BizHawkColecoVision`, `BizHawkIntellivision`, `BizHawkVirtualBoy`, `BizHawkWonderSwan`, `BizHawkWonderSwanColor`, `BizHawkNeoGeoPocket`, `BizHawkNeoGeoPocketColor` | `nes`, `snes`, `n64`, `gb`, `gbc`, `gba`, `megadrive`, `genesis`, `mastersystem`, `gamegear`, `pcengine`, `tg16`, `psx`, `atari2600`, `atari7800`, `lynx`, `atarilynx`, `colecovision`, `intellivision`, `virtualboy`, `wswan`, `wonderswan`, `wswanc`, `wonderswancolor`, `ngp`, `ngpc` |
+| Stella | `StellaStandalone` | `atari2600` |
+| Altirra | `Altirra`, `Altirra5200`, `AltirraXEGS` | `atari800`, `atari5200`, `xegs` |
+| Atari800 | `Atari800` | `atari800` |
+| A7800 | `A7800` | `atari7800` |
+| BigPEmu | `BigPEmu`, `BigPEmuCD` | `jaguar`, `jaguarcd` |
+| Hatari | `Hatari` | `atarist` |
+| VICE C64 | `ViceC64` | `c64` |
+| VICE C128 | `ViceC128` | `c128` |
+| VICE VIC-20 | `ViceVIC20` | `c20`, `vic20` |
+| VICE Plus/4 | `VicePlus4` | `cplus4`, `plus4`, `c16` |
+| WinUAE | `WinUAE` | `amiga` |
+| openMSX | `OpenMSX` | `msx`, `msx1`, `msx2` |
+| ZEsarUX | `ZEsarUX` | `zxspectrum` |
+| DOSBox Staging | `DOSBoxStaging` | `dos` |
+| DOSBox-X | `DOSBoxX` | `dos` |
+| ScummVM | `ScummVMStandalone` | Launch by path |
+| Ruffle | `Ruffle` | `flash` |
 
 ## Flashpoint
 

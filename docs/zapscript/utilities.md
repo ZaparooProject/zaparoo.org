@@ -290,6 +290,8 @@ SNES/Super Mario World.sfc||**delay:media_ready||**input.keyboard:{f12}
 
 :::info Blocking Command
 This is a blocking command. The entire script pauses until the delay completes. `media_ready` waits have an internal timeout, so scripts do not wait forever if readiness cannot be detected. If the game never starts, or is stopped while the script waits, the rest of the script is skipped.
+
+A new scan that launches media or runs a playlist command also ends a waiting delay and skips the rest of its script. Scans that only run other commands leave it waiting.
 :::
 
 ---

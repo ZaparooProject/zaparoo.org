@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
-// Platform id -> README page (plain Markdown pages only; .mdx pages use <ReaderSupport />)
+// Platform id -> platform page
 const pages = {
   mister: "docs/platforms/mister/index.md",
   mistex: "docs/platforms/mistex.md",
@@ -20,6 +20,18 @@ const pages = {
   linux: "docs/platforms/linux/index.md",
   libreelec: "docs/platforms/libreelec.md",
   replayos: "docs/platforms/replayos.md",
+  knulli: "docs/platforms/handhelds/knulli.md",
+  rocknix: "docs/platforms/handhelds/rocknix.md",
+  amberelec: "docs/platforms/handhelds/amberelec.md",
+  arkos: "docs/platforms/handhelds/arkos.md",
+  muos: "docs/platforms/handhelds/muos.md",
+  lakka: "docs/platforms/lakka.md",
+  retropie: "docs/platforms/retropie.md",
+  armada: "docs/platforms/handhelds/armada.md",
+  bazzite: "docs/platforms/bazzite.mdx",
+  chimeraos: "docs/platforms/chimeraos.mdx",
+  mac: "docs/platforms/mac.mdx",
+  recalbox: "docs/platforms/recalbox.mdx",
 };
 
 const labels = { supported: "Supported", limited: "Limited", unsupported: "Not supported" };

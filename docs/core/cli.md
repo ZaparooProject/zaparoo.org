@@ -176,7 +176,7 @@ The new switch ID is printed to the terminal. Existing switch cards for that pro
 
 Platform builds add their own service, UI, and installer flags. These are the user-facing flags in current Core source.
 
-### Linux, SteamOS, Bazzite, and ChimeraOS
+### Linux, SteamOS, Bazzite, ChimeraOS, and Armada
 
 These Linux desktop-style builds share the same extra flags.
 
@@ -234,6 +234,20 @@ Examples:
 /userdata/system/zaparoo -install
 ```
 
+### Knulli
+
+| Flag | Argument | Description |
+| ---- | -------- | ----------- |
+| `-service` | `start`, `stop`, `restart`, or `status` | Manages the Zaparoo service. |
+| `-install` | None | Installs and starts the Knulli service. |
+| `-uninstall` | None | Stops and removes the Knulli service. |
+
+Example:
+
+```bash
+/userdata/system/zaparoo -service restart
+```
+
 ### LibreELEC
 
 | Flag | Argument | Description |
@@ -246,13 +260,15 @@ Example:
 /storage/zaparoo -service restart
 ```
 
-### RePlayOS
+### RePlayOS, ROCKNIX, AmberELEC, ArkOS, muOS, Lakka, RetroPie, and Recalbox
 
 | Flag | Argument | Description |
 | ---- | -------- | ----------- |
-| `-install` | None | Installs the Zaparoo systemd service. |
-| `-uninstall` | None | Removes the Zaparoo systemd service. |
+| `-install` | None | Installs the service that starts Core on boot. |
+| `-uninstall` | None | Removes that service. |
 | `-daemon` | None | Runs the service in the foreground with no TUI. |
+
+Each platform's guide has the binary path and what `-install` sets up there.
 
 ### macOS
 

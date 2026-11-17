@@ -30,9 +30,12 @@ After Core is installed, you can control it through the [Zaparoo App](../app/ind
 | -------- | ------------- | --------------- |
 | MiSTer | [Terminal UI](./tui.md) from the Scripts menu | `-service` flags |
 | Batocera | Terminal UI from the Ports system | `-service` flags |
-| Linux, SteamOS, Bazzite, ChimeraOS | Terminal UI by running `zaparoo` | systemd user service, `-daemon`, `-start` |
+| Knulli | Terminal UI by running `zaparoo` | `-service` flags |
+| Linux, SteamOS, Bazzite, ChimeraOS, Armada | Terminal UI by running `zaparoo` | systemd user service, `-daemon`, `-start` |
 | LibreELEC | Terminal UI by running `zaparoo` | `-service` flags |
-| RePlayOS | Terminal UI by running `zaparoo` | systemd service, `-daemon` |
+| RePlayOS, ROCKNIX, AmberELEC, ArkOS, Lakka, RetroPie | Terminal UI by running `zaparoo` | systemd service, `-daemon` |
+| muOS | Terminal UI by running `zaparoo` | muOS user init script |
+| Recalbox | Terminal UI by running `/tmp/zaparoo-bin/zaparoo-start` | Recalbox user script |
 | Windows | System tray menu | Tray menu |
 
 The [command line reference](./cli.md) lists the flags for each platform. Most Core settings live in `config.toml`; see the [configuration reference](./config/index.md) for file locations, option names, and examples.

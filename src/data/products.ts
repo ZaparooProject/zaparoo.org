@@ -7,6 +7,38 @@
 const warpPricingBase =
   "https://zaparoo.com/pricing?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=warp";
 
+const shopBase = "https://shop.zaparoo.com";
+
+/**
+ * Adds zaparoo.org referral tags to a Zaparoo Shop link. `content` names where
+ * the link sits (navbar, footer, homepage, docs, blog). Tags already on the
+ * link are kept, and links to other sites are returned unchanged.
+ */
+export function withShopUtm(href: string, content: string): string {
+  let url: URL;
+  try {
+    url = new URL(href);
+  } catch {
+    return href;
+  }
+  if (url.hostname !== "shop.zaparoo.com") return href;
+  const tags: Record<string, string> = {
+    utm_source: "zaparoo.org",
+    utm_medium: "referral",
+    utm_campaign: "shop",
+    utm_content: content,
+  };
+  for (const [key, value] of Object.entries(tags)) {
+    if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+  }
+  return url.toString();
+}
+
+/** Tagged Zaparoo Shop link. `path` is a shop path such as "/collections/cards". */
+export function shopUrl(content: string, path = ""): string {
+  return withShopUtm(`${shopBase}${path}`, content);
+}
+
 export const products = {
   warp: {
     name: "Zaparoo Warp",
@@ -15,6 +47,7 @@ export const products = {
     summary:
       "Warp is how you support Zaparoo and pay for its hosted features. It backs up your Zaparoo data off-site automatically and restores it to this device or a replacement, and it includes Zaparoo App Pro while you subscribe.",
     freeLine: "Local backups are always free.",
+    trialLine: "Try it free for 14 days, no card needed.",
     tagline: "Never lose a save to a dead SD card.",
     shortPitch:
       "Warp backs up your Zaparoo data off-site automatically and includes App Pro.",
@@ -72,10 +105,12 @@ export const products = {
     tagline: "Official readers, cards, and starter kits.",
     sponsorLine:
       "Tested with Zaparoo, ships worldwide from Australia. Every purchase funds development.",
-    url: "https://shop.zaparoo.com",
-    starterKitsUrl: "https://shop.zaparoo.com/collections/starter-kits",
-    readersUrl: "https://shop.zaparoo.com/collections/readers",
-    cardsUrl: "https://shop.zaparoo.com/collections/cards",
+    // Each takes the placement name used for utm_content.
+    url: (content: string) => shopUrl(content),
+    starterKitsUrl: (content: string) =>
+      shopUrl(content, "/collections/starter-kits"),
+    readersUrl: (content: string) => shopUrl(content, "/collections/readers"),
+    cardsUrl: (content: string) => shopUrl(content, "/collections/cards"),
   },
   patreon: {
     name: "Patreon",

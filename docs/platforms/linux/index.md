@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with NFC Cards on Linux"
+sidebar_label: "Linux"
 description: "Install Zaparoo on Linux with Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, media, and desktop launcher support."
 keywords: [zaparoo linux, linux nfc game launcher, zaparoo lutris, zaparoo heroic, zaparoo retroarch, linux emulator launcher, zaparoo emudeck, linux nfc reader]
 ---
@@ -6,17 +8,6 @@ keywords: [zaparoo linux, linux nfc game launcher, zaparoo lutris, zaparoo heroi
 # Linux
 
 Zaparoo Core on Linux provides desktop integration with support for Steam, Lutris, Heroic, RetroArch, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, and Moonlight launching. This platform serves as the foundation for other Linux-based platforms.
-
-## File paths
-
-| Item               | Path                                   |
-| ------------------ | -------------------------------------- |
-| Config file        | `~/.config/zaparoo/config.toml`        |
-| Data directory     | `~/.local/share/zaparoo`               |
-| Log file           | `~/.local/share/zaparoo/logs/core.log` |
-| Mappings directory | `~/.local/share/zaparoo/mappings`      |
-
-Where `~` is the home directory of the current user.
 
 ## Install
 
@@ -82,6 +73,17 @@ Run the install script's uninstall mode (shown above), or remove the components 
 sudo ./zaparoo -uninstall hardware
 ./zaparoo -uninstall application
 ```
+
+## File paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `~/.local/share/zaparoo/logs/core.log` |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+
+Where `~` is the home directory of the current user.
 
 ## Client security
 

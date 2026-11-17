@@ -21,7 +21,7 @@ Short definitions of the words used across these docs, with a link to the page t
 - **Warp**: how you support Zaparoo and pay for its hosted features. Automatic off-site backups of your Zaparoo data (plus saves and settings on MiSTer), with App Pro included. See [cloud backup](./features/backups.md#cloud-backup).
 - **Zaparoo Designer**: the web app for designing printable card labels. See [Zaparoo Designer](./designer/index.md).
 - **ZapESP32**: open-source firmware that turns an ESP32 board into a wireless NFC reader. See [ZapESP32](./zapesp32/index.md).
-- **Zaparoo Shop**: official readers, cards, and starter kits, tested with Zaparoo. Purchases fund development. See the [Zaparoo Shop](https://shop.zaparoo.com).
+- **Zaparoo Shop**: official readers, cards, and starter kits, tested with Zaparoo. Purchases fund development. See the [Zaparoo Shop](https://shop.zaparoo.com/?utm_source=zaparoo.org&utm_medium=referral&utm_campaign=shop&utm_content=docs).
 - **Zaparoo Runtime**: the permanent Steam shortcut Core adds on SteamOS so emulators run as Steam-owned sessions in Gaming Mode. See [SteamOS launchers](./platforms/steamos/launchers.md#zaparoo-runtime-and-gaming-mode).
 - **Pairing**: approving a client such as the App, a browser, or a tool with a six-digit PIN so it can talk to Core over an encrypted connection. See [encryption](./core/config/service.md#encryption).
 

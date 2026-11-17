@@ -1,4 +1,6 @@
 ---
+title: "Launch Games with NFC Cards on Bazzite"
+sidebar_label: "Bazzite"
 sidebar_position: 7
 description: "Install Zaparoo on Bazzite: launch Steam, Lutris, Heroic, emulator, EmuDeck, and RetroDECK games with NFC cards on Bazzite-powered gaming PCs and handhelds."
 keywords: [zaparoo bazzite, bazzite nfc, zaparoo lutris, zaparoo heroic, bazzite game launcher]
@@ -11,17 +13,6 @@ Bazzite is a [beta platform](./index.mdx#support-levels): Core installs and runs
 :::
 
 Zaparoo Core on [Bazzite](https://bazzite.gg/) supports launching games from Steam, Lutris, Heroic, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, and Moonlight, plus shell scripts. Release builds are available for both AMD64 and ARM64 architectures.
-
-## File paths
-
-| Item               | Path                                   |
-| ------------------ | -------------------------------------- |
-| Config file        | `~/.config/zaparoo/config.toml`        |
-| Data directory     | `~/.local/share/zaparoo`               |
-| Log file           | `/tmp/<session_id>-zaparoo/core.log`   |
-| Mappings directory | `~/.local/share/zaparoo/mappings`      |
-
-Where `~` is the home directory of the current user.
 
 ## Install
 
@@ -46,9 +37,20 @@ sudo ~/.local/bin/zaparoo -uninstall hardware
 ~/.local/bin/zaparoo -uninstall application
 ```
 
+## File paths
+
+| Item               | Path                                   |
+| ------------------ | -------------------------------------- |
+| Config file        | `~/.config/zaparoo/config.toml`        |
+| Data directory     | `~/.local/share/zaparoo`               |
+| Log file           | `~/.local/share/zaparoo/logs/core.log` |
+| Mappings directory | `~/.local/share/zaparoo/mappings`      |
+
+Where `~` is the home directory of the current user.
+
 ## Client security
 
-Encryption is off by default on Bazzite, so the Zaparoo App and browsers connect without pairing. To require pairing with a PIN, set [`encryption = true`](../core/config/service.md#encryption) in `config.toml`; Core then shows the PIN under **Settings > Clients > Pair** in the terminal UI or with `~/.local/bin/zaparoo -pair`.
+Bazzite requires encrypted connections from remote clients. Pair a phone, browser, or other client with the six-digit PIN that Core shows under **Settings > Clients > Pair** in the terminal UI, or run `~/.local/bin/zaparoo -pair`. The PIN expires after five minutes. See [encryption](../core/config/service.md#encryption) for how paired clients and their permissions work.
 
 ## Readers
 

@@ -1,6 +1,6 @@
 {
   "label": "Windows",
-  "position": 5,
+  "position": 13,
   "link": {
     "type": "doc",
     "id": "platforms/windows/index"

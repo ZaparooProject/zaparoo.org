@@ -1,4 +1,6 @@
 ---
+title: "NFC Readers for Zaparoo"
+sidebar_label: "NFC Readers"
 description: "NFC reader options for Zaparoo: PN532 USB, PN532 Module, ACR122U, USB smart card readers, and RC522. Compare ready-to-use and DIY hardware."
 keywords: [zaparoo nfc reader, pn532 usb, acr122u, rc522, nfc reader mister fpga]
 ---

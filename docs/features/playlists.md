@@ -163,11 +163,13 @@ If an item fails to launch, the playlist pauses on it instead of moving on. `**p
 A playlist moves on by itself when its current item ends:
 
 - **Media finishes.** A video or song that plays to its end starts the next item straight away.
-- **A game exits.** When you quit a game yourself, Core counts down before starting the next item, 10 seconds by default. Pressing a button or key after the first 2 seconds cancels the countdown, as does scanning a card or launching something else. If a game the playlist started on its own is quit within 30 seconds, the playlist pauses instead. In a playlist with [`idle`](#timed-and-idle-switching), quitting a game skips the countdown and the next item starts once the idle time has passed.
+- **A game exits.** When you quit a game yourself, Core counts down before starting the next item, 10 seconds by default. Pressing a button or key after the first 2 seconds cancels the countdown, as does scanning a card or launching something else. If a game the playlist started on its own is quit within 30 seconds, the playlist pauses instead and asks whether to play the next item or stop the playlist. In a playlist with [`idle`](#timed-and-idle-switching), quitting a game skips the countdown and the next item starts once the idle time has passed.
+
+If an item never starts, for example because a BIOS file is missing, the playlist pauses on it with a **Couldn't start** prompt to try again, skip it, or stop the playlist.
 
 Stopping or replacing media through Zaparoo never moves the playlist on. The last item of a playlist without [repeat](../zapscript/playlist.md#repeat-modes) ends the playlist.
 
-[MiSTer](../platforms/mister/index.md) shows the countdown on screen with **Play now** and **Stop playlist** options. The countdown runs in full from when it appears, and a button press does not cancel it there. Pick an option or let it run out. On other platforms, a connected client that supports Core's global UI events can show and answer it.
+[MiSTer](../platforms/mister/index.md) shows the countdown and these prompts on screen, with **Play now** and **Stop playlist** options on the countdown. The countdown runs in full from when it appears, and a button press does not cancel it there. Pick an option or let it run out. [Batocera](../platforms/batocera/index.md) shows them as EmulationStation notices; scan the card again to continue a paused playlist. On other platforms, a connected client that supports Core's global UI events can show and answer them.
 
 ### Timed and idle switching
 

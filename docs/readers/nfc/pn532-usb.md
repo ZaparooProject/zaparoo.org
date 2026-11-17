@@ -1,4 +1,6 @@
 ---
+title: "PN532 USB NFC Reader Setup"
+sidebar_label: "PN532 USB"
 sidebar_position: 1
 description: Set up the PN532 USB NFC reader with Zaparoo. Covers auto-detection, manual config, serial ports, and troubleshooting.
 keywords: [pn532 usb, zaparoo nfc reader, pn532 type-c, nfc reader mister fpga]
@@ -75,6 +77,8 @@ sudo usermod -a -G dialout $USER
 Log out and back in after changing groups.
 
 PN532Killer readers in UART mode are detected and configured the same way as any other PN532 USB reader. The udev rule installed by Core's [hardware support](../../platforms/linux/index.md#manual-install) step covers them.
+
+On a system with no kernel driver for the reader's CH340 or PL2303 chip, Core drives the chip itself and still auto-detects the reader, a few seconds after it is plugged in.
 
 ### macOS
 

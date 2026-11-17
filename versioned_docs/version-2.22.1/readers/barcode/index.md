@@ -1,4 +1,6 @@
 ---
+title: "Barcode and QR Code Scanner Setup"
+sidebar_label: "Barcode Scanners"
 description: "Use barcode scanners with Zaparoo: scan barcodes on game cases or custom labels with the Zaparoo App camera or an RS-232 serial scanner."
 keywords: [zaparoo barcode, barcode scanner game launcher, rs232 barcode reader zaparoo, serial barcode scanner, qr code scanner zaparoo]
 ---

@@ -57,7 +57,7 @@ export default function SponsorCallout({
           {warp.short} cloud backup
         </a>{" "}
         (from {warp.priceMonthly}, {appPro.short} included) and{" "}
-        <a href={shop.url} data-umami-event="sponsor-callout-shop">
+        <a href={shop.url("sponsor_callout")} data-umami-event="sponsor-callout-shop">
           {shop.name}
         </a>{" "}
         hardware fund development.{" "}

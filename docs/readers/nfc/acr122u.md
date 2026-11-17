@@ -1,4 +1,6 @@
 ---
+title: "ACR122U NFC Reader Setup"
+sidebar_label: "ACR122U"
 sidebar_position: 3
 slug: acr122u
 description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, the ccid driver, manual configuration, and Windows troubleshooting.
@@ -45,7 +47,7 @@ The `path` is the reader's PC/SC name on Windows and on Linux with `pcscd`, and 
 
 ### libnfc driver
 
-The older `libnfcacr122` driver is still available on Linux-based platforms. It is enabled but does not search for the reader unless you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect). Turn off the `ccid` driver at the same time, or it takes the reader first:
+The older `libnfcacr122` driver is still available on Linux-based platforms other than MiSTer and MiSTeX. It is enabled but does not search for the reader unless you turn on auto-detect for it in [`config.toml`](../../core/config/readers.md#readers-drivers-auto-detect). Turn off the `ccid` driver at the same time, or it takes the reader first:
 
 ```toml
 [readers.drivers.libnfcacr122]

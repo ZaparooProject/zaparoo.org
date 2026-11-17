@@ -1,5 +1,7 @@
 ---
-sidebar_position: 9
+title: "Launch Kodi Media with NFC Cards on LibreELEC"
+sidebar_label: "LibreELEC"
+sidebar_position: 6
 description: "Install Zaparoo on LibreELEC (beta): manual setup for NFC card media launching on Kodi-based LibreELEC devices."
 keywords: [zaparoo libreelec, libreelec nfc, kodi nfc launcher zaparoo, libreelec game launch]
 ---
@@ -11,17 +13,6 @@ LibreELEC is a [beta platform](./index.mdx#support-levels): launching and reader
 :::
 
 Zaparoo Core on LibreELEC provides Kodi integration for movies, TV shows, and music. Also works on [CoreELEC](https://coreelec.org/) and other Kodi-based systems.
-
-## File paths
-
-| Item               | Path                                     |
-| ------------------ | ---------------------------------------- |
-| Config file        | `/storage/.config/zaparoo/config.toml`   |
-| Data directory     | `/storage/.local/share/zaparoo`          |
-| Log file           | `/tmp/zaparoo/core.log`                  |
-| Mappings directory | `/storage/.local/share/zaparoo/mappings` |
-
-The config file can be accessed through the SMB share in the `Configfiles` folder.
 
 ## Install
 
@@ -60,6 +51,17 @@ Add to `/storage/.config/autostart.sh`:
 1. Stop the service: `/storage/zaparoo -service stop`
 2. Remove the line you added to `/storage/.config/autostart.sh`.
 3. Delete `/storage/zaparoo`, and `/storage/.local/share/zaparoo` if you also want to remove your configuration and data.
+
+## File paths
+
+| Item               | Path                                     |
+| ------------------ | ---------------------------------------- |
+| Config file        | `/storage/.config/zaparoo/config.toml`   |
+| Data directory     | `/storage/.local/share/zaparoo`          |
+| Log file           | `/storage/.local/share/zaparoo/logs/core.log` |
+| Mappings directory | `/storage/.local/share/zaparoo/mappings` |
+
+The config file can be accessed through the SMB share in the `Configfiles` folder.
 
 ## Client security
 

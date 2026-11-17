@@ -90,11 +90,13 @@ Built-in launcher support currently includes:
 | Batocera EmulationStation launchers | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `next` (next disc), `stop`, as far as the running emulator supports them |
 | RePlayOS launchers | `save_state`, `load_state`, `reset`, `stop`. Needs [net control](../platforms/replayos.md#launcher-controls) turned on |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
-| Built-in RetroArch launchers on Linux and SteamOS, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `pause`, `resume`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
+| Built-in RetroArch launchers on Linux, SteamOS, Windows, and Lakka, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `pause`, `resume`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
 | Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |
 
 EmuDeck standalone emulator launchers and RetroDECK launchers do not currently define built-in launcher controls.
+
+On [ArkOS](../platforms/handhelds/arkos.md), RetroArch games get the same RetroArch actions once RetroArch network commands are turned on.
 
 On MiSTer, Batocera, and RePlayOS, controls also work on games started from the system's own menu, not only games Zaparoo launched.
 

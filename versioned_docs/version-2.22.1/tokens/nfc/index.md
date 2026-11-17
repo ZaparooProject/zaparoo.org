@@ -1,4 +1,6 @@
 ---
+title: "NFC Cards and Tags for Launching Games"
+sidebar_label: "NFC Cards and Tags"
 description: "NFC cards and tags for Zaparoo: NTAG215, NTAG213, NTAG216, and MIFARE Classic, what fits on each, what to buy, and how to write them from your phone."
 keywords: [zaparoo nfc tags, ntag215 games, ntag213 zaparoo, nfc cards zaparoo, rfid tags zaparoo, amiibo ntag215]
 ---

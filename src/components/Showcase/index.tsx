@@ -1107,7 +1107,7 @@ const parseCaption = (alt?: string) => {
   return {
     description: alt.slice(0, separatorIndex),
     creator: alt.slice(separatorIndex + separator.length).replace(
-      / @ Discord$/,
+      / @ (?:Discord|Reddit)$/,
       "",
     ),
   };

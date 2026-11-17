@@ -1,5 +1,7 @@
 ---
-sidebar_position: 3
+title: "Launch Games with NFC Cards on RePlayOS"
+sidebar_label: "RePlayOS"
+sidebar_position: 10
 description: "Install Zaparoo on RePlayOS: launch games through the RePlayOS libretro frontend with NFC cards and other Zaparoo tokens."
 keywords: [zaparoo replayos, replayos nfc, replayos game launcher zaparoo]
 ---
@@ -7,17 +9,6 @@ keywords: [zaparoo replayos, replayos nfc, replayos game launcher zaparoo]
 # RePlayOS
 
 Zaparoo Core on [RePlayOS](https://www.replayos.com/) launches games and media through the RePlayOS libretro frontend.
-
-## File paths
-
-| Item               | Path                                  |
-| ------------------ | ------------------------------------- |
-| Config file        | `/media/sd/zaparoo/config.toml`       |
-| Data directory     | `/media/sd/zaparoo`                   |
-| Log file           | `/media/sd/zaparoo/logs/core.log`     |
-| Mappings directory | `/media/sd/zaparoo/mappings`          |
-
-`/media/sd` is the persistent SD card partition and survives OS updates.
 
 ## Install
 
@@ -34,6 +25,17 @@ This installs and enables the `zaparoo.service` systemd unit to run on startup. 
 ```bash
 /media/sd/zaparoo/zaparoo -uninstall
 ```
+
+## File paths
+
+| Item               | Path                                  |
+| ------------------ | ------------------------------------- |
+| Config file        | `/media/sd/zaparoo/config.toml`       |
+| Data directory     | `/media/sd/zaparoo`                   |
+| Log file           | `/media/sd/zaparoo/logs/core.log`     |
+| Mappings directory | `/media/sd/zaparoo/mappings`          |
+
+`/media/sd` is the persistent SD card partition and survives OS updates.
 
 ## Client security
 
