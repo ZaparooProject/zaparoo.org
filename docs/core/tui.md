@@ -33,7 +33,7 @@ Exiting the TUI may leave the Core service running in the background, depending 
 | **Search media** | Searches indexed media and writes the selected result to a token. |
 | **Custom write** | Writes custom [ZapScript](../zapscript/index.md) to a token. |
 | **Manage media** | Updates the media index and runs metadata scraping. |
-| **Settings** | Opens Core settings, backups, Zaparoo Online, TUI settings, reader settings, audio settings, paired clients, and logs. |
+| **Settings** | Opens Core settings, backups, Zaparoo Online, [media servers](../features/media-servers.md), [kiosk mode](../features/profiles.md#kiosk-mode), TUI settings, reader settings, audio settings, paired clients, and logs. |
 | **Profiles** | Creates, switches, and manages device profiles and their switch cards. |
 | **Exit** | Closes the TUI. |
 
@@ -46,6 +46,8 @@ Open **Manage media** to update the media index, scrape metadata, or resume/canc
 Open **Profiles** to create or switch [device profiles](../features/profiles.md), set profile roles and playtime limit overrides, reset lost switch cards, or write a switch card. The first profile is an administrator and requires a PIN.
 
 Use **Settings > Profiles** to require an active personal profile before launching media. Use **Settings > Clients** to pair or revoke remote clients, assign member or admin access, and require encrypted remote connections.
+
+Use **Settings > Kiosk mode** to lock the device. While it is locked, the **Settings** button becomes **Unlock**, or a disabled **Locked** button when the device can only be unlocked from an app.
 
 ## Writing tokens
 

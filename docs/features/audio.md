@@ -20,13 +20,15 @@ The native audio launcher handles the `Audio` [system](./systems.md) and plays t
 | Video game music | `.vgm`, `.vgz` |
 | Chiptune | `.nsf`, `.nsfe`, `.gbs`, `.hes`, `.kss`, `.spc` |
 | MIDI | `.mid`, `.midi`, `.kar`, `.rmi` |
-| Playlists | `.pls`, `.m3u` |
+| Playlists | `.pls`, `.m3u`, `.m3u8` |
 
 Audio files indexed under an `Audio` or `Music` folder are launched through it automatically. You can also launch any audio file directly by its path:
 
 ```zapscript
 **launch:/media/fat/music/chiptunes/intro.mp3
 ```
+
+Launching a `.pls`, `.m3u`, or `.m3u8` file plays it as a [playlist](./playlists.md#pls-file) from any folder, unless another launcher takes that file, such as a system that uses `.m3u` files for multi-disc games.
 
 An `.nsf`, `.nsfe`, `.gbs`, `.hes`, or `.kss` file can hold a whole soundtrack. It plays every track in order as one item, and the `next` and `previous` [controls](#controlling-playback) move between tracks. To play a single track, add its number, counting from 1, after the file name:
 

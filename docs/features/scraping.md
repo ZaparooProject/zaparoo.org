@@ -46,9 +46,11 @@ You can scrape your whole library, specific [systems](./systems.md), or a single
 
 By default a scrape skips media that has already been scraped, so repeat runs are quick. A **force** (full re-scrape) processes everything again, refreshes existing metadata, and cleans up references to artwork files that have since been removed.
 
+To import descriptions and tags without artwork, turn on **Metadata only (skip art)** when you set up the scrape in the TUI. It is offered for the `gamelist.xml`, `mister-docs`, `pinup-popper`, and `playnite` scrapers. Artwork already stored is kept, and a later normal scrape still adds the artwork that was skipped.
+
 ## Scrapers
 
-The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, `mister-arcade` reads the MiSTer arcade catalog, `pinup-popper` reads the PinUP Popper library on Windows, and `playnite` reads the Playnite library on Windows.
+The `gamelist.xml` and `media-folder` scrapers are based on the [EmulationStation](https://emulationstation.org/) folder conventions used by distributions like [Batocera](../platforms/batocera/index.md), RetroBat, ES-DE, RetroDECK, and RetroPie, and run on all [platforms](../platforms/index.mdx) wherever the matching files are present. `mister-docs` reads the artwork and manual databases Update All installs on a MiSTer, `mister-arcade` reads the MiSTer arcade catalog, `pinup-popper` reads the PinUP Popper library on Windows, `playnite` reads the Playnite library on Windows, and `romm` reads a RomM server.
 
 ### libretro-thumbnails
 
@@ -190,6 +192,10 @@ The `pinup-popper` scraper is Windows only and appears when the [PinUP Popper la
 ### playnite
 
 The `playnite` scraper is Windows only and appears when the [Playnite launcher](../platforms/windows/launchers.md#playnite) finds Playnite or its Zaparoo extension is connected. It imports each game's release year, developers, publishers, genres, description, and cover and background images from Playnite's own library. Playnite must be running. It runs on its own after a media database update for games that have no metadata yet; run a force scrape to refresh games that were already imported.
+
+### romm
+
+The `romm` scraper imports metadata and cover and screenshot images from a linked [RomM server](./media-servers.md#romm): release year, developers, publishers, genres, player count, rating, regions, languages, and description. It covers games indexed from the server, and your own copies of games the server also holds, matched by file name. It runs on every platform, on its own after a media database update, while a RomM server is set up.
 
 ## What scraping produces
 

@@ -97,6 +97,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Standalone emulators | 60+ emulators | Auto-detected, scans `index_root` folders |
 | Flashpoint | PC | Manual token creation |
 | Kodi | Video, Music | Local files and library media |
+| Plex, Jellyfin, RomM | Video, Music, Games | Plex and Jellyfin play on a TV or other player, and RomM downloads games. See [Media Servers](../../features/media-servers.md) |
 | PinUP Popper | Pinball | Auto-detected, launches through Popper |
 | Web Browser | Any | Opens URLs in default browser |
 | Executables | Any | `.exe` files (requires allow list) |

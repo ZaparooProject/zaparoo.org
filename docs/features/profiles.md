@@ -147,7 +147,45 @@ Client restrictions are only enforceable when remote clients must pair. Enable *
 Clients paired before role support are assigned the member role during the upgrade. To grant one admin access, create an admin profile if needed, revoke that client, and pair it again as **Admin** from **Settings > Clients**.
 :::
 
-Profiles provide household parental or kiosk controls, not operating-system security. Anyone with local OS access or an admin client can change profile data and limits. Profile PINs are convenience barriers rather than account passwords.
+Profiles provide household parental controls, not operating-system security. Anyone with local OS access or an admin client can change profile data and limits. Profile PINs are convenience barriers rather than account passwords.
+
+## Kiosk mode
+
+Kiosk mode locks the device so the people using it can play only what you allow, and cannot change settings, write cards, or manage profiles. Turn it on from **Settings > Kiosk mode** in the terminal UI. It needs an [administrator profile](#create-profiles) first.
+
+Pick a preset:
+
+- **Turn on: Family** is for kids at home. Settings, card writing, and profile management need an administrator PIN. Each profile launches only what you allow for it. Switching between member profiles and the playtime extension card keep working.
+- **Turn on: Public** is for an unattended device. It can't be unlocked with a PIN on the device, only from an app paired as administrator, so [pair one](#client-roles-and-encryption) first. Every profile can launch everything, profile switching and the extension card are off, and a game left with no input for 10 minutes is stopped on devices where Core can see input.
+
+The Zaparoo App does not support kiosk mode yet. To unlock a Public device from the device itself, use [`-profile-reset-pin`](#recover-profile-access).
+
+### While locked
+
+- The terminal UI main screen shows **Unlock** in place of Settings, or a disabled **Locked** button under Public, and search, card writing, media database updates, and profiles are unavailable.
+- Cards can launch and stop media, play playlists, and send [launcher controls](./launchers.md#launcher-controls). Other commands, such as keyboard input or HTTP requests, are refused, and cards can't download media.
+- Every launch is checked against the active profile's allowed content, however it was started.
+- The active profile can't be switched to an administrator profile or to the shared profile.
+- Apps on other devices must be paired, as if encryption were required. Unpaired apps are disconnected when kiosk mode turns on. An app paired as administrator is not restricted.
+- Restarting the device or Core keeps it locked.
+
+On MiSTer, the [Zaparoo Main build](../platforms/mister/main.md) keeps the MiSTer menu from opening while the device is locked. Keyboard reset combinations and the user button can still leave a game, and [Zaparoo Frontend](../frontend/index.mdx) still shows options Core refuses. **Seal** under **Settings > Kiosk mode** says what on the device stays open.
+
+### Allowed content
+
+Open **Allowed content** to choose what the shared profile and each member profile can launch while locked. For each, set **Mode**:
+
+| Mode | Launches |
+| ---- | -------- |
+| Device default | Follows the preset: only allowed content for Family, everything for Public |
+| Everything except denied | Everything, apart from deny entries set through the API |
+| Only what is allowed | Only the systems picked in **Allowed systems** |
+
+A profile limited to allowed content with nothing allowed can't launch anything. Core asks you to confirm before locking a device like that.
+
+### Unlock
+
+On the device, select **Unlock** on the terminal UI main screen and enter an administrator PIN. This works under Family only. The device unlocks for 5 minutes, then locks again. Select **Lock now** under **Settings > Kiosk mode** to lock it sooner, or **Turn off** to remove the lock.
 
 ## Recover profile access
 
@@ -159,7 +197,7 @@ The local [Core command line](../core/cli.md#recover-profile-access) can list pr
 ./zaparoo -profile-reset-switch-id <profile-id>
 ```
 
-These commands require Core to be running on the same device.
+These commands require Core to be running on the same device. On a device in [kiosk mode](#kiosk-mode), `-profile-reset-pin` also unlocks it for 5 minutes, so you can turn the lock off.
 
 ## API
 

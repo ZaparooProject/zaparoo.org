@@ -74,6 +74,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 
 Core adds a launcher for each system in your `ROMS` folders, using the core muOS has assigned to each folder. It indexes the `ROMS` folder on a USB drive, the second SD card, and the main SD card. Games launch through muOS's content loader.
 
+The RomM launcher downloads games from a RomM server. See [Media Servers](../../features/media-servers.md).
+
 [Input commands](../../zapscript/input.md) type on a virtual keyboard. The virtual gamepad is off by default; turn it on with [`gamepad_enabled`](../../core/config/media.md#gamepad_enabled).
 
 Shell scripts can also be launched. Add them to the [`allow_file`](../../core/config/launchers.md#allow_file) list in `config.toml`.

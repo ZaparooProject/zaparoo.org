@@ -20,7 +20,7 @@ After Core restarts, the playlist that was open comes back paused, ready for `**
 
 ## Playlist source formats
 
-The `playlist.play`, `playlist.load`, and `playlist.open` commands all take the same kind of source. A source can be a folder path, a `.pls` file path, an inline JSON playlist, a deck, or a Kodi collection.
+The `playlist.play`, `playlist.load`, and `playlist.open` commands all take the same kind of source. A source can be a folder path, a `.pls` or `.m3u` file path, an inline JSON playlist, a deck, or a Kodi collection.
 
 | Source | Use it when |
 | ------ | ----------- |
@@ -79,6 +79,8 @@ Load a `.pls` file the same way you would load a folder:
 ```zapscript
 **playlist.play:/media/fat/playlists/favorites.pls
 ```
+
+`.m3u` and `.m3u8` files work as a source too. They list one file path or URL per line, and an `#EXTINF` line sets the title of the entry after it. Unlike `.pls` entries, these are always played as paths, not ZapScript. A playlist file that lists another playlist file plays that file's items in its place.
 
 ### Inline JSON
 

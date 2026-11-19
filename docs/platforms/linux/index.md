@@ -124,6 +124,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Faugus | Games from Faugus Launcher |
 | Moonlight | Streamed apps through Moonlight |
 | Kodi | Movies, TV, Music (requires Kodi API) |
+| Plex, Jellyfin, RomM | Plex and Jellyfin play on a TV or other player, and RomM downloads games. See [Media Servers](../../features/media-servers.md) |
 | Web Browser | Opens URLs in default browser |
 | Shell Scripts | Custom `.sh` execution (allowlist required) |
 

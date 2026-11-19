@@ -112,6 +112,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 
 MiSTer supports 100+ systems including consoles, computers, and arcade games. Games launch automatically using the official core folder structure from Downloader.
 
+The RomM launcher downloads games from a RomM server. See [Media Servers](../../features/media-servers.md).
+
 See [Launchers](./launchers.md) for the full list of supported systems, file extensions, special features, and alternate cores.
 
 ## Main forks

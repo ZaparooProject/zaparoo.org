@@ -170,7 +170,7 @@ If a profile card is lost, generate a new switch ID:
 ./zaparoo -profile-reset-switch-id 07e8e954-a624-4f49-a24e-4036ff6b1c32
 ```
 
-The new switch ID is printed to the terminal. Existing switch cards for that profile stop working. These recovery commands call the local Core API, so Core must be running on the same device.
+The new switch ID is printed to the terminal. Existing switch cards for that profile stop working. These recovery commands call the local Core API, so Core must be running on the same device. On a device in [kiosk mode](../features/profiles.md#kiosk-mode), `-profile-reset-pin` also unlocks it for 5 minutes, so you can turn the lock off.
 
 ## Platform flags
 

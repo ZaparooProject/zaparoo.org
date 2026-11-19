@@ -72,6 +72,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 
 Core adds a launcher for each system EmulationStation has, and indexes games from `/userdata/roms` and any other ROM folders EmulationStation is set up with. Games launch through EmulationStation. When Kodi is installed, Kodi launchers are added for local video and music files.
 
+Plex and Jellyfin launchers play on a TV or other player, and the RomM launcher downloads games from a RomM server. See [Media Servers](../../features/media-servers.md).
+
 Stopping a game is the only [launcher control](../../features/launchers.md#launcher-controls) available.
 
 [Input commands](../../zapscript/input.md) type on a virtual keyboard. The virtual gamepad is off by default; turn it on with [`gamepad_enabled`](../../core/config/media.md#gamepad_enabled).

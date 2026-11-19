@@ -1,0 +1,194 @@
+---
+slug: core-v2.23.0
+title: "Zaparoo Core v2.23.0 released"
+description: "Zaparoo Core v2.23.0 adds builds for nine more systems, plays Plex and Jellyfin libraries on your TV, and downloads games from RomM. Windows gets Playnite, RetroArch, and about 60 standalone emulators."
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.23.0 adds experimental builds for nine more systems. Knulli, ROCKNIX, AmberELEC, ArkOS, muOS, Lakka, RetroPie, Recalbox, and Armada each get their own build and install guide. Most of them are firmware for retro handhelds.
+
+Core can also link to Plex, Jellyfin, and RomM servers, so a card can start a movie on the living room TV or download a game from your RomM library and launch it.
+
+{/* truncate */}
+
+Windows no longer needs a frontend to launch emulator games. Core finds about 60 standalone emulators and RetroArch on its own, and Playnite joins LaunchBox and RetroBat as a launcher with its own extension for writing tags.
+
+**The highlights:**
+
+- **[New platforms](#new-platforms)**: Knulli, ROCKNIX, AmberELEC, ArkOS, muOS, Lakka, RetroPie, Recalbox, and Armada
+- **[Plex, Jellyfin, and RomM](#plex-jellyfin-and-romm)**: movies, shows, and music on a TV app, and games downloaded from RomM
+- **[Windows emulators](#windows)**: about 60 standalone emulators, RetroArch, and Playnite
+- **[USB serial adapters](#usb-serial-adapters)**: CH340 and PL2303 readers on systems with no kernel driver for them
+- **[Linux emulators](#linux-emulators)**: DuckStation, PPSSPP, and melonDS games are indexed, and GroovyMAME has its own launcher
+- **[Playlists](#playlists)**: a prompt when a playlist pauses or a game fails to start, and `.m3u` files from any folder
+- **[Faster library updates](#library)**: an update with nothing changed finishes much sooner
+- **[Backups](#backups)**: Batocera settings and saves, and a cloud backup after each game
+
+## Download
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.23.0"
+    link="https://zaparoo.org/downloads#zaparoo-core"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-github" />}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.23.0"
+    variant="primary"
+  />
+</div>
+
+Core will let you know about this release in the Inbox. On MiSTer, Update All installs it, and on Batocera the package manager does. Everywhere else it installs itself if you have turned on [automatic installs](/docs/core/updates/#automatic-installs), or you can download it above.
+
+## Before you update
+
+- **The first full media database update after updating Core rebuilds the database from scratch**, so it takes about as long as your first one did. Favorites and other things you set on games are kept. Scrapers that run on their own after an update fill details and artwork in again, but if you ran libretro-thumbnails or another scrape by hand, run it again afterwards. The first start after updating can also take a little longer if you have a long play history.
+- **Update the media database** to pick up the new systems, DuckStation, PPSSPP, and melonDS games on Linux, and system folders whose name differs only in case, such as `SNES`.
+- **Core advertises itself over Bluetooth LE**, ready for Bluetooth support in a later Zaparoo App release. It's on by default on Linux-based platforms and Windows with a Bluetooth adapter, and clients still have to pair with Core's PIN. Turn it off with [`[service.ble]`](/docs/core/config/service/#serviceble).
+- **Windows emulators need `index_root`.** Core only scans for standalone emulator and RetroArch games under the folders set in [`launchers.index_root`](/docs/core/config/launchers/#index_root).
+
+## New platforms
+
+**Applies to:** the platforms below. All of them are experimental for now, so expect missing features and rough edges.
+
+| Platform | Builds | Launches through |
+| -------- | ------ | ---------------- |
+| [Knulli](/docs/platforms/knulli/) | ARM, ARM64 | EmulationStation |
+| [ROCKNIX](/docs/platforms/rocknix/) | x86-64, ARM64 | EmulationStation |
+| [AmberELEC](/docs/platforms/amberelec/) | ARM64 | EmulationStation |
+| [ArkOS](/docs/platforms/arkos/) and dArkOS | ARM64 | EmulationStation's own launch commands |
+| [muOS](/docs/platforms/muos/) | ARM64 | muOS's content loader |
+| [Lakka](/docs/platforms/lakka/) | x86-64, ARM, ARM64 | RetroArch, including RetroArch playlists |
+| [RetroPie](/docs/platforms/retropie/) | x86-64, ARM, ARM64 | RetroPie's `runcommand` |
+| [Recalbox](/docs/platforms/recalbox/) | x86-64, ARM, ARM64 | EmulationStation |
+| [Armada](/docs/platforms/armada/) | ARM64 | Steam, Heroic, Moonlight, and standalone emulators |
+
+Each one installs with the same command over SSH or a terminal:
+
+```bash
+curl -fsSL https://zaparoo.org/install.sh | sh
+```
+
+Core adds a launcher for each system the OS has set up and indexes its ROM folders, so cards written on Batocera or MiSTer work the same way. Lakka gets the full set of RetroArch controls, such as save states and disc swapping, and ArkOS gets them once RetroArch network commands are turned on. On the others, stopping a game is the only control for now.
+
+A few need an extra step, all covered on their pages: muOS only starts Core on boot with **User Init Scripts** turned on, RetroPie installs as the `pi` user and needs to boot to EmulationStation on the console, and older AmberELEC releases need the prerelease or a manual install. Remote clients on all of these need to [pair](/docs/core/config/service/#encryption) with a PIN before they can connect.
+
+## Plex, Jellyfin, and RomM
+
+**Applies to:** Plex and Jellyfin on Windows, Linux, SteamOS, Bazzite, ChimeraOS, LibreELEC, Batocera, Knulli, ROCKNIX, and AmberELEC. RomM on every platform that launches games from files, including MiSTer.
+
+Core can link to a Plex or Jellyfin server and add its movies, TV shows, and music to your library. Scan a card and it plays on a Plex or Jellyfin app, like the one on your TV, and the usual [launcher controls](/docs/features/launchers/#launcher-controls) pause, skip, and stop it. A show card plays every episode in order, and album and artist cards play every track. Cards also keep the item's movie, TV, or music database IDs, so they still work after the server rebuilds its library.
+
+Link a server in the TUI under **Settings > Media servers**, then update the media database. Plex signs in with a code at plex.tv/link, and Jellyfin with a Quick Connect code you enter in a signed-in Jellyfin app. When more than one player is around, name the one to use with `client`. The newer Plex apps for Android TV and Apple TV are found over Cast. See [media servers](/docs/features/media-servers/) for the steps.
+
+[RomM](/docs/features/media-servers/#romm) is linked the same way, and its games show up under their usual systems. The first time you launch one, Core downloads it into that system's game folder and launches it with the normal launcher. After that it plays from the local copy. The `romm` scraper fills in details and artwork from RomM after each update, for RomM's games and for your own copies of games it also has.
+
+Linking is in the TUI for now. The Zaparoo App can't link servers yet.
+
+## Windows
+
+**Applies to:** Windows.
+
+Until now, Windows launched emulator games only through a frontend like LaunchBox or RetroBat. Core now finds [standalone emulators](/docs/platforms/windows/launchers/#standalone-emulators) itself: about 60 of them, from MAME, Dolphin, and PCSX2 to DuckStation, Cemu, Xenia, and VICE. It looks in the places emulators usually end up, such as Program Files, Scoop and winget installs, `PATH`, and `Emulators` folders, and you can point it at one with `install_dir`. Games are indexed from ES-DE-style folders like `snes` and `psx` under your `index_root`.
+
+[RetroArch](/docs/platforms/windows/launchers/#retroarch) works the same way, including the Steam version, using the cores you have installed. Save states, the menu, pause, and disc swapping all work, and Core turns on RetroArch's network commands with a separate config file rather than editing yours.
+
+[Playnite](/docs/platforms/windows/launchers/#playnite) is a new launcher. With the Zaparoo extension installed, Core indexes your Playnite library and launches games through Playnite, so your Playnite emulator setups still apply. Games you start from Playnite itself show as playing in Zaparoo too. Right-click a game in Playnite and choose **Write to Zaparoo tag** to write a card for it. The `playnite` [scraper](/docs/features/scraping/#playnite) imports Playnite's metadata and covers.
+
+## USB serial adapters
+
+**Applies to:** Linux-based platforms.
+
+Some systems ship without the kernel driver for CH340 or PL2303 USB serial chips, which most PN532 USB readers use. Core now drives those chips itself, so a [PN532 USB](/docs/readers/nfc/pn532-usb/) reader is still detected on those systems, a few seconds after you plug it in. Simple Serial readers and RS-232 barcode scanners can use it with a [`usbserial:` path](/docs/readers/simple-serial/#adapters-without-a-kernel-driver).
+
+## Linux emulators
+
+**Applies to:** Linux, SteamOS, Bazzite, ChimeraOS, and Armada.
+
+- **DuckStation, PPSSPP, and melonDS games are indexed** from the `psx`, `psp`, and `nds` folders, instead of launching only from a file path.
+- **GroovyMAME has its own launcher**, used ahead of MAME when both are installed.
+- **MAME keeps the ROM paths in your `mame.ini`**, so BIOS and parent sets in other folders load, and `window 1` is respected. It's also found as `mame64`, and the `mame` folder is indexed as well as `arcade`.
+- **ARMSX2 is picked up** by the PCSX2 launcher.
+
+See [standalone emulators](/docs/platforms/linux/launchers/#standalone-emulators) for folders and file types.
+
+## Playlists
+
+**Applies to:** All Core platforms.
+
+When you quit a game within 30 seconds of the playlist starting it, the playlist still pauses, but it now asks whether to play the next item or stop. A game that never starts, such as one stuck on a missing BIOS, no longer counts as you quitting it. The playlist pauses on it with a **Couldn't start** prompt to try again, skip, or stop. See [moving to the next item](/docs/features/playlists/#moving-to-the-next-item-on-its-own).
+
+Batocera can't show pickers, so it shows the countdown, the pause, and the failure as EmulationStation notices. Scan the card again to continue a paused playlist.
+
+Launching a `.pls`, `.m3u`, or `.m3u8` file now plays it as a [playlist](/docs/features/playlists/#pls-file) from any folder, not only from audio folders, unless a system already uses that file, like `.m3u` for multi-disc games. A playlist file can list other playlist files too.
+
+A new scan that launches something also ends a [`**delay`](/docs/zapscript/utilities/#delay) still waiting from an earlier scan.
+
+## Library
+
+- **Four new systems:** Exelvision EXL 100 (`EXL100`), Philips P2000T (`P2000T`), Philips VG5000 (`VG5000`), and Z-machine (`ZMachine`) for Infocom games. Recalbox indexes all four and RetroPie indexes Z-machine games. See [systems](/docs/features/systems/).
+- **System folders are found whatever their case**, so `roms/SNES` is indexed as SNES on Linux systems. A folder with the exact name still wins when both exist.
+- **Updating the media database is much faster when little has changed.** Systems with no changes are skipped, which helps most on MiSTer, and browsing, tag lists, and startup are quicker too.
+- **Scrapes can skip artwork.** Turn on **Metadata only (skip art)** in the TUI to import descriptions and tags without images, videos, or manuals. See [running a scrape](/docs/features/scraping/#running-a-scrape).
+- **MiSTer Intellivision games load with the right format.** A `.bin` or `.int` with a same-named `.cfg` beside it uses CFG mapping, and everything else loads as Raw & Intellicart. See [Intellivision](/docs/platforms/mister/launchers/#intellivision).
+
+## Backups
+
+**Applies to:** Batocera for settings and saves, all Core platforms for cloud backup.
+
+[Device backups](/docs/features/backups/) on Batocera now include `batocera.conf`, emulator and EmulationStation settings, gamelists, input mappings, saves, and save states, like MiSTer and SteamOS. BIOS files are left out.
+
+With [cloud backup](/docs/features/backups/#cloud-backup), the new **Auto Backup** setting backs up shortly after each game stops, so a save from that session doesn't wait for the daily or weekly run. It's on by default and pauses while the schedule is manual. Cloud backups also upload only what changed since the last one, and a run with nothing changed sends nothing.
+
+A scheduled cloud backup that fails or is skipped is now reported to your account, and the TUI's backup status shows the device's protection, its recovery points, and the last failed or skipped backup.
+
+## Kiosk mode preview
+
+**Applies to:** All Core platforms.
+
+Core now has the groundwork for [kiosk mode](/docs/features/profiles/#kiosk-mode), which locks a device so the people using it can only play what you allow, and can't change settings, write cards, or manage profiles. On its own it's of limited use for now. The Zaparoo App and Zaparoo Frontend don't support it yet, and on MiSTer the Zaparoo Main build keeps the menu closed while locked, but reset combinations and the user button can still leave a game. Most of what makes kiosk mode useful comes with those updates.
+
+If you want to try it out, turn it on from **Settings > Kiosk mode** in the TUI. The **Family** preset unlocks with an administrator PIN on the device and limits each profile to the systems you allow. The **Public** preset only unlocks from an app paired as administrator, which no Zaparoo app can do yet, so use [`-profile-reset-pin`](/docs/features/profiles/#recover-profile-access) to get back in. Developers are welcome to build on it with the kiosk API methods [below](#api-changes).
+
+## Fixes
+
+- **The Zaparoo entry in Batocera's game menu now shows up**, so **Write an NFC tag for this game** works from EmulationStation.
+- **Notices from remote URL launches** show `Insert disk 2` instead of `Insert%20disk%202`.
+- **Manuals copied from a Mac open again.** The scraper skipped over the hidden `._` files macOS leaves on USB drives. Updating Core is enough; the next scrape picks up the real files.
+- **On MiSTer, a deck's exit countdown waits until it's on screen** before counting down.
+- **Resuming a shuffled playlist plays every item**, starting with the one you left off on.
+- **On MiSTer, `**stop` from the menu no longer reloads it**, which could drop a game scanned straight after.
+- **`**playlist.stop` with no playlist active** does nothing instead of failing, so the rest of the script runs.
+- **Deleted games are removed from the library even when a scanner fails**, such as Playnite or Kodi not responding during the update.
+- **Scraping a single game scrapes only that game**, instead of its whole system, when it had to wait for another scrape.
+- **Kodi show cards play episodes in season and episode order**, not the order Kodi scanned them in. Kodi movie and episode cards written after you update the media database also keep working after Kodi rebuilds its library.
+- **On Linux, reader detection leaves serial ports alone while another program uses them**, so a MIDI adapter on MiSTer no longer gets reset every few seconds.
+- **A broken MIDI file can no longer crash Core.**
+- **Zaparoo Online requests retry once after a brief server error**, so one hiccup no longer fails a whole backup or sync.
+- **Removing or turning off a `readers.connect` entry closes that reader** straight away, instead of keeping it open until Core restarts.
+
+## API changes
+
+- The API is served over Bluetooth LE, with pairing through `pair.start` and `pair.finish`. `settings` and `settings.update` have `bleEnabled`.
+- `device.endpoints` lists the other addresses a client can reach this Core on, so a client connected over Bluetooth can move to the network.
+- WebSocket clients can send encrypted frames as binary messages, without the JSON wrapper.
+- `ui.shown` lets a client report that it has put a UI event on screen.
+- `/health` returns plain `OK` unless the request asks for JSON.
+- `media.meta.update` edits a game's name, description, tags, and images, and `media.meta` reports `userEdited`. Images can come from a chunked upload (`uploads.begin`, `uploads.chunk`, `uploads.status`, `uploads.finish`, `uploads.cancel`) or from images on the device found with `files.browse` and previewed with `files.image`.
+- `media.versions` lists a game's other versions, and browse and search entries have `versionCount`. `media.similar` and `media.recommended` suggest what to play, and `media.artwork.random` picks artwork for slideshows.
+- Kiosk mode adds `kiosk`, `kiosk.enable`, `kiosk.disable`, `kiosk.unlock`, `kiosk.lock`, `kiosk.update`, `kiosk.allow`, `profiles.content`, and `profiles.content.update`, plus the `kiosk.state` and `kiosk.launch.refused` notifications.
+- `settings.auth.link` takes a `provider` (`romm`, `plex`, or `jellyfin`) and a server `url`.
+- `media.scrape` takes `skipImages`, and `scrapers` reports `supportsSkipImages`.
+- `settings.backup.status` has `protection` and `lastAttempt`, and its remote entry has `autoBackup`. `settings` and `settings.update` have `backupRemoteAutoBackup`.
+
+See the [API reference](/docs/core/api/methods/) for details.
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />

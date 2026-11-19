@@ -72,6 +72,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 
 Core adds a launcher for each system in EmulationStation's `es_systems.cfg`, and indexes games from `/roms`, plus `/roms2` when a second SD card is in use. To launch a game, Core closes EmulationStation, runs the game the way EmulationStation would, including per-game emulator and core choices, and brings EmulationStation back when the game exits. Games started from EmulationStation also show as playing in Zaparoo.
 
+The RomM launcher downloads games from a RomM server. See [Media Servers](../../features/media-servers.md).
+
 RetroArch [launcher controls](../../features/launchers.md#launcher-controls), such as save states, need RetroArch's network commands. Core does not change your RetroArch config, so turn them on yourself by setting this line in `/home/ark/.config/retroarch/retroarch.cfg`, and in `/home/ark/.config/retroarch32/retroarch.cfg` for 32-bit cores:
 
 ```text

@@ -75,6 +75,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 
 Core adds a launcher for each RetroPie system and indexes games from `~/RetroPie/roms`. To launch a game, Core closes EmulationStation, runs the game through `runcommand` the same way EmulationStation would, and brings EmulationStation back when the game exits. Games started from EmulationStation also show as playing in Zaparoo.
 
+The RomM launcher downloads games from a RomM server. See [Media Servers](../features/media-servers.md).
+
 Stopping a game is the only [launcher control](../features/launchers.md#launcher-controls) available.
 
 [Input commands](../zapscript/input.md) are accepted but nothing is typed.

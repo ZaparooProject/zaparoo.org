@@ -287,7 +287,21 @@ Override the default installation directory for this launcher. Only supported by
 | ---------- | ------ | ------- |
 | server_url | string |         |
 
-Override the default server URL for this launcher. Only supported by some launchers and refers to an API base address.
+Override the default server URL for this launcher. Only supported by some launchers, such as Kodi and the [media server](../../features/media-servers.md) launchers, and refers to an API base address.
+
+#### client
+
+| Key    | Type   | Default |
+| ------ | ------ | ------- |
+| client | string |         |
+
+Name of the player that [Plex or Jellyfin](../../features/media-servers.md#choose-a-player) media plays on. When it is not set, Core uses the only player it finds.
+
+```toml
+[[launchers.default]]
+launcher = "Jellyfin"
+client = "Living Room TV"
+```
 
 #### action
 

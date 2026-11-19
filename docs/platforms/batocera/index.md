@@ -76,6 +76,10 @@ Core installed from the Content Downloader or the terminal install command is a 
 
 For a child-friendly or arcade-style setup with no visible game library, see the [Card-Only Batocera Cabinet](../../community-projects/batocera-card-only.md) community recipe. It shows a single **Insert Game Card** system while Zaparoo continues launching hidden games from physical tokens.
 
+## Device backups
+
+Batocera supports portable [device backups](../../features/backups.md) that include Zaparoo data plus `batocera.conf`, emulator settings, EmulationStation settings and gamelists, input mappings, saves, and save states from `/userdata`. ROMs and BIOS files are not included. Create local backups from the Core terminal UI, or link Zaparoo Online for cloud snapshots.
+
 ## Readers
 
 | Type | Reader | Support | Setup | Notes |
@@ -102,6 +106,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | ---------------- | ------------------------------------- |
 | EmulationStation | 150+ systems via Batocera's emulators |
 | Kodi             | Movies, TV, Music (Kodi mode only)    |
+| Plex, Jellyfin, RomM | Plex and Jellyfin play on a TV or other player, and RomM downloads games. See [Media Servers](../../features/media-servers.md) |
 | Shell Scripts    | Custom `.sh` file execution           |
 
 Kodi integration only works when Batocera is in Kodi mode with the API enabled. See [LibreELEC](../libreelec.md) for API configuration details.

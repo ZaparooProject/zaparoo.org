@@ -195,7 +195,7 @@ Second, make sure `localhost` resolves to `127.0.0.1`. Core connects to `localho
 
 Launches games from your [Playnite](https://playnite.link/) library through Playnite, so Playnite's own play actions, emulator setups, and time tracking apply. Core finds Playnite in the folder set with `install_dir`, then through its installer's registry entry, then in `%LOCALAPPDATA%\Playnite`.
 
-Playnite needs the Zaparoo extension, `Zaparoo Playnite Integration.pext`. With the extension installed, right-click a game in Playnite and choose **Write to Zaparoo tag** to write a token for it.
+Playnite needs the Zaparoo extension. Download [Zaparoo Playnite Integration v1.0.0.pext](https://zaparoo.org/files/Zaparoo%20Playnite%20Integration%20v1.0.0.pext) and open it, or drag it onto the Playnite window, to install it. With the extension installed, right-click a game in Playnite and choose **Write to Zaparoo tag** to write a token for it.
 
 Playnite must be running with the extension loaded when you update the media database, because Core reads the library through it. Hidden and uninstalled games are left out, and so are Steam games when Core already indexes them through the [Steam launcher](#steam). Games are filed under the matching Zaparoo system, and games with no platform go under `PC`. Games on a platform Core does not recognize are left out.
 
@@ -349,6 +349,10 @@ If Kodi requires authentication, add credentials to `auth.toml`:
 username = "kodi"
 password = "your_password"
 ```
+
+## Media servers
+
+Plex and Jellyfin launchers play on a TV or other player, and the RomM launcher downloads games from a RomM server, then launches them with the launchers on this page. See [Media Servers](../../features/media-servers.md) for setup.
 
 ## Web Browser
 

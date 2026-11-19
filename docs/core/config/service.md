@@ -533,6 +533,8 @@ username = "myaccount"
 password = "Password123"
 ```
 
+For a service that takes a token, set `bearer` instead of a username and password, as for an older [RomM server](../../features/media-servers.md#romm).
+
 ### URL Matching
 
 When a remote endpoint matches against the URL key, the credential set will be attached to the request. Matching uses a 3-step fallback:

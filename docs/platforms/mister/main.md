@@ -61,6 +61,8 @@ The settings live in `/media/fat/config/zaparoo_settings.bin`, not in `MiSTer.in
 
 Kiosk mode is for setups where cards are the only way to start a game, such as a cabinet or a console for kids. With it on, nothing opens the OSD: not Menu or `F12`, not the front-panel button, not the keyboard combos, and not the boot-time INI selector. Cards still launch cores and games, and the screensaver still follows the timeouts in `MiSTer.ini`.
 
+Core's [kiosk mode](../../features/profiles.md#kiosk-mode) turns this on while the device is locked and off again when it unlocks.
+
 Getting back in needs something other than the OSD, so set it up before you turn kiosk mode on:
 
 - A card that sends `zaparoo_osd open` opens the OSD once, for the current session, without changing the setting. A card that sends `zaparoo_kiosk off` turns kiosk mode off for good. See [commands](#commands) for how a card sends either.

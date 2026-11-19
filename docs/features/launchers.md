@@ -28,6 +28,8 @@ Use your platform guide for exact setup, supported systems, and launcher limitat
 | [ChimeraOS](../platforms/chimeraos.mdx#launchers) | Steam, ChimeraGOG, standalone emulators, EmuDeck, RetroDECK, Bottles, Faugus, Moonlight, Kodi, and scripts |
 | [Batocera](../platforms/batocera/launchers.md) | EmulationStation, Kodi, and scripts |
 
+Plex, Jellyfin, and RomM libraries are added by linking a [media server](./media-servers.md).
+
 For an emulator or media app without a built-in integration, write a [custom launcher](./custom-launchers.md).
 
 ## Launchables
@@ -90,6 +92,7 @@ Built-in launcher support currently includes:
 | Batocera EmulationStation launchers | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `reset`, `fast_forward`, `rewind`, `next` (next disc), `stop`, as far as the running emulator supports them |
 | RePlayOS launchers | `save_state`, `load_state`, `reset`, `stop`. Needs [net control](../platforms/replayos.md#launcher-controls) turned on |
 | Kodi launchers: `KodiLocalVideo`, `KodiMovie`, `KodiTVEpisode`, `KodiLocalAudio`, `KodiAlbum`, `KodiArtist`, `KodiTVShow`, `KodiSong` | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
+| Plex and Jellyfin launchers | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind`, `next`, `previous` |
 | Built-in RetroArch launchers on Linux, SteamOS, Windows, and Lakka, including EmuDeck | `save_state`, `load_state`, `toggle_menu`, `toggle_pause`, `pause`, `resume`, `reset`, `fast_forward`, `rewind`, `stop`, plus `toggle_tray`, `next`, and `previous` for swapping discs in a loaded multi-disc game |
 | Native audio launcher (`Audio` system, see [Audio Playback](./audio.md)) | `toggle_pause`, `pause`, `resume`, `stop`, `fast_forward`, `rewind` |
 | Custom launchers | Whatever is defined in the launcher's `controls` table |

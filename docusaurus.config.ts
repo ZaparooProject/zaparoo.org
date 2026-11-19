@@ -84,7 +84,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           remarkPlugins: [require("./plugins/reader-support-table")],
-          lastVersion: "2.22.1",
+          lastVersion: "2.23.0",
           includeCurrentVersion: true,
           versions: {
             current: {
@@ -94,7 +94,7 @@ const config: Config = {
               badge: true,
               noIndex: true,
             },
-            "2.22.1": {
+            "2.23.0": {
               label: "Stable",
               path: "/",
               banner: "none",
@@ -852,7 +852,7 @@ const config: Config = {
       {
         generateLLMsTxt: false,
         generateLLMsFullTxt: true,
-        docsDir: "versioned_docs/version-2.22.1",
+        docsDir: "versioned_docs/version-2.23.0",
         includeBlog: false,
         excludeImports: true,
         removeDuplicateHeadings: true,

@@ -83,6 +83,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Moonlight | PC | Streamed apps through Moonlight |
 | Web Browser | N/A | Opens URLs in the default browser |
 | Shell Scripts | Any | Custom `.sh` file execution |
+| RomM | Any | RomM downloads games from a RomM server. See [Media Servers](../../features/media-servers.md) |
 
 Standalone emulators are the same as on [Linux](../linux/launchers.md#standalone-emulators). They scan ES-DE-style folders under `~/ROMs`, or under each [`launchers.index_root`](../../core/config/launchers.md#index_root) when you set one.
 

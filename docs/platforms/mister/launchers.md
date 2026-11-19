@@ -350,6 +350,10 @@ Two cores are supported:
 | GameNWatch | `.bin` | GnW |
 | Game and Watch | `.gnw` | GameAndWatch |
 
+### Intellivision
+
+A `.bin` or `.int` game with a jzIntv `.cfg` file of the same name beside it, or beside it inside the same zip, loads with that file's memory map and its ECS and JLP settings. Core sets the core's **Format** option to **CFG mapping** for that launch. Every other game loads with **Format** set to **Raw & Intellicart**, and an ECS setting you chose yourself in the core's menu is left alone.
+
 ### NeoGeo
 
 NeoGeo supports launching `.zip` files, ROM-set folders, and symlinked ROM-set folders directly with Zaparoo. These can sit at the top level of the NeoGeo games folder or inside subfolders, as supported by the MiSTer core itself.
@@ -407,6 +411,10 @@ render_resolution = "800x600"
 ```
 
 MiSTer supports `render_scale` values of `25`, `33`, `50`, and `100`. `render_resolution` accepts positive `WIDTHxHEIGHT` dimensions. Do not set both for the same launcher. These options change the internal framebuffer only; they do not change the physical display output mode.
+
+## RomM
+
+The RomM launcher downloads games from a RomM server, then launches them with the launchers on this page. See [Media Servers](../../features/media-servers.md) for setup.
 
 ## Alternate launchers
 

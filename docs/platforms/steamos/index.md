@@ -158,6 +158,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../../read
 | Faugus           | PC       | Games from Faugus Launcher                 |
 | Moonlight        | PC       | Streamed apps through Moonlight            |
 | Kodi             | Media    | Videos, movies, TV shows, music            |
+| Plex, Jellyfin, RomM | Media, Games | Plex and Jellyfin play on a TV or other player, and RomM downloads games. See [Media Servers](../../features/media-servers.md) |
 | Shell Scripts    | Any      | Custom `.sh` file execution                |
 
 Each launcher's detection rules, paths, and configuration are on [SteamOS launchers](./launchers.md).

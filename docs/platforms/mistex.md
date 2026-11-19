@@ -61,5 +61,6 @@ All launchers supported by MiSTer are also supported by MiSTeX (as far as MiSTeX
 | FPGA Cores    | 100+ arcade, console, and computer systems |
 | MGL Files     | MiSTer Game Loader format               |
 | Shell Scripts | Custom `.sh` file execution             |
+| RomM          | RomM downloads games from a RomM server. See [Media Servers](../features/media-servers.md) |
 
 See [MiSTer Launchers](./mister/launchers.md) for the full list of supported systems.

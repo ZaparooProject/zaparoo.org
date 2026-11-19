@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Zaparoo Core features: backups, profiles, mappings, playlists, audio, scraping, play controls, hooks, launchers, publishers, and tags."
+description: "Zaparoo Core features: backups, profiles, mappings, playlists, audio, scraping, play controls, hooks, launchers, publishers, media servers, and tags."
 keywords: [zaparoo features, zaparoo backup, zaparoo profiles, zaparoo mappings, zaparoo playlists, zaparoo media database, zaparoo hooks, zaparoo launchers, zaparoo audio, zaparoo scraping]
 ---
 
@@ -28,5 +28,6 @@ Everything in this section is optional. Zaparoo launches games out of the box; t
 - [Hooks](./hooks.md): run ZapScript when a token is scanned, media starts or exits, or Core becomes ready
 - [Launchers](./launchers.md): how Core starts games on each platform, plus custom launchers and launcher controls
 - [Publishers](./publishers.md): send Core events to MQTT brokers or PixelCade LED displays
+- [Media Servers](./media-servers.md): play Plex and Jellyfin libraries on a TV or other player, and download games from RomM
 
 Looking for something specific? The [common tasks](../common-tasks.md) page links straight to the answer.

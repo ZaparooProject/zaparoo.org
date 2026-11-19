@@ -73,6 +73,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 
 Core adds RetroArch launchers for supported systems and indexes games from ES-DE-style system folders under `/storage/roms`, such as `nes`, `snes`, and `megadrive`. It also adds a launcher for each RetroArch playlist in `/storage/playlists`, which launches each entry with the core the playlist names.
 
+The RomM launcher downloads games from a RomM server. See [Media Servers](../features/media-servers.md).
+
 Stopping a game closes it and leaves the RetroArch menu open. The other RetroArch [launcher controls](../features/launchers.md#launcher-controls) are available, such as save states, pause, and disc swapping.
 
 [Input commands](../zapscript/input.md) are accepted but nothing is typed.

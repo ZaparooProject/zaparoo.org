@@ -230,6 +230,10 @@ password = "your_password"
 
 See [LibreELEC](../libreelec.md) for detailed Kodi API setup instructions.
 
+## Media servers
+
+Plex and Jellyfin launchers play on a TV or other player, and the RomM launcher downloads games from a RomM server, then launches them with the launchers on this page. See [Media Servers](../../features/media-servers.md) for setup.
+
 ## Shell scripts
 
 Custom shell scripts (`.sh` files) can be launched directly. Scripts must be added to the `allow_file` list in `config.toml`.

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Back up and restore Zaparoo Core data on every platform, plus supported MiSTer and SteamOS settings, saves, and save states."
+description: "Back up and restore Zaparoo Core data on every platform, plus supported MiSTer, SteamOS, and Batocera settings, saves, and save states."
 keywords:
   [
     zaparoo backup,
@@ -13,7 +13,7 @@ keywords:
 
 # Device Backups
 
-Device backups capture Zaparoo configuration and user data on every Core platform. MiSTer and SteamOS backups can also include supported settings, saves, and save states. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
+Device backups capture Zaparoo configuration and user data on every Core platform. MiSTer, SteamOS, and Batocera backups can also include supported settings, saves, and save states. Use them before reinstalling Core, replacing storage, or moving a setup to another compatible device.
 
 Local backups are portable ZIP files and do not require an online account. Cloud backups require a linked [Zaparoo Online](../online/index.md) account and Warp for new snapshots. The [`[backup]` section](../core/config/index.md#backup) of `config.toml` sets where local backups go (`local_dir`), whether platform data is included (`scope`), and the cloud schedule.
 
@@ -54,6 +54,15 @@ SteamOS backups also include supported platform data:
 - Bottles, Faugus Launcher, Kodi, Moonlight, and Steam ROM Manager configuration
 
 The shared `bios` folders of EmuDeck and RetroDECK are not backed up, so keep your own copy of those files. A SteamOS backup made before Core v2.18.0 that included them cannot be restored.
+
+Batocera backups also include supported platform data from `/userdata`:
+
+- `batocera.conf`, emulator configuration under `system/configs`, and EmulationStation settings, collections, and each system's `gamelist.xml`
+- `es_input.cfg`, RetroArch remaps, and evmapy pad mappings
+- Saves and save states from the `saves` folder, plus the save folders some emulators keep under `system/configs`
+- User folders and registry files from Wine bottles and `.wine` prefixes in `roms/windows`
+
+Batocera BIOS files are not backed up, so keep your own copy of them. Saves stored on a network share are backed up, with a warning in the backup details.
 
 Unless listed above, backups do not include platform settings, emulator configuration, saves, save states, or game library data.
 
@@ -100,6 +109,7 @@ After linking, the Cloud section provides:
 
 - **Automatic backup**: enables or disables scheduled uploads
 - **Schedule**: selects `daily`, `weekly`, or `manual`
+- **Auto Backup**: also backs up shortly after each game stops, so saves from that session go up without waiting for the schedule. It's on by default and has no effect while the schedule is `manual`.
 - **Back up now**: uploads a snapshot immediately
 - **View backups**: groups snapshots by their source device and lets you inspect or restore them
 - **Status**: shows the latest result, warnings, and service availability

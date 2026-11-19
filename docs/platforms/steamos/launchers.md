@@ -124,6 +124,10 @@ server_url = "http://kodi:8080"
 
 Replace `kodi:8080` with your Kodi instance's address and web interface port.
 
+## Media servers
+
+Plex and Jellyfin launchers play on a TV or other player, and the RomM launcher downloads games from a RomM server, then launches them with the launchers on this page. See [Media Servers](../../features/media-servers.md) for setup.
+
 ## Zaparoo Runtime and Gaming Mode
 
 When Zaparoo Runtime is available, native emulators, RetroArch, EmuDeck, and RetroDECK run through one permanent **Zaparoo Runtime** non-Steam shortcut in Gaming Mode. The shortcut starts the requested emulator as a Steam-owned child process.

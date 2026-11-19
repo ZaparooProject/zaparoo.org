@@ -118,6 +118,8 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 | `Amstrad`                 | `amstrad_cpc`        | `.dsk`, `.sna`, `.tap`, `.cdt`, `.voc`, `.cpr`, `.zip`, `.7z`                                    |
 | `Video`                   | `alpha_player`       | `.mkv`, `.avi`, `.mp4`, `.flac`, `.ogg`, `.nsf`, `.vgm`                                          |
 
+The RomM launcher downloads games from a RomM server. See [Media Servers](../features/media-servers.md).
+
 ### Shell scripts
 
 Run `.sh` scripts. Scripts must be allow-listed via the [`allow_file`](../core/config/launchers.md#allow_file) setting in `config.toml`.

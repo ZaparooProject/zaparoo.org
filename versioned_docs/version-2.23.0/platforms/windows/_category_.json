@@ -1,0 +1,8 @@
+{
+  "label": "Windows",
+  "position": 13,
+  "link": {
+    "type": "doc",
+    "id": "platforms/windows/index"
+  }
+}

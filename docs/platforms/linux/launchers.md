@@ -244,6 +244,10 @@ password = "your_password"
 
 See [LibreELEC](../libreelec.md) for detailed Kodi API setup instructions.
 
+## Media servers
+
+Plex and Jellyfin launchers play on a TV or other player, and the RomM launcher downloads games from a RomM server, then launches them with the launchers on this page. See [Media Servers](../../features/media-servers.md) for setup.
+
 ## Web Browser
 
 Opens URLs in the default system browser using `xdg-open`.

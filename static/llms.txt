@@ -58,7 +58,7 @@ Important notes:
 - [MiSTer Alternate Launchers](https://zaparoo.org/docs/platforms/mister/alternate-launchers/): Use alternate MiSTer cores such as RetroAchievements, DB9, LLAPI, and unstable nightlies, with launcher groups and preferences.
 - [Zaparoo MiSTer Main](https://zaparoo.org/docs/platforms/mister/main/): Zaparoo's build of MiSTer Main: the Zaparoo page in the OSD, kiosk mode, auto-save, disc autorun, MiSTer_cmd commands, direct game tracking, and an early Core start.
 - [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
-- [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows.
+- [Windows Launchers](https://zaparoo.org/docs/platforms/windows/launchers/): Launching games and apps on Windows, including standalone emulators, RetroArch, Playnite, LaunchBox, and RetroBat.
 - [SteamOS (Steam Deck)](https://zaparoo.org/docs/platforms/steamos/): Install Zaparoo on Steam Deck and SteamOS.
 - [SteamOS Launchers](https://zaparoo.org/docs/platforms/steamos/launchers/): Launching Steam games, emulators, EmuDeck, and RetroDECK on SteamOS, including Zaparoo Runtime in Gaming Mode.
 - [Decky Loader Plugin](https://zaparoo.org/docs/platforms/steamos/decky/): Install the Zaparoo plugin for Decky Loader to write tags, stop media, index, pair, and link Zaparoo Online from the Quick Access Menu.
@@ -71,6 +71,15 @@ Important notes:
 - [LibreELEC](https://zaparoo.org/docs/platforms/libreelec/): Install Zaparoo on LibreELEC media systems.
 - [MiSTeX](https://zaparoo.org/docs/platforms/mistex/): Install Zaparoo on the MiSTeX FPGA board.
 - [RePlayOS](https://zaparoo.org/docs/platforms/replayos/): Install Zaparoo on RePlayOS.
+- [Knulli](https://zaparoo.org/docs/platforms/knulli/): Install Zaparoo on Knulli handhelds (experimental).
+- [ROCKNIX](https://zaparoo.org/docs/platforms/rocknix/): Install Zaparoo on ROCKNIX handhelds (experimental).
+- [AmberELEC](https://zaparoo.org/docs/platforms/amberelec/): Install Zaparoo on AmberELEC handhelds (experimental).
+- [ArkOS](https://zaparoo.org/docs/platforms/arkos/): Install Zaparoo on ArkOS and dArkOS handhelds (experimental).
+- [muOS](https://zaparoo.org/docs/platforms/muos/): Install Zaparoo on muOS handhelds (experimental).
+- [Armada](https://zaparoo.org/docs/platforms/armada/): Install Zaparoo on Armada ARM handhelds (experimental).
+- [Lakka](https://zaparoo.org/docs/platforms/lakka/): Install Zaparoo on Lakka to launch RetroArch games and playlists (experimental).
+- [RetroPie](https://zaparoo.org/docs/platforms/retropie/): Install Zaparoo on RetroPie (experimental).
+- [Recalbox](https://zaparoo.org/docs/platforms/recalbox/): Install Zaparoo on Recalbox (experimental).
 
 ## App
 
@@ -100,11 +109,12 @@ Important notes:
 - [Tags](https://zaparoo.org/docs/features/tags/): Media metadata tags from filenames and scrapers, the fixed tag vocabulary, and user tags like favorites and play later.
 - [Play Controls](https://zaparoo.org/docs/features/play-controls/): Pause controls, playtime limits, launch guard behavior, and launcher control actions.
 - [Device Profiles](https://zaparoo.org/docs/features/profiles/): Give each person separate playtime limits and profile cards, with separate saves and save states on MiSTer.
-- [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, and MiSTer and SteamOS configuration, saves, and save states.
+- [Device Backups](https://zaparoo.org/docs/features/backups/): Back up and restore Core settings, user data, and MiSTer, SteamOS, and Batocera configuration, saves, and save states.
 - [Playlists and Decks](https://zaparoo.org/docs/features/playlists/): Play folders, playlist files, and decks from one token, with pickers, advance-on-rescan, automatic advance when media ends, timed and idle rotation, and per-profile playlist memory.
 - [Audio](https://zaparoo.org/docs/features/audio/): Play music files, chiptunes, MIDI, and internet radio through Core's native audio launcher, including a background slot that keeps music playing while games launch.
 - [Scraping](https://zaparoo.org/docs/features/scraping/): Download libretro box art, screenshots, and title screens, fill in game details from the built-in GameDataBase copy, or import metadata and artwork from gamelist.xml, media folders, MiSTer artwork packs and arcade catalog, and PinUP Popper.
 - [Hooks](https://zaparoo.org/docs/features/hooks/): Run ZapScript from scan, launch, service startup, and other Core hook points.
+- [Media Servers](https://zaparoo.org/docs/features/media-servers/): Link Core to Plex, Jellyfin, or RomM so cards play movies, shows, and music on a TV app, or download and launch games from RomM.
 - [Systems](https://zaparoo.org/docs/features/systems/): Supported game systems and how Core identifies them.
 - [Publishers](https://zaparoo.org/docs/features/publishers/): Send scan and media events to MQTT, webhooks, and other services.
 

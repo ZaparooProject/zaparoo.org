@@ -89,7 +89,7 @@ Each reader's page has setup steps and troubleshooting. See [readers](../readers
 
 ## Launchers
 
-LibreELEC uses Kodi as its primary launcher. All media is played through the Kodi JSON-RPC API.
+LibreELEC uses Kodi as its primary launcher. Kodi media is played through the Kodi JSON-RPC API. Plex and Jellyfin launchers play on a TV or other player. See [Media Servers](../features/media-servers.md).
 
 ### Local Files
 

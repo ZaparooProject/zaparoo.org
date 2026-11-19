@@ -157,6 +157,7 @@ scope = "platform"
 [backup.remote]
 enabled = false
 schedule = "daily"
+auto_backup = true
 ```
 
 | Key | Type | Default | Description |
@@ -165,8 +166,9 @@ schedule = "daily"
 | `scope` | string | `"platform"` | `"platform"` includes supported device settings and save data; `"zaparoo"` includes only Zaparoo-owned data. |
 | `remote.enabled` | boolean | `false` | Enables automatic cloud backup scheduling. Manual uploads remain available while disabled. |
 | `remote.schedule` | string | `"daily"` | Cloud schedule: `"daily"`, `"weekly"`, or `"manual"`. |
+| `remote.auto_backup` | boolean | `true` | Also runs a cloud backup shortly after each game stops, while `remote.enabled` is on. Has no effect when `remote.schedule` is `"manual"`. |
 
-Full platform backups are currently supported on MiSTer and SteamOS. See [Device Backups](../../features/backups.md) for included data and restore behavior.
+Full platform backups are currently supported on MiSTer, SteamOS, and Batocera. See [Device Backups](../../features/backups.md) for included data and restore behavior.
 
 To back up to your own server instead of Zaparoo Online, set [`online_base_url`](./service.md#online_base_url).
 
