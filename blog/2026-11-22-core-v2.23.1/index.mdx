@@ -1,0 +1,48 @@
+---
+slug: core-v2.23.1
+title: "Zaparoo Core v2.23.1 released"
+description: "Zaparoo Core v2.23.1 fixes Update metadata in Zaparoo Frontend, Game & Watch launches on MiSTer, and large name-sorted searches."
+tags: [software, core]
+authors: [wizzo]
+---
+
+Zaparoo Core v2.23.1 is now available. This patch release fixes a few problems found after v2.23.0, including Update metadata in Zaparoo Frontend showing an error instead of running. Thanks to [Rafael Ieda](https://github.com/iedame) for contributing a build option for Linux packagers.
+
+{/* truncate */}
+
+## Download
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.23.1"
+    link="https://zaparoo.org/downloads#zaparoo-core"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="fa-brands fa-github" />}
+    label="GitHub"
+    link="https://github.com/ZaparooProject/zaparoo-core/"
+    variant="primary"
+  />
+</div>
+
+## Fixes
+
+- **Update metadata in Zaparoo Frontend works again.** With v2.23.0 it showed an error and would not let you run it.
+- **Game & Watch `.gnw` games launch on MiSTer** with only agg23's Game & Watch core installed. Core was checking for the wrong core and refusing the launch.
+- **Name-sorted searches with about a thousand or more matching titles** no longer fail.
+
+## For packagers
+
+Linux packages can now be built as package managed, so Core stops offering self-updates that the package manager owns. Build with:
+
+```sh
+-ldflags "-X github.com/ZaparooProject/zaparoo-core/v2/pkg/config.PackageManaged=true"
+```
+
+---
+
+As always, feedback and bug reports are welcome on our [Discord](https://zaparoo.org/discord) or [GitHub](https://github.com/ZaparooProject/zaparoo-core/).
+
+<SponsorCallout variant="combined" />
