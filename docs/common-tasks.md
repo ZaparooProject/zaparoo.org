@@ -14,6 +14,7 @@ Not sure which page you need? Find what you want to do below. Each link goes to 
 - **Launch a random game from a system.** Use the [`launch.random`](./zapscript/launch.md#launchrandom) command on a card.
 - **Put a whole folder or a list of games on one card.** Create a [playlist](./features/playlists.md) and scan the card again to move through it.
 - **Use an Amiibo, Skylander, or other toy.** Map each figure to a game with [NFC toys](./tokens/nfc-toys/index.md).
+- **Turn a USB stick or SD card into a game cartridge.** Store the game on the drive and [make a game cartridge](./readers/external-drive.md#make-a-game-cartridge).
 - **Use the barcode on a game box or a printed QR code.** See [barcodes](./tokens/barcodes.md) and [QR codes](./tokens/qr-codes.md).
 - **Launch from your phone without a reader.** [Zaparoo App Pro](./app/index.md#zaparoo-app-pro) turns your phone into the reader.
 - **Browse and launch from the TV on MiSTer.** Install [Zaparoo Frontend](./frontend/index.mdx).
