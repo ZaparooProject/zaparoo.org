@@ -54,13 +54,17 @@ The filename is matched case-insensitively, so `zaparoo.txt`, `ZAPAROO.TXT`, and
 
 ## Launch media from the drive
 
-You can store a game on the drive and launch it with a path relative to the drive's root. Add [`?system=`](../zapscript/launch.md#select-a-system-for-a-file-path) to say which system it's for. For example, save the game as `GBC/Tetris.gbc`, then put this in `zaparoo.txt`:
+You can store a game on the drive and launch it with a path relative to the drive's root. For example, save the game as `GBC/Tetris.gbc`, then put this in `zaparoo.txt`:
 
 ```zapscript
-GBC/Tetris.gbc?system=GameboyColor
+GBC/Tetris.gbc
 ```
 
-Using a relative path means the token works without knowing where the drive will be mounted. Always include `?system=` for a game on the drive. Core usually can't tell the system from a drive's folder names, and without it the launch can fail with "no launcher can open this file".
+Using a relative path means the token works without knowing where the drive will be mounted. Core works out the game's system from a folder named after the system, such as `GBC` or `N64`, or from a file extension only one system uses. If it can't, for example when a game at the top level of the drive has an extension several systems share, add [`?system=`](../zapscript/launch.md#select-a-system-for-a-file-path):
+
+```zapscript
+Sonic.bin?system=Genesis
+```
 
 ## Make a game cartridge
 
@@ -76,7 +80,7 @@ zaparoo.json
 has this in `zaparoo.txt`:
 
 ```zapscript
-GBC/Tetris.gbc?system=GameboyColor
+GBC/Tetris.gbc
 ```
 
 and this in `zaparoo.json`:
