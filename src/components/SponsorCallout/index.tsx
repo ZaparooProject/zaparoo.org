@@ -38,7 +38,16 @@ export default function SponsorCallout({
         <Link to="/sponsor/" data-umami-event={supportEvent}>
           other ways to support the project
         </Link>{" "}
-        help fund continued development.
+        help fund continued development. Free to help too:{" "}
+        <a
+          href={products.githubStar.url}
+          data-umami-event="release-callout-star"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          star Zaparoo Core on GitHub
+        </a>
+        .
       </div>
     );
   }

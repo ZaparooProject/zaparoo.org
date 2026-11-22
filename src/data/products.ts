@@ -120,6 +120,12 @@ export const products = {
       "Supporter and Sponsor tiers both include Warp and App Pro while your membership is active, plus a Discord role and a credit in the App.",
     url: "https://patreon.com/wizzo",
   },
+  githubStar: {
+    name: "Star on GitHub",
+    reason:
+      "Stars help Zaparoo qualify for open source programs, security tools, and sponsorships.",
+    url: "https://github.com/ZaparooProject/zaparoo-core",
+  },
   githubSponsors: {
     name: "GitHub Sponsors",
     summary: "One-time or monthly, for individuals and companies.",

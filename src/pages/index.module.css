@@ -335,6 +335,13 @@
   gap: 0.5rem;
 }
 
+.statStar {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -2rem;
+}
+
 .statNumber {
   font-size: 2rem;
   font-weight: 700;
@@ -368,6 +375,10 @@
 
   .statsBar {
     gap: 2rem;
+  }
+
+  .statStar {
+    margin-top: 0;
   }
 
   .statNumber {

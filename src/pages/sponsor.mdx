@@ -5,7 +5,7 @@ description: "Fund Zaparoo's open-source development with Warp cloud backup, App
 
 import ProductRow from "@site/src/components/ProductRow";
 import products from "@site/src/data/products";
-import { CloudUpload, Smartphone, ShoppingCart, Heart } from "lucide-react";
+import { CloudUpload, Smartphone, ShoppingCart, Heart, Star } from "lucide-react";
 
 # Support Zaparoo
 
@@ -63,6 +63,17 @@ Zaparoo Core is open source, and these are the things that pay for it. Pick some
   link={products.githubSponsors.url}
   linkText="Sponsor on GitHub"
   umamiEvent="sponsor-github"
+/>
+
+## Help for free
+
+<ProductRow
+  icon={<Star size={40} />}
+  title="Star Zaparoo on GitHub"
+  description={products.githubStar.reason}
+  link={products.githubStar.url}
+  linkText="Star Zaparoo Core"
+  umamiEvent="sponsor-star"
 />
 
 ## Why some of this costs money

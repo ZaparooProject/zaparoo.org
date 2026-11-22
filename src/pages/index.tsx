@@ -18,6 +18,7 @@ import {
   ChevronRight,
   CloudUpload,
   ShoppingCart,
+  Star,
 } from "lucide-react";
 
 import styles from "./index.module.css";
@@ -93,6 +94,21 @@ function Stats(): ReactNode {
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{siteStats.githubStars}</div>
         <div className={styles.statLabel}>GitHub Stars</div>
+      </div>
+      <div className={styles.statStar}>
+        <a
+          className={clsx(
+            "button button--secondary button--lg",
+            styles.button,
+          )}
+          href={products.githubStar.url}
+          data-umami-event="home-stats-star"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Star size={16} className={styles.buttonIcon} aria-hidden="true" />
+          Star on GitHub
+        </a>
       </div>
     </div>
   );
