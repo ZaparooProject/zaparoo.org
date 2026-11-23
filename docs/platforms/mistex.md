@@ -42,7 +42,7 @@ The `/media/fat` directory is the top level of the SD card. The `/tmp` directory
 | NFC/RFID | [USB smart card readers](../readers/nfc/usb-smart-card-readers.md) | Supported | Auto-detected |  |
 | NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
-| Barcode and QR | [RS-232 scanner](../readers/barcode/index.md) | Supported | Manual config |  |
+| Barcode and QR | [Serial barcode scanner](../readers/barcode/index.md) | Supported | Manual config |  |
 | Optical and Media | [Optical Drive](../readers/optical-drive.md) | Not supported | Not available | Not included in the current MiSTeX Core reader set. |
 | Optical and Media | [External Drive](../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../readers/mqtt.md) | Supported | Manual config |  |

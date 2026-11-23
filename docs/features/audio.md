@@ -22,7 +22,11 @@ The native audio launcher handles the `Audio` [system](./systems.md) and plays t
 | MIDI | `.mid`, `.midi`, `.kar`, `.rmi` |
 | Playlists | `.pls`, `.m3u`, `.m3u8` |
 
-Audio files indexed under an `Audio` or `Music` folder are launched through it automatically. You can also launch any audio file directly by its path:
+Audio files indexed under an `Audio` or `Music` folder are launched through it automatically.
+
+On MiSTer, put your music in `/media/fat/music` on the SD card, or in an `Audio` folder alongside your system folders, such as `/media/fat/games/Audio` or `/media/usb0/games/Audio`. MiSTer doesn't index a `Music` folder inside a games folder. Update the media database after adding files.
+
+You can also launch any audio file directly by its path:
 
 ```zapscript
 **launch:/media/fat/music/chiptunes/intro.mp3

@@ -17,7 +17,7 @@ When Zaparoo Core starts, it:
 3. Establishes connections to detected or manually configured readers
 4. Begins listening for token scans
 
-PN532 USB readers and USB smart card NFC readers such as the ACR122U support auto-detection on their listed platforms. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. RS-232 barcode and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
+PN532 USB readers and USB smart card NFC readers such as the ACR122U support auto-detection on their listed platforms. The Epilogue Operator bridge is also detected automatically on MiSTer when its script is installed. Serial barcode scanners and Simple Serial readers, along with MQTT, display, external-drive, and fallback NFC drivers, require manual configuration or explicit enabling.
 
 ## Available drivers
 
@@ -68,7 +68,7 @@ The `operator` driver is enabled by default. Core auto-detects it when `/media/f
 
 | Driver ID      | Hardware                  | Platforms     | Documentation                                |
 | -------------- | ------------------------- | ------------- | -------------------------------------------- |
-| `rs232barcode` | RS-232 barcode/QR scanners | Current Core platforms | [RS-232 Scanner](./barcode/index.md#hardware-scanners) |
+| `rs232barcode` | Serial (USB-COM or RS-232) barcode/QR scanners | Current Core platforms | [Serial scanner](./barcode/index.md#hardware-scanners) |
 
 :::info App Barcode Scanning
 The Zaparoo App can also scan barcodes and QR codes using your device's camera. Scanned codes are sent to Core via the API and don't require a dedicated reader driver.

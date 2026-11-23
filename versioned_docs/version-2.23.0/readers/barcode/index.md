@@ -1,7 +1,7 @@
 ---
 title: "Barcode and QR Code Scanner Setup"
 sidebar_label: "Barcode Scanners"
-description: "Use barcode scanners with Zaparoo: scan barcodes on game cases or custom labels with the Zaparoo App camera or an RS-232 serial scanner."
+description: "Use barcode scanners with Zaparoo: scan barcodes on game cases or custom labels with the Zaparoo App camera or a serial (USB-COM or RS-232) scanner."
 keywords: [zaparoo barcode, barcode scanner game launcher, rs232 barcode reader zaparoo, serial barcode scanner, qr code scanner zaparoo]
 ---
 
@@ -19,7 +19,16 @@ See the [barcodes token page](../../tokens/barcodes.md) for supported formats an
 
 ## Serial scanners {#hardware-scanners}
 
-Connect a physical barcode or QR code scanner through an RS-232 serial port or a USB-to-serial adapter for hands-free scanning. The scanner must be configured for RS-232 or USB-COM output and send each scan as a line of serial text, not keyboard-emulation keystrokes.
+Connect a physical barcode or QR code scanner for hands-free scanning. Core reads the scanner as a serial port, so the scanner must send each scan as a line of serial text, not as keyboard-emulation keystrokes.
+
+The output mode to pick on the scanner depends on its cable:
+
+| Scanner cable | Scanner mode | Port it shows up as |
+| --- | --- | --- |
+| USB | **USB-COM** (also called USB CDC, USB virtual COM or USB serial emulation) | Usually `/dev/ttyACM0` (sometimes `/dev/ttyUSB0`) on Linux, `COMx` on Windows, `/dev/cu.usbmodem*` on macOS |
+| RS-232 (DB9 or RJ45 serial), on a serial port or USB-to-serial adapter | **RS-232** | `/dev/ttyUSB0` or `/dev/ttyS0` on Linux, `COMx` on Windows |
+
+Most scanners connect by USB and need **USB-COM** mode. Don't pick RS-232 mode for a scanner on a USB cable: RS-232 mode sends scans out of the serial pins only, so nothing reaches Core over USB.
 
 <PlatformSupport readerId="rs232" />
 
@@ -30,7 +39,7 @@ The scanner is not auto-detected. Add it to [`config.toml`](../../core/config/in
 ```toml
 [[readers.connect]]
 driver = "rs232barcode"
-path = "/dev/ttyUSB0"  # Linux/macOS
+path = "/dev/ttyACM0"  # Linux/macOS
 ```
 
 ```toml
@@ -41,10 +50,12 @@ path = "COM3"  # Windows
 
 To find the port, run `ls /dev/ttyUSB* /dev/ttyACM*` on Linux or `ls /dev/tty.usb* /dev/cu.usb*` on macOS. On Windows, open Device Manager and look under **Ports (COM & LPT)** for "USB Serial Port (COMx)". On a Linux system with no kernel driver for a CH340 or PL2303 adapter, use a `usbserial:` path instead, as described for [Simple Serial](../simple-serial.md#adapters-without-a-kernel-driver).
 
-Core talks to the scanner at 9600 baud, 8 data bits, no parity, 1 stop bit (9600 8N1). These settings are fixed. If your scanner uses different settings, reconfigure the scanner with its manual or programming barcodes.
+Core talks to the scanner at 9600 baud, 8 data bits, no parity, 1 stop bit (9600 8N1). These settings are fixed. If your scanner uses different settings, reconfigure the scanner with its manual or programming barcodes. USB-COM mode usually ignores the baud rate, but RS-232 mode must match.
+
+Core treats a scan as finished when the scanner sends a line ending. Set the scanner's suffix to **CR** (carriage return) or **CR+LF**. Without a suffix, Core keeps waiting for the end of the scan and nothing happens.
 
 :::warning Keyboard emulation mode
-Many barcode scanners ship in keyboard emulation mode, which this driver does not support. Switch the scanner to **RS-232** or **USB-COM** mode with a physical switch or the programming barcodes in its manual. Look for settings labeled "Serial Mode", "RS-232", or "USB-COM".
+Many barcode scanners ship in keyboard emulation (USB HID) mode, which this driver does not support. Switch the scanner to **USB-COM** mode (or **RS-232** mode for a serial cable, see the table above) with a physical switch or the programming barcodes in its manual.
 :::
 
 ### Usage
@@ -66,10 +77,12 @@ zapscript = "@Genesis/Sonic the Hedgehog"
 
 ## Troubleshooting
 
-**Scanning a barcode types digits into a text field instead of reaching Core.** The scanner is in keyboard-emulation mode. Switch it to RS-232 or USB-COM mode as described above.
+**Scanning a barcode types digits into a text field instead of reaching Core.** The scanner is in keyboard-emulation mode. Switch it to USB-COM mode (or RS-232 mode for a serial cable) as described above.
 
-**The serial scanner is not detected.** Check the port path, make sure the scanner is in serial mode, and on Linux or macOS add your user to the `dialout` group (`sudo usermod -a -G dialout $USER`, then log out and back in). Turn on `debug_logging = true` and look for "opened RS232 barcode reader" in the log.
+**A USB scanner in RS-232 mode does nothing.** RS-232 mode doesn't send scans over USB. Switch the scanner to USB-COM mode and use the port it then shows up as.
 
-**Nothing happens when scanning.** For QR codes that contain ZapScript, check the text is valid ZapScript. For mapped barcodes, check the mapping uses `token_key = "id"` and that `match_pattern` matches the scanned value. Core strips common STX/ETX framing, but a scanner that adds other prefixes or suffixes can break exact mappings; reconfigure it with its programming barcodes.
+**The serial scanner is not detected.** Check the port path, make sure the scanner is in USB-COM or RS-232 mode to match its cable, and on Linux or macOS add your user to the `dialout` group (`sudo usermod -a -G dialout $USER`, then log out and back in). Turn on `debug_logging = true` and look for "opened RS232 barcode reader" in the log.
+
+**Nothing happens when scanning.** Check the scanner adds a CR or CR+LF suffix to each scan. For QR codes that contain ZapScript, check the text is valid ZapScript. For mapped barcodes, check the mapping uses `token_key = "id"` and that `match_pattern` matches the scanned value. Core strips common STX/ETX framing, but a scanner that adds other prefixes or suffixes can break exact mappings; reconfigure it with its programming barcodes.
 
 **The App scans the code but nothing launches.** Barcodes need a [mapping](../../tokens/barcodes.md) that tells Core what to run, and launching from the phone's scan needs [Pro](../../app/index.md#zaparoo-app-pro).
