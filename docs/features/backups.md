@@ -23,7 +23,7 @@ Local backups are portable ZIP files and do not require an online account. Cloud
 | --- | --- | --- |
 | Cost | Free | Warp subscription |
 | Where it lives | A ZIP file on the device | Off-site, in your Zaparoo Online account |
-| When it runs | When you start it | Daily, weekly, or when you start it |
+| When it runs | When you start it | After each game, daily, weekly, or when you start it |
 | History | Kept until you delete it | Latest 30 changed snapshots per device |
 | Needs an account | No | Yes, linked to Zaparoo Online |
 
