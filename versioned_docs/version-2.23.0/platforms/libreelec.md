@@ -35,8 +35,18 @@ Enable Kodi remote control for Zaparoo to work:
 2. Change view setting to at least "Standard"
 3. Open the Control page
 4. Enable "Allow remote control via HTTP"
-5. Set a blank password
+5. Set a username and password. Kodi 19 and later will not accept a blank password.
 6. Enable "Allow remote control from applications on this system"
+
+Then give Core the same username and password in `/storage/.config/zaparoo/auth.toml`, keyed by Kodi's address:
+
+```toml title="auth.toml"
+["http://localhost:8080"]
+username = "kodi"
+password = "your_password"
+```
+
+Restart Core after editing `auth.toml`. If Core runs on a different machine from Kodi, also enable "Allow remote control from applications on other systems" and use Kodi's network address instead of `localhost`.
 
 ### Adding to Startup
 
