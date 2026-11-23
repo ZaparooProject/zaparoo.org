@@ -60,19 +60,76 @@ You can store a game on the drive and launch it with a path relative to the driv
 GBC/Tetris.gbc
 ```
 
-Using a relative path means the token works without knowing where the drive will be mounted. For a game at the top level of the drive, add [`?system=`](../zapscript/launch.md#select-a-system-for-a-file-path) to identify its system:
+Using a relative path means the token works without knowing where the drive will be mounted. Core works out the game's system from a folder named after the system, such as `GBC` or `N64`, or from a file extension only one system uses. If it can't, for example when a game at the top level of the drive has an extension several systems share, add [`?system=`](../zapscript/launch.md#select-a-system-for-a-file-path):
 
 ```zapscript
 Sonic.bin?system=Genesis
 ```
 
-This is the preferred format when a file extension is used by several systems. Without `?system=`, Core must infer the system from a recognized folder name or an extension unique to one system.
+## Make a game cartridge
+
+A drive can carry a game along with its own name, description, and cover, so it works like a cartridge: plug it in and the game starts. A drive laid out like this:
+
+```text
+GBC/Tetris.gbc
+cover.png
+zaparoo.txt
+zaparoo.json
+```
+
+has this in `zaparoo.txt`:
+
+```zapscript
+GBC/Tetris.gbc
+```
+
+and this in `zaparoo.json`:
+
+```json
+{
+  "name": "Tetris",
+  "description": "Falling blocks, on a stick.",
+  "image": "cover.png"
+}
+```
+
+While the game is running, Core reports the name from `zaparoo.json` instead of the file name, so the [Zaparoo App](../app/index.md) shows it. The description and cover are available to apps through the [Core API](../core/api/index.md).
+
+The cartridge still needs the emulator or core for its system installed on the device. Core only loads the game file from the drive, never an emulator, core, or BIOS. If one is missing, the launch fails with a message saying which part isn't installed.
+
+### zaparoo.json
+
+`zaparoo.json` is optional. It goes at the top level of the drive next to `zaparoo.txt`, and its name is matched case-insensitively. It only describes the game; `zaparoo.txt` still decides what runs.
+
+| Field | Value |
+| ----- | ----- |
+| `name` | Shown instead of the game's file name. Up to 100 characters. |
+| `description` | A longer description. Up to 1000 characters, line breaks allowed. |
+| `image` | A path to the cover, relative to the top of the drive, such as `cover.png` or `art/cover.jpg`. PNG or JPEG, up to 8 MiB (2 MiB on MiSTer) and no more pixels than 4096×4096. |
+
+Every field is optional, and other fields are ignored. A field with the wrong type or over its limit is ignored on its own, and the rest of the file still applies. A file that isn't valid JSON is ignored, and the drive still launches its game. Core also ignores `zaparoo.json` if it is larger than 64 KiB or is a symlink, and ignores an `image` that is a symlink, is inside a symlinked folder, or points outside the drive.
+
+The name, description, and cover only apply when the game that launches is stored on the same drive. If `zaparoo.txt` launches a game from your library instead, that game keeps its usual name and art.
+
+### Removing the cartridge
+
+What happens when you pull the drive depends on the [scan mode](../core/config/readers.md#scan-mode):
+
+- In the default `tap` mode, the game keeps running. The emulator may still read from the game file, so quit the game before removing the drive.
+- In `hold` mode, removing the drive exits the game, like taking a cartridge out of a console. Core does not save first. To use hold mode for drives only, set [`scan_mode`](../core/config/readers.md#readers-connect-scan-mode) on the reader:
+
+```toml
+[[readers.connect]]
+driver = "externaldrive"
+enabled = true
+scan_mode = "hold"
+```
 
 ## What happens when you insert it
 
 When the drive mounts, Core looks for `zaparoo.txt`. If it finds one, it trims surrounding whitespace and scans the remaining text as an `externaldrive` token. On Linux, Core can also find the file on sibling partitions mounted under `/media` or `/mnt`, which helps with multi-partition USB drives.
 
-Removing or ejecting the drive clears the active token, similar to removing an NFC card from a reader.
+Removing or ejecting the drive clears the active token, similar to removing an NFC card from a reader. See [removing the cartridge](#removing-the-cartridge) for what happens to a running game.
 
 Core ignores the file if:
 
