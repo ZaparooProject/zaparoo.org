@@ -1,10 +1,10 @@
 ---
-title: "ACR122U NFC Reader Setup"
+title: "ACR122U NFC Reader: Drivers and Setup"
 sidebar_label: "ACR122U"
 sidebar_position: 3
 slug: acr122u
-description: Set up the ACR122U NFC reader with Zaparoo. Covers platform support, clone compatibility, the ccid driver, manual configuration, and Windows troubleshooting.
-keywords: [acr122u zaparoo, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
+description: Set up the ACR122U NFC reader with Zaparoo, including Windows drivers. Covers platform support, clone compatibility, the ccid driver, manual configuration, and troubleshooting.
+keywords: [acr122u zaparoo, acr122u driver, acr122u windows, acr122u mister fpga, acr122u libnfc, acr122u linux, nfc reader setup]
 ---
 
 # ACR122U
@@ -61,7 +61,9 @@ Use it only if the `ccid` driver cannot read your reader. Its LED and beeper do 
 
 ## Windows
 
-On Windows, the reader should appear under **Smart card readers** in Device Manager. The LED usually lights red and flashes green when a card is scanned. The reader may also beep on scan.
+Windows installs the ACR122U driver automatically through Windows Update when you plug the reader in. If Windows Update isn't available, download the driver from [ACS](https://www.acs.com.hk/en/driver/3/acr122u-usb-nfc-reader/).
+
+The reader should then appear under **Smart card readers** in Device Manager. The LED usually lights red and flashes green when a card is scanned. The reader may also beep on scan.
 
 ### Troubleshooting
 
