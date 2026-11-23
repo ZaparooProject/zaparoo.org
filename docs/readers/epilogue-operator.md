@@ -1,7 +1,9 @@
 ---
+title: "Epilogue GB, SN and 64 Operator on MiSTer"
+sidebar_label: "Epilogue Operator"
 sidebar_position: 5
 description: "Use an Epilogue GB, SN, or 64 Operator to launch original cartridges on MiSTer through Zaparoo."
-keywords: [epilogue operator mister, gb operator mister, sn operator mister, 64 operator mister]
+keywords: [epilogue operator mister, epilogue n64 operator, n64 operator mister, gb operator mister, sn operator mister, 64 operator mister]
 ---
 
 # Epilogue Operator
