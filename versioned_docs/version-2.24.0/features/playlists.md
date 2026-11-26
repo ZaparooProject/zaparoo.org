@@ -110,7 +110,7 @@ This is the JSON object by itself:
   "items": [
     {
       "name": "Sonic",
-      "zapscript": "/media/fat/games/Genesis/Sonic The Hedgehog.md"
+      "zapscript": "@Genesis/Sonic the Hedgehog"
     },
     {
       "name": "Random SNES Game",
@@ -123,7 +123,7 @@ This is the JSON object by itself:
 To use it on a token, put the JSON after the playlist command:
 
 ```zapscript
-**playlist.play:{"id":"party-list","name":"Party List","items":[{"name":"Sonic","zapscript":"/media/fat/games/Genesis/Sonic The Hedgehog.md"},{"name":"Random SNES Game","zapscript":"**launch.random:SNES"}]}
+**playlist.play:{"id":"party-list","name":"Party List","items":[{"name":"Sonic","zapscript":"@Genesis/Sonic the Hedgehog"},{"name":"Random SNES Game","zapscript":"**launch.random:SNES"}]}
 ```
 
 Inline JSON is parsed as a single [JSON argument](../zapscript/syntax.md#json-arguments), so the command can still contain ZapScript separators such as `||` after the closing `}` if you need to chain another command.

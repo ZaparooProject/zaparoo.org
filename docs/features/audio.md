@@ -30,7 +30,7 @@ On MiSTer, put your music in `/media/fat/music` on the SD card, or in an `Audio`
 You can also launch any audio file directly by its path:
 
 ```zapscript
-**launch:/media/fat/music/chiptunes/intro.mp3
+/media/fat/music/chiptunes/intro.mp3
 ```
 
 Launching a `.pls`, `.m3u`, or `.m3u8` file plays it as a [playlist](./playlists.md#pls-file) from any folder, unless another launcher takes that file, such as a system that uses `.m3u` files for multi-disc games.
@@ -38,7 +38,7 @@ Launching a `.pls`, `.m3u`, or `.m3u8` file plays it as a [playlist](./playlists
 An `.nsf`, `.nsfe`, `.gbs`, `.hes`, or `.kss` file can hold a whole soundtrack, and a `.cue` rip holds a whole album. Each plays every track in order as one item, and the `next` and `previous` [controls](#controlling-playback) move between tracks. To play a single track, add its number, counting from 1, after the file name:
 
 ```zapscript
-**launch:/media/fat/music/nsf/game.nsf/3
+/media/fat/music/nsf/game.nsf/3
 ```
 
 A `.cue` rip uses the track names in its cue sheet. An audio CD in a drive plays the same way, through the [optical drive reader](../readers/optical-drive.md#play-an-audio-cd).
@@ -81,7 +81,7 @@ The background slot is what makes background music possible: a game runs in the 
 Start background music from a single track:
 
 ```zapscript
-**launch:/media/fat/music/album/track01.flac?slot=background
+/media/fat/music/album/track01.flac?slot=background
 ```
 
 Or play a whole folder as a background [playlist](./playlists.md):

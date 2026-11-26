@@ -739,50 +739,76 @@ main header > a[href="/blog/tags/"] {
     outline-offset: 2px;
 }
 
-/* ZapScript syntax highlighting */
-.token.separator {
-    color: #8a1c55;
+/* ZapScript syntax highlighting. The ZapScript tokens have no theme colors,
+   so these rules color them in both themes. */
+.language-zapscript .token.command {
+    color: #00009f;
+    font-weight: 600;
+}
+
+.language-zapscript .token.separator {
+    color: #b31d28;
     font-weight: bold;
 }
 
-.token.expression {
-    background-color: rgba(255, 193, 7, 0.15);
-    border-radius: 3px;
-    padding: 0 2px;
+.language-zapscript .token.arg-punctuation,
+.language-zapscript .token.path-separator {
+    color: #5f6670;
 }
 
-.token.expression .token.punctuation {
+.language-zapscript .token.system-id {
+    color: #6f42c1;
+}
+
+.language-zapscript .token.title-prefix,
+.language-zapscript .token.trait-name {
     color: #8b3a00;
     font-weight: bold;
 }
 
-.token.expression .token.variable {
-    color: #005fcc;
+.language-zapscript .token.tag-filter {
+    color: #146c2e;
+    font-style: italic;
 }
 
-.token.expression .token.property {
-    color: #6f42c1;
-}
-
-.token.advanced-arg {
+.language-zapscript .token.arg-name {
     color: #006d77;
 }
 
-.token.special-key {
+.language-zapscript .token.arg-value {
+    color: #8a1c55;
+}
+
+.language-zapscript .token.special-key {
     color: #0b69a3;
 }
 
-.token.escape {
+.language-zapscript .token.url {
+    color: #0b69a3;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.language-zapscript .token.escape {
     color: #735c0f;
+    font-weight: bold;
 }
 
-.token.system-id {
-    color: #6f42c1;
+.language-zapscript .token.expression {
+    background-color: rgba(255, 193, 7, 0.15);
 }
 
-.token.title-prefix {
+.language-zapscript .token.expression-delimiter {
     color: #8b3a00;
     font-weight: bold;
+}
+
+.language-zapscript .token.expression-variable {
+    color: #0b69a3;
+}
+
+.language-zapscript .token.expression-property {
+    color: #6f42c1;
 }
 
 /* Dark mode adjustments for ZapScript */
@@ -790,44 +816,57 @@ main header > a[href="/blog/tags/"] {
     color: #959da5 !important;
 }
 
-[data-theme="dark"] .token.separator {
-    color: #f783ac;
+[data-theme="dark"] .language-zapscript .token.command {
+    color: #bd93f9;
 }
 
-[data-theme="dark"] .token.expression {
+[data-theme="dark"] .language-zapscript .token.separator {
+    color: #ff6e6e;
+}
+
+[data-theme="dark"] .language-zapscript .token.arg-punctuation,
+[data-theme="dark"] .language-zapscript .token.path-separator {
+    color: #a4abc8;
+}
+
+[data-theme="dark"] .language-zapscript .token.system-id {
+    color: #8be9fd;
+}
+
+[data-theme="dark"] .language-zapscript .token.title-prefix,
+[data-theme="dark"] .language-zapscript .token.trait-name,
+[data-theme="dark"] .language-zapscript .token.escape,
+[data-theme="dark"] .language-zapscript .token.expression-delimiter {
+    color: #ffb86c;
+}
+
+[data-theme="dark"] .language-zapscript .token.tag-filter,
+[data-theme="dark"] .language-zapscript .token.arg-name {
+    color: #50fa7b;
+}
+
+[data-theme="dark"] .language-zapscript .token.arg-value {
+    color: #ff79c6;
+}
+
+[data-theme="dark"] .language-zapscript .token.special-key {
+    color: #f1fa8c;
+}
+
+[data-theme="dark"] .language-zapscript .token.url {
+    color: #62d6e8;
+}
+
+[data-theme="dark"] .language-zapscript .token.expression {
     background-color: rgba(255, 193, 7, 0.1);
 }
 
-[data-theme="dark"] .token.expression .token.punctuation {
-    color: #ffa94d;
+[data-theme="dark"] .language-zapscript .token.expression-variable {
+    color: #8be9fd;
 }
 
-[data-theme="dark"] .token.expression .token.variable {
-    color: #74c0fc;
-}
-
-[data-theme="dark"] .token.expression .token.property {
-    color: #b197fc;
-}
-
-[data-theme="dark"] .token.advanced-arg {
-    color: #63e6be;
-}
-
-[data-theme="dark"] .token.special-key {
-    color: #66d9e8;
-}
-
-[data-theme="dark"] .token.escape {
-    color: #ffe066;
-}
-
-[data-theme="dark"] .token.system-id {
-    color: #b197fc !important;
-}
-
-[data-theme="dark"] .token.title-prefix {
-    color: #ffa94d;
+[data-theme="dark"] .language-zapscript .token.expression-property {
+    color: #bd93f9;
 }
 
 /* Trophy marker for featured picks in showcase posts. Headings carry an empty

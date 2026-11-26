@@ -80,12 +80,6 @@ See [Syntax](./syntax.md) for a detailed explanation of all the different parts 
 @Genesis/Sonic the Hedgehog
 ```
 
-Or with the explicit command:
-
-```zapscript
-**launch:PCEngine/Another Game
-```
-
 ### Launch a game with a delay
 
 ```zapscript
@@ -101,7 +95,7 @@ Or with the explicit command:
 ### Launch different content based on platform
 
 ```zapscript
-Genesis/Game.md?when=[[platform == "mister"]]||PCEngine/Game.pce?when=[[platform != "mister"]]
+@Genesis/Sonic the Hedgehog?when=[[platform == "mister"]]||@SNES/Super Mario World?when=[[platform != "mister"]]
 ```
 
 ### Use expressions for dynamic paths

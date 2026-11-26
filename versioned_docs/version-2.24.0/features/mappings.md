@@ -87,7 +87,7 @@ UID matching is normalized, so this also matches `04:4E:D8:DA:ED:72:81`.
 [[mappings.entry]]
 token_key = 'id'
 match_pattern = '978*'
-zapscript = '**launch.search:books'
+zapscript = '**launch.random:all'
 ```
 
 Because `*` creates a partial match, this matches any barcode ID containing `978`.
@@ -107,7 +107,7 @@ zapscript = '**launch.random:gbc/*pokemon*'
 [[mappings.entry]]
 token_key = 'value'
 match_pattern = '/^GAME-\d{4}$/'
-zapscript = '**launch.favorites'
+zapscript = '**launch.random:SNES?tags=user:favorite'
 ```
 
 ### Match raw token data
@@ -116,7 +116,7 @@ zapscript = '**launch.favorites'
 [[mappings.entry]]
 token_key = 'data'
 match_pattern = '*0327*'
-zapscript = '**launch.system:switch/amiibo'
+zapscript = '@N64/Super Smash Bros.'
 ```
 
 Raw data is matched as a hexadecimal string.
@@ -137,13 +137,13 @@ zapscript = '**launch.random:snes'
 [[mappings.entry]]
 token_key = 'id'
 match_pattern = '/^[0-9]{13}$/'
-zapscript = '**launch.search:retro'
+zapscript = '**launch.random:all'
 
 # Text value override
 [[mappings.entry]]
 token_key = 'value'
 match_pattern = 'old-script'
-zapscript = '**launch.system:genesis'
+zapscript = '@Genesis/Sonic the Hedgehog'
 ```
 
 ## API-managed mappings

@@ -9,14 +9,14 @@ keywords: [zapscript syntax, zapscript format, zaparoo token syntax, zapscript r
 A ZapScript script is a flat list of commands that run in sequence:
 
 ```zapscript
-Genesis/Some Game.md?launcher=AltMegaDrive||**delay:500||**echo:"Hello, World!"
+@Genesis/Sonic the Hedgehog?launcher=LLAPIMegaDrive||**delay:500||**echo:Hello World
 ```
 
 This example showcases most of the supported ZapScript syntax and would:
 
-- Resolve the path `Genesis/Some Game.md` and launch it with the `AltMegaDrive` launcher.
+- Look up Sonic the Hedgehog in the Genesis library and launch it with the `LLAPIMegaDrive` launcher.
 - Sleep for half a second, pausing the entire rest of the script until complete.
-- Echo the text `Hello, World!` to the Zaparoo Core log file.
+- Echo the text `Hello World` to the Zaparoo Core log file.
 
 If a command results in an error, Core will stop processing the rest of the script.
 
@@ -54,7 +54,7 @@ A command is run by writing `**`, a command name, and optionally some arguments.
 Using advanced arguments:
 
 ```zapscript
-**launch:SNES/Some Game.sfc?launcher=LLAPISNES
+**launch.random:SNES?launcher=LLAPISNES
 ```
 
 Using multiple positional arguments:
@@ -96,10 +96,10 @@ All arguments support escaping individual characters using the `^` character.
 An example of escaping `,`:
 
 ```zapscript
-**launch:/path/to (a^, game)/file.bin
+**http.post:https://example.com/log,text/plain,Hello^, World
 ```
 
-Which would correctly treat the path as a single argument because the `,` was escaped.
+Which would correctly send `Hello, World` as the body, because the escaped `,` doesn't start a new argument.
 
 Or for a URL:
 
@@ -152,7 +152,7 @@ Escape sequences are supported in quoted arguments as well, so you can use `^n`,
 Traits are flags about the token itself rather than commands to run. Write them as their own `||`-separated part of the script, prefixed with `#`. They can go anywhere in the script and apply to the whole token, but putting them first keeps them easy to spot:
 
 ```zapscript
-#hold||SNES/Super Metroid.sfc
+#hold||@SNES/Super Metroid
 ```
 
 A bare trait means `true`, so `#hold` and `#hold=true` are the same, and `#hold=false` is the same as `#tap`. Keys are case-insensitive.
@@ -172,10 +172,10 @@ All commands support an advanced argument called `when` which allows for basic c
 
 If the `when` advanced argument of a command resolves to either `true` or `yes` at runtime, the command will be run as usual. If not, the command will be silently skipped and Core will move to the next command in sequence.
 
-A script that launches a different path on Windows:
+A script that launches a game with the LLAPI core on MiSTer and the default launcher everywhere else:
 
 ```zapscript
-NES/Some/Game.bin?when=[[platform != "windows"]]||NES/Some/Other/Game.bin?when=[[platform == "windows"]]&launcher=AltNESLauncher
+@NES/Super Mario Bros.?when=[[platform == "mister"]]&launcher=LLAPINES||@NES/Super Mario Bros.?when=[[platform != "mister"]]
 ```
 
 ## Expressions

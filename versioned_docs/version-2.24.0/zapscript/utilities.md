@@ -70,7 +70,7 @@ Switch to a profile:
 Switch profiles before launching a game:
 
 ```zapscript
-**profile:corn-arm-truck||SNES/Super Mario World.sfc
+**profile:corn-arm-truck||@SNES/Super Mario World
 ```
 
 This command does not ask for the profile PIN. Anyone who knows the switch ID can activate the profile, so keep it private when the profile has limits or administrative access.
@@ -232,7 +232,7 @@ Write the currently active media path to the next scanned card:
 Write a specific launch command to the next scanned card:
 
 ```zapscript
-**write:Genesis/Sonic the Hedgehog.md
+**write:@Genesis/Sonic the Hedgehog
 ```
 
 After scanning a token with `**write:...`, scan the card you want to write within one minute. The source token is ignored, so scanning the setup token again will not overwrite it. The card is not scanned as a token while the write is pending; take it off the reader once the write finishes before scanning it again.
@@ -279,13 +279,13 @@ Pause for 10 seconds:
 Launch SNES, wait 10 seconds, then press F12:
 
 ```zapscript
-_Console/SNES||**delay:10000||**input.keyboard:{f12}
+**launch.system:SNES||**delay:10000||**input.keyboard:{f12}
 ```
 
 Launch a game, wait for media readiness, then press F12:
 
 ```zapscript
-SNES/Super Mario World.sfc||**delay:media_ready||**input.keyboard:{f12}
+@SNES/Super Mario World||**delay:media_ready||**input.keyboard:{f12}
 ```
 
 :::info Blocking Command

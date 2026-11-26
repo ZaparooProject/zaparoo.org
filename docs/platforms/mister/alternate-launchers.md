@@ -9,7 +9,7 @@ keywords: [mister alternate cores zaparoo, mister retroachievements cores, miste
 
 Some alternate or unofficial versions of cores are supported and can be used by explicitly setting a launcher in the ZapScript on a token. Zaparoo assumes they're installed in either the default location from Update All or in the appropriate menu folder.
 
-To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `N64/some/game.n64?launcher=80MHzNintendo64`
+To use them, add the following to the end of the file path or launch command: `?launcher=<launcher ID>`. For example: `@N64/GoldenEye 007?launcher=80MHzNintendo64`
 
 `NeoGeoPocketColor` uses the Kitrinx NGPC core when it is installed and the Jotego core otherwise. `HybridDVDPlayer` launches DVD images through the hybrid `_Other/DVD_Player` core instead of the FPGA DVD core.
 
@@ -22,7 +22,7 @@ To boot an alternate core without loading a game, give [`launch.system`](../../z
 MiSTer launch commands also support `set_name` and `set_name_same_dir` advanced arguments. These map to MiSTer's MGL `<setname>` tag and `same_dir` attribute. Use `set_name_same_dir=1` when you want a separate config name while keeping the normal games folder. Without `set_name_same_dir=1`, MiSTer also uses the set name as the games folder.
 
 ```zapscript
-NES/Mega Man 2.nes?set_name=RA_NES&set_name_same_dir=1
+@NES/Mega Man 2?set_name=RA_NES&set_name_same_dir=1
 ```
 
 To set an alternate core as the default for all tokens of a launcher (instead of per-token), use the [`load_path`](../../core/config/launchers.md#launchersdefault) field in `config.toml`:

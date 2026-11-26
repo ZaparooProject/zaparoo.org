@@ -53,7 +53,7 @@ You can also create mappings manually. Put a `.toml` file in Zaparoo Core's `map
 [[mappings.entry]]
 token_key = 'id'
 match_pattern = '045496590420'
-zapscript = '**launch.search:Super Smash Bros'
+zapscript = '@N64/Super Smash Bros.'
 ```
 
 Replace `045496590420` with the value scanned from your game case. See the [mappings documentation](../features/mappings.md) for file locations, matching rules, and API-managed mappings.

@@ -96,8 +96,8 @@ Multiple tags can share one parenthetical group when separated by commas:
 The `tags` argument uses the same operators without parentheses:
 
 ```zapscript
-**launch.title:Genesis/Sonic?tags=region:us,lang:en
-**launch.title:Genesis/Sonic?tags=region:us,-unfinished:demo
+@Genesis/Sonic?tags=region:us,lang:en
+@Genesis/Sonic?tags=region:us,-unfinished:demo
 ```
 
 ## Matching behavior

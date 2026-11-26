@@ -47,7 +47,7 @@ An administrator's switch ID also authorizes [playtime extension cards](./play-c
 A custom card can switch profiles and then launch media:
 
 ```zapscript
-**profile:<switchId>||SNES/Super Mario World.sfc
+**profile:<switchId>||@SNES/Super Mario World
 ```
 
 The profile command must come before the launch command. See the [`profile` ZapScript command](../zapscript/utilities.md#profile) for details.

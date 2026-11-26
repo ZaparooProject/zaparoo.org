@@ -41,7 +41,7 @@ Trigger a simple webhook:
 Trigger a webhook and then launch SNES:
 
 ```zapscript
-**http.get:https://example.com/api/trigger||_Console/SNES
+**http.get:https://example.com/api/trigger||**launch.system:SNES
 ```
 
 Make a request with query parameters, quoted to avoid parsing issues:

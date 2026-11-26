@@ -55,7 +55,7 @@ You can also create mappings manually by adding a `.toml` file to Zaparoo Core's
 [[mappings.entry]]
 token_key = 'id'
 match_pattern = '04a23bc1d45e80'
-zapscript = '**launch.search:Mario Kart'
+zapscript = '@SNES/Super Mario Kart'
 ```
 
 Replace the UID with the one Core reports for your figure, from its logs or the App's scan history. Core matches UIDs in either case, with or without colons.

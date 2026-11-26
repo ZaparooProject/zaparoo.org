@@ -12,7 +12,7 @@ These commands launch games, systems, and other media.
 
 Launches media from a path or identifier.
 
-The `launch` command is implied when no command prefix is used (Auto Launch mode). For example, simply writing `Genesis/Sonic the Hedgehog.md` will launch that game.
+The `launch` command is implied when no command prefix is used (Auto Launch mode). For example, `Genesis/Sonic the Hedgehog.md` on its own launches that game.
 
 ### Syntax
 
@@ -49,13 +49,13 @@ Genesis/Sonic the Hedgehog (USA).md
 Launch from an absolute path:
 
 ```zapscript
-**launch:/media/fat/games/Genesis/Sonic.md
+/media/fat/games/Genesis/Sonic.md
 ```
 
 Launch with a specific launcher override:
 
 ```zapscript
-**launch:Genesis/Sonic.md?launcher=LLAPIMegaDrive
+@Genesis/Sonic the Hedgehog?launcher=LLAPIMegaDrive
 ```
 
 Set a launcher override for the next game scanned from a reader:
@@ -71,19 +71,19 @@ If a media row has a stored launcher override from [`media.meta.update`](../core
 Open a Steam game's details page instead of launching:
 
 ```zapscript
-**launch:steam://1145360?action=details
+steam://1145360?action=details
 ```
 
 Use a MiSTer set name for a one-off launch:
 
 ```zapscript
-**launch:NES/Mega Man 2.nes?set_name=RA_NES&set_name_same_dir=1
+@NES/Mega Man 2?set_name=RA_NES&set_name_same_dir=1
 ```
 
 Play an audio file as background music so it keeps playing while you launch games:
 
 ```zapscript
-**launch:/media/fat/music/album/track01.flac?slot=background
+/media/fat/music/album/track01.flac?slot=background
 ```
 
 Audio files (`.wav`, `.mp3`, `.ogg`, `.flac`) launch through Core's built-in [audio playback](../features/audio.md). The `slot` argument is only used by audio playback; other launchers ignore it.
@@ -104,21 +104,17 @@ The `launch` command supports several path formats, tried in this order:
 
 #### Title ID
 
-The portable format for tokens that work across devices. Paths in `System/Title` format (no file extension) are detected as title lookups and use fuzzy matching:
-
-```zapscript
-Genesis/Sonic the Hedgehog
-SNES/Super Mario World
-N64/Legend of Zelda Ocarina of Time
-```
-
-The `@` prefix can also be used, which explicitly invokes [`launch.title`](#launchtitle):
+The portable format for tokens that work across devices. Start with `@`, then the system and the game's title:
 
 ```zapscript
 @Genesis/Sonic the Hedgehog
+@SNES/Super Mario World
+@N64/Legend of Zelda Ocarina of Time
 ```
 
-Both forms use fuzzy matching to find games regardless of filename differences between devices.
+This runs [`launch.title`](#launchtitle), which uses fuzzy matching to find the game whatever its file is called on each device.
+
+Without the `@`, a `System/Title` path with no file extension is read as a title too. A title that contains `*` or ends in something that looks like a file extension is read as a search or a path instead, so the `@` form is the reliable one.
 
 **With tags** to filter specific versions:
 
@@ -225,8 +221,11 @@ Launches media by title ID.
 ### Syntax
 
 ```zapscript
+@<system>/<title>
 **launch.title:<system>/<title>
 ```
+
+The `@` prefix is shorthand for `**launch.title:`. Both forms are equivalent.
 
 ### Arguments
 
@@ -239,8 +238,8 @@ The game title to search for. Supports fuzzy matching.
 **Inline tags** can be added after the title:
 
 ```zapscript
-**launch.title:SNES/Super Mario World (region:us)
-**launch.title:Genesis/Sonic (-unfinished:demo)
+@SNES/Super Mario World (region:us)
+@Genesis/Sonic (-unfinished:demo)
 ```
 
 ### Advanced arguments
@@ -258,24 +257,20 @@ The game title to search for. Supports fuzzy matching.
 Launch Sonic using title matching:
 
 ```zapscript
-**launch.title:Genesis/Sonic the Hedgehog
+@Genesis/Sonic the Hedgehog
 ```
 
 Launch the US version of Super Mario World:
 
 ```zapscript
-**launch.title:SNES/Super Mario World (region:us)
+@SNES/Super Mario World (region:us)
 ```
 
 Use the `tags` argument instead of inline format:
 
 ```zapscript
-**launch.title:Genesis/Sonic?tags=region:us,lang:en
+@Genesis/Sonic?tags=region:us,lang:en
 ```
-
-:::tip
-The `@` prefix (e.g., `@Genesis/Sonic`) is shorthand for `**launch.title:Genesis/Sonic`. Both forms are equivalent.
-:::
 
 ---
 

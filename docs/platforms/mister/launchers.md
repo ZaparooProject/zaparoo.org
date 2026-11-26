@@ -405,7 +405,7 @@ Supported formats: MP4, MKV, AVI, MOV, WEBM
 To stream one app from a token, give the PC's address, or its name from the client's list of PCs, then the app name as Sunshine shows it:
 
 ```zapscript
-**launch:moonlight://192.168.1.20/Desktop
+moonlight://192.168.1.20/Desktop
 ```
 
 Write spaces in a name as `%20`, as in `moonlight://Gaming%20PC/Steam%20Big%20Picture`.
