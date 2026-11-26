@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
-description: "Zaparoo's build of MiSTer Main: the Zaparoo OSD page, kiosk mode, auto-save, disc autorun, game tracking, and its MiSTer_cmd commands."
-keywords: [zaparoo mister main, mister_zaparoo, mister kiosk mode, mister auto-save, mister disc autorun, mister osd zaparoo, zaparoo main fork]
+description: "Zaparoo's build of MiSTer Main: the Zaparoo OSD page, kiosk mode, auto-save, game tracking, and its MiSTer_cmd commands."
+keywords: [zaparoo mister main, mister_zaparoo, mister kiosk mode, mister auto-save, mister osd zaparoo, zaparoo main fork]
 ---
 
 # Zaparoo MiSTer Main
@@ -17,7 +17,7 @@ For every Zaparoo user on MiSTer, with or without Frontend:
 - Reports the running game to Core directly, so [game tracking](#game-tracking) works without `MiSTer.ini` changes.
 - Starts the Core service [before the menu loads](#core-starts-before-the-menu), so tokens work sooner after power on.
 - Hands the console to Core while Core runs a script or video on screen, so the OSD and menu stay out of the way.
-- Adds [kiosk mode](#kiosk-mode), [auto-save](#auto-save), and [disc autorun](#auto-run-discs), all off by default.
+- Adds [kiosk mode](#kiosk-mode) and [auto-save](#auto-save), both off by default.
 - Adds [commands](#commands) a card can send to force a save, swap a disk, or toggle a cheat without opening the OSD.
 - Runs [RetroAchievements cores](alternate-launchers.md#retroachievements) itself instead of switching to the separate RetroAchievements Main, so everything on this page keeps working while you play them. The achievement list opens with F6 or from the **Achievements** row in the OSD.
 - Can keep a [persistent log](#logs) for support.
@@ -48,7 +48,6 @@ Press Menu on a controller or `F12` on a keyboard, open **System Settings**, the
 | **Frontend** | Turns Frontend off or on. Off returns you to the stock MiSTer menu without editing `MiSTer.ini`. |
 | **Kiosk mode** | Locks the OSD. Turning it on shows a warning first; see [kiosk mode](#kiosk-mode). |
 | **Auto-save** | Writes the running game's save before the next core loads. Turning it on shows a warning first; see [auto-save](#auto-save). |
-| **Auto-run discs** | Launches a CD or DVD when you insert it in the menu; see [auto-run discs](#auto-run-discs). |
 | **CRT mode** | Outputs Frontend as 15 kHz analog video and restarts it; see [enable CRT mode](../../frontend/setup.mdx#enable-crt-mode). |
 | **Video standard** | NTSC, 480i, or PAL for CRT mode. Shown when CRT mode is on. |
 | **Screen position** | Nudges the CRT picture horizontally and vertically against a test pattern, live. Shown when CRT mode is on. |
@@ -76,19 +75,6 @@ Most cores hold a game's save in memory and only write it to the SD card when yo
 - Adds about half a second to each launch.
 - Only runs on a core change. Switching the MiSTer off mid-game still loses the save.
 - A core only writes when the game changed its save data, so a game left at its title screen writes nothing. That is the core's behavior, not a fault.
-
-## Auto-run discs
-
-With **Auto-run discs** on, Main watches the optical drive (`/dev/sr0` to `/dev/sr7`) while the menu is up and launches a disc as soon as it is inserted. It relies on a physical disc setup you already have installed:
-
-- CDs launch through the MGL that [Physical Disc Support](https://github.com/Anime0t4ku/Main_MiSTer_Physical_Disc) (`/media/fat/MiSTer_Physical-CD` with `_Physical Disc Cores`) or [mister-disc](https://github.com/theshaneobrien/mister-disc-drive-support) (`/media/fat/MiSTer-disc` with `_Disc_Cores`) installed for that system.
-- DVDs launch the newest `DVD_YYYYMMDD.rbf` on the card, or `DVD_Player.rbf`, from the [DVD player core](https://github.com/owenb321/MiSTer_DVD).
-
-Recognized discs are Mega CD, Saturn, PlayStation, PC Engine CD, Neo Geo CD, 3DO, CD-i, MD+, SNES MSU-1, and DVD. Audio CDs and unrecognized discs are ignored. A disc launches once per insert, so returning to the menu does not relaunch it until you eject it. If nothing is installed to play the disc, the OSD shows **No physical CD provider installed**, **Physical CD launcher not found**, or **DVD core not found**.
-
-:::warning
-Core's [optical drive reader](../../readers/optical-drive.md) watches the same drive. Do not enable both for one drive, or both react to the same disc.
-:::
 
 ## Commands
 

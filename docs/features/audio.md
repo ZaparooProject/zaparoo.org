@@ -20,6 +20,7 @@ The native audio launcher handles the `Audio` [system](./systems.md) and plays t
 | Video game music | `.vgm`, `.vgz` |
 | Chiptune | `.nsf`, `.nsfe`, `.gbs`, `.hes`, `.kss`, `.spc` |
 | MIDI | `.mid`, `.midi`, `.kar`, `.rmi` |
+| CD rips | `.cue` with its `.bin` file |
 | Playlists | `.pls`, `.m3u`, `.m3u8` |
 
 Audio files indexed under an `Audio` or `Music` folder are launched through it automatically.
@@ -34,11 +35,13 @@ You can also launch any audio file directly by its path:
 
 Launching a `.pls`, `.m3u`, or `.m3u8` file plays it as a [playlist](./playlists.md#pls-file) from any folder, unless another launcher takes that file, such as a system that uses `.m3u` files for multi-disc games.
 
-An `.nsf`, `.nsfe`, `.gbs`, `.hes`, or `.kss` file can hold a whole soundtrack. It plays every track in order as one item, and the `next` and `previous` [controls](#controlling-playback) move between tracks. To play a single track, add its number, counting from 1, after the file name:
+An `.nsf`, `.nsfe`, `.gbs`, `.hes`, or `.kss` file can hold a whole soundtrack, and a `.cue` rip holds a whole album. Each plays every track in order as one item, and the `next` and `previous` [controls](#controlling-playback) move between tracks. To play a single track, add its number, counting from 1, after the file name:
 
 ```zapscript
 **launch:/media/fat/music/nsf/game.nsf/3
 ```
+
+A `.cue` rip uses the track names in its cue sheet. An audio CD in a drive plays the same way, through the [optical drive reader](../readers/optical-drive.md#play-an-audio-cd).
 
 MIDI files play through a built-in FM synthesizer. To use a SoundFont instead, set [`midi_soundfont`](../core/config/media.md#midi_soundfont).
 

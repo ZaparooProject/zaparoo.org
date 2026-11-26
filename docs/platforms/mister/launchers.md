@@ -394,6 +394,37 @@ Video playback uses [nextfvp](https://github.com/kyx0r/nextfvp), a framebuffer v
 
 Supported formats: MP4, MKV, AVI, MOV, WEBM
 
+#### MiSTer MediaCenter
+
+[MiSTer MediaCenter](https://github.com/bonna79/MiSTer_MediaCenter) plays a wider range of video files, including `.mpg`, `.vob`, `.ts`, `.wmv`, and DVD `.iso` and `.cue` images. Install it with its own instructions so the player is at `/media/fat/linux/mediacenter`, then update the media database. When it is installed, the `MediaCenter` launcher plays the files in `Video`, `Movies`, and `TV` folders that it supports, and fvp keeps `.webm` files. Only the player itself is supported, not its menu.
+
+### Moonlight
+
+[MiSTer Moonlight CRT](https://github.com/manfredi90/MiSTer_Moonlight_CRT) streams games from a PC running Sunshine through the H264 core. Install it with its own instructions and pair it with your PC from its menu. After a media database update, one **Moonlight** entry appears under the PC system, which opens the client's menu.
+
+To stream one app from a token, give the PC's address, or its name from the client's list of PCs, then the app name as Sunshine shows it:
+
+```zapscript
+**launch:moonlight://192.168.1.20/Desktop
+```
+
+Write spaces in a name as `%20`, as in `moonlight://Gaming%20PC/Steam%20Big%20Picture`.
+
+`moonlight://` on its own opens the client's menu. The stream uses the bitrate, audio, and sync settings saved in the client's menu.
+
+### Physical discs and audio CDs
+
+With Core's [optical drive reader](../../readers/optical-drive.md), a disc in a USB drive can play from the drive itself. These launchers handle it:
+
+| Launcher ID | What it plays | Needs |
+| ----------- | ------------- | ----- |
+| `PhysicalDisc<System>`, such as `PhysicalDiscPSX` | A game disc for Mega CD, Saturn, PlayStation, PC Engine CD, Neo Geo CD, 3DO, CD-i, MD+, or SNES MSU-1 | [Physical Disc Support](https://github.com/Anime0t4ku/Main_MiSTer_Physical_Disc) or [mister-disc](https://github.com/theshaneobrien/mister-disc-drive-support) with an MGL for that system |
+| `PhysicalDiscDVDPlayer` | A DVD | The [DVD player core](https://github.com/owenb321/MiSTer_DVD), as `DVD_YYYYMMDD.rbf` or `DVD_Player.rbf` |
+| `PSXCDPlayer` | An audio CD, or a `.cue` rip of one, through the PlayStation core's CD player | For a disc, Physical Disc Support or mister-disc with a PlayStation MGL |
+| `MiSTerHiFi` | A whole audio CD, through [MiSTer Hi-Fi](https://github.com/Anime0t4ku/MiSTer_Hi-Fi) | `Scripts/misterhifi.sh` |
+
+Core picks the `PhysicalDisc` launcher for the disc's system itself. `PSXCDPlayer` and `MiSTerHiFi` are only used when you name them, with [`audio_cd_launcher`](../../core/config/readers.md#readers-drivers-audio-cd-launcher) for discs or `?launcher=` in ZapScript. `PSXCDPlayer` always starts from the first track. Without either, audio CDs play through Core's own [audio player](../../features/audio.md).
+
 ### Console launcher rendering
 
 MiSTer's video and ScummVM launchers render through an internal framebuffer. By default, `GenericVideo` uses one-third of the current output dimensions and `ScummVM` uses a 640x480 RGB16 framebuffer.

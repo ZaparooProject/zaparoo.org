@@ -1,0 +1,479 @@
+# Core API
+
+The **Core API** is stable and ready for third-party integrations. The published `/api/v0.1` contract will receive backward-compatible, additive changes only. Any future breaking changes will use a new versioned endpoint.
+
+The **Core API** is available on and published by every device running the [Zaparoo Core](../../core) software. This API allows management of all Zaparoo features locally and remotely. The [Zaparoo](https://zaparoo.app/) app uses this API for all communication with Zaparoo devices, as do most of the flags when Zaparoo is run via the command line.
+
+This page documents the protocol used to communicate with the API and how to interact with it. _It is currently the source of truth when developing applications that work with Zaparoo._
+
+## Communication Protocol
+
+The API uses a standard [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) connection to exchange [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) payloads using the [JSON-RPC 2.0](https://www.jsonrpc.org/specification) protocol.
+
+Communication follows a loose client-server relationship. Clients, by default, are not expected to implement the API beyond what that particular client needs to function.
+
+### Connection
+
+Connections to the API can be established with any standard WebSocket client, using the versioned endpoint of the HTTP server published by the Zaparoo service. By default, the HTTP server is accessible on port `7497`. This port is configurable by the user.
+
+These endpoints are currently available:
+
+- `/api/v0.1`
+- `/api/v0`
+- `/api/`
+
+It's highly recommended to target your application at the specific minor version of the endpoint you're using, which will maintain compatibility during API updates.
+
+An example address for connecting to the API: `ws://10.0.0.123:7497/api/v0.1`
+
+The connection requires no special configuration or authentication to initiate. When [encryption](./encryption) is enabled, remote clients must complete a one-time pairing and encrypt all WebSocket traffic.
+
+### HTTP POST
+
+All API methods can also be called via HTTP POST requests to the same versioned endpoints used for WebSocket connections. This provides an alternative for applications that prefer REST-style communication over persistent WebSocket connections.
+
+These HTTP endpoints are available:
+
+- `/api/v0.1`
+- `/api/v0`
+- `/api/`
+
+HTTP requests must use the `POST` method with `Content-Type: application/json` and send the same JSON-RPC 2.0 formatted payloads as WebSocket connections. The server will respond with a single JSON-RPC 2.0 response object.
+
+An example HTTP request to get the server version:
+
+```bash
+curl -X POST http://10.0.0.123:7497/api/v0.1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "method": "version"
+  }'
+```
+
+For release 2.16.1, this would return a response like:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "result": {
+    "version": "2.16.1",
+    "platform": "linux"
+  }
+}
+```
+
+The reported version is build-dependent. Core returns `config.AppVersion`, populated from `APP_VERSION` during release builds.
+
+Unlike WebSocket connections, HTTP requests are stateless and do not support notifications. Each request requires a complete JSON-RPC 2.0 payload and will receive a single response.
+
+### Server-Sent Events (SSE)
+
+The API provides a [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) endpoint for receiving notifications over a standard HTTP connection. This is useful for clients that only need to receive notifications without the full bidirectional communication of WebSocket, and works with any HTTP client without additional libraries.
+
+These SSE endpoints are available:
+
+- `/api/v0.1/events`
+- `/api/v0/events`
+- `/api/events`
+
+An example using `curl`:
+
+```bash
+curl -N http://10.0.0.123:7497/api/v0.1/events
+```
+
+Each notification is sent as an SSE `data` field containing the same JSON-RPC 2.0 notification object used by WebSocket:
+
+```
+data: {"jsonrpc":"2.0","method":"tokens.added","params":{"type":"nfc","uid":"04E1234567890","text":"**launch:game.rom"}}
+
+data: {"jsonrpc":"2.0","method":"media.started","params":{"systemId":"NES","systemName":"NES","name":"game.rom"}}
+```
+
+SSE connections are long-lived and will continue receiving events until the client disconnects. To call methods, use HTTP POST to the standard API endpoint alongside the SSE connection.
+
+### Bluetooth LE
+
+On Linux and Windows machines with a Bluetooth adapter, Core can also serve the API over Bluetooth Low Energy, so the app works with no shared Wi-Fi at all: discovery, pairing and every method run over the one Bluetooth connection. The transport is on by default and does nothing on a device without a usable Bluetooth adapter; turn it off with the `bleEnabled` setting (`[service.ble] enabled = false` in the config file). Core is the peripheral and the client is the central.
+
+> **Provisional:** the Bluetooth LE wire format below (characteristics, chunking and framing) may still change before it is declared stable. Clients should check the protocol version in Info and refuse one they do not know.
+
+Core never switches the adapter on: one that is off stays off, and the transport starts once the user turns Bluetooth on. While a user scans for or pairs a Bluetooth controller through the `device.bluetooth.*` methods, Core stops advertising and keeps any connected client. An adapter that keeps failing is left alone after five attempts in a row, until it is unplugged, switched off and on, or the setting changes. When a `simpleserial_ble` reader is configured and the adapter cannot scan and advertise at once, the reader takes the adapter and the transport stays off.
+
+Once a client is connected and authenticated, [`device.endpoints`](methods.md#deviceendpoints) tells it where the network API is, so it can move to a WebSocket when the two share a network and keep Bluetooth LE as the fallback.
+
+Core advertises a primary service and, on Linux, the local name from `[service.ble] name`, falling back to the mDNS discovery instance name; the name is read when advertising starts, so a rename shows up after the transport restarts. On Windows the advertisement carries the PC's own Bluetooth name and the setting has no effect, so identify a device by the service and the `deviceId` in Info rather than by name:
+
+| Characteristic | UUID                                   | Properties                     | Purpose                                                                 |
+| -------------- | -------------------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
+| Service        | `0da70001-b359-443b-836f-477d34b6a638` |                                | Primary service, also in the advertisement so clients can filter on it. |
+| RX             | `0da70002-b359-443b-836f-477d34b6a638` | write, write without response  | Chunks from the client to Core.                                         |
+| TX             | `0da70003-b359-443b-836f-477d34b6a638` | notify                         | Chunks from Core to the client.                                         |
+| Info           | `0da70004-b359-443b-836f-477d34b6a638` | read                           | JSON description of the endpoint, readable before authenticating.       |
+| Bond           | `0da70005-b359-443b-836f-477d34b6a638` | read, encrypted link only      | Reads empty. Reading it first makes a phone pair with the Bluetooth stack before subscribing to TX. |
+
+Info returns `{"v": 1, "deviceId": "<device id>", "maxMessage": 4194304, "maxUnauthenticated": 65536, "preferredMtu": 512, "window": 64}`. `deviceId` lets a client pick the stored credentials for this device before it speaks; peer addresses are not stable enough for that. `maxMessage` and `maxUnauthenticated` are the largest messages Core accepts from the client after and before it authenticates. Clients should request the largest ATT MTU the platform allows, and should discover the characteristics on every connection rather than reuse cached handles, which change when Core or the Bluetooth daemon restarts.
+
+**Framing.** A message is one complete WebSocket-equivalent frame: an encrypted frame, or one of the plaintext pairing requests below. It is split into chunks of at most `MTU - 3` bytes, and never more than 512 (the longest value an attribute can hold, which a 517-byte MTU would exceed), and written to RX one after another; Core sends replies the same way on TX. Every chunk starts with a header:
+
+```text
+byte 0    flags   bits 7..4 = protocol version (1), bit 2 = ACK, bit 1 = LAST, bit 0 = FIRST, bit 3 reserved (0)
+byte 1-2  seq     big-endian, see below
+byte 3-4  tag     session tag, big-endian
+byte 5-8  length  total message length, big-endian, FIRST chunk only
+payload           at least one byte; none on an ACK
+```
+
+`seq` counts every data chunk the sender has sent on this connection, starting at 0 and wrapping at 65536. It does not restart with each message. Each direction has its own count. Chunks may reach Core out of order, within a message or across two messages, and Core uses `seq` to put them back, so a client may send its next request without waiting for the previous one to be delivered. A chunk more than 256 places ahead of the one expected, a repeated sequence number, or a length that does not add up ends the connection.
+
+The client picks a random non-zero 16-bit tag for the session and sends it on every chunk. To start over on the same connection, the client picks a new tag and starts at `seq` 0: Core ends the old session without a closing notice and serves the new one. A tag must not have been used on the connection before: Core drops chunks carrying a tag the connection has already left, and acknowledgements carrying any tag but the current one. A connection may start over 8 times; after that Core ends the session and the client must reconnect. Core stamps the session's tag on every chunk it sends that client, and clients must drop TX chunks carrying any other tag, because on Linux the radio delivers notifications to every subscribed central: every connected central sees every TX chunk, including pairing replies, and only the per-session encryption keeps another client's traffic unreadable. Whether a second client can connect while one is connected depends on the adapter: Core advertises again as soon as a client connects, and an adapter that cannot advertise while connected simply stays hidden until that client leaves.
+
+**Writing.** Write chunks to RX as writes with a response. RX also takes writes without a response, which are faster, but a Bluetooth stack may drop one when chunks arrive faster than it can hand them on (Windows does), and nothing resends it. Core waits ten seconds for a missing chunk and then ends the session. A client that wants the speed should send only some chunks without a response and should expect to fall back.
+
+**Flow control.** Core sends at most `window` data chunks beyond the last one the client acknowledged, then waits. The client acknowledges by writing an ACK chunk to RX: the 5-byte header alone, with the ACK flag set and `seq` set to the sequence number of the next data chunk it expects from Core. A client must send one at least every `window / 2` chunks it receives; more often is fine. ACK chunks carry no sequence number of their own and Core never sends them. Core ignores an ACK behind one it already has, since writes can reach it out of order, but an ACK for a chunk Core has not sent ends the connection. A client that leaves a full window unacknowledged for 30 seconds is disconnected.
+
+**Message size.** Messages from Core have no size limit: a response is streamed however large it is, so everything the API returns over WebSocket is available over Bluetooth. Throughput is the practical limit: about one chunk per connection interval, which is around 10 kB/s at a 50 ms interval, so ask for the shortest interval the platform allows. One connection carries one message at a time, so a large response delays everything behind it, including `pong`. Any chunk from Core shows the link is alive. Prefer bounded requests on this transport: thumbnails rather than full-size images, and [`media.asset`](./methods#mediaasset) which pages a file by offset. Messages from the client may not exceed `maxMessage`, or `maxUnauthenticated` until the encrypted first frame has been answered.
+
+**Pairing.** Pairing runs the same exchange as the [HTTP pairing endpoints](./encryption#pairing-flow), carried as two plaintext JSON-RPC requests that exist only on this transport: `pair.start` with params `{"pake": "<base64 PAKE message A>", "name": "<client name>"}` returning `{"session": "...", "pake": "<base64 PAKE message B>"}`, then `pair.finish` with params `{"session": "...", "confirm": "<base64 client HMAC>"}` returning `{"authToken": "...", "clientId": "...", "confirm": "<base64 server HMAC>"}`. The pairing PIN is still generated and shown on the device by `clients.pair.start`. Failures return error `-32005` (`pairing failed`) whose `data` carries the HTTP `status` and `message` the endpoints would have used, including `429` when a connection sends more than a couple of pairing requests per second.
+
+**Sessions.** A connection accepts only pairing requests and an encrypted first frame; plaintext method calls end the connection, and there is no localhost or legacy access over Bluetooth. Encrypted frames use the [binary envelope](./encryption#binary-envelope), which is the only one accepted here, with the AAD transport label `ble` (see [AAD](./encryption#aad)); a JSON-enveloped frame is treated as plaintext and ends the connection. After pairing, the client sends its encrypted first frame on the same connection. When Core ends a session itself, for a framing error, a failed decryption, a timeout or anything else, the last thing it sends is a plaintext JSON-RPC error with a null `id`: `-32004` (`session closed`) with the reason in `data.reason`, or the more specific `-32001` for an unsupported encryption version. On Linux Core then drops the link. On Windows it cannot, so a client must treat this notice as the end of the session and disconnect. An unauthenticated connection that stays silent for two minutes is dropped, and an authenticated one that sends nothing for five minutes is dropped too, so send the `ping` heartbeat at least once a minute; it works unchanged over Bluetooth. Once authenticated, notifications arrive on TX like WebSocket notifications, except that `media.indexing` and `media.scraping` are skipped while the link is backed up. A client that requests more than the link can carry is slowed down: Core holds further responses until the queue drains, and answers `-32000` (`Server busy`) once its request queues fill.
+
+**Adapters.** How well this works depends heavily on the Bluetooth adapter and the host. In testing, a CSR8510 adapter carried several megabytes in one connection at about 21 kB/s of API data, on a MiSTer and on a desktop. A Realtek RTL8761B adapter (TP-Link UB500) on a MiSTer managed about 3 kB/s and stalled within a megabyte. When a link stalls, Core drops the connection after 30 seconds and the client can reconnect; `media.asset` can resume from the offset it reached.
+
+**Readers.** The same adapter also serves the `simpleserial_ble` reader driver, which connects to a configured Nordic UART Service device as a central. A reader the Bluetooth daemon has connected to before is waited for without a full scan and is picked up a few seconds after it starts advertising; only a reader it has never seen is scanned for. Serving the API and a reader from one adapter needs an adapter and host that can advertise while scanning and while connected to the reader. A MiSTer could not do that reliably in testing, with either adapter above, so use one or the other there.
+
+### JSON Payloads
+
+Server and clients communicate back and forth using JSON payloads, following the [JSON-RPC 2.0](https://www.jsonrpc.org/specification) protocol.
+
+Because a WebSocket connection is asynchronous, request payloads are tagged with a unique ID. The client must keep track of IDs sent to another client and wait for a matching response object. A client can continue sending requests while waiting for responses to previous requests.
+
+#### Requests
+
+A request object asks the connected server to run a predefined [method](#methods), and report back when it's completed with a response object.
+
+An example request:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "4b5da056-a5d4-436b-b4e6-b96231e99969",
+  "method": "media.search",
+  "params": {
+    "query": "240p"
+  }
+}
+```
+
+This request would query Zaparoo's media database for a filename containing the word "240p" and return a response with the search results.
+
+##### Request object
+
+| Key     | Type   | Required | Description                                                                                                                                                                                   |
+| :------ | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| jsonrpc | string | Yes      | As per the JSON-RPC 2.0 spec, this key's value must be the string `2.0` for a payload to be accepted.                                                                                         |
+| id      | string | Yes\*    | A UUID generated by the requesting client, used to match requests back to responses. A request missing this key is valid but would be treated as a notification and not receive any response. |
+| method  | string | Yes      | A string corresponding to a method to be run by the receiving server.                                                                                                                         |
+| params  | any    | No       | Arguments supplied for the method. The value of this key depends on the method used and is omitted for some methods.                                                                          |
+
+All available request methods and their parameters are [documented below](#methods).
+
+#### Notifications
+
+Notifications are requests which do not contain an ID. Otherwise, they are identical to a standard request object. Notifications can be sent by either server or client and do not receive a response.
+
+Like standard requests, notifications may or may not have parameters and its value will depend on the method. Types of notifications are [documented below](#notifications).
+
+#### Responses
+
+Every request sent must have a matching response. An example response to the `media.search` request shown above:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "4b5da056-a5d4-436b-b4e6-b96231e99969",
+  "result": {
+    "results": [
+      {
+        "system": {
+          "id": "Gameboy",
+          "name": "Gameboy"
+        },
+        "name": "240p Test Suite (PD) v0.03 tepples",
+        "path": "Gameboy/240p Test Suite (PD) v0.03 tepples.gb",
+        "zapScript": "@Gameboy/240p Test Suite (PD) v0.03 tepples",
+        "tags": []
+      }
+    ],
+    "total": 1,
+    "pagination": {
+      "hasNextPage": false,
+      "pageSize": 100
+    }
+  }
+}
+```
+
+##### Response object
+
+| Key     | Type   | Required | Description                                                                                                                                                     |
+| :------ | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| jsonrpc | string | Yes      | Same as a [request](#requests).                                                                                                                                 |
+| id      | string | Yes      | Same as a [request](#requests). The same ID sent by the original request.                                                                                       |
+| result  | any    | No\*     | Return value of the method. May be `null` depending on the method, will be missing if there was an error. See [methods](#methods) for possible values.          |
+| error   | Error  | No\*     | If a method failed, this key will be populated with the error details and the result key will be empty. See [below](#response-errors) for details about errors. |
+
+##### Response errors
+
+If a method fails, it will populate the `error` key in the response object with details about the failure. An example of a failed request:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "4b5da056-a5d4-436b-b4e6-b96231e99969",
+  "error": {
+    "code": 1,
+    "message": "invalid cursor: invalid base64"
+  }
+}
+```
+
+##### Error object
+
+| Key     | Type   | Required | Description                                                                               |
+| :------ | :----- | :------- | :---------------------------------------------------------------------------------------- |
+| code    | number | Yes      | An integer specifying the general error category. **Error codes are not yet formalised.** |
+| message | string | Yes      | Short human readable message explaining the error cause, if possible.                     |
+| data    | object | No       | Optional structured detail. Methods that emit it document its shape; [`run`](methods.md#run) emits `{ "category": string }`, plus `reason` and `params` for the categories that [document them](methods.md#launch-repair-errors). Media methods refused while another operation holds the media database emit `{ "category": "busy" }`; see [media database busy errors](methods.md#media-database-busy-errors). |
+
+#### Protocol Errors
+
+If a low-level error occurs before a request context can be established, a protocol error will be sent back. This can happen, for example, if a JSON payload is malformed or a payload could not be decrypted. They're identical to an error response except they will have no ID.
+
+Protocol errors may be sent cleartext if a secure context couldn't be established, but will not contain any sensitive data.
+
+### Anonymous Access
+
+Anonymous cleartext access is, generally, allowed when an API connection is made from a loopback address (i.e. from the same device Zaparoo is running). This access depends on the platform and whether the service is running with elevated privileges. Check the page for the specific platform you're using to make sure it's available to you.
+
+This access is also allowed when a connection is made over a WebSocket Secure (wss) connection.
+
+### Permissions
+
+Core evaluates four public access states:
+
+- **Localhost** requests originate from Core's device and have full access.
+- Authenticated **admin** includes paired admin clients and requests carrying a valid configured static API key. API-key admin is not localhost and cannot invoke localhost-only methods.
+- Authenticated **member** clients can use day-to-day methods, including input and screenshots, but cannot manage profiles, change protected settings, apply updates, reboot or shut down the device, or list, pair or forget Bluetooth devices.
+- Unauthenticated **legacy** clients are admitted only on MiSTer, MiSTeX, Batocera, LibreELEC, and ReplayOS. Legacy is a distinct compatibility state, never admin. Every other platform rejects legacy full-API access.
+
+Grandfathered legacy screenshot access exists on MiSTer and ReplayOS. Grandfathered legacy input exists on MiSTer, MiSTeX, Batocera, and ReplayOS. New methods and capabilities do not become legacy-accessible automatically.
+
+Legacy admission does not govern Core's intentionally unauthenticated surface:
+
+- Client pairing (`/api/pair/start`, `/api/pair/finish`) is remotely reachable and strictly rate limited.
+- Online authentication bootstrap (`settings.auth.claim`, `settings.auth.status`, `settings.auth.link`, and redacted `settings.auth.link.status`) is available before authentication. Remote HTTP POST requires `allowed_ips` and remains rate limited.
+- `/health` is unrestricted and returns a small JSON body for liveness checks: `{"status":"ok","state":"ready"}` once the service is up, with `state` also reporting `starting` while it works through startup and `failed` when it stopped on something a person has to resolve. It always answers `200`, carries nothing beyond that state, and `status` is kept so callers matching the previous `"status":"ok"` keep working. Builds before v2.18 returned a bare `OK`.
+
+Call [`clients.current`](./methods.md#clientscurrent) to inspect current connection's access state, paired role, and capabilities. Every method in [API Methods](./methods) states its access requirements. Some read methods return additional sensitive fields to privileged clients; those fields are identified in their result contracts.
+
+### Heartbeat
+
+If sent the bytes `ping`, the API will immediately respond with the bytes `pong`. This feature can be used by heartbeat functions in WebSocket libraries.
+
+## Launch Endpoint
+
+The HTTP server has additional endpoints which allow restricted access to launch ZapScript using a GET request. These endpoints are specifically meant to support uses such as QR codes scanned by a phone's camera app or simple launch testing.
+
+The following endpoints are available:
+
+- `/run/` - Preferred endpoint for launching ZapScript.
+- `/r/` - Alias for `/run/`.
+- `/l/` - **Deprecated.** Use `/run/` instead.
+
+An example request: `GET http://10.0.0.123:7497/run/**launch.system:snes`
+
+This would act as though a token with the text `**launch.system:snes` had been scanned.
+
+URL-encode media paths used in the endpoint. Core decodes the path once before running it, including encoded spaces and parentheses:
+
+```http
+GET http://10.0.0.123:7497/run/_Arcade/Youjyuden%20%28JP%29.mra
+```
+
+This runs `_Arcade/Youjyuden (JP).mra`.
+
+Requests from the local device are allowed without restriction. Remote requests must be explicitly allowed using the `allow_run` config setting.
+
+These endpoints respond as soon as the token is accepted and do not report execution failures. Use the JSON-RPC [`run`](methods.md#run) method to wait for execution and receive its result.
+
+The decoded ZapScript may be at most 8192 bytes. A longer path returns `413 Request Entity Too Large` and nothing is run.
+
+## Methods
+
+Methods execute actions and return data from Core. See [API Methods](./methods) for request and response contracts, complete access details, and examples. **Local/admin** means localhost or authenticated admin, including paired and valid static API-key admins; **Tiered** means fields or availability vary by client and are detailed in method reference.
+
+| ID                              | Description                                                                           | Access |
+| :------------------------------ | :------------------------------------------------------------------------------------ | :----- |
+| run                             | Run supplied ZapScript.                                                               | All clients |
+| stop                            | Kill any active launcher, if possible.                                                | All clients |
+| confirm                         | Confirm and launch the currently staged token.                                        | All clients |
+| ui                              | Return authoritative global UI event state.                                           | All clients |
+| ui.respond                      | Respond to active global UI event.                                                     | All clients |
+| ui.shown                        | Report that the active global UI event is on screen.                                   | Localhost or any authenticated client |
+| tokens                          | List active tokens.                                                                   | All clients |
+| tokens.history                  | Return latest token launches.                                                         | All clients |
+| media                           | Return media database status and active media.                                        | All clients |
+| media.generate                  | Start a media database index.                                                         | All clients |
+| media.generate.cancel           | Cancel active media database indexing.                                                | All clients |
+| media.generate.resume           | Resume paused media database indexing.                                                | All clients |
+| media.search                    | Search indexed media.                                                                 | All clients |
+| media.versions                  | List the other versions of a media item's game.                                       | All clients |
+| media.similar                   | List media like a media item.                                                         | All clients |
+| media.recommended               | List media the active profile may want to play next.                                  | All clients |
+| media.browse                    | Browse indexed media in a directory hierarchy.                                        | All clients |
+| media.browse.index              | Return jump-to-letter buckets and seek cursors for browsing.                          | All clients |
+| media.tags                      | Query tags available for media filtering.                                             | All clients |
+| media.tags.update               | Add or remove user tags for indexed media.                                            | All clients |
+| media.meta.update               | Update writable metadata for indexed media.                                           | All clients |
+| media.active                    | Return currently active media.                                                        | All clients |
+| media.active.update             | Update currently active media information.                                            | All clients |
+| media.active.image              | Return cover art of the audio track playing in a slot.                                | All clients |
+| media.clean.orphans             | Remove orphaned media database rows.                                                  | All clients |
+| media.history                   | Return paginated media play history.                                                  | All clients |
+| media.history.latest            | Return latest media play history entries.                                             | All clients |
+| media.history.top               | Return most-played media ranked by play time.                                         | All clients |
+| media.lookup                    | Resolve game name and system to indexed media.                                        | All clients |
+| media.lookup.candidates         | Return up to five ranked canonical titles in one system.                              | All clients |
+| media.meta                      | Return metadata for indexed media.                                                    | All clients |
+| media.image                     | Return best matching image for indexed media.                                         | All clients |
+| media.artwork.random            | Return random indexed media that have artwork.                                        | Localhost or any authenticated client |
+| scrapers                        | List available metadata scrapers.                                                     | All clients |
+| media.scrape                    | Start metadata scraping.                                                              | All clients |
+| media.scrape.status             | Return latest metadata scraping status.                                               | All clients |
+| media.scrape.cancel             | Cancel active metadata scraping.                                                      | All clients |
+| media.scrape.resume             | Resume paused metadata scraping.                                                      | All clients |
+| media.control                   | Send control action to active media launcher.                                         | All clients |
+| media.levels.subscribe          | Turn the media.levels visualizer feed on or off for this WebSocket connection.        | Localhost or any authenticated client |
+| playlists.update                | Change shuffle and repeat of the playlist open in a slot.                             | All clients |
+| media.title.parse               | Preview media title and slug parsing.                                                  | All clients |
+| settings                        | List current configuration settings.                                                  | Tiered |
+| settings.update                 | Update and save configuration settings.                                               | `settings.write` |
+| settings.zapscript.hold         | Disable ZapScript until this WebSocket connection closes.                             | `settings.write` |
+| settings.reload                 | Reload settings from disk.                                                            | All clients |
+| settings.logs.download          | Download current log file.                                                            | All clients |
+| settings.backup                 | Create local device backup.                                                           | Local/admin |
+| settings.backup.list            | List local device backups.                                                            | Local/admin |
+| settings.backup.inspect         | Inspect local device backup.                                                          | Local/admin |
+| settings.backup.delete          | Delete local device backup.                                                           | Local/admin |
+| settings.backup.restore         | Restore local device backup.                                                          | Local/admin |
+| settings.backup.status          | Return local and remote backup status.                                                | All clients |
+| settings.backup.remote.run      | Create remote device backup.                                                          | Local/admin |
+| settings.backup.remote.list     | List remote device backups.                                                           | Local/admin |
+| settings.backup.remote.restore  | Restore remote device backup.                                                         | Local/admin |
+| settings.playtime.limits        | Return playtime limit configuration.                                                  | All clients |
+| settings.playtime.limits.update | Update playtime limits.                                                               | `settings.write` |
+| playtime                        | Return playtime session status and usage.                                             | All clients |
+| playtime.extend                 | Grant extra time to the session currently being limited.                              | `playtime.extend` |
+| systems                         | List indexed or supported systems.                                                    | All clients |
+| launchers                       | List launchers known to running service.                                              | All clients |
+| launchers.refresh               | Refresh launcher cache.                                                               | All clients |
+| mappings                        | List mappings.                                                                        | All clients |
+| mappings.new                    | Create mapping.                                                                       | All clients |
+| mappings.delete                 | Delete mapping.                                                                       | All clients |
+| mappings.update                 | Update mapping.                                                                       | All clients |
+| mappings.reload                 | Reload mappings from disk.                                                            | All clients |
+| readers                         | List connected readers and capabilities.                                              | All clients |
+| readers.write                   | Write text using available write-capable reader.                                      | All clients |
+| readers.write.cancel            | Cancel active reader write.                                                           | All clients |
+| input.keyboard                  | Send keyboard input sequence.                                                         | `input` |
+| input.gamepad                   | Send gamepad input sequence.                                                          | `input` |
+| screenshot                      | Capture platform display.                                                             | `screenshot` |
+| version                         | Return Core version and platform.                                                     | All clients |
+| health                          | Check whether Core is responding.                                                     | All clients |
+| inbox                           | List inbox messages.                                                                  | All clients |
+| inbox.delete                    | Delete inbox message.                                                                 | All clients |
+| inbox.clear                     | Delete all inbox messages.                                                            | All clients |
+| clients                         | List paired clients.                                                                  | Localhost |
+| clients.current                 | Return current connection role and capabilities.                                      | All clients |
+| clients.delete                  | Revoke paired client.                                                                 | Localhost |
+| clients.pair.start              | Start pairing flow.                                                                   | Localhost |
+| clients.pair.cancel             | Cancel pairing flow.                                                                  | Localhost |
+| profiles                        | List profiles.                                                                        | Tiered |
+| profiles.new                    | Create profile.                                                                       | `profiles.manage` |
+| profiles.update                 | Update profile.                                                                       | `profiles.manage` |
+| profiles.delete                 | Delete profile.                                                                       | `profiles.manage` |
+| profiles.active                 | Return active profile.                                                                | All clients |
+| profiles.switch                 | Switch active profile.                                                                | All clients |
+| profiles.verify                 | Verify profile PIN.                                                                   | All clients |
+| profiles.content                | Return a profile's kiosk content rule.                                                | Admin |
+| profiles.content.update         | Replace a profile's kiosk content rule.                                               | Admin |
+| kiosk                           | Return kiosk lock state, settings and seal status.                                    | Authenticated |
+| kiosk.enable                    | Turn kiosk mode on from a preset.                                                     | Localhost or admin |
+| kiosk.update                    | Change kiosk settings.                                                                | Admin |
+| kiosk.disable                   | Turn kiosk mode off.                                                                  | Admin |
+| kiosk.unlock                    | Temporarily unlock a locked device.                                                   | Admin, or local PIN |
+| kiosk.lock                      | End a temporary unlock.                                                               | Authenticated |
+| kiosk.allow                     | Approve one launch the content rule would refuse.                                     | Admin |
+| decks                           | List decks.                                                                           | All clients |
+| decks.get                       | Return one deck with its items.                                                       | All clients |
+| decks.new                       | Create a deck.                                                                        | All clients |
+| decks.update                    | Edit a deck's name, description or items.                                             | All clients |
+| decks.delete                    | Delete a deck.                                                                        | All clients |
+| decks.open                      | Open a deck as the active playlist.                                                   | All clients |
+| settings.auth.claim             | Claim API credentials from remote server.                                             | All clients |
+| settings.auth.status            | Return credential link status.                                                        | All clients |
+| settings.auth.unlink            | Remove online account credentials.                                                    | Local/admin |
+| settings.auth.link              | Start online account link, or a RomM, Plex or Jellyfin server link (local/admin only). | All clients |
+| settings.auth.link.status       | Return online account link flow status.                                               | Tiered |
+| settings.auth.link.cancel       | Cancel online account link flow.                                                      | Local/admin |
+| online.status                   | Return online account link state and reported account features.                      | All clients |
+| update.status                   | Report the last known update state without contacting the release server.             | Localhost or any paired client |
+| update.check                    | Check for newer Core version.                                                         | Localhost or any paired client |
+| update.apply                    | Apply latest update and restart gracefully.                                           | `update.apply` |
+| device.status                   | Query the state of the device Core runs on.                                           | Localhost or any paired client |
+| device.endpoints                | Query where else the API can be reached: LAN addresses, port and Bluetooth LE.        | Localhost or any paired client |
+| device.power.reboot             | Restart the device.                                                                   | `device.power` |
+| device.power.shutdown           | Power the device off.                                                                 | `device.power` |
+| device.power.suspend            | Put the device to sleep.                                                              | `device.power` |
+| device.bluetooth.devices        | List paired Bluetooth devices and the ones a scan found.                              | `device.bluetooth` |
+| device.bluetooth.scan.start     | Start looking for Bluetooth devices.                                                  | `device.bluetooth` |
+| device.bluetooth.scan.stop      | Stop looking for Bluetooth devices.                                                   | `device.bluetooth` |
+| device.bluetooth.pair           | Pair with a Bluetooth device, trust it and connect it.                                | `device.bluetooth` |
+| device.bluetooth.forget         | Unpair a Bluetooth device and remove it.                                              | `device.bluetooth` |
+
+## Notifications
+
+Notifications let a server or client know an event has occurred. See the [API Notifications](./notifications) page for detailed definitions and examples of each notification.
+
+| ID                     | Description                                                                       |
+| :--------------------- | :-------------------------------------------------------------------------------- |
+| readers.added          | A new reader was connected to the server.                                         |
+| readers.removed        | A connected reader was disconnected from the server.                              |
+| tokens.added           | A new token detected by a reader.                                                 |
+| tokens.removed         | A token was removed.                                                              |
+| tokens.staged          | A token was staged by launch guard and is awaiting confirmation.                  |
+| tokens.staged.ready    | A staged token's delay period has expired and is ready for confirmation.          |
+| ui.changed             | Authoritative global UI event state changed.                                      |
+| media.started          | New media was started on server.                                                  |
+| media.stopped          | Media has stopped on server.                                                      |
+| media.playback         | Native audio in a slot started, paused, resumed, seeked or had its tags read.     |
+| media.levels           | Live audio levels of native audio playback, for subscribed connections only.      |
+| media.history.changed  | Play history was recorded outside the media started and stopped lifecycle.        |
+| media.tags.changed     | An item's user flags (favorite, liked, disliked, play later, hidden) changed.     |
+| playlists.changed      | An open playlist changed; carries every open playlist.                            |
+| media.indexing         | The state of the indexing or optimization process has changed.                    |
+| media.scraping         | Progress updates emitted during media scraping (includes progress/status details). |
+| playtime.limit.reached | A playtime limit (session or daily) has been reached and enforced.                |
+| playtime.limit.warning | A playtime warning notification sent at configured intervals before limit reached. |
+| playtime.extended      | Extra playtime was granted to the session currently being limited.                |
+| kiosk.state            | The kiosk lock was turned on or off, locked, unlocked, or reconfigured.           |
+| kiosk.launch.refused   | The kiosk lock refused a launch.                                                  |
+| inbox.added            | A new inbox message was added to the server.                                      |
+| decks.changed          | A deck was created, edited, deleted or refreshed from its source.                 |
+| update.state           | Progress of an update being applied.                                              |
+| device.changed         | The state of the device Core runs on changed.                                     |
+| device.bluetooth.changed | Bluetooth devices, a scan or a pairing attempt changed.                         |

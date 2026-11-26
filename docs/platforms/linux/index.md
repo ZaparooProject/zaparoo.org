@@ -100,7 +100,7 @@ Linux requires encrypted connections from remote clients. Pair a phone, browser,
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
 | Barcode and QR | [Serial barcode scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
-| Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
+| Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual enable |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
 | Custom and Virtual | [Simple Serial](../../readers/simple-serial.md) | Supported | Manual config |  |

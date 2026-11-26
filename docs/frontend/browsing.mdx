@@ -1,5 +1,5 @@
 ---
-description: "Browse, search, and launch games in Zaparoo Frontend, arrange the Hub, use collections and decks, play background music, and choose alternate MiSTer launchers."
+description: "Browse, search, and launch games in Zaparoo Frontend, arrange the Hub, find similar games, use collections and decks, play music, and choose alternate MiSTer launchers."
 keywords: [zaparoo frontend browsing, zaparoo frontend search, launch games from frontend, mister game browser, frontend controls, alternate mister launchers, frontend hub, frontend decks, frontend background music]
 sidebar_position: 4
 ---
@@ -24,7 +24,7 @@ The **Other** category holds [launchable items](../features/launchers.md#launcha
 
 ## Search
 
-Select the **Search** tile on the Hub. Type part of a name on the on-screen keyboard, or on a connected keyboard, and matching games appear in the card beside it as you type. Set **System** to search one system instead of all of them, and **Tags** to narrow the results the same way as [filtering a system](#filter-games). Before you type, the card lists your recent searches.
+Select the **Search** tile on the Hub, or press **Menu** on the Hub and choose **Search...**. Type part of a name on the on-screen keyboard, or on a connected keyboard, and matching games appear in the card beside it as you type. Set **System** to search one system instead of all of them, and **Tags** to narrow the results the same way as [filtering a system](#filter-games). Before you type, the card lists your recent searches.
 
 On the Search screen the controller buttons edit the text from wherever the cursor is:
 
@@ -57,15 +57,17 @@ To undo it, turn on **Settings > Browsing > Show hidden items**, then choose **U
 
 ## Arrange the Hub
 
-The Hub is a grid you arrange yourself. Tiles can be categories, the built-in **Resume**, **Favorites**, **Liked**, **Play later**, **Disliked**, **Decks**, **Recently played**, **Top played**, **Search**, **Update**, and **Settings** actions, Settings pages such as **Background music**, systems, folders, games, decks, or [saved searches](#search). To add a tile, choose **Add to Hub** from the options menu of a folder or from [**Manage**](#use-the-options-menu) in the options menu of a system or game, or press **Menu** on the Hub and choose **Add item...**; a folder that holds a single game is added as that game.
+The Hub is a grid you arrange yourself. Tiles can be categories, the built-in **Resume**, **Favorites**, **Liked**, **Play later**, **Disliked**, **Decks**, **Recently played**, **Top played**, **Recommended**, **Search**, **Update**, and **Settings** actions, the **Music** player, **Switch profile**, Settings pages such as **Readers**, systems, folders, games, decks, or [saved searches](#search). To add a tile, choose **Add to Hub** from the options menu of a folder or from [**Manage**](#use-the-options-menu) in the options menu of a system or game, or press **Menu** on the Hub and choose **Add item...**; a folder that holds a single game is added as that game.
 
 Hub tiles have **Rename tile...**, [**Change tile icon...**](./customization.mdx#hub-icons), **Move tile**, and **Remove from Hub**. A tile for a game, a deck, **Resume**, or a system you can browse opens that item's own options menu, and these rows are on its **Edit tile** page. Other tiles, such as categories, actions, folders, and saved searches, show them on the options menu itself. Saving an empty name restores the original. **Reset layout**, under **More** in the Hub's Menu, restores the default arrangement. The layout is stored under `[[hub.items]]` in `frontend.toml`; see [configuration file](./customization.mdx#configuration-file).
 
 ![Options menu on a Hub category tile, with Rename tile, Change tile icon, Move tile, Remove from Hub, and Manage category](/img/docs/frontend/v2.2/hub-tile-remove.webp)
 
-### Pin a MiSTer menu folder
+### Pin a folder or file {#pin-a-mister-menu-folder}
 
-Folders from the MiSTer main menu, such as `_RA_Cores`, `_Chronological`, or a folder of your own `.mgl` files, can be Hub tiles too. Press **Menu** on the Hub, choose **Add item... > Custom folder...**, browse to the folder, and select **Add this folder**. The tile lists the folder's subfolders and launchable files straight from the SD card, so it works without a media database update. **Go to...**, **Tags**, and **Search here...** are not available inside it.
+Any folder or launchable file on the device can be a Hub tile, such as the MiSTer main menu's `_RA_Cores` or `_Chronological` folders, or a folder of your own `.mgl` files. Press **Menu** on the Hub and choose **Add item... > Browse...**. On MiSTer it opens on the SD card. Go back to **Places** to pick a USB drive or network share instead.
+
+Select a file to pin it, or open a folder and select **Add this folder**. The new tile lands where you opened **Add item...**, ready to move. A folder tile lists the folder's subfolders and launchable files as they are on disk, so it works without a media database update. **Go to...**, **Tags**, and **Search here...** are not available inside it.
 
 ## Use the options menu
 
@@ -75,15 +77,16 @@ On a game, a row of four toggles sits above the menu: **Favorite**, **Like**, **
 
 - **Details**.
 - **Add to deck**, which lists your decks with a check on those that already hold the game, and **New deck...** to start one with it.
-- **Choose disc** for a multi-disc game, and **Choose version** for a search result with more than one version.
+- **Choose disc** for a multi-disc game, and **Choose version** for a game with more than one version, such as regional releases or revisions.
+- **Similar games**, which lists games in your library that share the game's series, genre, developer, or other details. Selecting one opens its details.
 - **Write to token**. With an NFC reader connected, choose **Write to NFC token** or **Write with App**. Without one, it shows a code to scan with the Zaparoo App.
-- **Discover alt. versions** for Arcade games.
 - **Manage game**, which opens **Change launcher**, **Add to Hub**, [**Hide game**](#hide-games), and **Update metadata**.
 
 On a system:
 
 - **Launch system** to boot its core with no game loaded.
 - **Random game**.
+- **Write to token**, for a token that boots the system.
 - **Manage system**, which opens **Change launcher**, [**Preferred artwork**](./scraping.mdx#change-the-displayed-artwork), **Add to Hub**, **Hide system**, **Update media database**, and **Update metadata**.
 
 A folder has **Preferred artwork**, **Add to Hub**, and **Hide folder**. A category tile on the Hub has its tile rows and **Manage category** for updating the media database or metadata of its systems.
@@ -100,19 +103,19 @@ See [Add Artwork and Metadata](./scraping.mdx#understand-the-library-actions) fo
 
 Favorites, **Liked**, **Play later**, and **Disliked** each have their own screen, reached from their Hub tiles. To browse one of them within a single system, use [**Menu > Tags > Collections**](#filter-games). On these screens the Menu can **Sort** by default order, A-Z, or **Recently added**, **Group by** system, pick a **Random game**, or **Search here...**. Play later starts sorted by Recently added. Favorite systems have their own screen as well.
 
-**Top played** lists the games you have played longest, with each game's total time.
+**Top played** lists the games you have played longest, with each game's total time. **Recommended** suggests games from your library based on your favorites, likes, decks, Play later list, and what you have played, and says why it picked each one.
 
 ![Favorites grouped by system](/img/docs/frontend/v2.2/favorites-by-system.webp)
 
 ## Decks
 
-The **Decks** tile lists your [decks](../online/index.md#cards-and-decks), including decks you saved from other people in Zaparoo Online. Saved decks show a lock and their owner's name, and cannot be edited. Open a deck to see its items in order. Selecting an item plays the deck from that item, and **Menu > Play deck** plays it from the start.
+The **Decks** tile lists your [decks](../online/index.md#cards-and-decks), including decks you saved from other people in Zaparoo Online. Saved decks show a lock and their owner's name, and cannot be edited. Open a deck to see its items in order. Selecting an item plays the deck from that item, and **Menu > Play deck** plays it from the start. A deck's options menu, on the Decks screen or its Hub tile, has **Write to token** for a token that plays the deck. With an NFC reader connected, it can also write each game in the deck to its own token, one after another.
 
 To build a deck from Frontend, choose **Add to deck** in a game's options menu, or **New deck...** in the Decks screen's Menu. In your own decks, an item's options menu has **Use as deck cover**, **Move in deck**, and **Remove from deck**, under **Manage game** for a game. **More** in the deck's Menu has **Add to Hub**, **Rename deck...**, **Choose cover image...**, **Remove cover**, and **Delete deck**. Decks and their covers are kept on the device, and [Library sync](../online/index.md#library-sync) keeps them in step with your account.
 
-## Background music
+## Music player {#background-music}
 
-**Settings > Background music** opens a music player for Core's [background audio](../features/audio.md). It plays music you have indexed under the `Audio` system, while you browse and while you play games.
+The **Music** player plays Core's [background music](../features/audio.md#background-music), the music you have indexed under the `Audio` system, while you browse and while you play games. To reach it, add **Music** to the Hub with **Add item...**. It also opens when a token starts an album, a cue sheet, or an audio CD.
 
 To add music on MiSTer, put your files in `/media/fat/music` on the SD card, or in an `Audio` folder alongside your system folders, such as `/media/fat/games/Audio` or `/media/usb0/games/Audio`. Then update the media database. See [Audio Playback](../features/audio.md#supported-files) for the file types it plays.
 
@@ -121,9 +124,9 @@ The player shows the current track with its cover art, its progress, and **Shuff
 - **Show playlist**, to see and pick tracks in the playlist that is playing.
 - **Browse music**, to browse your music folders. Selecting a track plays its folder from that track. A folder's options menu has **Play folder** and **Shuffle folder**, and the Menu has **Play all** and **Shuffle all**.
 - **Stop** and **Volume**.
-- **More**, with **Play on startup** and **Pause during games**. These are Core's [`music_autoplay`](../core/config/media.md#music_autoplay) and [`pause_on_launch`](../features/audio.md#pause-on-launch) settings.
+- **More**, with **Play on startup** and **Pause during games**, which are Core's [`music_autoplay`](../core/config/media.md#music_autoplay) and [`pause_on_launch`](../features/audio.md#pause-on-launch) settings, and **Visualizer** and **Visualizer style**, which show the music's levels as **Bars** or a **Mirror** in the player.
 
-A music icon shows in the header while music plays. To reach the player from the Hub, add **Background music** with **Add item...**.
+A music icon shows in the header while music plays.
 
 ## Choose alternate MiSTer launchers
 
@@ -150,7 +153,7 @@ Open **Settings > Browsing** to change how the library appears:
 - **Show original filenames**: each file's real name, without the extension, instead of Core's cleaned-up title.
 - **Show tags**: shows region, revision, and disc tags after game names. When multiple games have the same display name, these tags tell them apart.
 
-Related settings live elsewhere: system logo style, the [background](./customization.mdx#background), and **Reduce motion** under **Settings > Appearance**, regional system names (**Region**) and **Clock format** under **Settings > Language**, and **Mouse support** under **Settings > Controls**.
+Related settings live elsewhere: system logo style, the [background](./customization.mdx#background), and **Reduce motion** under **Settings > Appearance**, regional system names (**Region**) and **Clock format** under **Settings > System > Language and region**, and **Mouse support** under **Settings > Controls**.
 
 For custom system artwork, Hub icons, and display names, see [Customize Frontend](./customization.mdx).
 

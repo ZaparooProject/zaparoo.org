@@ -30,10 +30,10 @@ Important notes:
 - [ACR122U](https://zaparoo.org/docs/readers/nfc/acr122u/): Setup for the popular ACR122U USB NFC reader.
 - [USB Smart Card Readers](https://zaparoo.org/docs/readers/nfc/usb-smart-card-readers/): Use the ACS ACR1552U, Feitian bR500, and other USB smart card NFC readers through the ccid driver, and get an untested reader supported.
 - [RC522](https://zaparoo.org/docs/readers/nfc/rc522/): SPI wiring guide for the RC522 NFC module.
-- [Optical Drive](https://zaparoo.org/docs/readers/optical-drive/): Use a disc drive as a Zaparoo token reader, launch indexed games from real discs, or burn a zaparoo.txt token file onto a disc.
+- [Optical Drive](https://zaparoo.org/docs/readers/optical-drive/): Use a disc drive as a Zaparoo token reader, launch indexed games from real discs, play game discs from the drive on MiSTer, play audio CDs, or burn a zaparoo.txt token file onto a disc.
 - [Barcode Readers](https://zaparoo.org/docs/readers/barcode/): Use USB barcode scanners as token readers.
 - [MQTT Reader](https://zaparoo.org/docs/readers/mqtt/): Receive token scans over MQTT from any device.
-- [External Drive](https://zaparoo.org/docs/readers/external-drive/): Use USB drives or SD cards as token readers.
+- [External Drive](https://zaparoo.org/docs/readers/external-drive/): Use USB drives or SD cards as token readers, or as game cartridges with a zaparoo.json name, description, and cover.
 - [Epilogue Operator](https://zaparoo.org/docs/readers/epilogue-operator/): Launch original cartridges with GB, SN, and 64 Operator readers on MiSTer.
 - [TTY2OLED](https://zaparoo.org/docs/readers/tty2oled/): Integration with the TTY2OLED MiSTer display addon.
 - [Reader Drivers](https://zaparoo.org/docs/readers/drivers/): How to develop or configure custom reader drivers.
@@ -54,7 +54,7 @@ Important notes:
 
 - [Platforms Overview](https://zaparoo.org/docs/platforms/): All supported platforms and install instructions.
 - [MiSTer FPGA](https://zaparoo.org/docs/platforms/mister/): Install and configure Zaparoo on MiSTer FPGA.
-- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer, with each system's folders and formats and special launchers like ScummVM, CDTV, and DVD Player.
+- [MiSTer Launchers](https://zaparoo.org/docs/platforms/mister/launchers/): Launching cores and games on MiSTer, with each system's folders and formats and special launchers like ScummVM, CDTV, DVD Player, MediaCenter, and Moonlight CRT.
 - [MiSTer Alternate Launchers](https://zaparoo.org/docs/platforms/mister/alternate-launchers/): Use alternate MiSTer cores such as RetroAchievements, DB9, LLAPI, and unstable nightlies, with launcher groups and preferences.
 - [Zaparoo MiSTer Main](https://zaparoo.org/docs/platforms/mister/main/): Zaparoo's build of MiSTer Main: the Zaparoo page in the OSD, kiosk mode, auto-save, disc autorun, MiSTer_cmd commands, direct game tracking, and an early Core start.
 - [Windows](https://zaparoo.org/docs/platforms/windows/): Install and configure Zaparoo on Windows.
@@ -86,8 +86,8 @@ Important notes:
 - [Zaparoo App](https://zaparoo.org/docs/app/): Mobile app for writing tokens, browsing and launching the library, building decks, marking favorites, likes, and play later, and managing Zaparoo.
 - [Web UI](https://zaparoo.org/docs/app/web/): Browser-based control panel for Zaparoo Core.
 - [Zaparoo Frontend](https://zaparoo.org/docs/frontend/): TV and controller-friendly MiSTer interface for browsing and launching the Core library, with collections and decks, background music, Hub arrangement, display settings, color schemes, and support log uploads.
-- [Frontend Setup](https://zaparoo.org/docs/frontend/setup/): Install and update Frontend, start background library scans, configure CRT and TATE displays, pair Bluetooth controllers, and link a Zaparoo Online account.
-- [Frontend Browsing](https://zaparoo.org/docs/frontend/browsing/): Browse, search, and launch games, filter by tags, hide or unhide games and folders, use collections and decks, play background music, arrange the Hub, and choose alternate launchers.
+- [Frontend Setup](https://zaparoo.org/docs/frontend/setup/): Install and update Frontend, start background library scans, configure CRT and TATE displays, pair Bluetooth controllers, manage readers, tokens, and profiles, and link a Zaparoo Online account.
+- [Frontend Browsing](https://zaparoo.org/docs/frontend/browsing/): Browse, search, and launch games, filter by tags, hide or unhide games and folders, find similar games and recommendations, use collections and decks, play music, arrange the Hub, and choose alternate launchers.
 - [Frontend Artwork](https://zaparoo.org/docs/frontend/scraping/): Download libretro artwork or import local covers, manuals, and metadata.
 - [Zaparoo Designer](https://zaparoo.org/docs/designer/): Web app for designing printable NFC card artwork.
 - [Zaparoo Online](https://zaparoo.org/docs/online/): Optional free account for Library sync, play history sync, virtual cards and decks, remote control, and the User API. Warp is its paid cloud-backup tier (US$3.99/month or US$29.99/year, includes App Pro).

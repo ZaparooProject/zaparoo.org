@@ -20,7 +20,6 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 |-----------|------|---------|-----------|
 | `1292APVS` | 1292 Advanced Programmable Video System | `1292 Advanced Programmable Video System`, `1292 APVS` | |
 | `3DO` | 3DO | | |
-| `3DS` | Nintendo 3DS | | |
 | `AdvancedPICOBeena` | Advanced PICO Beena | `Advanced PICO Beena`, `Beena` | |
 | `AdventureVision` | Entex Adventure Vision | `AVision` | |
 | `AmstradGX4000` | Amstrad GX4000 | `Amstrad GX4000`, `GX4000` | |
@@ -61,7 +60,6 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `MyVision` | Nichibutsu My Vision | | |
 | `NES` | Nintendo NES | | |
 | `NESMusic` | NES Music | | `NES` |
-| `NGage` | Nokia N-Gage | `N-Gage` | |
 | `Nintendo64` | Nintendo 64 | `N64` | |
 | `NintendoSwitch2` | Nintendo Switch 2 | `Nintendo Switch 2`, `Switch 2` | |
 | `Nuon` | NUON | | |
@@ -119,6 +117,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 
 | System ID | Name | Aliases | Fallbacks |
 |-----------|------|---------|-----------|
+| `3DS` | Nintendo 3DS | | |
 | `AtariLynx` | Atari Lynx | | |
 | `AtariLynx2P` | Atari Lynx (2 Player) | | |
 | `BBCBridgeCompanion` | BBC Bridge Companion | | |
@@ -145,6 +144,7 @@ Not every system here can be launched. Some, such as mobile phones or VR headset
 | `NDS` | Nintendo DS | `NintendoDS` | |
 | `NeoGeoPocket` | Neo Geo Pocket | | |
 | `NeoGeoPocketColor` | Neo Geo Pocket Color | | `NeoGeoPocket` |
+| `NGage` | Nokia N-Gage | `N-Gage` | |
 | `NintendoEReader` | e-Reader / Card-e Reader | `e-Reader / Card-e Reader`, `Nintendo e-Reader`, `Card-e Reader` | |
 | `PanasonicJungle` | Panasonic Jungle | `Panasonic Jungle` | |
 | `Playdate` | Playdate | | |

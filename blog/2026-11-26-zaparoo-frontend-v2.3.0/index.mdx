@@ -1,0 +1,136 @@
+---
+slug: zaparoo-frontend-v2.3.0
+title: "Zaparoo Frontend v2.3.0: Similar Games, Readers, and Profiles"
+description: "Zaparoo Frontend v2.3.0 adds similar games and recommendations, reader, token, and profile settings, Add item > Browse, a music visualizer, and an Aquarium screensaver. Zaparoo Core v2.24.0 turns the optical drive reader on by default, plays game discs from the drive on MiSTer, and plays audio CDs as albums."
+tags: [software, frontend, core]
+authors: [wizzo]
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+[Zaparoo Frontend](/docs/frontend/) v2.3.0 helps you find something to play. A game's options menu now lists similar games from your library, and a new **Recommended** tile on the Hub suggests games based on your favorites, decks, and what you have played. Readers, tokens, and profiles also come to the MiSTer interface. You can see what a token does before you start it, map a read-only token to a game, manage profiles and playtime limits, and pick who is playing when the MiSTer turns on.
+
+[Zaparoo Core](/docs/core/) v2.24.0 makes the optical drive reader a lot more useful. It's on by default on MiSTer and several Linux platforms, a game disc with no match in your library can play straight from the drive on MiSTer, and an audio CD plays as an album.
+
+Thanks to [Andrea Bogazzi](https://github.com/asturur) for the new Aquarium screensaver, to [Sami](https://github.com/Yshuro) for moving the Nintendo DS to the Handheld category, and to [Jerris Heaton](https://github.com/jerris) for fixing write cancelling in Core's terminal UI.
+
+{/* truncate */}
+
+## Download and update
+
+<div className="margin-bottom--md">
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Frontend v2.3.0"
+    link="https://github.com/ZaparooProject/zaparoo-frontend/releases/tag/v2.3.0"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="download" />}
+    label="Core v2.24.0"
+    link="https://github.com/ZaparooProject/zaparoo-core/releases/tag/v2.24.0"
+    variant="primary"
+  />{" "}
+  <Button
+    icon={<FAIcon icon="link" />}
+    label="Frontend install guide"
+    link="/docs/frontend/setup/"
+    variant="primary"
+  />
+</div>
+
+On MiSTer, use **Update All** to update Frontend and Core together. If you install by hand, update both. **Browse...** and the music player's new features need Core v2.24.0.
+
+For a manual update, copy the whole `zaparoo` folder from the release ZIP, including `modules/`, so Frontend, MiSTer Main, and the menu core all come from the same bundle. See the [manual install steps](/docs/frontend/setup/#manual-install).
+
+Before you update on Lakka: games in single-game archives are indexed under a new path, so favorites on them are lost once and need setting again.
+
+## Similar games and recommendations
+
+A game's options menu has **Similar games**, which lists games in your library that share its series, genre, developer, or other details. **Choose version** is on any game with more than one version, not only search results, and replaces **Discover alt. versions** for Arcade games.
+
+The new **Recommended** Hub tile suggests games from your library based on your favorites, likes, decks, Play later list, and what you have played, and says why it picked each one. **Settings > Library > Preferred game versions** sets the regions and languages that launch first when a game has several versions.
+
+## Optical drive reader
+
+Core's [optical drive reader](/docs/readers/optical-drive/) has matched game discs to the images in your library for a while. It used to need turning on in `config.toml`, and playing a disc from the drive needed the **Auto-run discs** option in Zaparoo's MiSTer Main build. Now the reader is on by default on MiSTer, LibreELEC, Batocera, Knulli, ROCKNIX, and AmberELEC, and Core works out what each disc is when it goes in:
+
+- A game disc still launches its matching image from your library. On MiSTer, a disc with no match now [plays from the drive](/docs/readers/optical-drive/#play-a-disc-from-the-drive) instead, for Mega CD, Saturn, PlayStation, PC Engine CD, Neo Geo CD, 3DO, CD-i, MD+, and SNES MSU-1 discs, and DVDs. This needs [Physical Disc Support](https://github.com/Anime0t4ku/Main_MiSTer_Physical_Disc) or [mister-disc](https://github.com/theshaneobrien/mister-disc-drive-support) for CDs, and the [DVD player core](https://github.com/owenb321/MiSTer_DVD) for DVDs.
+- An [audio CD](/docs/readers/optical-drive/#play-an-audio-cd) plays as an album through Core's audio player, with track names from CD-Text. On MiSTer it can play through the PlayStation core's CD player or [MiSTer Hi-Fi](https://github.com/Anime0t4ku/MiSTer_Hi-Fi) instead.
+- A mapping or a `zaparoo.txt` file on the disc still runs first.
+
+[`launch_order`](/docs/core/config/readers/#readers-drivers-launch-order) picks whether the library image or the disc wins, and `audio_cd_launcher` picks the audio CD player. Core reads a disc once when it goes in, so the drive stays quiet while a disc core streams from it.
+
+If your MiSTer Main build still has **Auto-run discs** on its Zaparoo OSD page, turn it off, or a disc launches twice.
+
+## Readers, tokens, and profiles
+
+Settings is regrouped into **Library**, **Browsing**, **Appearance**, **Display**, **Controls**, **Readers**, **Profiles**, **Online**, **RetroAchievements** (on MiSTer), and **System**. Language moves to **System > Language and region**.
+
+[**Settings > Readers**](/docs/frontend/setup/#readers-and-tokens) is new:
+
+- **Read a token** shows what the last scanned token is and what it does, without starting it. From there you can launch it, write a game to it, or **Map to a game** so a read-only token starts a game.
+- **Connected readers**, **Add a reader**, and **Reader types** list your readers, set up one that isn't found when plugged in, and choose which kinds are auto-detected.
+- **Scanning** and **During play** hold the scan mode, scan sound, launch guard, and your mappings.
+
+Scanning a blank token offers to write the selected game to it. When a token doesn't start, the header says why, such as a game that wasn't found or a playtime limit. Systems and decks get **Write to token**, and a deck can write each of its games to its own token, one after another.
+
+[**Settings > Profiles**](/docs/frontend/setup/#profiles) switches [profiles](/docs/features/profiles/), with a PIN pad for profiles that have one. With an admin PIN it also creates and edits them, writes switch cards, and sets playtime limits. The header shows the active profile's name and the time left under a limit, and **Extra time** adds 15 minutes, 30 minutes, an hour, or the rest of the day to the current session. Turn on **Choose profile at startup** and a **Who is playing?** screen appears when the MiSTer powers on.
+
+## The Hub and Browse
+
+**Add item... > Browse...** replaces **Custom folder...** and [pins a game file](/docs/frontend/browsing/#pin-a-mister-menu-folder) to the Hub as well as a folder. On MiSTer it opens on the SD card, and **Places** lists USB drives and network shares. **Search...** is now first in the Hub's Menu, and **Switch profile** can be a Hub tile.
+
+## Music player
+
+The [music player](/docs/frontend/browsing/#background-music) moves out of Settings and becomes a Hub tile you add with **Add item...**. It opens when a token starts an album, a cue sheet, or an audio CD, and shows track names from CD-Text and cue sheets. A visualizer draws the music's levels as **Bars** or a **Mirror**, and you can turn it off under **More** in the player's Menu.
+
+## Online backups
+
+With a [Zaparoo Online](/docs/online/) account, **Settings > Online** has Core's **Auto backup**, which backs up after each game and is on by default. It also shows a backup's protection and recovery points, and says when a scheduled backup was skipped or failed. **Local backups** lists the [local backups](/docs/features/backups/#create-a-local-backup) on the device, with or without an account.
+
+## Aquarium screensaver
+
+[Andrea Bogazzi](https://github.com/asturur) added an **Aquarium** [screensaver](/docs/frontend/customization/#screensaver) style, with fish, bubbles, and scenery that change each time it starts.
+
+## Frontend fixes
+
+- The header clock stays hidden until the time is set, instead of showing 1970 or 7:00 after power on. **Clock format** also gains **Off**.
+- The Wi-Fi icon dims while the connection doesn't reach the internet.
+
+## Core v2.24.0
+
+### Game cartridges on USB drives
+
+A USB stick or SD card that carries its own game can now work like a [game cartridge](/docs/readers/external-drive/#make-a-game-cartridge). Add a `zaparoo.json` next to its `zaparoo.txt` with a name, description, and cover, and the App shows that name while the game runs. A game file outside your launcher folders is matched to its system from its folder name or file extension, and if the emulator or core for it isn't installed, the launch failure says which part is missing.
+
+### MiSTer
+
+- [MiSTer MediaCenter](https://github.com/bonna79/MiSTer_MediaCenter) plays the video files it supports, including DVD images, and [MiSTer Moonlight CRT](https://github.com/manfredi90/MiSTer_Moonlight_CRT) streams games from a PC. A token can stream one app with `moonlight://` and the PC and app name. See [MiSTer launchers](/docs/platforms/mister/launchers/#moonlight).
+- Core [starts earlier](/docs/platforms/mister/#start-core-earlier) in MiSTer's boot on its own, so readers are ready sooner after power on. It adds the init script the first time it runs, and puts it back after a MiSTer Linux update.
+
+### Library
+
+- A multi-disc game's folder takes favorite, like, dislike, and Play later as one game, and shows once in your lists.
+- Nintendo DS, 3DS, PSP, PS Vita, N-Gage, and Game.com move from the Console category to Handheld. Thanks to [Sami](https://github.com/Yshuro) for starting with the DS.
+- On Lakka, each game in a shared archive is indexed and launched on its own.
+
+### Core fixes
+
+- Cancelling a write from the terminal UI works, thanks to [Jerris Heaton](https://github.com/jerris).
+- On Linux and macOS, Core refuses to update itself in a read-only location before downloading anything, and says to update it the way it was installed.
+- [Kiosk mode](/docs/features/profiles/#kiosk-mode) rules that allow only favorites now match.
+
+### For developers
+
+`media.browse` with `live: true` and no path lists the device's browse roots, and `decks.update` takes a cover from `files.browse` or an upload. `decks` and `decks.get` return a `syncError` when Zaparoo Online refuses a deck, and the `media.levels` notification, turned on with `media.levels.subscribe`, streams audio levels for visualizers. Active media gains a `mediaDescription`, and `media.active.image` serves the cover from a cartridge's `zaparoo.json`. See the [API reference](/docs/core/api/).
+
+### Coming next
+
+Core can import screenshots you take on MiSTer as a game's artwork, from [Andrea Bogazzi](https://github.com/asturur). It needs a MiSTer Main change that isn't released yet.
+
+---
+
+If something breaks or behaves differently from the last version, report it on our [Discord](https://zaparoo.org/discord), [Frontend GitHub](https://github.com/ZaparooProject/zaparoo-frontend/), or [Core GitHub](https://github.com/ZaparooProject/zaparoo-core/). Include your Frontend and Core versions, your display setup, and what you were doing. **Settings > System > Upload log file** gives you a [support bundle](/docs/frontend/troubleshooting/#upload-support-logs) to share.
+
+<SponsorCallout variant="combined" />

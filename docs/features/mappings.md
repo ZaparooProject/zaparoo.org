@@ -22,6 +22,8 @@ Use this workflow for a read-only NFC toy, locked tag, barcode, optical disc, or
 4. Create a mapping for that ID, then choose the media or custom ZapScript it should run.
 5. Scan the token again to test the mapping.
 
+In [Zaparoo Frontend](../frontend/setup.mdx#readers-and-tokens), open **Settings > Readers > Read a token**, scan the token, and choose **Map to a game**.
+
 Most mappings should match `id`, which is the identifier reported by the reader. Use `value` when you specifically need to match text stored on a writable token, or `data` when an integration requires matching its raw hexadecimal data. See [Matching fields](#matching-fields) for the exact behavior.
 
 Optical-drive mappings also depend on the reader's [`id_source`](../readers/optical-drive.md#choose-the-scanned-id), which selects whether the token ID comes from the disc UUID, label, or both.

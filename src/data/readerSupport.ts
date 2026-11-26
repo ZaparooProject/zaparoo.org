@@ -54,7 +54,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -68,7 +68,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Auto-detected"
         },
         {
           "name": "External Drive",
@@ -161,7 +161,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -175,7 +175,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Auto-detected"
         },
         {
           "name": "External Drive",
@@ -268,7 +268,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -282,7 +282,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -375,7 +375,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -482,7 +482,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -496,7 +496,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -589,7 +589,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -603,7 +603,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -696,7 +696,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -710,7 +710,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -791,7 +791,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -898,7 +898,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -912,7 +912,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -1005,7 +1005,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1019,7 +1019,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -1112,7 +1112,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1126,7 +1126,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Auto-detected"
         },
         {
           "name": "External Drive",
@@ -1219,7 +1219,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1327,7 +1327,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1341,7 +1341,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Auto-detected"
         },
         {
           "name": "External Drive",
@@ -1434,7 +1434,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1448,7 +1448,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Auto-detected"
         },
         {
           "name": "External Drive",
@@ -1541,7 +1541,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1555,7 +1555,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Auto-detected"
         },
         {
           "name": "External Drive",
@@ -1648,7 +1648,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1662,7 +1662,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -1755,7 +1755,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1769,7 +1769,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -1862,7 +1862,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1876,7 +1876,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -1969,7 +1969,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -1983,7 +1983,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",
@@ -2076,7 +2076,7 @@ export const readerSupportByPlatform = {
           "setup": "Via Zaparoo App"
         },
         {
-          "name": "RS-232 scanner",
+          "name": "Serial barcode scanner",
           "href": "readers/barcode/",
           "support": "supported",
           "setup": "Manual config"
@@ -2090,7 +2090,7 @@ export const readerSupportByPlatform = {
           "name": "Optical Drive",
           "href": "readers/optical-drive",
           "support": "supported",
-          "setup": "Manual config"
+          "setup": "Manual enable"
         },
         {
           "name": "External Drive",

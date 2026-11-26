@@ -1,0 +1,78 @@
+---
+title: "Launch Games with NFC Cards on Recalbox"
+sidebar_label: "Recalbox"
+sidebar_position: 9
+description: "Install Zaparoo on Recalbox: launch EmulationStation games with NFC cards on Recalbox devices."
+keywords: [zaparoo recalbox, recalbox nfc, recalbox game launcher, raspberry pi nfc]
+---
+
+# Recalbox
+
+:::danger[Experimental]
+Recalbox support is experimental and not listed as a [supported platform](./index.mdx#support-levels) yet. Expect missing features and rough edges.
+:::
+
+Zaparoo Core on [Recalbox](https://www.recalbox.com/) launches games through Recalbox's EmulationStation. Release builds are available for x86-64, ARM, and ARM64 devices.
+
+## Install
+
+Enable SSH in Recalbox settings (**Network > SSH Server**). The default login is `root` / `recalboxroot`. Connect to the device over SSH, then run:
+
+```bash
+curl -fsSL https://zaparoo.org/install.sh | sh
+```
+
+The installer copies Core to `/recalbox/share/system/zaparoo/zaparoo` and adds a Recalbox user script that starts it on boot and restarts it if it stops. Recalbox cannot run programs from the share, so the script runs a copy at `/tmp/zaparoo-bin/zaparoo-start`. Use that path to run Core commands over SSH.
+
+Once Core is running, write your first token from the [Zaparoo App](/docs/app/#first-run) or the built-in web UI at `http://<device-ip>:7497/app/`.
+
+## Uninstall
+
+```bash
+/tmp/zaparoo-bin/zaparoo-start -uninstall
+```
+
+This stops Core and removes the user script. Delete `/recalbox/share/system/zaparoo` if you also want to remove your settings and data.
+
+## File paths
+
+| Item | Path |
+| ---- | ---- |
+| Config file | `/recalbox/share/system/zaparoo/config.toml` |
+| Data directory | `/recalbox/share/system/zaparoo` |
+| Log file | `/recalbox/share/system/zaparoo/logs/core.log` |
+| Mappings directory | `/recalbox/share/system/zaparoo/mappings` |
+
+## Client security
+
+Recalbox requires remote clients to pair. Pair the Zaparoo App, a browser, or another client with the six-digit PIN Core shows when you run `/tmp/zaparoo-bin/zaparoo-start -pair`. The PIN expires after five minutes. See [encryption](../core/config/service.md#encryption) for how paired clients and their permissions work.
+
+## Readers
+
+| Type | Reader | Support | Setup | Notes |
+| ---- | ------ | ------- | ----- | ----- |
+| NFC/RFID | [PN532 USB](../readers/nfc/pn532-usb.md) | Supported | Auto-detected |  |
+| NFC/RFID | [PN532 Module](../readers/nfc/pn532-module.md) | Supported | Depends on wiring | UART can auto-detect. I2C is supported. |
+| NFC/RFID | [ACR122U](../readers/nfc/acr122u.md) | Supported | Auto-detected |  |
+| NFC/RFID | [USB smart card readers](../readers/nfc/usb-smart-card-readers.md) | Supported | Auto-detected |  |
+| NFC/RFID | [RC522](../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
+| Barcode and QR | [Zaparoo App camera](../app/index.md) | Supported | Via Zaparoo App |  |
+| Barcode and QR | [Serial barcode scanner](../readers/barcode/index.md) | Supported | Manual config |  |
+| Optical and Media | [Optical Drive](../readers/optical-drive.md) | Supported | Manual enable |  |
+| Optical and Media | [External Drive](../readers/external-drive.md) | Supported | Manual enable |  |
+| Custom and Virtual | [MQTT Reader](../readers/mqtt.md) | Supported | Manual config |  |
+| Custom and Virtual | [Simple Serial](../readers/simple-serial.md) | Supported | Manual config |  |
+| Custom and Virtual | [File Reader](../readers/file.md) | Supported | Manual config |  |
+| Displays and Integrations | [TTY2OLED](../readers/tty2oled.md) | Supported | Manual enable |  |
+
+## Launchers
+
+Core adds a launcher for each system in Recalbox's system list, and indexes games from `/recalbox/share/roms`, the built-in ROMs, and the `recalbox/roms` folder, `roms` folder, or root of each USB drive. Games launch through EmulationStation, so a game has to be in one of EmulationStation's ROM folders. Games started from EmulationStation also show as playing in Zaparoo.
+
+The RomM launcher downloads games from a RomM server. See [Media Servers](../features/media-servers.md).
+
+Stopping a game is the only [launcher control](../features/launchers.md#launcher-controls) available.
+
+[Input commands](../zapscript/input.md) are accepted but nothing is typed.
+
+Shell scripts can also be launched. Add them to the [`allow_file`](../core/config/launchers.md#allow_file) list in `config.toml`.

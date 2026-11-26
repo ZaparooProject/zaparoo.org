@@ -343,3 +343,34 @@ scan_mode = 'hold'
 [readers.drivers.opticaldrive]
 scan_mode = 'hold'
 ```
+
+#### launch_order {#readers-drivers-launch-order}
+
+| Key          | Type   | Default         |
+| ------------ | ------ | --------------- |
+| launch_order | string | `"image_first"` |
+
+`opticaldrive` only. Decides whether an inserted game disc launches a matching image from your library or plays from the drive: `image_first`, `disc_first`, `image_only`, or `disc_only`. An unknown value behaves like `image_first`. See [choose between the library and the disc](../../readers/optical-drive.md#choose-between-the-library-and-the-disc).
+
+#### audio_cd_launcher {#readers-drivers-audio-cd-launcher}
+
+| Key               | Type   | Default |
+| ----------------- | ------ | ------- |
+| audio_cd_launcher | string |         |
+
+`opticaldrive` only. The ID of the launcher that plays audio CDs. Empty uses Core's own [audio player](../../features/audio.md). A launcher that is set but not installed plays nothing. See [play an audio CD](../../readers/optical-drive.md#play-an-audio-cd).
+
+#### keep_reading {#readers-drivers-keep-reading}
+
+| Key          | Type    | Default |
+| ------------ | ------- | ------- |
+| keep_reading | boolean | false   |
+
+`opticaldrive` only. Reads the disc every second while it is in the drive, instead of only when it changes. This can make a disc that is playing from the drive skip.
+
+```toml
+[readers.drivers.opticaldrive]
+launch_order = 'disc_first'
+audio_cd_launcher = 'PSXCDPlayer'
+keep_reading = false
+```

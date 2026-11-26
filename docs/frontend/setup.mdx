@@ -1,6 +1,6 @@
 ---
-description: "Install and set up Zaparoo Frontend on MiSTer FPGA, scan your game library, and configure the display, language, and controls."
-keywords: [zaparoo frontend setup, install zaparoo frontend, mister frontend setup, frontend first run, frontend crt mode]
+description: "Install and set up Zaparoo Frontend on MiSTer FPGA, scan your game library, and configure the display, language, controls, readers, and profiles."
+keywords: [zaparoo frontend setup, install zaparoo frontend, mister frontend setup, frontend first run, frontend crt mode, frontend readers, frontend profiles]
 sidebar_position: 2
 ---
 
@@ -10,7 +10,7 @@ Zaparoo Frontend runs on MiSTer FPGA and connects to the local [Zaparoo Core](..
 
 ## Requirements
 
-Update Zaparoo Core alongside Frontend. Update All installs both. Frontend expects Core v2.18.0 or newer and warns at startup when Core is older. The [libretro artwork source](./scraping.mdx#download-libretro-artwork) requires Core v2.19.0, and hiding folders, choosing a disc, and Hub tiles that follow games to another drive require Core v2.20.0. If you install by hand, update both rather than replacing Frontend alone.
+Update Zaparoo Core alongside Frontend. Update All installs both. Frontend expects Core v2.23.0 or newer and warns at startup when Core is older. [**Browse...**](./browsing.mdx#pin-a-mister-menu-folder) and the music player's visualizer need Core v2.24.0. If you install by hand, update both rather than replacing Frontend alone.
 
 On MiSTer, install or update Core from [Update All](../platforms/mister/index.md#install). Update All can automatically configure Frontend in your `MiSTer.ini` file.
 
@@ -101,11 +101,13 @@ Open **Settings > Display**, then **Interface layout**. **Automatic** is the lay
 
 ## Language, region, and controls
 
-- **Settings > Language** sets the interface language (18 languages plus **Automatic**, applied after a restart), the **Region** used for system and game names (Automatic, Americas, Europe, or Japan), [**MiSTer names.txt**](./customization.mdx#mister-namestxt), and the **Clock format**.
+- **Settings > System > Language and region** sets the interface language (18 languages plus **Automatic**, applied after a restart), the **Region** used for system and game names (Automatic, Americas, Europe, or Japan), [**MiSTer names.txt**](./customization.mdx#mister-namestxt), and the **Clock format** (Automatic, 12-hour, 24-hour, or **Off** to hide the clock).
 - **Settings > Controls** sets the **Button style** shown in on-screen prompts (automatic or styles A to E), lets you swap the controller buttons for confirm and cancel or for Options and Menu, and turns **Mouse support** on.
 - **Settings > Appearance** holds the [color scheme](./customization.mdx#color-scheme) and **Color intensity**, system logo style, **Show Menu row**, **Show button hints**, the [top bar logo](./customization.mdx#header-logo), **Reduce motion**, the [screensaver](./customization.mdx#screensaver), and the [background](./customization.mdx#background).
+- **Settings > Library** runs media database and metadata updates, sets **Preferred game versions** (Core's [`default_regions`](../core/config/media.md#default_regions) and [`default_langs`](../core/config/media.md#default_langs)), and holds the [launcher preference](./browsing.mdx#choose-alternate-mister-launchers).
+- **Settings > Readers** and **Settings > Profiles** are covered under [Readers and tokens](#readers-and-tokens) and [Profiles](#profiles).
 - **Settings > Online** links a [Zaparoo Online](#zaparoo-online) account and controls its features.
-- **Settings > About** shows the version and license, **Credits** for the components Frontend uses, a **Documentation** code you can scan to open this guide on your phone, the **Debug logging** switch (restarts Frontend), and **Upload log file** for [support](./troubleshooting.mdx#upload-support-logs).
+- **Settings > System** pairs the [Zaparoo App](../app/index.md) with **Pair a device**, lists **Paired devices**, and has **Require encryption**, **Debug logging** (restarts Frontend), **Error reporting**, **Upload log file** for [support](./troubleshooting.mdx#upload-support-logs), a **Documentation** code you can scan to open this guide on your phone, **Version and license**, and **Credits** for the components Frontend uses.
 
 ## Controllers and remotes
 
@@ -117,6 +119,27 @@ Wireless controllers with a readable battery also show in the header, up to four
 
 An HDMI-CEC TV remote can drive Frontend once `hdmi_cec=1` is set in `MiSTer.ini`. The arrows move, Select confirms, Exit goes back, and Root Menu opens the OSD.
 
+## Readers and tokens
+
+**Settings > Readers** manages the [readers](../readers/index.md) Core uses:
+
+- **Read a token** shows what the last scanned token is and what it does, without starting it. From there you can **Launch** it, **Write a game** to it, or **Map to a game** to make a read-only token start a game through a [mapping](../features/mappings.md).
+- **Connected readers** lists each reader with its details, and **Remove reader** or **Stop detecting this type** to stop using it.
+- **Add a reader** sets up a reader that isn't found when plugged in. Pick its type, then its port or address.
+- **Reader types** turns auto-detect on or off, and sets each type to **Off**, **Manual only**, or **Auto-detect**.
+- **Scanning** holds the [scan mode](../core/config/readers.md#scan-mode) (Tap or Hold), the exit delay and systems that keep running in Hold mode, **Ignore tokens already on a reader**, and **Scan sound**.
+- **During play** has the [launch guard](../features/play-controls.md#launch-guard) and the **Mappings** list, where you can turn off, change, or delete a mapping.
+
+Scanning a blank token offers to write the game you have selected to it, or to choose another. When a token doesn't start, the header says why, such as a game that wasn't found or a [playtime limit](../features/play-controls.md#playtime-limits).
+
+## Profiles
+
+**Settings > Profiles** lists the device's [profiles](../features/profiles.md). Select one to switch to it, entering its PIN if it has one, or choose **Use the shared profile** to go back to the shared one. The active profile's name shows in the header, with the time left when a playtime limit applies.
+
+Creating and editing profiles needs an admin PIN, or a scan of an admin's switch card. The first profile you create is the admin, with a PIN. Press Options on a profile to edit its name, PIN, role, and limits, write a switch card for it with **Write switch card**, or delete it. **Playtime limits** sets the daily and session limits every profile inherits, **Extra time** adds 15 minutes, 30 minutes, an hour, or the rest of today to the current session, and **Require a profile before launching** stops games starting on the shared profile.
+
+**Choose profile at startup** shows a **Who is playing?** screen when Frontend starts, listing the profiles with the shared profile last. On MiSTer it appears when the MiSTer powers on, not when you return from a game. It's off by default.
+
 ## Zaparoo Online
 
 **Settings > Online** connects this device to a [Zaparoo Online](../online/index.md) account. Select **Link account**, then scan the code with your phone, or open the address shown and enter the code. **Unlink account...** removes the link.
@@ -124,7 +147,9 @@ An HDMI-CEC TV remote can drive Frontend once `hdmi_cec=1` is set in `MiSTer.ini
 Once linked, the page controls each Online feature:
 
 - **Features** has a switch for **Remote control**, **Sync play history**, **Library sync**, and **Cloud backup**, plus **All** to change them together. Cloud backup needs a Warp subscription.
-- **Schedule** sets automatic cloud backups to **Daily**, **Weekly**, or **Manual**. **Manage backups** lists your cloud backups, with **Back up now** and the option to restore one. Restoring replaces this device's settings and data, then restarts Zaparoo.
+- **Schedule** sets automatic cloud backups to **Daily**, **Weekly**, or **Manual**, and [**Auto backup**](../features/backups.md) also backs up after each game. **Manage backups** lists your cloud backups, with **Back up now** and the option to restore one. Restoring replaces this device's settings and data, then restarts Zaparoo.
 - **Activity** lists what remote control commands have done on this device.
+
+**Local backups** on the same page lists the [local backups](../features/backups.md#create-a-local-backup) saved on this device, with or without an account, so you can check or delete one.
 
 See [Zaparoo Online](../online/index.md) for what each feature does.

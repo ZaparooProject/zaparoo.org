@@ -48,6 +48,8 @@ The `ccid` driver supports [USB smart card readers](./nfc/usb-smart-card-readers
 | -------------- | --------------------- | --------------------- | -------------------------------------------- |
 | `opticaldrive` | CD/DVD/Blu-ray drives | Linux-based platforms | [Optical Drive](./optical-drive.md) |
 
+The `opticaldrive` driver is enabled by default on MiSTer, LibreELEC, Batocera, Knulli, ROCKNIX, and AmberELEC, and finds a drive when it is plugged in. On other Linux-based platforms, [enable it](./optical-drive.md#enable-the-reader) first.
+
 ### Cartridge readers
 
 | Driver ID  | Hardware                                      | Platforms | Documentation                                      |

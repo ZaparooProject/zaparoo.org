@@ -95,9 +95,12 @@ Hub icons in `hub/` use category or action IDs:
 | `liked` | Liked |
 | `playlater` | Play later |
 | `disliked` | Disliked |
+| `music` | Music player |
+| `switchprofile` | Switch profile |
 | `decks` | Decks |
 | `recents` | Recently played |
 | `topplayed` | Top played |
+| `recommended` | Recommended |
 | `search` | Search |
 | `update` | Update |
 | `settings` | Settings |
@@ -131,13 +134,13 @@ Custom names take priority over [names.txt](#mister-namestxt), Frontend's built-
 
 ## Regional system names
 
-Frontend also includes built-in regional system names and logo variants. Open **Settings > Language**, then set **Region** to **Automatic**, **Americas**, **Europe**, or **Japan**.
+Frontend also includes built-in regional system names and logo variants. Open **Settings > System > Language and region**, then set **Region** to **Automatic**, **Americas**, **Europe**, or **Japan**.
 
 Use custom system names when you want a specific name regardless of the regional setting.
 
 ## MiSTer names.txt
 
-On MiSTer, **Settings > Language > MiSTer names.txt** uses the system names from `/media/fat/names.txt`, the file MiSTer's own menu uses to rename cores. It's off by default. A line only renames the system whose ID matches its key, so `SNES:` renames SNES, while `Gameboy:` renames Game Boy and leaves Game Boy Color alone. Systems the file doesn't name keep their usual name, and **Region** still picks the logos.
+On MiSTer, **Settings > System > Language and region > MiSTer names.txt** uses the system names from `/media/fat/names.txt`, the file MiSTer's own menu uses to rename cores. It's off by default. A line only renames the system whose ID matches its key, so `SNES:` renames SNES, while `Gameboy:` renames Game Boy and leaves Game Boy Color alone. Systems the file doesn't name keep their usual name, and **Region** still picks the logos.
 
 Frontend reads the file at startup or when you turn the setting on, so restart Frontend after editing it.
 
@@ -175,7 +178,7 @@ Changing the logo needs a device [linked](./setup.mdx#zaparoo-online) to a Zapar
 **Settings > Appearance > Screensaver** sets when the screensaver starts and what it shows:
 
 - **Start after**: how long without input before it starts, from 1 to 30 minutes, or **Off**. The default is 5 minutes.
-- **Style**: **Random**, the default, plays a different style each time the screensaver starts. The others are **Bouncing**, **Spinning logo**, **System logos**, **Cover wall**, **Recent games**, **Paddle clock**, **Starfield**, **Flyby**, **Polygons**, **Snakes**, **Life**, and **Maze**.
+- **Style**: **Random**, the default, plays a different style each time the screensaver starts. The others are **Bouncing**, **Spinning logo**, **System logos**, **Cover wall**, **Recent games**, **Paddle clock**, **Starfield**, **Flyby**, **Aquarium**, **Polygons**, **Snakes**, **Life**, and **Maze**.
 - **Bouncing**, shown for Bouncing and Random: bounce the **Logo**, the **Clock**, or a **Recent game**'s cover.
 
 The styles use the Zaparoo logo, the built-in system logos, and your games' [cover art](./scraping.mdx). **Cover wall** needs at least 8 covers, and a bouncing **Recent game** needs a recently played game with a cover. Without them, the screensaver bounces the logo instead. Random skips those styles until you have the covers.
@@ -186,8 +189,8 @@ The settings are stored in `frontend.toml`:
 [settings]
 screensaver_timeout = "300"   # seconds: 60, 120, 300, 600, 900, 1800, or "off"
 screensaver_style = "random"  # random, bouncing, spinning-logo, system-logos, cover-wall,
-                              # recent-games, paddle-clock, starfield, flyby, polygons,
-                              # snakes, life, or maze
+                              # recent-games, paddle-clock, starfield, flyby, aquarium,
+                              # polygons, snakes, life, or maze
 screensaver_bouncing = "logo" # logo, clock, or recent-game
 ```
 
@@ -210,7 +213,7 @@ script = "**launch.random:SNES"
 name = "Random SNES"
 ```
 
-A `folder` tile with `live = true` and no `system` lists a folder straight from the SD card, as [**Custom folder...**](./browsing.mdx#pin-a-mister-menu-folder) does:
+A `folder` tile with `live = true` and no `system` lists a folder as it is on disk, as [**Browse...**](./browsing.mdx#pin-a-mister-menu-folder) does:
 
 ```toml title="frontend.toml"
 [[hub.items]]

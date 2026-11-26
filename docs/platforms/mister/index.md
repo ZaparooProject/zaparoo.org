@@ -18,7 +18,7 @@ MiSTer is fully supported by Zaparoo and is where the project originally started
 
 Update All can install Zaparoo Core and can also enable [Zaparoo Frontend](../../frontend/) in your `MiSTer.ini` file. Frontend is optional; Core can run in the background with the standard MiSTer menu.
 
-The startup service starts at the end of MiSTer's boot; see [start Core earlier](#start-core-earlier) if you want it ready sooner after power on.
+After Core first runs, it also starts early in MiSTer's boot on every later power on; see [start Core earlier](#start-core-earlier).
 
 For manual Core installation, download from the [Downloads page](/downloads/) and copy `zaparoo.sh` to the `Scripts` folder on your SD card.
 
@@ -45,28 +45,18 @@ If you run [Zaparoo's MiSTer Main build](./main.md#game-tracking), none of this 
 
 ### Start Core earlier
 
-Core is started by `/media/fat/linux/user-startup.sh`, which MiSTer runs last during boot, after networking, Bluetooth and Samba. The menu appears before that finishes, so for a short while after power on a scanned token does nothing. Two ways to start Core sooner:
+The startup service in `/media/fat/linux/user-startup.sh` runs last during boot, after networking, Bluetooth and Samba, so on its own it leaves a short while after power on when a scanned token does nothing. To close that gap, Core adds an init script, `/etc/init.d/S11zaparoo`, the first time it runs, and from the next boot on it starts early in the init sequence without holding up networking or Bluetooth. There is nothing to set up.
 
-- Install [Zaparoo Frontend](../../frontend/setup.mdx). Its MiSTer Main build starts Core before the menu even loads, and there is nothing extra to maintain.
-- Add an init script. Over SSH, create `/etc/init.d/S11zaparoo` with the contents below, make it executable with `chmod +x /etc/init.d/S11zaparoo`, and reboot. It runs early in the init sequence instead of at the end. The file lives inside `linux/linux.img`, so a MiSTer Linux update removes it and you need to add it again. Leave the `mrext/zaparoo` line in `user-startup.sh` alone: starting the service twice is harmless, and that line is what keeps Core starting once the script is gone.
-
-```sh
-#!/bin/sh
-# Start Zaparoo Core early in MiSTer's boot. Lives inside linux.img, so
-# add it again after a MiSTer Linux update.
-ZAPAROO=/media/fat/Scripts/zaparoo.sh
-[ -x "$ZAPAROO" ] || exit 0
-case "$1" in
-  start|stop|restart|status) "$ZAPAROO" -service "$1" ;;
-esac
-```
+- The script lives inside `linux/linux.img`, so a MiSTer Linux update removes it. The `user-startup.sh` entry starts Core after the update, and Core puts the script back for the boot after that. Leave the `mrext/zaparoo` line in `user-startup.sh` alone: starting the service twice is harmless.
+- If you added `S11zaparoo` by hand from an earlier version of this page, Core replaces it with its own version, which starts Core in the background instead of making the rest of the boot wait.
+- [Zaparoo Frontend](../../frontend/setup.mdx) starts Core sooner still: its MiSTer Main build starts Core before the menu even loads.
 
 ## Uninstall
 
 There is no uninstall command on MiSTer. To remove Zaparoo:
 
 1. Delete `/media/fat/Scripts/zaparoo.sh`.
-2. Remove the `mrext/zaparoo` line from `/media/fat/linux/user-startup.sh`.
+2. Remove the `mrext/zaparoo` line from `/media/fat/linux/user-startup.sh`. The `/etc/init.d/S11zaparoo` script Core added does nothing once `zaparoo.sh` is gone.
 3. Delete `/media/fat/zaparoo` if you also want to remove your configuration, mappings, and data.
 
 ## File paths
@@ -99,7 +89,7 @@ MiSTer supports portable [device backups](../../features/backups.md) containing 
 | NFC/RFID | [RC522](../../readers/nfc/rc522.md) | Limited | Via Simple Serial | Requires a microcontroller; not a direct USB reader. |
 | Barcode and QR | [Zaparoo App camera](../../app/index.md) | Supported | Via Zaparoo App |  |
 | Barcode and QR | [Serial barcode scanner](../../readers/barcode/index.md) | Supported | Manual config |  |
-| Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Manual config |  |
+| Optical and Media | [Optical Drive](../../readers/optical-drive.md) | Supported | Auto-detected |  |
 | Optical and Media | [External Drive](../../readers/external-drive.md) | Supported | Manual enable |  |
 | Custom and Virtual | [MQTT Reader](../../readers/mqtt.md) | Supported | Manual config |  |
 | Custom and Virtual | [Simple Serial](../../readers/simple-serial.md) | Supported | Manual config |  |
@@ -122,7 +112,7 @@ Some MiSTer Main forks are available with Zaparoo integration or features that w
 
 ### Zaparoo
 
-Zaparoo's own build of MiSTer Main ships with [Zaparoo Frontend](../../frontend/index.mdx) and works without it too. It reports the running game to Core, starts Core before the menu, and adds kiosk mode, auto-save, disc autorun, and commands a card can send. See [Zaparoo MiSTer Main](./main.md).
+Zaparoo's own build of MiSTer Main ships with [Zaparoo Frontend](../../frontend/index.mdx) and works without it too. It reports the running game to Core, starts Core before the menu, and adds kiosk mode, auto-save, and commands a card can send. See [Zaparoo MiSTer Main](./main.md).
 
 ### spark2k06
 
@@ -143,7 +133,7 @@ An alternative version of MiSTer Main by [funkycochise](https://github.com/funky
 
 **Zaparoo does not start at boot.** Run `zaparoo` from the MiSTer **Scripts** menu and accept the prompt to enable it as a startup service, or check that `/media/fat/linux/user-startup.sh` contains the `mrext/zaparoo` line. If the Scripts menu shows **NOT WORKING**, Core started and stopped on a problem it could not fix on its own; the screen shows the last error, and the Web UI address shows the same explanation. Press **Logs** there to upload the log for support.
 
-**Tokens do nothing for a while after power on.** Core is started last in MiSTer's boot sequence, so it can lag behind the menu appearing. See [start Core earlier](#start-core-earlier).
+**Tokens do nothing for a while after power on.** Core needs a few seconds after power on to open its databases and readers. On the first boot after installing Core or updating MiSTer Linux, it also starts last in the boot sequence, so the wait is longer. See [start Core earlier](#start-core-earlier).
 
 **Games started from the MiSTer menu are not tracked.** Playtime tracking needs `recents=1` and `log_file_entry=1` in `MiSTer.ini`. See [game tracking](#game-tracking).
 
